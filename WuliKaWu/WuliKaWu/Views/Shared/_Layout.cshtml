@@ -1,14 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string BaseAddress = @"~/assets";
+    string TGM103CssBaseAddress = $"{BaseAddress}/css";
+    string TGM103JsBaseAddress = $"{BaseAddress}/js";
+    string TGM103ImageBaseAddress = $"{BaseAddress}/images";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, ie=edge" />
     @*<title>@ViewData["Title"] - WuliKaWu</title>*@
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WuliKaWu.styles.css" asp-append-version="true" />*@
     <meta http-equiv="x-ua-compatible">
-    <title>Urdan - Minimal eCommerce HTML Template</title>
+    <title>WuliKaWu</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="Feel good with us.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +24,7 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="WuliKaWu" />
-    <meta property="og:url" content="https://htmldemo.hasthemes.com/urdan/index.html" />
+    <meta property="og:url" content="#" />  <!--TODO: 填入發佈的網站首頁網址 -->
     <meta property="og:site_name" content="WuliKaWu - Feel good with us." />
     <!-- For the og:image content, replace the # with a link of an image -->
     <meta property="og:image" content="#" />
@@ -187,6 +193,8 @@
                                 </div>
                                 <div class="header-action-style">
                                     <a title="Login Register" href="login-register.html"><i class="pe-7s-user"></i></a>
+                                    @*TODO: Core MVC 登入相關引用 *@
+                                    @*<partial name="_LoginPartial" />*@
                                 </div>
                                 <div class="header-action-style">
                                     <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
@@ -206,8 +214,6 @@
                 </div>
             </div>
 
-            @*TODO: Core MVC 登入相關引用 *@
-            @*<partial name="_LoginPartial" />*@
         </header>
         <!-- mini cart start -->
         <div class="sidebar-cart-active">
