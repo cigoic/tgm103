@@ -25,6 +25,15 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 產品資訊 1
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
