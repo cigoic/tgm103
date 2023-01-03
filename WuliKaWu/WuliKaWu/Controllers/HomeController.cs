@@ -89,13 +89,19 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 index-3.html
+        /// <summary>
+        /// 首頁 3
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexThree()
         {
             return View();
         }
 
-        // TODO: 請整合 index-4.html
+        /// <summary>
+        /// 首頁 4
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexFour()
         {
             return View();
