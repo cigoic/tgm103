@@ -15,7 +15,10 @@ namespace WuliKaWu.Controllers
             _logger = logger;
         }
 
-        // TODO: 請整合 about-us.html
+        /// <summary>
+        /// 關於我們
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AboutUs()
         {
             return View();
@@ -39,7 +42,10 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 cart.html
+        /// <summary>
+        /// 購物車
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Cart()
         {
             return View();
@@ -74,7 +80,10 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 index-2.html
+        /// <summary>
+        /// 首頁 2
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexTwo()
         {
             return View();
@@ -208,7 +217,10 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 wishlist.html
+        /// <summary>
+        /// 願望清單
+        /// </summary>
+        /// <returns></returns>
         public IActionResult WishList()
         {
             return View();
