@@ -107,7 +107,10 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 index-5.html
+        /// <summary>
+        /// 首頁 5
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexFive()
         {
             return View();
