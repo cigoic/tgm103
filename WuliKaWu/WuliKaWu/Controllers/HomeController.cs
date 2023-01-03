@@ -51,7 +51,10 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 checkout.html
+        /// <summary>
+        /// 結帳
+        /// </summary>
+        /// <returns></returns>
         [ActionName("Checkout")]
         public IActionResult CheckoutCart()
         {
