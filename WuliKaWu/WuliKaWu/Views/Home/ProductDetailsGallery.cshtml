@@ -4,7 +4,7 @@
                 <div class="breadcrumb-content text-center">
                     <h2 data-aos="fade-up" data-aos-delay="200">Product Details</h2>
                     <ul data-aos="fade-up" data-aos-delay="400">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a  asp-controller="Home" asp-action="Index">Home</a></li>
                         <li><i class="ti-angle-right"></i></li>
                         <li>Product Details Gallery </li>
                     </ul>
@@ -105,7 +105,7 @@
                                     <a href="#">Add to cart</a>
                                 </div>
                                 <div class="single-product-wishlist">
-                                    <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
+                                    <a title="Wishlist"  asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
                                 </div>
                                 <div class="single-product-compare">
                                     <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
