@@ -160,7 +160,7 @@
                                                 <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
                                                 <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
                                                 <li><a asp-controller="Home" asp-action="ContactUs">contact us </a></li>
-                                                <li><a href="login-register.html">login / register </a></li>
+                                                <li><a asp-controller="Home" asp-action="LoginRegister">login / register </a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Login Register" href="login-register.html"><i class="pe-7s-user"></i></a>
+                                    <a title="Login Register" asp-controller="Home" asp-action="LoginRegister"><i class="pe-7s-user"></i></a>
                                     @*TODO: Core MVC 登入相關引用 *@
                                     @*<partial name="_LoginPartial" />*@
                                 </div>
@@ -455,7 +455,7 @@
                                     <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
                                     <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
                                     <li><a asp-controller="Home" asp-action="ContactUs">Contact us </a></li>
-                                    <li><a href="login-register.html">Login / Register </a></li>
+                                    <li><a asp-controller="Home" asp-action="LoginRegister">Login / Register </a></li>
                                 </ul>
                             </li>
                             <li>

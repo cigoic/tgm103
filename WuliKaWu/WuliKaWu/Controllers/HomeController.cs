@@ -24,19 +24,28 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 blog.html
+        /// <summary>
+        /// 部落格
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Blog()
         {
             return View();
         }
 
-        // TODO: 請整合 blog-details.html
+        /// <summary>
+        /// 部落格文章
+        /// </summary>
+        /// <returns></returns>
         public IActionResult BlogDetails()
         {
             return View();
         }
 
-        // TODO: 請整合 blog-sidebar.html
+        /// <summary>
+        /// 部落格測邊欄
+        /// </summary>
+        /// <returns></returns>
         public IActionResult BlogSidebar()
         {
             return View();
@@ -61,14 +70,20 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 compare.html
+        /// <summary>
+        /// 產品比較
+        /// </summary>
+        /// <returns></returns>
         [ActionName("Compare")]
         public IActionResult CompareProducts()
         {
             return View();
         }
 
-        // TODO: 請整合 contact-us.html
+        /// <summary>
+        /// 聯絡我們
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ContactUs()
         {
             return View();
@@ -119,36 +134,46 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 index-6.html
+        /// <summary>
+        /// 首頁 6
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexSix()
         {
             return View();
         }
 
-        // TODO: 請整合 index-7.html
+        /// <summary>
+        /// 首頁 7
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexSeven()
         {
             return View();
         }
 
-        // TODO: 請整合 index-8.html
+        /// <summary>
+        /// 首頁 8
+        /// </summary>
+        /// <returns></returns>
         public IActionResult IndexEight()
         {
             return View();
         }
 
         // TODO: 請整合至 Indentity 控制頁面
-        //public IActionResult LoginRegister()
-        //{
-        //    return View();
-        //}
+        public IActionResult LoginRegister()
+        {
+            return View();
+        }
 
-        // TODO: 請整合 my-account.html
+        // TODO: 與 Identity 檢視整合
         public IActionResult MyAccount()
         {
             return View();
         }
 
+        // TODO: 製作隱私聲明套版
         public IActionResult Privacy()
         {
             return View();
@@ -163,67 +188,88 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 請整合 product-details-2.html
+        /// <summary>
+        /// 產品資訊 2
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ProductDetailsTwo()
         {
             return View();
         }
 
-        // TODO: 請整合 product-details-affiliate.html
+        /// <summary>
+        /// 產品聯盟行銷
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ProductDetailsAffiliate()
         {
             return View();
         }
 
-        // TODO: 請整合 product-details-fixed-img.html
+        /// <summary>
+        /// 產品細節 - 固定尺寸影像
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ProductDetailsFixedImg()
         {
             return View();
         }
 
-        // TODO: 請整合 product-details-gallery.html
+        /// <summary>
+        /// 產品細節 - 集錦集
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ProductDetailsGallery()
         {
             return View();
         }
 
-        // TODO: 請整合 product-details-group.html
+        /// <summary>
+        /// 產品細節 - 群組
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ProductDetailsGroup()
         {
             return View();
         }
 
-        // TODO: 請整合 shop.html
+        /// <summary>
+        /// 購物
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Shop()
         {
             return View();
         }
 
-        // TODO: 請整合 shoplist.html
+        /// <summary>
+        /// 購物清單
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ShopList()
         {
             return View();
         }
 
-        // TODO: 請整合 shop-list-sidebar.html
+        /// <summary>
+        /// 購物清單側欄
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ShopListSidebar()
         {
             return View();
         }
 
-        // TODO: 請整合 shop-location.html
         public IActionResult ShopLocation()
         {
             return View();
         }
 
-        // TODO: 請整合 shop-right-sidebar.html
         public IActionResult ShopRightSidebar()
         {
             return View();
         }
 
-        // TODO: 請整合 shop-sidebar.html
         public IActionResult ShopSidebar()
         {
             return View();
