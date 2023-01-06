@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using PracticeTGM103.Data;
+using PracticeTGM103.Data.TGM103Demo;
 using PracticeTGM103.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 var NorthwindConnectionString = builder.Configuration.GetConnectionString("Northwind");
 builder.Services.AddDbContext<NorthwindContext>(options =>
     options.UseSqlServer(NorthwindConnectionString));
+
+var TGM103DemoConnectionString = builder.Configuration.GetConnectionString("TGM103Demo");
+builder.Services.AddDbContext<TGM103DemoContext>(options =>
+    options.UseSqlServer(TGM103DemoConnectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
