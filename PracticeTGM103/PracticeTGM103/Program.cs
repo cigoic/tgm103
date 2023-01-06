@@ -20,6 +20,10 @@ var TGM103DemoConnectionString = builder.Configuration.GetConnectionString("TGM1
 builder.Services.AddDbContext<TGM103DemoContext>(options =>
     options.UseSqlServer(TGM103DemoConnectionString));
 
+var DemoConnectionString = builder.Configuration.GetConnectionString("Demo");
+builder.Services.AddDbContext<DemoContext>(options =>
+    options.UseSqlServer(DemoConnectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
