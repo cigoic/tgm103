@@ -3,17 +3,19 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PracticeTGM103.Data.TGM103Demo;
+using PracticeTGM103.Data;
 
 #nullable disable
 
-namespace PracticeTGM103.Migrations
+namespace PracticeTGM103.Migrations.Practice
 {
-    [DbContext(typeof(TGM103DemoContext))]
-    partial class TGM103DemoContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PracticeContext))]
+    [Migration("20230107055542_Created")]
+    partial class Created
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace PracticeTGM103.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("PracticeTGM103.Models.Products.Members", b =>
+            modelBuilder.Entity("PracticeTGM103.Models.Members", b =>
                 {
                     b.Property<int>("MembersId")
                         .ValueGeneratedOnAdd()
@@ -34,6 +36,13 @@ namespace PracticeTGM103.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime2");
 
@@ -41,41 +50,34 @@ namespace PracticeTGM103.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemberAddress")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MemberAge")
+                    b.Property<int>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("MemberEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MemberGender")
+                    b.Property<int>("MembershipLevels")
                         .HasColumnType("int");
 
-                    b.Property<string>("MemberName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MemberPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MembershipLevels")
-                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("MembersId");
 
-                    b.ToTable("Members");
+                    b.ToTable("Members", (string)null);
                 });
 
-            modelBuilder.Entity("PracticeTGM103.Models.Products.Products", b =>
+            modelBuilder.Entity("PracticeTGM103.Models.Products", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -83,9 +85,8 @@ namespace PracticeTGM103.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
 
                     b.Property<string>("Comments")
                         .IsRequired()
@@ -102,16 +103,15 @@ namespace PracticeTGM103.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
 
                     b.Property<int?>("StarRating")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 #pragma warning restore 612, 618
         }

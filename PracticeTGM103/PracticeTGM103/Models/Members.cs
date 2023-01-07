@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PracticeTGM103.Models.Products
+namespace PracticeTGM103.Models
 {
-    public enum MemberGender
+    public enum Gender
     {
         Male = 1, Female = 2
     }
@@ -17,14 +17,14 @@ namespace PracticeTGM103.Models.Products
         [Key]
         public int MembersId { get; set; }
 
-        public string MemberName { get; set; }
-        public MemberGender? MemberGender { get; set; }
-        public int MemberAge { get; set; }
+        public string Name { get; set; }
+        public Gender Gender { get; set; }
+        public int Age { get; set; }
         public DateTime Birth { get; set; }
-        public string MemberEmail { get; set; }
-        public string MemberAddress { get; set; }
-        public string MemberPhone { get; set; }
-        public MembershipLevels? MembershipLevels { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public MembershipLevels MembershipLevels { get; set; }
         public string BucketList { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }

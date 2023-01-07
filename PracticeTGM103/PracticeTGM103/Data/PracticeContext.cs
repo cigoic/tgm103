@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PracticeTGM103.Models.Products;
+using PracticeTGM103.Models;
 
-namespace PracticeTGM103.Data.TGM103Demo
+namespace PracticeTGM103.Data
 {
-    public class TGM103DemoContext : DbContext
+    public class PracticeContext : DbContext
     {
         //TODO 自訂建構子
-        public TGM103DemoContext(DbContextOptions<TGM103DemoContext> options)
+        public PracticeContext(DbContextOptions<PracticeContext> options)
             : base(options)
         {
         }

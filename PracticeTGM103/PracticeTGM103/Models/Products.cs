@@ -1,10 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PracticeTGM103.Models.Products
+namespace PracticeTGM103.Models
 {
     public enum StarRating
     {
-        onestar = 1, twostar = 2, threestar = 3, fourstar = 4, fivestar = 5
+        None = 0, Onestar = 1, Twostar = 2, Threestar = 3, Fourstar = 4, Fivestar = 5
+    }
+
+    public enum Color
+    {
+        Black = 0, Red = 1, Green = 2,
+    }
+
+    public enum Size
+    {
+        S = 1, M = 2, L = 3
     }
 
     public class Products
@@ -13,8 +23,8 @@ namespace PracticeTGM103.Models.Products
         public int ProductId { get; set; }
 
         public string Item { get; set; }
-        public string Color { get; set; }
-        public string Size { get; set; }
+        public Color Color { get; set; }
+        public Size Size { get; set; }
         public byte[] Picture { get; set; }
         public int Price { get; set; }
         public string Comments { get; set; }
