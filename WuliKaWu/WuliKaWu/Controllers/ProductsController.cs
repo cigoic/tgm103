@@ -21,11 +21,11 @@ namespace WuliKaWu.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Products.ToListAsync());
+            return View(await _context.Products.ToListAsync());
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> ProductDetails(int id=3)
         {
             if (id == null || _context.Products == null)
             {
@@ -40,6 +40,7 @@ namespace WuliKaWu.Controllers
             }
 
             return View(product);
+
         }
 
         // GET: Products/Create
@@ -147,14 +148,14 @@ namespace WuliKaWu.Controllers
             {
                 _context.Products.Remove(product);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-          return _context.Products.Any(e => e.ProductId == id);
+            return _context.Products.Any(e => e.ProductId == id);
         }
     }
 }
