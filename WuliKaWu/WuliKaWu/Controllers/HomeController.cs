@@ -252,7 +252,7 @@ namespace WuliKaWu.Controllers
         }
 
         /// <summary>
-        /// 購物清單側欄
+        /// 產品購物清單 - List 側欄
         /// </summary>
         /// <returns></returns>
         public IActionResult ShopListSidebar()
@@ -260,16 +260,28 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 商店位置
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ShopLocation()
         {
             return View();
         }
 
+        /// <summary>
+        /// 產品購物清單 - 右側欄
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ShopRightSidebar()
         {
             return View();
         }
 
+        /// <summary>
+        /// 產品購物清單 - 側邊欄位
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ShopSidebar()
         {
             return View();
@@ -284,6 +296,10 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 網站錯誤顯示
+        /// </summary>
+        /// <returns></returns>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
