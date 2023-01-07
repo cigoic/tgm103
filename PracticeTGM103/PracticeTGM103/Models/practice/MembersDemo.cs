@@ -2,31 +2,31 @@
 
 namespace PracticeTGM103.Models.practice
 {
+    public enum MemberGender
+    { Male, Female }
+
     public class MembersDemo
     {
         [Key]
         public int MemberId { get; set; }
 
-        public string MemberName { get; set; }
+        public string Name { get; set; }
 
-        public enum MemberGender
-        { Male, Female }
+        public DateTime Birth { get; set; }
 
-        public DateTime MemberBirth { get; set; }
+        public string Email { get; set; }
 
-        public string MemberEmail { get; set; }
+        public string Adress { get; set; }
 
-        public string MemberAdress { get; set; }
-
-        public string MemberPhone { get; set; }
+        public string Phone { get; set; }
 
         public enum MemberVip
         { VIP, SVIP }
 
         public string? BucketList { get; set; }
 
-        public string MemberAccount { get; set; }
+        public string Account { get; set; }
 
-        public string MemberPassword { get; set; }
+        public string Password { get; set; }
     }
 }
