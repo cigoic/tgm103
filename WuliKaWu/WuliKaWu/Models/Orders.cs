@@ -20,6 +20,5 @@ namespace WuliKaWu.Models
         { Cash, CreditCard, MoblilePay }
 
         public string? Memo { get; set; }
-        public int TotalPrice { get; set; }
     }
 }
