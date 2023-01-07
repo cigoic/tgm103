@@ -11,7 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-var ShopConnectionString = builder.Configuration.GetConnectionString("Shop");
+var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
 builder.Services.AddDbContext<ShopContext>(options =>
     options.UseSqlServer(ShopConnectionString));
 

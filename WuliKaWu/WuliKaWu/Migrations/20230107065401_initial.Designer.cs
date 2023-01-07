@@ -12,8 +12,8 @@ using WuliKaWu.Models;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230107050839_Create")]
-    partial class Create
+    [Migration("20230107065401_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,13 +32,11 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
@@ -55,16 +53,14 @@ namespace WuliKaWu.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
 
-                    b.Property<string>("StarRate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StarRate")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Tag")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Tag")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
