@@ -124,10 +124,10 @@
             </div>
             <div class="col-lg-6">
                 <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
-                    <h2>New Modern Chair</h2>
+                    <h2>@Model.ProductName</h2>
                     <div class="product-details-price">
                         <span class="old-price">$25.89 </span>
-                        <span class="new-price">$20.25</span>
+                        <span class="new-price">@Model.Price</span>
                     </div>
                     <div class="product-details-review">
                         <div class="product-rating">
@@ -163,18 +163,18 @@
                     </div>
                     <div class="product-details-meta">
                         <ul>
-                            <li><span class="title">SKU:</span> Ch-256xl</li>
+                            <li><span class="title">Size:</span>@Model.Size</li>
                             <li>
                                 <span class="title">Category:</span>
                                 <ul>
-                                    <li><a href="#">Office</a>,</li>
-                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">@Model.Category</a>,</li>
+                                    <li><a href="#">@Model.Category</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <span class="title">Tags:</span>
                                 <ul class="tag">
-                                    <li><a href="#">Furniture</a></li>
+                                    <li><a href="#">@Model.Tag</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -327,7 +327,7 @@
                             <h3><a asp-controller="Home" asp-action="ProductDetails">New Modern Sofa Set</a></h3>
                             <div class="product-price">
                                 <span class="old-price">$25.89 </span>
-                                <span class="new-price">$20.25 </span>
+                                <span class="new-price">@Model.Price </span>
                             </div>
                         </div>
                     </div>
