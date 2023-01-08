@@ -16,7 +16,7 @@ namespace WuliKaWu.Models
 
         public Size Size { get; set; }
 
-        public byte[] Image { get; set; }
+        public byte[] Picture { get; set; }
 
         public int Price { get; set; }
 
@@ -30,7 +30,7 @@ namespace WuliKaWu.Models
 
         public Tag? Tag { get; set; }
 
-        //public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<CartViewModel> Cart { get; set; }
     }
 
     public enum Color

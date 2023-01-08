@@ -11,14 +11,16 @@ namespace WuliKaWu.Models
         public int OrderId { get; set; }
 
         public string ProductName { get; set; }
-        public int Amount { get; set; }
-        public int UnitPrice { get; set; }
-        public float? Discount { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
+        public float? CouponDiscount { get; set; }
         public string ShippingAddress { get; set; }
 
         public enum GetPayType
         { Cash, CreditCard, MoblilePay }
 
         public string? Memo { get; set; }
+
+        public virtual ICollection<CartViewModel> Cart { get; set; }
     }
 }

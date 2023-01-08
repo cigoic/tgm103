@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Models;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Models;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230108060051_UpdateCartModel")]
+    partial class UpdateCartModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,6 @@ namespace WuliKaWu.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Models.CartViewModel", b =>
                 {
                     b.Property<int>("Id")
@@ -56,26 +57,11 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductName")
-=======
-            modelBuilder.Entity("WuliKaWu.Models.ContactMessage", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
-
-                    b.Property<string>("Email")
->>>>>>> c6fc7ab427c365ddafb40d8aa1ce9819c186af5f
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-<<<<<<< HEAD
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -86,35 +72,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Price");
-
-                    b.HasIndex("ProductId");
-
                     b.ToTable("Cart");
-=======
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nchar(16)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MessageId");
-
-                    b.ToTable("Contact Messages");
->>>>>>> c6fc7ab427c365ddafb40d8aa1ce9819c186af5f
                 });
 
             modelBuilder.Entity("WuliKaWu.Models.Orders", b =>
@@ -179,13 +137,10 @@ namespace WuliKaWu.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("SellingPrice")
-                        .HasColumnType("int");
-
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StarRate")
+                    b.Property<int>("StarRate")
                         .HasColumnType("int");
 
                     b.Property<int?>("Tag")
@@ -194,33 +149,6 @@ namespace WuliKaWu.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.CartViewModel", b =>
-                {
-                    b.HasOne("WuliKaWu.Models.Orders", "Orders")
-                        .WithMany("Cart")
-                        .HasForeignKey("Price")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Models.Product", "Product")
-                        .WithMany("Cart")
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Orders");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.Orders", b =>
-                {
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.Product", b =>
-                {
-                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }
