@@ -20,9 +20,11 @@ namespace WuliKaWu.Models
 
         public int Price { get; set; }
 
+        public int? SellingPrice { get; set; }
+
         public string? Comment { get; set; }
 
-        public StarRate StarRate { get; set; }
+        public StarRate? StarRate { get; set; }
 
         public Category Category { get; set; }
 
