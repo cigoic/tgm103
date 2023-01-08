@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Models;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Models;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230108022742_CreateContactMessage")]
+    partial class CreateContactMessage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,13 +123,10 @@ namespace WuliKaWu.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("SellingPrice")
-                        .HasColumnType("int");
-
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StarRate")
+                    b.Property<int>("StarRate")
                         .HasColumnType("int");
 
                     b.Property<int?>("Tag")

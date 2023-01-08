@@ -14,5 +14,6 @@ namespace WuliKaWu.Models
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Orders> Orders { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
     }
 }
