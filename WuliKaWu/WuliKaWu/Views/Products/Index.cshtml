@@ -1,85 +1,5 @@
 ﻿@model IEnumerable<WuliKaWu.Models.Product>
 
-
-
-<<<<<<< HEAD
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Picture)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StarRate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tag)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Picture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StarRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tag)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-=======
-
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
@@ -129,8 +49,6 @@
                             <div class="row">
                                 @foreach (var item in Model)
                                 {
-                                    @*@Html.Partial("_ProductContentPartial", item)*@
-
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
@@ -176,7 +94,7 @@
                                     </div>
                                 }
 
-                        <div class="pagination-style-1" asp-for="ProductId" asp-items="@ViewBag.Products">
+                                <div class="pagination-style-1" asp-for="ProductId" asp-items="@ViewBag.Products">
                                     <ul>
                                         <li><a class="active" href="#">1</a></li>
                                         <li><a href="#">2</a></li>
@@ -184,26 +102,3 @@
                                         <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
                                     </ul>
                                 </div>
-                                @*@section Scrips
-                                {
-                                <script>
-
-                                var pPrice = document.getElementsByClassName("product-price")[0];
-
-
-                                if(@Model.Where(p=>p.ProductId == 1).FirstOrDefault().SellingPrice)
-                                {
-                                //TODO
-                                pPrice.append(`<span class="old-price">$@item.Price</span>
-                                <span class="new-price">$@item.SellingPrice</span>`)
-                                }
-                                else
-                                {
-                                //TODO
-                                }
-
-                                </script>
-                                }*@
-
-
->>>>>>> c6fc7ab427c365ddafb40d8aa1ce9819c186af5f
