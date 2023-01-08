@@ -25,8 +25,8 @@ namespace WuliKaWu.Controllers
         }
 
         //  TODO GET: Cart
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetCartDetailsAsync(int id)
+
+        public async Task<IActionResult> GetCartDetailsAsync()
         {
             //var cvm = _context.Carts.Where(
             //    vm => vm.Id == id).Select(vm => new CartViewModel
