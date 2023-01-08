@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Models;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Models;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230108052511_ModifyCart")]
+    partial class ModifyCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,9 +57,6 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -72,10 +71,6 @@ namespace WuliKaWu.Migrations
                         .HasColumnType("nvarchar(32)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Price");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Cart");
                 });
@@ -94,9 +89,6 @@ namespace WuliKaWu.Migrations
                     b.Property<string>("Memo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -107,6 +99,9 @@ namespace WuliKaWu.Migrations
                     b.Property<string>("ShippingAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UnitPrice")
+                        .HasColumnType("int");
 
                     b.HasKey("OrderId");
 
@@ -130,7 +125,7 @@ namespace WuliKaWu.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Picture")
+                    b.Property<byte[]>("Image")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
@@ -154,33 +149,6 @@ namespace WuliKaWu.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.CartViewModel", b =>
-                {
-                    b.HasOne("WuliKaWu.Models.Orders", "Orders")
-                        .WithMany("Cart")
-                        .HasForeignKey("Price")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Models.Product", "Product")
-                        .WithMany("Cart")
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Orders");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.Orders", b =>
-                {
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.Product", b =>
-                {
-                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }
