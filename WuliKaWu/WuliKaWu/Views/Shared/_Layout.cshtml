@@ -12,45 +12,7 @@
     @*<title>@ViewData["Title"] - WuliKaWu</title>*@
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WuliKaWu.styles.css" asp-append-version="true" />*@
-    <meta http-equiv="x-ua-compatible">
-    <title>WuliKaWu</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="Feel good with us.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
-
-    <!-- Open Graph (OG) meta tags are snippets of code that control how URLs are displayed when shared on social media  -->
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="WuliKaWu" />
-    <meta property="og:url" content="#" />  <!--TODO: 填入發佈的網站首頁網址 -->
-    <meta property="og:site_name" content="WuliKaWu - Feel good with us." />
-    <!-- For the og:image content, replace the # with a link of an image -->
-    <meta property="og:image" content="#" />
-    <meta property="og:description" content="Feel good with us." />
-    <!-- Add site Favicon -->
-    <link rel="icon" href="~/assets/images/favicon/cropped-favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="~/assets/images/favicon/cropped-favicon-192x192.png" sizes="192x192" />
-    <link rel="apple-touch-icon" href="~/assets/images/favicon/cropped-favicon-180x180.png" />
-    <meta name="msapplication-TileImage" content="~/assets/images/favicon/cropped-favicon-270x270.png" />
-
-    <!-- All CSS is here
-    ============================================ -->
-    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/vendor/pe-icon-7-stroke.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/vendor/themify-icons.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/vendor/font-awesome.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/animate.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/aos.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/magnific-popup.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/swiper.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/jquery-ui.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/nice-select.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/select2.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/easyzoom.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WuliKaWu.styles.css" asp-append-version="true" />
 </head>
 
 <body>
@@ -117,14 +79,14 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a asp-controller="Home" asp-action="Shop">SHOP</a>
+                                            <a asp-controller="Products" asp-action="Index">SHOP</a>
                                             <ul class="mega-menu-style mega-menu-mrg-1">
                                                 <li>
                                                     <ul>
                                                         <li>
                                                             <a class="dropdown-title" href="#">Shop Layout</a>
                                                             <ul>
-                                                                <li><a asp-controller="Home" asp-action="Shop">standard style</a></li>
+                                                                <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopSidebar">shop grid sidebar</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
@@ -135,7 +97,7 @@
                                                         <li>
                                                             <a class="dropdown-title" href="#">Products Layout</a>
                                                             <ul>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetails">tab style 1</a></li>
+                                                                <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
@@ -144,7 +106,7 @@
                                                             </ul>
                                                         </li>
                                                         <li>
-                                                            <a asp-controller="Home" asp-action="Shop"><img src="~/assets/images/banner/menu.png" alt=""></a>
+                                                            <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -154,12 +116,12 @@
                                             <a href="#">PAGES</a>
                                             <ul class="sub-menu-style">
                                                 <li><a asp-controller="Home" asp-action="AboutUs">about us </a></li>
-                                                <li><a asp-controller="Home" asp-action="Cart">cart page</a></li>
+                                                <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
                                                 <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
                                                 <li><a asp-controller="Home" asp-action="MyAccount">my account</a></li>
                                                 <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
                                                 <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
-                                                <li><a asp-controller="Home" asp-action="ContactUs">contact us </a></li>
+                                                <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
                                                 <li><a asp-controller="Home" asp-action="LoginRegister">login / register </a></li>
                                             </ul>
                                         </li>
@@ -172,7 +134,7 @@
                                             </ul>
                                         </li>
                                         <li><a asp-controller="Home" asp-action="AboutUs">ABOUT</a></li>
-                                        <li><a asp-controller="Home" asp-action="ContactUs">CONTACT US</a></li>
+                                        <li><a asp-controller="ContactUs" asp-action="Index">CONTACT US</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -251,7 +213,7 @@
                         <h4>Subtotal: <span>$170.00</span></h4>
                     </div>
                     <div class="cart-btn btn-hover">
-                        <a class="theme-color" asp-controller="Home" asp-action="Cart">view cart</a>
+                        <a class="theme-color" asp-controller="Cart" asp-action="Index">view cart</a>
                     </div>
                     <div class="checkout-btn btn-hover">
                         <a class="theme-color" asp-controller="Home" asp-action="Checkout">checkout</a>
@@ -424,7 +386,7 @@
                                     <li>
                                         <a href="#">Shop Layout</a>
                                         <ul>
-                                            <li><a asp-controller="Home" asp-action="Shop">Standard Style</a></li>
+                                            <li><a asp-controller="Products" asp-action="Index">Standard Style</a></li>
                                             <li><a asp-controller="Home" asp-action="ShopSidebar">Shop Grid Sidebar</a></li>
                                             <li><a asp-controller="Home" asp-action="ShopList">Shop List Style</a></li>
                                             <li><a asp-controller="Home" asp-action="ShopListSidebar">Shop List Sidebar</a></li>
@@ -435,7 +397,7 @@
                                     <li>
                                         <a href="#">Product Layout</a>
                                         <ul>
-                                            <li><a asp-controller="Home" asp-action="ProductDetails">Tab Style 1</a></li>
+                                            <li><a asp-controller="Products" asp-action="ProductDetails">Tab Style 1</a></li>
                                             <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
                                             <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
                                             <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
@@ -449,12 +411,12 @@
                                 <a href="#">PAGES </a>
                                 <ul>
                                     <li><a asp-controller="Home" asp-action="AboutUs">About Us </a></li>
-                                    <li><a asp-controller="Home" asp-action="Cart">Cart Page</a></li>
+                                    <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
                                     <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
                                     <li><a asp-controller="Home" asp-action="MyAccount">My Account</a></li>
                                     <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
                                     <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
-                                    <li><a asp-controller="Home" asp-action="ContactUs">Contact us </a></li>
+                                    <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
                                     <li><a asp-controller="Home" asp-action="LoginRegister">Login / Register </a></li>
                                 </ul>
                             </li>
@@ -470,7 +432,7 @@
                                 <a asp-controller="Home" asp-action="AboutUs">ABOUT US</a>
                             </li>
                             <li>
-                                <a asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
+                                <a asp-controller="ContactUs" asp-action="Index">CONTACT US</a>
                             </li>
                         </ul>
                     </div>
@@ -502,28 +464,28 @@
     </div>
 
     <!-- All JS is here -->
-    <script src="~/assets/js/vendor/modernizr-3.11.7.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/vendor/jquery-3.6.0.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/vendor/jquery-migrate-3.3.2.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/vendor/popper.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/vendor/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/wow.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/scrollup.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/aos.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/magnific-popup.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/jquery.syotimer.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/swiper.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/imagesloaded.pkgd.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/isotope.pkgd.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/jquery-ui.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/jquery-ui-touch-punch.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/jquery.nice-select.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/waypoints.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/jquery.counterup.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/select2.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/easyzoom.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/slinky.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/plugins/ajax-mail.js" asp-append-version="true"></script>
+    <script src="~/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="~/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="~/assets/js/vendor/popper.min.js"></script>
+    <script src="~/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/assets/js/plugins/wow.js"></script>
+    <script src="~/assets/js/plugins/scrollup.js"></script>
+    <script src="~/assets/js/plugins/aos.js"></script>
+    <script src="~/assets/js/plugins/magnific-popup.js"></script>
+    <script src="~/assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="~/assets/js/plugins/swiper.min.js"></script>
+    <script src="~/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="~/assets/js/plugins/jquery-ui.js"></script>
+    <script src="~/assets/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="~/assets/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="~/assets/js/plugins/waypoints.min.js"></script>
+    <script src="~/assets/js/plugins/jquery.counterup.js"></script>
+    <script src="~/assets/js/plugins/select2.min.js"></script>
+    <script src="~/assets/js/plugins/easyzoom.js"></script>
+    <script src="~/assets/js/plugins/slinky.min.js"></script>
+    <script src="~/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
     <script src="~/assets/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
