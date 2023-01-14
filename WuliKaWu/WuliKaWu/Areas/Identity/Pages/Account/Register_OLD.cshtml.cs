@@ -2,22 +2,18 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
+using System.Text.Encodings.Web;
 
 namespace WuliKaWu.Areas.Identity.Pages.Account
 {
@@ -70,6 +66,64 @@ namespace WuliKaWu.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            // 增添自訂的會員欄位    TODO: 補充說明
+            [Required]
+            [StringLength(32)]
+            public string Name
+            {
+                get => default;
+                set
+                {
+                }
+            }
+
+            public DateTime Birthday
+            {
+                get => default;
+                set
+                {
+                }
+            }
+
+            [Required]
+            [Column(TypeName = "bit")]
+            public Boolean Gender
+            {
+                get => default;
+                set
+                {
+                }
+            }
+
+            [StringLength(100)]
+            public string Address
+            {
+                get => default;
+                set
+                {
+                }
+            }
+
+            [Required]
+            [MaxLength(16)]
+            public string MobilePhone
+            {
+                get => default;
+                set
+                {
+                }
+            }
+
+            [Required]
+            [Column(TypeName = "tinyint")]
+            public byte Membership
+            {
+                get => default;
+                set
+                {
+                }
+            }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -99,7 +153,6 @@ namespace WuliKaWu.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -113,6 +166,7 @@ namespace WuliKaWu.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                // TODO: 自訂欄位賦值
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+using WuliKaWu;
 using WuliKaWu.Data;
 using WuliKaWu.Models;
 
@@ -17,9 +18,27 @@ builder.Services.AddDbContext<ShopContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+// 設定密碼原則
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true; // 非文、數字（亦即特殊字元）
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 12;
+    options.Password.RequiredUniqueChars = 1;   // 至少一個不重複字元：aaBB11$$
+
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);   // 帳號鎖定時間
+    options.Lockout.MaxFailedAccessAttempts = 3;    // 失敗只能重複登入三次
+    options.Lockout.AllowedForNewUsers = true;
+
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; //這樣設定，不支援中文
+    options.User.RequireUniqueEmail = true; // email 不重複
+});
 
 var app = builder.Build();
 
