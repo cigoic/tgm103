@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore;
-
-using WuliKaWu.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 //MVC網站服務
 builder.Services.AddControllersWithViews();
