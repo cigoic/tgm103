@@ -160,7 +160,7 @@
                                                 <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
                                                 <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
                                                 <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
-                                                <li><a asp-controller="Home" asp-action="LoginRegister">login / register </a></li>
+                                                <li><a title="Login Register" asp-area="Identity" asp-page="/Account/Login"><i class="pe-7s-user"></i> login / register </a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -192,9 +192,8 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Login Register" asp-controller="Home" asp-action="LoginRegister"><i class="pe-7s-user"></i></a>
                                     @*TODO: Core MVC 登入相關引用 *@
-                                    @*<partial name="_LoginPartial" />*@
+                                    <partial name="_LoginPartial" />
                                 </div>
                                 <div class="header-action-style">
                                     <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
@@ -455,7 +454,7 @@
                                     <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
                                     <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
                                     <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
-                                    <li><a asp-controller="Home" asp-action="LoginRegister">Login / Register </a></li>
+                                    <li><a title="Login Register" asp-area="Identity" asp-page="/Account/Login"><i class="pe-7s-user"></i> Login / Register </a></li>
                                 </ul>
                             </li>
                             <li>
