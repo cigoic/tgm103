@@ -69,60 +69,24 @@ namespace WuliKaWu.Areas.Identity.Pages.Account
             // 增添自訂的會員欄位    TODO: 補充說明
             [Required]
             [StringLength(32)]
-            public string Name
-            {
-                get => default;
-                set
-                {
-                }
-            }
+            public string Name { get; set; }
 
-            public DateTime Birthday
-            {
-                get => default;
-                set
-                {
-                }
-            }
+            public DateTime Birthday { get; set; }
 
             [Required]
             [Column(TypeName = "bit")]
-            public Boolean Gender
-            {
-                get => default;
-                set
-                {
-                }
-            }
+            public Boolean Gender { get; set; }
 
             [StringLength(100)]
-            public string Address
-            {
-                get => default;
-                set
-                {
-                }
-            }
+            public string Address { get; set; }
 
             [Required]
             [MaxLength(16)]
-            public string MobilePhone
-            {
-                get => default;
-                set
-                {
-                }
-            }
+            public string MobilePhone { get; set; }
 
             [Required]
             [Column(TypeName = "tinyint")]
-            public byte Membership
-            {
-                get => default;
-                set
-                {
-                }
-            }
+            public byte Membership { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -162,7 +126,7 @@ namespace WuliKaWu.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            //ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
@@ -172,7 +136,7 @@ namespace WuliKaWu.Areas.Identity.Pages.Account
                 user.Gender = Input.Gender;
                 user.Address = Input.Address;
                 user.MobilePhone = Input.MobilePhone;
-                //user.Membership       // TODO 由商業邏輯自動賦值
+                user.Membership = Byte.Parse("1");       // TODO 由商業邏輯自動賦值
                 user.Email = Input.Email;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

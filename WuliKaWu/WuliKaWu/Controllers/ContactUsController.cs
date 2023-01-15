@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-
-using WuliKaWu.Data;
-
-namespace WuliKaWu.Controllers
+﻿namespace WuliKaWu.Controllers
 {
     public class ContactUsController : Controller
     {
