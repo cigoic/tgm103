@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+<<<<<<< HEAD
   <Class Name="WuliKaWu.Data.Orders">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -88,5 +89,95 @@
       <FileName>Diagrams\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
+=======
+  <Class Name="MVCNetFramework.CartViewModel">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQECgAAAAQAAAAAIIEAAEAAAAAAAAAAAAAAAhAAIAAA=</HashCode>
+      <FileName>Diagrams\CartViewModel.cs</FileName>
+      <NewMemberFileName>CartViewModel.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MVCNetFramework.Member">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAABAAAAAAAAiAAAAAAAQAQAAIAEACAACAAAAAAAA=</HashCode>
+      <FileName>Diagrams\Member.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="WishList" />
+      <Property Name="Orders1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MVCNetFramework.Orders">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="MVCNetFramework.Orders.GetPayType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\Order.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EAACAEAAQQAAAAAAAEAAAAAAAAAAAAACAAAAgAAIAAA=</HashCode>
+      <FileName>Diagrams\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Product">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgEAEAQAggAAAAAAAAAAEBAAAAAAAAAAAgAAICAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.WishList">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAACAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAACBAAA=</HashCode>
+      <FileName>Diagrams\WishList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="MVCNetFramework.Color" Collapsed="true">
+    <Position X="3.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAAAAIhAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MVCNetFramework.Size" Collapsed="true">
+    <Position X="5.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAAAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MVCNetFramework.StarRate" Collapsed="true">
+    <Position X="2" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAABAAAAAAAAAAAAAAIAEAAQAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MVCNetFramework.Category" Collapsed="true">
+    <Position X="2" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAQgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MVCNetFramework.Tag" Collapsed="true">
+    <Position X="3.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAEAgAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+>>>>>>> [更新] Identity Login/Register 頁面套版，並加入自訂欄位，但輸入框需調整大小
   <Font Name="jf-openhuninn-1.1" Size="10" />
 </ClassDiagram>
