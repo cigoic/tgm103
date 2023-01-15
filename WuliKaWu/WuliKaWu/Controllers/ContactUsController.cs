@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Models;
@@ -39,6 +40,7 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: ContactMessages/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -47,6 +49,7 @@ namespace WuliKaWu.Controllers
         // POST: ContactMessages/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MessageId,Name,Email,Subject,Phone,Message")] ContactMessage contactMessage)
@@ -61,6 +64,7 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: ContactMessages/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ContactMessages == null)
@@ -81,6 +85,7 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("MessageId,Name,Email,Subject,Phone,Message")] ContactMessage contactMessage)
         {
             if (id != contactMessage.MessageId)
@@ -112,6 +117,7 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: ContactMessages/Delete/5
+        [Authorize("Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ContactMessages == null)
@@ -132,6 +138,7 @@ namespace WuliKaWu.Controllers
         // POST: ContactMessages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize("Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.ContactMessages == null)
