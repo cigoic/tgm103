@@ -244,6 +244,7 @@
         justify-content: center;
 
         li {
+<<<<<<< HEAD
             &:hover {
                 color: $theme-color;
             }
@@ -256,6 +257,15 @@
                 text-align: center;
             }
 
+=======
+             &:hover {
+                    color: $theme-color;
+                }
+                &.active {
+                    background-color: $theme-color;
+                    color: $white;
+                }
+>>>>>>> 123
             a {
                 width: 35px;
                 height: 35px;
@@ -267,6 +277,7 @@
                 margin: 0 4px;
                 color: #333;
                 text-align: center;
+<<<<<<< HEAD
 
                 &:hover {
                     color: $theme-color;
@@ -276,6 +287,9 @@
                     background-color: $theme-color;
                     color: $white;
                 }
+=======
+               
+>>>>>>> 123
             }
         }
     }
