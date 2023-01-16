@@ -24,6 +24,7 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> Index()
         {
             return View();
+<<<<<<< HEAD
         }
 
         /// <summary>
@@ -33,6 +34,8 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> IndexOne()
         {
             return View();
+=======
+>>>>>>> test (#3)
         }
 
         public IActionResult Match()
