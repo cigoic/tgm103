@@ -91,14 +91,14 @@ namespace WuliKaWu.Controllers
         }
 
         /// <summary>
-        /// 首頁
+        /// 首頁 1
         /// </summary>
         /// <returns></returns>
-        //[Authorize("Admin")]
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        [Authorize("Admin")]
+        public IActionResult IndexOne()
+        {
+            return View();
+        }
 
         /// <summary>
         /// 首頁 2
