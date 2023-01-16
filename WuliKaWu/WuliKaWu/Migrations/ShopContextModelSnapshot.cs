@@ -17,7 +17,7 @@ namespace WuliKaWu.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -77,7 +77,44 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Cart", (string)null);
+                    b.ToTable("Cart");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Models.ContactMessage", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nchar(16)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.ToTable("Contact Messages");
                 });
 
             modelBuilder.Entity("WuliKaWu.Models.Orders", b =>
@@ -110,7 +147,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("WuliKaWu.Models.Product", b =>
@@ -142,10 +179,13 @@ namespace WuliKaWu.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("SellingPrice")
+                        .HasColumnType("int");
+
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int>("StarRate")
+                    b.Property<int?>("StarRate")
                         .HasColumnType("int");
 
                     b.Property<int?>("Tag")
@@ -153,7 +193,21 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            Category = 3,
+                            Color = 0,
+                            Picture = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            Price = 100,
+                            ProductName = "大衣",
+                            SellingPrice = 100,
+                            Size = 1,
+                            StarRate = 0
+                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Models.CartViewModel", b =>
