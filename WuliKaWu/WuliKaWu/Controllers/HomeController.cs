@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using System.Diagnostics;
 
@@ -93,15 +94,17 @@ namespace WuliKaWu.Controllers
         /// 首頁
         /// </summary>
         /// <returns></returns>
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //[Authorize("Admin")]
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         /// <summary>
         /// 首頁 2
         /// </summary>
         /// <returns></returns>
+        [Authorize("Admin")]
         public IActionResult IndexTwo()
         {
             return View();
@@ -111,6 +114,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 3
         /// </summary>
         /// <returns></returns>
+        [Authorize("Admin")]
         public IActionResult IndexThree()
         {
             return View();
@@ -120,6 +124,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 4
         /// </summary>
         /// <returns></returns>
+        [ActionName("Index")]
         public IActionResult IndexFour()
         {
             return View();
@@ -129,6 +134,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 5
         /// </summary>
         /// <returns></returns>
+        [Authorize("Admin")]
         public IActionResult IndexFive()
         {
             return View();
@@ -138,6 +144,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 6
         /// </summary>
         /// <returns></returns>
+        [Authorize("Admin")]
         public IActionResult IndexSix()
         {
             return View();
@@ -147,6 +154,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 7
         /// </summary>
         /// <returns></returns>
+        [Authorize("Admin")]
         public IActionResult IndexSeven()
         {
             return View();
@@ -156,6 +164,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 8
         /// </summary>
         /// <returns></returns>
+        [Authorize("Admin")]
         public IActionResult IndexEight()
         {
             return View();

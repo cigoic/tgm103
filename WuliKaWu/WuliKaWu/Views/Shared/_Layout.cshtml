@@ -105,16 +105,16 @@
                                     <ul>
                                         <li>
                                             <a asp-controller="Home" asp-action="Index">HOME</a>
-                                            <ul class="sub-menu-style">
-                                                <li><a asp-controller="Home" asp-action="Index">Home version 1 </a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
-                                            </ul>
+                                            @*<ul class="sub-menu-style">
+                                            <li><a asp-controller="Home" asp-action="Index">Home version 1 </a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                            </ul>*@
                                         </li>
                                         <li>
                                             <a asp-controller="Products" asp-action="Index">SHOP</a>
@@ -405,17 +405,18 @@
                     <div id="mobile-menu" class="slinky-mobile-menu text-left">
                         <ul>
                             <li>
-                                <a href="#">HOME</a>
+                                <a asp-controller="Home" asp-action="Index">HOME</a>
+                                @*<a href="#">HOME</a>
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Index">Home version 1 </a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
-                                </ul>
+                                <li><a asp-controller="Home" asp-action="Index">Home version 1 </a></li>
+                                <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                </ul>*@
                             </li>
                             <li>
                                 <a href="#">SHOP</a>
