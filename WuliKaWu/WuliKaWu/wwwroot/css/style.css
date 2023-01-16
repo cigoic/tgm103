@@ -7693,6 +7693,13 @@ textarea {
   display: flex;
   justify-content: center;
 }
+.pagination-style-1 ul li:hover {
+  color: #e97730;
+}
+.pagination-style-1 ul li.active {
+  background-color: #e97730;
+  color: #ffffff;
+}
 .pagination-style-1 ul li a {
   width: 35px;
   height: 35px;
@@ -7704,13 +7711,6 @@ textarea {
   margin: 0 4px;
   color: #333;
   text-align: center;
-}
-.pagination-style-1 ul li a:hover {
-  color: #e97730;
-}
-.pagination-style-1 ul li a.active {
-  background-color: #e97730;
-  color: #ffffff;
 }
 
 .single-store h3 {

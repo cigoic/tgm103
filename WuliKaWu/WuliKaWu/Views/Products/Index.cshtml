@@ -24,16 +24,16 @@
                     <div class="shop-topbar-wrapper mb-40">
                         <div class="shop-topbar-left">
                             <div class="showing-item">
-                                <span>Showing 1–12 of 60 results</span>
+                                <span>Showing {{min+1}}–{{max+1}} of {{products.length}} results</span>
                             </div>
                         </div>
                         <div class="shop-topbar-right">
                             <div class="shop-sorting-area">
-                                <select class="nice-select nice-select-style-1">
-                                    <option>Default Sorting</option>
-                                    <option>Sort by popularity</option>
-                                    <option>Sort by average rating</option>
-                                    <option>Sort by latest</option>
+                                <select class="" v-model="selectedItem">
+                                    <option value="1" >Default Sorting</option>
+                                    <option value="2">Sort by popularity</option>
+                                    <option value="3">Sort by average rating</option>
+                                    <option value="4">Sort by latest</option>
                                 </select>
                             </div>
                             <div class="shop-view-mode nav">
@@ -90,22 +90,15 @@
 
                                     <div class="pagination-style-1">
                                         <paginate :page-count="Math.ceil(products.length/countPerPage)"
-                                                  :page-range="2"
-                                                  :margin-pages="2"
+                                                  :page-range="10"
+                                                  :margin-pages="1"
                                                   :click-handler="clickCallback"
                                                   :prev-text="'Prev'"
                                                   :next-text="'Next'"
                                                   :container-class="'pagination'"
                                                   :page-class="'page-item'">
-                                            <span slot="prevContent">Changed previous button</span>
-                                            <span slot="nextContent">Changed next button</span>
-                                            <span slot="breakViewContent">
-                                                <svg width="16" height="4" viewBox="0 0 16 4">
-                                                    <circle fill="#999999" cx="2" cy="2" r="2" />
-                                                    <circle fill="#999999" cx="8" cy="2" r="2" />
-                                                    <circle fill="#999999" cx="14" cy="2" r="2" />
-                                                </svg>
-                                            </span>
+                                            <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+                                            <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
                                         </paginate>
                                     </div>
 
@@ -120,7 +113,7 @@
 </div>
 
 
-<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
 <script>
     Vue.component('paginate', VuejsPaginate);
     let app = new Vue({
@@ -128,14 +121,28 @@
         data: {
             products: [],
             currentPage: 1,
-            countPerPage:20
+            countPerPage:5,
+            min:0,
+            max:0,
+            selectedItem:"2"
         },
         computed: {
             filterProducts:function(){
                 
                 var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
                 var max = this.countPerPage * this.currentPage;
-                return this.products.slice(min, max)
+                this.min = min;
+                this.max = max;
+                return this.selectedItemStyle.slice(min, max)
+            },
+            selectedItemStyle:function(){
+                if (this.selectedItem == "1"){
+                    return this.products;
+                }
+                if (this.selectedItem == "2") {
+                    return this.products.reverse();
+                }
+                return this.products;
             }
         },
         methods: {
