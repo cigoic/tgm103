@@ -383,9 +383,50 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("RoleId");
 
+<<<<<<< HEAD
                     b.HasIndex("MemberId");
 
                     b.ToTable("MemberRoles");
+=======
+                    b.ToTable("Cart");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Models.ContactMessage", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nchar(16)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.ToTable("Contact Messages");
+>>>>>>> 刪除migration (#2)
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
@@ -494,11 +535,15 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.HasKey("PictureId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("Pictures");
+=======
+                    b.ToTable("Orders");
+>>>>>>> 刪除migration (#2)
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
@@ -523,12 +568,18 @@ namespace WuliKaWu.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+<<<<<<< HEAD
                     b.Property<decimal?>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
+=======
+                    b.Property<int?>("SellingPrice")
+                        .HasColumnType("int");
+>>>>>>> 刪除migration (#2)
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
@@ -540,6 +591,9 @@ namespace WuliKaWu.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+=======
+                    b.Property<int?>("StarRate")
+>>>>>>> 刪除migration (#2)
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
@@ -557,6 +611,7 @@ namespace WuliKaWu.Migrations
                     b.Property<Guid>("Token")
                         .HasColumnType("uniqueidentifier");
 
+<<<<<<< HEAD
                     b.Property<bool>("ValidateSatus")
                         .HasColumnType("bit");
 
@@ -565,6 +620,23 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("ResetTokens");
+=======
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            Category = 3,
+                            Color = 0,
+                            Picture = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            Price = 100,
+                            ProductName = "大衣",
+                            SellingPrice = 100,
+                            Size = 1,
+                            StarRate = 0
+                        });
+>>>>>>> 刪除migration (#2)
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.StarRate", b =>
