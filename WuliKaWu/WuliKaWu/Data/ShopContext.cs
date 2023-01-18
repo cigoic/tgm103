@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
+
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
+    //public class ShopContext :: IdentityDbContext<Member, IdentityRole<int>, int>     // 改用 Identity
     public class ShopContext : DbContext
     {
         public ShopContext()
@@ -18,6 +19,7 @@ namespace WuliKaWu.Data
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
+        public DbSet<Member> Members { get; set; }      // 若改用 Identity, 此行要移除
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
