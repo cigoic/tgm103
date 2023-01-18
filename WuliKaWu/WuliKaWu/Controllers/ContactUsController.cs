@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-using WuliKaWu.Models;
+using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
 {

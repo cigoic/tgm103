@@ -1,10 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WuliKaWu
+namespace WuliKaWu.Data
 {
     public class WishList
     {
+        [Key()]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int WishListID
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        [ForeignKey("Members")]
         public int MemberID
         {
             get => default;
@@ -13,6 +24,7 @@ namespace WuliKaWu
             }
         }
 
+        [ForeignKey("Products")]
         public int ProductID
         {
             get => default;
@@ -21,7 +33,7 @@ namespace WuliKaWu
             }
         }
 
-        public int UnitPrice
+        public string ProductName
         {
             get => default;
             set
@@ -29,7 +41,7 @@ namespace WuliKaWu
             }
         }
 
-        public int Unit
+        public decimal Price
         {
             get => default;
             set
@@ -37,7 +49,7 @@ namespace WuliKaWu
             }
         }
 
-        public int Qty
+        public decimal SellingPrice
         {
             get => default;
             set
@@ -45,9 +57,15 @@ namespace WuliKaWu
             }
         }
 
-        [Key()]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WishListID
+        public decimal Discount
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public string Picture
         {
             get => default;
             set

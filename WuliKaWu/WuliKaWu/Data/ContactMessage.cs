@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WuliKaWu.Models
+namespace WuliKaWu.Data
 {
     [Table("Contact Messages")]
     public class ContactMessage

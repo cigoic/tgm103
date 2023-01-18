@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WuliKaWu.Models;
+using WuliKaWu.Data;
 
 #nullable disable
 
@@ -22,65 +22,53 @@ namespace WuliKaWu.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("WuliKaWu.Models.CartViewModel", b =>
+            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("Conutry")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<float?>("CouponDiscount")
-                        .HasColumnType("real");
-
-                    b.Property<byte[]>("Picture")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<int>("Price")
+                    b.Property<int>("Color")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Coupon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
 
-                    b.HasIndex("Price");
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasIndex("ProductId");
+                    b.HasKey("CartId");
 
                     b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("WuliKaWu.Models.ContactMessage", b =>
+            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.Property<int>("MessageId")
                         .ValueGeneratedOnAdd()
@@ -117,7 +105,7 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Contact Messages");
                 });
 
-            modelBuilder.Entity("WuliKaWu.Models.Orders", b =>
+            modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -125,14 +113,14 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<float?>("CouponDiscount")
-                        .HasColumnType("real");
+                    b.Property<decimal?>("CouponDiscount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Memo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
@@ -150,7 +138,7 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("WuliKaWu.Models.Product", b =>
+            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -167,20 +155,20 @@ namespace WuliKaWu.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Picture")
+                    b.Property<string>("Picture")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("SellingPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
@@ -190,6 +178,9 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int?>("Tag")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("discount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
 
@@ -201,40 +192,13 @@ namespace WuliKaWu.Migrations
                             ProductId = 1,
                             Category = 3,
                             Color = 0,
-                            Picture = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            Price = 100,
+                            Picture = "pic1",
+                            Price = 100m,
                             ProductName = "大衣",
-                            SellingPrice = 100,
+                            SellingPrice = 100m,
                             Size = 1,
                             StarRate = 0
                         });
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.CartViewModel", b =>
-                {
-                    b.HasOne("WuliKaWu.Models.Orders", "Orders")
-                        .WithMany("Cart")
-                        .HasForeignKey("Price")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Models.Product", "Product")
-                        .WithMany("Cart")
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Orders");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.Orders", b =>
-                {
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Models.Product", b =>
-                {
-                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }
