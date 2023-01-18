@@ -1,92 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="MVCNetFramework.CartViewModel">
+  <Class Name="WuliKaWu.Data.Orders">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAQQAAAAAAAEAAAAAAAAAAAAACAAAAgAAIAAA=</HashCode>
+      <FileName>Diagrams\Orders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WuliKaWu.Data.Cart">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAQAAgAIAAAAAAAAEAAAAQAAAAgAAgAAICAA=</HashCode>
+      <FileName>Diagrams\Cart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WuliKaWu.Data.ContactMessage">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAIAAAAQAAAAAAAAEAAAAIAAAAAA=</HashCode>
+      <FileName>Diagrams\ContactMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WuliKaWu.Data.Product">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQECgAAAAQAAAAAIIEAAEAAAAAAAAAAAAAAAhAAIAAA=</HashCode>
-      <FileName>Diagrams\CartViewModel.cs</FileName>
-      <NewMemberFileName>CartViewModel.cs</NewMemberFileName>
+      <HashCode>EAAAgAAEAQAggAAAAAAAAAAEBAAAAAAAAAAAgAIICAA=</HashCode>
+      <FileName>Diagrams\Product.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Product1" />
-    </ShowAsAssociation>
   </Class>
-  <Class Name="MVCNetFramework.Member">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+  <Class Name="WuliKaWu.Data.ShopContext">
+    <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAABAAAAAAAAiAAAAAAAQAQAAIAEACAACAAAAAAAA=</HashCode>
-      <FileName>Diagrams\Member.cs</FileName>
+      <HashCode>BAEAAAAAAAAAAAAAAAAACAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Diagrams\ShopContext.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="WishList" />
-      <Property Name="Orders1" />
-    </ShowAsAssociation>
   </Class>
-  <Class Name="MVCNetFramework.Orders">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="WuliKaWu.Data.WishList">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgAAAAQAAAAAAAAAAAAAEAAAAAAAAAgAAAACJAAA=</HashCode>
+      <FileName>Diagrams\WishList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WuliKaWu.Data.Enums.Common">
+    <Position X="8" Y="3.5" Width="1.5" />
     <NestedTypes>
-      <Enum Name="MVCNetFramework.Orders.GetPayType" Collapsed="true">
+      <Enum Name="WuliKaWu.Data.Enums.Common.GetPayType" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>Diagrams\Order.cs</NewMemberFileName>
+          <NewMemberFileName>Diagrams\Enums\Common.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WuliKaWu.Data.Enums.Common.Color" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\Enums\Common.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WuliKaWu.Data.Enums.Common.Size" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\Enums\Common.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WuliKaWu.Data.Enums.Common.StarRate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\Enums\Common.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WuliKaWu.Data.Enums.Common.Category" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\Enums\Common.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WuliKaWu.Data.Enums.Common.Tag" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\Enums\Common.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>EAACAEAAQQAAAAAAAEAAAAAAAAAAAAACAAAAgAAIAAA=</HashCode>
-      <FileName>Diagrams\Order.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\Enums\Common.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MVCNetFramework.Product">
-    <Position X="2.75" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAgEAEAQAggAAAAAAAAAAEBAAAAAAAAAAAgAAICAA=</HashCode>
-      <FileName>Diagrams\Product.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MVCNetFramework.WishList">
-    <Position X="5.75" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>MAACAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAACBAAA=</HashCode>
-      <FileName>Diagrams\WishList.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Product" />
-    </ShowAsAssociation>
-  </Class>
-  <Enum Name="MVCNetFramework.Color" Collapsed="true">
-    <Position X="3.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAGAAAAAAAAIhAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Diagrams\Product.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="MVCNetFramework.Size" Collapsed="true">
-    <Position X="5.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAAAA=</HashCode>
-      <FileName>Diagrams\Product.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="MVCNetFramework.StarRate" Collapsed="true">
-    <Position X="2" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAIAABAAAAAAAAAAAAAAIAEAAQAAAAAAAAAAQAAAAA=</HashCode>
-      <FileName>Diagrams\Product.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="MVCNetFramework.Category" Collapsed="true">
-    <Position X="2" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAQAAAAAAQgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
-      <FileName>Diagrams\Product.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
-  <Enum Name="MVCNetFramework.Tag" Collapsed="true">
-    <Position X="3.75" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAAAAEAgAIAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Diagrams\Product.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Font Name="jf-openhuninn-1.1" Size="10" />
 </ClassDiagram>

@@ -4,34 +4,32 @@ using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
-    [Table("Products")]
-    public class Product
+    [Table("Cart")]
+    public class Cart
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProductId { get; set; }
+        public int CartId { get; set; }
 
         [StringLength(50)]
         public string ProductName { get; set; }
 
-        public Color Color { get; set; }
-
         public Size Size { get; set; }
 
+        public Color Color { get; set; }
+
         public string Picture { get; set; }
+
+        public int Quantity { get; set; }
 
         public decimal Price { get; set; }
 
         public decimal? SellingPrice { get; set; }
 
-        public decimal? discount { get; set; }
+        public decimal? Discount { get; set; }
 
-        public string? Comment { get; set; }
+        public decimal? Coupon { get; set; }
 
-        public StarRate? StarRate { get; set; }
-
-        public Category Category { get; set; }
-
-        public Tag? Tag { get; set; }
+        public decimal Total { get; set; }
     }
 }
