@@ -169,6 +169,7 @@
     <Compile Include="Diagrams\Cart.cs" />
     <Compile Include="Diagrams\ContactMessage.cs" />
     <Compile Include="Diagrams\Enums\Common.cs" />
+    <Compile Include="Diagrams\Member.cs" />
     <Compile Include="Diagrams\Orders.cs" />
     <Compile Include="Diagrams\Product.cs" />
     <Compile Include="Diagrams\ShopContext.cs" />
