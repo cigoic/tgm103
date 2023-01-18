@@ -22,6 +22,7 @@ namespace WuliKaWu.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
                 {
                     b.Property<int>("CartId")
@@ -116,13 +117,17 @@ namespace WuliKaWu.Migrations
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
+=======
+            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
+>>>>>>> [更新] 資料庫資料表
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
+<<<<<<< HEAD
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
@@ -277,11 +282,33 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
+=======
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Coupon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+>>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("Message")
                         .IsRequired()
+<<<<<<< HEAD
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+=======
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+>>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -311,6 +338,7 @@ namespace WuliKaWu.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
 
                     b.Property<string>("Account")
@@ -358,6 +386,18 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+=======
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("CartId");
+>>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("VerificationToken")
                         .HasColumnType("nvarchar(max)");
@@ -391,7 +431,7 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Cart");
                 });
 
-            modelBuilder.Entity("WuliKaWu.Models.ContactMessage", b =>
+            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.Property<int>("MessageId")
                         .ValueGeneratedOnAdd()
@@ -429,7 +469,11 @@ namespace WuliKaWu.Migrations
 >>>>>>> 刪除migration (#2)
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+=======
+            modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
+>>>>>>> [更新] 資料庫資料表
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -437,6 +481,7 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
+<<<<<<< HEAD
                     b.Property<string>("ContactPhone")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -447,10 +492,15 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
+=======
+                    b.Property<decimal?>("CouponDiscount")
+                        .HasColumnType("decimal(18,2)");
+>>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("Memo")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< HEAD
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -469,6 +519,10 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+=======
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+>>>>>>> [更新] 資料庫資料表
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -560,6 +614,13 @@ namespace WuliKaWu.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< HEAD
+=======
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> [更新] 資料庫資料表
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -569,12 +630,17 @@ namespace WuliKaWu.Migrations
                         .HasColumnType("nvarchar(50)");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Property<decimal?>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
 =======
                     b.Property<int?>("SellingPrice")
                         .HasColumnType("int");
 >>>>>>> 刪除migration (#2)
+=======
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+>>>>>>> [更新] 資料庫資料表
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
@@ -608,6 +674,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.Property<Guid>("Token")
                         .HasColumnType("uniqueidentifier");
 
@@ -618,6 +685,12 @@ namespace WuliKaWu.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("MemberId");
+=======
+                    b.Property<decimal?>("discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ProductId");
+>>>>>>> [更新] 資料庫資料表
 
                     b.ToTable("ResetTokens");
 =======
@@ -629,10 +702,10 @@ namespace WuliKaWu.Migrations
                             ProductId = 1,
                             Category = 3,
                             Color = 0,
-                            Picture = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                            Price = 100,
+                            Picture = "pic1",
+                            Price = 100m,
                             ProductName = "大衣",
-                            SellingPrice = 100,
+                            SellingPrice = 100m,
                             Size = 1,
                             StarRate = 0
                         });
@@ -835,6 +908,7 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("Member");
                 });
+<<<<<<< HEAD
 
             modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
                 {
@@ -968,6 +1042,8 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("WishList");
                 });
+=======
+>>>>>>> [更新] 資料庫資料表
 #pragma warning restore 612, 618
         }
     }

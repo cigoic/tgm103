@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
 {
+<<<<<<< HEAD
     [Table("WishLists")]
     public class WishList
     {
@@ -34,5 +35,76 @@ namespace WuliKaWu.Data
         /// </summary>
 
         public virtual Product Product { get; set; }
+=======
+    public class WishList
+    {
+        [Key()]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int WishListID
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        [ForeignKey("Members")]
+        public int MemberID
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        [ForeignKey("Products")]
+        public int ProductID
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public string ProductName
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public decimal Price
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public decimal SellingPrice
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public decimal Discount
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+        public string Picture
+        {
+            get => default;
+            set
+            {
+            }
+        }
+>>>>>>> [更新] 資料庫資料表
     }
 }

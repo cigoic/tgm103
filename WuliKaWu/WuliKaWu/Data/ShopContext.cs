@@ -1,10 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 
+=======
+using System.Reflection.Metadata;
+>>>>>>> [更新] 資料庫資料表
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
+<<<<<<< HEAD
     //public class ShopContext :: IdentityDbContext<Member, IdentityRole<int>, int>     // 改用 Identity
+=======
+>>>>>>> [更新] 資料庫資料表
     public class ShopContext : DbContext
     {
         public ShopContext()
@@ -15,6 +22,7 @@ namespace WuliKaWu.Data
         {
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// 商品資料表
         /// </summary>
@@ -441,5 +449,27 @@ namespace WuliKaWu.Data
         //        FileName = "assets/images/blog/blog-details-3.png"
         //    });
         //}
+=======
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().HasData(new Product
+            {
+                Price = 100,
+                ProductName = "大衣",
+                Color = Color.Black,
+                Size = Size.S,
+                Category = Category.Dress,
+                StarRate = StarRate.NoStar,
+                SellingPrice = 100,
+                ProductId = 1,
+                Picture = "pic1"
+            });
+        }
+>>>>>>> [更新] 資料庫資料表
     }
 }

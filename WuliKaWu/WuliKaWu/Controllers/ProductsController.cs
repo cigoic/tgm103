@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
 using static WuliKaWu.Data.Enums.Common;
+=======
+using WuliKaWu.Data;
+>>>>>>> [更新] 資料庫資料表
 
 namespace WuliKaWu.Controllers
 {
