@@ -94,7 +94,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 1
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexOne()
         {
             return View();
@@ -104,7 +104,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 2
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexTwo()
         {
             return View();
@@ -114,7 +114,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 3
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexThree()
         {
             return View();
@@ -134,7 +134,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 5
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexFive()
         {
             return View();
@@ -144,7 +144,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 6
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexSix()
         {
             return View();
@@ -154,7 +154,7 @@ namespace WuliKaWu.Controllers
         /// 首頁 7
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexSeven()
         {
             return View();
@@ -164,13 +164,18 @@ namespace WuliKaWu.Controllers
         /// 首頁 8
         /// </summary>
         /// <returns></returns>
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult IndexEight()
         {
             return View();
         }
 
-        // TODO: 請整合至 Indentity 控制頁面
+        /// <summary>
+        /// 會員登入、註冊
+        /// 請改用自訂控制器來實作、或使用 Identity 範本
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult LoginRegister()
         {
             return View();
