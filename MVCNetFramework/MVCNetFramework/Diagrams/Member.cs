@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 新增Members類別圖
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,6 +23,7 @@ namespace WuliKaWu.Data
         public string Name { get; set; }
 
         //public virtual ICollection<MemberLike> MemberLikes { get; set; }  // Add UserId (FK) in MemberLikes
+<<<<<<< HEAD
 =======
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
@@ -129,5 +133,7 @@ namespace MVCNetFramework
             }
         }
 >>>>>>> [更新] Identity Login/Register 頁面套版，並加入自訂欄位，但輸入框需調整大小
+=======
+>>>>>>> 新增Members類別圖
     }
 }

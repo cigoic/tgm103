@@ -12,9 +12,9 @@ namespace WuliKaWu.Controllers
 {
     public class CartController : Controller
     {
-        public IActionResult AddCart(Data.Product product)
-        {
-        }
+        //public IActionResult AddCart(Data.Product product)
+        //{
+        //}
 
 <<<<<<< HEAD
         // GET: Cart

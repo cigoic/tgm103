@@ -95,15 +95,19 @@
     <Position X="0.5" Y="0.5" Width="1.5" />
 =======
   <Class Name="WuliKaWu.Data.Orders">
+<<<<<<< HEAD
     <Position X="2.5" Y="0.5" Width="1.5" />
 >>>>>>> 更新類別圖
+=======
+    <Position X="4.5" Y="0.5" Width="1.5" />
+>>>>>>> 新增Members類別圖
     <TypeIdentifier>
       <HashCode>EAAAAAAAQQAAAAAAAEAAAAAAAAAAAAACAAAAgAAIAAA=</HashCode>
       <FileName>Diagrams\Orders.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.Cart">
-    <Position X="6" Y="3.5" Width="1.5" />
+    <Position X="4.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAQAAgAIAAAAAAAAEAAAAQAAAAgAAgAAICAA=</HashCode>
       <FileName>Diagrams\Cart.cs</FileName>
@@ -117,7 +121,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.Product">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAgAAEAQAggAAAAAAAAAAEBAAAAAAAAAAAgAIICAA=</HashCode>
       <FileName>Diagrams\Product.cs</FileName>
@@ -131,14 +135,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.WishList">
-    <Position X="2.5" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAgAAAAQAAAAAAAAAAAAAEAAAAAAAAAgAAAACJAAA=</HashCode>
       <FileName>Diagrams\WishList.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.Enums.Common">
-    <Position X="8" Y="3.5" Width="1.5" />
+    <Position X="0.75" Y="4" Width="1.5" />
     <NestedTypes>
       <Enum Name="WuliKaWu.Data.Enums.Common.GetPayType" Collapsed="true">
         <TypeIdentifier>
@@ -180,6 +184,16 @@
 >>>>>>> [更新] Identity Login/Register 頁面套版，並加入自訂欄位，但輸入框需調整大小
 =======
   </Class>
+<<<<<<< HEAD
 >>>>>>> 更新類別圖
+=======
+  <Class Name="WuliKaWu.Data.Member">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAEA=</HashCode>
+      <FileName>Diagrams\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+>>>>>>> 新增Members類別圖
   <Font Name="jf-openhuninn-1.1" Size="10" />
 </ClassDiagram>
