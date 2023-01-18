@@ -1,17 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 using System.Reflection.Metadata;
 >>>>>>> [更新] 資料庫資料表
+=======
+
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //public class ShopContext :: IdentityDbContext<Member, IdentityRole<int>, int>     // 改用 Identity
 =======
 >>>>>>> [更新] 資料庫資料表
+=======
+    //public class ShopContext :: IdentityDbContext<Member, IdentityRole<int>, int>     // 改用 Identity
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
     public class ShopContext : DbContext
     {
         public ShopContext()
@@ -454,6 +462,7 @@ namespace WuliKaWu.Data
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
+        public DbSet<Member> Members { get; set; }      // 若改用 Identity, 此行要移除
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

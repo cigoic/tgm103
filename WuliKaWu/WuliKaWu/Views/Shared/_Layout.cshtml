@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="~/assets/css/plugins/easyzoom.css" />
     <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
     @*
     不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
@@ -62,6 +63,11 @@
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 >>>>>>> 123
+=======
+    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 </head>
 
 <body>
@@ -161,6 +167,7 @@
                                         <li>
                                             <a href="#">PAGES</a>
                                             <ul class="sub-menu-style">
+<<<<<<< HEAD
                                                 <li><a href="/AboutUs">about us </a></li>
                                                 <li><a href="/Cart">cart page</a></li>
                                                 <li><a href="/Cart">checkout </a></li>
@@ -169,6 +176,16 @@
                                                 @*<li><a href="/Cart/Compare">compare </a></li>*@
                                                 <li><a href="/ContactUs">contact us </a></li>
                                                 <li><a title="Login Register" href="/Member/Login"><i class="pe-7s-user"></i> login / register </a></li>
+=======
+                                                <li><a asp-controller="Home" asp-action="AboutUs">about us </a></li>
+                                                <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
+                                                <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
+                                                <li><a asp-controller="Home" asp-action="MyAccount">my account</a></li>
+                                                <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
+                                                <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
+                                                <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
+                                                <li><a title="Login Register" asp-controller="Member" asp-action="Login"><i class="pe-7s-user"></i> login / register </a></li>
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                             </ul>
                                         </li>
                                         <li>
@@ -200,6 +217,7 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
+<<<<<<< HEAD
                                     <a title="Match" href="/Products/Match">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
@@ -209,6 +227,11 @@
                                 </div>
 
                                 <div class="header-action-style">
+=======
+                                    <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
+                                </div>
+                                <div class="header-action-style">
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                     @* MVC 登入相關檢視 *@
                                     @*<partial name="_LoginIdentityPartial" />*@
                                     <partial name="_LoginPartial" />
@@ -461,6 +484,7 @@
                             <li>
                                 <a href="#">PAGES </a>
                                 <ul>
+<<<<<<< HEAD
                                     <li><a href="/AboutUs/Index">About Us </a></li>
                                     <li><a href="/Cart/Index">Cart Page</a></li>
                                     <li><a href="/Cart/Checkout">Checkout </a></li>
@@ -469,6 +493,16 @@
                                     @*<li><a href="/Cart/Compare">Compare </a></li>*@
                                     <li><a href="/ContactUs/Index">Contact us </a></li>
                                     <li><a title="Login Register" href="/Member/Login">><i class="pe-7s-user"></i> Login / Register </a></li>
+=======
+                                    <li><a asp-controller="Home" asp-action="AboutUs">About Us </a></li>
+                                    <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
+                                    <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
+                                    <li><a asp-controller="Home" asp-action="MyAccount">My Account</a></li>
+                                    <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
+                                    <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
+                                    <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
+                                    <li><a title="Login Register" asp-controller="Member" asp-action="Login">><i class="pe-7s-user"></i> Login / Register </a></li>
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                 </ul>
                             </li>
                             <li>

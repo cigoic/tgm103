@@ -1,6 +1,28 @@
+<<<<<<< HEAD
 ﻿<div class="container" id="loginApp" />
 
 <div class="login-register-area pb-100 pt-15">
+=======
+﻿<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <h2>Login - Register </h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li>Login - Register </li>
+            </ul>
+        </div>
+    </div>
+    <div class="breadcrumb-img-1">
+        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+    </div>
+    <div class="breadcrumb-img-2">
+        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+    </div>
+</div>
+<div class="login-register-area pb-100 pt-95">
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12 offset-lg-2">
@@ -17,6 +39,7 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
+<<<<<<< HEAD
                                     <form id="loginForm" name="loginForm" method="post">
                                         <label for="Account" class="required">帳號</label>
                                         <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
@@ -31,6 +54,18 @@
                                         </div>
                                         <div class="button-box btn-hover">
                                             <button v-on:click="handleSubmit()">Login</button>
+=======
+                                    <form action="Login" method="post">
+                                        <input type="text" name="Account" placeholder="Username">
+                                        <input type="password" name="Password" placeholder="Password">
+                                        <div class="login-toggle-btn">
+                                            <input type="checkbox">
+                                            <label>Remember me</label>
+                                            <a href="#">Forgot Password?</a>
+                                        </div>
+                                        <div class="button-box btn-hover">
+                                            <button type="submit">Login</button>
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                         </div>
                                     </form>
                                 </div>
@@ -40,6 +75,7 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form action="Register" method="post">
+<<<<<<< HEAD
                                         <label id="Account" name="Account">帳號</label>
                                         <input type="text" name="Account" placeholder="Username" />
 
@@ -72,6 +108,13 @@
                                         <input type="text" id="MobilePhone" name="MobilePhone" />
                                         <div class="button-box btn-hover">
                                             <button v-on:click="handleRegister()">Register</button>
+=======
+                                        <input type="text" name="Account" placeholder="Username">
+                                        <input type="password" name="Password" placeholder="Password">
+                                        <input name="user-email" placeholder="Email" type="email">
+                                        <div class="button-box btn-hover">
+                                            <button type="submit">Register</button>
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                         </div>
                                     </form>
                                 </div>
@@ -83,6 +126,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 
 @section Scripts
@@ -136,3 +180,5 @@
         })
     </script>
 }
+=======
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結

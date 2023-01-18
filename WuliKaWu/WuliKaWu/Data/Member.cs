@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+=======
+﻿using System.ComponentModel.DataAnnotations;
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
@@ -7,6 +11,7 @@ namespace WuliKaWu.Data
     [Table("Members")]
     public class Member //: IdentityUser<int>
     {
+<<<<<<< HEAD
         /// <summary>
         /// 註冊會員 ID (Primary Key, 自動編號)
         /// </summary>
@@ -137,5 +142,20 @@ namespace WuliKaWu.Data
 
         [Description("Admin")]
         Admin
+=======
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [MaxLength(16)]
+        public string Account { get; set; }
+
+        public string Password { get; set; }
+
+        [MaxLength(24)]
+        public string Name { get; set; }
+
+        //public virtual ICollection<MemberLike> MemberLikes { get; set; }  // Add UserId (FK) in MemberLikes
+>>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
     }
 }
