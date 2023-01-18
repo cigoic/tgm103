@@ -6,7 +6,15 @@ using WuliKaWu.Data;
 using WuliKaWu.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//MVC網站服務
+builder.Services.AddControllersWithViews();
+//加入Session服務
+builder.Services.AddSession(
+    (options) =>
+    {
+        options.IdleTimeout = TimeSpan.FromMinutes(60);
+    }
+    );
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -57,6 +65,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication();
