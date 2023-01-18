@@ -439,7 +439,7 @@ namespace WuliKaWu.Controllers
         [ActionName("Login")]
         public async Task<IActionResult> LoginRegisterAsync(Member model)
         {
-            // 資料庫給的資料
+            // TODO 資料庫給的資料
             var dbAccount = "123@123.com";
             var dbPassword = "1314520";
 
