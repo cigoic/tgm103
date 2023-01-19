@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using static WuliKaWu.Data.Enums.Common;
+using WuliKaWu.Data;
 
 namespace WuliKaWu.Data
 {
@@ -17,10 +18,11 @@ namespace WuliKaWu.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Cart> Carts { get; set; }
+        public DbSet<WuliKaWu.Data.WishList> WishList { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<Member> Members { get; set; }      // 若改用 Identity, 此行要移除
-		public DbSet<MemberRole> MemberRoles { get; set; }      // 若改用 Identity, 此行要移除
-		
+        public DbSet<MemberRole> MemberRoles { get; set; }      // 若改用 Identity, 此行要移除
+
         public DbSet<TableOfGetPayType> TbGetPayTypes { get; set; }
 
         public DbSet<TableOfSize> TbSizes { get; set; }
@@ -57,8 +59,16 @@ namespace WuliKaWu.Data
                 Price = 1000,
                 SellingPrice = 800,
                 Coupon = -100
-            }
-                );
+            });
+            modelBuilder.Entity<WishList>().HasData(new WishList
+            {
+                WishListId = 1,
+                ProductName = "牛仔外套",
+                Price = 3000,
+                SellingPrice = 2700,
+                Discount = -1000,
+                Picture = "pic2"
+            });
         }
     }
 }

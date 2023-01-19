@@ -36,7 +36,7 @@ namespace WuliKaWu.Data
         /// 關聯的會員 ID (Foreign Key)
         /// </summary>
         [ForeignKey("Member")]
-        public int MemberID { get; set; }
+        public int MemberId { get; set; }
 
         /// <summary>
         /// 導覽屬性：只對應到單一會員，不用 ICollection

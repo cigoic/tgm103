@@ -150,9 +150,9 @@ namespace WuliKaWu.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Orders_OrderID",
+                name: "FK_AspNetUsers_Orders_OrderId",
                 table: "AspNetUsers",
-                column: "OrderID",
+                column: "OrderId",
                 principalTable: "Orders",
                 principalColumn: "OrderId",
                 onDelete: ReferentialAction.Cascade);
@@ -161,7 +161,7 @@ namespace WuliKaWu.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Orders_OrderID",
+                name: "FK_AspNetUsers_Orders_OrderId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropTable(
@@ -174,7 +174,7 @@ namespace WuliKaWu.Data.Migrations
                 name: "Products");
 
             migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_OrderID",
+                name: "IX_AspNetUsers_OrderId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
@@ -202,7 +202,7 @@ namespace WuliKaWu.Data.Migrations
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "OrderID",
+                name: "OrderId",
                 table: "AspNetUsers");
         }
     }

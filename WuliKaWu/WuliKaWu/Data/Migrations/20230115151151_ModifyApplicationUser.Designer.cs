@@ -218,7 +218,7 @@ namespace WuliKaWu.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
@@ -250,7 +250,7 @@ namespace WuliKaWu.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -447,7 +447,7 @@ namespace WuliKaWu.Data.Migrations
                 {
                     b.HasOne("WuliKaWu.Models.Orders", "Orders")
                         .WithMany()
-                        .HasForeignKey("OrderID")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -7,70 +7,18 @@ namespace WuliKaWu.Data
     {
         [Key()]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WishListID
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int WishListId { get; set; }
 
         [ForeignKey("Members")]
-        public int MemberID
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int MemberId { get; set; }
 
         [ForeignKey("Products")]
-        public int ProductID
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int ProductId { get; set; }
 
-        public string ProductName
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public decimal Price
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public decimal SellingPrice
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public decimal Discount
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public string Picture
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public string ProductName { get; set; }
+        public decimal Price { get; set; }
+        public decimal SellingPrice { get; set; }
+        public decimal Discount { get; set; }
+        public string Picture { get; set; }
     }
 }

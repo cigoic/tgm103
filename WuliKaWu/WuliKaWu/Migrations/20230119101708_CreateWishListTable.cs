@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WuliKaWu.Migrations
 {
-    public partial class CreateAllTables : Migration
+    public partial class CreateWishListTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace WuliKaWu.Migrations
                 name: "Members",
                 columns: table => new
                 {
-                    MemberID = table.Column<int>(type: "int", nullable: false)
+                    MemberId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Account = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -70,7 +70,7 @@ namespace WuliKaWu.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Members", x => x.MemberID);
+                    table.PrimaryKey("PK_Members", x => x.MemberId);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,22 +115,41 @@ namespace WuliKaWu.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WishList",
+                columns: table => new
+                {
+                    WishListId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WishList", x => x.WishListId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MemberRoles",
                 columns: table => new
                 {
                     RoleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    MemberID = table.Column<int>(type: "int", nullable: false)
+                    MemberId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MemberRoles", x => x.RoleID);
                     table.ForeignKey(
-                        name: "FK_MemberRoles_Members_MemberID",
-                        column: x => x.MemberID,
+                        name: "FK_MemberRoles_Members_MemberId",
+                        column: x => x.MemberId,
                         principalTable: "Members",
-                        principalColumn: "MemberID",
+                        principalColumn: "MemberId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -195,6 +214,26 @@ namespace WuliKaWu.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Size",
+                columns: table => new
+                {
+                    SizeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Size", x => x.SizeId);
+                    table.ForeignKey(
+                        name: "FK_Size_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "StarRate",
                 columns: table => new
                 {
@@ -234,30 +273,20 @@ namespace WuliKaWu.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TbSizes",
-                columns: table => new
-                {
-                    SizeId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TbSizes", x => x.SizeId);
-                    table.ForeignKey(
-                        name: "FK_TbSizes_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.InsertData(
+                table: "Cart",
+                columns: new[] { "CartId", "Color", "Coupon", "Discount", "Picture", "Price", "ProductName", "Quantity", "SellingPrice", "Size", "Total" },
+                values: new object[] { 1, 3, -100m, null, "pic1", 1000m, "裙子", 0, 800m, 2, 0m });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "ProductId", "Category", "Color", "Comment", "Picture", "Price", "ProductName", "SellingPrice", "Size", "StarRate", "Tag", "discount" },
                 values: new object[] { 1, 3, 0, null, "pic1", 100m, "大衣", 100m, 1, 0, null, null });
+
+            migrationBuilder.InsertData(
+                table: "WishList",
+                columns: new[] { "WishListId", "Discount", "MemberId", "Picture", "Price", "ProductId", "ProductName", "SellingPrice" },
+                values: new object[] { 1, -1000m, 0, "pic2", 3000m, 0, "牛仔外套", 2700m });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Category_ProductId",
@@ -275,9 +304,14 @@ namespace WuliKaWu.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MemberRoles_MemberID",
+                name: "IX_MemberRoles_MemberId",
                 table: "MemberRoles",
-                column: "MemberID");
+                column: "MemberId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Size_ProductId",
+                table: "Size",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StarRate_ProductId",
@@ -287,11 +321,6 @@ namespace WuliKaWu.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_ProductId",
                 table: "Tag",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TbSizes_ProductId",
-                table: "TbSizes",
                 column: "ProductId");
         }
 
@@ -316,13 +345,16 @@ namespace WuliKaWu.Migrations
                 name: "MemberRoles");
 
             migrationBuilder.DropTable(
+                name: "Size");
+
+            migrationBuilder.DropTable(
                 name: "StarRate");
 
             migrationBuilder.DropTable(
                 name: "Tag");
 
             migrationBuilder.DropTable(
-                name: "TbSizes");
+                name: "WishList");
 
             migrationBuilder.DropTable(
                 name: "Orders");
