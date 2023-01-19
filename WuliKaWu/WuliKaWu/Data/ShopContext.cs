@@ -20,6 +20,7 @@ namespace WuliKaWu.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<Member> Members { get; set; }      // 若改用 Identity, 此行要移除
+        public DbSet<MemberRole> MemberRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
