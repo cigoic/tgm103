@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WuliKaWu.Models;
+using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
@@ -15,7 +15,6 @@ namespace WuliKaWu.Controllers.Api
         {
             _db = context;
         }
-
 
         public List<ProductModel> GetAll()
         {

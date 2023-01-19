@@ -10,7 +10,7 @@ namespace WuliKaWu.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Orders_OrderID",
+                name: "FK_AspNetUsers_Orders_OrderId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropTable(
@@ -23,18 +23,18 @@ namespace WuliKaWu.Data.Migrations
                 name: "Products");
 
             migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_OrderID",
+                name: "IX_AspNetUsers_OrderId",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "OrderID",
+                name: "OrderId",
                 table: "AspNetUsers");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "OrderID",
+                name: "OrderId",
                 table: "AspNetUsers",
                 type: "int",
                 nullable: false,
@@ -114,9 +114,9 @@ namespace WuliKaWu.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_OrderID",
+                name: "IX_AspNetUsers_OrderId",
                 table: "AspNetUsers",
-                column: "OrderID");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cart_Price",
@@ -129,9 +129,9 @@ namespace WuliKaWu.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Orders_OrderID",
+                name: "FK_AspNetUsers_Orders_OrderId",
                 table: "AspNetUsers",
-                column: "OrderID",
+                column: "OrderId",
                 principalTable: "Orders",
                 principalColumn: "OrderId",
                 onDelete: ReferentialAction.Cascade);
