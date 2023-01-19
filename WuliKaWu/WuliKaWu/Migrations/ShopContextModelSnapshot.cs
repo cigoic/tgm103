@@ -276,7 +276,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberID");
 
-                    b.ToTable("MemberRole");
+                    b.ToTable("MemberRoles");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Orders", b =>

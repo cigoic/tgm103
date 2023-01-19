@@ -466,6 +466,7 @@ namespace WuliKaWu.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<Member> Members { get; set; }      // 若改用 Identity, 此行要移除
+<<<<<<< HEAD
 		public DbSet<MemberRole> MemberRoles { get; set; }      // 若改用 Identity, 此行要移除
 		
         public DbSet<TableOfGetPayType> TbGetPayTypes { get; set; }
@@ -479,6 +480,9 @@ namespace WuliKaWu.Data
         public DbSet<TableOfCategory> TbCategories { get; set; }
 
         public DbSet<TableOfTag> TbTags { get; set; }
+=======
+        public DbSet<MemberRole> MemberRoles { get; set; }
+>>>>>>> [更新] 新增 MemberRoles 表
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
