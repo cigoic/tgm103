@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+=======
+﻿using System.ComponentModel.DataAnnotations;
+>>>>>>> [新增]所有資料表
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
@@ -14,6 +18,7 @@ namespace WuliKaWu.Data
         /// </summary>
         public enum RoleType
         {
+<<<<<<< HEAD
             [Description("None")]
             None,
 
@@ -22,13 +27,20 @@ namespace WuliKaWu.Data
 
             [Description("Admin")]
             Admin
+=======
+            None, User, Admin
+>>>>>>> [新增]所有資料表
         }
 
         /// <summary>
         /// 帳號角色 ID (Primary Key)
         /// </summary>
         [Key]
+<<<<<<< HEAD
         public int RoleId { get; set; }
+=======
+        public int RoleID { get; set; }
+>>>>>>> [新增]所有資料表
 
         /// <summary>
         /// 帳號角色類型值
@@ -44,7 +56,11 @@ namespace WuliKaWu.Data
         /// 關聯的會員 ID (Foreign Key)
         /// </summary>
         [ForeignKey("Member")]
+<<<<<<< HEAD
         public int MemberId { get; set; }
+=======
+        public int MemberID { get; set; }
+>>>>>>> [新增]所有資料表
 
         /// <summary>
         /// 導覽屬性：只對應到單一會員，不用 ICollection

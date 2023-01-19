@@ -113,6 +113,19 @@ namespace WuliKaWu.Data
         public Category Category { get; set; }
 
         public Tag? Tag { get; set; }
+<<<<<<< HEAD
 >>>>>>> [更新] 資料庫資料表
+=======
+
+        public virtual ICollection<TableOfSize> TableOfSizes { get; set; }
+
+        public virtual ICollection<TableOfColor> TableOfColors { get; set; }
+
+        public virtual ICollection<TableOfStarRate> TableOfStarRates { get; set; }
+
+        public virtual ICollection<TableOfCategory> TableOfCategories { get; set; }
+
+        public virtual ICollection<TableOfTag> TableOfTags { get; set; }
+>>>>>>> [新增]所有資料表
     }
 }

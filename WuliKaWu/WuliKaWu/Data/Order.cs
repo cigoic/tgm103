@@ -1,14 +1,21 @@
+<<<<<<< HEAD
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using static WuliKaWu.Data.Enums.Common;
 
+=======
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+>>>>>>> [新增]所有資料表
 namespace WuliKaWu.Data
 {
     [Table("Orders")]
     public class Order
     {
+<<<<<<< HEAD
         /// <summary>
         /// 訂單 ID (Primary Key, 自動編號)
         /// </summary>
@@ -90,5 +97,24 @@ namespace WuliKaWu.Data
 
         [Description("已送達")]
         Arrived
+=======
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int OrderId { get; set; }
+
+        public string ProductName { get; set; }
+
+        public int Quantity { get; set; }
+
+        public decimal Price { get; set; }
+
+        public decimal? CouponDiscount { get; set; }
+
+        public string ShippingAddress { get; set; }
+
+        public string? Memo { get; set; }
+
+        public virtual ICollection<TableOfGetPayType> TableOfGetPayTypes { get; set; }
+>>>>>>> [新增]所有資料表
     }
 }

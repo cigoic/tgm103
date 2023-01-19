@@ -476,16 +476,49 @@ namespace WuliKaWu.Migrations
 =======
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MemberID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Account")
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailComfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockOutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberShip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobilePhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -496,14 +529,43 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MemberID");
 
                     b.ToTable("Members");
                 });
 
+<<<<<<< HEAD
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
             modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
 >>>>>>> [更新] 資料庫資料表
+=======
+            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
+                {
+                    b.Property<int>("RoleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleID");
+
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("MemberRoles");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+>>>>>>> [新增]所有資料表
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -1072,8 +1134,237 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("WishList");
                 });
+<<<<<<< HEAD
 =======
 >>>>>>> [更新] 資料庫資料表
+=======
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
+                {
+                    b.Property<int>("ColorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ColorId"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("ColorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Color");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
+                {
+                    b.Property<int>("GetPayTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GetPayTypeId"), 1L, 1);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("GetPayTypeId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("GetPayType");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
+                {
+                    b.Property<int>("SizeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SizeId"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("SizeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("TbSizes");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
+                {
+                    b.Property<int>("StarRateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StarRateId"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("StarRateId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("StarRate");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"), 1L, 1);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("TagId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("Roles")
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("TableOfCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("TableOfColors")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Order", "Order")
+                        .WithMany("TableOfGetPayTypes")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("TableOfSizes")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("TableOfStarRates")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("TableOfTags")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Member", b =>
+                {
+                    b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+                {
+                    b.Navigation("TableOfGetPayTypes");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
+                {
+                    b.Navigation("TableOfCategories");
+
+                    b.Navigation("TableOfColors");
+
+                    b.Navigation("TableOfSizes");
+
+                    b.Navigation("TableOfStarRates");
+
+                    b.Navigation("TableOfTags");
+                });
+>>>>>>> [新增]所有資料表
 #pragma warning restore 612, 618
         }
     }
