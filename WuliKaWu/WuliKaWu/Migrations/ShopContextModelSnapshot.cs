@@ -189,29 +189,98 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.AuthorImage", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MemberID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstImageFileName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+<<<<<<< HEAD
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
+=======
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailComfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockOutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberShip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobilePhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+>>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
 
                     b.Property<string>("SecondImageFileName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MemberID");
 
                     b.ToTable("AuthorImages");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
+=======
+            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
+                {
+                    b.Property<int>("RoleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleID");
+
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("MemberRole");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
+>>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1364,7 +1433,26 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("TableOfTags");
                 });
+<<<<<<< HEAD
 >>>>>>> [新增]所有資料表
+=======
+
+            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("Roles")
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Member", b =>
+                {
+                    b.Navigation("Roles");
+                });
+>>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
 #pragma warning restore 612, 618
         }
     }

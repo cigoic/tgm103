@@ -13,6 +13,7 @@ namespace WuliKaWu.Data
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         /// <summary>
         /// 註冊會員 ID (Primary Key, 自動編號)
         /// </summary>
@@ -149,6 +150,11 @@ namespace WuliKaWu.Data
         /// 註冊會員 ID (Primary Key, 自動編號)
         /// </summary>
 >>>>>>> [新增]所有資料表
+=======
+        /// <summary>
+        /// 註冊會員 ID (Primary Key, 自動編號)
+        /// </summary>
+>>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberID { get; set; }
@@ -174,9 +180,12 @@ namespace WuliKaWu.Data
         public string Name { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         //public virtual ICollection<MemberLike> MemberLikes { get; set; }  // Add UserId (FK) in MemberLikes
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 =======
+=======
+>>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
         /// <summary>
         /// 註冊會員性別（男/女）
         /// </summary>
@@ -233,6 +242,9 @@ namespace WuliKaWu.Data
         /// 帳號角色
         /// </summary>
         public virtual ICollection<MemberRole> Roles { get; set; }
+<<<<<<< HEAD
 >>>>>>> [新增]所有資料表
+=======
+>>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
     }
 }
