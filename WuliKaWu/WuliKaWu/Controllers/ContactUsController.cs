@@ -52,8 +52,13 @@ namespace WuliKaWu.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MessageId,Name,Email,Subject,Phone,Message")] ContactMessage contactMessage)
+        public async Task<IActionResult> Create([Bind("Name,Email,Subject,Phone,Message")] ContactMessage contactMessage)
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToAction("Login", "Member");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(contactMessage);

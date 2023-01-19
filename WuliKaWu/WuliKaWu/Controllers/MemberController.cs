@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 
 using WuliKaWu.Data;
@@ -61,6 +63,23 @@ namespace WuliKaWu.Controllers
         {
             HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public void SendMail()
+        {
+            var mail = new MailMessage();
+            mail.Subject = "您好！";
+            mail.IsBodyHtml = true;
+            mail.Body = "< h1 > Happy New Year~</ h1 >";
+            mail.From = new MailAddress("liang.case@gmail.com");
+            mail.To.Add(new MailAddress("liang.case@me.com"));
+
+            var client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.Credentials = new NetworkCredential("liang.case@gmail.com", "MY_PASSWORD");
+            client.Send(mail);  // 寄信
         }
     }
 }
