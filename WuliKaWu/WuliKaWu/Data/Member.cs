@@ -11,7 +11,7 @@ namespace WuliKaWu.Data
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int MemberID { get; set; }
+        public int MemberId { get; set; }
 
         /// <summary>
         /// 註冊會員帳號，最大長度 16

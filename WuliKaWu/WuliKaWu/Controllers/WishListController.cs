@@ -9,85 +9,85 @@ using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
 {
-    public class CartController : Controller
+    public class WishListController : Controller
     {
         private readonly ShopContext _context;
 
-        public CartController(ShopContext context)
+        public WishListController(ShopContext context)
         {
             _context = context;
         }
 
-        // GET: Carts
+        // GET: WishLists
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Carts.ToListAsync());
+            return View(await _context.WishList.ToListAsync());
         }
 
-        // GET: Carts/Details/5
+        // GET: WishLists/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Carts == null)
+            if (id == null || _context.WishList == null)
             {
                 return NotFound();
             }
 
-            var cart = await _context.Carts
-                .FirstOrDefaultAsync(m => m.CartId == id);
-            if (cart == null)
+            var wishList = await _context.WishList
+                .FirstOrDefaultAsync(m => m.WishListId == id);
+            if (wishList == null)
             {
                 return NotFound();
             }
 
-            return View(cart);
+            return View(wishList);
         }
 
-        // GET: Carts/Create
+        // GET: WishLists/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Carts/Create
+        // POST: WishLists/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CartId,ProductName,Size,Color,Picture,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        public async Task<IActionResult> Create([Bind("WishListId,MemberId,ProductId,ProductName,Price,SellingPrice,Discount,Picture")] WishList wishList)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cart);
+                _context.Add(wishList);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(cart);
+            return View(wishList);
         }
 
-        // GET: Carts/Edit/5
+        // GET: WishLists/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Carts == null)
+            if (id == null || _context.WishList == null)
             {
                 return NotFound();
             }
 
-            var cart = await _context.Carts.FindAsync(id);
-            if (cart == null)
+            var wishList = await _context.WishList.FindAsync(id);
+            if (wishList == null)
             {
                 return NotFound();
             }
-            return View(cart);
+            return View(wishList);
         }
 
-        // POST: Carts/Edit/5
+        // POST: WishLists/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,Picture,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        public async Task<IActionResult> Edit(int id, [Bind("WishListId,MemberId,ProductId,ProductName,Price,SellingPrice,Discount,Picture")] WishList wishList)
         {
-            if (id != cart.CartId)
+            if (id != wishList.WishListId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace WuliKaWu.Controllers
             {
                 try
                 {
-                    _context.Update(cart);
+                    _context.Update(wishList);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CartExists(cart.CartId))
+                    if (!WishListExists(wishList.WishListId))
                     {
                         return NotFound();
                     }
@@ -112,49 +112,49 @@ namespace WuliKaWu.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cart);
+            return View(wishList);
         }
 
-        // GET: Carts/Delete/5
+        // GET: WishLists/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Carts == null)
+            if (id == null || _context.WishList == null)
             {
                 return NotFound();
             }
 
-            var cart = await _context.Carts
-                .FirstOrDefaultAsync(m => m.CartId == id);
-            if (cart == null)
+            var wishList = await _context.WishList
+                .FirstOrDefaultAsync(m => m.WishListId == id);
+            if (wishList == null)
             {
                 return NotFound();
             }
 
-            return View(cart);
+            return View(wishList);
         }
 
-        // POST: Carts/Delete/5
+        // POST: WishLists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Carts == null)
+            if (_context.WishList == null)
             {
-                return Problem("Entity set 'ShopContext.Carts'  is null.");
+                return Problem("Entity set 'ShopContext.WishList'  is null.");
             }
-            var cart = await _context.Carts.FindAsync(id);
-            if (cart != null)
+            var wishList = await _context.WishList.FindAsync(id);
+            if (wishList != null)
             {
-                _context.Carts.Remove(cart);
+                _context.WishList.Remove(wishList);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CartExists(int id)
+        private bool WishListExists(int id)
         {
-            return _context.Carts.Any(e => e.CartId == id);
+            return _context.WishList.Any(e => e.WishListId == id);
         }
     }
 }

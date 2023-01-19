@@ -66,6 +66,21 @@ namespace WuliKaWu.Migrations
                     b.HasKey("CartId");
 
                     b.ToTable("Cart");
+
+                    b.HasData(
+                        new
+                        {
+                            CartId = 1,
+                            Color = 3,
+                            Coupon = -100m,
+                            Picture = "pic1",
+                            Price = 1000m,
+                            ProductName = "裙子",
+                            Quantity = 0,
+                            SellingPrice = 800m,
+                            Size = 2,
+                            Total = 0m
+                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -107,11 +122,11 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
-                    b.Property<int>("MemberID")
+                    b.Property<int>("MemberId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -164,7 +179,7 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MemberID");
+                    b.HasKey("MemberId");
 
                     b.ToTable("Members");
                 });
@@ -177,7 +192,7 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
 
-                    b.Property<int>("MemberID")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<int>("Type")
@@ -185,7 +200,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("RoleID");
 
-                    b.HasIndex("MemberID");
+                    b.HasIndex("MemberId");
 
                     b.ToTable("MemberRoles");
                 });
@@ -367,7 +382,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("TbSizes");
+                    b.ToTable("Size");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
@@ -412,11 +427,60 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Tag");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
+                {
+                    b.Property<int>("WishListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListId"), 1L, 1);
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("WishListId");
+
+                    b.ToTable("WishList");
+
+                    b.HasData(
+                        new
+                        {
+                            WishListId = 1,
+                            Discount = -1000m,
+                            MemberId = 0,
+                            Picture = "pic2",
+                            Price = 3000m,
+                            ProductId = 0,
+                            ProductName = "牛仔外套",
+                            SellingPrice = 2700m
+                        });
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
                         .WithMany("Roles")
-                        .HasForeignKey("MemberID")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
