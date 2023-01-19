@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +22,7 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> Index()
         {
             return View();
-        }
+       }
 
         public async Task<IActionResult> Index2()
         {

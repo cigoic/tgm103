@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Models.ApiModel
