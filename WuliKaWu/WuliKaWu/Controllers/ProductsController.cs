@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
@@ -18,13 +14,21 @@ namespace WuliKaWu.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Shop  首頁 - Grid Sidebar
+        /// </summary>
+        /// <returns></returns>
         // GET: Products
         public async Task<IActionResult> Index()
         {
             return View();
-       }
+        }
 
-        public async Task<IActionResult> Index2()
+        /// <summary>
+        /// Shop 首頁 - Standard Syle
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> IndexOne()
         {
             return View();
         }
