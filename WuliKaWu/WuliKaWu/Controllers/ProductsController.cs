@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,11 @@ using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
 using static WuliKaWu.Data.Enums.Common;
 =======
+=======
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+>>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
 using WuliKaWu.Data;
 >>>>>>> [更新] 資料庫資料表
 
@@ -37,6 +43,7 @@ namespace WuliKaWu.Controllers
             return View();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
 
         /// <summary>
@@ -58,6 +65,15 @@ namespace WuliKaWu.Controllers
         { return View(); }
 =======
         public async Task<IActionResult> Index2()
+=======
+        }
+
+        /// <summary>
+        /// Shop 首頁 - Standard Syle
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> IndexOne()
+>>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
         {
             return View();
         }
