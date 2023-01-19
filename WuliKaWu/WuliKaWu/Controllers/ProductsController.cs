@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WuliKaWu.Models;
+using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
 {
@@ -21,7 +21,12 @@ namespace WuliKaWu.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Products.ToListAsync());
+            return View();
+        }
+
+        public async Task<IActionResult> Index2()
+        {
+            return View();
         }
 
         // GET: Products/Details/5

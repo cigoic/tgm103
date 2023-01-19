@@ -1,4 +1,4 @@
-﻿@{
+@{
     string BaseAddress = @"~/assets";
     string TGM103CssBaseAddress = $"{BaseAddress}/css";
     string TGM103JsBaseAddress = $"{BaseAddress}/js";
@@ -7,12 +7,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, ie=edge" />
-    @*<title>@ViewData["Title"] - WuliKaWu</title>*@
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WuliKaWu.styles.css" asp-append-version="true" />
+    <meta http-equiv="x-ua-compatible">
+    <title>WuliKaWu</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="Feel good with us.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+
+    <!-- Open Graph (OG) meta tags are snippets of code that control how URLs are displayed when shared on social media  -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="WuliKaWu" />
+    <meta property="og:url" content="#" />  <!--TODO: 填入發佈的網站首頁網址 -->
+    <meta property="og:site_name" content="WuliKaWu - Feel good with us." />
+    <!-- For the og:image content, replace the # with a link of an image -->
+    <meta property="og:image" content="#" />
+    <meta property="og:description" content="Feel good with us." />
+    <!-- Add site Favicon -->
+    <link rel="icon" href="~/assets/images/favicon/cropped-favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="~/assets/images/favicon/cropped-favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="~/assets/images/favicon/cropped-favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="~/assets/images/favicon/cropped-favicon-270x270.png" />
+
+    <!-- All CSS is here
+    ============================================ -->
+    <link rel="stylesheet" href="~/assets/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/vendor/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="~/assets/css/vendor/themify-icons.css" />
+    <link rel="stylesheet" href="~/assets/css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/animate.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/aos.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/magnific-popup.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/swiper.min.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/jquery-ui.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/nice-select.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/select2.min.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/easyzoom.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 
 <body>
@@ -67,16 +102,16 @@
                                     <ul>
                                         <li>
                                             <a asp-controller="Home" asp-action="Index">HOME</a>
-                                            <ul class="sub-menu-style">
-                                                <li><a asp-controller="Home" asp-action="Index">Home version 1 </a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                                <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
-                                            </ul>
+                                            @*<ul class="sub-menu-style">
+                                            <li><a asp-controller="Home" asp-action="IndexOne">Home version 1 </a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
+                                            <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                            </ul>*@
                                         </li>
                                         <li>
                                             <a asp-controller="Products" asp-action="Index">SHOP</a>
@@ -122,7 +157,7 @@
                                                 <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
                                                 <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
                                                 <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
-                                                <li><a asp-controller="Home" asp-action="LoginRegister">login / register </a></li>
+                                                <li><a title="Login Register" asp-controller="Member" asp-action="Login"><i class="pe-7s-user"></i> login / register </a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -154,12 +189,12 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Login Register" asp-controller="Home" asp-action="LoginRegister"><i class="pe-7s-user"></i></a>
-                                    @*TODO: Core MVC 登入相關引用 *@
-                                    @*<partial name="_LoginPartial" />*@
+                                    <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
+                                    @* MVC 登入相關檢視 *@
+                                    @*<partial name="_LoginIdentityPartial" />*@
+                                    <partial name="_LoginPartial" />
                                 </div>
                                 <div class="header-action-style header-action-cart">
                                     <a class="cart-active" href="#">
@@ -368,17 +403,18 @@
                     <div id="mobile-menu" class="slinky-mobile-menu text-left">
                         <ul>
                             <li>
-                                <a href="#">HOME</a>
+                                <a asp-controller="Home" asp-action="Index">HOME</a>
+                                @*<a href="#">HOME</a>
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Index">Home version 1 </a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                    <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
-                                </ul>
+                                <li><a asp-controller="Home" asp-action="IndexOne">Home version 1 </a></li>
+                                <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
+                                <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                </ul>*@
                             </li>
                             <li>
                                 <a href="#">SHOP</a>
@@ -417,7 +453,7 @@
                                     <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
                                     <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
                                     <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
-                                    <li><a asp-controller="Home" asp-action="LoginRegister">Login / Register </a></li>
+                                    <li><a title="Login Register" asp-controller="Member" asp-action="Login">><i class="pe-7s-user"></i> Login / Register </a></li>
                                 </ul>
                             </li>
                             <li>

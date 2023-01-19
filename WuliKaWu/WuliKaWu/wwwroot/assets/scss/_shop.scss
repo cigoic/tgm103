@@ -208,6 +208,13 @@
         display: flex;
         justify-content: center;
         li {
+             &:hover {
+                    color: $theme-color;
+                }
+                &.active {
+                    background-color: $theme-color;
+                    color: $white;
+                }
             a {
                 width: 35px;
                 height: 35px;
@@ -219,13 +226,7 @@
                 margin: 0 4px;
                 color: #333;
                 text-align: center;
-                &:hover {
-                    color: $theme-color;
-                }
-                &.active {
-                    background-color: $theme-color;
-                    color: $white;
-                }
+               
             }
         }
     }
