@@ -12,8 +12,8 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230118025031_InitMemberTable")]
-    partial class InitMemberTable
+    [Migration("20230119045105_AddMemberRoles")]
+    partial class AddMemberRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,16 +109,49 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MemberID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Account")
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailComfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockOutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MemberShip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobilePhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -129,9 +162,34 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MemberID");
 
                     b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
+                {
+                    b.Property<int>("RoleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleID");
+
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("MemberRoles");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
@@ -228,6 +286,22 @@ namespace WuliKaWu.Migrations
                             Size = 1,
                             StarRate = 0
                         });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("Roles")
+                        .HasForeignKey("MemberID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Member", b =>
+                {
+                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

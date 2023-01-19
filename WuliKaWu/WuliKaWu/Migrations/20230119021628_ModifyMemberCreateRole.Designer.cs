@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Data;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230119021628_ModifyMemberCreateRole")]
+    partial class ModifyMemberCreateRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,21 +68,6 @@ namespace WuliKaWu.Migrations
                     b.HasKey("CartId");
 
                     b.ToTable("Cart");
-
-                    b.HasData(
-                        new
-                        {
-                            CartId = 1,
-                            Color = 3,
-                            Coupon = -100m,
-                            Picture = "pic1",
-                            Price = 1000m,
-                            ProductName = "裙子",
-                            Quantity = 0,
-                            SellingPrice = 800m,
-                            Size = 2,
-                            Total = 0m
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -128,9 +115,6 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Account")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -146,16 +130,10 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailComfirmed")
-                        .HasColumnType("bit");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockOutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("MemberShip")
@@ -202,10 +180,10 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberID");
 
-                    b.ToTable("MemberRoles");
+                    b.ToTable("MemberRole");
                 });
 
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+            modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -301,132 +279,6 @@ namespace WuliKaWu.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
-                {
-                    b.Property<int>("ColorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ColorId"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("ColorId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Color");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
-                {
-                    b.Property<int>("GetPayTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GetPayTypeId"), 1L, 1);
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("GetPayTypeId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("GetPayType");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
-                {
-                    b.Property<int>("SizeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SizeId"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("SizeId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("TbSizes");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
-                {
-                    b.Property<int>("StarRateId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StarRateId"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("StarRateId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("StarRate");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
-                {
-                    b.Property<int>("TagId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"), 1L, 1);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("TagId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Tag");
-                });
-
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -438,93 +290,9 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Member");
                 });
 
-            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("TableOfCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("TableOfColors")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Order", "Order")
-                        .WithMany("TableOfGetPayTypes")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("TableOfSizes")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("TableOfStarRates")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("TableOfTags")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
                     b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
-                {
-                    b.Navigation("TableOfGetPayTypes");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
-                {
-                    b.Navigation("TableOfCategories");
-
-                    b.Navigation("TableOfColors");
-
-                    b.Navigation("TableOfSizes");
-
-                    b.Navigation("TableOfStarRates");
-
-                    b.Navigation("TableOfTags");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Data;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230119065707_CreateAllTables")]
+    partial class CreateAllTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,21 +68,6 @@ namespace WuliKaWu.Migrations
                     b.HasKey("CartId");
 
                     b.ToTable("Cart");
-
-                    b.HasData(
-                        new
-                        {
-                            CartId = 1,
-                            Color = 3,
-                            Coupon = -100m,
-                            Picture = "pic1",
-                            Price = 1000m,
-                            ProductName = "裙子",
-                            Quantity = 0,
-                            SellingPrice = 800m,
-                            Size = 2,
-                            Total = 0m
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>

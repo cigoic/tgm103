@@ -7,7 +7,7 @@
 
         public enum Color
         {
-            Black = 0, Blue = 1, Brown = 2, Red = 3, Orange = 4
+            Black = 0, White = 1, Brown = 2, Red = 3, Orange = 4
         }
 
         public enum Size

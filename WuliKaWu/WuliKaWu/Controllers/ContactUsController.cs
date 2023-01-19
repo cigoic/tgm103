@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
@@ -51,8 +52,13 @@ namespace WuliKaWu.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MessageId,Name,Email,Subject,Phone,Message")] ContactMessage contactMessage)
+        public async Task<IActionResult> Create([Bind("Name,Email,Subject,Phone,Message")] ContactMessage contactMessage)
         {
+            if (User.Identity.IsAuthenticated == false)
+            {
+                return RedirectToAction("Login", "Member");
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(contactMessage);
@@ -116,7 +122,7 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: ContactMessages/Delete/5
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ContactMessages == null)
@@ -137,7 +143,7 @@ namespace WuliKaWu.Controllers
         // POST: ContactMessages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize("Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.ContactMessages == null)
