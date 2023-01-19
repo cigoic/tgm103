@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WuliKaWu.Data
 {
     [Table("Orders")]
-    public class Orders
+    public class Order
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,5 +21,7 @@ namespace WuliKaWu.Data
         public string ShippingAddress { get; set; }
 
         public string? Memo { get; set; }
+
+        public virtual ICollection<TableOfGetPayType> TableOfGetPayTypes { get; set; }
     }
 }
