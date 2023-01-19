@@ -498,6 +498,18 @@ namespace WuliKaWu.Data
                 ProductId = 1,
                 Picture = "pic1"
             });
+            modelBuilder.Entity<Cart>().HasData(new Cart
+            {
+                CartId = 1,
+                ProductName = "裙子",
+                Picture = "pic1",
+                Color = Color.Red,
+                Size = Size.M,
+                Price = 1000,
+                SellingPrice = 800,
+                Coupon = -100
+            }
+                );
         }
 >>>>>>> [更新] 資料庫資料表
     }

@@ -136,9 +136,28 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<< HEAD
                     b.HasIndex("ArticleId");
 
                     b.ToTable("ArticleCategories");
+=======
+                    b.ToTable("Cart");
+
+                    b.HasData(
+                        new
+                        {
+                            CartId = 1,
+                            Color = 3,
+                            Coupon = -100m,
+                            Picture = "pic1",
+                            Price = 1000m,
+                            ProductName = "裙子",
+                            Quantity = 0,
+                            SellingPrice = 800m,
+                            Size = 2,
+                            Total = 0m
+                        });
+>>>>>>> 新增CartController及CartApiController
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>

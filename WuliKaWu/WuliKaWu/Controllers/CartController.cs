@@ -12,18 +12,33 @@ namespace WuliKaWu.Controllers
 {
     public class CartController : Controller
     {
+<<<<<<< HEAD
         //public IActionResult AddCart(Data.Product product)
         //{
         //}
 
 <<<<<<< HEAD
         // GET: Cart
+=======
+        private readonly ShopContext _context;
+
+        public CartController(ShopContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Carts
+>>>>>>> 新增CartController及CartApiController
         public async Task<IActionResult> Index()
         {
             return View(await _context.Carts.ToListAsync());
         }
 
+<<<<<<< HEAD
         // GET: Cart/Details/5
+=======
+        // GET: Carts/Details/5
+>>>>>>> 新增CartController及CartApiController
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -32,7 +47,11 @@ namespace WuliKaWu.Controllers
             }
 
             var cart = await _context.Carts
+<<<<<<< HEAD
                 .FirstOrDefaultAsync(m => m.Id == id);
+=======
+                .FirstOrDefaultAsync(m => m.CartId == id);
+>>>>>>> 新增CartController及CartApiController
             if (cart == null)
             {
                 return NotFound();
@@ -41,12 +60,17 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
+<<<<<<< HEAD
         // GET: Cart/Create
+=======
+        // GET: Carts/Create
+>>>>>>> 新增CartController及CartApiController
         public IActionResult Create()
         {
             return View();
         }
 
+<<<<<<< HEAD
         // POST: Cart/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -84,6 +108,25 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: Cart/Edit/5
+=======
+        // POST: Carts/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("CartId,ProductName,Size,Color,Picture,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(cart);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(cart);
+        }
+
+        // GET: Carts/Edit/5
+>>>>>>> 新增CartController及CartApiController
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -99,14 +142,24 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
+<<<<<<< HEAD
         // POST: Cart/Edit/5
+=======
+        // POST: Carts/Edit/5
+>>>>>>> 新增CartController及CartApiController
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
         {
             if (id != cart.Id)
+=======
+        public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,Picture,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        {
+            if (id != cart.CartId)
+>>>>>>> 新增CartController及CartApiController
             {
                 return NotFound();
             }
@@ -120,7 +173,11 @@ namespace WuliKaWu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+<<<<<<< HEAD
                     if (!CartExists(cart.Id))
+=======
+                    if (!CartExists(cart.CartId))
+>>>>>>> 新增CartController及CartApiController
                     {
                         return NotFound();
                     }
@@ -134,7 +191,11 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
+<<<<<<< HEAD
         // GET: Cart/Delete/5
+=======
+        // GET: Carts/Delete/5
+>>>>>>> 新增CartController及CartApiController
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -143,7 +204,11 @@ namespace WuliKaWu.Controllers
             }
 
             var cart = await _context.Carts
+<<<<<<< HEAD
                 .FirstOrDefaultAsync(m => m.Id == id);
+=======
+                .FirstOrDefaultAsync(m => m.CartId == id);
+>>>>>>> 新增CartController及CartApiController
             if (cart == null)
             {
                 return NotFound();
@@ -152,7 +217,11 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
+<<<<<<< HEAD
         // POST: Cart/Delete/5
+=======
+        // POST: Carts/Delete/5
+>>>>>>> 新增CartController及CartApiController
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -173,6 +242,7 @@ namespace WuliKaWu.Controllers
 
         private bool CartExists(int id)
         {
+<<<<<<< HEAD
             return _context.Carts.Any(e => e.Id == id);
         }
 =======
@@ -356,5 +426,9 @@ namespace WuliKaWu.Controllers
         //        return _context.Orders.Any(e => e.OrderId == id);
         //    }
 >>>>>>> Merge branch 'development' of https://github.com/cigoic/tgm103 into development
+=======
+            return _context.Carts.Any(e => e.CartId == id);
+        }
+>>>>>>> 新增CartController及CartApiController
     }
 }

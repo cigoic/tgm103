@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
+=======
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using WuliKaWu.Data;
+>>>>>>> 新增CartController及CartApiController
 using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
@@ -13,6 +19,7 @@ namespace WuliKaWu.Controllers.Api
     [ApiController]
     public class CartApiController : ControllerBase
     {
+<<<<<<< HEAD
         private readonly ShopContext _context;
 
         public CartApiController(ShopContext context)
@@ -118,6 +125,30 @@ namespace WuliKaWu.Controllers.Api
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+=======
+        private readonly ShopContext _db;
+
+        public CartApiController(ShopContext context)
+        {
+            _db = context;
+        }
+
+        public List<CartModel> GetAll()
+        {
+            return _db.Carts.Select(x => new CartModel
+            {
+                CartId = x.CartId,
+                Color = x.Color,
+                Coupon = x.Coupon,
+                ImagePath = "/img/pic01.jpg",
+                Price = x.Price,
+                ProductName = x.ProductName,
+                Quantity = x.Quantity,
+                SellingPrice = x.SellingPrice,
+                Size = x.Size,
+                Total = x.Total
+            }).ToList();
+>>>>>>> 新增CartController及CartApiController
         }
     }
 }
