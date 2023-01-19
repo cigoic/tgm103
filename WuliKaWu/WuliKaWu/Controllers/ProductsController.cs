@@ -42,8 +42,15 @@ namespace WuliKaWu.Controllers
 >>>>>>> test (#3)
         }
 
+<<<<<<< HEAD
         public IActionResult Match()
         { return View(); }
+=======
+        public async Task<IActionResult> Index2()
+        {
+            return View();
+        }
+>>>>>>> 套版到Product的Index 將原先的Index暫時先改為Index2 (目前破版ing)
 
         // GET: Products/Details/5
         public async Task<IActionResult> ProductDetails(int id = 2)
