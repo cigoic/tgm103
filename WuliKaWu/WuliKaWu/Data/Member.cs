@@ -157,7 +157,7 @@ namespace WuliKaWu.Data
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int MemberID { get; set; }
+        public int MemberId { get; set; }
 
         /// <summary>
         /// 註冊會員帳號，最大長度 16

@@ -14,7 +14,7 @@ namespace WuliKaWu
         public DateTime Birthday { get; set; }
 
         //[ForeignKey("Orders")]
-        //public int OrderID { get; set; }
+        //public int OrderId { get; set; }
 
         // TODO:    願望清單是否併入會員資料庫？
         //public WishList WishList

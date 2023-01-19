@@ -40,32 +40,15 @@ namespace WuliKaWu.Data
     {
         [Key()]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int WishListID
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int WishListId { get; set; }
 
         [ForeignKey("Members")]
-        public int MemberID
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int MemberId { get; set; }
 
         [ForeignKey("Products")]
-        public int ProductID
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        public int ProductId { get; set; }
 
+<<<<<<< HEAD
         public string ProductName
         {
             get => default;
@@ -106,5 +89,12 @@ namespace WuliKaWu.Data
             }
         }
 >>>>>>> [更新] 資料庫資料表
+=======
+        public string ProductName { get; set; }
+        public decimal Price { get; set; }
+        public decimal SellingPrice { get; set; }
+        public decimal Discount { get; set; }
+        public string Picture { get; set; }
+>>>>>>> 新增WishListTable及Api
     }
 }

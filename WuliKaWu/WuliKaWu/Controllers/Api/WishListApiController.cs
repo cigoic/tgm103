@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
+=======
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using WuliKaWu.Data;
+>>>>>>> 新增WishListTable及Api
 using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
@@ -14,6 +20,7 @@ namespace WuliKaWu.Controllers.Api
     [ApiController]
     public class WishListApiController : ControllerBase
     {
+<<<<<<< HEAD
         private readonly ShopContext _context;
 
         public WishListApiController(ShopContext context)
@@ -141,6 +148,26 @@ namespace WuliKaWu.Controllers.Api
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+=======
+        private readonly ShopContext _db;
+
+        public WishListApiController(ShopContext context)
+        {
+            _db = context;
+        }
+
+        public List<WishListModel> GetAll()
+        {
+            return _db.WishList.Select(x => new WishListModel
+            {
+                WishListId = x.WishListId,
+                ProductName = x.ProductName,
+                Price = x.Price,
+                SellingPrice = x.SellingPrice,
+                Discount = x.Discount,
+                Picture = x.Picture,
+            }).ToList();
+>>>>>>> 新增WishListTable及Api
         }
     }
 }

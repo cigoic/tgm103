@@ -70,6 +70,7 @@ namespace WuliKaWu.Data
         [ForeignKey("Member")]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int MemberId { get; set; }
 =======
         public int MemberID { get; set; }
@@ -77,6 +78,9 @@ namespace WuliKaWu.Data
 =======
         public int MemberID { get; set; }
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+        public int MemberId { get; set; }
+>>>>>>> 新增WishListTable及Api
 
         /// <summary>
         /// 導覽屬性：只對應到單一會員，不用 ICollection

@@ -4,6 +4,7 @@ using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
+    [Table("Size")]
     public class TableOfSize
     {
         [Key]
