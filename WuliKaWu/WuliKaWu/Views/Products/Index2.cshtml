@@ -1,0 +1,166 @@
+﻿<div id="app">
+    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
+                <ul data-aos="fade-up" data-aos-delay="400">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><i class="ti-angle-right"></i></li>
+                    <li>Shop Standard </li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
+            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
+            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+        </div>
+    </div>
+    <div class="shop-area pt-100 pb-100">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-12">
+                    <div class="shop-topbar-wrapper mb-40">
+                        <div class="shop-topbar-left">
+                            <div class="showing-item">
+                                <span>Showing {{min+1}}–{{max+1}} of {{products.length}} results</span>
+                            </div>
+                        </div>
+                        <div class="shop-topbar-right">
+                            <div class="shop-sorting-area">
+                                <select class="" v-model="selectedItem">
+                                    <option value="1" >Default Sorting</option>
+                                    <option value="2">Sort by popularity</option>
+                                    <option value="3">Sort by average rating</option>
+                                    <option value="4">Sort by latest</option>
+                                </select>
+                            </div>
+                            <div class="shop-view-mode nav">
+                                <a class="active" href="#shop-1" data-bs-toggle="tab"><i class=" ti-layout-grid3 "></i> </a>
+                                <a href="#shop-2" data-bs-toggle="tab" class=""><i class=" ti-view-list-alt "></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shop-bottom-area">
+                        <div class="tab-content jump">
+                            <div id="shop-1" class="tab-pane active">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="product in filterProducts">
+                                        <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
+                                            <div class="product-img img-zoom mb-25">
+                                                <a asp-controller="Home" asp-action="ProductDetails">
+                                                    <img src="~/assets/images/product/product-5.png" alt="">
+                                                </a>
+                                                <div v-if="product.discount" class="product-badge badge-top badge-right badge-pink">
+                                                    <span>-10%</span>
+                                                </div>
+                                                <div class="product-action-wrap">
+                                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
+                                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                        <i class="pe-7s-look"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="product-action-2-wrap">
+                                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3>
+                                                    <a asp-controller="Home" asp-action="ProductDetails">
+                                                        <span style="color:red">{{product.productName}}</span>
+                                                    </a>
+                                                </h3>
+                                                <div class="product-price">
+                                                    <span :class="{'old-price':product.discount}">${{product.price}}</span>
+                                                    <span class="new-price" v-if="product.discount">${{product.sellingPrice}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination-style-1" asp-for="ProductId" asp-items="@ViewBag.Products">
+                                        <ul>
+                                            <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+
+                                            <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+                                        </ul>
+                                    </div>
+
+
+
+                                    <div class="pagination-style-1">
+                                        <paginate :page-count="Math.ceil(products.length/countPerPage)"
+                                                  :page-range="10"
+                                                  :margin-pages="1"
+                                                  :click-handler="clickCallback"
+                                                  :prev-text="'Prev'"
+                                                  :next-text="'Next'"
+                                                  :container-class="'pagination'"
+                                                  :page-class="'page-item'">
+                                            <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+                                            <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
+                                        </paginate>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
+<script>
+    Vue.component('paginate', VuejsPaginate);
+    let app = new Vue({
+        el: "#app",
+        data: {
+            products: [],
+            currentPage: 1,
+            countPerPage:5,
+            min:0,
+            max:0,
+            selectedItem:"2"
+        },
+        computed: {
+            filterProducts:function(){
+                
+                var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                var max = this.countPerPage * this.currentPage;
+                this.min = min;
+                this.max = max;
+                return this.selectedItemStyle.slice(min, max)
+            },
+            selectedItemStyle:function(){
+                if (this.selectedItem == "1"){
+                    return this.products;
+                }
+                if (this.selectedItem == "2") {
+                    return this.products.reverse();
+                }
+                return this.products;
+            }
+        },
+        methods: {
+            clickCallback: function (page) {
+                this.currentPage = page;
+                console.log(page)
+            }
+        },
+        mounted: function () {
+            var self = this;
+            fetch('/api/product/getall')
+                .then(function (response) { return response.json() })
+                .then(function (result) {
+                    console.log(result);
+                    self.products = result;
+                })
+        }
+
+
+    });
+</script>
