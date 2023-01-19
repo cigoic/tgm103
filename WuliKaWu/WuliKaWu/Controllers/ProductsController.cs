@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+>>>>>>> Productvue (#6)
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 <<<<<<< HEAD
@@ -29,6 +36,7 @@ namespace WuliKaWu.Controllers
         {
             return View();
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
 
         /// <summary>
@@ -41,6 +49,9 @@ namespace WuliKaWu.Controllers
 =======
 >>>>>>> test (#3)
         }
+=======
+       }
+>>>>>>> Productvue (#6)
 
 <<<<<<< HEAD
         public IActionResult Match()

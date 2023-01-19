@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 using System.ComponentModel.DataAnnotations;
 using static WuliKaWu.Data.Enums.Common;
 =======
@@ -6,6 +7,9 @@ using static WuliKaWu.Data.Enums.Common;
 <<<<<<< HEAD
 >>>>>>> test (#3)
 =======
+=======
+using System.ComponentModel.DataAnnotations;
+>>>>>>> Productvue (#6)
 using static WuliKaWu.Data.Enums.Common;
 >>>>>>> [更新] 資料庫資料表
 

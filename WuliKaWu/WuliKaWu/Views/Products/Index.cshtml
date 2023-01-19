@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div id="shopIndex">
 
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
@@ -147,6 +148,10 @@
                                                 </div>
 =======
 ﻿
+=======
+<div id="app">
+
+>>>>>>> Productvue (#6)
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
@@ -184,9 +189,19 @@
                                 <option value="4">Sort by latest</option>
                             </select>
                         </div>
-                        <div class="shop-view-mode nav">
-                            <a class="active" href="#shop-1" data-bs-toggle="tab"><i class=" ti-layout-grid3 "></i> </a>
-                            <a href="#shop-2" data-bs-toggle="tab" class=""><i class=" ti-view-list-alt "></i></a>
+                        <div class="shop-topbar-right">
+                            <div class="shop-sorting-area">
+                                <select class="" v-model="selectedItem">
+                                    <option value="1" >Default Sorting</option>
+                                    <option value="2">Sort by popularity</option>
+                                    <option value="3">Sort by average rating</option>
+                                    <option value="4">Sort by latest</option>
+                                </select>
+                            </div>
+                            <div class="shop-view-mode nav">
+                                <a class="active" href="#shop-1" data-bs-toggle="tab"><i class=" ti-layout-grid3 "></i> </a>
+                                <a href="#shop-2" data-bs-toggle="tab" class=""><i class=" ti-view-list-alt "></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -836,6 +851,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 @section Scripts{
 
@@ -892,6 +908,9 @@
                             return item.productName.includes(self.searchText);
                         })
                     }
+=======
+</div>
+>>>>>>> Productvue (#6)
 
                     //price
                     temp = temp.filter(x => {
@@ -1062,7 +1081,6 @@
         },
         computed: {
             filterProducts:function(){
-
                 var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
                 var max = this.countPerPage * this.currentPage;
                 this.min = min;
