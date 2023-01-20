@@ -22,7 +22,10 @@ namespace WuliKaWu.Models.ApiModel
         public Size Size { get; set; }
         public Color Color { get; set; }
         public decimal? Coupon { get; set; }
+<<<<<<< HEAD
         public decimal Total { get; set; }
 >>>>>>> 新增CartController及CartApiController
+=======
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
     }
 }

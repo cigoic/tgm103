@@ -12,7 +12,7 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230120090335_CreateOrderDetails")]
+    [Migration("20230120093037_CreateOrderDetails")]
     partial class CreateOrderDetails
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
