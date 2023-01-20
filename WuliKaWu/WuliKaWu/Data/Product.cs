@@ -128,14 +128,15 @@ namespace WuliKaWu.Data
         /// </summary>
         public decimal? SellingPrice { get; set; }
 
-<<<<<<< HEAD
-        public decimal? Discount { get; set; }
-=======
         /// <summary>
         /// 商品折扣，可為NULL
         /// </summary>
+<<<<<<< HEAD
         public decimal? discount { get; set; }
 >>>>>>> [更新]商品相關表格及願望清單表格加入summary
+=======
+        public decimal? Discount { get; set; }
+>>>>>>> 修改衝突Product Table中Discount
 
         /// <summary>
         /// 商品評價，最大 nvarchar(max)，可為NULL
