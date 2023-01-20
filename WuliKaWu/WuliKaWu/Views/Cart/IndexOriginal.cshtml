@@ -1,11 +1,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿
 =======
 ﻿@model IEnumerable<WuliKaWu.Data.Orders>
 =======
 ﻿@model IEnumerable<WuliKaWu.Data.Order>
 >>>>>>> [新增]所有資料表
+=======
+﻿@model IEnumerable<WuliKaWu.Data.Cart>
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
 @{
     ViewData["Title"] = "Index";
@@ -23,21 +27,29 @@
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CouponDiscount)
+                @Html.DisplayNameFor(model => model.SellingPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ShippingAddress)
+                @Html.DisplayNameFor(model => model.Discount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Memo)
+                @Html.DisplayNameFor(model => model.Coupon)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -47,25 +59,33 @@
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Picture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.CouponDiscount)
+                @Html.DisplayFor(modelItem => item.SellingPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ShippingAddress)
+                @Html.DisplayFor(modelItem => item.Discount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Memo)
+                @Html.DisplayFor(modelItem => item.Coupon)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.
-">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CartId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CartId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CartId">Delete</a>
             </td>
         </tr>
 }

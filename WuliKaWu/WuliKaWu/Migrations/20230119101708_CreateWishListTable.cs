@@ -137,14 +137,14 @@ namespace WuliKaWu.Migrations
                 name: "MemberRoles",
                 columns: table => new
                 {
-                    RoleID = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<int>(type: "int", nullable: false),
                     MemberId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MemberRoles", x => x.RoleID);
+                    table.PrimaryKey("PK_MemberRoles", x => x.RoleId);
                     table.ForeignKey(
                         name: "FK_MemberRoles_Members_MemberId",
                         column: x => x.MemberId,

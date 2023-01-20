@@ -16,6 +16,7 @@ namespace WuliKaWu.Data
     public class Order
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         /// <summary>
         /// 訂單 ID (Primary Key, 自動編號)
         /// </summary>
@@ -98,23 +99,43 @@ namespace WuliKaWu.Data
         [Description("已送達")]
         Arrived
 =======
+=======
+        /// <summary>
+        /// 訂單 ID (Primary Key, 自動編號)
+        /// </summary>
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
-        public string ProductName { get; set; }
+        /// <summary>
+        /// 下定日期
+        /// </summary>
+        public string OrderDate { get; set; }
 
-        public int Quantity { get; set; }
+        /// <summary>
+        /// 出貨日期
+        /// </summary>
+        public string ShippingDate { get; set; }
 
-        public decimal Price { get; set; }
+        /// <summary>
+        /// 出貨狀態
+        /// </summary>
+        public string Status { get; set; }
 
-        public decimal? CouponDiscount { get; set; }
-
-        public string ShippingAddress { get; set; }
-
+        /// <summary>
+        /// 備註
+        /// </summary>
         public string? Memo { get; set; }
 
+<<<<<<< HEAD
         public virtual ICollection<TableOfGetPayType> TableOfGetPayTypes { get; set; }
 >>>>>>> [新增]所有資料表
+=======
+        /// <summary>
+        /// 導覽屬性：只對應到單一會員，不用 ICollection
+        /// </summary>
+        public virtual Member Member { get; set; }
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
     }
 }

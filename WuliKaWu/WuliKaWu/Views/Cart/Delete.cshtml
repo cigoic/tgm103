@@ -1,11 +1,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿
 =======
 ﻿@model Orders
 =======
 ﻿@model Order
 >>>>>>> [新增]所有資料表
+=======
+﻿@model Cart
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
 @{
     ViewData["Title"] = "Delete";
@@ -25,6 +29,24 @@
             @Html.DisplayFor(model => model.ProductName)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class = "col-sm-10">
@@ -36,28 +58,28 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CouponDiscount)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SellingPrice)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CouponDiscount)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SellingPrice)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ShippingAddress)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Discount)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ShippingAddress)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Discount)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Memo)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Coupon)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Memo)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Coupon)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="OrderId" />
+        <input type="hidden" asp-for="CartId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

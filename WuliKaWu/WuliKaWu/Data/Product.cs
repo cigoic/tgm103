@@ -104,7 +104,7 @@ namespace WuliKaWu.Data
 
         public decimal? SellingPrice { get; set; }
 
-        public decimal? discount { get; set; }
+        public decimal? Discount { get; set; }
 
         public string? Comment { get; set; }
 

@@ -46,6 +46,7 @@ namespace WuliKaWu.Data
         [Key]
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int RoleId { get; set; }
 =======
         public int RoleID { get; set; }
@@ -53,6 +54,9 @@ namespace WuliKaWu.Data
 =======
         public int RoleID { get; set; }
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+        public int RoleId { get; set; }
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
         /// <summary>
         /// 帳號角色類型值

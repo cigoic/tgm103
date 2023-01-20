@@ -131,10 +131,14 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
+<<<<<<< HEAD
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+=======
+                    b.HasKey("CartId");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
 <<<<<<< HEAD
                     b.HasIndex("ArticleId");
@@ -154,8 +158,7 @@ namespace WuliKaWu.Migrations
                             ProductName = "裙子",
                             Quantity = 0,
                             SellingPrice = 800m,
-                            Size = 2,
-                            Total = 0m
+                            Size = 2
                         });
 >>>>>>> 新增CartController及CartApiController
                 });
@@ -175,6 +178,12 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+<<<<<<< HEAD
+=======
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
                     b.HasKey("Id");
 
@@ -259,7 +268,10 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasMaxLength(24)
                         .HasColumnType("nvarchar(24)");
+<<<<<<< HEAD
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
                     b.Property<string>("SecondImageFileName")
                         .HasMaxLength(256)
@@ -267,7 +279,12 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
+<<<<<<< HEAD
                         .HasColumnType("nvarchar(max)");
+=======
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
                     b.HasKey("MemberID");
 
@@ -331,10 +348,12 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("CategoryId");
 
+<<<<<<< HEAD
                     b.ToTable("Category");
                 });
 
@@ -971,6 +990,11 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("Contact Messages");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
                 });
 
             modelBuilder.Entity("CartProduct", b =>
@@ -1104,6 +1128,7 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
                 {
+<<<<<<< HEAD
                     b.HasOne("WuliKaWu.Data.Color", "Color")
                         .WithMany()
                         .HasForeignKey("ColorId")
@@ -1115,6 +1140,13 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
 <<<<<<< HEAD
                     b.Navigation("Color");
@@ -1126,6 +1158,7 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Orders");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Product", "Product")
@@ -1133,6 +1166,9 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.HasKey("RoleId");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
 <<<<<<< HEAD
                     b.Navigation("Product");
@@ -1163,6 +1199,7 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Member");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.StarRate", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -1170,6 +1207,10 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
                     b.HasOne("WuliKaWu.Data.Product", "Product")
                         .WithMany("StarRates")
@@ -1177,6 +1218,7 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.Navigation("Member");
 
                     b.Navigation("Product");
@@ -1195,10 +1237,29 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.Property<string>("OrderDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShippingDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
                     b.Navigation("Member");
 
+<<<<<<< HEAD
                     b.Navigation("Product");
+=======
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("Orders");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
@@ -1210,10 +1271,19 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ArticleTitleImages");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Category", b =>
                 {
                     b.Navigation("Product");
                 });
+=======
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
@@ -1230,6 +1300,7 @@ namespace WuliKaWu.Migrations
                     b.Navigation("WishList");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
                 {
                     b.Navigation("OrderDetails");
@@ -1238,6 +1309,9 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
                     b.Navigation("Pictures");
+=======
+                    b.HasKey("ProductId");
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
                     b.Navigation("StarRates");
 
@@ -1423,10 +1497,32 @@ namespace WuliKaWu.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("ContactMessages")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
                         .WithMany("Roles")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("Orders")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1459,7 +1555,7 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Order", "Order")
-                        .WithMany("TableOfGetPayTypes")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1502,12 +1598,11 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
-                    b.Navigation("Roles");
-                });
+                    b.Navigation("ContactMessages");
 
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
-                {
-                    b.Navigation("TableOfGetPayTypes");
+                    b.Navigation("Orders");
+
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>

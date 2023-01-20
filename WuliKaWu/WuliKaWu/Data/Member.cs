@@ -171,7 +171,7 @@ namespace WuliKaWu.Data
         public string Password { get; set; }
 
         //[ForeignKey("MemberRole")]
-        //public string RoleID { get; set; }
+        //public string RoleId { get; set; }
 
         /// <summary>
         /// 註冊會員姓名，最大長度 24
@@ -243,8 +243,21 @@ namespace WuliKaWu.Data
         /// </summary>
         public virtual ICollection<MemberRole> Roles { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> [新增]所有資料表
 =======
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+
+        /// <summary>
+        /// 導覽屬性：對應到多筆訂單，使用 ICollection
+        /// </summary>
+        public virtual ICollection<Order> Orders { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:對應到多筆聯絡訊息，使用 ICollection
+        /// </summary>
+        public virtual ICollection<ContactMessage> ContactMessages { get; set; }
+>>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
     }
 }
