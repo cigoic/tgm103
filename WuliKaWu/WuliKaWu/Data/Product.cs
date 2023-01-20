@@ -45,14 +45,10 @@ namespace WuliKaWu.Data
         /// </summary>
         public decimal? SellingPrice { get; set; }
 
-<<<<<<< HEAD
-        public decimal? Discount { get; set; }
-=======
         /// <summary>
         /// 商品折扣，可為NULL
         /// </summary>
-        public decimal? discount { get; set; }
->>>>>>> 5794faa38d9b346344c2e29639d3570b0044c8e8
+        public decimal? Discount { get; set; }
 
         /// <summary>
         /// 商品評價，最大 nvarchar(max)，可為NULL
