@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> [更新] 資料庫資料表
+=======
+
+>>>>>>> [更新] 修正 Product.cs 中版本衝突合併的段落
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
