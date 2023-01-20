@@ -20,7 +20,7 @@ namespace WuliKaWu.Data
         /// 帳號角色 ID (Primary Key)
         /// </summary>
         [Key]
-        public int RoleID { get; set; }
+        public int RoleId { get; set; }
 
         /// <summary>
         /// 帳號角色類型值

@@ -25,7 +25,7 @@ namespace WuliKaWu.Data
         public string Password { get; set; }
 
         //[ForeignKey("MemberRole")]
-        //public string RoleID { get; set; }
+        //public string RoleId { get; set; }
 
         /// <summary>
         /// 註冊會員姓名，最大長度 24
@@ -89,5 +89,15 @@ namespace WuliKaWu.Data
         /// 帳號角色
         /// </summary>
         public virtual ICollection<MemberRole> Roles { get; set; }
+
+        /// <summary>
+        /// 導覽屬性：對應到多筆訂單，使用 ICollection
+        /// </summary>
+        public virtual ICollection<Order> Orders { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:對應到多筆聯絡訊息，使用 ICollection
+        /// </summary>
+        public virtual ICollection<ContactMessage> ContactMessages { get; set; }
     }
 }

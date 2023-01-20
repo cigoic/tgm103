@@ -188,11 +188,11 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
                 {
-                    b.Property<int>("RoleID")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
@@ -200,7 +200,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("RoleID");
+                    b.HasKey("RoleId");
 
                     b.HasIndex("MemberId");
 
