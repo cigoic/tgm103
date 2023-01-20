@@ -12,8 +12,8 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230119101708_CreateWishListTable")]
-    partial class CreateWishListTable
+    [Migration("20230120093037_CreateOrderDetails")]
+    partial class CreateOrderDetails
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,9 +62,6 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("CartId");
 
                     b.ToTable("Cart");
@@ -80,8 +77,7 @@ namespace WuliKaWu.Migrations
                             ProductName = "裙子",
                             Quantity = 0,
                             SellingPrice = 800m,
-                            Size = 2,
-                            Total = 0m
+                            Size = 2
                         });
                 });
 
@@ -95,8 +91,11 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -105,19 +104,22 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(16)
-                        .HasColumnType("nchar(16)");
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("MessageId");
+
+                    b.HasIndex("MemberId");
 
                     b.ToTable("Contact Messages");
                 });
@@ -188,11 +190,11 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
                 {
-                    b.Property<int>("RoleID")
+                    b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
@@ -200,7 +202,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("RoleID");
+                    b.HasKey("RoleId");
 
                     b.HasIndex("MemberId");
 
@@ -215,27 +217,27 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-                    b.Property<decimal?>("CouponDiscount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Memo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductName")
+                    b.Property<string>("OrderDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.Property<string>("ShippingDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShippingAddress")
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderId");
+
+                    b.HasIndex("MemberId");
 
                     b.ToTable("Orders");
                 });
@@ -256,6 +258,9 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Picture")
                         .IsRequired()
@@ -280,9 +285,6 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int?>("Tag")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("discount")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");
 
@@ -478,10 +480,32 @@ namespace WuliKaWu.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("ContactMessages")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
                         .WithMany("Roles")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("Orders")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -514,7 +538,7 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Order", "Order")
-                        .WithMany("TableOfGetPayTypes")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -557,12 +581,11 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
-                    b.Navigation("Roles");
-                });
+                    b.Navigation("ContactMessages");
 
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
-                {
-                    b.Navigation("TableOfGetPayTypes");
+                    b.Navigation("Orders");
+
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
