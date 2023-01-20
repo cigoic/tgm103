@@ -13,6 +13,5 @@ namespace WuliKaWu.Models.ApiModel
         public Size Size { get; set; }
         public Color Color { get; set; }
         public decimal? Coupon { get; set; }
-        public decimal Total { get; set; }
     }
 }

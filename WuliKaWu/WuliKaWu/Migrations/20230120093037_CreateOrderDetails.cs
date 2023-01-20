@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WuliKaWu.Migrations
 {
-    public partial class CreateWishListTable : Migration
+    public partial class CreateOrderDetails : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,29 +23,11 @@ namespace WuliKaWu.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Coupon = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Coupon = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cart", x => x.CartId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Contact Messages",
-                columns: table => new
-                {
-                    MessageId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nchar(16)", maxLength: 16, nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contact Messages", x => x.MessageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,24 +56,6 @@ namespace WuliKaWu.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CouponDiscount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ShippingAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Memo = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.OrderId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -103,7 +67,7 @@ namespace WuliKaWu.Migrations
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    discount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StarRate = table.Column<int>(type: "int", nullable: true),
                     Category = table.Column<int>(type: "int", nullable: false),
@@ -134,6 +98,30 @@ namespace WuliKaWu.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Contact Messages",
+                columns: table => new
+                {
+                    MessageId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contact Messages", x => x.MessageId);
+                    table.ForeignKey(
+                        name: "FK_Contact Messages_Members_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "Members",
+                        principalColumn: "MemberId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MemberRoles",
                 columns: table => new
                 {
@@ -154,22 +142,25 @@ namespace WuliKaWu.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GetPayType",
+                name: "Orders",
                 columns: table => new
                 {
-                    GetPayTypeId = table.Column<int>(type: "int", nullable: false)
+                    OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false)
+                    OrderDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShippingDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Memo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MemberId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GetPayType", x => x.GetPayTypeId);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_GetPayType_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "OrderId",
+                        name: "FK_Orders_Members_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "Members",
+                        principalColumn: "MemberId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -273,15 +264,35 @@ namespace WuliKaWu.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "GetPayType",
+                columns: table => new
+                {
+                    GetPayTypeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GetPayType", x => x.GetPayTypeId);
+                    table.ForeignKey(
+                        name: "FK_GetPayType_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Cart",
-                columns: new[] { "CartId", "Color", "Coupon", "Discount", "Picture", "Price", "ProductName", "Quantity", "SellingPrice", "Size", "Total" },
-                values: new object[] { 1, 3, -100m, null, "pic1", 1000m, "裙子", 0, 800m, 2, 0m });
+                columns: new[] { "CartId", "Color", "Coupon", "Discount", "Picture", "Price", "ProductName", "Quantity", "SellingPrice", "Size" },
+                values: new object[] { 1, 3, -100m, null, "pic1", 1000m, "裙子", 0, 800m, 2 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Category", "Color", "Comment", "Picture", "Price", "ProductName", "SellingPrice", "Size", "StarRate", "Tag", "discount" },
-                values: new object[] { 1, 3, 0, null, "pic1", 100m, "大衣", 100m, 1, 0, null, null });
+                columns: new[] { "ProductId", "Category", "Color", "Comment", "Discount", "Picture", "Price", "ProductName", "SellingPrice", "Size", "StarRate", "Tag" },
+                values: new object[] { 1, 3, 0, null, null, "pic1", 100m, "大衣", 100m, 1, 0, null });
 
             migrationBuilder.InsertData(
                 table: "WishList",
@@ -299,6 +310,11 @@ namespace WuliKaWu.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Contact Messages_MemberId",
+                table: "Contact Messages",
+                column: "MemberId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GetPayType_OrderId",
                 table: "GetPayType",
                 column: "OrderId");
@@ -306,6 +322,11 @@ namespace WuliKaWu.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_MemberRoles_MemberId",
                 table: "MemberRoles",
+                column: "MemberId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_MemberId",
+                table: "Orders",
                 column: "MemberId");
 
             migrationBuilder.CreateIndex(
@@ -360,10 +381,10 @@ namespace WuliKaWu.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Members");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Members");
         }
     }
 }

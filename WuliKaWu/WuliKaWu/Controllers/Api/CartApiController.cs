@@ -29,8 +29,6 @@ namespace WuliKaWu.Controllers.Api
                 Quantity = x.Quantity,
                 SellingPrice = x.SellingPrice,
                 Size = x.Size
-                //TODO Total
-                //Total =x.Total
             }).ToList();
         }
     }
