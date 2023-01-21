@@ -34,6 +34,16 @@ var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartA
 =======
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 
+<<<<<<< HEAD
+=======
+// Local 端開發使用的 SQL Server 連線字串
+//var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
+//builder.Services.AddDbContext<ShopContext>(options =>
+//    options.UseSqlServer(ShopConnectionString));
+
+// Smart ASP MySQL 連線字串
+var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
+>>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
 builder.Services.AddDbContext<ShopContext>(options =>
     options.UseSqlServer(SmartASPConnectionString));
 
