@@ -62,7 +62,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("CartId");
 
-                    b.ToTable("Cart");
+                    b.ToTable("Cart", (string)null);
 
                     b.HasData(
                         new
@@ -119,7 +119,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("Contact Messages");
+                    b.ToTable("Contact Messages", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
@@ -183,7 +183,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("MemberId");
 
-                    b.ToTable("Members");
+                    b.ToTable("Members", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
@@ -204,7 +204,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("MemberRoles");
+                    b.ToTable("MemberRoles", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
@@ -237,7 +237,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
@@ -286,7 +286,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
@@ -321,7 +321,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
@@ -342,7 +342,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Color");
+                    b.ToTable("Color", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
@@ -363,7 +363,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("GetPayType");
+                    b.ToTable("GetPayType", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
@@ -384,7 +384,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Size");
+                    b.ToTable("Size", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
@@ -405,7 +405,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("StarRate");
+                    b.ToTable("StarRate", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
@@ -426,7 +426,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tag", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
@@ -462,7 +462,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
-                    b.ToTable("WishList");
+                    b.ToTable("WishList", (string)null);
 
                     b.HasData(
                         new

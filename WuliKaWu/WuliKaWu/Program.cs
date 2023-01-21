@@ -19,9 +19,15 @@ builder.Services.AddSession(
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //    options.UseSqlServer(connectionString));
 
-var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
+// Local 端開發使用的 SQL Server 連線字串
+//var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
+//builder.Services.AddDbContext<ShopContext>(options =>
+//    options.UseSqlServer(ShopConnectionString));
+
+// Smart ASP MySQL 連線字串
+var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
 builder.Services.AddDbContext<ShopContext>(options =>
-    options.UseSqlServer(ShopConnectionString));
+    options.UseSqlServer(SmartASPConnectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
