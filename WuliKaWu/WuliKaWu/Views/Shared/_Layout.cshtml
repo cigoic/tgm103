@@ -48,8 +48,8 @@
     <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" />
     @*<link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    <script src="~/js/vue.js"></script>
-    <script src="~/js/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+            asp-fallback-src="~/js/vue.min.js"></script>
 </head>
 
 <body>
@@ -152,10 +152,10 @@
                                         <li>
                                             <a href="#">PAGES</a>
                                             <ul class="sub-menu-style">
-                                                <li><a asp-controller="Home" asp-action="AboutUs">about us </a></li>
+                                                <li><a asp-controller="AboutUs" asp-action="Index">about us </a></li>
                                                 <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
                                                 <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
-                                                <li><a asp-controller="Home" asp-action="MyAccount">my account</a></li>
+                                                <li><a asp-controller="MyAccount" asp-action="Index">my account</a></li>
                                                 <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
                                                 <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
                                                 <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
@@ -163,14 +163,14 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a asp-controller="Home" asp-action="Blog">BLOG</a>
+                                            <a asp-controller="Blog" asp-action="Index">BLOG</a>
                                             <ul class="sub-menu-style">
-                                                <li><a asp-controller="Home" asp-action="Blog">blog standard </a></li>
-                                                <li><a asp-controller="Home" asp-action="BlogSidebar">blog sidebar</a></li>
-                                                <li><a asp-controller="Home" asp-action="BlogDetails">blog details</a></li>
+                                                <li><a asp-controller="Blog" asp-action="Index">blog standard </a></li>
+                                                <li><a asp-controller="Blog" asp-action="Sidebar">blog sidebar</a></li>
+                                                <li><a asp-controller="Blog" asp-action="Details">blog details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a asp-controller="Home" asp-action="AboutUs">ABOUT</a></li>
+                                        <li><a asp-controller="AboutUs" asp-action="Index">ABOUT</a></li>
                                         <li><a asp-controller="ContactUs" asp-action="Index">CONTACT US</a></li>
                                     </ul>
                                 </nav>
@@ -281,7 +281,7 @@
                                 <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
                                     <h3 class="footer-title">Information</h3>
                                     <ul>
-                                        <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
+                                        <li><a asp-controller="AboutUs" asp-action="Index">About Us</a></li>
                                         <li><a href="#">Delivery Information</a></li>
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="#">Terms & Conditions</a></li>
@@ -293,7 +293,7 @@
                                 <div class="footer-widget footer-list mb-40">
                                     <h3 class="footer-title">My Accound</h3>
                                     <ul>
-                                        <li><a asp-controller="Home" asp-action="MyAccount">My Account</a></li>
+                                        <li><a asp-controller="MyAccount" asp-action="Index">My Account</a></li>
                                         <li><a href="#">Order History</a></li>
                                         <li><a asp-controller="Home" asp-action="WishList">Wish List</a></li>
                                         <li><a href="#">Newsletter</a></li>
@@ -448,10 +448,10 @@
                             <li>
                                 <a href="#">PAGES </a>
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="AboutUs">About Us </a></li>
+                                    <li><a asp-controller="AboutUs" asp-action="Index">About Us </a></li>
                                     <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
                                     <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
-                                    <li><a asp-controller="Home" asp-action="MyAccount">My Account</a></li>
+                                    <li><a asp-controller="MyAccount" asp-action="Index">My Account</a></li>
                                     <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
                                     <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
                                     <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
@@ -461,13 +461,13 @@
                             <li>
                                 <a href="#">BLOG </a>
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Blog">Blog Standard </a></li>
-                                    <li><a asp-controller="Home" asp-action="BlogSidebar">Blog Sidebar</a></li>
-                                    <li><a asp-controller="Home" asp-action="BlogDetails">Blog Details</a></li>
+                                    <li><a asp-controller="Blog" asp-action="Index">Blog Standard </a></li>
+                                    <li><a asp-controller="Blog" asp-action="Sidebar">Blog Sidebar</a></li>
+                                    <li><a asp-controller="Blog" asp-action="Details">Blog Details</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a asp-controller="Home" asp-action="AboutUs">ABOUT US</a>
+                                <a asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
                             </li>
                             <li>
                                 <a asp-controller="ContactUs" asp-action="Index">CONTACT US</a>
