@@ -108,7 +108,8 @@ namespace WuliKaWu.Data
                 Size = Size.M,
                 Price = 1000,
                 SellingPrice = 800,
-                Coupon = -100
+                Coupon = -100,
+                Quantity= 1,
             });
             modelBuilder.Entity<WishList>().HasData(new WishList
             {

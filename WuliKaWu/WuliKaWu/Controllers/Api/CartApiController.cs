@@ -23,12 +23,13 @@ namespace WuliKaWu.Controllers.Api
                 CartId = x.CartId,
                 Color = x.Color,
                 Coupon = x.Coupon,
-                ImagePath = "/img/pic01.jpg",
+                ImagePath = "~/assets/images/cart/cart-2.jpg",
                 Price = x.Price,
                 ProductName = x.ProductName,
                 Quantity = x.Quantity,
-                SellingPrice = x.SellingPrice,
-                Size = x.Size
+                SellingPrice = x.SellingPrice.ToString() ?? "",
+                Size = x.Size,
+                //TODO Total(要寫嗎?)
             }).ToList();
         }
     }
