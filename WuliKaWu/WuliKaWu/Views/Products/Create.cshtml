@@ -4,10 +4,11 @@
 
 >>>>>>> [更新] 資料庫資料表
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "商品新增";
 }
 
 
+<<<<<<< HEAD
 <div class="ProductCreate" id="app">
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
@@ -90,10 +91,51 @@
                                         <img :src="item" class="w-100 img-thumbnail" />
                                     </div>
 
+=======
+<div>
+    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
+                <ul data-aos="fade-up" data-aos-delay="400">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
+            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
+            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+        </div>
+    </div>
+
+    <div class="container m-5">
+        <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
+            <h2>新增商品</h2>
+        </div>
+
+
+        <div class="shop-bottom-area">
+            <div class="tab-content jump">
+                <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-5">
+                            <div class="product-list-img">
+                                <a asp-controller="Home" asp-action="ProductDetails">
+                                    <img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">
+                                </a>
+
+                                <div class="product-list-quickview">
+                                    <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="pe-7s-look"></i>
+                                    </button>
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                                 </div>
                             </div>
 
                             <div class="mt-5">
+<<<<<<< HEAD
                                 <a href="/Products/Index">Back to List</a>
                             </div>
                         </div>
@@ -103,6 +145,82 @@
                                 <div>
                                     <button type="button" class="submit" id="sendMessageButton" @@click="insertProduct()">Create</button>
                                 </div>
+=======
+                                <a asp-action="Index">Back to List</a>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-8 col-sm-7 contact-form-style">
+                            <div class="shop-list-content">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label asp-for="ProductName" class="control-label"></label>
+                                                <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
+                                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Color" class="control-label"></label>
+                                                <input asp-for="Color" class="form-control" />
+                                                <span asp-validation-for="Color" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Size" class="control-label"></label>
+                                                <input asp-for="Size" class="form-control" />
+                                                <span asp-validation-for="Size" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Category" class="control-label"></label>
+                                                <input asp-for="Category" class="form-control" />
+                                                <span asp-validation-for="Category" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Picture" class="control-label"></label>
+                                                <input asp-for="Picture" class="form-control" type="file" id="fileupload" onchange="return ShowImagePreview(this)" />
+                                                <span asp-validation-for="Picture" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+
+                                            <div class="form-group">
+                                                <label asp-for="Price" class="control-label"></label>
+                                                <input asp-for="Price" class="form-control" />
+                                                <span asp-validation-for="Price" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Discount" class="control-label"></label>
+                                                <input asp-for="Discount" class="form-control" />
+                                                <span asp-validation-for="Discount" class="text-danger"></span>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label asp-for="SellingPrice" class="control-label"></label>
+                                                <input asp-for="SellingPrice" class="form-control" />
+                                                <span asp-validation-for="SellingPrice" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="Tag" class="control-label"></label>
+                                                <input asp-for="Tag" class="form-control" />
+                                                <span asp-validation-for="Tag" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
+                                                <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
+                                                    <div>                                                       
+                                                        <button class="submit" type="submit" id="sendMessageButton">新增</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                             </div>
                         </div>
                     </div>
@@ -110,8 +228,8 @@
             </div>
         </div>
     </div>
-</div>
 
+<<<<<<< HEAD
 @section Scripts {
 
     <script>
@@ -231,5 +349,39 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+=======
+</div>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function ShowImagePreview(input) {
+            debugger;
+            if (input.files && input.files[0]) {
+                var fname = input.files[0].name;
+                var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+                if (!re.exec(fname)) {
+                    alert("Image not supported!");
+                    $("#fileupload").val("");
+
+                    return false;
+                }
+                else {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imagePreview').prop('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+    </script>
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 }
 

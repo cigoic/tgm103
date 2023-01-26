@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
@@ -19,6 +20,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 >>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
+=======
+using System;
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 using WuliKaWu.Data;
 >>>>>>> [更新] 資料庫資料表
 
@@ -27,10 +31,12 @@ namespace WuliKaWu.Controllers
     public class ProductsController : Controller
     {
         private readonly ShopContext _context;
+        private readonly IWebHostEnvironment environment;
 
-        public ProductsController(ShopContext context)
+        public ProductsController(ShopContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            this.environment = environment;
         }
 
         /// <summary>
@@ -79,6 +85,36 @@ namespace WuliKaWu.Controllers
         }
 >>>>>>> 套版到Product的Index 將原先的Index暫時先改為Index2 (目前破版ing)
 
+        /// <summary>
+        /// 產品圖檔上傳
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+
+        [HttpPost]
+        public string Upload(IFormFile file)
+        {
+            if (file.Length > 1024000000) return "檔案過大";
+
+            if (file == null || file.Length <= 0) return "請選擇圖檔";
+
+            if (file.ContentType == "image/")
+            {
+                var root = environment.WebRootPath;
+                var fileName = DateTime.Now.Ticks + file.FileName;
+                var path = $@"{root}\uploadimg\{fileName}";
+
+                using (var fs = System.IO.File.Create(root))
+                    file.CopyTo(fs);
+
+                return "上傳成功";
+            }
+            else
+            {
+                return "不支援該格式的檔案上傳";
+            }
+        }
+
         // GET: Products/Details/5
         public async Task<IActionResult> ProductDetails(int id = 2)
         {
@@ -106,6 +142,7 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         //// POST: Products/Create
         //// To protect from overposting attacks, enable the specific properties you want to bind to.
         //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -142,6 +179,24 @@ namespace WuliKaWu.Controllers
         //    //}
         //    //return View(product);
         //}
+=======
+        // POST: Products/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Product product)
+
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(product);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
+        }
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)

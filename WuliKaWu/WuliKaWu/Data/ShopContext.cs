@@ -546,7 +546,7 @@ namespace WuliKaWu.Data
 
         //TODO
         /// <summary>
-        ///
+        /// Seed
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)

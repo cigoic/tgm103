@@ -142,6 +142,7 @@
                                                 <li>
                                                     @*<a class="dropdown-title" href="#">Shop Layout</a>*@
                                                     <ul>
+<<<<<<< HEAD
                                                         <li><a href="/Products">standard style</a></li>
                                                         <li><a href="/Products/Create">product create</a></li>
                                                         <li><a href="/Products/ProductDetails">Product Details</a></li>
@@ -150,6 +151,34 @@
                                                         @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+=======
+                                                        <li>
+                                                            <a class="dropdown-title" href="#">Shop Layout</a>
+                                                            <ul>
+                                                                <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
+                                                                <li><a asp-controller="Products" asp-action="Create">Product Create</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ShopSidebar">shop grid sidebar</a></li>
+                                                                @*<li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-title" href="#">Products Layout</a>
+                                                            <ul>
+                                                                <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
+                                                        </li>
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                                                     </ul>
 
                                                     @*<li>

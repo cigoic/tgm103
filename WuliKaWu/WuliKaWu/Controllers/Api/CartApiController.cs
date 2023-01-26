@@ -144,7 +144,7 @@ namespace WuliKaWu.Controllers.Api
                 Price = x.Price,
                 ProductName = x.ProductName,
                 Quantity = x.Quantity,
-                SellingPrice = x.SellingPrice,
+                SellingPrice = x.SellingPrice.ToString() ?? "",
                 Size = x.Size
             }).ToList();
 >>>>>>> 新增CartController及CartApiController

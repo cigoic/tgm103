@@ -142,6 +142,7 @@ namespace WuliKaWu.Migrations
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.HasIndex("ArticleId");
 
                     b.ToTable("ArticleCategories");
@@ -150,6 +151,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Cart", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+                    b.ToTable("Cart");
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 
                     b.HasData(
                         new
@@ -998,11 +1002,15 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("MemberId");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.ToTable("Contact Messages");
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 =======
                     b.ToTable("Contact Messages", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+                    b.ToTable("Contact Messages");
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                 });
 
             modelBuilder.Entity("CartProduct", b =>
@@ -1131,10 +1139,14 @@ namespace WuliKaWu.Migrations
 >>>>>>> 新增WishListTable及Api
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("Member");
 =======
                     b.ToTable("Members", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+                    b.ToTable("Members");
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                 });
 <<<<<<< HEAD
 
@@ -1198,10 +1210,14 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.Navigation("Category");
 =======
                     b.ToTable("MemberRoles", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+                    b.ToTable("MemberRoles");
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
@@ -1275,11 +1291,15 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("MemberId");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.ToTable("Orders");
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 =======
                     b.ToTable("Orders", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+                    b.ToTable("Orders");
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
@@ -1334,10 +1354,14 @@ namespace WuliKaWu.Migrations
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("StarRates");
 =======
                     b.ToTable("Products", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+                    b.ToTable("Products");
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 
                     b.Navigation("WishList");
                 });
@@ -1364,7 +1388,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
@@ -1385,7 +1409,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Color", (string)null);
+                    b.ToTable("Color");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
@@ -1406,7 +1430,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("GetPayType", (string)null);
+                    b.ToTable("GetPayType");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
@@ -1427,7 +1451,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Size", (string)null);
+                    b.ToTable("Size");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
@@ -1448,7 +1472,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("StarRate", (string)null);
+                    b.ToTable("StarRate");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
@@ -1469,7 +1493,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Tag", (string)null);
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
@@ -1505,7 +1529,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
-                    b.ToTable("WishList", (string)null);
+                    b.ToTable("WishList");
 
                     b.HasData(
                         new

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <Content Update="wwwroot\assets\css\style.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -33,6 +34,10 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+=======
+    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\uploadimg\" />
+>>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
   </ItemGroup>
 
   <ItemGroup>
