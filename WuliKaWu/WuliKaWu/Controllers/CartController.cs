@@ -21,7 +21,7 @@ namespace WuliKaWu.Controllers
         // GET: Carts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Carts.ToListAsync());
+            return View();
         }
 
         // GET: Carts/Details/5

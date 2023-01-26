@@ -48,7 +48,8 @@
     <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" />
     @*<link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="~/js/vue.js"></script>
+    <script src="~/js/vue.min.js"></script>
 </head>
 
 <body>
@@ -123,12 +124,11 @@
                                                             <a class="dropdown-title" href="#">Shop Layout</a>
                                                             <ul>
                                                                 <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                                                <li><a asp-controller="Products" asp-action="Create">Product Create</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopSidebar">shop grid sidebar</a></li>
-                                                                @*<li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                                                <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+                                                                <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>
                                                             </ul>
                                                         </li>
                                                         <li>

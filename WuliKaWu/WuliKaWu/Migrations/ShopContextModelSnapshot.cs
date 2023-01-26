@@ -73,7 +73,7 @@ namespace WuliKaWu.Migrations
                             Picture = "pic1",
                             Price = 1000m,
                             ProductName = "裙子",
-                            Quantity = 0,
+                            Quantity = 1,
                             SellingPrice = 800m,
                             Size = 2
                         });

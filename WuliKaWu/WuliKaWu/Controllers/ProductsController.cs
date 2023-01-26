@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
@@ -8,12 +7,10 @@ namespace WuliKaWu.Controllers
     public class ProductsController : Controller
     {
         private readonly ShopContext _context;
-        private readonly IWebHostEnvironment environment;
 
-        public ProductsController(ShopContext context, IWebHostEnvironment environment)
+        public ProductsController(ShopContext context)
         {
             _context = context;
-            this.environment = environment;
         }
 
         /// <summary>
@@ -33,36 +30,6 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> IndexOne()
         {
             return View();
-        }
-
-        /// <summary>
-        /// 產品圖檔上傳
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public string Upload(IFormFile file)
-        {
-            if (file.Length > 1024000000) return "檔案過大";
-
-            if (file == null || file.Length <= 0) return "請選擇圖檔";
-
-            if (file.ContentType == "image/")
-            {
-                var root = environment.WebRootPath;
-                var fileName = DateTime.Now.Ticks + file.FileName;
-                var path = $@"{root}\uploadimg\{fileName}";
-
-                using (var fs = System.IO.File.Create(root))
-                    file.CopyTo(fs);
-
-                return "上傳成功";
-            }
-            else
-            {
-                return "不支援該格式的檔案上傳";
-            }
         }
 
         // GET: Products/Details/5
@@ -94,8 +61,7 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
-
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Color,Size,Image,Price,Comment,StarRate,Category,Tag")] Product product)
         {
             if (ModelState.IsValid)
             {

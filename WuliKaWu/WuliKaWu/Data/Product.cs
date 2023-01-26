@@ -62,7 +62,7 @@ namespace WuliKaWu.Data
         public StarRate? StarRate { get; set; }
 
         /// <summary>
-        /// 商品分類
+        /// 商品分類，可為NULL
         /// </summary>
         public Category Category { get; set; }
 
