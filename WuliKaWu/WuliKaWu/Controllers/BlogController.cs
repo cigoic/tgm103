@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+<<<<<<< HEAD
 using WuliKaWu.Data;
 using WuliKaWu.Models;
 
@@ -47,10 +48,21 @@ namespace WuliKaWu.Controllers
             //return View(vm.AsEnumerable());
         }
 
+=======
+namespace WuliKaWu.Controllers
+{
+    public class BlogController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
         public IActionResult Sidebar()
         {
             return View();
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// 文章內容
@@ -178,3 +190,15 @@ namespace WuliKaWu.Controllers
         }
     }
 }
+=======
+        public IActionResult Details()
+        {
+            return View();
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+    }
+}
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面

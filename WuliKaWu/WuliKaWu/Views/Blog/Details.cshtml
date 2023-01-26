@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 ﻿@model ArticleModel
 
 <div class="container" id="blogDetailsApp" />
 
+=======
+﻿
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
@@ -30,17 +34,29 @@
                             <img src="~/assets/images/blog/blog-details.png" alt="">
                         </div>
                         <div class="blog-details-date">
+<<<<<<< HEAD
                             <h5 v-if="articleDay(article.createdAt)">{{ aDay }} <span v-if="getMonthName(article.createdAt)">{{ aMonth }}</span></h5>
+=======
+                            <h5>01 <span>May</span></h5>
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
                         </div>
                     </div>
                     <div class="blog-meta-2" data-aos="fade-up" data-aos-delay="200">
                         <ul>
                             <li><a href="#">Furniture</a>,</li>
+<<<<<<< HEAD
                             <li>By:<a href="#"> @Model.MemberName</a></li>
                         </ul>
                     </div>
                     <h1 data-aos="fade-up" data-aos-delay="200">@Model.Title</h1>
                     <p data-aos="fade-up" data-aos-delay="200">@Model.Content</p>
+=======
+                            <li>By:<a href="#"> Admin</a></li>
+                        </ul>
+                    </div>
+                    <h1 data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consec.</h1>
+                    <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
                     <blockquote class="blockquote-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="quote-img">
                             <img src="~/assets/images/icon-img/quote.png" alt="">
@@ -51,6 +67,7 @@
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor.</p>
                     <div class="blog-details-middle-img-wrap">
                         <div class="row">
+<<<<<<< HEAD
                             @{
                                 int delayTime = 200;
                             }
@@ -63,6 +80,18 @@
                                 </div>
                                 delayTime += 200;
                             }
+=======
+                            <div class="col-md-6 col-sm-6 col-12">
+                                <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="200">
+                                    <img src="~/assets/images/blog/blog-details-2.png" alt="">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-12">
+                                <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="400">
+                                    <img src="~/assets/images/blog/blog-details-3.png" alt="">
+                                </div>
+                            </div>
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
                         </div>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>
@@ -105,19 +134,33 @@
                     <div class="blog-next-previous-post" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-prev-post-wrap">
                             <div class="blog-prev-post-icon">
+<<<<<<< HEAD
                                 <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
                             </div>
                             <div class="blog-prev-post-content">
                                 <h3><a :href="articleLink(prevArticle.id)">{{ prevArticle.title }}</a></h3>
+=======
+                                <a href="#"><i class="fa fa-angle-left"></i></a>
+                            </div>
+                            <div class="blog-prev-post-content">
+                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
                             <div class="blog-next-post-icon">
+<<<<<<< HEAD
                                 <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
                             </div>
                             <div class="blog-next-post-content">
                                 <h3><a :href="articleLink(nextArticle.id)">{{ nextArticle.title }}</a></h3>
+=======
+                                <a href="#"> <i class="fa fa-angle-right"></i> </a>
+                            </div>
+                            <div class="blog-next-post-content">
+                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
@@ -306,6 +349,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 @section Scripts{
 
@@ -392,3 +436,5 @@
         })
     </script>
 }
+=======
+>>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
