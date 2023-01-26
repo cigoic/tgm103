@@ -140,12 +140,17 @@ namespace WuliKaWu.Controllers.Api
                 CartId = x.CartId,
                 Color = x.Color,
                 Coupon = x.Coupon,
-                ImagePath = "/img/pic01.jpg",
+                ImagePath = "~/assets/images/cart/cart-2.jpg",
                 Price = x.Price,
                 ProductName = x.ProductName,
                 Quantity = x.Quantity,
                 SellingPrice = x.SellingPrice.ToString() ?? "",
+<<<<<<< HEAD
                 Size = x.Size
+=======
+                Size = x.Size,
+                //TODO Total(要寫嗎?)
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
             }).ToList();
 >>>>>>> 新增CartController及CartApiController
         }

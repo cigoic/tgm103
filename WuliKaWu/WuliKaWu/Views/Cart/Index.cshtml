@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿<div id="cartIndex">
 
 =======
@@ -12,6 +13,10 @@
 =======
 ﻿@model IEnumerable<WuliKaWu.Data.Cart>
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
+=======
+﻿<div id="cartIndex">
+
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
             <div class="breadcrumb-content text-center">
@@ -40,11 +45,16 @@
                                 <table>
                                     <thead>
                                         <tr>
+<<<<<<< HEAD
                                             <th class="col-lg-2"></th>
+=======
+                                            <th class="col-lg-3"></th>
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
                                             <th class="col-lg-2">Product</th>
                                             <th class="col-lg-1"> Size</th>
                                             <th class="col-lg-1"> Color</th>
                                             <th class="col-lg-1"> Price</th>
+<<<<<<< HEAD
                                             <th class="col-lg-1">Quantity</th>
                                             <th class="col-lg-1">Subtotal</th>
                                             <th class="col-lg-1"></th>
@@ -63,6 +73,40 @@
                                             <td class="product-price">
                                                 <span :class="{'old-price':cart.product.price}">${{cart.product.price}}</span>
                                                 <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice}}</span>
+=======
+                                            @*<th class="col-lg-2"> SellingPrice</th>*@
+                                            <th class="col-lg-1">Quantity</th>
+                                            <th class="col-lg-2">Subtotal</th>
+                                            <th class="col-lg-1"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="cart in carts">
+                                            <td class="product-thumbnail">
+                                            <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.productName}}</a></h5>
+                                            </td>
+                                            <td><span>{{cart.size}}</span></td>   
+                                            <td><span>{{cart.color}}</span></td>
+                                            <td class="product-price">
+@*                                                <h5><a asp-controller="Home" asp-action="ProductDetails"></a></h5>*@
+                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
+                                                <span  class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>    
+                                            </td>
+                                            <td class="cart-quality">
+                                                <div class="product-quality">
+                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                                </div>
+                                            </td>
+                                            <td class="product-total"><span>${{cart.price*cart.quantity}}</span></td>
+                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                        </tr>
+@*                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-2.jpg" alt=""></a>
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
                                             </td>
                                             <td class="cart-quality">
                                                 @*<div class="product-quality">
@@ -76,9 +120,24 @@
                                                 <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
                                                 <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
                                             </td>
+<<<<<<< HEAD
                                             <td class="product-remove"><i class=" ti-trash "></i></td>
                                         </tr>
                                         
+=======
+                                            <td class="product-name">
+                                                <h5><a asp-controller="Home" asp-action="ProductDetails">Modern Swivel Chair</a></h5>
+                                            </td>
+                                            <td class="product-cart-price"><span class="amount">$120.00</span></td>
+                                            <td class="cart-quality">
+                                                <div class="product-quality">
+                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                                </div>
+                                            </td>
+                                            <td class="product-total"><span>$120.00</span></td>
+                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                        </tr>*@
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
                                     </tbody>
                                 </table>
                             </div>
@@ -103,8 +162,61 @@
                 </div>
             </div>
             <div class="row">
+<<<<<<< HEAD
                 <div class="col-lg-12 col-md-12 col-12">
                     <div class="grand-total-wrap" v-for="cart in productInThisCart">
+=======
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="cart-calculate-discount-wrap mb-40">
+                       @* <h4>Calculate shipping </h4>
+                        <div class="calculate-discount-content">
+                            <div class="select-style mb-15">
+                                <select class="select-two-active">
+                                    <option>Bangladesh</option>
+                                    <option>Bahrain</option>
+                                    <option>Azerbaijan</option>
+                                    <option>Barbados</option>
+                                    <option>Barbados</option>
+                                </select>
+                            </div>
+                            <div class="select-style mb-15">
+                                <select class="select-two-active">
+                                    <option>State / County</option>
+                                    <option>Bahrain</option>
+                                    <option>Azerbaijan</option>
+                                    <option>Barbados</option>
+                                    <option>Barbados</option>
+                                </select>
+                            </div>
+                            <div class="input-style">
+                                <input type="text" placeholder="Town / City">
+                            </div>
+                            <div class="input-style">
+                                <input type="text" placeholder="Postcode / ZIP">
+                            </div>
+                            <div class="calculate-discount-btn btn-hover">
+                                <a class="btn theme-color" href="#">Update</a>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="cart-calculate-discount-wrap mb-40">
+                        <h4>Coupon Discount </h4>
+                        <div class="calculate-discount-content">
+                            <p>Enter your coupon code if you have one.</p>
+                            <div class="input-style">
+                                <input type="text" placeholder="Coupon code">
+                            </div>
+                            <div class="calculate-discount-btn btn-hover">
+                                <a class="btn theme-color" href="#">Apply Coupon</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-12">
+                    <div class="grand-total-wrap">
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
                         <div class="grand-total-content">
                             <div class="cart-calculate-discount-wrap mb-40">
                                 <h4>Coupon Discount </h4>
@@ -135,6 +247,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 
 @section Scripts{
@@ -172,3 +285,27 @@
         });
     </script>
     }
+=======
+</div>  
+
+@section Scripts{
+
+<script>
+    let app =new Vue({
+        el:"#cartIndex",
+        data:{
+            carts : []
+        },
+        mounted:function(){
+            var self = this;
+            fetch('/api/cart/getall')
+            .then(function(response){return response.json()})
+            .then(function(result){
+            console.log(result);
+            self.carts = result;
+            })
+        }
+         });
+    </script>
+}
+>>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面

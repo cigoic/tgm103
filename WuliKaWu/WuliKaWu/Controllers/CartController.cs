@@ -31,7 +31,7 @@ namespace WuliKaWu.Controllers
 >>>>>>> 新增CartController及CartApiController
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Carts.ToListAsync());
+            return View();
         }
 
 <<<<<<< HEAD
