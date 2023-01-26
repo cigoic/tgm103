@@ -20,5 +20,9 @@ namespace WuliKaWu.Models.ApiModel
         public bool Discount { get; set; }
 
         public string SellingPrice { get; set; }
+
+        public Category Category { get; set; }
+
+        public Tag Tag { get; set; }
     }
 }
