@@ -573,7 +573,7 @@ namespace WuliKaWu.Data
                 Price = 1000,
                 SellingPrice = 800,
                 Coupon = -100,
-                Quantity= 1,
+                Quantity = 2,
             });
             modelBuilder.Entity<WishList>().HasData(new WishList
             {

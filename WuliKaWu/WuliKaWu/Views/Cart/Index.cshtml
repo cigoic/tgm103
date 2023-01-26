@@ -55,6 +55,7 @@
                                             <th class="col-lg-1"> Color</th>
                                             <th class="col-lg-1"> Price</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <th class="col-lg-1">Quantity</th>
                                             <th class="col-lg-1">Subtotal</th>
                                             <th class="col-lg-1"></th>
@@ -75,8 +76,10 @@
                                                 <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice}}</span>
 =======
                                             @*<th class="col-lg-2"> SellingPrice</th>*@
+=======
+>>>>>>> 幫艾汶更改product的action
                                             <th class="col-lg-1">Quantity</th>
-                                            <th class="col-lg-2">Subtotal</th>
+                                            <th class="col-lg-1">Subtotal</th>
                                             <th class="col-lg-1"></th>
                                         </tr>
                                     </thead>
@@ -91,15 +94,16 @@
                                             <td><span>{{cart.size}}</span></td>   
                                             <td><span>{{cart.color}}</span></td>
                                             <td class="product-price">
-@*                                                <h5><a asp-controller="Home" asp-action="ProductDetails"></a></h5>*@
                                                 <span :class="{'old-price':cart.price}">${{cart.price}}</span>
                                                 <span  class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>    
                                             </td>
                                             <td class="cart-quality">
-                                                <div class="product-quality">
-                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                                </div>
+                                                @*<div class="product-quality">
+                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="">
+                                                </div>*@
+                                                <span>{{cart.quantity}}</span>
                                             </td>
+<<<<<<< HEAD
                                             <td class="product-total"><span>${{cart.price*cart.quantity}}</span></td>
                                             <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
                                         </tr>
@@ -138,6 +142,14 @@
                                             <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
                                         </tr>*@
 >>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
+=======
+                                            <td class="product-price">
+                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
+                                                <span  class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
+                                            </td>
+                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                        </tr>
+>>>>>>> 幫艾汶更改product的action
                                     </tbody>
                                 </table>
                             </div>
@@ -168,35 +180,6 @@
 =======
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="cart-calculate-discount-wrap mb-40">
-                       @* <h4>Calculate shipping </h4>
-                        <div class="calculate-discount-content">
-                            <div class="select-style mb-15">
-                                <select class="select-two-active">
-                                    <option>Bangladesh</option>
-                                    <option>Bahrain</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Barbados</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                            <div class="select-style mb-15">
-                                <select class="select-two-active">
-                                    <option>State / County</option>
-                                    <option>Bahrain</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Barbados</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                            <div class="input-style">
-                                <input type="text" placeholder="Town / City">
-                            </div>
-                            <div class="input-style">
-                                <input type="text" placeholder="Postcode / ZIP">
-                            </div>
-                            <div class="calculate-discount-btn btn-hover">
-                                <a class="btn theme-color" href="#">Update</a>
-                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -214,10 +197,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 col-12">
+                <div class="col-lg-8 col-md-10 col-12">
                     <div class="grand-total-wrap">
 >>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
                         <div class="grand-total-content">
+<<<<<<< HEAD
                             <div class="cart-calculate-discount-wrap mb-40">
                                 <h4>Coupon Discount </h4>
                                 <div class="calculate-discount-content">
@@ -237,6 +221,22 @@
                                         </div>
                                     </div>
                                 </div>
+=======
+                            <h3>Subtotal <span>$180.00</span></h3>
+                            @*<div class="grand-shipping">
+                                <span>Shipping</span>
+                                <ul>
+                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Free shipping</label></li>
+                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Flat rate: <span>$100.00</span></label></li>
+                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Local pickup: <span>$120.00</span></label></li>
+                                </ul>
+                            </div>
+                            <div class="shipping-country">
+                                <p>Shipping to Bangladesh</p>
+                            </div>*@
+                            <div class="grand-total">
+                                <h4>Total <span>$185.00</span></h4>
+>>>>>>> 幫艾汶更改product的action
                             </div>
                         </div>
                         <div class="grand-total-btn btn-hover">
