@@ -9,6 +9,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="ProductCreate" id="app">
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
@@ -93,6 +94,9 @@
 
 =======
 <div>
+=======
+<div class="app">
+>>>>>>> [更新] 商品新增的檢視將顏色改為下拉選單
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
             <div class="breadcrumb-content text-center">
@@ -161,11 +165,22 @@
                                                 <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
                                                 <span asp-validation-for="ProductName" class="text-danger"></span>
                                             </div>
-                                            <div class="form-group">
+@*                                            <div class="form-group">
                                                 <label asp-for="Color" class="control-label"></label>
                                                 <input asp-for="Color" class="form-control" />
                                                 <span asp-validation-for="Color" class="text-danger"></span>
+                                            </div>*@
+
+                                            <div class="shop-sorting-area">
+                                                <select v-model="selectedItem" :class={}>
+                                                    <option>Black</option>
+                                                    <option>White</option>
+                                                    <option>Brown</option>
+                                                    <option>Red</option>
+                                                    <option>Orange</option>
+                                                </select>
                                             </div>
+
                                             <div class="form-group">
                                                 <label asp-for="Size" class="control-label"></label>
                                                 <input asp-for="Size" class="form-control" />
@@ -381,6 +396,17 @@
                 }
             }
         }
+
+
+        let app = new VUE({
+            el:"#app",
+            data:
+            {
+                color:[] 
+            }
+        
+        })
+
     </script>
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 }
