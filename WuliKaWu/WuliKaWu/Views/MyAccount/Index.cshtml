@@ -226,9 +226,10 @@
 
 @section Scripts
 {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script>
 
-        const myAccountDetailUri = "/MyAccount/AccountDetails"
+        const myAccountDetailUrl = @Url.Action("AccountDetails")    //"/MyAccount/AccountDetails"
         let myAccountVue = new Vue({
             //el:'#myAccountApp',
             name: "myAccountApp",
@@ -247,7 +248,17 @@
             methods:{
                 @* TODO: Form Valiadation *@
                 handleSubmit(){
-                    $.post(myAccountDetailUri, {
+                    //let request = {}
+
+                    //request.FirstName = this.firstName,
+                    //request.LastName = this.lastName,
+                    //request.DisplayName = this.displayName,
+                    //request.Email = this.email,
+                    //request.CurrentPwd = this.currentPwd,
+                    //request.NewPwd = this.newPwd,
+                    //request.ConfirmPwd = this.confirmPwd
+
+                     $.post(myAccountDetailUrl, {
                         FirstName: this.firstName,
                         LastName: this.lastName,
                         DisplayName: this.displayName,
@@ -255,7 +266,7 @@
                         CurrentPwd: this.currentPwd,
                         NewPwd: this.newPwd,
                         ConfirmPwd: this.confirmPwd
-                    }).then(response => {
+                     }).then(response => {
                         //console.log("Done!")
                         //console.log("First Name:", this.firstName)
                         //console.log("Last Name:", this.lastName)

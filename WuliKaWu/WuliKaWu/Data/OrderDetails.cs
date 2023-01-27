@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
     //TODO OrderDetails名稱須更正,該怎麼更改並更新資料庫
-    [Table("OderDetails")]
+    [Table("OrderDetails")]
     public class OrderDetails
     {
         [Key]
