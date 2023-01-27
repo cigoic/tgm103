@@ -249,9 +249,11 @@
             }
 
             &.active {
+                height: 35px;
                 border-radius: 100%;
                 background-color: $theme-color;
                 color: $white;
+                text-align: center;
             }
 
             a {

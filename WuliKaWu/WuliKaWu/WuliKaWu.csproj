@@ -24,7 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\css\style.css">
+    <Content Update="wwwroot\assets\css\style.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\assets\css\style.css.map">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
