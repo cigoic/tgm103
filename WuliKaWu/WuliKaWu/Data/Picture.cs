@@ -10,6 +10,10 @@ namespace WuliKaWu.Data
         /// 商品圖片 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
+<<<<<<< HEAD
+=======
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+>>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
         public int PictureId { get; set; }
 
         /// <summary>

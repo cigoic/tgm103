@@ -169,10 +169,14 @@ namespace WuliKaWu.Migrations
                             Price = 1000m,
                             ProductName = "裙子",
 <<<<<<< HEAD
+<<<<<<< HEAD
                             Quantity = 0,
 =======
                             Quantity = 2,
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+                            Quantity = 2,
+>>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
                             SellingPrice = 800m,
                             Size = 2
                         });
@@ -1310,7 +1314,33 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+=======
+            modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
+                {
+                    b.Property<int>("PictureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PictureId"), 1L, 1);
+
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PictureId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Pictures");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
+>>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
                 {
                     b.Navigation("ArticleCategories");
 
@@ -1602,6 +1632,17 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Member");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("Pictures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Product", "Product")
@@ -1679,6 +1720,8 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
+                    b.Navigation("Pictures");
+
                     b.Navigation("TableOfCategories");
 
                     b.Navigation("TableOfColors");

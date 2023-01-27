@@ -189,6 +189,14 @@ namespace WuliKaWu.Data
         /// 導覽屬性：一個商品對應到多個商品標籤，用 ICollection
         /// </summary>
         public virtual ICollection<TableOfTag> TableOfTags { get; set; }
+<<<<<<< HEAD
 >>>>>>> [新增]所有資料表
+=======
+
+        /// <summary>
+        /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection
+        /// </summary>
+        public virtual ICollection<Picture> Pictures { get; set; }
+>>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
     }
 }
