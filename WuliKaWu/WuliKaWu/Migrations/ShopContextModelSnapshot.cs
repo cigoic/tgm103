@@ -1376,14 +1376,31 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int>("TableOfGetPayTypesGetPayTypeId")
+                    b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("OrderDetailsId");
 
-                    b.HasIndex("TableOfGetPayTypesGetPayTypeId");
-
                     b.ToTable("OderDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderDetailsId = 1,
+                            Color = 2,
+                            ContactPhone = "0900123456",
+                            OrderId = 0,
+                            PicturePath = "pic1",
+                            Price = 3600m,
+                            ProductId = 0,
+                            ProductName = "外套",
+                            Quantity = 2,
+                            Recipient = "王大明",
+                            SellingPrice = 2000m,
+                            ShippingAddress = "台北市中山區南京西路1號",
+                            Size = 4,
+                            Type = 0
+                        });
                 });
 
 >>>>>>> [更新] ShopContext加入圖片及訂單明細的Dbset 以及將商品編輯的檢視加入表頭
@@ -1700,17 +1717,6 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
                     b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.TableOfGetPayType", "TableOfGetPayTypes")
-                        .WithMany()
-                        .HasForeignKey("TableOfGetPayTypesGetPayTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TableOfGetPayTypes");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Picture", b =>

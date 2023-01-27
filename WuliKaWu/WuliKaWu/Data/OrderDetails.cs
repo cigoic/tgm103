@@ -20,6 +20,7 @@ using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
+    //TODO OrderDetails名稱須更正,該怎麼更改並更新資料庫
     [Table("OderDetails")]
     public class OrderDetails
     {
@@ -130,7 +131,11 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 付款方式
         /// </summary>
+<<<<<<< HEAD
         public TableOfGetPayType TableOfGetPayTypes { get; set; }
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
+=======
+        public GetPayType Type { get; set; }
+>>>>>>> [修改]支付方式的型態
     }
 }

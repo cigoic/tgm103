@@ -24,10 +24,14 @@ namespace WuliKaWu.Models.ApiModel
         public decimal Price { get; set; }
         public string? SellingPrice { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
         public GetPayType Type { get; set; }
 =======
         public TableOfGetPayType TableOfGetPayTypes { get; set; }
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+        public GetPayType Type { get; set; }
+>>>>>>> [修改]支付方式的型態
         public decimal? Coupon { get; set; }
     }
 }
