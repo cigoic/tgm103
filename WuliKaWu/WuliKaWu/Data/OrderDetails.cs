@@ -4,6 +4,7 @@ using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
+    //TODO OrderDetails名稱須更正,該怎麼更改並更新資料庫
     [Table("OderDetails")]
     public class OrderDetails
     {
@@ -86,6 +87,6 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 付款方式
         /// </summary>
-        public TableOfGetPayType TableOfGetPayTypes { get; set; }
+        public GetPayType Type { get; set; }
     }
 }
