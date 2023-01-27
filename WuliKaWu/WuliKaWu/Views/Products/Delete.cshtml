@@ -9,6 +9,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <div id="deleteProduct">
 
@@ -18,6 +19,32 @@
 
         <div class="section-title-4 text-center mb-50 mt-3" data-aos="fade-up" data-aos-delay="200">
             <h5>Make Sure Before You Click Delete Button!</h5>
+=======
+<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
+            <ul data-aos="fade-up" data-aos-delay="400">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
+        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+    </div>
+    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
+        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+    </div>
+</div>
+
+
+<div class="container m-5">
+    <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
+        <h2>刪除商品</h2>
+
+        <div class="section-title-4 text-center mb-50 mt-3" data-aos="fade-up" data-aos-delay="200">
+            <h5>你確定要刪除這個商品嗎?</h5>
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
         </div>
     </div>
 
@@ -27,6 +54,7 @@
                 <div class="col-lg-12">
                     <!-- Content Start -->
                     <div class="compare-page-content-wrap">
+<<<<<<< HEAD
                         <span class="compare-table table-responsive">
                             <table class="table table-bordered mb-0">
                                 <tbody>
@@ -37,39 +65,74 @@
                                             <div class="col-5">
                                                 <img class="img-fluid" :src="product.picturePath" alt="Product Picture" />
                                             </div>
+=======
+                        <div class="compare-table table-responsive">
+                            <table class="table table-bordered mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td class="first-column"></td>
+                                        <td class="product-image-title">
+                                            <img class="img-fluid" src="~/assets/images/product/product-9.png" alt="">
+                                            @Html.DisplayFor(model => model.Picture)
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="first-column">Name</td>
+<<<<<<< HEAD
                                         <td class="title">{{product.productName}}</td>
+=======
+                                        <td class="title">@Html.DisplayFor(model => model.ProductName)</td>
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Color</td>
+<<<<<<< HEAD
                                         <td class="pro-color">{{product.color}}</td>
+=======
+                                        <td class="pro-color">@Html.DisplayFor(model => model.Color)</td>
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Size</td>
+<<<<<<< HEAD
                                         <td class="pro-stock">{{product.size}}</td>
+=======
+                                        <td class="pro-stock">@Html.DisplayFor(model => model.Size)</td>
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Price</td>
+<<<<<<< HEAD
                                         <td class="pro-price">${{product.price}}</td>
+=======
+                                        <td class="pro-price">$@Html.DisplayFor(model => model.Price)</td>
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Selling Price</td>
+<<<<<<< HEAD
                                         <td class="pro-price">${{product.sellingPrice}}</td>
 
                                     <tr>
                                         <td class="first-column">Category</td>
                                         <td class="pro-stock">{{product.category}}</td>
+=======
+                                        <td class="pro-price">$@Html.DisplayFor(model => model.SellingPrice)</td>
+
+                                    <tr>
+                                        <td class="first-column">Category</td>
+                                        <td class="pro-stock">@Html.DisplayFor(model => model.Category)</td>
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Tag</td>
+<<<<<<< HEAD
                                         <td class="pro-stock">{{product.tag}}</td>
                                     </tr>
 
@@ -152,6 +215,43 @@
         <a asp-action="Index">Back to List</a>
     </form>
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+                                        <td class="pro-stock">@Html.DisplayFor(model => model.Tag)</td>
+                                    </tr>
+
+@*                                    <tr>
+                                        <td class="first-column">Delete</td>
+                                        <td class="pro-remove">
+                                            <button type="submit"><i class=" ti-trash "></i>Delete</button>
+                                        </td>
+                                    </tr>*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-30 ms-3">
+        <div class="col-4">
+            <a asp-action="Index" class="col-3">Back to List</a>
+        </div>
+
+        <div class="col-8">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="ProductId" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </div>
+    </div>
+
+    <div />
+
+>>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
 </div>
 
 
