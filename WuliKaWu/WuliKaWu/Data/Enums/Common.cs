@@ -225,5 +225,17 @@ namespace WuliKaWu.Data.Enums
             Hot, New, Spring, Winter
 >>>>>>> [更新] 資料庫資料表
         }
+
+        /// <summary>
+        /// Enume 類型，部落格文章分類
+        /// Uncategorized: 未分類
+        /// BlogGridView: 部落格 GridView
+        /// LatestBlog: 最新文章
+        /// OurBlog: 關於我們的文章
+        /// </summary>
+        public enum ArticleType
+        {
+            Uncategorized, BlogGridView, LatestBlog, OurBlog
+        }
     }
 }

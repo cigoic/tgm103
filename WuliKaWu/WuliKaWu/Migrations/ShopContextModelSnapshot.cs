@@ -23,7 +23,181 @@ namespace WuliKaWu.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
+=======
+            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+                {
+                    b.Property<int>("ArticleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleId"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ArticleId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("Articles");
+
+                    b.HasData(
+                        new
+                        {
+                            ArticleId = 1,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 27, 22, 48, 14, 884, DateTimeKind.Local).AddTicks(840),
+                            MemberId = 1,
+                            ModifiedDate = new DateTime(2023, 1, 27, 22, 48, 14, 884, DateTimeKind.Local).AddTicks(841),
+                            Title = "Lorem ipsum dolor consectet."
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArticleId = 1,
+                            Type = 2
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleContentImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArticleId = 1,
+                            FileName = "~/assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArticleId = 1,
+                            FileName = "~/assets/images/blog/blog-details-3.png"
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleTitleImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArticleId = 1,
+                            FileName = "~/assets/images/blog/blog-details.png"
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.AuthorImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("FirstImageFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SecondImageFileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AuthorImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                            MemberId = 1,
+                            SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
                 {
                     b.Property<int>("CartId")
                         .HasColumnType("int");
@@ -1107,6 +1281,7 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Article", null)
@@ -1115,6 +1290,10 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+=======
+                    b.Property<int>("MemberShip")
+                        .HasColumnType("int");
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
@@ -1158,7 +1337,29 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
 =======
                     b.ToTable("Members");
+<<<<<<< HEAD
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+
+                    b.HasData(
+                        new
+                        {
+                            MemberId = 1,
+                            AccessFailedCount = 0,
+                            Account = "userOne",
+                            Address = "台北市中山區",
+                            Birthday = new DateTime(2023, 1, 27, 22, 48, 14, 884, DateTimeKind.Local).AddTicks(791),
+                            Email = "123@123.com",
+                            EmailComfirmed = true,
+                            Gender = false,
+                            LockOutEnabled = false,
+                            MemberShip = 1,
+                            MobilePhone = "0987654321",
+                            Name = "NameOfUserOne",
+                            Password = "1314520",
+                            PhoneNumber = "1234567890"
+                        });
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
                 });
 <<<<<<< HEAD
 
@@ -1381,7 +1582,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("OrderDetailsId");
 
-                    b.ToTable("OderDetails");
+                    b.ToTable("OrderDetails");
 
                     b.HasData(
                         new
@@ -1389,6 +1590,7 @@ namespace WuliKaWu.Migrations
                             OrderDetailsId = 1,
                             Color = 2,
                             ContactPhone = "0900123456",
+                            Coupon = -100m,
                             OrderId = 0,
                             PicturePath = "pic1",
                             Price = 3600m,
@@ -1399,7 +1601,7 @@ namespace WuliKaWu.Migrations
                             SellingPrice = 2000m,
                             ShippingAddress = "台北市中山區南京西路1號",
                             Size = 4,
-                            Type = 0
+                            Type = 1
                         });
                 });
 
@@ -1686,6 +1888,42 @@ namespace WuliKaWu.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", null)
+                        .WithMany("Articles")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Article", null)
+                        .WithMany("ArticleCategories")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Article", null)
+                        .WithMany("ArticleContentImages")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Article", null)
+                        .WithMany("ArticleTitleImages")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -1796,8 +2034,19 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+                {
+                    b.Navigation("ArticleCategories");
+
+                    b.Navigation("ArticleContentImages");
+
+                    b.Navigation("ArticleTitleImages");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
+                    b.Navigation("Articles");
+
                     b.Navigation("ContactMessages");
 
                     b.Navigation("Orders");

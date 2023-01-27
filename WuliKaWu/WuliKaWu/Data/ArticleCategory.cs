@@ -14,6 +14,10 @@ namespace WuliKaWu.Data
         /// 資料表 ID: 自動編號
         /// </summary>
         [Key]
+<<<<<<< HEAD
+=======
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
         public int Id { get; set; }
 
         /// <summary>
@@ -31,6 +35,12 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性: 關聯的文章
         /// </summary>
+<<<<<<< HEAD
         public virtual Article Article { get; set; }
     }
 }
+=======
+        // public virtual Article Article { get; set; }
+    }
+}
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.

@@ -226,7 +226,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 註冊會員等級
         /// </summary>
-        public string MemberShip { get; set; }
+        public MemberShipType MemberShip { get; set; }
 
         /// <summary>
         /// 鎖住帳號登入功能啟用與否
@@ -237,6 +237,7 @@ namespace WuliKaWu.Data
         /// 登入失敗次數
         /// </summary>
         public int AccessFailedCount { get; set; }
+
 
         /// <summary>
         /// 帳號角色
@@ -252,12 +253,23 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性：對應到多筆訂單，使用 ICollection
         /// </summary>
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
 
         /// <summary>
         /// 導覽屬性:對應到多筆聯絡訊息，使用 ICollection
         /// </summary>
+<<<<<<< HEAD
         public virtual ICollection<ContactMessage> ContactMessages { get; set; }
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
+=======
+        public virtual ICollection<ContactMessage?> ContactMessages { get; set; }
+
+        public virtual ICollection<Article>? Articles { get; set; }
+    }
+
+    public enum MemberShipType
+    {
+        None, NormalUser, VIP, Admin
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
     }
 }

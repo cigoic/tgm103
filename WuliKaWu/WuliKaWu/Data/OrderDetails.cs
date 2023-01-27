@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
 
 using static WuliKaWu.Data.Enums.Common;
 
@@ -9,6 +12,7 @@ namespace WuliKaWu.Data
 {
     //TODO OrderDetails名稱須更正,該怎麼更改並更新資料庫
     [Table("OrderDetails")]
+<<<<<<< HEAD
     public class OrderDetails
     {
         [Key]
@@ -22,6 +26,8 @@ namespace WuliKaWu.Data
 {
     //TODO OrderDetails名稱須更正,該怎麼更改並更新資料庫
     [Table("OderDetails")]
+=======
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
     public class OrderDetails
     {
         [Key]

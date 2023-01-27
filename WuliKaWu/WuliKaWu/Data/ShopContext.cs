@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 using System.Reflection.Metadata;
@@ -11,8 +12,10 @@ using System.Reflection.Metadata;
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 =======
 >>>>>>> [新增]所有資料表
+=======
+
+>>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
 using static WuliKaWu.Data.Enums.Common;
-using WuliKaWu.Data;
 
 namespace WuliKaWu.Data
 {
@@ -554,6 +557,31 @@ namespace WuliKaWu.Data
         /// </summary>
         public DbSet<OrderDetails> OrderDetails { get; set; }
 
+        /// <summary>
+        /// 部落格文章表
+        /// </summary>
+        public DbSet<Article> Articles { get; set; }
+
+        /// <summary>
+        /// 部落格文章 - 分類關聯表
+        /// </summary>
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
+
+        /// <summary>
+        /// 部落格文章 - 標題影像關聯表
+        /// </summary>
+        public DbSet<ArticleTitleImage> ArticleTitleImages { get; set; }
+
+        /// <summary>
+        /// 部落格文章 - 內容影像關聯表
+        /// </summary>
+        public DbSet<ArticleContentImage> ArticleContentImages { get; set; }
+
+        /// <summary>
+        /// 部落格文章 - 作者大頭圖像關聯表
+        /// </summary>
+        public DbSet<AuthorImage> AuthorImages { get; set; }
+
         //TODO
         /// <summary>
         /// Seed
@@ -609,6 +637,64 @@ namespace WuliKaWu.Data
                 SellingPrice = 2000,
                 Type = GetPayType.CreditCard,
                 Coupon = -100,
+            });
+
+            modelBuilder.Entity<Member>().HasData(new Member
+            {
+                MemberId = 1,
+                Account = "userOne",
+                Password = "1314520",
+                Name = "NameOfUserOne",
+                Gender = false,
+                Birthday = DateTime.Now,
+                Email = "123@123.com",
+                EmailComfirmed = true,
+                Address = "台北市中山區",
+                PhoneNumber = "1234567890",
+                MobilePhone = "0987654321",
+                MemberShip = MemberShipType.NormalUser,
+                LockOutEnabled = false,
+                AccessFailedCount = 0,
+            });
+            modelBuilder.Entity<Article>().HasData(new Article
+            {
+                ArticleId = 1,
+                MemberId = 1,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Title = "Lorem ipsum dolor consectet.",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+            });
+            modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+            {
+                Id = 1,
+                ArticleId = 1,
+                Type = ArticleType.LatestBlog,
+            });
+            modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+            {
+                Id = 1,
+                ArticleId = 1,
+                FileName = "~/assets/images/blog/blog-details.png",
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = 1,
+                ArticleId = 1,
+                FileName = "~/assets/images/blog/blog-details-2.png"
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = 2,
+                ArticleId = 1,
+                FileName = "~/assets/images/blog/blog-details-3.png"
+            });
+            modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+            {
+                Id = 1,
+                MemberId = 1,
+                FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
             });
         }
 >>>>>>> [更新] 資料庫資料表
