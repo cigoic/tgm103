@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
@@ -39,12 +39,17 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 商品圖片位址
         /// </summary>
-        public string Picture { get; set; }
+        public string PicturePath { get; set; }
 
         /// <summary>
         /// 商品價格
         /// </summary>
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// 商品折扣價格
+        /// </summary>
+        public decimal? SellingPrice { get; set; }
 
         // <summary>
         /// 商品折扣

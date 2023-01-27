@@ -47,6 +47,6 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 商品圖片位址，最大 nvarchar(max)
         /// </summary>
-        public string Picture { get; set; }
+        public string PicturePath { get; set; }
     }
 }

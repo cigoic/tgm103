@@ -276,7 +276,7 @@ namespace WuliKaWu.Data.Migrations
                     b.Property<float?>("CouponDiscount")
                         .HasColumnType("real");
 
-                    b.Property<byte[]>("Picture")
+                    b.Property<byte[]>("PicturePath")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
@@ -363,7 +363,7 @@ namespace WuliKaWu.Data.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Picture")
+                    b.Property<byte[]>("PicturePath")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 

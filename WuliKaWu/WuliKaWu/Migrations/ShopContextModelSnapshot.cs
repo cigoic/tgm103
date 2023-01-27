@@ -39,7 +39,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -70,10 +70,10 @@ namespace WuliKaWu.Migrations
                             CartId = 1,
                             Color = 3,
                             Coupon = -100m,
-                            Picture = "pic1",
+                            PicturePath = "pic1",
                             Price = 1000m,
                             ProductName = "裙子",
-                            Quantity = 1,
+                            Quantity = 2,
                             SellingPrice = 800m,
                             Size = 2
                         });
@@ -260,7 +260,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -294,7 +294,7 @@ namespace WuliKaWu.Migrations
                             ProductId = 1,
                             Category = 3,
                             Color = 0,
-                            Picture = "pic1",
+                            PicturePath = "pic1",
                             Price = 100m,
                             ProductName = "大衣",
                             SellingPrice = 100m,
@@ -443,7 +443,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -470,7 +470,7 @@ namespace WuliKaWu.Migrations
                             WishListId = 1,
                             Discount = -1000m,
                             MemberId = 0,
-                            Picture = "pic2",
+                            PicturePath = "pic2",
                             Price = 3000m,
                             ProductId = 0,
                             ProductName = "牛仔外套",
