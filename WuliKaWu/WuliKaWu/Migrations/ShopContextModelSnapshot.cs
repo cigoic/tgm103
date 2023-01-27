@@ -1315,8 +1315,78 @@ namespace WuliKaWu.Migrations
                 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
 =======
+=======
+            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
+                {
+                    b.Property<int>("OrderDetailsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailsId"), 1L, 1);
+
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Coupon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Recipient")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableOfGetPayTypesGetPayTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailsId");
+
+                    b.HasIndex("TableOfGetPayTypesGetPayTypeId");
+
+                    b.ToTable("OderDetails");
+                });
+
+>>>>>>> [更新] ShopContext加入圖片及訂單明細的Dbset 以及將商品編輯的檢視加入表頭
             modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
                 {
                     b.Property<int>("PictureId")
@@ -1630,6 +1700,17 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.TableOfGetPayType", "TableOfGetPayTypes")
+                        .WithMany()
+                        .HasForeignKey("TableOfGetPayTypesGetPayTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TableOfGetPayTypes");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Picture", b =>

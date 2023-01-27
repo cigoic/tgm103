@@ -544,6 +544,16 @@ namespace WuliKaWu.Data
         public DbSet<MemberRole> MemberRoles { get; set; }
 >>>>>>> [更新] 新增 MemberRoles 表
 
+        /// <summary>
+        /// 商品圖片資料表
+        /// </summary>
+        public DbSet<Picture> Pictures { get; set; }
+
+        /// <summary>
+        /// 訂單明細表
+        /// </summary>
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
         //TODO
         /// <summary>
         /// Seed
