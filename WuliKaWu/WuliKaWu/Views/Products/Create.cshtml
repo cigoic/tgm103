@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-lg-8 col-sm-7 contact-form-style">
                             <div class="shop-list-content">
-                                <form asp-action="Create">
+                                <form asp-action="Create" method="post">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="row">
                                         <div class="col-6">
@@ -71,12 +71,14 @@
 
                                             <div class="shop-sorting-area">
                                                 <select v-model="selectedItem" :class={}>
-                                                    <option>Black</option>
-                                                    <option>White</option>
-                                                    <option>Brown</option>
-                                                    <option>Red</option>
-                                                    <option>Orange</option>
+                                                    <option value="">請選擇</option>
+                                                    <option value="0">Black</option>
+                                                    <option value="1">White</option>
+                                                    <option value="2">Brown</option>
+                                                    <option value="3">Red</option>
+                                                    <option value="4">Orange</option>
                                                 </select>
+                                                <input v-model="selectedItem" asp-for="Color" value=""/>
                                             </div>
 
                                             <div class="form-group">
@@ -140,7 +142,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 @section Scripts {
     @{
@@ -170,11 +172,11 @@
         }
 
 
-        let app = new VUE({
+        let app = new Vue({
             el:"#app",
             data:
             {
-                color:[] 
+                    selectedItem:""
             }
         
         })

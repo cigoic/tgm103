@@ -95,5 +95,10 @@ namespace WuliKaWu.Data
         /// 導覽屬性：一個商品對應到多個商品標籤，用 ICollection
         /// </summary>
         public virtual ICollection<TableOfTag> TableOfTags { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection
+        /// </summary>
+        public virtual ICollection<Picture> Pictures { get; set; }
     }
 }

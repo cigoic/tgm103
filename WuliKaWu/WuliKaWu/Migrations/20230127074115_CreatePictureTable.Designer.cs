@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Data;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230127074115_CreatePictureTable")]
+    partial class CreatePictureTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +41,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("PicturePath")
+                    b.Property<string>("Picture")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -70,7 +72,7 @@ namespace WuliKaWu.Migrations
                             CartId = 1,
                             Color = 3,
                             Coupon = -100m,
-                            PicturePath = "pic1",
+                            Picture = "pic1",
                             Price = 1000m,
                             ProductName = "裙子",
                             Quantity = 2,
@@ -282,7 +284,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("PicturePath")
+                    b.Property<string>("Picture")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -316,7 +318,7 @@ namespace WuliKaWu.Migrations
                             ProductId = 1,
                             Category = 3,
                             Color = 0,
-                            PicturePath = "pic1",
+                            Picture = "pic1",
                             Price = 100m,
                             ProductName = "大衣",
                             SellingPrice = 100m,
@@ -465,7 +467,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PicturePath")
+                    b.Property<string>("Picture")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -492,7 +494,7 @@ namespace WuliKaWu.Migrations
                             WishListId = 1,
                             Discount = -1000m,
                             MemberId = 0,
-                            PicturePath = "pic2",
+                            Picture = "pic2",
                             Price = 3000m,
                             ProductId = 0,
                             ProductName = "牛仔外套",
