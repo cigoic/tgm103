@@ -165,7 +165,7 @@ namespace WuliKaWu.Controllers.Api
                 Price = x.Price,
                 SellingPrice = x.SellingPrice,
                 Discount = x.Discount,
-                Picture = x.Picture,
+                PicturePath = x.PicturePath,
             }).ToList();
 >>>>>>> 新增WishListTable及Api
         }

@@ -561,13 +561,13 @@ namespace WuliKaWu.Data
                 StarRate = StarRate.NoStar,
                 SellingPrice = 100,
                 ProductId = 1,
-                Picture = "pic1"
+                PicturePath = "pic1"
             });
             modelBuilder.Entity<Cart>().HasData(new Cart
             {
                 CartId = 1,
                 ProductName = "裙子",
-                Picture = "pic1",
+                PicturePath = "pic1",
                 Color = Color.Red,
                 Size = Size.M,
                 Price = 1000,
@@ -582,7 +582,7 @@ namespace WuliKaWu.Data
                 Price = 3000,
                 SellingPrice = 2700,
                 Discount = -1000,
-                Picture = "pic2"
+                PicturePath = "pic2"
             });
         }
 >>>>>>> [更新] 資料庫資料表

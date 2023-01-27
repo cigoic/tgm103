@@ -12,8 +12,8 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230126064413_updateCartModelProductModel")]
-    partial class updateCartModelProductModel
+    [Migration("20230127082028_CreateCheckOutApiModel")]
+    partial class CreateCheckOutApiModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,7 +75,7 @@ namespace WuliKaWu.Migrations
                             PicturePath = "pic1",
                             Price = 1000m,
                             ProductName = "裙子",
-                            Quantity = 0,
+                            Quantity = 2,
                             SellingPrice = 800m,
                             Size = 2
                         });

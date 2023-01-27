@@ -9,6 +9,6 @@ namespace WuliKaWu.Models.ApiModel
         public decimal Price { get; set; }
         public decimal SellingPrice { get; set; }
         public decimal Discount { get; set; }
-        public string Picture { get; set; }
+        public string PicturePath { get; set; }
     }
 }

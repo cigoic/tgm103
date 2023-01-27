@@ -125,7 +125,11 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 商品圖片位址，最大 nvarchar(max)
         /// </summary>
+<<<<<<< HEAD
         public string Picture { get; set; }
 >>>>>>> 新增WishListTable及Api
+=======
+        public string PicturePath { get; set; }
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
     }
 }

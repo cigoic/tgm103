@@ -73,7 +73,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 商品圖片位址
         /// </summary>
-        public string Picture { get; set; }
+        public string PicturePath { get; set; }
 
         /// <summary>
         /// 商品數量

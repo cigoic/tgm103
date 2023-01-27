@@ -140,7 +140,7 @@ namespace WuliKaWu.Controllers.Api
                 CartId = x.CartId,
                 Color = x.Color,
                 Coupon = x.Coupon,
-                ImagePath = "~/assets/images/cart/cart-2.jpg",
+                PicturePath = "~/assets/images/cart/cart-2.jpg",
                 Price = x.Price,
                 ProductName = x.ProductName,
                 Quantity = x.Quantity,

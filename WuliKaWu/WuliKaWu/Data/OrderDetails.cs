@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 using static WuliKaWu.Data.Enums.Common;
 
@@ -13,6 +14,9 @@ namespace WuliKaWu.Data
         [Key]
 =======
 using System.Drawing;
+=======
+using static WuliKaWu.Data.Enums.Common;
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
 
 namespace WuliKaWu.Data
 {
@@ -60,10 +64,14 @@ namespace WuliKaWu.Data
         /// 商品圖片位址
         /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
         public string PicturePath { get; set; }
 =======
         public string Picture { get; set; }
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
+=======
+        public string PicturePath { get; set; }
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
 
         /// <summary>
         /// 商品價格
@@ -71,7 +79,15 @@ namespace WuliKaWu.Data
         public decimal Price { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+        /// <summary>
+        /// 商品折扣價格
+        /// </summary>
+        public decimal? SellingPrice { get; set; }
+
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
         // <summary>
         /// 商品折扣
         /// </summary>

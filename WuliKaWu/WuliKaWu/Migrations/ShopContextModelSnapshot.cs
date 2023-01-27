@@ -48,6 +48,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("CartId", "ProductId");
 
+<<<<<<< HEAD
                     b.HasIndex("ProductId");
 
                     b.ToTable("CartProduct");
@@ -92,6 +93,9 @@ namespace WuliKaWu.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleId"), 1L, 1);
 
                     b.Property<string>("Content")
+=======
+                    b.Property<string>("PicturePath")
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -161,10 +165,14 @@ namespace WuliKaWu.Migrations
                             CartId = 1,
                             Color = 3,
                             Coupon = -100m,
-                            Picture = "pic1",
+                            PicturePath = "pic1",
                             Price = 1000m,
                             ProductName = "裙子",
+<<<<<<< HEAD
                             Quantity = 0,
+=======
+                            Quantity = 2,
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
                             SellingPrice = 800m,
                             Size = 2
                         });
@@ -1320,7 +1328,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
@@ -1363,7 +1371,23 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Products");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 
+<<<<<<< HEAD
                     b.Navigation("WishList");
+=======
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            Category = 3,
+                            Color = 0,
+                            PicturePath = "pic1",
+                            Price = 100m,
+                            ProductName = "大衣",
+                            SellingPrice = 100m,
+                            Size = 1,
+                            StarRate = 0
+                        });
+>>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
                 });
 <<<<<<< HEAD
 =======
@@ -1510,7 +1534,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -1537,7 +1561,7 @@ namespace WuliKaWu.Migrations
                             WishListId = 1,
                             Discount = -1000m,
                             MemberId = 0,
-                            Picture = "pic2",
+                            PicturePath = "pic2",
                             Price = 3000m,
                             ProductId = 0,
                             ProductName = "牛仔外套",
