@@ -21,7 +21,7 @@ namespace WuliKaWu.Controllers
         // GET: Carts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Carts.ToListAsync());
+            return View();
         }
 
         // GET: Carts/Details/5
@@ -53,7 +53,7 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CartId,ProductName,Size,Color,Picture,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        public async Task<IActionResult> Create([Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,Picture,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
         {
             if (id != cart.CartId)
             {

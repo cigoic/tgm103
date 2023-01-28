@@ -9,22 +9,23 @@ namespace WuliKaWu.Controllers.Api
     [ApiController]
     public class ProductApiController : ControllerBase
     {
-        private readonly ShopContext _db;
+        private readonly ShopContext _context;
 
         public ProductApiController(ShopContext context)
         {
-            _db = context;
+            _context = context;
         }
 
         public List<ProductModel> GetAll()
         {
-            return _db.Products.Select(x=> new ProductModel{ 
-                ProductName= x.ProductName,
-                Color= x.Color,
-                ImagePath  = "~/assets/images/product/product-5.png",
-                Price= x.Price,
-                ProductId= x.ProductId,
-                Size= x.Size,
+            return _context.Products.Select(x => new ProductModel
+            {
+                ProductName = x.ProductName,
+                Color = x.Color,
+                PicturePath = "~/assets/images/product/product-5.png",
+                Price = x.Price,
+                ProductId = x.ProductId,
+                Size = x.Size,
                 Discount = true,
                 SellingPrice = x.SellingPrice.ToString() ?? ""
             }).ToList();

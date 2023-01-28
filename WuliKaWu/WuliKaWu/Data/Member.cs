@@ -73,7 +73,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 註冊會員等級
         /// </summary>
-        public string MemberShip { get; set; }
+        public MemberShipType MemberShip { get; set; }
 
         /// <summary>
         /// 鎖住帳號登入功能啟用與否
@@ -85,6 +85,7 @@ namespace WuliKaWu.Data
         /// </summary>
         public int AccessFailedCount { get; set; }
 
+
         /// <summary>
         /// 帳號角色
         /// </summary>
@@ -93,11 +94,18 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性：對應到多筆訂單，使用 ICollection
         /// </summary>
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
 
         /// <summary>
         /// 導覽屬性:對應到多筆聯絡訊息，使用 ICollection
         /// </summary>
-        public virtual ICollection<ContactMessage> ContactMessages { get; set; }
+        public virtual ICollection<ContactMessage?> ContactMessages { get; set; }
+
+        public virtual ICollection<Article>? Articles { get; set; }
+    }
+
+    public enum MemberShipType
+    {
+        None, NormalUser, VIP, Admin
     }
 }

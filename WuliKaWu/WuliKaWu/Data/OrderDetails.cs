@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
+
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
 {
-    [Table("OderDetails")]
+    //TODO OrderDetails名稱須更正,該怎麼更改並更新資料庫
+    [Table("OrderDetails")]
     public class OrderDetails
     {
         [Key]
@@ -39,12 +41,17 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 商品圖片位址
         /// </summary>
-        public string Picture { get; set; }
+        public string PicturePath { get; set; }
 
         /// <summary>
         /// 商品價格
         /// </summary>
         public decimal Price { get; set; }
+
+        /// <summary>
+        /// 商品折扣價格
+        /// </summary>
+        public decimal? SellingPrice { get; set; }
 
         // <summary>
         /// 商品折扣
@@ -81,6 +88,6 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 付款方式
         /// </summary>
-        public TableOfGetPayType TableOfGetPayTypes { get; set; }
+        public GetPayType Type { get; set; }
     }
 }

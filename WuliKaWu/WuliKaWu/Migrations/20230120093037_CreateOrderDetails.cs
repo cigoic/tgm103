@@ -18,7 +18,7 @@ namespace WuliKaWu.Migrations
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<int>(type: "int", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PicturePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -64,7 +64,7 @@ namespace WuliKaWu.Migrations
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Color = table.Column<int>(type: "int", nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PicturePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -90,7 +90,7 @@ namespace WuliKaWu.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Picture = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PicturePath = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -286,17 +286,17 @@ namespace WuliKaWu.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cart",
-                columns: new[] { "CartId", "Color", "Coupon", "Discount", "Picture", "Price", "ProductName", "Quantity", "SellingPrice", "Size" },
+                columns: new[] { "CartId", "Color", "Coupon", "Discount", "PicturePath", "Price", "ProductName", "Quantity", "SellingPrice", "Size" },
                 values: new object[] { 1, 3, -100m, null, "pic1", 1000m, "裙子", 0, 800m, 2 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "ProductId", "Category", "Color", "Comment", "Discount", "Picture", "Price", "ProductName", "SellingPrice", "Size", "StarRate", "Tag" },
+                columns: new[] { "ProductId", "Category", "Color", "Comment", "Discount", "PicturePath", "Price", "ProductName", "SellingPrice", "Size", "StarRate", "Tag" },
                 values: new object[] { 1, 3, 0, null, null, "pic1", 100m, "大衣", 100m, 1, 0, null });
 
             migrationBuilder.InsertData(
                 table: "WishList",
-                columns: new[] { "WishListId", "Discount", "MemberId", "Picture", "Price", "ProductId", "ProductName", "SellingPrice" },
+                columns: new[] { "WishListId", "Discount", "MemberId", "PicturePath", "Price", "ProductId", "ProductName", "SellingPrice" },
                 values: new object[] { 1, -1000m, 0, "pic2", 3000m, 0, "牛仔外套", 2700m });
 
             migrationBuilder.CreateIndex(

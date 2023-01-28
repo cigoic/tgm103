@@ -22,6 +22,359 @@ namespace WuliKaWu.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+                {
+                    b.Property<int>("ArticleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleId"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ArticleId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("Articles");
+
+                    b.HasData(
+                        new
+                        {
+                            ArticleId = 1,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8073),
+                            MemberId = 1,
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8074),
+                            Title = "Lorem ipsum dolor consectet."
+                        },
+                        new
+                        {
+                            ArticleId = 2,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8169),
+                            MemberId = 2,
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8171),
+                            Title = "Duis et volutpat pellentesque."
+                        },
+                        new
+                        {
+                            ArticleId = 3,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8305),
+                            MemberId = 3,
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8306),
+                            Title = "Vivamus vitae dolor convallis."
+                        },
+                        new
+                        {
+                            ArticleId = 4,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8363),
+                            MemberId = 3,
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8364),
+                            Title = "Vivamus amet tristique orci."
+                        },
+                        new
+                        {
+                            ArticleId = 5,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8412),
+                            MemberId = 2,
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8413),
+                            Title = "Pellentesque pretium place."
+                        },
+                        new
+                        {
+                            ArticleId = 6,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8462),
+                            MemberId = 1,
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8463),
+                            Title = "Sed euismod tristique dolor."
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArticleId = 1,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArticleId = 2,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArticleId = 3,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ArticleId = 4,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArticleId = 5,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArticleId = 6,
+                            Type = 2
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleContentImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArticleId = 1,
+                            FileName = "assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArticleId = 1,
+                            FileName = "assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArticleId = 2,
+                            FileName = "assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ArticleId = 2,
+                            FileName = "assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArticleId = 3,
+                            FileName = "assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArticleId = 3,
+                            FileName = "assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ArticleId = 4,
+                            FileName = "assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ArticleId = 4,
+                            FileName = "assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ArticleId = 5,
+                            FileName = "assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ArticleId = 5,
+                            FileName = "assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ArticleId = 6,
+                            FileName = "assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ArticleId = 6,
+                            FileName = "assets/images/blog/blog-details-3.png"
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.ToTable("ArticleTitleImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArticleId = 1,
+                            FileName = "assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArticleId = 2,
+                            FileName = "assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArticleId = 3,
+                            FileName = "assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ArticleId = 4,
+                            FileName = "assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArticleId = 5,
+                            FileName = "assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArticleId = 6,
+                            FileName = "assets/images/blog/blog-details.png"
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.AuthorImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("FirstImageFileName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SecondImageFileName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AuthorImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstImageFileName = "assets/images/blog/blog-author.png",
+                            MemberId = 1,
+                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstImageFileName = "assets/images/blog/blog-author.png",
+                            MemberId = 2,
+                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FirstImageFileName = "assets/images/blog/blog-author.png",
+                            MemberId = 3,
+                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
+                        });
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
                 {
                     b.Property<int>("CartId")
@@ -39,7 +392,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -70,10 +423,10 @@ namespace WuliKaWu.Migrations
                             CartId = 1,
                             Color = 3,
                             Coupon = -100m,
-                            Picture = "pic1",
+                            PicturePath = "pic1",
                             Price = 1000m,
                             ProductName = "裙子",
-                            Quantity = 0,
+                            Quantity = 2,
                             SellingPrice = 800m,
                             Size = 2
                         });
@@ -160,9 +513,8 @@ namespace WuliKaWu.Migrations
                     b.Property<bool>("LockOutEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MemberShip")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("MemberShip")
+                        .HasColumnType("int");
 
                     b.Property<string>("MobilePhone")
                         .IsRequired()
@@ -184,6 +536,59 @@ namespace WuliKaWu.Migrations
                     b.HasKey("MemberId");
 
                     b.ToTable("Members");
+
+                    b.HasData(
+                        new
+                        {
+                            MemberId = 1,
+                            AccessFailedCount = 0,
+                            Account = "userOne",
+                            Address = "台北市中山區",
+                            Birthday = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(7919),
+                            Email = "123@123.com",
+                            EmailComfirmed = true,
+                            Gender = false,
+                            LockOutEnabled = false,
+                            MemberShip = 1,
+                            MobilePhone = "0987654321",
+                            Name = "NameOfUserOne",
+                            Password = "1314520",
+                            PhoneNumber = "1234567890"
+                        },
+                        new
+                        {
+                            MemberId = 2,
+                            AccessFailedCount = 0,
+                            Account = "userTwo",
+                            Address = "台中市中正區",
+                            Birthday = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(7982),
+                            Email = "456@456.com",
+                            EmailComfirmed = true,
+                            Gender = false,
+                            LockOutEnabled = false,
+                            MemberShip = 2,
+                            MobilePhone = "0912345678",
+                            Name = "NameOfVIP",
+                            Password = "tgm10322",
+                            PhoneNumber = "0448938627"
+                        },
+                        new
+                        {
+                            MemberId = 3,
+                            AccessFailedCount = 0,
+                            Account = "userThree",
+                            Address = "屏東市仁愛路5號",
+                            Birthday = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(7995),
+                            Email = "123@123.com",
+                            EmailComfirmed = true,
+                            Gender = false,
+                            LockOutEnabled = false,
+                            MemberShip = 3,
+                            MobilePhone = "0913579246",
+                            Name = "NameOfAdmin",
+                            Password = "tgm10333",
+                            PhoneNumber = "0876543210"
+                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
@@ -240,6 +645,113 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
+                {
+                    b.Property<int>("OrderDetailsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailsId"), 1L, 1);
+
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Coupon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Recipient")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderDetailsId");
+
+                    b.ToTable("OrderDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderDetailsId = 1,
+                            Color = 2,
+                            ContactPhone = "0900123456",
+                            Coupon = -100m,
+                            OrderId = 0,
+                            PicturePath = "pic1",
+                            Price = 3600m,
+                            ProductId = 0,
+                            ProductName = "外套",
+                            Quantity = 2,
+                            Recipient = "王大明",
+                            SellingPrice = 2000m,
+                            ShippingAddress = "台北市中山區南京西路1號",
+                            Size = 4,
+                            Type = 1
+                        });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
+                {
+                    b.Property<int>("PictureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PictureId"), 1L, 1);
+
+                    b.Property<string>("PicturePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PictureId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Pictures");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -260,7 +772,7 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -294,7 +806,7 @@ namespace WuliKaWu.Migrations
                             ProductId = 1,
                             Category = 3,
                             Color = 0,
-                            Picture = "pic1",
+                            PicturePath = "pic1",
                             Price = 100m,
                             ProductName = "大衣",
                             SellingPrice = 100m,
@@ -443,7 +955,7 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Picture")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -470,12 +982,50 @@ namespace WuliKaWu.Migrations
                             WishListId = 1,
                             Discount = -1000m,
                             MemberId = 0,
-                            Picture = "pic2",
+                            PicturePath = "pic2",
                             Price = 3000m,
                             ProductId = 0,
                             ProductName = "牛仔外套",
                             SellingPrice = 2700m
                         });
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", null)
+                        .WithMany("Articles")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Article", "Article")
+                        .WithMany("ArticleCategories")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Article", null)
+                        .WithMany("ArticleContentImages")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Article", null)
+                        .WithMany("ArticleTitleImages")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -509,6 +1059,17 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("Pictures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
@@ -577,8 +1138,19 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
+                {
+                    b.Navigation("ArticleCategories");
+
+                    b.Navigation("ArticleContentImages");
+
+                    b.Navigation("ArticleTitleImages");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
+                    b.Navigation("Articles");
+
                     b.Navigation("ContactMessages");
 
                     b.Navigation("Orders");
@@ -588,6 +1160,8 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
+                    b.Navigation("Pictures");
+
                     b.Navigation("TableOfCategories");
 
                     b.Navigation("TableOfColors");
