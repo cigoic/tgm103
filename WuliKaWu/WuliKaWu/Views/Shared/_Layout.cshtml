@@ -58,8 +58,8 @@
     <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" />
     <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
     @*
-        不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
-        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" /> 
+    不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     *@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
             asp-fallback-src="~/js/vue.min.js"></script>
@@ -139,7 +139,7 @@
                                                                 <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
                                                                 <li><a asp-controller="Products" asp-action="Create">product create</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                                               @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                                                @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
                                                             </ul>
@@ -150,9 +150,9 @@
                                                                 <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
+                                                               @* <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>*@
                                                             </ul>
                                                         </li>
                                                         <li>
@@ -437,12 +437,13 @@
                                     <li>
                                         <a href="#">Shop Layout</a>
                                         <ul>
-                                            <li><a asp-controller="Products" asp-action="Index">Standard Style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopSidebar">Shop Grid Sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopList">Shop List Style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopListSidebar">Shop List Sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopRightSidebar">Shop Right Sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopLocation">Store Location</a></li>
+                                            <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
+                                            <li><a asp-controller="Products" asp-action="Create">product create</a></li>
+                                            <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                            @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                            <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                            <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+
                                         </ul>
                                     </li>
                                     <li>
@@ -451,9 +452,9 @@
                                             <li><a asp-controller="Products" asp-action="ProductDetails">Tab Style 1</a></li>
                                             <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
                                             <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
+                                            @*<li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
                                             <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>
+                                            <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>*@
                                         </ul>
                                     </li>
                                 </ul>
