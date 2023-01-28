@@ -63,10 +63,55 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 27, 22, 48, 14, 884, DateTimeKind.Local).AddTicks(840),
+                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6270),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 27, 22, 48, 14, 884, DateTimeKind.Local).AddTicks(841),
+                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6271),
                             Title = "Lorem ipsum dolor consectet."
+                        },
+                        new
+                        {
+                            ArticleId = 2,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6324),
+                            MemberId = 2,
+                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6325),
+                            Title = "Duis et volutpat pellentesque."
+                        },
+                        new
+                        {
+                            ArticleId = 3,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6367),
+                            MemberId = 3,
+                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6368),
+                            Title = "Vivamus vitae dolor convallis."
+                        },
+                        new
+                        {
+                            ArticleId = 4,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6413),
+                            MemberId = 3,
+                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6414),
+                            Title = "Vivamus amet tristique orci."
+                        },
+                        new
+                        {
+                            ArticleId = 5,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6538),
+                            MemberId = 2,
+                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6541),
+                            Title = "Pellentesque pretium place."
+                        },
+                        new
+                        {
+                            ArticleId = 6,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6623),
+                            MemberId = 1,
+                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6624),
+                            Title = "Sed euismod tristique dolor."
                         });
                 });
 
@@ -96,6 +141,36 @@ namespace WuliKaWu.Migrations
                             Id = 1,
                             ArticleId = 1,
                             Type = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArticleId = 2,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArticleId = 3,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ArticleId = 4,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArticleId = 5,
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArticleId = 6,
+                            Type = 2
                         });
                 });
 
@@ -112,7 +187,8 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -132,6 +208,66 @@ namespace WuliKaWu.Migrations
                             Id = 2,
                             ArticleId = 1,
                             FileName = "~/assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArticleId = 2,
+                            FileName = "~/assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ArticleId = 2,
+                            FileName = "~/assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArticleId = 3,
+                            FileName = "~/assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArticleId = 3,
+                            FileName = "~/assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ArticleId = 4,
+                            FileName = "~/assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ArticleId = 4,
+                            FileName = "~/assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ArticleId = 5,
+                            FileName = "~/assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ArticleId = 5,
+                            FileName = "~/assets/images/blog/blog-details-3.png"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ArticleId = 6,
+                            FileName = "~/assets/images/blog/blog-details-2.png"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ArticleId = 6,
+                            FileName = "~/assets/images/blog/blog-details-3.png"
                         });
                 });
 
@@ -148,7 +284,8 @@ namespace WuliKaWu.Migrations
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -162,6 +299,36 @@ namespace WuliKaWu.Migrations
                             Id = 1,
                             ArticleId = 1,
                             FileName = "~/assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArticleId = 2,
+                            FileName = "~/assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArticleId = 3,
+                            FileName = "~/assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ArticleId = 4,
+                            FileName = "~/assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ArticleId = 5,
+                            FileName = "~/assets/images/blog/blog-details.png"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ArticleId = 6,
+                            FileName = "~/assets/images/blog/blog-details.png"
                         });
                 });
 
@@ -174,13 +341,15 @@ namespace WuliKaWu.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("FirstImageFileName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("SecondImageFileName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -192,6 +361,20 @@ namespace WuliKaWu.Migrations
                             Id = 1,
                             FirstImageFileName = "~/assets/images/blog/blog-author.png",
                             MemberId = 1,
+                            SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                            MemberId = 2,
+                            SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                            MemberId = 3,
                             SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
                         });
                 });
@@ -1348,7 +1531,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 1, 27, 22, 48, 14, 884, DateTimeKind.Local).AddTicks(791),
+                            Birthday = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6173),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1358,6 +1541,40 @@ namespace WuliKaWu.Migrations
                             Name = "NameOfUserOne",
                             Password = "1314520",
                             PhoneNumber = "1234567890"
+                        },
+                        new
+                        {
+                            MemberId = 2,
+                            AccessFailedCount = 0,
+                            Account = "userTwo",
+                            Address = "台中市中正區",
+                            Birthday = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6208),
+                            Email = "456@456.com",
+                            EmailComfirmed = true,
+                            Gender = false,
+                            LockOutEnabled = false,
+                            MemberShip = 2,
+                            MobilePhone = "0912345678",
+                            Name = "NameOfVIP",
+                            Password = "tgm10322",
+                            PhoneNumber = "0448938627"
+                        },
+                        new
+                        {
+                            MemberId = 3,
+                            AccessFailedCount = 0,
+                            Account = "userThree",
+                            Address = "屏東市仁愛路5號",
+                            Birthday = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6219),
+                            Email = "123@123.com",
+                            EmailComfirmed = true,
+                            Gender = false,
+                            LockOutEnabled = false,
+                            MemberShip = 3,
+                            MobilePhone = "0913579246",
+                            Name = "NameOfAdmin",
+                            Password = "tgm10333",
+                            PhoneNumber = "0876543210"
                         });
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
                 });
@@ -1899,11 +2116,13 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
                 {
-                    b.HasOne("WuliKaWu.Data.Article", null)
+                    b.HasOne("WuliKaWu.Data.Article", "Article")
                         .WithMany("ArticleCategories")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Article");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>

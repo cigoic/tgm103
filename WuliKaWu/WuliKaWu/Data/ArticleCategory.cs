@@ -36,11 +36,15 @@ namespace WuliKaWu.Data
         /// 導覽屬性: 關聯的文章
         /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
         public virtual Article Article { get; set; }
     }
 }
 =======
         // public virtual Article Article { get; set; }
+=======
+        public virtual Article Article { get; set; }
+>>>>>>> [更新] 修正 Article 部落格文章相關資料內容類別表, 添加幾筆 seed data 建立相關範例資料
     }
 }
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.

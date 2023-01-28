@@ -27,20 +27,28 @@ namespace WuliKaWu.Data
         /// 第一張作者圖像檔案名稱(不含路徑)
         /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
         [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
 =======
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+        [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
+>>>>>>> [更新] 修正 Article 部落格文章相關資料內容類別表, 添加幾筆 seed data 建立相關範例資料
         public string? FirstImageFileName { get; set; }
 
         /// <summary>
         /// 第二張作者圖像檔案名稱(不含路徑)
         /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
         [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
         public string? SecondImageFileName { get; set; }
     }
 }
 =======
+=======
+        [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
+>>>>>>> [更新] 修正 Article 部落格文章相關資料內容類別表, 添加幾筆 seed data 建立相關範例資料
         public string? SecondImageFileName { get; set; }
     }
 }

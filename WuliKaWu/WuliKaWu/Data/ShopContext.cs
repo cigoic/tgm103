@@ -589,6 +589,9 @@ namespace WuliKaWu.Data
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            int countArticle = 0;   // assign to Article Id
+            int countContentImage = 0;  // assign to ArticleContentImage's Id
+
             modelBuilder.Entity<Product>().HasData(new Product
             {
                 Price = 100,
@@ -639,6 +642,7 @@ namespace WuliKaWu.Data
                 Coupon = -100,
             });
 
+            // 會員
             modelBuilder.Entity<Member>().HasData(new Member
             {
                 MemberId = 1,
@@ -656,9 +660,72 @@ namespace WuliKaWu.Data
                 LockOutEnabled = false,
                 AccessFailedCount = 0,
             });
+
+            // VIP
+            modelBuilder.Entity<Member>().HasData(new Member
+            {
+                MemberId = 2,
+                Account = "userTwo",
+                Password = "tgm10322",
+                Name = "NameOfVIP",
+                Gender = false,
+                Birthday = DateTime.Now,
+                Email = "456@456.com",
+                EmailComfirmed = true,
+                Address = "台中市中正區",
+                PhoneNumber = "0448938627",
+                MobilePhone = "0912345678",
+                MemberShip = MemberShipType.VIP,
+                LockOutEnabled = false,
+                AccessFailedCount = 0,
+            });
+
+            // 管理員
+            modelBuilder.Entity<Member>().HasData(new Member
+            {
+                MemberId = 3,
+                Account = "userThree",
+                Password = "tgm10333",
+                Name = "NameOfAdmin",
+                Gender = false,
+                Birthday = DateTime.Now,
+                Email = "123@123.com",
+                EmailComfirmed = true,
+                Address = "屏東市仁愛路5號",
+                PhoneNumber = "0876543210",
+                MobilePhone = "0913579246",
+                MemberShip = MemberShipType.Admin,
+                LockOutEnabled = false,
+                AccessFailedCount = 0,
+            });
+
+            // 作者大頭照
+            modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+            {
+                Id = 1,
+                MemberId = 1,
+                FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+            });
+            modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+            {
+                Id = 2,
+                MemberId = 2,
+                FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+            });
+            modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+            {
+                Id = 3,
+                MemberId = 3,
+                FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+            });
+
+            // 文章 No. 1
             modelBuilder.Entity<Article>().HasData(new Article
             {
-                ArticleId = 1,
+                ArticleId = ++countArticle,
                 MemberId = 1,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,
@@ -667,34 +734,204 @@ namespace WuliKaWu.Data
             });
             modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
             {
-                Id = 1,
-                ArticleId = 1,
+                Id = countArticle,
+                ArticleId = countArticle,
                 Type = ArticleType.LatestBlog,
             });
             modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
             {
-                Id = 1,
-                ArticleId = 1,
+                Id = countArticle,
+                ArticleId = countArticle,
                 FileName = "~/assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
-                Id = 1,
-                ArticleId = 1,
+                Id = ++countContentImage,
+                ArticleId = countArticle,
                 FileName = "~/assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
-                Id = 2,
-                ArticleId = 1,
+                Id = ++countContentImage,
+                ArticleId = countArticle,
                 FileName = "~/assets/images/blog/blog-details-3.png"
             });
-            modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+
+            // 文章 No. 2
+            modelBuilder.Entity<Article>().HasData(new Article
             {
-                Id = 1,
+                ArticleId = ++countArticle,
+                MemberId = 2,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Title = "Duis et volutpat pellentesque.",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+            });
+            modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                Type = ArticleType.LatestBlog,
+            });
+            modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details.png",
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-2.png"
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-3.png"
+            });
+
+
+            // 文章 No. 3
+            modelBuilder.Entity<Article>().HasData(new Article
+            {
+                ArticleId = ++countArticle,
+                MemberId = 3,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Title = "Vivamus vitae dolor convallis.",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+            });
+            modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                Type = ArticleType.LatestBlog,
+            });
+            modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details.png",
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-2.png"
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-3.png"
+            });
+
+
+            // 文章 No. 4
+            modelBuilder.Entity<Article>().HasData(new Article
+            {
+                ArticleId = ++countArticle,
+                MemberId = 3,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Title = "Vivamus amet tristique orci.",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+            });
+            modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                Type = ArticleType.LatestBlog,
+            });
+            modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details.png",
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-2.png"
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-3.png"
+            });
+
+            // 文章 No. 5
+            modelBuilder.Entity<Article>().HasData(new Article
+            {
+                ArticleId = ++countArticle,
+                MemberId = 2,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Title = "Pellentesque pretium place.",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+            });
+            modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                Type = ArticleType.LatestBlog,
+            });
+            modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details.png",
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-2.png"
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-3.png"
+            });
+
+            // 文章 No. 6
+            modelBuilder.Entity<Article>().HasData(new Article
+            {
+                ArticleId = ++countArticle,
                 MemberId = 1,
-                FirstImageFileName = "~/assets/images/blog/blog-author.png",
-                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Title = "Sed euismod tristique dolor.",
+                Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+            });
+            modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                Type = ArticleType.LatestBlog,
+            });
+            modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+            {
+                Id = countArticle,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details.png",
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-2.png"
+            });
+            modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+            {
+                Id = ++countContentImage,
+                ArticleId = countArticle,
+                FileName = "~/assets/images/blog/blog-details-3.png"
             });
         }
 >>>>>>> [更新] 資料庫資料表
