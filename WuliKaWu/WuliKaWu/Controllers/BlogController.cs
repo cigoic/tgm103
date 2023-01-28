@@ -1,4 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+using WuliKaWu.Data;
+using WuliKaWu.Models;
 
 <<<<<<< HEAD
 using WuliKaWu.Data;
@@ -13,6 +17,7 @@ namespace WuliKaWu.Controllers
     {
         private readonly ShopContext _context;
 
+<<<<<<< HEAD
         private IWebHostEnvironment _env;
 
         public BlogController(ShopContext context, IWebHostEnvironment environment)
@@ -46,6 +51,24 @@ namespace WuliKaWu.Controllers
             //}
 
             //return View(vm.AsEnumerable());
+=======
+        public BlogController(ShopContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> IndexAsync()
+        {
+            var articles = await _context.Articles.FirstOrDefaultAsync();
+
+            var vm = new ArticleModel();
+            vm.MemberName = _context.Members.Where(m => m.MemberId == articles.MemberId).FirstOrDefault().Name;
+            vm.FileName = _context.ArticleContentImages.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().FileName;
+            vm.Title = _context.Articles.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().Title;
+            vm.Content = _context.Articles.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().Content;
+
+            return View(vm);
+>>>>>>> [更新] Blog Index 檢視可顯示單筆部落格文章與圖片
         }
 
 =======
