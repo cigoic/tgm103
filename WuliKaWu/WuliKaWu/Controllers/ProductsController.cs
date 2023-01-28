@@ -116,7 +116,11 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: Products/Details/5
+<<<<<<< HEAD
         public async Task<IActionResult> ProductDetails(int id = 2)
+=======
+        public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
+>>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
         {
             if (id == null || _context.Products == null)
             {

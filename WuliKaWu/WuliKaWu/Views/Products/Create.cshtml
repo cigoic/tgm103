@@ -126,16 +126,24 @@
                     <div class="row">
                         <div class="col-lg-4 col-sm-5">
                             <div class="product-list-img">
-                                <a asp-controller="Home" asp-action="ProductDetails">
+                                <a href="#">
                                     <img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">
                                 </a>
 
+<<<<<<< HEAD
                                 <div class="product-list-quickview">
                                     <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="pe-7s-look"></i>
                                     </button>
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
                                 </div>
+=======
+                                @*                                <div class="product-list-quickview">
+                                <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="pe-7s-look"></i>
+                                </button>
+                                </div>*@
+>>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
                             </div>
 
                             <div class="mt-5">
@@ -165,10 +173,10 @@
                                                 <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
                                                 <span asp-validation-for="ProductName" class="text-danger"></span>
                                             </div>
-@*                                            <div class="form-group">
-                                                <label asp-for="Color" class="control-label"></label>
-                                                <input asp-for="Color" class="form-control" />
-                                                <span asp-validation-for="Color" class="text-danger"></span>
+                                            @*                                            <div class="form-group">
+                                            <label asp-for="Color" class="control-label"></label>
+                                            <input asp-for="Color" class="form-control" />
+                                            <span asp-validation-for="Color" class="text-danger"></span>
                                             </div>*@
 
                                             <div class="shop-sorting-area">
@@ -180,7 +188,7 @@
                                                     <option value="3">Red</option>
                                                     <option value="4">Orange</option>
                                                 </select>
-                                                <input v-model="selectedItem" asp-for="Color" value=""/>
+                                                <input v-model="selectedItem" asp-for="Color" value="" />
                                             </div>
 
                                             <div class="form-group">
@@ -227,7 +235,7 @@
 
                                             <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
                                                 <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
-                                                    <div>                                                       
+                                                    <div>
                                                         <button class="submit" type="submit" id="sendMessageButton">新增</button>
                                                     </div>
                                                 </div>
@@ -408,12 +416,12 @@
 
 
         let app = new Vue({
-            el:"#app",
+            el: "#app",
             data:
             {
-                    selectedItem:""
+                selectedItem: ""
             }
-        
+
         })
 
     </script>

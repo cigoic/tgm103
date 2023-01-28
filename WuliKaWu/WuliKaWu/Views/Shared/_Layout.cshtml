@@ -83,8 +83,8 @@
 =======
     <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
     @*
-        不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
-        <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" /> 
+    不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     *@
 >>>>>>> [修正] JS, CSS 樣式表引用
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
@@ -182,8 +182,12 @@
 =======
                                                                 <li><a asp-controller="Products" asp-action="Create">product create</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+<<<<<<< HEAD
                                                                @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
 >>>>>>> 幫艾汶更改product的action
+=======
+                                                                @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+>>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
                                                                 <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
                                                             </ul>
@@ -194,9 +198,9 @@
                                                                 <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
+                                                               @* <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
                                                                 <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>
+                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>*@
                                                             </ul>
                                                         </li>
                                                         <li>
@@ -540,6 +544,7 @@
                             <li>
                                 <a href="#">SHOP</a>
                                 <ul>
+<<<<<<< HEAD
                                     <li><a href="/Products/Index">standard style</a></li>
                                     <li><a href="/Products/Create">product create</a></li>
                                     <li><a href="/Products/ProductDetails">Product Details</a></li>
@@ -560,6 +565,31 @@
                                     <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>
                                     </ul>
                                     </li>*@
+=======
+                                    <li>
+                                        <a href="#">Shop Layout</a>
+                                        <ul>
+                                            <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
+                                            <li><a asp-controller="Products" asp-action="Create">product create</a></li>
+                                            <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                            @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                            <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                            <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Product Layout</a>
+                                        <ul>
+                                            <li><a asp-controller="Products" asp-action="ProductDetails">Tab Style 1</a></li>
+                                            <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
+                                            <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
+                                            @*<li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
+                                            <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
+                                            <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>*@
+                                        </ul>
+                                    </li>
+>>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
                                 </ul>
                             </li>
                             <li>
