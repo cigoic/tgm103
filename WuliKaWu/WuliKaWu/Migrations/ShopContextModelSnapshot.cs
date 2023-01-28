@@ -63,54 +63,54 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6270),
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8073),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6271),
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8074),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6324),
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8169),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6325),
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8171),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6367),
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8305),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6368),
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8306),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6413),
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8363),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6414),
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8364),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6538),
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8412),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6541),
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8413),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6623),
+                            CreatedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8462),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6624),
+                            ModifiedDate = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(8463),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -201,73 +201,73 @@ namespace WuliKaWu.Migrations
                         {
                             Id = 1,
                             ArticleId = 1,
-                            FileName = "~/assets/images/blog/blog-details-2.png"
+                            FileName = "assets/images/blog/blog-details-2.png"
                         },
                         new
                         {
                             Id = 2,
                             ArticleId = 1,
-                            FileName = "~/assets/images/blog/blog-details-3.png"
+                            FileName = "assets/images/blog/blog-details-3.png"
                         },
                         new
                         {
                             Id = 3,
                             ArticleId = 2,
-                            FileName = "~/assets/images/blog/blog-details-2.png"
+                            FileName = "assets/images/blog/blog-details-2.png"
                         },
                         new
                         {
                             Id = 4,
                             ArticleId = 2,
-                            FileName = "~/assets/images/blog/blog-details-3.png"
+                            FileName = "assets/images/blog/blog-details-3.png"
                         },
                         new
                         {
                             Id = 5,
                             ArticleId = 3,
-                            FileName = "~/assets/images/blog/blog-details-2.png"
+                            FileName = "assets/images/blog/blog-details-2.png"
                         },
                         new
                         {
                             Id = 6,
                             ArticleId = 3,
-                            FileName = "~/assets/images/blog/blog-details-3.png"
+                            FileName = "assets/images/blog/blog-details-3.png"
                         },
                         new
                         {
                             Id = 7,
                             ArticleId = 4,
-                            FileName = "~/assets/images/blog/blog-details-2.png"
+                            FileName = "assets/images/blog/blog-details-2.png"
                         },
                         new
                         {
                             Id = 8,
                             ArticleId = 4,
-                            FileName = "~/assets/images/blog/blog-details-3.png"
+                            FileName = "assets/images/blog/blog-details-3.png"
                         },
                         new
                         {
                             Id = 9,
                             ArticleId = 5,
-                            FileName = "~/assets/images/blog/blog-details-2.png"
+                            FileName = "assets/images/blog/blog-details-2.png"
                         },
                         new
                         {
                             Id = 10,
                             ArticleId = 5,
-                            FileName = "~/assets/images/blog/blog-details-3.png"
+                            FileName = "assets/images/blog/blog-details-3.png"
                         },
                         new
                         {
                             Id = 11,
                             ArticleId = 6,
-                            FileName = "~/assets/images/blog/blog-details-2.png"
+                            FileName = "assets/images/blog/blog-details-2.png"
                         },
                         new
                         {
                             Id = 12,
                             ArticleId = 6,
-                            FileName = "~/assets/images/blog/blog-details-3.png"
+                            FileName = "assets/images/blog/blog-details-3.png"
                         });
                 });
 
@@ -298,37 +298,37 @@ namespace WuliKaWu.Migrations
                         {
                             Id = 1,
                             ArticleId = 1,
-                            FileName = "~/assets/images/blog/blog-details.png"
+                            FileName = "assets/images/blog/blog-details.png"
                         },
                         new
                         {
                             Id = 2,
                             ArticleId = 2,
-                            FileName = "~/assets/images/blog/blog-details.png"
+                            FileName = "assets/images/blog/blog-details.png"
                         },
                         new
                         {
                             Id = 3,
                             ArticleId = 3,
-                            FileName = "~/assets/images/blog/blog-details.png"
+                            FileName = "assets/images/blog/blog-details.png"
                         },
                         new
                         {
                             Id = 4,
                             ArticleId = 4,
-                            FileName = "~/assets/images/blog/blog-details.png"
+                            FileName = "assets/images/blog/blog-details.png"
                         },
                         new
                         {
                             Id = 5,
                             ArticleId = 5,
-                            FileName = "~/assets/images/blog/blog-details.png"
+                            FileName = "assets/images/blog/blog-details.png"
                         },
                         new
                         {
                             Id = 6,
                             ArticleId = 6,
-                            FileName = "~/assets/images/blog/blog-details.png"
+                            FileName = "assets/images/blog/blog-details.png"
                         });
                 });
 
@@ -359,23 +359,23 @@ namespace WuliKaWu.Migrations
                         new
                         {
                             Id = 1,
-                            FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                            FirstImageFileName = "assets/images/blog/blog-author.png",
                             MemberId = 1,
-                            SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
+                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
                         },
                         new
                         {
                             Id = 2,
-                            FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                            FirstImageFileName = "assets/images/blog/blog-author.png",
                             MemberId = 2,
-                            SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
+                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
                         },
                         new
                         {
                             Id = 3,
-                            FirstImageFileName = "~/assets/images/blog/blog-author.png",
+                            FirstImageFileName = "assets/images/blog/blog-author.png",
                             MemberId = 3,
-                            SecondImageFileName = "~/assets/images/blog/blog-author-2.png"
+                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
                         });
                 });
 
@@ -1531,7 +1531,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6173),
+                            Birthday = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(7919),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1548,7 +1548,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6208),
+                            Birthday = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(7982),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1565,7 +1565,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 1, 28, 14, 3, 2, 663, DateTimeKind.Local).AddTicks(6219),
+                            Birthday = new DateTime(2023, 1, 28, 16, 13, 46, 79, DateTimeKind.Local).AddTicks(7995),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,

@@ -704,22 +704,22 @@ namespace WuliKaWu.Data
             {
                 Id = 1,
                 MemberId = 1,
-                FirstImageFileName = "~/assets/images/blog/blog-author.png",
-                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+                FirstImageFileName = "assets/images/blog/blog-author.png",
+                SecondImageFileName = "assets/images/blog/blog-author-2.png",
             });
             modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
             {
                 Id = 2,
                 MemberId = 2,
-                FirstImageFileName = "~/assets/images/blog/blog-author.png",
-                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+                FirstImageFileName = "assets/images/blog/blog-author.png",
+                SecondImageFileName = "assets/images/blog/blog-author-2.png",
             });
             modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
             {
                 Id = 3,
                 MemberId = 3,
-                FirstImageFileName = "~/assets/images/blog/blog-author.png",
-                SecondImageFileName = "~/assets/images/blog/blog-author-2.png",
+                FirstImageFileName = "assets/images/blog/blog-author.png",
+                SecondImageFileName = "assets/images/blog/blog-author-2.png",
             });
 
             // 文章 No. 1
@@ -742,19 +742,19 @@ namespace WuliKaWu.Data
             {
                 Id = countArticle,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details.png",
+                FileName = "assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-2.png"
+                FileName = "assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-3.png"
+                FileName = "assets/images/blog/blog-details-3.png"
             });
 
             // 文章 No. 2
@@ -777,19 +777,19 @@ namespace WuliKaWu.Data
             {
                 Id = countArticle,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details.png",
+                FileName = "assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-2.png"
+                FileName = "assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-3.png"
+                FileName = "assets/images/blog/blog-details-3.png"
             });
 
 
@@ -813,19 +813,19 @@ namespace WuliKaWu.Data
             {
                 Id = countArticle,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details.png",
+                FileName = "assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-2.png"
+                FileName = "assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-3.png"
+                FileName = "assets/images/blog/blog-details-3.png"
             });
 
 
@@ -849,19 +849,19 @@ namespace WuliKaWu.Data
             {
                 Id = countArticle,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details.png",
+                FileName = "assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-2.png"
+                FileName = "assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-3.png"
+                FileName = "assets/images/blog/blog-details-3.png"
             });
 
             // 文章 No. 5
@@ -884,19 +884,19 @@ namespace WuliKaWu.Data
             {
                 Id = countArticle,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details.png",
+                FileName = "assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-2.png"
+                FileName = "assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-3.png"
+                FileName = "assets/images/blog/blog-details-3.png"
             });
 
             // 文章 No. 6
@@ -919,19 +919,19 @@ namespace WuliKaWu.Data
             {
                 Id = countArticle,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details.png",
+                FileName = "assets/images/blog/blog-details.png",
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-2.png"
+                FileName = "assets/images/blog/blog-details-2.png"
             });
             modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
             {
                 Id = ++countContentImage,
                 ArticleId = countArticle,
-                FileName = "~/assets/images/blog/blog-details-3.png"
+                FileName = "assets/images/blog/blog-details-3.png"
             });
         }
 >>>>>>> [更新] 資料庫資料表
