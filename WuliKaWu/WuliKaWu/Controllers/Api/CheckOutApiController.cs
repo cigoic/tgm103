@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
+=======
+﻿using Microsoft.AspNetCore.Http;
+>>>>>>> [調整]更改檔案位子至Api
 using Microsoft.AspNetCore.Mvc;
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
@@ -9,15 +13,24 @@ namespace WuliKaWu.Controllers.Api
     [ApiController]
     public class CheckOutApiController : ControllerBase
     {
+<<<<<<< HEAD
         private readonly ShopContext _context;
 
         public CheckOutApiController(ShopContext context)
         {
             _context = context;
+=======
+        private readonly ShopContext _db;
+
+        public CheckOutApiController(ShopContext context)
+        {
+            _db = context;
+>>>>>>> [調整]更改檔案位子至Api
         }
 
         public List<CheckOutModel> GetAll()
         {
+<<<<<<< HEAD
             throw new NotImplementedException();
             //return _context.Carts.Select(x => new CheckOutModel
             //{
@@ -36,6 +49,23 @@ namespace WuliKaWu.Controllers.Api
             //    ContactPhone = "0900 123 456"
             //}).ToList();
 
+=======
+            return _db.OrderDetails.Select(x => new CheckOutModel
+            {
+                ShippingAddress = x.ShippingAddress,
+                Recipient = x.Recipient,
+                ContactPhone = x.ContactPhone,
+                PicturePath = "~/assets/images/cart/cart-2.jpg",
+                ProductName = x.ProductName,
+                Color = x.Color,
+                Quantity = x.Quantity,
+                Size = x.Size,
+                Price = x.Price,
+                SellingPrice = x.SellingPrice.ToString() ?? "",
+                Type = x.Type,
+                Coupon = x.Coupon
+            }).ToList();
+>>>>>>> [調整]更改檔案位子至Api
         }
     }
 }
