@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
+using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers
 {
@@ -85,7 +86,21 @@ namespace WuliKaWu.Controllers
             {
                 return NotFound();
             }
-            return View(product);
+
+            var vm = new ProductModel();
+
+            vm.ProductId = product.ProductId;
+            vm.ProductName = product.ProductName;
+            vm.Color = product.Color;
+            vm.Size = product.Size;
+            vm.Category = product.Category;
+            vm.PicturePath = product.PicturePath;
+            vm.Price = product.Price;
+            vm.Discount = product.Discount > 0 ? true : false;
+            vm.SellingPrice = (product.SellingPrice).ToString();
+            //vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+
+            return View(vm);
         }
 
         // POST: Products/Edit/5
@@ -93,15 +108,28 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Color,Size,Image,Price,Comment,StarRate,Category,Tag")] Product product)
+        public async Task<IActionResult> Edit(int id, ProductModel model)
+
         {
-            if (id != product.ProductId)
+            if (id != model.ProductId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
+
+                product.ProductId = model.ProductId;
+                product.ProductName = model.ProductName;
+                product.Color = model.Color;
+                product.Size = model.Size;
+                product.Category = model.Category;
+                product.PicturePath = model.PicturePath;
+                product.Price = model.Price;
+                product.Discount = Convert.ToDecimal(model.Discount);
+                product.SellingPrice = decimal.Parse(model.SellingPrice);
+
                 try
                 {
                     _context.Update(product);
@@ -109,7 +137,7 @@ namespace WuliKaWu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProductId))
+                    if (!ProductExists(model.ProductId))
                     {
                         return NotFound();
                     }
@@ -118,9 +146,8 @@ namespace WuliKaWu.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return View(model);
         }
 
         // GET: Products/Delete/5
