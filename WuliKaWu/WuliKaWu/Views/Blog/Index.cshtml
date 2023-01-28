@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 @*@model IEnumerable<ArticleModel>*@
 
 <div class="container" id="blogApp" />
@@ -9,6 +10,9 @@
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
 =======
 ﻿@model ArticleModel
+=======
+﻿@model IEnumerable<ArticleModel>
+>>>>>>> [更新] 部落格首頁可透過逐筆撈取資料庫,顯示文章及標題圖片(使用後端 Razoe syntax 寫法)
 @{
     ViewBag.Title = "Our Blog";
 }
@@ -219,11 +223,13 @@
 <div class="blog-area pt-100 pb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            @foreach(var item in @Model)
+            {
+                <div class="col-lg-4 col-md-6">
                 <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
                     <div class="blog-img-date-wrap mb-25">
                         <div class="blog-img">
-                            <a asp-controller="Blog" asp-action="Details"><img src="@Model.FileName" alt=""></a>
+                            <a asp-controller="Blog" asp-action="Details"><img src="@item.FileName" alt=""></a>
                         </div>
                         <div class="blog-date">
                             <h5>05 <span>May</span></h5>
@@ -233,17 +239,18 @@
                         <div class="blog-meta">
                             <ul>
                                 <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#">@Model.MemberName</a></li>
+                                <li>By:<a href="#">@item.MemberName</a></li>
                             </ul>
                         </div>
-                        <h3><a asp-controller="Blog" asp-action="Details">@Model.Title</a></h3>
-                        <p>@Model.Content</p>
+                        <h3><a asp-controller="Blog" asp-action="Details">item.Title</a></h3>
+                        <p>@item.Content</p>
                         <div class="blog-btn-2 btn-hover">
                             <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
                         </div>
                     </div>
                 </div>
             </div>
+            }
         </div>
 
         @*TODO:  分頁*@

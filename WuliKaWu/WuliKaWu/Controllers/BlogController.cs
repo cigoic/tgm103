@@ -59,14 +59,12 @@ namespace WuliKaWu.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var articles = await _context.Articles.FirstOrDefaultAsync();
+            // TODO:    需改善撈資料的效率
+            var articles = await _context.Articles.ToListAsync();
 
-            var vm = new ArticleModel();
-            vm.MemberName = _context.Members.Where(m => m.MemberId == articles.MemberId).FirstOrDefault().Name;
-            vm.FileName = _context.ArticleContentImages.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().FileName;
-            vm.Title = _context.Articles.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().Title;
-            vm.Content = _context.Articles.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().Content;
+            var vm = new List<ArticleModel>();
 
+<<<<<<< HEAD
             return View(vm);
 >>>>>>> [更新] Blog Index 檢視可顯示單筆部落格文章與圖片
         }
@@ -79,6 +77,20 @@ namespace WuliKaWu.Controllers
         public IActionResult Index()
         {
             return View();
+=======
+            foreach (var article in articles)
+            {
+                vm.Add(new ArticleModel
+                {
+                    MemberName = _context.Members.Where(m => m.MemberId == article.MemberId).FirstOrDefault()!.Name,
+                    FileName = _context.ArticleContentImages.Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.FileName,
+                    Title = _context.Articles.Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Title,
+                    Content = _context.Articles.Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Content
+                });
+            }
+
+            return View(vm.AsEnumerable());
+>>>>>>> [更新] 部落格首頁可透過逐筆撈取資料庫,顯示文章及標題圖片(使用後端 Razoe syntax 寫法)
         }
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
         public IActionResult Sidebar()
