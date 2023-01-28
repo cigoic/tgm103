@@ -25,6 +25,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 影像檔名(不含路徑)
         /// </summary>
+        [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
         public string FileName { get; set; }
 
         /// <summary>

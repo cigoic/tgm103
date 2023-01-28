@@ -32,6 +32,6 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性: 關聯的文章
         /// </summary>
-        // public virtual Article Article { get; set; }
+        public virtual Article Article { get; set; }
     }
 }
