@@ -48,16 +48,21 @@ namespace WuliKaWu.Models.ApiModel
 
         public Size Size { get; set; }
 
-        public decimal Price { get; set; }
+        public Category Category { get; set; }
 
-        public string ImagePath { get; set; }
+        public string PicturePath { get; set; }
+
+        public decimal Price { get; set; }
 
         public bool Discount { get; set; }
 
         public string SellingPrice { get; set; }
 
+<<<<<<< HEAD
         public Category Category { get; set; }
 
+=======
+>>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
         public Tag Tag { get; set; }
     }
 <<<<<<< HEAD

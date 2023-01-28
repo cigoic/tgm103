@@ -15,20 +15,28 @@ namespace WuliKaWu.Controllers.Api
     [ApiController]
     public class ProductApiController : ControllerBase
     {
-        private readonly ShopContext _db;
+        private readonly ShopContext _context;
 
         public ProductApiController(ShopContext context)
         {
-            _db = context;
+            _context = context;
         }
 
         public List<ProductModel> GetAll()
         {
+<<<<<<< HEAD
             return _db.Products.Select(x => new ProductModel
             {
                 ProductName = x.ProductName,
                 Color = x.Color,
                 ImagePath = "~/assets/images/product/product-5.png",
+=======
+            return _context.Products.Select(x => new ProductModel
+            {
+                ProductName = x.ProductName,
+                Color = x.Color,
+                PicturePath = "~/assets/images/product/product-5.png",
+>>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,

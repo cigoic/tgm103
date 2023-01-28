@@ -24,7 +24,11 @@ using Microsoft.EntityFrameworkCore;
 using System;
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 using WuliKaWu.Data;
+<<<<<<< HEAD
 >>>>>>> [更新] 資料庫資料表
+=======
+using WuliKaWu.Models.ApiModel;
+>>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
 
 namespace WuliKaWu.Controllers
 {
@@ -216,6 +220,7 @@ namespace WuliKaWu.Controllers
             {
                 return NotFound();
             }
+<<<<<<< HEAD
             ViewBag.id = id;
 
             return View();
@@ -240,6 +245,23 @@ namespace WuliKaWu.Controllers
             ////vm.Tag = (Data.Enums.Common.Tag)product.Tag;
 
             //return View(vm);
+=======
+
+            var vm = new ProductModel();
+
+            vm.ProductId = product.ProductId;
+            vm.ProductName = product.ProductName;
+            vm.Color = product.Color;
+            vm.Size = product.Size;
+            vm.Category = product.Category;
+            vm.PicturePath = product.PicturePath;
+            vm.Price = product.Price;
+            vm.Discount = product.Discount > 0 ? true : false;
+            vm.SellingPrice = (product.SellingPrice).ToString();
+            //vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+
+            return View(vm);
+>>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
         }
 
         // POST: Products/Edit/5
@@ -248,6 +270,7 @@ namespace WuliKaWu.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductModel model)
+<<<<<<< HEAD
         {
             throw new NotImplementedException();
             //if (id != model.ProductId)
@@ -287,6 +310,47 @@ namespace WuliKaWu.Controllers
             //    }
             //}
             //return View(model);
+=======
+
+        {
+            if (id != model.ProductId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
+
+                product.ProductId = model.ProductId;
+                product.ProductName = model.ProductName;
+                product.Color = model.Color;
+                product.Size = model.Size;
+                product.Category = model.Category;
+                product.PicturePath = model.PicturePath;
+                product.Price = model.Price;
+                product.Discount = Convert.ToDecimal(model.Discount);
+                product.SellingPrice = decimal.Parse(model.SellingPrice);
+
+                try
+                {
+                    _context.Update(product);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductExists(model.ProductId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+            return View(model);
+>>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
         }
 
         // GET: Products/Delete/5
