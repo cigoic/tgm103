@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
 
-namespace WuliKaWu.Controllers
+namespace WuliKaWu.Controllers.Api
 {
     [Route("api/checkout/[action]")]
     [ApiController]
