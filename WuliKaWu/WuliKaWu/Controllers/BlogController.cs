@@ -17,15 +17,23 @@ namespace WuliKaWu.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var articles = await _context.Articles.FirstOrDefaultAsync();
+            // TODO:    需改善撈資料的效率
+            var articles = await _context.Articles.ToListAsync();
 
-            var vm = new ArticleModel();
-            vm.MemberName = _context.Members.Where(m => m.MemberId == articles.MemberId).FirstOrDefault().Name;
-            vm.FileName = _context.ArticleContentImages.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().FileName;
-            vm.Title = _context.Articles.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().Title;
-            vm.Content = _context.Articles.Where(i => i.ArticleId == articles.ArticleId).FirstOrDefault().Content;
+            var vm = new List<ArticleModel>();
 
-            return View(vm);
+            foreach (var article in articles)
+            {
+                vm.Add(new ArticleModel
+                {
+                    MemberName = _context.Members.Where(m => m.MemberId == article.MemberId).FirstOrDefault()!.Name,
+                    FileName = _context.ArticleContentImages.Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.FileName,
+                    Title = _context.Articles.Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Title,
+                    Content = _context.Articles.Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Content
+                });
+            }
+
+            return View(vm.AsEnumerable());
         }
         public IActionResult Sidebar()
         {
