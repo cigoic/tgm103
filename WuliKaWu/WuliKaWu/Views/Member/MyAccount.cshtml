@@ -1,6 +1,10 @@
 ﻿@{
     ViewData["Title"] = "My Account";
 }
+@if (User.Identity.IsAuthenticated)
+{
+    <h1 class="text-bg-info">登入成功!!!!!</h1>
+}
 <div class="container" id="myAccountApp"/>
 
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">

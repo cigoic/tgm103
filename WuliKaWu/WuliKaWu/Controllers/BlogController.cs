@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
@@ -50,7 +51,7 @@ namespace WuliKaWu.Controllers
             if (article == null)
                 return NotFound();
 
-            var vm = new ArticleModel()
+            var model = new ArticleModel()
             {
                 MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
                 FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName,
@@ -64,20 +65,38 @@ namespace WuliKaWu.Controllers
             foreach (var img in images)
             {
                 var imgPath = $"~/{img.FileName}";
-                vm.ContentImageFileNames.Add(imgPath);
+                model.ContentImageFileNames.Add(imgPath);
             }
 
-            return View(vm);
+            return View(model);
         }
+
+        // GET  /Blog/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        // POST /Blog/Create
+        /// <summary>
+        /// 建立部落格文章
+        /// </summary>
+        /// <param name="article"></param>
+        /// <returns></returns>
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ArticleModel model)
+        public async Task<IActionResult> CreateAsync(Article article)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Articles.Add(article);
+            await _context.SaveChangesAsync();
+
             return View();
         }
     }

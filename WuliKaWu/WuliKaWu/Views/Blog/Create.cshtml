@@ -10,15 +10,7 @@
 
 <h4>Article</h4>
 <hr />
-<template>
-    <div>
-        <select v-model="selectedOption">
-            <option v-for="option in options" :key="option.value" :value="option.value">
-                {{ option.text }}
-            </option>
-        </select>
-    </div>
-</template>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -47,6 +39,18 @@
                 <input asp-for="Content" class="form-control" type="text" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+            <template>
+                <div class="form-group">
+                    <label asp-for="ArticleCategories" class="control-label"></label>
+                    <select v-model="selectedOption">
+                        <option value="">Make a Choice...</option>
+                        <option v-for="option in options" :key="option.value" :value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                    <span asp-validation-for="ArticleCategories" class="text-danger"></span>
+                </div>
+            </template>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -66,9 +70,16 @@
             //el:'#blogCreateApp',
             name: "blogCreateApp",
             data:{
+                selectedOption: '',
+                options: [
+                    { text: 'Uncategorized', value: 0 },
+                    { text: 'Blog GridView', value: 1 },
+                    { text: 'Latest Blog', value: 2 },
+                    { text: 'Our Blog', value: 3 },
+                ],
             },
             mounted: function (){
-
+                console.log("Hi~from Article Create")
             },
             methods: {
 
