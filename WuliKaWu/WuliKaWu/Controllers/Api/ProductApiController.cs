@@ -37,11 +37,15 @@ namespace WuliKaWu.Controllers.Api
                 ProductName = x.ProductName,
                 Color = x.Color,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 PicturePath = "~/assets/images/product/product-5.png",
 >>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
 =======
                 PicturePath = x.PicturePath,
 >>>>>>> [更新]ProductApiController 的 GetById方法
+=======
+                PicturePath = $"~/images/{productModel.PicturePath}",
+>>>>>>> [更新] ProductApiController圖片路徑更新
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,
@@ -67,7 +71,7 @@ namespace WuliKaWu.Controllers.Api
             product.Color = productModel.Color;
             product.Size = productModel.Size;
             product.Category = productModel.Category;
-            product.PicturePath = productModel.PicturePath;
+            product.PicturePath = $"~/images/{productModel.PicturePath}";
             product.Price = productModel.Price;
             product.Discount = Convert.ToDecimal(productModel.Discount);
             product.SellingPrice = decimal.Parse(productModel.SellingPrice);
