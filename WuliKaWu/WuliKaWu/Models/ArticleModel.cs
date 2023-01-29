@@ -6,5 +6,8 @@
         public string FileName { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+
+        public string TitleImageFileName { get; set; }
+        public List<string> ContentImageFileNames { get; set; }
     }
 }
