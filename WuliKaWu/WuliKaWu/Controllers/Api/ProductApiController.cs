@@ -23,7 +23,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 ProductName = x.ProductName,
                 Color = x.Color,
-                PicturePath = $"~/images/{productModel.PicturePath}",
+                PicturePath = $"~/images/{x.PicturePath}",
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,
