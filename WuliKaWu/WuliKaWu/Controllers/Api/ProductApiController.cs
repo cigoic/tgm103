@@ -38,6 +38,7 @@ namespace WuliKaWu.Controllers.Api
                 Color = x.Color,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 PicturePath = "~/assets/images/product/product-5.png",
 >>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
 =======
@@ -46,6 +47,9 @@ namespace WuliKaWu.Controllers.Api
 =======
                 PicturePath = $"~/images/{productModel.PicturePath}",
 >>>>>>> [更新] ProductApiController圖片路徑更新
+=======
+                PicturePath = $"~/images/{x.PicturePath}",
+>>>>>>> [更新]ProductApiController的GetAll及GetById的圖片路徑
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,
