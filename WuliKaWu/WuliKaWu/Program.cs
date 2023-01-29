@@ -26,6 +26,8 @@ builder.Services.AddSession(
 
 // Smart ASP MySQL 連線字串
 var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
+//var SmartASPConnectionString = Environment.GetEnvironmentVariable("SmartASPConnection");
+
 builder.Services.AddDbContext<ShopContext>(options =>
     options.UseSqlServer(SmartASPConnectionString));
 
