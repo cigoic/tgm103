@@ -625,22 +625,6 @@ namespace WuliKaWu.Data
                 Discount = -1000,
                 PicturePath = "pic2"
             });
-            modelBuilder.Entity<OrderDetails>().HasData(new OrderDetails
-            {
-                OrderDetailsId = 1,
-                ShippingAddress = "台北市中山區南京西路1號",
-                Recipient = "王大明",
-                ContactPhone = "0900123456",
-                PicturePath = "pic1",
-                ProductName = "外套",
-                Color = Color.Brown,
-                Quantity = 2,
-                Size = Size.XL,
-                Price = 3600,
-                SellingPrice = 2000,
-                Type = GetPayType.CreditCard,
-                Coupon = -100,
-            });
 
             // 會員
             modelBuilder.Entity<Member>().HasData(new Member
@@ -792,7 +776,6 @@ namespace WuliKaWu.Data
                 FileName = "assets/images/blog/blog-details-3.png"
             });
 
-
             // 文章 No. 3
             modelBuilder.Entity<Article>().HasData(new Article
             {
@@ -827,7 +810,6 @@ namespace WuliKaWu.Data
                 ArticleId = countArticle,
                 FileName = "assets/images/blog/blog-details-3.png"
             });
-
 
             // 文章 No. 4
             modelBuilder.Entity<Article>().HasData(new Article
