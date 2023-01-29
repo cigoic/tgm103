@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,9 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <returns></returns>
 =======
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
 using Microsoft.AspNetCore.Mvc;
 
 using System.Net;
@@ -48,12 +52,23 @@ using System.Net.Mail;
 using System.Security.Claims;
 
 using WuliKaWu.Data;
+using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers
 {
     public class MemberController : Controller
     {
+<<<<<<< HEAD
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
+=======
+        private readonly ShopContext _context;
+
+        public MemberController(ShopContext context)
+        {
+            _context = context;
+        }
+
+>>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
         [ActionName("Login")]
         public IActionResult LoginRegister()
         {
@@ -441,22 +456,32 @@ namespace WuliKaWu.Controllers
         [ActionName("Login")]
         public async Task<IActionResult> LoginRegisterAsync(Member model)
         {
-            // TODO 資料庫給的資料
-            var dbAccount = "123@123.com";
-            var dbPassword = "1314520";
-
             // 資料庫比對
-            // _db.user.where(x => x.account == model.account && x.password == model.password);
-            if (model.Account == dbAccount && model.Password == dbPassword)
+            var member = _context.Members
+                            .Where(x => x.Account == model.Account
+                                && x.Password == model.Password)
+                            .FirstOrDefault();
+            //var rolesOfmember = member.Roles.Select(m => m.Type);
+
+            if (member != null
+                && model.Account == member.Account
+                && model.Password == member.Password)
             {
                 // 帳號密碼符合！給 cookie(s): principal > identity > claim
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, "NameFromDB"),   // 資料庫裡的姓名
-                    new Claim(ClaimTypes.Role, "Admin"),    // 資料庫裡的角色
-                    new Claim(ClaimTypes.Role, "User"),
-                    new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
+                    new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
+                    // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
+                    new Claim(ClaimTypes.Role, ConvertRoleTypeToString(member.MemberShip)),    // 資料庫裡的角色
+                    //new Claim(ClaimTypes.Role, "User"),
+                    //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
                 };
+
+                // TODO
+                //foreach (var role in rolesOfmember)
+                //{
+                //    claims.Add(new Claim(ClaimTypes.Role, ConvertRoleTypeToString(role)));
+                //}
 
                 // 直接定義這是"身分證明"
                 // 指定 Authentication Type 名稱，以是任何詞彙，但前後端設定必須一致
@@ -475,7 +500,7 @@ namespace WuliKaWu.Controllers
             }
 
             TempData["error"] = "帳號密碼不對！";
-            return RedirectToAction("LoginRegister");
+            return RedirectToAction("Login");
         }
 
         public IActionResult Logout()
@@ -503,6 +528,68 @@ namespace WuliKaWu.Controllers
             client.Credentials = new NetworkCredential("liang.case@gmail.com", "MY_PASSWORD");
             client.Send(mail);  // 寄信
         }
+<<<<<<< HEAD
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+
+        // GET  /Member/MyAccount
+        /// <summary>
+        /// My Account 檢視頁面入口
+        /// </summary>
+        /// <param name="MemberId"></param>
+        /// <returns></returns>
+        public IActionResult MyAccount(int MemberId)    // TODO 如何找到會員 ID/Role/Name?
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var username = User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault().ValueType;
+                //var member = _context.Members.Where(m => m.MemberId == MemberId).FirstOrDefault();
+                //return View(username);
+            }
+            return View();
+        }
+
+        // TODO 收取提交表單資料,並寫入會員資料庫
+        // POST /Member/AccountDetails
+        /// <summary>
+        /// 更改會員資訊
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> AccountDetailsAsync([Bind("FirstName, LastName, DisplayName, Email, CurrentPwd, NewPwd, ConfirmPwd")] AccountDetailsModel model)
+        public async Task<IActionResult> AccountDetailsAsync([FromBody] AccountDetailsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //_context.Add(model);
+                //await _context.SaveChangesAsync();
+                return Ok("成功收取");
+            }
+            return RedirectToAction(nameof(MyAccount));
+        }
+
+        private string ConvertRoleTypeToString(MemberShipType role) //TODO  可能須修正為 RoleType
+        {
+            switch (role)
+            {
+                case MemberShipType.NormalUser:
+                    return "User";
+                    break;
+                case MemberShipType.VIP:
+                    return "VIP";
+                    break;
+                case MemberShipType.Admin:
+                    return "Admin";
+                    break;
+                case MemberShipType.None:
+                default:
+                    return "None";
+                    break;
+            }
+        }
+>>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
     }
 }

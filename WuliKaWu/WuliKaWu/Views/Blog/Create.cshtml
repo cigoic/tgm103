@@ -16,6 +16,7 @@
 <h4>Article</h4>
 <hr />
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 <div class="row">
@@ -30,6 +31,9 @@
         </select>
     </div>
 </template>
+=======
+
+>>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
 <div class="row">
     <div class="col-md-4">
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
@@ -89,6 +93,18 @@
                 <input asp-for="Content" class="form-control" type="text" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
+            <template>
+                <div class="form-group">
+                    <label asp-for="ArticleCategories" class="control-label"></label>
+                    <select v-model="selectedOption">
+                        <option value="">Make a Choice...</option>
+                        <option v-for="option in options" :key="option.value" :value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                    <span asp-validation-for="ArticleCategories" class="text-danger"></span>
+                </div>
+            </template>
             <div class="form-group">
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -143,10 +159,21 @@
                 },
 =======
             data:{
+                selectedOption: '',
+                options: [
+                    { text: 'Uncategorized', value: 0 },
+                    { text: 'Blog GridView', value: 1 },
+                    { text: 'Latest Blog', value: 2 },
+                    { text: 'Our Blog', value: 3 },
+                ],
             },
             mounted: function (){
+<<<<<<< HEAD
 
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+                console.log("Hi~from Article Create")
+>>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
             },
             methods: {
 
