@@ -11,6 +11,7 @@
         public string Title { get; set; }
         public string Content { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public DateTime CreateAt { get; set; }
 
@@ -22,6 +23,11 @@
         public string NextArticleTitle { get; set; }
         public DateTime PrevArticleCreateAt { get; set; }
         public DateTime NextArticleCreateAt { get; set; }
+=======
+
+        public string TitleImageFileName { get; set; }
+        public List<string> ContentImageFileNames { get; set; }
+>>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
     }
 }
 =======
