@@ -1,10 +1,9 @@
-﻿@*@model WuliKaWu.Data.Product*@
+@*@model WuliKaWu.Data.Product*@
 @model WuliKaWu.Models.ApiModel.ProductModel
 
 @{
     ViewData["Title"] = "Edit";
 }
-
 
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
@@ -151,17 +150,10 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
-
 </div>
 
-
-
-
-
+@section Scripts {
 <script>
     function ShowImagePreview(input) {
         debugger;
@@ -205,9 +197,5 @@
 
 </script>
 
-
-
-
-@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
