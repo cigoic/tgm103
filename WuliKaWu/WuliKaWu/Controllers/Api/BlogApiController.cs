@@ -9,12 +9,19 @@ namespace WuliKaWu.Controllers.Api
     /// <summary>
     /// 部落格 API 控制器
     /// </summary>
+<<<<<<< HEAD
     [Route("api/Blog/[action]/{ArticleId?}")]
+=======
+    [Route("api/Blog/[action]")]
+>>>>>>> [更新] 新增部落格 API 控制器(初版)
     [ApiController]
     public class BlogApiController : ControllerBase
     {
         private readonly ShopContext _context;
+<<<<<<< HEAD
 
+=======
+>>>>>>> [更新] 新增部落格 API 控制器(初版)
         public BlogApiController(ShopContext context)
         {
             _context = context;
@@ -37,7 +44,10 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="ArticleId">文章 ID</param>
         /// <returns>Results.OK(Article model)</returns>
         /// <returns>Results.NotFound</returns>
+<<<<<<< HEAD
         [ActionName("GetArticleById")]
+=======
+>>>>>>> [更新] 新增部落格 API 控制器(初版)
         public async Task<IResult> GetArticleByIdAsync(int ArticleId)
         {
             return await _context.Articles.FindAsync(ArticleId)
@@ -46,6 +56,7 @@ namespace WuliKaWu.Controllers.Api
                     : Results.NotFound();
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
         /// </summary>
@@ -88,6 +99,8 @@ namespace WuliKaWu.Controllers.Api
             return Results.Ok(new { NextArticleId });
         }
 
+=======
+>>>>>>> [更新] 新增部落格 API 控制器(初版)
         // GET  api/Blog/GetArticleDetails/{ArticleId}
         /// <summary>
         /// 取得特定文章內容
@@ -140,4 +153,8 @@ namespace WuliKaWu.Controllers.Api
             return Results.NotFound();
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> [更新] 新增部落格 API 控制器(初版)

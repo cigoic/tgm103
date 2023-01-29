@@ -268,6 +268,13 @@ namespace WuliKaWu.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ArticleModel model)
+        {
+            return View();
+        }
     }
 }
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
