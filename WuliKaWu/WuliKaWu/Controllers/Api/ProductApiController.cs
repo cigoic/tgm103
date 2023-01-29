@@ -23,7 +23,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 ProductName = x.ProductName,
                 Color = x.Color,
-                PicturePath = x.PicturePath,
+                PicturePath = $"~/images/{productModel.PicturePath}",
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,
@@ -44,7 +44,7 @@ namespace WuliKaWu.Controllers.Api
             product.Color = productModel.Color;
             product.Size = productModel.Size;
             product.Category = productModel.Category;
-            product.PicturePath = productModel.PicturePath;
+            product.PicturePath = $"~/images/{productModel.PicturePath}";
             product.Price = productModel.Price;
             product.Discount = Convert.ToDecimal(productModel.Discount);
             product.SellingPrice = decimal.Parse(productModel.SellingPrice);
