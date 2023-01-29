@@ -152,7 +152,7 @@
 
                                 <a href="">
                                     @*<img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">*@
-                                    <img :src="products.PicturePath" id="imagePreview" alt="Product Picture" />
+                                    <img src="@Url.Content(Model.PicturePath)" id="imagePreview" alt="Product Picture" />
                                 </a>
 
                                 @*                            <div class="product-list-quickview">
@@ -306,7 +306,13 @@
         el:"ProductEdit",
         data:
         {
-            products:[]
+            products:[],
+            pPath: "",
+        },
+
+        methods:
+        {
+            
         },
 
         mounted: function(){

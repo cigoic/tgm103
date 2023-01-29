@@ -254,7 +254,7 @@ namespace WuliKaWu.Controllers
             vm.Color = product.Color;
             vm.Size = product.Size;
             vm.Category = product.Category;
-            vm.PicturePath = product.PicturePath;
+            vm.PicturePath = $"~/images/{product.PicturePath}";
             vm.Price = product.Price;
             vm.Discount = product.Discount > 0 ? true : false;
             vm.SellingPrice = (product.SellingPrice).ToString();
