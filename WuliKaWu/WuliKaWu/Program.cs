@@ -31,6 +31,7 @@ builder.Services.AddSession(
 // Smart ASP MySQL 連線字串
 var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
 //var SmartASPConnectionString = Environment.GetEnvironmentVariable("SmartASPConnection");
+<<<<<<< HEAD
 =======
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 
@@ -44,6 +45,9 @@ var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartA
 // Smart ASP MySQL 連線字串
 var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
+=======
+
+>>>>>>> [新增]抓取雲端環境的路徑
 builder.Services.AddDbContext<ShopContext>(options =>
     options.UseSqlServer(SmartASPConnectionString));
 
