@@ -73,5 +73,12 @@ namespace WuliKaWu.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ArticleModel model)
+        {
+            return View();
+        }
     }
 }
