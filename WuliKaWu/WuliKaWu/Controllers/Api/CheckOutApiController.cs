@@ -18,11 +18,8 @@ namespace WuliKaWu.Controllers.Api
 
         public List<CheckOutModel> GetAll()
         {
-            return _db.OrderDetails.Select(x => new CheckOutModel
+            return _db.Carts.Select(x => new CheckOutModel
             {
-                ShippingAddress = x.ShippingAddress,
-                Recipient = x.Recipient,
-                ContactPhone = x.ContactPhone,
                 PicturePath = "~/assets/images/cart/cart-2.jpg",
                 ProductName = x.ProductName,
                 Color = x.Color,
@@ -30,8 +27,11 @@ namespace WuliKaWu.Controllers.Api
                 Size = x.Size,
                 Price = x.Price,
                 SellingPrice = x.SellingPrice.ToString() ?? "",
-                Type = x.Type,
-                Coupon = x.Coupon
+                Coupon = x.Coupon,
+                Type = (Data.Enums.Common.GetPayType)2,
+                ShippingAddress = "台北市中山區南京西路1號",
+                Recipient = "胖虎",
+                ContactPhone = "0900 123 456"
             }).ToList();
         }
     }
