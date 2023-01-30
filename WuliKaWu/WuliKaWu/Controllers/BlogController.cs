@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
 using WuliKaWu.Models;
@@ -67,10 +66,12 @@ namespace WuliKaWu.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var articles = await _context.Articles.ToListAsync();
+            return View();
 
-            var vm = new List<ArticleModel>();
+            // 當使用前端呼叫請求資料時,註解下面的程式片段
+            //var articles = await _context.Articles.ToListAsync();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             return View(vm);
 >>>>>>> [更新] Blog Index 檢視可顯示單筆部落格文章與圖片
@@ -98,6 +99,22 @@ namespace WuliKaWu.Controllers
 
             return View(vm.AsEnumerable());
 >>>>>>> [更新] 部落格首頁可透過逐筆撈取資料庫,顯示文章及標題圖片(使用後端 Razoe syntax 寫法)
+=======
+            //var vm = new List<ArticleModel>();
+
+            //foreach (var article in articles)
+            //{
+            //    vm.Add(new ArticleModel
+            //    {
+            //        MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article.MemberId).FirstOrDefault()!.Name,
+            //        FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.FileName,
+            //        Title = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Title,
+            //        Content = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Content
+            //    });
+            //}
+
+            //return View(vm.AsEnumerable());
+>>>>>>> [更新] 部落格首頁改用 Vue.js 撈取資料庫文章資料(初版)
         }
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
         public IActionResult Sidebar()
