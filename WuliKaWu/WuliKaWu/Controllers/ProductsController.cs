@@ -369,7 +369,21 @@ namespace WuliKaWu.Controllers
             }
             ViewBag.id = id;
 
+<<<<<<< HEAD
             return View();
+=======
+            var vm = new ProductModel();
+            vm.ProductId = product.ProductId;
+            vm.PicturePath = $"~/images/{product.PicturePath}";
+            vm.ProductName = product.ProductName;
+            vm.Color = product.Color;
+            vm.Size = product.Size;
+            vm.Category = product.Category;
+            vm.Price = product.Price;
+            vm.SellingPrice = (product.SellingPrice).ToString();
+
+            return View(vm);
+>>>>>>> [修正]商品刪除檢視頁面的圖片顯示綁定
         }
 
         // POST: Products/Delete/5
