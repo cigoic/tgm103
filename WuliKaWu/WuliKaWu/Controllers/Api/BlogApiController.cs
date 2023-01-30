@@ -23,9 +23,13 @@ namespace WuliKaWu.Controllers.Api
     {
         private readonly ShopContext _context;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         public BlogApiController(ShopContext context)
         {
             _context = context;
@@ -64,6 +68,7 @@ namespace WuliKaWu.Controllers.Api
                     : Results.NotFound();
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         /// <summary>
@@ -112,6 +117,17 @@ namespace WuliKaWu.Controllers.Api
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
 =======
         [Route("api/Blog/NextArticle")]
+=======
+        [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
+        [HttpGet]
+        public IActionResult GetPrevArticleId(int CurrentArticleId)
+        {
+            var PrevArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(-1).FirstOrDefault().ArticleId;
+            return Ok(new { PrevArticleId });
+        }
+
+        [Route("api/Blog/NextArticle/{CurrentArticleId}")]
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         [HttpGet]
         public IActionResult GetNextArticleId(int CurrentArticleId)
         {
@@ -173,7 +189,11 @@ namespace WuliKaWu.Controllers.Api
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+}
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯

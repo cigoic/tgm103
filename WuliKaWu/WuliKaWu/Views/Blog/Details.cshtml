@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿@model ArticleModel
 
 <<<<<<< HEAD
@@ -14,6 +15,11 @@
 >>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
 =======
 <div class="container" id="blogDetailsApp"/>
+=======
+﻿@*@model ArticleModel*@
+
+<div class="container" id="blogDetailsApp" />
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
 
 >>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
@@ -87,14 +93,20 @@
                         <div class="row">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
                             @{
                                 int delayTime = 200;
                             }
                             @foreach (var imagePath in Model.ContentImageFileNames)
+<<<<<<< HEAD
 =======
                            @{int delayTime = 200;}
                            @foreach(var imagePath in Model.ContentImageFileNames)
 >>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
+=======
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
                             {
                                 <div class="col-md-6 col-sm-6 col-12">
                                     <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
@@ -164,6 +176,7 @@
                         <div class="blog-prev-post-wrap">
                             <div class="blog-prev-post-icon">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
                             </div>
                             <div class="blog-prev-post-content">
@@ -174,11 +187,18 @@
                             <div class="blog-prev-post-content">
                                 <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
+=======
+                                <a :href="articleLink(prevArticleId)"><i class="fa fa-angle-left"></i></a>
+                            </div>
+                            <div class="blog-prev-post-content">
+                                <h3><a :href="articleLink(prevArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
                             <div class="blog-next-post-icon">
+<<<<<<< HEAD
 <<<<<<< HEAD
                                 <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
                             </div>
@@ -190,6 +210,12 @@
                             <div class="blog-next-post-content">
                                 <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
+=======
+                                <a :href="articleLink(nextArticleId)"> <i class="fa fa-angle-right"></i> </a>
+                            </div>
+                            <div class="blog-next-post-content">
+                                <h3><a :href="articleLink(nextArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
@@ -468,12 +494,17 @@
                         title: '文章 3',
                         content: '碩士試驗說過高達一家我不只好貢獻前來人大指出，以外所謂返回不良情感，帶來有點遠無門朋友提升交換，金幣前面見過拍攝紅色採取主演物業不用這次高校眼中，體會許可別人如下加速怎麼會，信用姑娘群發，競爭力程式老師博士，你還演唱生意，詳細內容日誌下去，您現在難道，供。',
                         createdAt: '2022-01-03'
-                    }
+                    },
                 ],
-                singleArticle: null,
+                //articleBaseLink: "/api/Blog/GetArticleById/",
+                articleBaseLink: "/Blog/Details/",
+                prevArticleId: null,
+                articleId: null,
+                nextArticleId: null,
                 currentPage: 1,
             },
             mounted: function () {
+<<<<<<< HEAD
                 var self = this;
                 fetch('/api/Blog/GetArticlesById/@Model')
                     .then(function (response) { return response.json() })
@@ -486,11 +517,23 @@
                 //    .then(response => (self.articles = response.data))
                 //    .catch(error => console.log(error))
 >>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
+=======
+                //var self = this;
+                this.articleId = @Model.ArticleId;
+                this.prevArticleId = @Model.PrevArticleId;
+                this.nextArticleId = @Model.NextArticleId;
+                //console.log("Current ArticleID is ", this.articleId);
+                //console.log("Prev ArticleID is ", this.prevArticleId);
+                //console.log("Next ArticleID is ", this.nextArticleId);
+                //this.prevArticleBaseLink = this.queryPrevArticleIdLink + this.articleId
+                //this.nextArticleBaseLink = this.queryNextArticleIdLink + this.articleId
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
             },
             methods: {
                 clickCallback: function (page) {
                     this.currentPage = page;
                     console.log(page)
+<<<<<<< HEAD
 <<<<<<< HEAD
                 },
                 articleLink: function (id) {
@@ -511,6 +554,18 @@
                 }
             },
 >>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
+=======
+                },
+                articleLink: function (id) {
+                    //this.nextArticleBaseLink = this.queryNextArticleIdLink + articleId
+                    //fetch(this.queryNextArticleIdLink + articleId).then(response => {
+                    // handle the response and store the next article ID
+                    //console.log("Article ID is ", response)
+                    //});
+                    return this.articleBaseLink + id
+                },
+            }
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         })
 
         document.addEventListener("DOMContentLoaded", () => {

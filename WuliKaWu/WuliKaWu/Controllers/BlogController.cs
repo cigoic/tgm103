@@ -32,6 +32,7 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
+<<<<<<< HEAD
         {
             return View();
 
@@ -65,6 +66,8 @@ namespace WuliKaWu.Controllers
         }
 
         public async Task<IActionResult> IndexAsync()
+=======
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         {
             return View();
 
@@ -116,13 +119,20 @@ namespace WuliKaWu.Controllers
             //return View(vm.AsEnumerable());
 >>>>>>> [更新] 部落格首頁改用 Vue.js 撈取資料庫文章資料(初版)
         }
+<<<<<<< HEAD
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
+=======
+
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         public IActionResult Sidebar()
         {
             return View();
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
 
         /// <summary>
         /// 文章內容
@@ -131,6 +141,7 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         [Route("/Blog/Details/{ArticleId}")]
         public IActionResult Details(int ArticleId)
+<<<<<<< HEAD
         {
             if (ArticleId <= 0)
                 return NotFound();
@@ -255,6 +266,8 @@ namespace WuliKaWu.Controllers
 =======
         public IActionResult Details(int ArticleId = 1) // TODO
 >>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
+=======
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         {
             if (ArticleId <= 0)
                 return NotFound();
@@ -265,12 +278,15 @@ namespace WuliKaWu.Controllers
 
             var model = new ArticleModel()
             {
+                ArticleId = ArticleId,
                 MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
                 FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName,
                 Title = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.Title,
                 Content = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.Content,
                 TitleImageFileName = $"~/{_context.ArticleTitleImages.AsEnumerable().Where(t => t.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName}",
-                ContentImageFileNames = new List<string>()
+                ContentImageFileNames = new List<string>(),
+                PrevArticleId = GetPrevArticleId(ArticleId),
+                NextArticleId = GetNextArticleId(ArticleId),
             };
 
             var images = _context.ArticleContentImages.Where(c => c.ArticleId == article!.ArticleId).ToList();
@@ -311,6 +327,46 @@ namespace WuliKaWu.Controllers
 
             return View();
         }
+
+        /// <summary>
+        /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
+        private int GetPrevArticleId(int CurrentArticleId)
+        {
+            var PrevArticle = _context.Articles
+               .OrderBy(a => a.CreatedDate)
+               .Where(a => a.ArticleId < CurrentArticleId)
+               .LastOrDefault();
+
+            if (PrevArticle == null)
+                return CurrentArticleId;
+
+            return PrevArticle.ArticleId;
+        }
+
+        /// <summary>
+        /// 找尋下一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
+        private int GetNextArticleId(int CurrentArticleId)
+        {
+            var NextArticle = _context.Articles
+                .OrderBy(a => a.CreatedDate)
+                .Where(a => a.ArticleId > CurrentArticleId)
+                .FirstOrDefault();
+
+            if (NextArticle == null)
+                return CurrentArticleId;
+
+            return NextArticle.ArticleId;
+        }
     }
+<<<<<<< HEAD
 }
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
+=======
+}
+>>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯

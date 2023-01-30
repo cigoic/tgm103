@@ -510,14 +510,33 @@ namespace WuliKaWu.Controllers
             return RedirectToAction("Login");
         }
 
+        /// <summary>
+        /// 登出帳號，同時清除 Session
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync();
+
+            if (HttpContext.Session != null)
+                HttpContext.Session.Clear();    // 清除 Session
+
             return RedirectToAction("Index", "Home");
         }
 <<<<<<< HEAD
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 =======
+
+        [HttpPost]
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
 
         public void SendMail()
         {
@@ -567,8 +586,6 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> AccountDetailsAsync([Bind("FirstName, LastName, DisplayName, Email, CurrentPwd, NewPwd, ConfirmPwd")] AccountDetailsModel model)
         public async Task<IActionResult> AccountDetailsAsync([FromBody] AccountDetailsModel model)
         {
             if (ModelState.IsValid)
@@ -592,12 +609,15 @@ namespace WuliKaWu.Controllers
                 case MemberShipType.NormalUser:
                     return "User";
                     break;
+
                 case MemberShipType.VIP:
                     return "VIP";
                     break;
+
                 case MemberShipType.Admin:
                     return "Admin";
                     break;
+
                 case MemberShipType.None:
                 default:
                     return "None";
