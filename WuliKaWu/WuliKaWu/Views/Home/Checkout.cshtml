@@ -27,7 +27,7 @@
     <div class="checkout-main-area pb-100 pt-100">
         <div class="container">
             <div class="customer-zone mb-20">
-                <p class="cart-page-title">Returning customer? <a class="checkout-click1" href="#">Click here to login</a></p>
+                <p class="cart-page-title">Returning customer? <a class="checkout-click1" asp-action="Login" asp-controller="Member">Click here to login</a></p>
                 <div class="checkout-login-info">
                     <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing & Shipping section.</p>
                     <form action="#">
@@ -382,10 +382,10 @@
                             <div class="your-order-wrap gray-bg-4">
                                 <div class="your-order-info-wrap">
                                     <div class="your-order-info">
-
                                         <table>
                                             <tbody>
-                                                <tr v-for="checkout in carts ">
+                                                @*有抓到值,但沒綁好*@
+                                               @* <tr v-for="checkout in carts" :key="checkout.checkOutId">
                                                     <td><img src="~/assets/images/cart/cart-1.jpg" alt="" /></td>
                                                     <td><span>{{cart.productName}}</span></td>
                                                     <td>{{cart.color}}</td>
@@ -395,7 +395,7 @@
                                                         <span :class="{'old-price':cart.price}">${{cart.price}}</span>
                                                         <span class="new-price" v-if="cart.sellingPrice">${{"cart.sellingPrice}}</span>
                                                     </td>
-                                                </tr>
+                                                </tr>*@
                                             </tbody>
                                         </table>
                                     </div>
@@ -429,7 +429,7 @@
     </div>
 </div>
 
-@section Scripts{
+@*@section Scripts{
     <script>
         let app = new Vue({
             el: "#checkoutIndex",
@@ -470,8 +470,12 @@
         });
     </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
         }
 >>>>>>> [調整]Checkout Index版面
 =======
     }
 >>>>>>> [修改]CheckOut Index排版做切版，分成三部分:寄送資訊、訂單資訊、付款資訊)
+=======
+    }*@
+>>>>>>> [修改]wishlist及checkout ，api有抓到值，沒綁到vue(待完成)
