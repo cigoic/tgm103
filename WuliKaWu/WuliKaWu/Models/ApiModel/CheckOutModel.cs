@@ -5,6 +5,7 @@ namespace WuliKaWu.Models.ApiModel
 {
     public class CheckOutModel
     {
+        public int CheckOutId { get; set; }
         public string ShippingAddress { get; set; }
         public string Recipient { get; set; }
         public string ContactPhone { get; set; }
