@@ -14,6 +14,7 @@ namespace WuliKaWu.Controllers.Api
     public class BlogApiController : ControllerBase
     {
         private readonly ShopContext _context;
+
         public BlogApiController(ShopContext context)
         {
             _context = context;
@@ -45,7 +46,15 @@ namespace WuliKaWu.Controllers.Api
                     : Results.NotFound();
         }
 
-        [Route("api/Blog/NextArticle")]
+        [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
+        [HttpGet]
+        public IActionResult GetPrevArticleId(int CurrentArticleId)
+        {
+            var PrevArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(-1).FirstOrDefault().ArticleId;
+            return Ok(new { PrevArticleId });
+        }
+
+        [Route("api/Blog/NextArticle/{CurrentArticleId}")]
         [HttpGet]
         public IActionResult GetNextArticleId(int CurrentArticleId)
         {

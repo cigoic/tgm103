@@ -3,7 +3,7 @@
     ViewBag.Title = "Our Blog";
 }
 
-<div class="container" id="blogApp"/>
+<div class="container" id="blogApp" />
 
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
@@ -44,7 +44,7 @@
                             <h1>{{ article.title }}</h1>
                             <p>{{ article.content }}</p>
                             <p>{{ article.modifiedDate }}</p>
-                            
+
                             <div class="blog-btn-2 btn-hover">
                                 <a class="btn hover-border-radius theme-color" :href="articleLink(article.articleId)">Read More</a>
                                 @*<a class="btn hover-border-radius theme-color" asp-controller="BlogApi" asp-action="GetArticleById" v-on:click="getNextArticleId">Read More</a>*@
@@ -59,33 +59,33 @@
             @*=========== Razor 寫法 ==========================================================(開始)
             @foreach(var item in @Model)
             {
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                        <div class="blog-img-date-wrap mb-25">
-                            <div class="blog-img">
-                                <a asp-controller="Blog" asp-action="Details"><img src="@item.FileName" alt=""></a>
-                            </div>
-                            <div class="blog-date">
-                                <h5>05 <span>May</span></h5>
-                            </div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-meta">
-                                <ul>
-                                    <li><a href="#">Furniture</a>,</li>
-                                    <li>By:<a href="#">@item.MemberName</a></li>
-                                </ul>
-                            </div>
+            <div class="col-lg-4 col-md-6">
+            <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
+            <div class="blog-img-date-wrap mb-25">
+            <div class="blog-img">
+            <a asp-controller="Blog" asp-action="Details"><img src="@item.FileName" alt=""></a>
+            </div>
+            <div class="blog-date">
+            <h5>05 <span>May</span></h5>
+            </div>
+            </div>
+            <div class="blog-content">
+            <div class="blog-meta">
+            <ul>
+            <li><a href="#">Furniture</a>,</li>
+            <li>By:<a href="#">@item.MemberName</a></li>
+            </ul>
+            </div>
 
-                            <h3><a asp-controller="Blog" asp-action="Details">@item.Title</a></h3>
+            <h3><a asp-controller="Blog" asp-action="Details">@item.Title</a></h3>
 
-                            <p>@item.Content</p>
-                            <div class="blog-btn-2 btn-hover">
-                                <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <p>@item.Content</p>
+            <div class="blog-btn-2 btn-hover">
+            <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
+            </div>
+            </div>
+            </div>
+            </div>
             }
             @*=========== Razor 寫法 ==========================================================(結束)*@
         </div>
@@ -98,15 +98,15 @@
             </ul>
             @*
             <paginate :page-count="Math.ceil(articles.length/countPerPage)"
-                      :page-range="10"
-                      :margin-pages="1"
-                      :click-handler="clickCallback"
-                      :prev-text="'Prev'"
-                      :next-text="'Next'"
-                      :container-class="'pagination'"
-                      :page-class="'page-item'">
-                <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
-                <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
+            :page-range="10"
+            :margin-pages="1"
+            :click-handler="clickCallback"
+            :prev-text="'Prev'"
+            :next-text="'Next'"
+            :container-class="'pagination'"
+            :page-class="'page-item'">
+            <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+            <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
             </paginate>
             *@
         </div>
@@ -123,7 +123,7 @@
         let blogVue = new Vue({
             //el:'#blogApp',
             name: "blogApp",
-            data:{
+            data: {
                 articles: [
                     {
                         id: 1,
@@ -144,9 +144,8 @@
                         createdAt: '2022-01-03'
                     }
                 ],
-                articleBaseLink: "/api/Blog/GetArticleById/",
-                queryNextArticleIdLink: "/api/Blog/NextArticle/",
-                nextArticleBaseLink: "",
+                //articleBaseLink: "/api/Blog/GetArticleById/",
+                articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
             },
             mounted: function () {
@@ -167,16 +166,10 @@
                     this.currentPage = page;
                     console.log(page)
                 },
-                articleLink(articleId) {    // TODO:    change to next article Id instead
-                    //this.nextArticleBaseLink = this.queryNextArticleIdLink + articleId
-                    //fetch(this.queryNextArticleIdLink + articleId).then(response => {
-                        // handle the response and store the next article ID
-                        //console.log("Article ID is ", response)
-                    //});
-                    articleId++
+                articleLink(articleId) {
                     return this.articleBaseLink + articleId
-                        },
-                
+                },
+
             },
         })
 

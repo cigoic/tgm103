@@ -1,6 +1,6 @@
-﻿@model ArticleModel
+﻿@*@model ArticleModel*@
 
-<div class="container" id="blogDetailsApp"/>
+<div class="container" id="blogDetailsApp" />
 
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
@@ -51,8 +51,10 @@
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor.</p>
                     <div class="blog-details-middle-img-wrap">
                         <div class="row">
-                           @{int delayTime = 200;}
-                           @foreach(var imagePath in Model.ContentImageFileNames)
+                            @{
+                                int delayTime = 200;
+                            }
+                            @foreach (var imagePath in Model.ContentImageFileNames)
                             {
                                 <div class="col-md-6 col-sm-6 col-12">
                                     <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
@@ -103,19 +105,19 @@
                     <div class="blog-next-previous-post" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-prev-post-wrap">
                             <div class="blog-prev-post-icon">
-                                <a href="#"><i class="fa fa-angle-left"></i></a>
+                                <a :href="articleLink(prevArticleId)"><i class="fa fa-angle-left"></i></a>
                             </div>
                             <div class="blog-prev-post-content">
-                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+                                <h3><a :href="articleLink(prevArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
                             <div class="blog-next-post-icon">
-                                <a href="#"> <i class="fa fa-angle-right"></i> </a>
+                                <a :href="articleLink(nextArticleId)"> <i class="fa fa-angle-right"></i> </a>
                             </div>
                             <div class="blog-next-post-content">
-                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+                                <h3><a :href="articleLink(nextArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
@@ -334,30 +336,40 @@
                         title: '文章 3',
                         content: '碩士試驗說過高達一家我不只好貢獻前來人大指出，以外所謂返回不良情感，帶來有點遠無門朋友提升交換，金幣前面見過拍攝紅色採取主演物業不用這次高校眼中，體會許可別人如下加速怎麼會，信用姑娘群發，競爭力程式老師博士，你還演唱生意，詳細內容日誌下去，您現在難道，供。',
                         createdAt: '2022-01-03'
-                    }
+                    },
                 ],
-                singleArticle: null,
+                //articleBaseLink: "/api/Blog/GetArticleById/",
+                articleBaseLink: "/Blog/Details/",
+                prevArticleId: null,
+                articleId: null,
+                nextArticleId: null,
                 currentPage: 1,
             },
             mounted: function () {
-                var self = this;
-                fetch('/api/Blog/GetArticlesById/@Model')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.articles = result;
-                    })
-                //axios
-                //    .get('/api/Blog/GetArticles')
-                //    .then(response => (self.articles = response.data))
-                //    .catch(error => console.log(error))
+                //var self = this;
+                this.articleId = @Model.ArticleId;
+                this.prevArticleId = @Model.PrevArticleId;
+                this.nextArticleId = @Model.NextArticleId;
+                //console.log("Current ArticleID is ", this.articleId);
+                //console.log("Prev ArticleID is ", this.prevArticleId);
+                //console.log("Next ArticleID is ", this.nextArticleId);
+                //this.prevArticleBaseLink = this.queryPrevArticleIdLink + this.articleId
+                //this.nextArticleBaseLink = this.queryNextArticleIdLink + this.articleId
             },
             methods: {
                 clickCallback: function (page) {
                     this.currentPage = page;
                     console.log(page)
-                }
-            },
+                },
+                articleLink: function (id) {
+                    //this.nextArticleBaseLink = this.queryNextArticleIdLink + articleId
+                    //fetch(this.queryNextArticleIdLink + articleId).then(response => {
+                    // handle the response and store the next article ID
+                    //console.log("Article ID is ", response)
+                    //});
+                    return this.articleBaseLink + id
+                },
+            }
         })
 
         document.addEventListener("DOMContentLoaded", () => {
