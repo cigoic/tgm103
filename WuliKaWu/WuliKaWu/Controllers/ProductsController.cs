@@ -165,19 +165,31 @@ namespace WuliKaWu.Controllers
                 return NotFound();
             }
 
-            return View(product);
+            var vm = new ProductModel();
+            vm.ProductId = product.ProductId;
+            vm.PicturePath = $"~/images/{product.PicturePath}";
+            vm.ProductName = product.ProductName;
+            vm.Color = product.Color;
+            vm.Size = product.Size;
+            vm.Category = product.Category;
+            vm.Price = product.Price;
+            vm.SellingPrice = (product.SellingPrice).ToString();
+
+            return View(vm);
         }
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, ProductModel model)
         {
             if (_context.Products == null)
             {
                 return Problem("Entity set 'ShopContext.Products'  is null.");
             }
+
             var product = await _context.Products.FindAsync(id);
+
             if (product != null)
             {
                 _context.Products.Remove(product);
