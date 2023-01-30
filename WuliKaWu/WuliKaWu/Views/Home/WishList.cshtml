@@ -1,4 +1,5 @@
 ﻿<div id="wishlistIndex">
+<<<<<<< HEAD
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
             <div class="breadcrumb-content text-center">
@@ -15,6 +16,17 @@
         </div>
         <div class="breadcrumb-img-2">
             <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+=======
+<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <h2>Wishlist</h2>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li>Wishlist</li>
+            </ul>
+>>>>>>> [新增]Add migration及ShopContext Wishlist Entity的Data
         </div>
     </div>
     <div class="wishlist-area pb-100 pt-100">
@@ -80,6 +92,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 @section Scripts{
 
@@ -99,6 +112,23 @@
                     })
             }
         });
+=======
+</div>
+
+@section Scripts{
+    <script>
+        let app =new Vue({
+            el:"wishlistIndex",
+            data:{
+            
+            },
+            mounted:function(){
+            fetch('api/wishlist/getall')
+            .then(function(){})
+            .then(function(){})
+            }
+        }),
+>>>>>>> [新增]Add migration及ShopContext Wishlist Entity的Data
     </script>
 
 }
