@@ -20,6 +20,7 @@ namespace WuliKaWu.Controllers.Api
         {
             return _db.Carts.Select(x => new CheckOutModel
             {
+                CheckOutId = 2,
                 PicturePath = "~/assets/images/cart/cart-2.jpg",
                 ProductName = x.ProductName,
                 Color = x.Color,
