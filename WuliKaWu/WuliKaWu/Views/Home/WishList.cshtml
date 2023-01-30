@@ -1,4 +1,5 @@
-﻿<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+﻿<div id="wishlistIndex">
+<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
             <h2>Wishlist</h2>
@@ -86,3 +87,21 @@
         </div>
     </div>
 </div>
+</div>
+
+@section Scripts{
+    <script>
+        let app =new Vue({
+            el:"wishlistIndex",
+            data:{
+            
+            },
+            mounted:function(){
+            fetch('api/wishlist/getall')
+            .then(function(){})
+            .then(function(){})
+            }
+        }),
+    </script>
+
+}

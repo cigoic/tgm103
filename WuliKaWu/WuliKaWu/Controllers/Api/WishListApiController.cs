@@ -26,6 +26,8 @@ namespace WuliKaWu.Controllers.Api
                 SellingPrice = x.SellingPrice,
                 Discount = x.Discount,
                 PicturePath = x.PicturePath,
+                ProductId = x.ProductId,
+                MemberId = x.MemberId
             }).ToList();
         }
     }
