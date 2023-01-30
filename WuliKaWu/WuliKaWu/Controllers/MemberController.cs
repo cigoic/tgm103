@@ -50,6 +50,13 @@ namespace WuliKaWu.Controllers
                     new Claim(ClaimTypes.Role, ConvertRoleTypeToString(member.MemberShip)),    // 資料庫裡的角色
                     //new Claim(ClaimTypes.Role, "User"),
                     //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
+                    //new Claim(ClaimTypes.GivenName, member.FirstName),
+                    //new Claim(ClaimTypes.Surname, member.LastName),
+                    //new Claim(ClaimTypes.Email, member.Email),
+                    //new Claim(ClaimTypes.Gender, member.Gender), // TODO    to string
+                    //new Claim(ClaimTypes.DateOfBirth, member.Birthday), // TODO    to string
+                    //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
+                    //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
                 };
 
                 // TODO
@@ -107,11 +114,13 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <param name="MemberId"></param>
         /// <returns></returns>
+        //[Authorize]
         public IActionResult MyAccount(int MemberId)    // TODO 如何找到會員 ID/Role/Name?
         {
             if (User.Identity.IsAuthenticated)
             {
-                var username = User.Claims.Where(c => c.Type == ClaimTypes.Name).FirstOrDefault().ValueType;
+                var userclaim = User.Claims.Select(c => c.Subject.Claims).FirstOrDefault().ToList();
+                var roletype = userclaim[1].Value;
                 //var member = _context.Members.Where(m => m.MemberId == MemberId).FirstOrDefault();
                 //return View(username);
             }
@@ -140,6 +149,11 @@ namespace WuliKaWu.Controllers
             return RedirectToAction(nameof(MyAccount));
         }
 
+        /// <summary>
+        /// 轉換會員類型代號至字串
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
         private string ConvertRoleTypeToString(MemberShipType role) //TODO  可能須修正為 RoleType
         {
             switch (role)

@@ -43,7 +43,13 @@
                         <div class="blog-content">
                             <h1>{{ article.title }}</h1>
                             <p>{{ article.content }}</p>
-                            <p>{{ article.createdAt }}</p>
+                            <p>{{ article.modifiedDate }}</p>
+                            
+                            <div class="blog-btn-2 btn-hover">
+                                <a class="btn hover-border-radius theme-color" :href="articleLink(article.articleId)">Read More</a>
+                                @*<a class="btn hover-border-radius theme-color" asp-controller="BlogApi" asp-action="GetArticleById" v-on:click="getNextArticleId">Read More</a>*@
+                                @*<a class="btn hover-border-radius theme-color" v-bind:href="/api/Blog/GetArticleById/{{article.id+1}}">Read More</a>*@
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,6 +144,9 @@
                         createdAt: '2022-01-03'
                     }
                 ],
+                articleBaseLink: "/api/Blog/GetArticleById/",
+                queryNextArticleIdLink: "/api/Blog/NextArticle/",
+                nextArticleBaseLink: "",
                 currentPage: 1,
             },
             mounted: function () {
@@ -157,7 +166,17 @@
                 clickCallback: function (page) {
                     this.currentPage = page;
                     console.log(page)
-                }
+                },
+                articleLink(articleId) {    // TODO:    change to next article Id instead
+                    //this.nextArticleBaseLink = this.queryNextArticleIdLink + articleId
+                    //fetch(this.queryNextArticleIdLink + articleId).then(response => {
+                        // handle the response and store the next article ID
+                        //console.log("Article ID is ", response)
+                    //});
+                    articleId++
+                    return this.articleBaseLink + articleId
+                        },
+                
             },
         })
 
