@@ -10,5 +10,7 @@ namespace WuliKaWu.Models.ApiModel
         public decimal SellingPrice { get; set; }
         public decimal Discount { get; set; }
         public string PicturePath { get; set; }
+        public int ProductId { get; set; }
+        public int MemberId { get; set; }
     }
 }
