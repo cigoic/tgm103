@@ -38,11 +38,14 @@
 =======
     <Folder Include="Migrations\" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Folder Include="wwwroot\uploadimg\" />
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 =======
     <Folder Include="wwwroot\images\" />
 >>>>>>> [更新] ProductApiController圖片路徑更新
+=======
+>>>>>>> [新增]smartASP雲端影像靜態資料夾
   </ItemGroup>
 
   <ItemGroup>
