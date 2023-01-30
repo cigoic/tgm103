@@ -27,18 +27,26 @@ namespace WuliKaWu.Controllers
             _context = context;
         }
 
+<<<<<<< HEAD
         // GET: Carts
 >>>>>>> 新增CartController及CartApiController
+=======
+        // GET: Cart
+>>>>>>> [修改]名稱原Carts更改為Cart
         public async Task<IActionResult> Index()
         {
             return View();
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // GET: Cart/Details/5
 =======
         // GET: Carts/Details/5
 >>>>>>> 新增CartController及CartApiController
+=======
+        // GET: Cart/Details/5
+>>>>>>> [修改]名稱原Carts更改為Cart
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -61,15 +69,20 @@ namespace WuliKaWu.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // GET: Cart/Create
 =======
         // GET: Carts/Create
 >>>>>>> 新增CartController及CartApiController
+=======
+        // GET: Cart/Create
+>>>>>>> [修改]名稱原Carts更改為Cart
         public IActionResult Create()
         {
             return View();
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         // POST: Cart/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -110,6 +123,9 @@ namespace WuliKaWu.Controllers
         // GET: Cart/Edit/5
 =======
         // POST: Carts/Create
+=======
+        // POST: Cart/Create
+>>>>>>> [修改]名稱原Carts更改為Cart
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -125,8 +141,12 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
+<<<<<<< HEAD
         // GET: Carts/Edit/5
 >>>>>>> 新增CartController及CartApiController
+=======
+        // GET: Cart/Edit/5
+>>>>>>> [修改]名稱原Carts更改為Cart
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -143,10 +163,14 @@ namespace WuliKaWu.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // POST: Cart/Edit/5
 =======
         // POST: Carts/Edit/5
 >>>>>>> 新增CartController及CartApiController
+=======
+        // POST: Cart/Edit/5
+>>>>>>> [修改]名稱原Carts更改為Cart
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -196,10 +220,14 @@ namespace WuliKaWu.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // GET: Cart/Delete/5
 =======
         // GET: Carts/Delete/5
 >>>>>>> 新增CartController及CartApiController
+=======
+        // GET: Cart/Delete/5
+>>>>>>> [修改]名稱原Carts更改為Cart
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -222,10 +250,14 @@ namespace WuliKaWu.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         // POST: Cart/Delete/5
 =======
         // POST: Carts/Delete/5
 >>>>>>> 新增CartController及CartApiController
+=======
+        // POST: Cart/Delete/5
+>>>>>>> [修改]名稱原Carts更改為Cart
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
