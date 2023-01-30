@@ -10,10 +10,14 @@ namespace WuliKaWu.Controllers.Api
     /// 部落格 API 控制器
     /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
     [Route("api/Blog/[action]/{ArticleId?}")]
 =======
     [Route("api/Blog/[action]")]
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+    [Route("api/Blog/[action]/{ArticleId?}")]
+>>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
     [ApiController]
     public class BlogApiController : ControllerBase
     {
@@ -45,9 +49,13 @@ namespace WuliKaWu.Controllers.Api
         /// <returns>Results.OK(Article model)</returns>
         /// <returns>Results.NotFound</returns>
 <<<<<<< HEAD
+<<<<<<< HEAD
         [ActionName("GetArticleById")]
 =======
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+        [ActionName("GetArticleById")]
+>>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
         public async Task<IResult> GetArticleByIdAsync(int ArticleId)
         {
             return await _context.Articles.FindAsync(ArticleId)
@@ -56,6 +64,7 @@ namespace WuliKaWu.Controllers.Api
                     : Results.NotFound();
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
@@ -101,6 +110,16 @@ namespace WuliKaWu.Controllers.Api
 
 =======
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+        [Route("api/Blog/NextArticle")]
+        [HttpGet]
+        public IActionResult GetNextArticleId(int CurrentArticleId)
+        {
+            var NextArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(1).FirstOrDefault().ArticleId;
+            return Ok(new { NextArticleId });
+        }
+
+>>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
         // GET  api/Blog/GetArticleDetails/{ArticleId}
         /// <summary>
         /// 取得特定文章內容

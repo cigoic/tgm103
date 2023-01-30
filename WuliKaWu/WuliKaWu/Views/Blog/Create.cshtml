@@ -35,8 +35,12 @@
 
 >>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
 <div class="row">
+<<<<<<< HEAD
     <div class="col-md-4">
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+    <div class="col-sm-12 col-md-12 col-12">
+>>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -96,7 +100,7 @@
             <template>
                 <div class="form-group">
                     <label asp-for="ArticleCategories" class="control-label"></label>
-                    <select v-model="selectedOption">
+                    <select v-model="selectedOption" class="form-control">
                         <option value="">Make a Choice...</option>
                         <option v-for="option in options" :key="option.value" :value="option.value">
                             {{ option.text }}
@@ -105,14 +109,19 @@
                     <span asp-validation-for="ArticleCategories" class="text-danger"></span>
                 </div>
             </template>
+<<<<<<< HEAD
             <div class="form-group">
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
+=======
+            <div class="form-group mt-15 mb-15">
+>>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 @section Scripts {
@@ -126,6 +135,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+=======
+>>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
