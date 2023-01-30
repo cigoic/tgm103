@@ -130,35 +130,32 @@
                                         </li>
                                         <li>
                                             <a asp-controller="Products" asp-action="Index">SHOP</a>
-                                            <ul class="mega-menu-style mega-menu-mrg-1">
+                                            <ul class="sub-menu-style">
                                                 <li>
+                                                    @*<a class="dropdown-title" href="#">Shop Layout</a>*@
                                                     <ul>
-                                                        <li>
-                                                            <a class="dropdown-title" href="#">Shop Layout</a>
-                                                            <ul>
-                                                                <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                                                <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                                                @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-title" href="#">Products Layout</a>
-                                                            <ul>
-                                                                <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
-                                                               @* <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>*@
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
-                                                        </li>
+                                                        <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
+                                                        <li><a asp-controller="Products" asp-action="Create">product create</a></li>
+                                                        <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
+                                                        <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                                        @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                                        <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                                        <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
                                                     </ul>
+
+                                                    @*<li>
+                                                    <a class="dropdown-title" href="#">Products Layout</a>
+                                                    <ul>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>
+                                                    </ul>
+                                                    </li>
+                                                    <li>
+                                                    <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
+                                                    </li>*@
                                                 </li>
                                             </ul>
                                         </li>
@@ -434,29 +431,25 @@
                             <li>
                                 <a href="#">SHOP</a>
                                 <ul>
-                                    <li>
-                                        <a href="#">Shop Layout</a>
-                                        <ul>
-                                            <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                            <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                            @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+                                    <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
+                                    <li><a asp-controller="Products" asp-action="Create">product create</a></li>
+                                    <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
+                                    <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                    @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                    <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                    <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
 
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Product Layout</a>
-                                        <ul>
-                                            <li><a asp-controller="Products" asp-action="ProductDetails">Tab Style 1</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
-                                            @*<li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>*@
-                                        </ul>
-                                    </li>
+                                    @*<li>
+                                    <a href="#">Product Layout</a>
+                                    <ul>
+
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>
+                                    </ul>
+                                    </li>*@
                                 </ul>
                             </li>
                             <li>
