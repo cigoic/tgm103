@@ -172,37 +172,45 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="row">
                                         <div class="col-6">
+                                            <div class="form-group" hidden>
+                                                <label asp-for="ProductId" class="control-label"></label>
+                                                <input asp-for="ProductId" class="form-control" />
+                                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label asp-for="ProductName" class="control-label"></label>
                                                 <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
                                                 <span asp-validation-for="ProductName" class="text-danger"></span>
                                             </div>
-                                            @*                                            <div class="form-group">
+                                            
+                                            <div class="form-group">
                                             <label asp-for="Color" class="control-label"></label>
                                             <input asp-for="Color" class="form-control" />
                                             <span asp-validation-for="Color" class="text-danger"></span>
-                                            </div>*@
+                                            </div>
 
-                                            <div class="shop-sorting-area">
-                                                <select v-model="selectedItem" :class={}>
+@*                                            <div class="shop-sorting-area form-group">
+                                                <label asp-for="Color" class="control-label"></label>
+                                                <select>
                                                     <option value="">請選擇</option>
                                                     <option value="0">Black</option>
                                                     <option value="1">White</option>
                                                     <option value="2">Brown</option>
                                                     <option value="3">Red</option>
                                                     <option value="4">Orange</option>
-                                                </select>
-                                                <input v-model="selectedItem" asp-for="Color" value="" />
-                                            </div>
+                                                </select>*@
+                                               @* <input v-model="selectedItem" asp-for="Color" value="" />
+                                            </div>*@
 
                                             <div class="form-group">
                                                 <label asp-for="Size" class="control-label"></label>
-                                                <input asp-for="Size" class="form-control" />
+                                                <input asp-for="Size" class="form-control" placeholder="請輸入尺寸" />
                                                 <span asp-validation-for="Size" class="text-danger"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label asp-for="Category" class="control-label"></label>
-                                                <input asp-for="Category" class="form-control" />
+                                                <input asp-for="Category" class="form-control" placeholder="請輸入分類" />
                                                 <span asp-validation-for="Category" class="text-danger"></span>
                                             </div>
                                             <div class="form-group">
@@ -418,6 +426,7 @@
             }
         }
 
+<<<<<<< HEAD
 
         let PCapp = new Vue({
             el: "#ProductCreate",
@@ -425,8 +434,17 @@
             {
                 selectedItem: ""
             }
+=======
+        //let PCapp = new Vue({
+        //    el: "#ProductCreate",
 
-        })
+        //    data:
+        //    {
+        //        selectedItem: ""
+        //    }
+>>>>>>> [修正]商品新增檢視頁面的按鍵綁定完成(但新增完導回的頁面仍要調整)
+
+        //})
 
     </script>
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController

@@ -194,15 +194,37 @@ namespace WuliKaWu.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
+<<<<<<< HEAD
 
+=======
+>>>>>>> [修正]商品新增檢視頁面的按鍵綁定完成(但新增完導回的頁面仍要調整)
         {
-            if (ModelState.IsValid)
+            Product prd = new Product
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Color = product.Color,
+                Size = product.Size,
+                Category = product.Category,
+                PicturePath = product.PicturePath,
+                Price = product.Price,
+                Discount = product.Discount,
+                SellingPrice = product.SellingPrice,
+                Tag = product.Tag
+            };
+
+            _context.Products.Add(prd);
+            await _context.SaveChangesAsync();
+
             return View(product);
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(product);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(product);
         }
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 
