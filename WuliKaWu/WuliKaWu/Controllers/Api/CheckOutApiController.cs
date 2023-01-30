@@ -56,6 +56,7 @@ namespace WuliKaWu.Controllers.Api
             return _db.Carts.Select(x => new CheckOutModel
 >>>>>>> [修改]CheckOutApiController的GetAll() ,原Model為OrderDetails更改為Cart
             {
+                CheckOutId = 2,
                 PicturePath = "~/assets/images/cart/cart-2.jpg",
                 ProductName = x.ProductName,
                 Color = x.Color,
