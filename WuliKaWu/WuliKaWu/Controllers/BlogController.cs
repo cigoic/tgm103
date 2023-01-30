@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
 using WuliKaWu.Models;
@@ -21,22 +20,25 @@ namespace WuliKaWu.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var articles = await _context.Articles.ToListAsync();
+            return View();
 
-            var vm = new List<ArticleModel>();
+            // 當使用前端呼叫請求資料時,註解下面的程式片段
+            //var articles = await _context.Articles.ToListAsync();
 
-            foreach (var article in articles)
-            {
-                vm.Add(new ArticleModel
-                {
-                    MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article.MemberId).FirstOrDefault()!.Name,
-                    FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.FileName,
-                    Title = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Title,
-                    Content = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Content
-                });
-            }
+            //var vm = new List<ArticleModel>();
 
-            return View(vm.AsEnumerable());
+            //foreach (var article in articles)
+            //{
+            //    vm.Add(new ArticleModel
+            //    {
+            //        MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article.MemberId).FirstOrDefault()!.Name,
+            //        FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.FileName,
+            //        Title = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Title,
+            //        Content = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article.ArticleId).FirstOrDefault()!.Content
+            //    });
+            //}
+
+            //return View(vm.AsEnumerable());
         }
         public IActionResult Sidebar()
         {
