@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ArticleModel>
+﻿@*@model IEnumerable<ArticleModel>*@
 @{
     ViewBag.Title = "Our Blog";
 }
@@ -23,39 +23,65 @@
         <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
     </div>
 </div>
+
+
 <div class="blog-area pt-100 pb-100">
     <div class="container">
         <div class="row">
-            @foreach(var item in @Model)
-            {
-                <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Blog" asp-action="Details"><img src="@item.FileName" alt=""></a>
+            @*=========== Vue.js 寫法 ==========================================================(開始)*@
+            <template>
+                <div class="col-lg-4 col-md-6" v-for="article in articles" :key="article.id">
+                    <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-img-date-wrap mb-25">
+                            <div class="blog-img">
+                                <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-details.png" alt=""></a>
+                            </div>
+                            <div class="blog-date">
+                                <h5>05 <span>May</span></h5>
+                            </div>
                         </div>
-                        <div class="blog-date">
-                            <h5>05 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#">@item.MemberName</a></li>
-                            </ul>
-                        </div>
-
-                        <h3><a asp-controller="Blog" asp-action="Details">@item.Title</a></h3>
-
-                        <p>@item.Content</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
+                        <div class="blog-content">
+                            <h1>{{ article.title }}</h1>
+                            <p>{{ article.content }}</p>
+                            <p>{{ article.createdAt }}</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </template>
+            @*=========== Vue.js 寫法 ==========================================================(結束)*@
+
+            @*=========== Razor 寫法 ==========================================================(開始)
+            @foreach(var item in @Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-img-date-wrap mb-25">
+                            <div class="blog-img">
+                                <a asp-controller="Blog" asp-action="Details"><img src="@item.FileName" alt=""></a>
+                            </div>
+                            <div class="blog-date">
+                                <h5>05 <span>May</span></h5>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <ul>
+                                    <li><a href="#">Furniture</a>,</li>
+                                    <li>By:<a href="#">@item.MemberName</a></li>
+                                </ul>
+                            </div>
+
+                            <h3><a asp-controller="Blog" asp-action="Details">@item.Title</a></h3>
+
+                            <p>@item.Content</p>
+                            <div class="blog-btn-2 btn-hover">
+                                <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
+            @*=========== Razor 寫法 ==========================================================(結束)*@
         </div>
 
         @*TODO:  分頁*@
@@ -84,6 +110,7 @@
 @section Scripts{
 
     <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js" integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     <script>
         Vue.component('paginate', VuejsPaginate);
 
@@ -91,7 +118,26 @@
             //el:'#blogApp',
             name: "blogApp",
             data:{
-                articles: null,
+                articles: [
+                    {
+                        id: 1,
+                        title: '文章 1',
+                        content: '接到民國手指全球最後，承諾汽車，手段經濟發展意外有所原來模型的人未經接着，我有玩家積極負責一遍開放男子利潤，治理免費都是詢問尤其一週社會主義模擬學科一場趕緊圖書的話，臺灣消失比例上一頁驚人至今新臺幣刪除等方面一路適當產權頻率，複雜那就那個還沒有，由於突出。',
+                        createdAt: '2022-01-01'
+                    },
+                    {
+                        id: 2,
+                        title: '文章 2',
+                        content: '身邊本書本書職工用戶名，鈴聲付出領域心理都說施工運動競爭鈴聲下載，地面從來沒以前學者英雄動畫員工校長文學你們的承受吸收模型用戶名，領先隊員一遍打開推薦使用私人想起有一種傳來擁有，緊緊你可以婚姻超級下載次數飯店，正在夫妻，點頭材料主角需求英文，宅宅許可，近。',
+                        createdAt: '2022-01-02'
+                    },
+                    {
+                        id: 3,
+                        title: '文章 3',
+                        content: '碩士試驗說過高達一家我不只好貢獻前來人大指出，以外所謂返回不良情感，帶來有點遠無門朋友提升交換，金幣前面見過拍攝紅色採取主演物業不用這次高校眼中，體會許可別人如下加速怎麼會，信用姑娘群發，競爭力程式老師博士，你還演唱生意，詳細內容日誌下去，您現在難道，供。',
+                        createdAt: '2022-01-03'
+                    }
+                ],
                 currentPage: 1,
             },
             mounted: function () {
@@ -102,6 +148,10 @@
                         console.log(result);
                         self.articles = result;
                     })
+                //axios
+                //    .get('/api/Blog/GetArticles')
+                //    .then(response => (self.articles = response.data))
+                //    .catch(error => console.log(error))
             },
             methods: {
                 clickCallback: function (page) {
