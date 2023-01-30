@@ -62,15 +62,34 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Color,Size,Image,Price,Comment,StarRate,Category,Tag")] Product product)
+        public async Task<IActionResult> Create(Product product)
         {
-            if (ModelState.IsValid)
+            Product prd = new Product
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                ProductId = product.ProductId,
+                ProductName = product.ProductName,
+                Color = product.Color,
+                Size = product.Size,
+                Category = product.Category,
+                PicturePath = product.PicturePath,
+                Price = product.Price,
+                Discount = product.Discount,
+                SellingPrice = product.SellingPrice,
+                Tag = product.Tag
+            };
+
+            _context.Products.Add(prd);
+            await _context.SaveChangesAsync();
+
             return View(product);
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(product);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(product);
         }
 
         // GET: Products/Edit/5
