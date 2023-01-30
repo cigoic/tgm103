@@ -156,7 +156,9 @@ namespace WuliKaWu.Data
                 Price = 3000,
                 SellingPrice = 2700,
                 Discount = -1000,
-                PicturePath = "pic2"
+                PicturePath = "pic2",
+                ProductId = 1,
+                MemberId = 1
             });
 
             // 會員
