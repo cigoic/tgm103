@@ -6,9 +6,13 @@ namespace WuliKaWu.Models.ApiModel
     public class CheckOutModel
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int CheckOutId { get; set; }
 =======
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+        public int CheckOutId { get; set; }
+>>>>>>> [新增] Add-migration checkoutmodel的checkoutid
         public string ShippingAddress { get; set; }
         public string Recipient { get; set; }
         public string ContactPhone { get; set; }

@@ -63,54 +63,54 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7755),
+                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1893),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7755),
+                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1893),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7809),
+                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1989),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7809),
+                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1990),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7846),
+                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2028),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7846),
+                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2028),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7882),
+                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2068),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7882),
+                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2068),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7948),
+                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2103),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7948),
+                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2104),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7988),
+                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2143),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7988),
+                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2144),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -1531,7 +1531,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7682),
+                            Birthday = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1809),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1548,7 +1548,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7702),
+                            Birthday = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1833),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1565,7 +1565,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 1, 30, 13, 54, 51, 913, DateTimeKind.Local).AddTicks(7710),
+                            Birthday = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1843),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -2076,10 +2076,10 @@ namespace WuliKaWu.Migrations
                         {
                             WishListId = 1,
                             Discount = -1000m,
-                            MemberId = 1,
+                            MemberId = 2,
                             PicturePath = "pic2",
                             Price = 3000m,
-                            ProductId = 1,
+                            ProductId = 2,
                             ProductName = "牛仔外套",
                             SellingPrice = 2700m
                         });
