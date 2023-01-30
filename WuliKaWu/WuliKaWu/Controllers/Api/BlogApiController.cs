@@ -9,7 +9,7 @@ namespace WuliKaWu.Controllers.Api
     /// <summary>
     /// 部落格 API 控制器
     /// </summary>
-    [Route("api/Blog/[action]")]
+    [Route("api/Blog/[action]/{ArticleId?}")]
     [ApiController]
     public class BlogApiController : ControllerBase
     {
@@ -36,12 +36,21 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="ArticleId">文章 ID</param>
         /// <returns>Results.OK(Article model)</returns>
         /// <returns>Results.NotFound</returns>
+        [ActionName("GetArticleById")]
         public async Task<IResult> GetArticleByIdAsync(int ArticleId)
         {
             return await _context.Articles.FindAsync(ArticleId)
                 is Article model
                     ? Results.Ok(model)
                     : Results.NotFound();
+        }
+
+        [Route("api/Blog/NextArticle")]
+        [HttpGet]
+        public IActionResult GetNextArticleId(int CurrentArticleId)
+        {
+            var NextArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(1).FirstOrDefault().ArticleId;
+            return Ok(new { NextArticleId });
         }
 
         // GET  api/Blog/GetArticleDetails/{ArticleId}
