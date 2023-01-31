@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
 
@@ -32,6 +33,9 @@ namespace WuliKaWu.Controllers
         {
             return View();
         }
+
+        public IActionResult Match()
+        { return View(); }
 
         // GET: Products/Details/5
         public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
