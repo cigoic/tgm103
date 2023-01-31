@@ -53,14 +53,31 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        public async Task<IActionResult> Create(Cart cart)
         {
-            if (ModelState.IsValid)
+            Cart crt = new Cart
             {
-                _context.Add(cart);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+                CartId = cart.CartId,
+                Color = cart.Color,
+                Coupon = cart.Coupon,
+                Discount = cart.Discount,
+                PicturePath = cart.PicturePath,
+                Price = cart.Price,
+                ProductName = cart.ProductName,
+                Quantity = cart.Quantity,
+                SellingPrice = cart.SellingPrice,
+                Size = cart.Size
+
+                //if (ModelState.IsValid)
+                //{
+                //    _context.Add(cart);
+                //    await _context.SaveChangesAsync();
+                //    return RedirectToAction(nameof(Index));
+                //}
+            };
+
+            _context.Carts.Add(crt);
+            await _context.SaveChangesAsync();
             return View(cart);
         }
 
