@@ -68,17 +68,25 @@ namespace WuliKaWu.Controllers
             if (article == null)
                 return NotFound();
 
+            int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
+            int nextId = GetNextArticleId(ArticleId);
+
             var model = new ArticleModel()
             {
                 ArticleId = ArticleId,
                 MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
                 FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName,
-                Title = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.Title,
-                Content = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.Content,
+                Title = article.Title,
+                Content = article.Content,
                 TitleImageFileName = $"~/{_context.ArticleTitleImages.AsEnumerable().Where(t => t.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName}",
                 ContentImageFileNames = new List<string>(),
-                PrevArticleId = GetPrevArticleId(ArticleId),
-                NextArticleId = GetNextArticleId(ArticleId),
+                PrevArticleId = prevId,
+                NextArticleId = nextId,
+                CreateAt = article.CreatedDate,
+                PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.ArticleId == prevId).CreatedDate,
+                NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.ArticleId == nextId).CreatedDate,
+                PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.ArticleId == prevId).Title,
+                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.ArticleId == nextId).Title,
             };
 
             var images = _context.ArticleContentImages.Where(c => c.ArticleId == article!.ArticleId).ToList();
