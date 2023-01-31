@@ -19,6 +19,8 @@
 
         public DateTime CreateAt { get; set; }
 
+        public DateTime CreateAt { get; set; }
+
         public string TitleImageFileName { get; set; }
         public List<string> ContentImageFileNames { get; set; }
         public int PrevArticleId { get; set; }
@@ -27,6 +29,7 @@
         public string NextArticleTitle { get; set; }
         public DateTime PrevArticleCreateAt { get; set; }
         public DateTime NextArticleCreateAt { get; set; }
+<<<<<<< HEAD
 =======
 
         public string TitleImageFileName { get; set; }
@@ -42,6 +45,8 @@
 =======
         public int PrevArticleId { get; set; }
         public int NextArticleId { get; set; }
+=======
+>>>>>>> [更新] 修正部落格首頁日期顯示與分頁
     }
 }
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
