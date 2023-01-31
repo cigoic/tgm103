@@ -53,6 +53,7 @@ namespace WuliKaWu.Controllers.Api
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,
+<<<<<<< HEAD
                 Discount = true,
                 SellingPrice = x.SellingPrice.ToString() ?? "",
 
@@ -60,6 +61,10 @@ namespace WuliKaWu.Controllers.Api
 
                 //TODO ¬°¤°»ò­nÂà«¬
                 Tag = (Data.Enums.Common.Tag)x.Tag
+=======
+                Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
+                SellingPrice = x.SellingPrice.ToString() ?? ""
+>>>>>>> [ä¿®æ­£]ProductApiControllerçš„Discountå¯«æ­»çš„æ”¹æŽ‰
             }).ToList();
         }
 
