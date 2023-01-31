@@ -46,20 +46,46 @@ namespace WuliKaWu.Controllers.Api
                     : Results.NotFound();
         }
 
+        /// <summary>
+        /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
         [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         [HttpGet]
-        public IActionResult GetPrevArticleId(int CurrentArticleId)
+        public IResult GetPrevArticleId(int CurrentArticleId)
         {
-            var PrevArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(-1).FirstOrDefault().ArticleId;
-            return Ok(new { PrevArticleId });
+            var PrevArticle = _context.Articles
+                           .OrderBy(a => a.CreatedDate)
+                           .Where(a => a.ArticleId < CurrentArticleId)
+                           .LastOrDefault();
+
+            if (PrevArticle == null)
+                return Results.Ok(new { CurrentArticleId });
+
+            var PrevArticleId = PrevArticle.ArticleId;
+            return Results.Ok(new { PrevArticleId });
         }
 
+        /// <summary>
+        /// 找尋下一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
         [Route("api/Blog/NextArticle/{CurrentArticleId}")]
         [HttpGet]
-        public IActionResult GetNextArticleId(int CurrentArticleId)
+        public IResult GetNextArticleId(int CurrentArticleId)
         {
-            var NextArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(1).FirstOrDefault().ArticleId;
-            return Ok(new { NextArticleId });
+            var NextArticle = _context.Articles
+                            .OrderBy(a => a.CreatedDate)
+                            .Where(a => a.ArticleId > CurrentArticleId)
+                            .FirstOrDefault();
+
+            if (NextArticle == null)
+                return Results.Ok(new { CurrentArticleId });
+
+            var NextArticleId = NextArticle.ArticleId;
+            return Results.Ok(new { NextArticleId });
         }
 
         // GET  api/Blog/GetArticleDetails/{ArticleId}
