@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,9 +10,18 @@ using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 =======
 ﻿using Microsoft.AspNetCore.Http;
+=======
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+>>>>>>> [新增]AddWishList Action
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WuliKaWu.Data;
+<<<<<<< HEAD
 >>>>>>> 新增WishListTable及Api
+=======
+using WuliKaWu.Extensions;
+>>>>>>> [新增]AddWishList Action
 using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
@@ -170,6 +180,25 @@ namespace WuliKaWu.Controllers.Api
                 MemberId = x.MemberId
             }).ToList();
 >>>>>>> 新增WishListTable及Api
+        }
+
+        [Authorize]
+        public bool AddWishList(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var wishItem = _db.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var product = _db.Products.FirstOrDefault(x => x.ProductId == productId);
+            if (wishItem == null)
+            {
+                _db.WishList.Add(new WishList
+                {
+                    ProductId = productId,
+                    MemberId = myId,
+                });
+                _db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

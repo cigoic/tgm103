@@ -473,16 +473,17 @@ namespace WuliKaWu.Controllers
                     new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
                     // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
                     new Claim(ClaimTypes.Role, ConvertRoleTypeToString(member.MemberShip)),    // 資料庫裡的角色
-                    //new Claim(ClaimTypes.Role, "User"),
-                    //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
-                    //new Claim(ClaimTypes.GivenName, member.FirstName),
-                    //new Claim(ClaimTypes.Surname, member.LastName),
-                    //new Claim(ClaimTypes.Email, member.Email),
-                    //new Claim(ClaimTypes.Gender, member.Gender), // TODO    to string
-                    //new Claim(ClaimTypes.DateOfBirth, member.Birthday), // TODO    to string
-                    //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
-                    //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
-                };
+                    new Claim("Id",member.MemberId.ToString())
+                //new Claim(ClaimTypes.Role, "User"),
+                //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
+                //new Claim(ClaimTypes.GivenName, member.FirstName),
+                //new Claim(ClaimTypes.Surname, member.LastName),
+                //new Claim(ClaimTypes.Email, member.Email),
+                //new Claim(ClaimTypes.Gender, member.Gender), // TODO    to string
+                //new Claim(ClaimTypes.DateOfBirth, member.Birthday), // TODO    to string
+                //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
+                //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
+            };
 
                 // TODO
                 //foreach (var role in rolesOfmember)
@@ -507,6 +508,7 @@ namespace WuliKaWu.Controllers
             }
 
             TempData["error"] = "帳號密碼不對！";
+
             return RedirectToAction("Login");
         }
 
