@@ -27,7 +27,7 @@ namespace WuliKaWu.Controllers.Api
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size,
-                Discount = true,
+                Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
                 SellingPrice = x.SellingPrice.ToString() ?? ""
             }).ToList();
         }
