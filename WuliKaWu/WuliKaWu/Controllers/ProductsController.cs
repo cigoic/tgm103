@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
@@ -23,6 +24,9 @@ using Microsoft.EntityFrameworkCore;
 =======
 using System;
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+
+>>>>>>> [更新] 整合衣服搭配樣版頁面至 Product > Match
 using WuliKaWu.Data;
 <<<<<<< HEAD
 >>>>>>> [更新] 資料庫資料表
@@ -118,6 +122,9 @@ namespace WuliKaWu.Controllers
                 return "不支援該格式的檔案上傳";
             }
         }
+
+        public IActionResult Match()
+        { return View(); }
 
         // GET: Products/Details/5
 <<<<<<< HEAD

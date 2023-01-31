@@ -61,6 +61,7 @@
     *@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
             asp-fallback-src="~/js/vue.min.js"></script>
+<<<<<<< HEAD
 =======
 =======
     @*<link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />*@
@@ -90,6 +91,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
             asp-fallback-src="~/js/vue.min.js"></script>
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
+=======
+    @await RenderSectionAsync("Styles", required: false)
+>>>>>>> [更新] 整合衣服搭配樣版頁面至 Product > Match
 </head>
 
 <body>
@@ -223,6 +227,7 @@
                                                         <li><a asp-controller="Products" asp-action="Create">product create</a></li>
                                                         <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                                        <li><a asp-controller="Products" asp-action="Match">Clothes Matching</a></li>
                                                         @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
@@ -624,6 +629,7 @@
                                     <li><a asp-controller="Products" asp-action="Create">product create</a></li>
                                     <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
+                                    <li><a asp-controller="Products" asp-action="Match">clothes catching</a></li>
                                     @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
