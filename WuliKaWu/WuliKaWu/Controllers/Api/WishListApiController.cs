@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
@@ -29,6 +32,25 @@ namespace WuliKaWu.Controllers.Api
                 ProductId = x.ProductId,
                 MemberId = x.MemberId
             }).ToList();
+        }
+
+        [Authorize]
+        public bool AddWishList(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var wishItem = _db.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var product = _db.Products.FirstOrDefault(x => x.ProductId == productId);
+            if (wishItem == null)
+            {
+                _db.WishList.Add(new WishList
+                {
+                    ProductId = productId,
+                    MemberId = myId,
+                });
+                _db.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
