@@ -6,6 +6,9 @@ using WuliKaWu.Models;
 
 namespace WuliKaWu.Controllers
 {
+    /// <summary>
+    /// 部落格文章控制器
+    /// </summary>
     public class BlogController : Controller
     {
         private readonly ShopContext _context;
@@ -18,7 +21,11 @@ namespace WuliKaWu.Controllers
             _env = environment;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        /// <summary>
+        /// 部落格首頁
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Index()
         {
             return View();
 
@@ -40,11 +47,19 @@ namespace WuliKaWu.Controllers
 
             //return View(vm.AsEnumerable());
         }
+
         public IActionResult Sidebar()
         {
             return View();
         }
-        public IActionResult Details(int ArticleId = 1) // TODO
+
+        /// <summary>
+        /// 文章內容
+        /// </summary>
+        /// <param name="ArticleId"></param>
+        /// <returns></returns>
+        [Route("/Blog/Details/{ArticleId}")]
+        public IActionResult Details(int ArticleId)
         {
             if (ArticleId <= 0)
                 return NotFound();
@@ -55,12 +70,15 @@ namespace WuliKaWu.Controllers
 
             var model = new ArticleModel()
             {
+                ArticleId = ArticleId,
                 MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
                 FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName,
                 Title = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.Title,
                 Content = _context.Articles.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.Content,
                 TitleImageFileName = $"~/{_context.ArticleTitleImages.AsEnumerable().Where(t => t.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName}",
-                ContentImageFileNames = new List<string>()
+                ContentImageFileNames = new List<string>(),
+                PrevArticleId = GetPrevArticleId(ArticleId),
+                NextArticleId = GetNextArticleId(ArticleId),
             };
 
             var images = _context.ArticleContentImages.Where(c => c.ArticleId == article!.ArticleId).ToList();
@@ -100,6 +118,42 @@ namespace WuliKaWu.Controllers
             await _context.SaveChangesAsync();
 
             return View();
+        }
+
+        /// <summary>
+        /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
+        private int GetPrevArticleId(int CurrentArticleId)
+        {
+            var PrevArticle = _context.Articles
+               .OrderBy(a => a.CreatedDate)
+               .Where(a => a.ArticleId < CurrentArticleId)
+               .LastOrDefault();
+
+            if (PrevArticle == null)
+                return CurrentArticleId;
+
+            return PrevArticle.ArticleId;
+        }
+
+        /// <summary>
+        /// 找尋下一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
+        private int GetNextArticleId(int CurrentArticleId)
+        {
+            var NextArticle = _context.Articles
+                .OrderBy(a => a.CreatedDate)
+                .Where(a => a.ArticleId > CurrentArticleId)
+                .FirstOrDefault();
+
+            if (NextArticle == null)
+                return CurrentArticleId;
+
+            return NextArticle.ArticleId;
         }
     }
 }
