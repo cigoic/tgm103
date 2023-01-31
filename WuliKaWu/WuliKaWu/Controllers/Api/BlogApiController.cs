@@ -71,11 +71,15 @@ namespace WuliKaWu.Controllers.Api
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 修正 Blog API Controller 中，（找尋上下文章 ID）Methods 中的 Lambda/LINQ 查詢語句
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         [HttpGet]
         public IResult GetPrevArticleId(int CurrentArticleId)
@@ -118,21 +122,44 @@ namespace WuliKaWu.Controllers.Api
 =======
         [Route("api/Blog/NextArticle")]
 =======
+=======
+>>>>>>> [更新] 修正 Blog API Controller 中，（找尋上下文章 ID）Methods 中的 Lambda/LINQ 查詢語句
         [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         [HttpGet]
-        public IActionResult GetPrevArticleId(int CurrentArticleId)
+        public IResult GetPrevArticleId(int CurrentArticleId)
         {
-            var PrevArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(-1).FirstOrDefault().ArticleId;
-            return Ok(new { PrevArticleId });
+            var PrevArticle = _context.Articles
+                           .OrderBy(a => a.CreatedDate)
+                           .Where(a => a.ArticleId < CurrentArticleId)
+                           .LastOrDefault();
+
+            if (PrevArticle == null)
+                return Results.Ok(new { CurrentArticleId });
+
+            var PrevArticleId = PrevArticle.ArticleId;
+            return Results.Ok(new { PrevArticleId });
         }
 
+        /// <summary>
+        /// 找尋下一篇文章 ID, 如果找無, 回傳目前文章 ID
+        /// </summary>
+        /// <param name="CurrentArticleId"></param>
+        /// <returns></returns>
         [Route("api/Blog/NextArticle/{CurrentArticleId}")]
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         [HttpGet]
-        public IActionResult GetNextArticleId(int CurrentArticleId)
+        public IResult GetNextArticleId(int CurrentArticleId)
         {
-            var NextArticleId = _context.Articles.Where(a => a.ArticleId == CurrentArticleId).Skip(1).FirstOrDefault().ArticleId;
-            return Ok(new { NextArticleId });
+            var NextArticle = _context.Articles
+                            .OrderBy(a => a.CreatedDate)
+                            .Where(a => a.ArticleId > CurrentArticleId)
+                            .FirstOrDefault();
+
+            if (NextArticle == null)
+                return Results.Ok(new { CurrentArticleId });
+
+            var NextArticleId = NextArticle.ArticleId;
+            return Results.Ok(new { NextArticleId });
         }
 
 >>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
