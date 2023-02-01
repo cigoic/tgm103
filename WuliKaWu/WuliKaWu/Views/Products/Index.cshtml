@@ -216,8 +216,8 @@
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-12" v-for="product in filterProducts">
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
-                                                <a asp-controller="Products" asp-action="ProductDetails">
-                                                    <img src="~/assets/images/product/product-5.png" alt="">
+                                                <a :href="getProductdetailsLink(product.productId)">
+                                                    <img :src="getPicPath(product.picturePath)" alt="product picture">
                                                 </a>
 <<<<<<< HEAD
                                             </h3>
@@ -917,12 +917,22 @@
                 min: 0,
                 max: 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
                 selectedItem: "2"
 >>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
 =======
                 selectedItem: "2",
                 queryWishlistBaseURL: null,
 >>>>>>> [新增]method : addtowishlist(已完成)、addtocart(尚未完成)
+=======
+                selectedItem: "2",
+                productdetailsLink: "/Products/Productdetails/",
+                getPic: 
+                {
+                    type: "string",
+                    default: "product-5.png"
+                },
+>>>>>>> [新增]商品首頁檢視頁面的getProductdetailLink及getPicPath的method(但getPicPath目前還不能連動)
             },
             computed: {
                 filterProducts: function () {
@@ -947,6 +957,19 @@
                 clickCallback: function (page) {
                     this.currentPage = page;
                     console.log(page)
+                },
+
+                getProductdetailsLink: function(productId)
+                {
+                    return this.productdetailsLink + productId
+                },
+
+                getPicPath: function(picPath)
+                {
+                    console.log(picPath)    // receive pic filename
+                    this.getPic.default = "images/picPath/"+ picPath
+
+                    //return this.getPic.default //require(`@@/images/${picPath}`)
                 }
 <<<<<<< HEAD
                 return this.products;
