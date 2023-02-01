@@ -38,7 +38,7 @@ namespace WuliKaWu.Controllers
         { return View(); }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
+        public async Task<IActionResult> ProductDetails(int id = 2) 
         {
             if (id == null || _context.Products == null)
             {

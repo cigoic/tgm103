@@ -50,8 +50,8 @@
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-12" v-for="product in filterProducts">
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
-                                                <a asp-controller="Products" asp-action="ProductDetails">
-                                                    <img src="~/assets/images/product/product-5.png" alt="">
+                                                <a :href="getProductdetailsLink(product.productId)">
+                                                    <img :src="getPicPath(product.picturePath)" alt="product picture">
                                                 </a>
                                                 <div v-if="product.discount" class="product-badge badge-top badge-right badge-pink">
                                                     <span>-10%</span>
@@ -264,7 +264,13 @@
                 countPerPage: 5,
                 min: 0,
                 max: 0,
-                selectedItem: "2"
+                selectedItem: "2",
+                productdetailsLink: "/Products/Productdetails/",
+                getPic: 
+                {
+                    type: "string",
+                    default: "product-5.png"
+                },
             },
             computed: {
                 filterProducts: function () {
@@ -288,6 +294,19 @@
                 clickCallback: function (page) {
                     this.currentPage = page;
                     console.log(page)
+                },
+
+                getProductdetailsLink: function(productId)
+                {
+                    return this.productdetailsLink + productId
+                },
+
+                getPicPath: function(picPath)
+                {
+                    console.log(picPath)    // receive pic filename
+                    this.getPic.default = "images/picPath/"+ picPath
+
+                    //return this.getPic.default //require(`@@/images/${picPath}`)
                 }
             },
             mounted: function () {
