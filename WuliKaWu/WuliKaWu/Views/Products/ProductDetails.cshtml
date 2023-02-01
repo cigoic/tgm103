@@ -533,6 +533,7 @@
     <script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         let app = new Vue({
 
@@ -588,24 +589,31 @@
 >>>>>>> [修正]商品編輯檢視頁面的圖片路徑(含ProductController的修正)及商品明細檢視頁面Vue的小括弧位置更正
 =======
         //let app = new Vue({
+=======
+        let app = new Vue({
+>>>>>>> [更新]商品明細頁面加入Vue
 
-        //    el:"#ProductDetails",
-        //    data:
-        //    {
-        //        products:[]
-        //    },
+            el:"#ProductDetails",
+            data:
+            {
+                products:[]
+            },
 
-        //    mounted: function(){
-        //        var self = this;
-        //        fetch('/api/product/getall')
-        //        .then(function(response){return response.json()})
-        //        .then(function(result){
-        //            console.log(result);
-        //            self.products = result;
-        //        })            
-        //    }
+            mounted: function(){
+                var self = this;
+                fetch('/api/product/getbyid')
+                .then(function(response){return response.json()})
+                .then(function(result){
+                    console.log(result);
+                    self.products = result;
+                })            
+            }
 
+<<<<<<< HEAD
         //});
 >>>>>>> [更新]商品明細檢視頁面套版重新調整
+=======
+        });
+>>>>>>> [更新]商品明細頁面加入Vue
     </script>
 }
