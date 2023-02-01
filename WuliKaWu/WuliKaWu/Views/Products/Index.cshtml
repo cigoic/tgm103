@@ -358,7 +358,8 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h3><a asp-controller="Home" asp-action="ProductDetails">{{product.productName}}</a></h3>
+                                                @*<h3><a asp-controller="Home" asp-action="ProductDetails">{{product.productName}}</a></h3>*@
+                                                <h3><a :href="getProductdetailsLink(product.productId)">{{product.productName}}</a></h3>
                                                 <div class="product-price">
                                                     <span :class="{'old-price':product.discount}">${{product.price}}</span>
                                                     <span class="new-price" v-if="product.discount">${{product.sellingPrice}} </span>
@@ -967,7 +968,7 @@
                 getPicPath: function(picPath)
                 {
                     console.log(picPath)    // receive pic filename
-                    this.getPic.default = "images/picPath/"+ picPath
+                    this.getPic.default = "images/"+ picPath
 
                     //return this.getPic.default //require(`@@/images/${picPath}`)
                 }
