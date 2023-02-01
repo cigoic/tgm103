@@ -200,11 +200,15 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public async Task<IActionResult> Create(Product product)
 <<<<<<< HEAD
 
 =======
 >>>>>>> [修正]商品新增檢視頁面的按鍵綁定完成(但新增完導回的頁面仍要調整)
+=======
+        public async Task<IActionResult> Create(ProductModel product)
+>>>>>>> [修正]ProductController中的Create的參數型態
         {
             Product prd = new Product
             {
@@ -215,8 +219,8 @@ namespace WuliKaWu.Controllers
                 Category = product.Category,
                 PicturePath = product.PicturePath,
                 Price = product.Price,
-                Discount = product.Discount,
-                SellingPrice = product.SellingPrice,
+                Discount = Convert.ToDecimal(product.Discount),
+                SellingPrice = Convert.ToDecimal(product.SellingPrice),
                 Tag = product.Tag
             };
 
