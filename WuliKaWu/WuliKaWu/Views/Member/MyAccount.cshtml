@@ -5,14 +5,14 @@
 {
     <h1 class="text-bg-info">登入成功!!!!!</h1>
 }
-<div class="container" id="myAccountApp"/>
+<div class="container" id="myAccountApp" />
 
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
             <h2>My Account </h2>
             <ul>
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a href="/Home/Index">Home</a></li>
                 <li><i class="ti-angle-right"></i></li>
                 <li>My Account </li>
             </ul>
@@ -42,7 +42,7 @@
                                 <a href="#payment-method" data-bs-toggle="tab">Payment Method</a>
                                 <a href="#address-edit" data-bs-toggle="tab">Address</a>
                                 <a href="#account-info" data-bs-toggle="tab">Account Details</a>
-                                <a asp-controller="Member" asp-action="Logout">Logout</a>
+                                <a href="Logout">Logout</a>
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -54,7 +54,7 @@
                                     <div class="myaccount-content">
                                         <h3>Dashboard</h3>
                                         <div class="welcome">
-                                            <p>Hello, <strong>TGM103</strong> (If Not <strong>TGM103 !</strong><a asp-controller="Member" asp-action="Logout" class="logout"> Logout</a>)</p>
+                                            <p>Hello, <strong>TGM103</strong> (If Not <strong>TGM103 !</strong><a href="Logout" class="logout"> Logout</a>)</p>
                                         </div>
 
                                         <p class="mb-0">From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
@@ -82,21 +82,21 @@
                                                         <td>Aug 22, 2022</td>
                                                         <td>Pending</td>
                                                         <td>$3000</td>
-                                                        <td><a asp-controller="Home" asp-action="Cart" class="check-btn sqr-btn ">View</a></td>
+                                                        <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
                                                         <td>July 22, 2022</td>
                                                         <td>Approved</td>
                                                         <td>$200</td>
-                                                        <td><a asp-controller="Home" asp-action="Cart" class="check-btn sqr-btn ">View</a></td>
+                                                        <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
                                                     </tr>
                                                     <tr>
                                                         <td>3</td>
                                                         <td>June 12, 2017</td>
                                                         <td>On Hold</td>
                                                         <td>$990</td>
-                                                        <td><a asp-controller="Home" asp-action="Cart" class="check-btn sqr-btn ">View</a></td>
+                                                        <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -166,8 +166,7 @@
                                     <div class="myaccount-content">
                                         <h3>Account Details</h3>
                                         <div class="account-details-form">
-                                            <form v-on:submit.prevent="handleSubmit" id="myAccountForm">
-                                            @*<form asp-controller="MyAccount" asp-action="AccountDetails">*@
+                                            <form v-on:submit.prevent="handleSubmit" id="myAccountForm" action="MyAccount" method="post">
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
@@ -183,10 +182,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="single-input-item">
-                                                    <label for="displayName" class="required">Display Name</label>
-                                                    <input type="text" id="displayName" name="DisplayName" v-model="displayName"/>
-                                                </div>
-                                                <div class="single-input-item">
                                                     <label for="email" class="required">Email Addres</label>
                                                     <input type="email" id="email" name="Email" v-model="email" />
                                                 </div>
@@ -194,7 +189,7 @@
                                                     <legend>Password change</legend>
                                                     <div class="single-input-item">
                                                         <label for="currentPwd" class="required">Current Password</label>
-                                                        <input type="password" id="currentPwd" name="CurrentPwd" v-model="currentPwd"/>
+                                                        <input type="password" id="currentPwd" name="CurrentPwd" v-model="currentPwd" />
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-6">
@@ -227,72 +222,70 @@
     </div>
 </div>
 <!-- my account wrapper end -->
-
 @section Scripts
-{
+    {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script>
 
-        const myAccountDetailUrl = @Url.Action("AccountDetails")    //"/MyAccount/AccountDetails"
-        let myAccountVue = new Vue({
-            //el:'#myAccountApp',
-            name: "myAccountApp",
-            data:{
-                firstName:"",
-                lastName:"",
-                displayName:"",
-                email:"",
-                currentPwd:"",
-                newPwd:"",
-                confirmPwd:"",
-            },
-            mounted:function(){
-                //console.log("hi~~Vue~~")
-            },
-            methods:{
-                @* TODO: Form Valiadation *@
+        const myAccountDetailUrl = @Url.Action("MyAccount")
+            let myAccountVue = new Vue({
+                //el:'#myAccountApp',
+                name: "myAccountApp",
+                data: {
+                    firstName: "",
+                    lastName: "",
+                    displayName: "",
+                    email: "",
+                    currentPwd: "",
+                    newPwd: "",
+                    confirmPwd: "",
+                },
+                mounted: function () {
+                    //console.log("hi~~Vue~~")
+                },
+                methods: {
+        @* TODO: Form Valiadation *@
                 handleSubmit(){
-                    //let request = {}
+                //let request = {}
 
-                    //request.FirstName = this.firstName,
-                    //request.LastName = this.lastName,
-                    //request.DisplayName = this.displayName,
-                    //request.Email = this.email,
-                    //request.CurrentPwd = this.currentPwd,
-                    //request.NewPwd = this.newPwd,
-                    //request.ConfirmPwd = this.confirmPwd
+                //request.FirstName = this.firstName,
+                //request.LastName = this.lastName,
+                //request.DisplayName = this.displayName,
+                //request.Email = this.email,
+                //request.CurrentPwd = this.currentPwd,
+                //request.NewPwd = this.newPwd,
+                //request.ConfirmPwd = this.confirmPwd
 
-                     $.post(myAccountDetailUrl, {
-                        FirstName: this.firstName,
-                        LastName: this.lastName,
-                        DisplayName: this.displayName,
-                        Email: this.email,
-                        CurrentPwd: this.currentPwd,
-                        NewPwd: this.newPwd,
-                        ConfirmPwd: this.confirmPwd
-                     }).then(response => {
-                        //console.log("Done!")
-                        //console.log("First Name:", this.firstName)
-                        //console.log("Last Name:", this.lastName)
-                        //console.log("Display Name:", this.displayName)
-                        //console.log("Email:", this.email)
-                        //console.log("Current Password:", this.currentPwd)
-                        //console.log("New Password:", this.newPwd)
-                        //console.log("Confirmed Password:", this.confirmPwd)
+                $.post(myAccountDetailUrl, {
+                    FirstName: this.firstName,
+                    LastName: this.lastName,
+                    DisplayName: this.displayName,
+                    Email: this.email,
+                    CurrentPwd: this.currentPwd,
+                    NewPwd: this.newPwd,
+                    ConfirmPwd: this.confirmPwd
+                }).then(response => {
+                    //console.log("Done!")
+                    //console.log("First Name:", this.firstName)
+                    //console.log("Last Name:", this.lastName)
+                    //console.log("Display Name:", this.displayName)
+                    //console.log("Email:", this.email)
+                    //console.log("Current Password:", this.currentPwd)
+                    //console.log("New Password:", this.newPwd)
+                    //console.log("Confirmed Password:", this.confirmPwd)
 
-                        @* Reset Form *@
+        @* Reset Form *@
                         document.getElementById('myAccountForm').reset()
-                    })
-                }
+                })
             }
-        });
-
-        @*$(document).ready(function () {*@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
         document.addEventListener("DOMContentLoaded", () => {
             myAccountVue.$mount('#myAccountApp')
         })
 
     </script>
 
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

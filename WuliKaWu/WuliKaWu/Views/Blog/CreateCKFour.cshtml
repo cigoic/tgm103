@@ -39,6 +39,7 @@
             <div class="form-group">
                 <label id="Content" name="Content" class="control-label" data-val="true" data-val-required="The Content field is required."></label>
                 <textarea ref="editor" id="Content" name="Content"></textarea>
+                @*<span asp-validation-for="Content" class="text-danger"></span>*@
             </div>
             <template>
                 <div class="form-group">
@@ -66,7 +67,7 @@
         //await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 
     <script>
         let blogCreateVue = new Vue({
@@ -84,14 +85,18 @@
                 editor: null,
             },
             mounted: function () {
-                ClassicEditor.create(this.$refs.editor, {
+                CKEDITOR.replace(this.$refs.editor, {
                     height: 300,
-                })
+                });
+                //.then((editor) => {
+                //    this.editor = editor;
+                //});
                 console.log("Hi~from Article Create")
             },
             watch: {
                 content(newValue) {
-                    ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
+                    CKEDITOR.instances[this.$refs.editor.name].setData(newValue);
+                    //this.editor.setData(newValue);
                 },
             },
             methods: {

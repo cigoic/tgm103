@@ -53,9 +53,24 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form action="Register" method="post">
-                                        <input type="text" name="Account" placeholder="Username">
-                                        <input type="password" name="Password" placeholder="Password">
-                                        <input name="user-email" placeholder="Email" type="email">
+                                        <label id="Account" name="Account">帳號</label>
+                                        <input type="text" name="Account" placeholder="Username" />
+
+                                        <label id="Password" name="Password">密碼</label>
+                                        <input type="password" name="Password" placeholder="Password" />
+
+                                        <label id="Name" name="Name">名字</label>
+                                        <input type="text" name="Name" />
+
+                                        <label id="Gender" name="Gender"></label>
+                                        <select>
+                                            <option value="">性別</option>
+                                            <option value="0">Femail</option>
+                                            <option value="1">Male</option>
+                                        </select>
+
+                                        <label id="Email" name="Email"></label>
+                                        <input name="Email" placeholder="E-mail" type="email" />
                                         <div class="button-box btn-hover">
                                             <button type="submit">Register</button>
                                         </div>
