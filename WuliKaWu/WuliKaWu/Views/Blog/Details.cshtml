@@ -55,10 +55,14 @@
                         </div>
                         <div class="blog-details-date">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <h5 v-if="articleDay(article.createdAt)">{{ aDay }} <span v-if="getMonthName(article.createdAt)">{{ aMonth }}</span></h5>
 =======
                             <h5>01 <span>May</span></h5>
 >>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
+=======
+                            <h5 v-if="articleDay(article.createdAt)">{{ aDay }} <span v-if="getMonthName(article.createdAt)">{{ aMonth }}</span></h5>
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
                         </div>
                     </div>
                     <div class="blog-meta-2" data-aos="fade-up" data-aos-delay="200">
@@ -181,6 +185,7 @@
                             <div class="blog-prev-post-icon">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
                             </div>
                             <div class="blog-prev-post-content">
@@ -197,11 +202,18 @@
                             <div class="blog-prev-post-content">
                                 <h3><a :href="articleLink(prevArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
+=======
+                                <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
+                            </div>
+                            <div class="blog-prev-post-content">
+                                <h3><a :href="articleLink(prevArticle.id)">{{ prevArticle.title }}</a></h3>
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
                             <div class="blog-next-post-icon">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
@@ -220,6 +232,12 @@
                             <div class="blog-next-post-content">
                                 <h3><a :href="articleLink(nextArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
+=======
+                                <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
+                            </div>
+                            <div class="blog-next-post-content">
+                                <h3><a :href="articleLink(nextArticle.id)">{{ nextArticle.title }}</a></h3>
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
@@ -419,17 +437,22 @@
 
 @section Scripts{
 
-    <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js" integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     <script>
+<<<<<<< HEAD
         Vue.component('paginate', VuejsPaginate);
 >>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
+=======
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
 
         let blogDetailsVue = new Vue({
             //el:'#blogDetailsApp',
             name: "blogDetailsApp",
             data: {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
                 article: {
                     id: null,
                     title: null,
@@ -447,6 +470,7 @@
                 },
                 articleBaseLink: "/api/Blog/GetArticleById/",
                 //articleBaseLink: "/Blog/Details/",
+<<<<<<< HEAD
                 articleId: null,
                 articleCreateAt: null,
                 currentPage: 1,
@@ -503,11 +527,16 @@
                 //articleBaseLink: "/api/Blog/GetArticleById/",
                 articleBaseLink: "/Blog/Details/",
                 prevArticleId: null,
+=======
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
                 articleId: null,
-                nextArticleId: null,
+                articleCreateAt: null,
                 currentPage: 1,
+                aDay: null,
+                aMonth: null,
             },
             mounted: function () {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 var self = this;
                 fetch('/api/Blog/GetArticlesById/@Model')
@@ -532,6 +561,33 @@
                 //this.prevArticleBaseLink = this.queryPrevArticleIdLink + this.articleId
                 //this.nextArticleBaseLink = this.queryNextArticleIdLink + this.articleId
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
+=======
+                fetch(this.articleBaseLink + @Model.ArticleId).then(response => {
+                    //handle the response and store the next article ID
+                    console.log(response)
+                });
+
+                //let self = this
+                this.article = {
+                    id: @Model.ArticleId,
+                    title: "@Model.Title",
+                    createdAt: "@Model.CreateAt",
+                };
+                this.prevArticle = {
+                    id: @Model.PrevArticleId,
+                    title: "@Model.PrevArticleTitle",
+                    createdAt: "@Model.PrevArticleCreateAt",
+                };
+                this.nextArticle = {
+                    id: @Model.NextArticleId,
+                    title: "@Model.NextArticleTitle",
+                    createdAt: "@Model.NextArticleCreateAt",
+                };
+
+                console.log(this.article)
+                console.log(this.prevArticle)
+                console.log(this.nextArticle)
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
             },
             methods: {
                 clickCallback: function (page) {
@@ -561,12 +617,17 @@
 =======
                 },
                 articleLink: function (id) {
-                    //this.nextArticleBaseLink = this.queryNextArticleIdLink + articleId
-                    //fetch(this.queryNextArticleIdLink + articleId).then(response => {
-                    // handle the response and store the next article ID
-                    //console.log("Article ID is ", response)
-                    //});
                     return this.articleBaseLink + id
+                },
+                articleDay(currentDate) {
+                    var date = new Date(currentDate);
+                    this.aDay = date.getDate()
+                    return this.aDay
+                },
+                getMonthName(currentDate) {
+                    const date = new Date(currentDate)
+                    this.aMonth = date.toLocaleString('default', { month: 'short' })
+                    return this.aMonth
                 },
             }
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯

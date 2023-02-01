@@ -110,9 +110,8 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <textarea ref="editor" id="Content" name="Content" data-val="true" data-val-required="The Content field is required."></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
+                <label id="Content" name="Content" class="control-label" data-val="true" data-val-required="The Content field is required."></label>
+                <textarea ref="editor" id="Content" name="Content"></textarea>
             </div>
             <template>
                 <div class="form-group">
@@ -161,12 +160,17 @@
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
 =======
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        // 可能無法驗證 CK Editor
+        //await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
+<<<<<<< HEAD
     @*<script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>*@
     <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 >>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
+=======
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
 
     <script>
         let blogCreateVue = new Vue({
@@ -208,6 +212,7 @@
                     { text: 'Our Blog', value: 3 },
                 ],
                 content: '',
+                editor: null,
             },
 <<<<<<< HEAD
             mounted: function (){
@@ -217,16 +222,20 @@
 =======
 =======
             mounted: function () {
-                CKEDITOR.replace(this.$refs.editor, {
+                ClassicEditor.create(this.$refs.editor, {
                     height: 300,
+<<<<<<< HEAD
                 });
 >>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
+=======
+                })
+>>>>>>> [更新] 會員登入功能, 調整註冊功能
                 console.log("Hi~from Article Create")
 >>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
             },
             watch: {
                 content(newValue) {
-                    CKEDITOR.instances[this.$refs.editor.name].setData(newValue);
+                    ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
                 },
             },
             methods: {
