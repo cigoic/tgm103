@@ -278,7 +278,7 @@
                                                 <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
                                                 <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
                                                 <li><a asp-controller="Member" asp-action="MyAccount">my account</a></li>
-                                                <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
+                                                <li><a asp-controller="WishList" asp-action="WishList">wishlist </a></li>
                                                 <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
                                                 <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
                                                 <li><a title="Login Register" asp-controller="Member" asp-action="Login"><i class="pe-7s-user"></i> login / register </a></li>
@@ -344,8 +344,12 @@
                                     </a>
                                 </div>                                
                                 <div class="header-action-style">
+<<<<<<< HEAD
 >>>>>>> [更新]Layout中的Match連結及Product的Match檢視頁面切版調整
                                     <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
+=======
+                                    <a title="Wishlist" asp-controller="WishList" asp-action="WishList"><i class="pe-7s-like"></i></a>
+>>>>>>> [修改]WishList的asp-controller為WishList
                                 </div>
 
                                 <div class="header-action-style">
@@ -463,7 +467,11 @@
                                         <li><a asp-controller="Member" asp-action="MyAccount">My Account</a></li>
 >>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
                                         <li><a href="#">Order History</a></li>
+<<<<<<< HEAD
                                         <li><a href="/WishList">Wish List</a></li>
+=======
+                                        <li><a asp-controller="WishList" asp-action="WishList">Wish List</a></li>
+>>>>>>> [修改]WishList的asp-controller為WishList
                                         <li><a href="#">Newsletter</a></li>
                                         <li><a href="#">Order History</a></li>
                                     </ul>
@@ -681,7 +689,7 @@
                                     <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
                                     <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
                                     <li><a asp-controller="Member" asp-action="MyAccount">My Account</a></li>
-                                    <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
+                                    <li><a asp-controller="WishList" asp-action="WishList">Wishlist </a></li>
                                     <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
                                     <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
                                     <li><a title="Login Register" asp-controller="Member" asp-action="Login">><i class="pe-7s-user"></i> Login / Register </a></li>
