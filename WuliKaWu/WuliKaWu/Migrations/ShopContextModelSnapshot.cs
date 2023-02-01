@@ -63,54 +63,54 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1893),
+                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6073),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1893),
+                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6074),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1989),
+                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6330),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1990),
+                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6331),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2028),
+                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6354),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2028),
+                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6354),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2068),
+                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6376),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2068),
+                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6376),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2103),
+                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6396),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2104),
+                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6397),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2143),
+                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6419),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(2144),
+                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6420),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -1478,6 +1478,7 @@ namespace WuliKaWu.Migrations
                         .HasColumnType("int");
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -1485,6 +1486,12 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.Property<string>("MobilePhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+>>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
 
                     b.Navigation("Member");
                 });
@@ -1497,8 +1504,15 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.Navigation("Member");
                 });
+=======
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+>>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
 
 <<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
@@ -1531,7 +1545,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1809),
+                            Birthday = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6010),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1548,7 +1562,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1833),
+                            Birthday = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6027),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1565,7 +1579,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 1, 30, 17, 35, 16, 222, DateTimeKind.Local).AddTicks(1843),
+                            Birthday = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6033),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,

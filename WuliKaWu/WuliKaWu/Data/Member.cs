@@ -187,7 +187,7 @@ namespace WuliKaWu.Data
 =======
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
         /// <summary>
-        /// 註冊會員性別（男/女）
+        /// 註冊會員性別（0:女/1:男）
         /// </summary>
         public bool Gender { get; set; }
 
@@ -216,11 +216,13 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 註冊會員（市內）聯絡電話
         /// </summary>
+        [MaxLength(20)]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// 註冊會員行動電話
         /// </summary>
+        [MaxLength(20)]
         public string MobilePhone { get; set; }
 
         /// <summary>
@@ -237,7 +239,6 @@ namespace WuliKaWu.Data
         /// 登入失敗次數
         /// </summary>
         public int AccessFailedCount { get; set; }
-
 
         /// <summary>
         /// 帳號角色

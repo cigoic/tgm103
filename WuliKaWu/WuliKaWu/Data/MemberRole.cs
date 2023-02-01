@@ -47,6 +47,7 @@ namespace WuliKaWu.Data
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int RoleId { get; set; }
 =======
         public int RoleID { get; set; }
@@ -55,6 +56,9 @@ namespace WuliKaWu.Data
         public int RoleID { get; set; }
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
 =======
+=======
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+>>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
         public int RoleId { get; set; }
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
