@@ -66,7 +66,7 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(ProductModel product)
         {
             Product prd = new Product
             {
@@ -77,8 +77,8 @@ namespace WuliKaWu.Controllers
                 Category = product.Category,
                 PicturePath = product.PicturePath,
                 Price = product.Price,
-                Discount = product.Discount,
-                SellingPrice = product.SellingPrice,
+                Discount = Convert.ToDecimal(product.Discount),
+                SellingPrice = Convert.ToDecimal(product.SellingPrice),
                 Tag = product.Tag
             };
 
