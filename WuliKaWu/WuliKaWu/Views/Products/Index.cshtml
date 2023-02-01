@@ -371,9 +371,9 @@
                                 </div>
                                 <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
                                     @*<ul>
-                                    <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
-                                    <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-                                    </ul>*@
+                                        <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+                                        <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+                                        </ul>*@
                                     <paginate :page-count="Math.ceil(products.length/countPerPage)"
                                               :page-range="10"
                                               :margin-pages="1"
@@ -431,9 +431,9 @@
                                 </div>
                                 <div class="pagination-style-1">
                                     @*<ul>
-                                    <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
-                                    <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-                                    </ul>*@
+                                        <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+                                        <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+                                        </ul>*@
                                     <paginate :page-count="Math.ceil(products.length/countPerPage)"
                                               :page-range="10"
                                               :margin-pages="1"
@@ -469,7 +469,7 @@
                                 <div class="price-slider-amount">
                                     <div class="label-input">
                                         <label>Price:</label>
-                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                                        <input type="text" id="amount" name="price" :value="selectedPriceRange" placeholder="Add Your Price" />
                                     </div>
                                     <button type="button">Filter</button>
                                 </div>
@@ -671,6 +671,7 @@
 
 @section Scripts{
 
+<<<<<<< HEAD
     <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
     <script>
         var groupBy = function (xs, key) {
@@ -882,10 +883,13 @@
 
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> fix pic
 <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
 <script>
     Vue.component('paginate', VuejsPaginate);
     let app = new Vue({
+<<<<<<< HEAD
         el: "#app",
         data: {
             products: [],
@@ -934,25 +938,48 @@
                     default: "product-5.png"
                 },
 >>>>>>> [新增]商品首頁檢視頁面的getProductdetailLink及getPicPath的method(但getPicPath目前還不能連動)
+=======
+        el: "#shopIndex",
+        data: {
+            products: [],
+            currentPage: 1,
+            countPerPage: 5,
+            min: 0,
+            max: 0,
+            selectedItem: "2",
+            productdetailsLink: "/Products/Productdetails/",
+            getPic:
+            {
+                type: "string",
+                default: "product-5.png"
+>>>>>>> fix pic
             },
-            computed: {
-                filterProducts: function () {
-                    var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
-                    var max = this.countPerPage * this.currentPage;
-                    this.min = min;
-                    this.max = max;
-                    return this.selectedItemStyle.slice(min, max)
-                },
-                selectedItemStyle: function () {
-                    if (this.selectedItem == "1") {
-                        return this.products;
-                    }
-                    if (this.selectedItem == "2") {
-                        return this.products.reverse();
-                    }
+            priceRange:{
+                min:0,
+                max:100
+            }
+        },
+        computed: {
+            selectedPriceRange:function(){
+                return "$" + this.priceRange.min + " - $" + this.priceRange.max
+            },
+            filterProducts: function () {
+                var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                var max = this.countPerPage * this.currentPage;
+                this.min = min;
+                this.max = max;
+                return this.selectedItemStyle.slice(min, max)
+            },
+            selectedItemStyle: function () {
+                if (this.selectedItem == "1") {
                     return this.products;
                 }
+                if (this.selectedItem == "2") {
+                    return this.products.reverse();
+                }
+                return this.products;
             },
+<<<<<<< HEAD
 <<<<<<< HEAD
             methods: {
                 clickCallback: function (page) {
@@ -975,11 +1002,15 @@
 <<<<<<< HEAD
                 return this.products;
             }
+=======
+
+>>>>>>> fix pic
         },
         methods: {
             clickCallback: function (page) {
                 this.currentPage = page;
                 console.log(page)
+<<<<<<< HEAD
 >>>>>>> 123
             }
         });
@@ -1029,3 +1060,39 @@
     </script>
 }
 >>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
+=======
+            },
+            getProductdetailsLink: function(productId)
+            {
+                return this.productdetailsLink + productId
+            },
+            getPicPath: function(picPath)
+            {
+                console.log(picPath)    // receive pic filename
+                return picPath.replace("~","")
+            }
+        },
+        mounted: function () {
+            var self = this;
+            fetch('/api/product/getall')
+                .then(function (response) { return response.json() })
+                .then(function (result) {
+                    console.log(result);
+                    self.products = result;
+                });
+            var sliderrange = $('#slider-range');
+            sliderrange.slider({
+                range: true,
+                min: self.priceRange.min,
+                max: self.priceRange.max,
+                values: [0, 160],
+                slide: function(event, ui) {
+                    self.priceRange.min=ui.values[0];
+                    self.priceRange.max=ui.values[1];
+                }
+            });
+        }
+    });
+</script>
+}
+>>>>>>> fix pic
