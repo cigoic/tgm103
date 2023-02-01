@@ -375,24 +375,24 @@
 @section Scripts{
 
     <script>
-        //let app = new Vue({
+        let app = new Vue({
 
-        //    el:"#ProductDetails",
-        //    data:
-        //    {
-        //        products:[]
-        //    },
+            el:"#ProductDetails",
+            data:
+            {
+                products:[]
+            },
 
-        //    mounted: function(){
-        //        var self = this;
-        //        fetch('/api/product/getall')
-        //        .then(function(response){return response.json()})
-        //        .then(function(result){
-        //            console.log(result);
-        //            self.products = result;
-        //        })            
-        //    }
+            mounted: function(){
+                var self = this;
+                fetch('/api/product/getbyid')
+                .then(function(response){return response.json()})
+                .then(function(result){
+                    console.log(result);
+                    self.products = result;
+                })            
+            }
 
-        //});
+        });
     </script>
 }
