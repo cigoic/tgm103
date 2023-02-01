@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using WuliKaWu.Data;
 using WuliKaWu.Models;
@@ -100,7 +99,7 @@ namespace WuliKaWu.Controllers
         }
 
         // GET  /Blog/Create
-        [Authorize]
+        //[Authorize]
         public IActionResult Create()
         {
             return View();
@@ -112,7 +111,7 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <param name="article"></param>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAsync(Article article)
@@ -162,6 +161,20 @@ namespace WuliKaWu.Controllers
                 return CurrentArticleId;
 
             return NextArticle.ArticleId;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadImage(IFormFile image)
+        {
+            // Save the image file to the desired location
+            var filePath = Path.Combine("path/to/image", image.FileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(stream);
+            }
+
+            // Return a success response
+            return Json(new { success = true });
         }
     }
 }
