@@ -27,11 +27,11 @@ namespace WuliKaWu.Controllers.Api
             return await _context.WishList.Select(x => new WishListModel
             {
                 WishListId = x.WishListId,
-                ProductName = x.ProductName,
-                Price = x.Price,
-                SellingPrice = x.SellingPrice,
-                Discount = x.Discount,
-                PicturePath = x.PicturePath,
+                ProductName = x.Product.ProductName,
+                Price = x.Product.Price,
+                SellingPrice = (decimal)x.Product.SellingPrice,
+                Discount = (decimal)x.Product.Discount,
+                PicturePath = x.Product.PicturePath,
                 ProductId = x.ProductId,
                 MemberId = x.MemberId
             }).ToListAsync();
@@ -47,11 +47,11 @@ namespace WuliKaWu.Controllers.Api
                 .Select(w => new WishListModel
                 {
                     WishListId = w.WishListId,
-                    ProductName = w.ProductName,
-                    Price = w.Price,
-                    SellingPrice = w.SellingPrice,
-                    Discount = w.Discount,
-                    PicturePath = w.PicturePath,
+                    ProductName = w.Product.ProductName,
+                    Price = w.Product.Price,
+                    SellingPrice = (decimal)w.Product.SellingPrice,
+                    Discount = (decimal)w.Product.Discount,
+                    PicturePath = w.Product.PicturePath,
                     ProductId = w.ProductId,
                     MemberId = w.MemberId
                 }

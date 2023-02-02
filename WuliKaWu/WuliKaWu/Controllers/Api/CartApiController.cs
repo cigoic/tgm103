@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
 
@@ -21,15 +22,7 @@ namespace WuliKaWu.Controllers.Api
             return _context.Carts.Select(x => new CartModel
             {
                 CartId = x.CartId,
-                Color = x.Color,
-                Coupon = x.Coupon,
-                PicturePath = "~/assets/images/cart/cart-2.jpg",
-                Price = x.Price,
-                ProductName = x.ProductName,
-                Quantity = x.Quantity,
-                SellingPrice = x.SellingPrice.ToString() ?? "",
-                Size = x.Size,
-                //TODO Total(要寫嗎?)
+                Product = x.Product
             }).ToList();
         }
     }
