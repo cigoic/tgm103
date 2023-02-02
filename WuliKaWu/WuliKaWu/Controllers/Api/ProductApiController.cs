@@ -1,8 +1,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ï»¿using Microsoft.AspNetCore.Http;
 =======
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> [æ–°å¢ž]Addtocart Action
 using Microsoft.AspNetCore.Http;
 >>>>>>> Productvue (#6)
 using Microsoft.AspNetCore.Mvc;
@@ -192,12 +196,13 @@ namespace WuliKaWu.Controllers.Api
             // //TODO ¼u¸õ´£¿ôsweetalert
         }
 
-        //TODO °Ó«~­¶­±"AddToCart"
+        //TODO °Ó«~­¶­±"AddToCart" SweetAlert
+        //[Authorize]
         [HttpPost("{productId}")]
         public string AddToCart(int WishListId, int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var cart = _context.Carts.FirstOrDefault(x => x.MemberId == myId);
+            var cart = _context.Carts.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
             var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
 
             if (cart == null)
@@ -210,10 +215,12 @@ namespace WuliKaWu.Controllers.Api
                     Quantity = 1,
                     Product = product
                 });
+                //TODO ¼u¸õ´£¿ôsweetalert
                 _context.SaveChangesAsync();
                 return "¤w¥[¤JÁÊª«¨®";
             }
-            return "";
+            //TODO ¼u¸õ´£¿ôsweetalert
+            return "¤w¦³¦¹°Ó«~";
         }
     }
 }<<<<<<< HEAD
