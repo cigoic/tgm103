@@ -9,6 +9,7 @@ using WuliKaWu.Extensions;
 =======
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using WuliKaWu.Data;
 >>>>>>> 新增CartController及CartApiController
 using WuliKaWu.Models.ApiModel;
@@ -142,6 +143,7 @@ namespace WuliKaWu.Controllers.Api
             return _context.Carts.Select(x => new CartModel
             {
                 CartId = x.CartId,
+<<<<<<< HEAD
                 Color = x.Color,
                 Coupon = x.Coupon,
                 PicturePath = "~/assets/images/cart/cart-2.jpg",
@@ -155,6 +157,9 @@ namespace WuliKaWu.Controllers.Api
                 Size = x.Size,
                 //TODO Total(要寫嗎?)
 >>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
+=======
+                Product = x.Product
+>>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
             }).ToList();
 >>>>>>> 新增CartController及CartApiController
         }

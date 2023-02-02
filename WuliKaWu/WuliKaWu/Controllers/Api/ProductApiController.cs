@@ -42,6 +42,7 @@ namespace WuliKaWu.Controllers.Api
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 PicturePath = "~/assets/images/product/product-5.png",
 >>>>>>> [ä¿®æ­£]å•†å“ç·¨è¼¯æª¢è¦–é é¢çš„å„²å­˜ç·¨è¼¯æŒ‰éˆ•é€£å‹•
 =======
@@ -56,6 +57,9 @@ namespace WuliKaWu.Controllers.Api
 =======
                 PicturePath = x.PicturePath,
 >>>>>>> [ä¿®æ­£]å•†å“åˆªé™¤æª¢è¦–æ”¹ä»¥vueç¶å®šï¼Œåœ¨ProductApiControlleråŠ å…¥GetByIdæ–¹æ³•ä¸¦æ–°å¢DeletePreviewModel
+=======
+                PicturePath = $"/images/{x.PicturePath}",
+>>>>>>> [ä¿®æ­£] æ›´å‹•è³‡æ–™è¡¨å¾Œçš„ Cart, whishlist æª¢è¦–èˆ‡æ§åˆ¶å™¨ç¨‹å¼ç‰‡æ®µ
                 Price = x.Price,
                 ProductId = x.ProductId,
 <<<<<<< HEAD
@@ -160,28 +164,26 @@ namespace WuliKaWu.Controllers.Api
         //TODO °Ó«~­¶­±¥[¤J"¦¬ÂÃ²M³æ" ¥[Sweet Alert
         //[Authorize]
         [HttpPost("{productId}")]
-        public string AddWishList(int productId)
+        public void AddWishList(int productId)
         {
             var myId = User.Claims.GetMemberId();
             var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
             var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+
             if (wishItem == null)
             {
                 _context.WishList.Add(new WishList
                 {
                     ProductId = productId,
                     MemberId = myId,
-                    ProductName = product.ProductName,
-                    Price = product.Price,
-                    SellingPrice = (decimal)product.SellingPrice,
-                    Discount = (decimal)product.Discount,
-                    PicturePath = product.PicturePath
+                    Product = product
                 });
-                //_context.WishList.Update(wishItem);
+
                 _context.SaveChangesAsync();
-                return "¤w¥[¤J¦¬ÂÃ²M³æ";
+
+                //TODO ¼u¸õ´£¿ôsweetalert
             }
-            return "¥Ø«e¨S¦³¦¬ÂÃ°Ó«~";
+            // //TODO ¼u¸õ´£¿ôsweetalert
         }
 
         //TODO °Ó«~­¶­±"AddToCart"
@@ -189,19 +191,18 @@ namespace WuliKaWu.Controllers.Api
         public string AddToCart(int WishListId, int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var cart = _context.Cart.FirstOrDefault(x => x.MemberId == myId);
-            var product = _context.Products.FirstOrDefault(x => x.ProductId == WishListId);
-            if (cartItem == null)
+            var cart = _context.Carts.FirstOrDefault(x => x.MemberId == myId);
+            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+
+            if (cart == null)
             {
-                _context.WishList.Add(new WishList
+                _context.Carts.Add(new Cart
                 {
-                    WishListId = WishListId,
+                    //WishListId = WishListId,
                     MemberId = myId,
-                    ProductName = WishListId.ProductName,
-                    Price = WishListId.Price,
-                    SellingPrice = (decimal)WishListId.SellingPrice,
-                    Discount = (decimal)WishListId.Discount,
-                    PicturePath = WishListId.PicturePath
+                    ProductId = productId,
+                    Quantity = 1,
+                    Product = product
                 });
                 _context.SaveChangesAsync();
                 return "¤w¥[¤JÁÊª«¨®";

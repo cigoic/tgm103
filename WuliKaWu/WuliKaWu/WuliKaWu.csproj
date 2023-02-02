@@ -22,6 +22,7 @@
 
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Content Update="wwwroot\assets\css\style.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -48,6 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
+=======
+>>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
     <Content Update="wwwroot\assets\css\style.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
