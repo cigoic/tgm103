@@ -9,16 +9,16 @@ namespace WuliKaWu.Controllers.Api
     [ApiController]
     public class CheckOutApiController : ControllerBase
     {
-        private readonly ShopContext _db;
+        private readonly ShopContext _context;
 
         public CheckOutApiController(ShopContext context)
         {
-            _db = context;
+            _context = context;
         }
 
         public List<CheckOutModel> GetAll()
         {
-            return _db.Carts.Select(x => new CheckOutModel
+            return _context.Carts.Select(x => new CheckOutModel
             {
                 CheckOutId = 2,
                 PicturePath = "~/assets/images/cart/cart-2.jpg",
