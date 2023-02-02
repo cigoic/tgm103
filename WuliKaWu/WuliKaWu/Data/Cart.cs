@@ -23,7 +23,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 關聯的商品ID (Foreign Key)
         /// </summary>
-
+        [ForeignKey("Products")]
         public int ProductId { get; set; }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:一個購物車對應到多個商品，用 ICollection
         /// </summary>
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual Product Product { get; set; }
 
         /// <summary>
         /// 導覽屬性:對應到單一個會員，不用 ICollection

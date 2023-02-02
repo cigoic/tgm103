@@ -10,7 +10,6 @@ namespace WuliKaWu.Data
         /// 願望清單ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int WishListId { get; set; }
 
         /// <summary>
@@ -22,6 +21,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 關聯的商品ID
         /// </summary>
+        [ForeignKey("Products")]
         public int ProductId { get; set; }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
-        [ForeignKey("ProductId")]
-        public virtual ICollection<Product> Products { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

@@ -12,7 +12,6 @@ namespace WuliKaWu.Data
         /// 商品 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
 
         /// <summary>
