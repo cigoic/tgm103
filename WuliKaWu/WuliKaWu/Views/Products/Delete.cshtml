@@ -1,10 +1,11 @@
-﻿@*@model WuliKaWu.Data.Product*@
-@model WuliKaWu.Models.ApiModel.ProductModel
+﻿
 
 @{
     ViewData["Title"] = "Delete";
 }
 
+
+<div id="deleteProduct">
 
 <div class="container m-5 mb-2">
     <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
@@ -28,42 +29,42 @@
                                         <td class="first-column col-3"></td>
                                         <td class="product-list-img">
                                             <div class="col-5">
-                                                <img class="img-fluid" src="@Url.Content(Model.PicturePath)" alt="Product Picture" />
+                                                <img class="img-fluid" :src="product.picturePath" alt="Product Picture" />
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="first-column">Name</td>
-                                        <td class="title">@Html.DisplayFor(model => model.ProductName)</td>
+                                        <td class="title">{{product.productName}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Color</td>
-                                        <td class="pro-color">@Html.DisplayFor(model => model.Color)</td>
+                                        <td class="pro-color">{{product.color}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Size</td>
-                                        <td class="pro-stock">@Html.DisplayFor(model => model.Size)</td>
+                                        <td class="pro-stock">{{product.size}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Price</td>
-                                        <td class="pro-price">$@Html.DisplayFor(model => model.Price)</td>
+                                        <td class="pro-price">${{product.price}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Selling Price</td>
-                                        <td class="pro-price">$@Html.DisplayFor(model => model.SellingPrice)</td>
+                                        <td class="pro-price">${{product.sellingPrice}}</td>
 
                                     <tr>
                                         <td class="first-column">Category</td>
-                                        <td class="pro-stock">@Html.DisplayFor(model => model.Category)</td>
+                                        <td class="pro-stock">{{product.category}}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Tag</td>
-                                        <td class="pro-stock">@Html.DisplayFor(model => model.Tag)</td>
+                                        <td class="pro-stock">{{product.tag}}</td>
                                     </tr>
 
 
@@ -85,9 +86,9 @@
     </div>
 
     <div class="col-7">
-        <form asp-action="Delete">
-            <input type="hidden" asp-for="ProductId" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
+        <form asp-action="Delete" >
+            <input type="hidden"  />
+            <input type="submit" value="Delete" id="myDelete" class="btn btn-danger" />
         </form>
     </div>
 
@@ -95,5 +96,29 @@
     </div>
 </div>
 
+</div>
 
+<script>
 
+    let PDapp = new Vue({
+        
+        el:"#deleteProduct",
+        data: 
+        {
+            product:[],
+        },
+        
+        mounted: function(){
+            var self = this;
+            fetch('/api/product/getbyid/'+'@ViewBag.id')
+            .then(function(response){return response.json()})
+            .then(function(result){
+                console.log(result)
+                self.product = result;
+            })
+
+        }
+    
+    })
+
+</script>

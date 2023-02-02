@@ -39,7 +39,7 @@ namespace WuliKaWu.Controllers
         { return View(); }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> ProductDetails(int id = 2) 
+        public async Task<IActionResult> ProductDetails(int id = 2)
         {
             if (id == null || _context.Products == null)
             {
@@ -188,18 +188,9 @@ namespace WuliKaWu.Controllers
             {
                 return NotFound();
             }
+            ViewBag.id = id;
 
-            var vm = new ProductModel();
-            vm.ProductId = product.ProductId;
-            vm.PicturePath = $"~/images/{product.PicturePath}";
-            vm.ProductName = product.ProductName;
-            vm.Color = product.Color;
-            vm.Size = product.Size.ToString();
-            vm.Category = product.Category;
-            vm.Price = product.Price;
-            vm.SellingPrice = (product.SellingPrice).ToString();
-
-            return View(vm);
+            return View();
         }
 
         // POST: Products/Delete/5
