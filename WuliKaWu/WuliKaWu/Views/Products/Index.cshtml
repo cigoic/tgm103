@@ -351,7 +351,7 @@
                 addToCart(id) {
                     console.log("CPid:", id)
                     this.queryWishListBaseURL = 'api/product/AddToCart/' + id;
-                    fetch(this.queryWishListBaseURL)
+                    fetch(this.queryWishListBaseURL,{method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
                             console.log(result);
@@ -361,7 +361,6 @@
                 addToWishlist(id) {
                     console.log("WPid:", id)
                     this.queryWishlistBaseURL = '/api/product/AddWishList/' + id;
-
                     fetch(this.queryWishlistBaseURL, { method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
