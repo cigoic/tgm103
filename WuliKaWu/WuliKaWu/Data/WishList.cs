@@ -60,9 +60,8 @@ namespace WuliKaWu.Data
         public int MemberId { get; set; }
 
         /// <summary>
-        /// 關聯的商品ID (Foreign Key)
+        /// 關聯的商品ID
         /// </summary>
-        [ForeignKey("Products")]
         public int ProductId { get; set; }
 
 <<<<<<< HEAD
@@ -123,6 +122,7 @@ namespace WuliKaWu.Data
         /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
         public decimal Price { get; set; }
 
         /// <summary>
@@ -145,6 +145,9 @@ namespace WuliKaWu.Data
         public string PicturePath { get; set; }
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
 =======
+=======
+        [ForeignKey("ProductId")]
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
         public virtual ICollection<Product> Products { get; set; }
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
     }

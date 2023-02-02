@@ -56,7 +56,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
 
                     b.HasData(
                         new
@@ -133,7 +133,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleCategories");
+                    b.ToTable("ArticleCategories", (string)null);
 
                     b.HasData(
                         new
@@ -194,7 +194,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleContentImages");
+                    b.ToTable("ArticleContentImages", (string)null);
 
                     b.HasData(
                         new
@@ -291,7 +291,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleTitleImages");
+                    b.ToTable("ArticleTitleImages", (string)null);
 
                     b.HasData(
                         new
@@ -353,7 +353,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AuthorImages");
+                    b.ToTable("AuthorImages", (string)null);
 
                     b.HasData(
                         new
@@ -506,6 +506,7 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
                     b.HasIndex("ArticleId");
 
+<<<<<<< HEAD
                     b.ToTable("ArticleCategories");
 =======
                     b.ToTable("Cart");
@@ -515,6 +516,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Cart");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+                    b.ToTable("Cart", (string)null);
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
 
                     b.HasData(
                         new
@@ -1372,6 +1376,7 @@ namespace WuliKaWu.Migrations
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.ToTable("Contact Messages");
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 =======
@@ -1380,6 +1385,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Contact Messages");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+                    b.ToTable("Contact Messages", (string)null);
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
                 });
 
             modelBuilder.Entity("CartProduct", b =>
@@ -1528,6 +1536,7 @@ namespace WuliKaWu.Migrations
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("Member");
 =======
                     b.ToTable("Members", (string)null);
@@ -1537,6 +1546,9 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 =======
+=======
+                    b.ToTable("Members", (string)null);
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
 
                     b.HasData(
                         new
@@ -1655,6 +1667,7 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("Category");
 =======
                     b.ToTable("MemberRoles", (string)null);
@@ -1662,6 +1675,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("MemberRoles");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+                    b.ToTable("MemberRoles", (string)null);
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
@@ -1736,6 +1752,7 @@ namespace WuliKaWu.Migrations
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.ToTable("Orders");
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 =======
@@ -1744,6 +1761,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Orders");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+                    b.ToTable("Orders", (string)null);
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
                 });
 
 <<<<<<< HEAD
@@ -1813,7 +1833,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("OrderDetailsId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
 >>>>>>> [更新] ShopContext加入圖片及訂單明細的Dbset 以及將商品編輯的檢視加入表頭
@@ -1837,7 +1857,7 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("Pictures");
+                    b.ToTable("Pictures", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
@@ -1885,6 +1905,7 @@ namespace WuliKaWu.Migrations
                     b.Navigation("OrderDetails");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
                     b.Navigation("Pictures");
@@ -1901,6 +1922,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Products");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+                    b.ToTable("Products", (string)null);
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
 
 <<<<<<< HEAD
                     b.Navigation("WishList");
@@ -1944,7 +1968,7 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
@@ -1965,7 +1989,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Color");
+                    b.ToTable("Color", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
@@ -1986,7 +2010,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("GetPayType");
+                    b.ToTable("GetPayType", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
@@ -2007,7 +2031,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Size");
+                    b.ToTable("Size", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
@@ -2028,7 +2052,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("StarRate");
+                    b.ToTable("StarRate", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
@@ -2049,7 +2073,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tag", (string)null);
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
@@ -2085,7 +2109,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
-                    b.ToTable("WishList");
+                    b.ToTable("WishList", (string)null);
 
                     b.HasData(
                         new

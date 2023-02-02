@@ -217,12 +217,16 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:只對應到單一個購物車,不用 ICollection
         /// </summary>
-        public virtual Cart Cart { get; set; }
+        public virtual Cart? Cart { get; set; }
 
         /// <summary>
         /// 導覽屬性:只對應到單一個收藏清單,不用 ICollection
         /// </summary>
+<<<<<<< HEAD
         public virtual WishList WishList { get; set; }
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
+=======
+        public virtual WishList? WishList { get; set; }
+>>>>>>> [更新] ShopContext 等資料內容定義類別表
     }
 }
