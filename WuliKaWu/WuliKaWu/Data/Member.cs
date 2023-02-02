@@ -1,9 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 =======
 ﻿using System.ComponentModel.DataAnnotations;
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
+=======
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+>>>>>>> [更新]Enum/Product/Member表格
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
@@ -270,7 +275,21 @@ namespace WuliKaWu.Data
 
     public enum MemberShipType
     {
+<<<<<<< HEAD
         None, NormalUser, VIP, Admin
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+        [Description("None")]
+        None,
+
+        [Description("NormalUser")]
+        NormalUser,
+
+        [Description("VIP")]
+        VIP,
+
+        [Description("Admin")]
+        Admin
+>>>>>>> [更新]Enum/Product/Member表格
     }
 }

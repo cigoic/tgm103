@@ -128,7 +128,7 @@ namespace WuliKaWu.Data
         public decimal Price { get; set; }
 
         /// <summary>
-        /// 商品折扣價格
+        /// 商品折扣價格，可為NULL
         /// </summary>
         public decimal? SellingPrice { get; set; }
 
@@ -153,7 +153,11 @@ namespace WuliKaWu.Data
         public StarRate? StarRate { get; set; }
 
         /// <summary>
+<<<<<<< HEAD
         /// 商品分類
+=======
+        /// 商品分類，不可為NULL
+>>>>>>> [更新]Enum/Product/Member表格
         /// </summary>
         public Category Category { get; set; }
 
@@ -181,22 +185,30 @@ namespace WuliKaWu.Data
         public virtual ICollection<TableOfStarRate> TableOfStarRates { get; set; }
 
         /// <summary>
-        /// 導覽屬性：一個商品對應到多個商品分類，用 ICollection
-        /// </summary>
-        public virtual ICollection<TableOfCategory> TableOfCategories { get; set; }
-
-        /// <summary>
         /// 導覽屬性：一個商品對應到多個商品標籤，用 ICollection
         /// </summary>
+        public virtual ICollection<TableOfTag> TableOfTags { get; set; }
+
+        /// <summary>
+        /// 導覽屬性：一個商品對應到單一個商品分類，不用 ICollection
+        /// </summary>
+<<<<<<< HEAD
         public virtual ICollection<TableOfTag> TableOfTags { get; set; }
 <<<<<<< HEAD
 >>>>>>> [新增]所有資料表
 =======
+=======
+        public virtual TableOfCategory TableOfCategories { get; set; }
+>>>>>>> [更新]Enum/Product/Member表格
 
         /// <summary>
-        /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection
+        /// 導覽屬性:一個商品對應到單一個商品圖片，不用 ICollection
         /// </summary>
+<<<<<<< HEAD
         public virtual ICollection<Picture> Pictures { get; set; }
 >>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
+=======
+        public virtual Picture Pictures { get; set; }
+>>>>>>> [更新]Enum/Product/Member表格
     }
 }

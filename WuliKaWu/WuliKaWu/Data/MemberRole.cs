@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 =======
@@ -8,6 +9,10 @@ using System.ComponentModel.DataAnnotations;
 =======
 ﻿using System.ComponentModel.DataAnnotations;
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+>>>>>>> [更新]Enum/Product/Member表格
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
@@ -24,6 +29,9 @@ namespace WuliKaWu.Data
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新]Enum/Product/Member表格
             [Description("None")]
             None,
 
@@ -32,12 +40,15 @@ namespace WuliKaWu.Data
 
             [Description("Admin")]
             Admin
+<<<<<<< HEAD
 =======
             None, User, Admin
 >>>>>>> [新增]所有資料表
 =======
             None, User, Admin
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+>>>>>>> [更新]Enum/Product/Member表格
         }
 
         /// <summary>

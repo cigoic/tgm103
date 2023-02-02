@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WuliKaWu.Data
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     [Table("WishLists")]
     public class WishList
     {
@@ -36,6 +37,9 @@ namespace WuliKaWu.Data
 
         public virtual Product Product { get; set; }
 =======
+=======
+    //[Table("WishLists")]
+>>>>>>> [更新]Enum/Product/Member表格
     public class WishList
     {
         /// <summary>
