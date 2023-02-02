@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using System.ComponentModel;
 
 namespace WuliKaWu.Data.Enums
@@ -149,6 +150,11 @@ namespace WuliKaWu.Data.Enums
             OurBlog
 =======
 ﻿namespace WuliKaWu.Data.Enums
+=======
+﻿using System.ComponentModel;
+
+namespace WuliKaWu.Data.Enums
+>>>>>>> 小精靈的祝福
 {
     public class Common
     {
@@ -184,7 +190,16 @@ namespace WuliKaWu.Data.Enums
         /// </summary>
         public enum Size
         {
-            XS, S, M, L, XL
+            [Description("XS")]
+            XS,
+            [Description("S")]
+            S,
+            [Description("M")]
+            M,
+            [Description("L")]
+            L,
+            [Description("XL")]
+            XL
         }
 
         /// <summary>

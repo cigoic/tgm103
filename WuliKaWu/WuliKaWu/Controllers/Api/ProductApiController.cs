@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers.Api
 {
@@ -53,6 +54,7 @@ namespace WuliKaWu.Controllers.Api
 >>>>>>> [更新]ProductApiController的GetAll及GetById的圖片路徑
                 Price = x.Price,
                 ProductId = x.ProductId,
+<<<<<<< HEAD
                 Size = x.Size,
 <<<<<<< HEAD
                 Discount = true,
@@ -63,6 +65,9 @@ namespace WuliKaWu.Controllers.Api
                 //TODO ������n�૬
                 Tag = (Data.Enums.Common.Tag)x.Tag
 =======
+=======
+                Size = x.Size.GetDescriptionText(),
+>>>>>>> 小精靈的祝福
                 Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
                 SellingPrice = x.SellingPrice.ToString() ?? ""
 >>>>>>> [修正]ProductApiController的Discount寫死的改掉
@@ -79,7 +84,7 @@ namespace WuliKaWu.Controllers.Api
             Product product = _context.Products.Find(productModel.ProductId);
             product.ProductName = productModel.ProductName;
             product.Color = productModel.Color;
-            product.Size = productModel.Size;
+            product.Size = (Size)Enum.Parse(typeof(Size), productModel.Size);
             product.Category = productModel.Category;
             product.PicturePath = $"~/images/{productModel.PicturePath}";
             product.Price = productModel.Price;

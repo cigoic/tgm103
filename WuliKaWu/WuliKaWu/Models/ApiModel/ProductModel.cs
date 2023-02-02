@@ -46,7 +46,7 @@ namespace WuliKaWu.Models.ApiModel
 
         public Color Color { get; set; }
 
-        public Size Size { get; set; }
+        public string Size { get; set; }
 
         public Category Category { get; set; }
 
