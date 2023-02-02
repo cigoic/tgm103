@@ -53,9 +53,36 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form action="Register" method="post">
-                                        <input type="text" name="Account" placeholder="Username">
-                                        <input type="password" name="Password" placeholder="Password">
-                                        <input name="user-email" placeholder="Email" type="email">
+                                        <label id="Account" name="Account">帳號</label>
+                                        <input type="text" name="Account" placeholder="Username" />
+
+                                        <label id="Password" name="Password">密碼</label>
+                                        <input type="password" name="Password" placeholder="Password" />
+
+                                        <label id="Name" name="Name">名字</label>
+                                        <input type="text" name="Name" />
+
+                                        <label id="Gender" name="Gender"></label>
+                                        <select>
+                                            <option value="">性別</option>
+                                            <option value="0">Femail</option>
+                                            <option value="1">Male</option>
+                                        </select>
+
+                                        <label id="Birthday" name="Birthday">出生年月日</label>
+                                        <input type="date" id="Birthday" name="Birthday" />
+
+                                        <label id="Email" name="Email">電子信箱</label>
+                                        <input name="Email" placeholder="E-mail" type="email" />
+
+                                        <label id="Address" name="Address">住址</label>
+                                        <input type="text" name="Address" id="Address" />
+
+                                        <label id="PhoneNumber" name="PhoneNumber">住家電話</label>
+                                        <input type="text" id="PhoneNumber" name="PhoneNumber" />
+
+                                        <label id="MobilePhone" name="MobilePhone">行動電話</label>
+                                        <input type="text" id="MobilePhone" name="MobilePhone" />
                                         <div class="button-box btn-hover">
                                             <button type="submit">Register</button>
                                         </div>

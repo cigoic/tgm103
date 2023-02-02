@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers.Api
 {
@@ -27,7 +28,7 @@ namespace WuliKaWu.Controllers.Api
                 PicturePath = $"~/images/{x.PicturePath}",
                 Price = x.Price,
                 ProductId = x.ProductId,
-                Size = x.Size,
+                Size = x.Size.GetDescriptionText(),
                 Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
                 SellingPrice = x.SellingPrice.ToString() ?? ""
             }).ToList();
@@ -43,7 +44,7 @@ namespace WuliKaWu.Controllers.Api
             Product product = _context.Products.Find(productModel.ProductId);
             product.ProductName = productModel.ProductName;
             product.Color = productModel.Color;
-            product.Size = productModel.Size;
+            product.Size = (Size)Enum.Parse(typeof(Size), productModel.Size);
             product.Category = productModel.Category;
             product.PicturePath = $"~/images/{productModel.PicturePath}";
             product.Price = productModel.Price;

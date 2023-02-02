@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers
 {
@@ -38,7 +39,7 @@ namespace WuliKaWu.Controllers
         { return View(); }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
+        public async Task<IActionResult> ProductDetails(int id = 2) 
         {
             if (id == null || _context.Products == null)
             {
@@ -66,19 +67,19 @@ namespace WuliKaWu.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> Create(ProductModel product)
         {
             Product prd = new Product
             {
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 Color = product.Color,
-                Size = product.Size,
+                Size = (Size)Enum.Parse(typeof(Size), product.Size),
                 Category = product.Category,
                 PicturePath = product.PicturePath,
                 Price = product.Price,
-                Discount = product.Discount,
-                SellingPrice = product.SellingPrice,
+                Discount = Convert.ToDecimal(product.Discount),
+                SellingPrice = Convert.ToDecimal(product.SellingPrice),
                 Tag = product.Tag
             };
 
@@ -115,7 +116,7 @@ namespace WuliKaWu.Controllers
             vm.ProductId = product.ProductId;
             vm.ProductName = product.ProductName;
             vm.Color = product.Color;
-            vm.Size = product.Size;
+            vm.Size = product.Size.ToString();
             vm.Category = product.Category;
             vm.PicturePath = $"~/images/{product.PicturePath}";
             vm.Price = product.Price;
@@ -146,7 +147,7 @@ namespace WuliKaWu.Controllers
                 product.ProductId = model.ProductId;
                 product.ProductName = model.ProductName;
                 product.Color = model.Color;
-                product.Size = model.Size;
+                product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
                 product.Category = model.Category;
                 product.PicturePath = model.PicturePath;
                 product.Price = model.Price;
@@ -193,7 +194,7 @@ namespace WuliKaWu.Controllers
             vm.PicturePath = $"~/images/{product.PicturePath}";
             vm.ProductName = product.ProductName;
             vm.Color = product.Color;
-            vm.Size = product.Size;
+            vm.Size = product.Size.ToString();
             vm.Category = product.Category;
             vm.Price = product.Price;
             vm.SellingPrice = (product.SellingPrice).ToString();
