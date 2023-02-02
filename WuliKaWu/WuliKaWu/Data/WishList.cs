@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
 {
+    //[Table("WishLists")]
     public class WishList
     {
         /// <summary>

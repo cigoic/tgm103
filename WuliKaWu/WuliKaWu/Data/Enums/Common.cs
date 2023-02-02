@@ -11,7 +11,16 @@ namespace WuliKaWu.Data.Enums
         /// MobilePay: 線上支付_2
         /// </summary>
         public enum GetPayType
-        { Cash, CreditCard, MoblilePay }
+        {
+            [Description("Cash")]
+            Cash,
+
+            [Description("CreditCard")]
+            CreditCard,
+
+            [Description("MoblilePay")]
+            MoblilePay
+        }
 
         /// <summary>
         /// Enum 類型，商品顏色:
@@ -23,7 +32,20 @@ namespace WuliKaWu.Data.Enums
         /// </summary>
         public enum Color
         {
-            Black = 0, White = 1, Brown = 2, Red = 3, Orange = 4
+            [Description("Black")]
+            Black = 0,
+
+            [Description("White")]
+            White = 1,
+
+            [Description("Brown")]
+            Brown = 2,
+
+            [Description("Red")]
+            Red = 3,
+
+            [Description("Orange")]
+            Orange = 4
         }
 
         /// <summary>
@@ -38,12 +60,16 @@ namespace WuliKaWu.Data.Enums
         {
             [Description("XS")]
             XS,
+
             [Description("S")]
             S,
+
             [Description("M")]
             M,
+
             [Description("L")]
             L,
+
             [Description("XL")]
             XL
         }
@@ -59,7 +85,23 @@ namespace WuliKaWu.Data.Enums
         /// </summary>
         public enum StarRate
         {
-            NoStar = 0, OneStar = 1, TwoStar = 2, ThreeStar = 3, FourStar = 4, FiveStar = 5
+            [Description("NoStar")]
+            NoStar = 0,
+
+            [Description("OneStar")]
+            OneStar = 1,
+
+            [Description("TwoStar")]
+            TwoStar = 2,
+
+            [Description("ThreeStar")]
+            ThreeStar = 3,
+
+            [Description("FourStar")]
+            FourStar = 4,
+
+            [Description("FiveStar")]
+            FiveStar = 5
         }
 
         /// <summary>
@@ -71,7 +113,17 @@ namespace WuliKaWu.Data.Enums
         /// </summary>
         public enum Category
         {
-            Tops, Buttoms, Outer, Dress
+            [Description("Tops")]
+            Tops,
+
+            [Description("Buttoms")]
+            Buttoms,
+
+            [Description("Outer")]
+            Outer,
+
+            [Description("Dress")]
+            Dress
         }
 
         /// <summary>
@@ -83,7 +135,17 @@ namespace WuliKaWu.Data.Enums
         /// </summary>
         public enum Tag
         {
-            Hot, New, Spring, Winter
+            [Description("Hot")]
+            Hot,
+
+            [Description("New")]
+            New,
+
+            [Description("Spring")]
+            Spring,
+
+            [Description("Winter")]
+            Winter
         }
 
         /// <summary>
@@ -95,7 +157,17 @@ namespace WuliKaWu.Data.Enums
         /// </summary>
         public enum ArticleType
         {
-            Uncategorized, BlogGridView, LatestBlog, OurBlog
+            [Description("Uncategorized")]
+            Uncategorized,
+
+            [Description("BlogGridView")]
+            BlogGridView,
+
+            [Description("LatestBlog")]
+            LatestBlog,
+
+            [Description("OurBlog")]
+            OurBlog
         }
     }
 }

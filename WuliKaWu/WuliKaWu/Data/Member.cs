@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
@@ -107,6 +108,16 @@ namespace WuliKaWu.Data
 
     public enum MemberShipType
     {
-        None, NormalUser, VIP, Admin
+        [Description("None")]
+        None,
+
+        [Description("NormalUser")]
+        NormalUser,
+
+        [Description("VIP")]
+        VIP,
+
+        [Description("Admin")]
+        Admin
     }
 }
