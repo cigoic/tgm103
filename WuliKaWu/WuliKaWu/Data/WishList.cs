@@ -20,9 +20,8 @@ namespace WuliKaWu.Data
         public int MemberId { get; set; }
 
         /// <summary>
-        /// 關聯的商品ID (Foreign Key)
+        /// 關聯的商品ID
         /// </summary>
-        [ForeignKey("Products")]
         public int ProductId { get; set; }
 
         /// <summary>
@@ -33,6 +32,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
+        [ForeignKey("ProductId")]
         public virtual ICollection<Product> Products { get; set; }
     }
 }
