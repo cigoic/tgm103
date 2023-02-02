@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers
 {
@@ -73,7 +74,7 @@ namespace WuliKaWu.Controllers
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 Color = product.Color,
-                Size = product.Size,
+                Size = (Size)Enum.Parse(typeof(Size), product.Size),
                 Category = product.Category,
                 PicturePath = product.PicturePath,
                 Price = product.Price,
@@ -115,7 +116,7 @@ namespace WuliKaWu.Controllers
             vm.ProductId = product.ProductId;
             vm.ProductName = product.ProductName;
             vm.Color = product.Color;
-            vm.Size = product.Size;
+            vm.Size = product.Size.ToString();
             vm.Category = product.Category;
             vm.PicturePath = $"~/images/{product.PicturePath}";
             vm.Price = product.Price;
@@ -146,7 +147,7 @@ namespace WuliKaWu.Controllers
                 product.ProductId = model.ProductId;
                 product.ProductName = model.ProductName;
                 product.Color = model.Color;
-                product.Size = model.Size;
+                product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
                 product.Category = model.Category;
                 product.PicturePath = model.PicturePath;
                 product.Price = model.Price;
@@ -193,7 +194,7 @@ namespace WuliKaWu.Controllers
             vm.PicturePath = $"~/images/{product.PicturePath}";
             vm.ProductName = product.ProductName;
             vm.Color = product.Color;
-            vm.Size = product.Size;
+            vm.Size = product.Size.ToString();
             vm.Category = product.Category;
             vm.Price = product.Price;
             vm.SellingPrice = (product.SellingPrice).ToString();

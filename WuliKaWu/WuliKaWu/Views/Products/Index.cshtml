@@ -21,7 +21,7 @@
     <div class="shop-area shop-page-responsive pt-100 pb-100">
         <div class="container">
             <div class="row flex-row-reverse">
-                <div class="col-lg-9">
+                <div id="panel" class="col-lg-9">
                     <div class="shop-topbar-wrapper mb-40">
                         <div class="shop-topbar-left">
                             <div class="showing-item">
@@ -79,9 +79,9 @@
                                 </div>
                                 <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
                                     @*<ul>
-                                        <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
-                                        <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-                                        </ul>*@
+                                    <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+                                    <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+                                    </ul>*@
                                     <paginate :page-count="Math.ceil(products.length/countPerPage)"
                                               :page-range="10"
                                               :margin-pages="1"
@@ -139,9 +139,9 @@
                                 </div>
                                 <div class="pagination-style-1">
                                     @*<ul>
-                                        <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
-                                        <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-                                        </ul>*@
+                                    <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+                                    <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+                                    </ul>*@
                                     <paginate :page-count="Math.ceil(products.length/countPerPage)"
                                               :page-range="10"
                                               :margin-pages="1"
@@ -163,8 +163,8 @@
                         <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
                             <div class="search-wrap-2">
                                 <form class="search-2-form" action="#">
-                                    <input placeholder="Search*" type="text">
-                                    <button class="button-search"><i class=" ti-search "></i></button>
+                                    <input placeholder="Search*" type="text" v-model="searchText">
+                                    <button class="button-search" @@click="search"><i class=" ti-search "></i></button>
                                 </form>
                             </div>
                         </div>
@@ -220,11 +220,7 @@
                             </div>
                             <div class="sidebar-widget-size sidebar-list-style">
                                 <ul>
-                                    <li><a href="#">XL <span>4</span></a></li>
-                                    <li><a href="#">M <span>9</span></a></li>
-                                    <li><a href="#">LM <span>5</span></a></li>
-                                    <li><a href="#">L <span>3</span></a></li>
-                                    <li><a href="#">ML <span>4</span></a></li>
+                                    <li v-for="item in sizeList"><a href="#panel" @@click="selectSize(item.text)">{{item.text}} <span>{{item.count}}</span></a></li>                                    
                                 </ul>
                             </div>
                         </div>
@@ -254,86 +250,135 @@
 
 @section Scripts{
 
-<script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
-<script>
-    Vue.component('paginate', VuejsPaginate);
-    let app = new Vue({
-        el: "#shopIndex",
-        data: {
-            products: [],
-            currentPage: 1,
-            countPerPage: 5,
-            min: 0,
-            max: 0,
-            selectedItem: "2",
-            productdetailsLink: "/Products/Productdetails/",
-            getPic:
-            {
-                type: "string",
-                default: "product-5.png"
-            },
-            priceRange:{
-                min:0,
-                max:100
-            }
-        },
-        computed: {
-            selectedPriceRange:function(){
-                return "$" + this.priceRange.min + " - $" + this.priceRange.max
-            },
-            filterProducts: function () {
-                var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
-                var max = this.countPerPage * this.currentPage;
-                this.min = min;
-                this.max = max;
-                return this.selectedItemStyle.slice(min, max)
-            },
-            selectedItemStyle: function () {
-                if (this.selectedItem == "1") {
-                    return this.products;
-                }
-                if (this.selectedItem == "2") {
-                    return this.products.reverse();
-                }
-                return this.products;
-            },
+    <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
+    <script>
+        var groupBy = function (xs, key) {
+            return xs.reduce(function (rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+            }, {});
+        };
 
-        },
-        methods: {
-            clickCallback: function (page) {
-                this.currentPage = page;
-                console.log(page)
-            },
-            getProductdetailsLink: function(productId)
-            {
-                return this.productdetailsLink + productId
-            },
-            getPicPath: function(picPath)
-            {
-                console.log(picPath)    // receive pic filename
-                return picPath.replace("~","")
-            }
-        },
-        mounted: function () {
-            var self = this;
-            fetch('/api/product/getall')
-                .then(function (response) { return response.json() })
-                .then(function (result) {
-                    console.log(result);
-                    self.products = result;
-                });
-            var sliderrange = $('#slider-range');
-            sliderrange.slider({
-                range: true,
-                min: self.priceRange.min,
-                max: self.priceRange.max,
-                values: [0, 160],
-                slide: function(event, ui) {
-                    self.priceRange.min=ui.values[0];
-                    self.priceRange.max=ui.values[1];
+
+        Vue.component('paginate', VuejsPaginate);
+        let app = new Vue({
+            el: "#shopIndex",
+            data: {
+                sizeList:[],
+                searchText: "",
+                products: [],
+                currentPage: 1,
+                countPerPage: 5,
+                min: 0,
+                max: 0,
+                selectedSize:"All",
+                selectedItem: "2",
+                productdetailsLink: "/Products/Productdetails/",
+                getPic:
+                {
+                    type: "string",
+                    default: "product-5.png"
+                },
+                priceRange: {
+                    min: 0,
+                    max: 100
                 }
-            });
-        }
-    });
-</script>
+            },
+            computed: {
+                selectedPriceRange: function () {
+                    return "$" + this.priceRange.min + " - $" + this.priceRange.max
+                },
+                filterProducts: function () {
+                    var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                    var max = this.countPerPage * this.currentPage;
+                    this.min = min;
+                    this.max = max;
+                    return this.selectedItemStyle.slice(min, max)
+                },
+                selectedItemStyle: function () {
+                    var self = this;
+                    var temp = this.products;
+                    if (this.searchText.length > 0) {
+                        temp = temp.filter(function(item){
+                            return item.productName.includes(self.searchText);
+                        })
+                    }
+
+                    //price
+                    temp = temp.filter(x=> {
+                        var price = x.sellingPrice == "" ? x.price : x.sellingPrice;
+                        return price >= self.priceRange.min && price <= self.priceRange.max;
+                    });
+
+                    //size
+                    if (self.selectedSize != "All") {
+                        temp = temp.filter(x => x.size == self.selectedSize);
+                    }
+                   
+
+                    return temp;
+                },
+
+            },
+            methods: {
+                selectSize:function(text){   
+                    console.log(text);
+                    this.selectedSize = text;
+                },
+                search: function () {
+
+                },
+                clickCallback: function (page) {
+                    this.currentPage = page;
+                    console.log(page)
+                },
+                getProductdetailsLink: function (productId) {
+                    return this.productdetailsLink + productId
+                },
+                getPicPath: function (picPath) {
+                    console.log(picPath)    // receive pic filename
+                    return picPath.replace("~", "")
+                }
+            },
+            mounted: function () {
+                var self = this;
+                fetch('/api/product/getall')
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result);
+                        self.products = result;
+                        self.priceRange.max = Math.max(...self.products.map(x => x.price))
+
+                        var sliderrange = $('#slider-range');
+                        sliderrange.slider({
+                            range: true,
+                            min: self.priceRange.min,
+                            max: self.priceRange.max,
+                            values: [0, 3000],
+                            slide: function (event, ui) {
+                                self.priceRange.min = ui.values[0];
+                                self.priceRange.max = ui.values[1];
+                            }
+                        });
+
+                        //size
+                        var temp = groupBy(app.products,"size")
+                        var count = 0;
+                        for (let key of Object.keys(temp)) {
+                            count+=temp[key].length;
+                            self.sizeList.push({
+                                "text":key,
+                                "count": temp[key].length
+                            })                            
+                        }
+                        self.sizeList.push({
+                                "text":"All",
+                            "count": count
+                            })
+                    });
+                
+                
+            }
+        });
+    </script>
 }
