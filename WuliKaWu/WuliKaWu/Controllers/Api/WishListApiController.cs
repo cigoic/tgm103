@@ -31,6 +31,7 @@ namespace WuliKaWu.Controllers.Api
     public class WishListApiController : ControllerBase
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         private readonly ShopContext _context;
 
         public WishListApiController(ShopContext context)
@@ -160,15 +161,19 @@ namespace WuliKaWu.Controllers.Api
             return RedirectToAction("Index");
 =======
         private readonly ShopContext _db;
+=======
+        private readonly ShopContext _context;
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
 
         public WishListApiController(ShopContext context)
         {
-            _db = context;
+            _context = context;
         }
 
-        public List<WishListModel> GetAll()
+        [HttpGet]
+        public async Task<IEnumerable<WishListModel>> GetAll()
         {
-            return _db.WishList.Select(x => new WishListModel
+            return await _context.WishList.Select(x => new WishListModel
             {
                 WishListId = x.WishListId,
                 ProductName = x.ProductName,
@@ -178,27 +183,59 @@ namespace WuliKaWu.Controllers.Api
                 PicturePath = x.PicturePath,
                 ProductId = x.ProductId,
                 MemberId = x.MemberId
+<<<<<<< HEAD
             }).ToList();
 >>>>>>> 新增WishListTable及Api
+=======
+            }).ToListAsync();
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
         }
 
-        [Authorize]
-        public bool AddWishList(int productId)
+        //TODO Get一個會員的收藏清單
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<WishListModel>> GetWishList(int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var wishItem = _db.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
-            var product = _db.Products.FirstOrDefault(x => x.ProductId == productId);
-            if (wishItem == null)
-            {
-                _db.WishList.Add(new WishList
+            return (await _context.WishList
+                .Where(w => w.ProductId == productId && w.MemberId == myId)
+                .Select(w => new WishListModel
                 {
-                    ProductId = productId,
-                    MemberId = myId,
-                });
-                _db.SaveChanges();
-                return true;
-            }
-            return false;
+                    WishListId = w.WishListId,
+                    ProductName = w.ProductName,
+                    Price = w.Price,
+                    SellingPrice = w.SellingPrice,
+                    Discount = w.Discount,
+                    PicturePath = w.PicturePath,
+                    ProductId = w.ProductId,
+                    MemberId = w.MemberId
+                }
+                )
+                .ToListAsync());
         }
+
+        //TODO AddtoCart(右邊Button)
+        //[HttpPost("{id}")]
+        //[Authorize]
+
+        //TODO 寫在商品頁面的收藏清單(Productapicontroller)
+        //[Authorize]
+        //[HttpPost("{id}")]
+        //public bool AddWishList(int productId)
+        //{
+        //    var myId = User.Claims.GetMemberId();
+        //    var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+        //    var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+        //    if (wishItem == null)
+        //    {
+        //        _context.WishList.Add(new WishList
+        //        {
+        //            ProductId = productId,
+        //            MemberId = myId,
+        //        });
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 }

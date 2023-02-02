@@ -1144,6 +1144,26 @@
                 getPicPath: function (picPath) {
                     console.log(picPath)    // receive pic filename
                     return picPath.replace("~", "")
+                },
+                addToCart(id) {
+                    console.log("CPid:", id)
+                    this.queryWishListBaseURL = 'api/product/addtocart' + id
+                    fetch(this.queryWishListBaseURL)
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result);
+                            //self.products = result;
+                        })
+                },
+                addToWishlist(id) {
+                    console.log("WPid:", id)
+                    this.queryWishlistBaseURL = '/api/product/AddWishList/' + id;
+
+                    fetch(this.queryWishlistBaseURL, { method: "POST" })
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result);
+                        })
                 }
             },
             mounted: function () {

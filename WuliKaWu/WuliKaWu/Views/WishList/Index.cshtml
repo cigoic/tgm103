@@ -1,28 +1,47 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
 ﻿<div id="wishlistIndex">
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Wishlist</h2>
+<<<<<<< HEAD
                 <ul>    
                     <li><a href="/wishlist/Index">Home</a></li>
+=======
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
                     <li><i class="ti-angle-right"></i></li>
                     <li>Wishlist</li>
                 </ul>
             </div>
         </div>
         <div class="breadcrumb-img-1">
+<<<<<<< HEAD
             <img src="/assets/images/banner/breadcrumb-1.png" alt="">
         </div>
         <div class="breadcrumb-img-2">
             <img src="/assets/images/banner/breadcrumb-2.png" alt="">
+=======
+            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2">
+            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
         </div>
     </div>
     <div class="wishlist-area pb-100 pt-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
+<<<<<<< HEAD
                     <form>
+=======
+                    <form action="#">
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
                         <div class="wishlist-table-content">
                             <div class="table-content table-responsive">
                                 <table>
@@ -31,11 +50,17 @@
                                             <th class="width-remove"></th>
                                             <th class="width-thumbnail"></th>
                                             <th class="width-name">Product</th>
+<<<<<<< HEAD
                                             <th class="width-price"> Price </th>                                            
+=======
+                                            <th class="width-price"> Price </th>
+                                            @*<th class="width-stock-status"> Stock status </th>*@
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
                                             <th class="width-wishlist-cart"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
                                         <tr v-for="product in productInThisWishList">                                        
                                             <td class="pro-remove">
                                                 <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
@@ -54,6 +79,42 @@
                                                 <button type="button" v-on:click="AddToCart(cart.cartId)">Add to Cart</button>
                                             </td>
                                         </tr>                                       
+=======
+                                        <tr v-for="wishlist in wishlists" :key="wishlist.WishListId">
+                                            <td class="product-remove"><a href="#">×</a></td>
+                                            <td class="product-thumbnail">
+                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{wishlist.productName}}</a></h5>
+                                            </td>
+                                            <td class="product-price">
+                                                <span :class="{'old-price':wishlist.price}">${{wishlist.price}}</span>
+                                                <span class="new-price" v-if="wishlist.sellingPrice">${{wishlist.sellingPrice}}</span>
+                                            </td>
+                                            @* <td class="stock-status">
+                                            <span><i class="las la-check"></i> In Stock</span>
+                                            </td>*@
+                                            <td class="wishlist-cart btn-hover"><a asp-action="Index" asp-controller="Cart">Add to Cart</a></td>
+                                        </tr>
+                                        <tr v-for="wishlist in wishlists" :key="wishlist.WishListId">
+                                            <td class="product-remove"><a href="#">×</a></td>
+                                            <td class="product-thumbnail">
+                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{wishlist.productName}}</a></h5>
+                                            </td>
+                                            <td class="product-price">
+                                                <span :class="{'old-price':wishlist.price}">${{wishlist.price}}</span>
+                                                <span class="new-price" v-if="wishlist.sellingPrice">${{wishlist.sellingPrice}}</span>
+                                            </td>
+                                            @* <td class="stock-status">
+                                            <span><i class="las la-check"></i> In Stock</span>
+                                            </td>*@
+                                            <td class="wishlist-cart btn-hover"><a asp-action="Index" asp-controller="Cart">Add to Cart</a></td>
+                                        </tr>
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
                                     </tbody>
                                 </table>
                             </div>
@@ -64,6 +125,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 @section Scripts{
 
@@ -117,13 +179,29 @@
 }
 =======
 ﻿@model IEnumerable<WuliKaWu.Data.WishList>
+=======
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
 
-@{
-    ViewData["Title"] = "Index";
-}
+@section Scripts{
 
-<h1>Index</h1>
+    <script>
+        let app = new Vue({
+            el: "#wishlistIndex",
+            data: {
+                wishlists: []
+            },
+            mounted: function () {
+                var self = this;
+                fetch('/api/wishlist/getall')
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result);
+                        self.wishlists = result;
+                    })
+            }
+        });
 
+<<<<<<< HEAD
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -188,3 +266,8 @@
     </tbody>
 </table>
 >>>>>>> 新增WishListTable及Api
+=======
+    </script>
+
+}
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action

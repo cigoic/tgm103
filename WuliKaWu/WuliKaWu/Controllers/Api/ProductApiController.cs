@@ -133,8 +133,8 @@ namespace WuliKaWu.Controllers.Api
                     MemberId = myId,
                     ProductName = product.ProductName,
                     Price = product.Price,
-                    //SellingPrice = product.SellingPrice,
-                    //Discount = product.Discount,
+                    SellingPrice = (decimal)product.SellingPrice,
+                    Discount = (decimal)product.Discount,
                     PicturePath = product.PicturePath
                 });
                 //_context.WishList.Update(wishItem);
@@ -145,7 +145,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         //TODO °Ó«~­¶­±"AddToCart"
-        [HttpPost("{id}")]
+        [HttpPost("{productId}")]
         public string AddToCart(int productId)
         {
             var myId = User.Claims.GetMemberId();

@@ -14,6 +14,7 @@ namespace WuliKaWu.Controllers.Api
     public class CheckOutApiController : ControllerBase
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         private readonly ShopContext _context;
 
         public CheckOutApiController(ShopContext context)
@@ -26,10 +27,18 @@ namespace WuliKaWu.Controllers.Api
         {
             _db = context;
 >>>>>>> [調整]更改檔案位子至Api
+=======
+        private readonly ShopContext _context;
+
+        public CheckOutApiController(ShopContext context)
+        {
+            _context = context;
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
         }
 
         public List<CheckOutModel> GetAll()
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             throw new NotImplementedException();
@@ -55,6 +64,9 @@ namespace WuliKaWu.Controllers.Api
 =======
             return _db.Carts.Select(x => new CheckOutModel
 >>>>>>> [修改]CheckOutApiController的GetAll() ,原Model為OrderDetails更改為Cart
+=======
+            return _context.Carts.Select(x => new CheckOutModel
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
             {
                 CheckOutId = 2,
                 PicturePath = "~/assets/images/cart/cart-2.jpg",

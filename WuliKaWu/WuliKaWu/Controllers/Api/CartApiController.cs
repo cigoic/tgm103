@@ -20,6 +20,7 @@ namespace WuliKaWu.Controllers.Api
     public class CartApiController : ControllerBase
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         private readonly ShopContext _context;
 
         public CartApiController(ShopContext context)
@@ -127,15 +128,18 @@ namespace WuliKaWu.Controllers.Api
             return RedirectToAction("Index");
 =======
         private readonly ShopContext _db;
+=======
+        private readonly ShopContext _context;
+>>>>>>> [新增]AddWishList Action 及 AddToCart Action
 
         public CartApiController(ShopContext context)
         {
-            _db = context;
+            _context = context;
         }
 
         public List<CartModel> GetAll()
         {
-            return _db.Carts.Select(x => new CartModel
+            return _context.Carts.Select(x => new CartModel
             {
                 CartId = x.CartId,
                 Color = x.Color,
