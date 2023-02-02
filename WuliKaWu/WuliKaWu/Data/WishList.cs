@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
 {
-    //[Table("WishLists")]
+    [Table("WishLists")]
     public class WishList
     {
         /// <summary>
@@ -26,28 +26,13 @@ namespace WuliKaWu.Data
         public int ProductId { get; set; }
 
         /// <summary>
-        /// 商品名稱，最大 nvarchar(max)
+        /// 導覽屬性:只對應到單一個會員，不用 ICollection
         /// </summary>
-        public string ProductName { get; set; }
+        public virtual Member Member { get; set; }
 
         /// <summary>
-        /// 商品價格
+        /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
-        public decimal Price { get; set; }
-
-        /// <summary>
-        /// 商品折扣價格
-        /// </summary>
-        public decimal SellingPrice { get; set; }
-
-        /// <summary>
-        /// 商品折扣
-        /// </summary>
-        public decimal Discount { get; set; }
-
-        /// <summary>
-        /// 商品圖片位址，最大 nvarchar(max)
-        /// </summary>
-        public string PicturePath { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

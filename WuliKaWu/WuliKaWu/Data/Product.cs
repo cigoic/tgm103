@@ -97,8 +97,18 @@ namespace WuliKaWu.Data
         public virtual TableOfCategory TableOfCategories { get; set; }
 
         /// <summary>
-        /// 導覽屬性:一個商品對應到單一個商品圖片，不用 ICollection
+        /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection
         /// </summary>
-        public virtual Picture Pictures { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:只對應到單一個購物車,不用 ICollection
+        /// </summary>
+        public virtual Cart Cart { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:只對應到單一個收藏清單,不用 ICollection
+        /// </summary>
+        public virtual WishList WishList { get; set; }
     }
 }
