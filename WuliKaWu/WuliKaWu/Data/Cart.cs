@@ -15,25 +15,16 @@ namespace WuliKaWu.Data
         public int CartId { get; set; }
 
         /// <summary>
-        /// 商品名稱，最大長度 50
+        /// 關聯的會員ID (Foreign Key)
         /// </summary>
-        [StringLength(50)]
-        public string ProductName { get; set; }
+        [ForeignKey("Members")]
+        public int MemberId { get; set; }
 
         /// <summary>
-        /// 商品尺寸
+        /// 關聯的商品ID (Foreign Key)
         /// </summary>
-        public Size Size { get; set; }
-
-        /// <summary>
-        /// 商品顏色
-        /// </summary>
-        public Color Color { get; set; }
-
-        /// <summary>
-        /// 商品圖片位址
-        /// </summary>
-        public string PicturePath { get; set; }
+        [ForeignKey("Products")]
+        public int ProductId { get; set; }
 
         /// <summary>
         /// 商品數量
@@ -41,23 +32,13 @@ namespace WuliKaWu.Data
         public int Quantity { get; set; }
 
         /// <summary>
-        /// 商品價格
+        /// 導覽屬性:只對應到單個商品，不用 ICollection
         /// </summary>
-        public decimal Price { get; set; }
+        public virtual Product Product { get; set; }
 
         /// <summary>
-        /// 商品折扣價格
+        /// 導覽屬性:只對應到單一個會員，不用 ICollection
         /// </summary>
-        public decimal? SellingPrice { get; set; }
-
-        /// <summary>
-        /// 商品折扣
-        /// </summary>
-        public decimal? Discount { get; set; }
-
-        /// <summary>
-        /// 優惠券
-        /// </summary>
-        public decimal? Coupon { get; set; }
+        public virtual Member Member { get; set; }
     }
 }

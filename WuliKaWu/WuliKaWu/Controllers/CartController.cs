@@ -57,22 +57,22 @@ namespace WuliKaWu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Cart cart)
         {
-            Cart crt = new Cart
-            {
-                CartId = cart.CartId,
-                Color = cart.Color,
-                Coupon = cart.Coupon,
-                Discount = cart.Discount,
-                PicturePath = cart.PicturePath,
-                Price = cart.Price,
-                ProductName = cart.ProductName,
-                Quantity = cart.Quantity,
-                SellingPrice = cart.SellingPrice,
-                Size = cart.Size
-            };
+            //Cart crt = new Cart
+            //{
+            //    CartId = cart.CartId,
+            //    Color = cart.Color,
+            //    Coupon = cart.Coupon,
+            //    Discount = cart.Discount,
+            //    PicturePath = cart.PicturePath,
+            //    Price = cart.Price,
+            //    ProductName = cart.ProductName,
+            //    Quantity = cart.Quantity,
+            //    SellingPrice = cart.SellingPrice,
+            //    Size = cart.Size
+            //};
 
-            _context.Carts.Add(crt);
-            await _context.SaveChangesAsync();
+            //_context.Carts.Add(crt);
+            //await _context.SaveChangesAsync();
 
             return View(cart);
 

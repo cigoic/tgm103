@@ -116,45 +116,47 @@ namespace WuliKaWu.Controllers.Api
         //TODO 商品頁面加入"收藏清單" 加Sweet Alert
         //[Authorize]
         [HttpPost("{productId}")]
-        public string AddWishList(int productId)
+        public void AddWishList(int productId)
         {
             var myId = User.Claims.GetMemberId();
             var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
             var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+
             if (wishItem == null)
             {
                 _context.WishList.Add(new WishList
                 {
                     ProductId = productId,
                     MemberId = myId,
-                    ProductName = product.ProductName,
-                    Price = product.Price,
-                    SellingPrice = (decimal)product.SellingPrice,
-                    Discount = (decimal)product.Discount,
-                    PicturePath = product.PicturePath
+                    Product = product
                 });
-                //_context.WishList.Update(wishItem);
+
                 _context.SaveChangesAsync();
-                return "已加入收藏清單";
+
+                //TODO 彈跳提醒sweetalert
             }
-            return "目前沒有收藏商品";
+            // //TODO 彈跳提醒sweetalert
         }
 
         //TODO 商品頁面"AddToCart"
         [HttpPost("{productId}")]
-        public string AddToCart(int productId)
+        public string AddToCart(int WishListId, int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var cart = _context.Carts.FirstOrDefault(x => x.MemberId == myId);
             var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
-            if (wishItem == null)
+
+            if (cart == null)
             {
-                _context.WishList.Add(new WishList
+                _context.Carts.Add(new Cart
                 {
-                    ProductId = productId,
+                    //WishListId = WishListId,
                     MemberId = myId,
+                    ProductId = productId,
+                    Quantity = 1,
+                    Product = product
                 });
-                _context.SaveChanges();
+                _context.SaveChangesAsync();
                 return "已加入購物車";
             }
             return "";
