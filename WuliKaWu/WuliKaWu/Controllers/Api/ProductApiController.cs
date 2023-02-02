@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
@@ -110,9 +111,55 @@ namespace WuliKaWu.Controllers.Api
         {
             return _context.Products.Any(p => p.ProductId == id);
         }
+
+        //TODO °Ó«~­¶­±¥[¤J"¦¬ÂÃ²M³æ" ¥[Sweet Alert
+        //[Authorize]
+        [HttpPost("{productId}")]
+        public string AddWishList(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            if (wishItem == null)
+            {
+                _context.WishList.Add(new WishList
+                {
+                    ProductId = productId,
+                    MemberId = myId,
+                    ProductName = product.ProductName,
+                    Price = product.Price,
+                    //SellingPrice = product.SellingPrice,
+                    //Discount = product.Discount,
+                    PicturePath = product.PicturePath
+                });
+                //_context.WishList.Update(wishItem);
+                _context.SaveChangesAsync();
+                return "¤w¥[¤J¦¬ÂÃ²M³æ";
+            }
+            return "¥Ø«e¨S¦³¦¬ÂÃ°Ó«~";
+        }
+
+        //TODO °Ó«~­¶­±"AddToCart"
+        [HttpPost("{id}")]
+        public string AddToCart(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            if (wishItem == null)
+            {
+                _context.WishList.Add(new WishList
+                {
+                    ProductId = productId,
+                    MemberId = myId,
+                });
+                _context.SaveChanges();
+                return "¤w¥[¤JÁÊª«¨®";
+            }
+            return "";
+        }
     }
-}
-<<<<<<< HEAD
+}<<<<<<< HEAD
 >>>>>>> [æ›´æ–°] è³‡æ–™åº«è³‡æ–™è¡¨
 =======
 >>>>>>> Productvue (#6)
