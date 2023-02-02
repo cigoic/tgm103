@@ -12,8 +12,8 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230201164538_ModifyMemberPhoneLength")]
-    partial class ModifyMemberPhoneLength
+    [Migration("20230202081824_InitTables")]
+    partial class InitTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,54 +61,54 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6073),
+                            CreatedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6330),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6074),
+                            ModifiedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6331),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6330),
+                            CreatedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6390),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6331),
+                            ModifiedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6391),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6354),
+                            CreatedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6423),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6354),
+                            ModifiedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6424),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6376),
+                            CreatedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6457),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6376),
+                            ModifiedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6458),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6396),
+                            CreatedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6488),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6397),
+                            ModifiedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6489),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6419),
+                            CreatedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6545),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6420),
+                            ModifiedDate = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6546),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -385,53 +385,21 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
-                    b.Property<int>("Color")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Coupon")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("PicturePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
                     b.HasKey("CartId");
 
-                    b.ToTable("Cart");
+                    b.HasIndex("MemberId")
+                        .IsUnique();
 
-                    b.HasData(
-                        new
-                        {
-                            CartId = 1,
-                            Color = 3,
-                            Coupon = -100m,
-                            PicturePath = "pic1",
-                            Price = 1000m,
-                            ProductName = "裙子",
-                            Quantity = 2,
-                            SellingPrice = 800m,
-                            Size = 2
-                        });
+                    b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -548,7 +516,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6010),
+                            Birthday = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6251),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -565,7 +533,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6027),
+                            Birthday = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6271),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -582,7 +550,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 2, 2, 0, 45, 37, 138, DateTimeKind.Local).AddTicks(6033),
+                            Birthday = new DateTime(2023, 2, 2, 16, 18, 23, 712, DateTimeKind.Local).AddTicks(6278),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -624,23 +592,41 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal?>("Coupon")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("Memo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OrderDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ShippingDate")
+                    b.Property<string>("Recipient")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("ShippingAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("ShippingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("OrderId");
 
@@ -660,16 +646,6 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
-                    b.Property<string>("ContactPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("Coupon")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -680,9 +656,6 @@ namespace WuliKaWu.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -690,26 +663,12 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<string>("Recipient")
-                        .IsRequired()
-                        .HasMaxLength(24)
-                        .HasColumnType("nvarchar(24)");
-
-                    b.Property<decimal?>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("OrderDetailsId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -743,6 +702,9 @@ namespace WuliKaWu.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -780,7 +742,14 @@ namespace WuliKaWu.Migrations
                     b.Property<int?>("Tag")
                         .HasColumnType("int");
 
+                    b.Property<int?>("WishListId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("WishListId");
 
                     b.ToTable("Products");
 
@@ -815,7 +784,8 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("Category");
                 });
@@ -933,45 +903,18 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListId"), 1L, 1);
 
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PicturePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("WishListId");
 
-                    b.ToTable("WishList");
+                    b.HasIndex("MemberId")
+                        .IsUnique();
 
-                    b.HasData(
-                        new
-                        {
-                            WishListId = 1,
-                            Discount = -1000m,
-                            MemberId = 2,
-                            PicturePath = "pic2",
-                            Price = 3000m,
-                            ProductId = 2,
-                            ProductName = "牛仔外套",
-                            SellingPrice = 2700m
-                        });
+                    b.ToTable("WishLists");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
@@ -1012,6 +955,17 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithOne("Cart")
+                        .HasForeignKey("WuliKaWu.Data.Cart", "MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -1045,6 +999,17 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Member");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Order", "Orders")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Product", "Product")
@@ -1056,11 +1021,26 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", "Cart")
+                        .WithMany("Products")
+                        .HasForeignKey("CartId");
+
+                    b.HasOne("WuliKaWu.Data.WishList", "WishList")
+                        .WithMany("Products")
+                        .HasForeignKey("WishListId");
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("WishList");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("TableOfCategories")
-                        .HasForeignKey("ProductId")
+                        .WithOne("TableOfCategories")
+                        .HasForeignKey("WuliKaWu.Data.TableOfCategory", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1122,6 +1102,17 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithOne("WishList")
+                        .HasForeignKey("WuliKaWu.Data.WishList", "MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
                 {
                     b.Navigation("ArticleCategories");
@@ -1131,22 +1122,37 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ArticleTitleImages");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Member", b =>
                 {
                     b.Navigation("Articles");
+
+                    b.Navigation("Cart");
 
                     b.Navigation("ContactMessages");
 
                     b.Navigation("Orders");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("WishList");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
                     b.Navigation("Pictures");
 
-                    b.Navigation("TableOfCategories");
+                    b.Navigation("TableOfCategories")
+                        .IsRequired();
 
                     b.Navigation("TableOfColors");
 
@@ -1155,6 +1161,11 @@ namespace WuliKaWu.Migrations
                     b.Navigation("TableOfStarRates");
 
                     b.Navigation("TableOfTags");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
