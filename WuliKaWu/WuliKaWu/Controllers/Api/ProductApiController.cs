@@ -25,7 +25,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 ProductName = x.ProductName,
                 Color = x.Color,
-                PicturePath = $"~/images/{x.PicturePath}",
+                PicturePath = x.PicturePath,
                 Price = x.Price,
                 ProductId = x.ProductId,
                 Size = x.Size.GetDescriptionText(),
@@ -34,7 +34,29 @@ namespace WuliKaWu.Controllers.Api
             }).ToList();
         }
 
-        public ProductModel GetById(int id, ProductModel productModel)
+        [HttpGet("{id}")]
+        public DeleteforPreviewModel GetById(int id)
+        {
+            var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
+
+            if (data == null)
+            {
+                return null;
+            }
+            return new DeleteforPreviewModel
+            {
+                PicturePath = data.PicturePath,
+                ProductName = data.ProductName,
+                Color = data.Color,
+                Size = data.Size.GetDescriptionText(),
+                Price = data.Price,
+                SellingPrice = data.SellingPrice.HasValue ? data.SellingPrice.Value.ToString() : "",
+                Category = data.Category,
+                Tag = (Tag)data.Tag
+            };
+        }
+
+        public ProductModel EditById(int id, ProductModel productModel)
         {
             if (id != productModel.ProductId)
             {
@@ -46,7 +68,7 @@ namespace WuliKaWu.Controllers.Api
             product.Color = productModel.Color;
             product.Size = (Size)Enum.Parse(typeof(Size), productModel.Size);
             product.Category = productModel.Category;
-            product.PicturePath = $"~/images/{productModel.PicturePath}";
+            product.PicturePath = productModel.PicturePath;
             product.Price = productModel.Price;
             product.Discount = Convert.ToDecimal(productModel.Discount);
             product.SellingPrice = decimal.Parse(productModel.SellingPrice);
@@ -76,6 +98,20 @@ namespace WuliKaWu.Controllers.Api
         {
             return _context.Products.Any(p => p.ProductId == id);
         }
+
+        //[HttpDelete("{id}")]
+        //public async Task<String> DeleteProduct(int id)
+        //{
+        //    Product p = await _context.Products.FindAsync(id);
+        //    if (p == null)
+        //    {
+        //        return "can not find this product!";
+        //    }
+
+        //    _context.Products.Remove(p);
+        //    await _context.SaveChangesAsync();
+        //    return "this product delete success!";
+        //}
 
         //TODO 商品頁面加入"收藏清單" 加Sweet Alert
         //[Authorize]
