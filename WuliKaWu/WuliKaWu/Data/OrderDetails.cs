@@ -39,17 +39,17 @@ namespace WuliKaWu.Data
         /// 訂單 ID
         /// </summary>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public int OrderId { get; set; }
 
         /// <summary>
 =======
         public int OrderId { get; set; }
+=======
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
 
-        /// <summary>
-        /// 產品ID
-        /// </summary>
-        public int ProductId { get; set; }
+        public int OrderId { get; set; }
 
         /// <summary>
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
@@ -90,6 +90,7 @@ namespace WuliKaWu.Data
 =======
 =======
         /// <summary>
+<<<<<<< HEAD
         /// 商品折扣價格
         /// </summary>
         public decimal? SellingPrice { get; set; }
@@ -102,11 +103,14 @@ namespace WuliKaWu.Data
 
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
         /// <summary>
+=======
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
         /// 商品數量
         /// </summary>
         public int Quantity { get; set; }
 
         /// <summary>
+<<<<<<< HEAD
 <<<<<<< HEAD
         /// 導覽屬性：只對應到單一訂單，不用 ICollection
         /// </summary>
@@ -143,5 +147,11 @@ namespace WuliKaWu.Data
 =======
         public GetPayType Type { get; set; }
 >>>>>>> [修改]支付方式的型態
+=======
+        /// 導覽屬性：只對應到單一訂單，不用 ICollection
+        /// </summary>
+        [ForeignKey("OrderId")]
+        public virtual Order Orders { get; set; }
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
     }
 }

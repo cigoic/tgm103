@@ -202,13 +202,27 @@ namespace WuliKaWu.Data
 >>>>>>> [更新]Enum/Product/Member表格
 
         /// <summary>
-        /// 導覽屬性:一個商品對應到單一個商品圖片，不用 ICollection
+        /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection
         /// </summary>
+<<<<<<< HEAD
 <<<<<<< HEAD
         public virtual ICollection<Picture> Pictures { get; set; }
 >>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
 =======
         public virtual Picture Pictures { get; set; }
 >>>>>>> [更新]Enum/Product/Member表格
+=======
+        public virtual ICollection<Picture> Pictures { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:只對應到單一個購物車,不用 ICollection
+        /// </summary>
+        public virtual Cart Cart { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:只對應到單一個收藏清單,不用 ICollection
+        /// </summary>
+        public virtual WishList WishList { get; set; }
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
     }
 }

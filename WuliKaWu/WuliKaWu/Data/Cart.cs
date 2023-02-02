@@ -55,25 +55,16 @@ namespace WuliKaWu.Data
         public int CartId { get; set; }
 
         /// <summary>
-        /// 商品名稱，最大長度 50
+        /// 關聯的會員ID (Foreign Key)
         /// </summary>
-        [StringLength(50)]
-        public string ProductName { get; set; }
+        [ForeignKey("Members")]
+        public int MemberId { get; set; }
 
         /// <summary>
-        /// 商品尺寸
+        /// 關聯的商品ID (Foreign Key)
         /// </summary>
-        public Size Size { get; set; }
 
-        /// <summary>
-        /// 商品顏色
-        /// </summary>
-        public Color Color { get; set; }
-
-        /// <summary>
-        /// 商品圖片位址
-        /// </summary>
-        public string PicturePath { get; set; }
+        public int ProductId { get; set; }
 
         /// <summary>
         /// 商品數量
@@ -81,23 +72,14 @@ namespace WuliKaWu.Data
         public int Quantity { get; set; }
 
         /// <summary>
-        /// 商品價格
+        /// 導覽屬性:一個購物車對應到多個商品，用 ICollection
         /// </summary>
-        public decimal Price { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
 
         /// <summary>
-        /// 商品折扣價格
+        /// 導覽屬性:對應到單一個會員，不用 ICollection
         /// </summary>
-        public decimal? SellingPrice { get; set; }
-
-        /// <summary>
-        /// 商品折扣
-        /// </summary>
-        public decimal? Discount { get; set; }
-
-        /// <summary>
-        /// 優惠券
-        /// </summary>
+<<<<<<< HEAD
         public decimal? Coupon { get; set; }
 <<<<<<< HEAD
 
@@ -105,5 +87,8 @@ namespace WuliKaWu.Data
 >>>>>>> [更新] 資料庫資料表
 =======
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
+=======
+        public virtual Member Member { get; set; }
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
     }
 }

@@ -270,7 +270,20 @@ namespace WuliKaWu.Data
 =======
         public virtual ICollection<ContactMessage?> ContactMessages { get; set; }
 
+        /// <summary>
+        /// 導覽屬性:對應多筆部落格文章，使用 ICollection
+        /// </summary>
         public virtual ICollection<Article>? Articles { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:只對應到單一個購物車，不用 ICollection
+        /// </summary>
+        public virtual Cart? Cart { get; set; }
+
+        /// <summary>
+        /// 導覽屬性:只對應到單一個收藏清單，不用 ICollection
+        /// </summary>
+        public virtual WishList? WishList { get; set; }
     }
 
     public enum MemberShipType

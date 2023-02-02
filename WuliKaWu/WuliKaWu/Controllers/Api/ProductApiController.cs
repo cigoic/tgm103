@@ -186,19 +186,24 @@ namespace WuliKaWu.Controllers.Api
 
         //TODO 商品頁面"AddToCart"
         [HttpPost("{productId}")]
-        public string AddToCart(int productId)
+        public string AddToCart(int WishListId, int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
-            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
-            if (wishItem == null)
+            var cart = _context.Cart.FirstOrDefault(x => x.MemberId == myId);
+            var product = _context.Products.FirstOrDefault(x => x.ProductId == WishListId);
+            if (cartItem == null)
             {
                 _context.WishList.Add(new WishList
                 {
-                    ProductId = productId,
+                    WishListId = WishListId,
                     MemberId = myId,
+                    ProductName = WishListId.ProductName,
+                    Price = WishListId.Price,
+                    SellingPrice = (decimal)WishListId.SellingPrice,
+                    Discount = (decimal)WishListId.Discount,
+                    PicturePath = WishListId.PicturePath
                 });
-                _context.SaveChanges();
+                _context.SaveChangesAsync();
                 return "已加入購物車";
             }
             return "";

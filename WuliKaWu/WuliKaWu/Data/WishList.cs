@@ -5,6 +5,7 @@ namespace WuliKaWu.Data
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     [Table("WishLists")]
     public class WishList
     {
@@ -40,6 +41,9 @@ namespace WuliKaWu.Data
 =======
     //[Table("WishLists")]
 >>>>>>> [更新]Enum/Product/Member表格
+=======
+    [Table("WishLists")]
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
     public class WishList
     {
         /// <summary>
@@ -106,14 +110,19 @@ namespace WuliKaWu.Data
 =======
 =======
         /// <summary>
-        /// 商品名稱，最大 nvarchar(max)
+        /// 導覽屬性:只對應到單一個會員，不用 ICollection
         /// </summary>
+<<<<<<< HEAD
 >>>>>>> [更新]商品相關表格及願望清單表格加入summary
         public string ProductName { get; set; }
+=======
+        public virtual Member Member { get; set; }
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
 
         /// <summary>
-        /// 商品價格
+        /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
+<<<<<<< HEAD
         public decimal Price { get; set; }
 
         /// <summary>
@@ -135,5 +144,8 @@ namespace WuliKaWu.Data
 =======
         public string PicturePath { get; set; }
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+        public virtual ICollection<Product> Products { get; set; }
+>>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
     }
 }
