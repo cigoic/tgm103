@@ -132,6 +132,7 @@ namespace WuliKaWu.Controllers
         // GET: Products/Details/5
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public async Task<IActionResult> ProductDetails(int id = 2)
 =======
         public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
@@ -139,6 +140,9 @@ namespace WuliKaWu.Controllers
 =======
         public async Task<IActionResult> ProductDetails(int id = 2) 
 >>>>>>> [新增]商品首頁檢視頁面的getProductdetailLink及getPicPath的method(但getPicPath目前還不能連動)
+=======
+        public async Task<IActionResult> ProductDetails(int id = 2)
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
         {
             if (id == null || _context.Products == null)
             {
@@ -410,6 +414,7 @@ namespace WuliKaWu.Controllers
             ViewBag.id = id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             return View();
 =======
             var vm = new ProductModel();
@@ -424,6 +429,9 @@ namespace WuliKaWu.Controllers
 
             return View(vm);
 >>>>>>> [修正]商品刪除檢視頁面的圖片顯示綁定
+=======
+            return View();
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
         }
 
         // POST: Products/Delete/5

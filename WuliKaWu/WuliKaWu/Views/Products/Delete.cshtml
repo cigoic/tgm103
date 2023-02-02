@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿
 =======
 ﻿@model WuliKaWu.Data.Product
@@ -8,6 +9,9 @@
 ﻿@*@model WuliKaWu.Data.Product*@
 @model WuliKaWu.Models.ApiModel.ProductModel
 >>>>>>> [修正]商品刪除檢視頁面的圖片顯示綁定
+=======
+﻿
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -16,6 +20,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+
+<div id="deleteProduct">
 
 <div id="deleteProduct">
 
@@ -96,7 +102,7 @@
                                         <td class="first-column col-3"></td>
                                         <td class="product-list-img">
                                             <div class="col-5">
-                                                <img class="img-fluid" src="@Url.Content(Model.PicturePath)" alt="Product Picture" />
+                                                <img class="img-fluid" :src="product.picturePath" alt="Product Picture" />
                                             </div>
 >>>>>>> [修正]商品刪除檢視頁面的圖片顯示綁定
                                         </td>
@@ -104,41 +110,58 @@
                                     <tr>
                                         <td class="first-column">Name</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <td class="title">{{product.productName}}</td>
 =======
                                         <td class="title">@Html.DisplayFor(model => model.ProductName)</td>
 >>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
+=======
+                                        <td class="title">{{product.productName}}</td>
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Color</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <td class="pro-color">{{product.color}}</td>
 =======
                                         <td class="pro-color">@Html.DisplayFor(model => model.Color)</td>
 >>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
+=======
+                                        <td class="pro-color">{{product.color}}</td>
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Size</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <td class="pro-stock">{{product.size}}</td>
 =======
                                         <td class="pro-stock">@Html.DisplayFor(model => model.Size)</td>
 >>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
+=======
+                                        <td class="pro-stock">{{product.size}}</td>
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Price</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <td class="pro-price">${{product.price}}</td>
 =======
                                         <td class="pro-price">$@Html.DisplayFor(model => model.Price)</td>
 >>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
+=======
+                                        <td class="pro-price">${{product.price}}</td>
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Selling Price</td>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                         <td class="pro-price">${{product.sellingPrice}}</td>
 
@@ -152,10 +175,18 @@
                                         <td class="first-column">Category</td>
                                         <td class="pro-stock">@Html.DisplayFor(model => model.Category)</td>
 >>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
+=======
+                                        <td class="pro-price">${{product.sellingPrice}}</td>
+
+                                    <tr>
+                                        <td class="first-column">Category</td>
+                                        <td class="pro-stock">{{product.category}}</td>
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
                                     </tr>
 
                                     <tr>
                                         <td class="first-column">Tag</td>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                         <td class="pro-stock">{{product.tag}}</td>
                                     </tr>
@@ -241,6 +272,9 @@
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
 =======
                                         <td class="pro-stock">@Html.DisplayFor(model => model.Tag)</td>
+=======
+                                        <td class="pro-stock">{{product.tag}}</td>
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
                                     </tr>
 
 
@@ -262,9 +296,9 @@
     </div>
 
     <div class="col-7">
-        <form asp-action="Delete">
-            <input type="hidden" asp-for="ProductId" />
-            <input type="submit" value="Delete" class="btn btn-danger" />
+        <form asp-action="Delete" >
+            <input type="hidden"  />
+            <input type="submit" value="Delete" id="myDelete" class="btn btn-danger" />
         </form>
     </div>
 
@@ -272,7 +306,9 @@
     </div>
 </div>
 
+</div>
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 >>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
@@ -301,6 +337,11 @@
 <script>
 
     let app = new Vue({
+=======
+<script>
+
+    let PDapp = new Vue({
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
         
         el:"#deleteProduct",
         data: 
@@ -313,11 +354,16 @@
             fetch('/api/product/getbyid/'+'@ViewBag.id')
             .then(function(response){return response.json()})
             .then(function(result){
+<<<<<<< HEAD
                 
                 self.product = result;
                 self.product.productId = @ViewBag.id
                 
                 console.log(result)
+=======
+                console.log(result)
+                self.product = result;
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
             })
 
         }
@@ -325,5 +371,8 @@
     })
 
 </script>
+<<<<<<< HEAD
 =======
 >>>>>>> [更新]將商品編輯及商品刪除檢視頁面中不需要的程式碼做刪減，並在wwwroot中加入sweetalert靜態文件
+=======
+>>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
