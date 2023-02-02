@@ -98,7 +98,6 @@ namespace WuliKaWu.Data
         /// </summary>
 >>>>>>> [更新]商品相關表格及願望清單表格加入summary
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
 
         /// <summary>

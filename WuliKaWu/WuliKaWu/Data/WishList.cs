@@ -13,6 +13,7 @@ namespace WuliKaWu.Data
         /// 願望清單ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
+<<<<<<< HEAD
         public int WishListId { get; set; }
 
         /// <summary>
@@ -51,6 +52,8 @@ namespace WuliKaWu.Data
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+=======
+>>>>>>> [新增] 修改後的 Cart, Product, Wishlist 表
         public int WishListId { get; set; }
 
         /// <summary>
@@ -62,6 +65,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 關聯的商品ID
         /// </summary>
+        [ForeignKey("Products")]
         public int ProductId { get; set; }
 
 <<<<<<< HEAD
@@ -123,6 +127,7 @@ namespace WuliKaWu.Data
         /// </summary>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public decimal Price { get; set; }
 
         /// <summary>
@@ -150,5 +155,9 @@ namespace WuliKaWu.Data
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
         public virtual ICollection<Product> Products { get; set; }
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
+=======
+
+        public virtual Product Product { get; set; }
+>>>>>>> [新增] 修改後的 Cart, Product, Wishlist 表
     }
 }
