@@ -76,5 +76,52 @@ namespace WuliKaWu.Controllers.Api
         {
             return _context.Products.Any(p => p.ProductId == id);
         }
+
+        //TODO 商品頁面加入"收藏清單" 加Sweet Alert
+        //[Authorize]
+        [HttpPost("{productId}")]
+        public string AddWishList(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            if (wishItem == null)
+            {
+                _context.WishList.Add(new WishList
+                {
+                    ProductId = productId,
+                    MemberId = myId,
+                    ProductName = product.ProductName,
+                    Price = product.Price,
+                    //SellingPrice = product.SellingPrice,
+                    //Discount = product.Discount,
+                    PicturePath = product.PicturePath
+                });
+                //_context.WishList.Update(wishItem);
+                _context.SaveChangesAsync();
+                return "已加入收藏清單";
+            }
+            return "目前沒有收藏商品";
+        }
+
+        //TODO 商品頁面"AddToCart"
+        [HttpPost("{id}")]
+        public string AddToCart(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
+            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            if (wishItem == null)
+            {
+                _context.WishList.Add(new WishList
+                {
+                    ProductId = productId,
+                    MemberId = myId,
+                });
+                _context.SaveChanges();
+                return "已加入購物車";
+            }
+            return "";
+        }
     }
 }
