@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+=======
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
 
 using WuliKaWu.Data;
 using WuliKaWu.Models;
@@ -43,7 +46,10 @@ namespace WuliKaWu.Controllers.Api
                 Message = $"嗨! {User.Identity?.Name}"
             };
         }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
     }
 }

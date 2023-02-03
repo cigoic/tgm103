@@ -461,7 +461,7 @@ namespace WuliKaWu.Controllers
 =======
         [HttpPost]
         [ActionName("Login")]
-        public async Task<IActionResult> LoginRegisterAsync(MemberModel model)
+        public async Task<IActionResult> LoginRegisterAsync(MemberLoginModel model)
         {
             // 資料庫比對
             var member = _context.Members
@@ -480,12 +480,12 @@ namespace WuliKaWu.Controllers
             {
                 new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
                 // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
-                new Claim(ClaimTypes.Role, ConvertRoleTypeToString(model.Role)),    // 資料庫裡的角色
+                new Claim(ClaimTypes.Role, RoleType.User.GetDescriptionText()),    // 資料庫裡的角色
                 //new Claim(ClaimTypes.Role, "User"),
                 //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
-                new Claim("Id", member.MemberId.ToString()),
+                //new Claim("Id", member.MemberId.ToString()),
                 new Claim("RememberMe", model.RememberMe.ToString()),
-                //new Claim(ClaimTypes.Sid, "SECURITY_ID"),
+                new Claim(ClaimTypes.Sid, member.MemberId.ToString()),
                 //new Claim(ClaimTypes.GivenName, member.FirstName),
                 //new Claim(ClaimTypes.Surname, member.LastName),
                 //new Claim(ClaimTypes.Email, member.Email),
@@ -540,7 +540,7 @@ namespace WuliKaWu.Controllers
             {
                 Member member = new Member();
                 member.Account = model.Account;
-                // TODO: Hash the password
+                // Hash the password
                 // Install-Package BCrypt.Net-Next
                 member.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
                 member.Name = model.Name;
@@ -693,6 +693,7 @@ namespace WuliKaWu.Controllers
 
             return RedirectToAction(nameof(MyAccount));
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// 轉換商店會員種類代號至字串
@@ -749,5 +750,7 @@ namespace WuliKaWu.Controllers
             }
         }
 >>>>>>> [更新] 會員登入功能, 調整註冊功能
+=======
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
     }
 }

@@ -1,9 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿<div class="container" id="loginApp" />
 
 <div class="login-register-area pb-100 pt-15">
 =======
 ﻿<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+=======
+﻿<div class="container" id="loginApp" />
+
+<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
     <div class="container">
         <div class="breadcrumb-content text-center">
             <h2>Login - Register </h2>
@@ -41,6 +47,7 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <form id="loginForm" name="loginForm" method="post">
                                         <label for="Account" class="required">帳號</label>
                                         <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
@@ -59,10 +66,19 @@
                                     <form action="Login" method="post">
                                         <input type="text" name="Account" placeholder="Username">
                                         <input type="password" name="Password" placeholder="Password">
+=======
+                                    <form v-on:submit.prevent="handleSubmit" id="loginForm" name="loginForm" method="post">
+                                        <label for="Account" class="required"></label>
+                                        <input type="text" id="Account" name="Account" v-model="account" placeholder="Username">
+
+                                        <label for="Password" class="required"></label>
+                                        <input type="password" id="Password" name="Password" v-model="password" placeholder="Password">
+
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
                                         <div class="login-toggle-btn">
-                                            <input type="checkbox">
-                                            <label>Remember me</label>
-                                            <a href="#">Forgot Password?</a>
+                                            <label for="RememberMe">Remember me</label>
+                                            <input type="checkbox" id="RememberMe" name="RememberMe" :value="RememberMe">
+                                            <a href="/Member/ForgetPassword">Forgot Password?</a>
                                         </div>
                                         <div class="button-box btn-hover">
                                             <button type="submit">Login</button>
@@ -152,6 +168,9 @@
     </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
 
 
 @section Scripts
@@ -159,6 +178,7 @@
     <script>
         let loginVue = new Vue({
             data: {
+<<<<<<< HEAD
                 fieldsLogin: {
                     account: "",
                     password: "",
@@ -198,6 +218,28 @@
                     //document.getElementById('restForm').reset()    // reset form
                 },
             },
+=======
+                account: "",
+                password: "",
+                rememberMe: @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
+            },
+
+            methods: {
+                handleSubmit: function () {
+                    $post.("/api/Member/Login", {
+                        Account: this.account,
+                        Password: this.password,
+                        RememberMe: this.rememberMe,
+                    }).then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result);
+                            swal(result.message)
+
+                            document.getElementById('loginForm').reset()    // reset form
+                        })
+                },
+            }
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
         })
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -205,5 +247,8 @@
         })
     </script>
 }
+<<<<<<< HEAD
 =======
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
+=======
+>>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
