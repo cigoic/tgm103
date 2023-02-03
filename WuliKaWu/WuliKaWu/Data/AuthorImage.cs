@@ -10,8 +10,8 @@ namespace WuliKaWu.Data
     public class AuthorImage
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         /// <summary>
         /// 作者(會員) ID
         /// </summary>

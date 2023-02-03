@@ -10,7 +10,6 @@ namespace WuliKaWu.Data
         /// 聯絡訊息 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MessageId { get; set; }
 
         /// <summary>

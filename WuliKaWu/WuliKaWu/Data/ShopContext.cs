@@ -137,29 +137,6 @@ namespace WuliKaWu.Data
                 ProductId = 1,
                 PicturePath = "pic1"
             });
-            //modelBuilder.Entity<Cart>().HasData(new Cart
-            //{
-            //    CartId = 1,
-            //    ProductName = "裙子",
-            //    PicturePath = "pic1",
-            //    Color = Color.Red,
-            //    Size = Size.M,
-            //    Price = 1000,
-            //    SellingPrice = 800,
-            //    Coupon = -100,
-            //    Quantity = 2,
-            //});
-            //modelBuilder.Entity<WishList>().HasData(new WishList
-            //{
-            //    WishListId = 1,
-            //    ProductName = "牛仔外套",
-            //    Price = 3000,
-            //    SellingPrice = 2700,
-            //    Discount = -1000,
-            //    PicturePath = "pic2",
-            //    ProductId = 2,
-            //    MemberId = 2
-            //});
 
             // 會員
             modelBuilder.Entity<Member>().HasData(new Member
@@ -216,6 +193,20 @@ namespace WuliKaWu.Data
                 MemberShip = MemberShipType.Admin,
                 LockOutEnabled = false,
                 AccessFailedCount = 0,
+            });
+
+            modelBuilder.Entity<Cart>().HasData(new Cart
+            {
+                CartId = 3,
+                MemberId = 2,
+                ProductId = 6,
+                Quantity = 2,
+            });
+            modelBuilder.Entity<WishList>().HasData(new WishList
+            {
+                WishListId = 1,
+                ProductId = 1,
+                MemberId = 2
             });
 
             // 作者大頭照

@@ -6,7 +6,7 @@ namespace WuliKaWu.Extensions
     {
         public static int GetMemberId(this IEnumerable<Claim> claims)
         {
-            return int.TryParse(claims.FirstOrDefault(x => x.Type == "Id")?.Value, out var memberId) ? memberId : -1;
+            return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : -1;
         }
 
         public static bool GetRememberMeStatus(this IEnumerable<Claim> claims)

@@ -32,7 +32,7 @@ namespace WuliKaWu.Controllers
 
         [HttpPost]
         [ActionName("Login")]
-        public async Task<IActionResult> LoginRegisterAsync(MemberModel model)
+        public async Task<IActionResult> LoginRegisterAsync(MemberLoginModel model)
         {
             // 資料庫比對
             var member = _context.Members
@@ -51,12 +51,12 @@ namespace WuliKaWu.Controllers
             {
                 new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
                 // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
-                new Claim(ClaimTypes.Role, ConvertRoleTypeToString(model.Role)),    // 資料庫裡的角色
+                new Claim(ClaimTypes.Role, RoleType.User.GetDescriptionText()),    // 資料庫裡的角色
                 //new Claim(ClaimTypes.Role, "User"),
                 //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
-                new Claim("Id", member.MemberId.ToString()),
+                //new Claim("Id", member.MemberId.ToString()),
                 new Claim("RememberMe", model.RememberMe.ToString()),
-                //new Claim(ClaimTypes.Sid, "SECURITY_ID"),
+                new Claim(ClaimTypes.Sid, member.MemberId.ToString()),
                 //new Claim(ClaimTypes.GivenName, member.FirstName),
                 //new Claim(ClaimTypes.Surname, member.LastName),
                 //new Claim(ClaimTypes.Email, member.Email),
@@ -111,7 +111,7 @@ namespace WuliKaWu.Controllers
             {
                 Member member = new Member();
                 member.Account = model.Account;
-                // TODO: Hash the password
+                // Hash the password
                 // Install-Package BCrypt.Net-Next
                 member.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
                 member.Name = model.Name;
@@ -257,58 +257,6 @@ namespace WuliKaWu.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(MyAccount));
-        }
-
-        /// <summary>
-        /// 轉換商店會員種類代號至字串
-        /// </summary>
-        /// <param name="role"></param>
-        /// <returns></returns>
-        private string ConvertMemberShipTypeToString(MemberShipType type)
-        {
-            switch (type)
-            {
-                case MemberShipType.NormalUser:
-                    return "User";
-                    break;
-
-                case MemberShipType.VIP:
-                    return "VIP";
-                    break;
-
-                case MemberShipType.Admin:
-                    return "Admin";
-                    break;
-
-                case MemberShipType.None:
-                default:
-                    return "None";
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// 將會員角色 Enum 值輸出為字串
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private string ConvertRoleTypeToString(RoleType type)
-        {
-            switch (type)
-            {
-                case MemberRole.RoleType.User:
-                    return "User";
-                    break;
-
-                case MemberRole.RoleType.Admin:
-                    return "Admin";
-                    break;
-
-                case MemberRole.RoleType.None:
-                default:
-                    return "None";
-                    break;
-            }
         }
     }
 }

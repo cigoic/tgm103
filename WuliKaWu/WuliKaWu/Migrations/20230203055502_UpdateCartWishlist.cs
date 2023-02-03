@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WuliKaWu.Migrations
 {
-    public partial class ModifyCartWishlistTables : Migration
+    public partial class UpdateCartWishlist : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,63 +38,73 @@ namespace WuliKaWu.Migrations
                 keyColumn: "ArticleId",
                 keyValue: 1,
                 columns: new[] { "CreatedDate", "ModifiedDate" },
-                values: new object[] { new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7601), new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7602) });
+                values: new object[] { new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5412), new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5413) });
 
             migrationBuilder.UpdateData(
                 table: "Articles",
                 keyColumn: "ArticleId",
                 keyValue: 2,
                 columns: new[] { "CreatedDate", "ModifiedDate" },
-                values: new object[] { new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7657), new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7657) });
+                values: new object[] { new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5486), new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5487) });
 
             migrationBuilder.UpdateData(
                 table: "Articles",
                 keyColumn: "ArticleId",
                 keyValue: 3,
                 columns: new[] { "CreatedDate", "ModifiedDate" },
-                values: new object[] { new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7725), new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7726) });
+                values: new object[] { new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5515), new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5516) });
 
             migrationBuilder.UpdateData(
                 table: "Articles",
                 keyColumn: "ArticleId",
                 keyValue: 4,
                 columns: new[] { "CreatedDate", "ModifiedDate" },
-                values: new object[] { new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7766), new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7767) });
+                values: new object[] { new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5609), new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5610) });
 
             migrationBuilder.UpdateData(
                 table: "Articles",
                 keyColumn: "ArticleId",
                 keyValue: 5,
                 columns: new[] { "CreatedDate", "ModifiedDate" },
-                values: new object[] { new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7802), new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7802) });
+                values: new object[] { new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5639), new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5640) });
 
             migrationBuilder.UpdateData(
                 table: "Articles",
                 keyColumn: "ArticleId",
                 keyValue: 6,
                 columns: new[] { "CreatedDate", "ModifiedDate" },
-                values: new object[] { new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7840), new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7841) });
+                values: new object[] { new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5671), new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5672) });
+
+            migrationBuilder.InsertData(
+                table: "Cart",
+                columns: new[] { "CartId", "MemberId", "ProductId", "Quantity" },
+                values: new object[] { 3, 2, 6, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Members",
                 keyColumn: "MemberId",
                 keyValue: 1,
                 column: "Birthday",
-                value: new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7517));
+                value: new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5284));
 
             migrationBuilder.UpdateData(
                 table: "Members",
                 keyColumn: "MemberId",
                 keyValue: 2,
                 column: "Birthday",
-                value: new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7541));
+                value: new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5306));
 
             migrationBuilder.UpdateData(
                 table: "Members",
                 keyColumn: "MemberId",
                 keyValue: 3,
                 column: "Birthday",
-                value: new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7551));
+                value: new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5313));
+
+            migrationBuilder.InsertData(
+                table: "WishLists",
+                columns: new[] { "WishListId", "MemberId", "ProductId" },
+                values: new object[] { 1, 2, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_WishLists_ProductId",
@@ -142,6 +152,16 @@ namespace WuliKaWu.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_Cart_ProductId",
                 table: "Cart");
+
+            migrationBuilder.DeleteData(
+                table: "Cart",
+                keyColumn: "CartId",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "WishLists",
+                keyColumn: "WishListId",
+                keyValue: 1);
 
             migrationBuilder.AddColumn<int>(
                 name: "CartId",

@@ -12,8 +12,8 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230202091456_ModifyCartWishlistTables")]
-    partial class ModifyCartWishlistTables
+    [Migration("20230203055502_UpdateCartWishlist")]
+    partial class UpdateCartWishlist
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,54 +61,54 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7601),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5412),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7602),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5413),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7657),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5486),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7657),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5487),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7725),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5515),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7726),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5516),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7766),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5609),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7767),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5610),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7802),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5639),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7802),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5640),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7840),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5671),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7841),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5672),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -403,6 +403,15 @@ namespace WuliKaWu.Migrations
                         .IsUnique();
 
                     b.ToTable("Cart");
+
+                    b.HasData(
+                        new
+                        {
+                            CartId = 3,
+                            MemberId = 2,
+                            ProductId = 6,
+                            Quantity = 2
+                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -519,7 +528,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7517),
+                            Birthday = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5284),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -536,7 +545,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7541),
+                            Birthday = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5306),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -553,7 +562,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7551),
+                            Birthday = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5313),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -911,6 +920,14 @@ namespace WuliKaWu.Migrations
                         .IsUnique();
 
                     b.ToTable("WishLists");
+
+                    b.HasData(
+                        new
+                        {
+                            WishListId = 1,
+                            MemberId = 2,
+                            ProductId = 1
+                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>

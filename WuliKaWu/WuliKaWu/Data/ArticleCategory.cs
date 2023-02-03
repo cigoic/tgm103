@@ -14,7 +14,6 @@ namespace WuliKaWu.Data
         /// 資料表 ID: 自動編號
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>

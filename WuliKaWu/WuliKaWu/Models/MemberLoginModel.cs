@@ -2,7 +2,7 @@
 
 namespace WuliKaWu.Models
 {
-    public class MemberModel
+    public class MemberLoginModel
     {
         public int MemberId { get; set; }
         public string Account { get; set; }

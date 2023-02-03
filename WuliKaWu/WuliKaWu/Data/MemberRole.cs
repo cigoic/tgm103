@@ -28,7 +28,6 @@ namespace WuliKaWu.Data
         /// 帳號角色 ID (Primary Key)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoleId { get; set; }
 
         /// <summary>
