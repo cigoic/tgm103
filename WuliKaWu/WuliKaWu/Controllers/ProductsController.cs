@@ -105,26 +105,36 @@ namespace WuliKaWu.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
+
             if (product == null)
             {
                 return NotFound();
             }
+            ViewBag.id = id;
 
-            var vm = new ProductModel();
+            return View();
 
-            vm.ProductId = product.ProductId;
-            vm.ProductName = product.ProductName;
-            vm.Color = product.Color;
-            vm.Size = product.Size.ToString();
-            vm.Category = product.Category;
-            vm.PicturePath = $"~/images/{product.PicturePath}";
-            vm.Price = product.Price;
-            vm.Discount = product.Discount > 0 ? true : false;
-            vm.SellingPrice = (product.SellingPrice).ToString();
-            //vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+            //var product = await _context.Products.FindAsync(id);
+            //if (product == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return View(vm);
+            //var vm = new ProductModel();
+
+            //vm.ProductId = product.ProductId;
+            //vm.ProductName = product.ProductName;
+            //vm.Color = product.Color;
+            //vm.Size = product.Size.ToString();
+            //vm.Category = product.Category;
+            //vm.PicturePath = $"~/images/{product.PicturePath}";
+            //vm.Price = product.Price;
+            //vm.Discount = product.Discount > 0 ? true : false;
+            //vm.SellingPrice = (product.SellingPrice).ToString();
+            ////vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+
+            //return View(vm);
         }
 
         // POST: Products/Edit/5

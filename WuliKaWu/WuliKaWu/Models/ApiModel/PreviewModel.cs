@@ -3,7 +3,7 @@ using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Models.ApiModel
 {
-    public class DeleteforPreviewModel
+    public class PreviewModel
     {
         public int ProductId { get; set; }
 

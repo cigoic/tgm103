@@ -51,7 +51,7 @@
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
                                                 <a :href="getProductdetailsLink(product.productId)">
-                                                    <img :src="getPicPath(product.picturePath)" alt="product picture">
+                                                    <img :src="product.picturePath" alt="product picture">
                                                 </a>
                                                 <div v-if="product.discount" class="product-badge badge-top badge-right badge-pink">
                                                     <span>-10%</span>
@@ -274,11 +274,11 @@
                 selectedSize:"All",
                 selectedItem: "2",
                 productdetailsLink: "/Products/Productdetails/",
-                getPic:
-                {
-                    type: "string",
-                    default: "product-5.png"
-                },
+                //getPic:
+                //{
+                //    type: "string",
+                //    default: "product-5.png"
+                //},
                 priceRange: {
                     min: 0,
                     max: 100
@@ -344,10 +344,10 @@
                 getProductdetailsLink: function (productId) {
                     return this.productdetailsLink + productId
                 },
-                getPicPath: function (picPath) {
-                    console.log(picPath)    // receive pic filename
-                    return picPath.replace("~", "")
-                },
+                //getPicPath: function (picPath) {
+                //    console.log(picPath)    // receive pic filename
+                //    return picPath.replace("~", "")
+                //},
                 addToCart(id) {
                     console.log("CPid:", id)
                     this.queryCartBaseURL = 'api/product/AddToCart/' + id;
