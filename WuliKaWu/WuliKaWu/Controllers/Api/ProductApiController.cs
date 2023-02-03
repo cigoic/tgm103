@@ -117,11 +117,11 @@ namespace WuliKaWu.Controllers.Api
         //TODO 商品頁面加入"收藏清單" 加Sweet Alert
         //[Authorize]
         [HttpPost("{productId}")]
-        public void AddWishList(int productId)
+        public async Task AddWishListAsync(int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
-            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+            var wishItem = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
             if (wishItem == null)
             {
@@ -132,7 +132,7 @@ namespace WuliKaWu.Controllers.Api
                     Product = product
                 });
 
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 //TODO 彈跳提醒sweetalert
             }
@@ -142,11 +142,12 @@ namespace WuliKaWu.Controllers.Api
         //TODO 商品頁面"AddToCart" SweetAlert
         //[Authorize]
         [HttpPost("{productId}")]
-        public string AddToCart(int WishListId, int productId)
+        public async Task<string> AddToCartAsync(int WishListId, int productId)
         {
             var myId = User.Claims.GetMemberId();
-            var cart = _context.Carts.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
-            var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
+
+            var cart = await _context.Carts.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
             if (cart == null)
             {
@@ -159,7 +160,7 @@ namespace WuliKaWu.Controllers.Api
                     Product = product
                 });
                 //TODO 彈跳提醒sweetalert
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return "已加入購物車";
             }
             //TODO 彈跳提醒sweetalert
