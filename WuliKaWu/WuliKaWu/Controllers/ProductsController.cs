@@ -39,7 +39,7 @@ namespace WuliKaWu.Controllers
         { return View(); }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> ProductDetails(int id = 2)
+        public async Task<IActionResult> ProductDetails(int id = 1)
         {
             if (id == null || _context.Products == null)
             {
@@ -52,8 +52,11 @@ namespace WuliKaWu.Controllers
             {
                 return NotFound();
             }
+            ViewBag.id = id;
 
-            return View(product);
+            return View();
+
+            //return View(product);
         }
 
         // GET: Products/Create
