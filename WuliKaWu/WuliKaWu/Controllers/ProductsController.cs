@@ -265,6 +265,9 @@ namespace WuliKaWu.Controllers
                 return NotFound();
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
             ViewBag.id = id;
 
             return View();
@@ -274,6 +277,7 @@ namespace WuliKaWu.Controllers
             //{
             //    return NotFound();
             //}
+<<<<<<< HEAD
 
             //var vm = new ProductModel();
 
@@ -290,22 +294,28 @@ namespace WuliKaWu.Controllers
 
             //return View(vm);
 =======
+=======
+>>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
 
-            var vm = new ProductModel();
+            //var vm = new ProductModel();
 
-            vm.ProductId = product.ProductId;
-            vm.ProductName = product.ProductName;
-            vm.Color = product.Color;
-            vm.Size = product.Size.ToString();
-            vm.Category = product.Category;
-            vm.PicturePath = $"~/images/{product.PicturePath}";
-            vm.Price = product.Price;
-            vm.Discount = product.Discount > 0 ? true : false;
-            vm.SellingPrice = (product.SellingPrice).ToString();
-            //vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+            //vm.ProductId = product.ProductId;
+            //vm.ProductName = product.ProductName;
+            //vm.Color = product.Color;
+            //vm.Size = product.Size.ToString();
+            //vm.Category = product.Category;
+            //vm.PicturePath = $"~/images/{product.PicturePath}";
+            //vm.Price = product.Price;
+            //vm.Discount = product.Discount > 0 ? true : false;
+            //vm.SellingPrice = (product.SellingPrice).ToString();
+            ////vm.Tag = (Data.Enums.Common.Tag)product.Tag;
 
+<<<<<<< HEAD
             return View(vm);
 >>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
+=======
+            //return View(vm);
+>>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
         }
 
         // POST: Products/Edit/5
