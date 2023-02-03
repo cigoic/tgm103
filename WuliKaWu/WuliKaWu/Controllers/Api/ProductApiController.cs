@@ -97,6 +97,7 @@ namespace WuliKaWu.Controllers.Api
             }
             var model = new PreviewModel
             {
+                ProductId = data.ProductId,
                 PicturePath = data.PicturePath,
                 ProductName = data.ProductName,
                 Color = data.Color,
