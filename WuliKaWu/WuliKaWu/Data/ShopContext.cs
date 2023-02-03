@@ -51,6 +51,11 @@ namespace WuliKaWu.Data
         public DbSet<MemberRole> MemberRoles { get; set; }      // 若改用 Identity, 此行要移除
 
         /// <summary>
+        /// 產生過的重置密碼 Token
+        /// </summary>
+        public DbSet<ResetToken> ResetTokens { get; set; }
+
+        /// <summary>
         /// 支付方式資料表
         /// </summary>
         public DbSet<TableOfGetPayType> TbGetPayTypes { get; set; }
