@@ -15,9 +15,12 @@ namespace WuliKaWu.Data
         /// </summary>
         [Key]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
         public int Id { get; set; }
 
         /// <summary>
@@ -39,6 +42,7 @@ namespace WuliKaWu.Data
 <<<<<<< HEAD
         public virtual Article Article { get; set; }
     }
+<<<<<<< HEAD
 }
 =======
         // public virtual Article Article { get; set; }
@@ -48,3 +52,6 @@ namespace WuliKaWu.Data
     }
 }
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+}
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述

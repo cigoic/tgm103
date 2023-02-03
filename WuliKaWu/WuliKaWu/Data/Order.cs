@@ -4,6 +4,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+<<<<<<< HEAD
 using static WuliKaWu.Data.Enums.Common;
 
 =======
@@ -13,6 +14,8 @@ using static WuliKaWu.Data.Enums.Common;
 using System.ComponentModel.DataAnnotations;
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
 using System.ComponentModel.DataAnnotations.Schema;
+=======
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
 using static WuliKaWu.Data.Enums.Common;
 
 >>>>>>> [新增]所有資料表
@@ -111,7 +114,6 @@ namespace WuliKaWu.Data
         /// </summary>
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
         /// <summary>

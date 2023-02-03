@@ -31,8 +31,11 @@ namespace WuliKaWu.Data
     public class OrderDetails
     {
         [Key]
+<<<<<<< HEAD
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
+=======
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
         public int OrderDetailsId { get; set; }
 
         /// <summary>

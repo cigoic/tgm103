@@ -11,12 +11,17 @@ namespace WuliKaWu.Data
     {
         [Key]
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int Id { get; set; }
 
 =======
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+        public int Id { get; set; }
+
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
         /// <summary>
         /// 作者(會員) ID
         /// </summary>
@@ -51,5 +56,9 @@ namespace WuliKaWu.Data
 >>>>>>> [更新] 修正 Article 部落格文章相關資料內容類別表, 添加幾筆 seed data 建立相關範例資料
         public string? SecondImageFileName { get; set; }
     }
+<<<<<<< HEAD
 }
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+}
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述

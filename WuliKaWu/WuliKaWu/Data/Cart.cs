@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 using static WuliKaWu.Data.Enums.Common;
 >>>>>>> [更新] 資料庫資料表
+=======
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
 
 namespace WuliKaWu.Data
 {
@@ -16,6 +19,7 @@ namespace WuliKaWu.Data
         /// 購物車 ID (Primary Key , 自動編號)
         /// </summary>
         [Key]
+<<<<<<< HEAD
         public int Id { get; set; }
 
         /// <summary>
@@ -52,6 +56,8 @@ namespace WuliKaWu.Data
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+=======
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
         public int CartId { get; set; }
 
         /// <summary>

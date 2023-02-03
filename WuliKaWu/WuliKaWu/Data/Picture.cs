@@ -11,9 +11,12 @@ namespace WuliKaWu.Data
         /// </summary>
         [Key]
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 >>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
+=======
+>>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
         public int PictureId { get; set; }
 
         /// <summary>

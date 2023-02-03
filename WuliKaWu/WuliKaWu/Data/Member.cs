@@ -161,7 +161,6 @@ namespace WuliKaWu.Data
         /// </summary>
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberId { get; set; }
 
         /// <summary>
