@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
+using System.Text;
 
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
@@ -154,13 +156,23 @@ namespace WuliKaWu.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //  GET /Member/ForgetPassword
+        /// <summary>
+        /// 會員的[忘記密碼]功能
+        /// </summary>
+        public async Task<IActionResult> ForgetPassword()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 會員的[忘記密碼]功能
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [ActionName("ForgetPassword")]
         [HttpPost]
-        public IActionResult ForgetPassword(ForgetPasswordModel model)
+        public async Task<IActionResult> ForgetPasswordAsync(ForgetPasswordModel model)
         {
             if (ModelState.IsValid)
             {
@@ -168,46 +180,78 @@ namespace WuliKaWu.Controllers
                 var user = _context.Members
                             .Any(m => m.Account == model.Account
                             && m.Email == model.Email);
-                if (user == null)
+                if (user == false)
                 {
                     // TODO 如果找不到用戶, 丟出錯誤顯示
                     ModelState.AddModelError("", "此用戶尚未註冊!");
-                    return View(model);
+                    return View();
                 }
 
-                // TODO 產生重置密碼 token
-                //var resetToken = GeneratePasswordResetToken(user);
+                // 產生重置密碼 token
+                Guid ResetToken = await GeneratePasswordResetTokenAsync(user);
+
+                if (ResetToken == Guid.Empty)
+                    return View();
 
                 // TODO 寄送重置密碼連結
-                //SendPasswordResetEmail(user, resetToken);
+                SendPasswordResetEmail(ResetToken);
 
-                // TODO 通知用戶密碼確認信已寄出
-                return View("密碼確認信已寄出");
+                // TODO  通知用戶密碼確認信已寄出
             }
 
-            return View(model);
-        }
-
-        public IActionResult ResetPassword()
-        {
             return View();
         }
 
-        public void SendMail()
+        public async Task<Guid> GeneratePasswordResetTokenAsync(bool HasUser)
+        {
+            if (HasUser == false) return Guid.Empty;
+
+            Guid ResetToken = Guid.NewGuid();
+
+            if (await _context.ResetTokens.AnyAsync(t => t.Token == ResetToken))
+                return Guid.Empty;
+
+            return ResetToken;
+        }
+
+        private void SendPasswordResetEmail(Guid ResetToken)
         {
             var mail = new MailMessage();
             mail.Subject = "您好！";
+            mail.SubjectEncoding = Encoding.UTF8;
             mail.IsBodyHtml = true;
-            mail.Body = "< h1 > Happy New Year~</ h1 >";
+            mail.Body = $"<h1>密碼重設 Token: {ResetToken} </h1>";
             mail.From = new MailAddress("liang.case@gmail.com");
             mail.To.Add(new MailAddress("liang.case@me.com"));
 
-            var client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.EnableSsl = true;
-            client.Credentials = new NetworkCredential("liang.case@gmail.com", "MY_PASSWORD");
-            client.Send(mail);  // 寄信
+            using (var client = new SmtpClient())
+            {
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("liang.case@gmail.com", "APP_PASSWORD");
+                client.Send(mail);  // 寄信
+            }
+        }
+
+        public IActionResult ResetPassword(Guid ResetToken)
+        {
+            if (_context.ResetTokens.Any(t => t.Token != ResetToken))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword(/* ResetPasswordModel model */)
+        {
+            if (ModelState.IsValid == false) return View();
+
+            // TODO 產生新密碼,更新回資料庫
+            //BCrypt.Net.BCrypt.HashPassword(model.Password);
+            return View();
         }
 
         // GET  /Member/MyAccount
