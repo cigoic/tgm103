@@ -19,10 +19,10 @@ namespace WuliKaWu.Models.ApiModel
 
         public decimal Price { get; set; }
 
-        public bool Discount { get; set; }
+        public bool? Discount { get; set; }
 
-        public string SellingPrice { get; set; }
+        public string? SellingPrice { get; set; }
 
-        public Tag Tag { get; set; }
+        public Tag? Tag { get; set; }
     }
 }
