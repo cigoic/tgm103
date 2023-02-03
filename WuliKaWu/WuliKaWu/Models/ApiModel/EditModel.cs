@@ -26,6 +26,7 @@ namespace WuliKaWu.Models.ApiModel
         public decimal Price { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         public bool? Discount { get; set; }
 
         public string? SellingPrice { get; set; }
@@ -33,10 +34,17 @@ namespace WuliKaWu.Models.ApiModel
         public Tag? Tag { get; set; }
 =======
         public bool Discount { get; set; }
+=======
+        public bool? Discount { get; set; }
+>>>>>>> [修正]EditModel及PreviewModel的部分型態可為null
 
-        public string SellingPrice { get; set; }
+        public string? SellingPrice { get; set; }
 
+<<<<<<< HEAD
         public Tag Tag { get; set; }
 >>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
+=======
+        public Tag? Tag { get; set; }
+>>>>>>> [修正]EditModel及PreviewModel的部分型態可為null
     }
 }
