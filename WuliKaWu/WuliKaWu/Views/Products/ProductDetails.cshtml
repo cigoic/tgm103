@@ -159,16 +159,9 @@
                     <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="easyzoom-style">
                             <div class="easyzoom easyzoom--overlay">
-                                <a href="#">
-                                    @*<img src="~/assets/images/product-details/pro-details-large-img-1.png" alt="">*@
-                                    @*<img src="@Url.Content(Model.PicturePath)" />*@
-                                    <img :src="getPicPath(product.picturePath)" alt="product picture">
-                                </a>
+                                <img :src="product.picturePath" alt="product picture">
                             </div>
-                            @*<a class="easyzoom-pop-up img-popup" href="~/assets/images/product-details/pro-details-large-img-1.png">*@
-                            <a class="easyzoom-pop-up img-popup" :href="getPicPath(product.picturePath)">
-                                <i class="pe-7s-search"></i>
-                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -634,10 +627,7 @@
 
             methods:
             {
-                getPicPath: function (picPath) {
-                    console.log(picPath)    // receive pic filename
-                    return picPath.replace("~", "")
-                }
+
             }
 
 <<<<<<< HEAD
