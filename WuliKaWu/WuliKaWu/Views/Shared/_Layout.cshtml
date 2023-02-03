@@ -107,7 +107,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6 col-6">
                             <div class="logo">
-                                <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
+                                <a href="/Home"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none d-lg-block d-flex justify-content-center">
@@ -115,29 +115,29 @@
                                 <nav>
                                     <ul>
                                         <li>
-                                            <a asp-controller="Home" asp-action="Index">HOME</a>
+                                            <a href="/Home">HOME</a>
                                             @*<ul class="sub-menu-style">
-                                            <li><a asp-controller="Home" asp-action="IndexOne">Home version 1 </a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                            <li><a href="/Home/IndexOne">Home version 1 </a></li>
+                                            <li><a href="/Home/IndexTwo">Home version 2</a></li>
+                                            <li><a href="/Home/IndexThree">Home version 3</a></li>
+                                            <li><a href="/Home/IndexFour">Home version 4</a></li>
+                                            <li><a href="/Home/IndexFive">Home version 5</a></li>
+                                            <li><a href="/Home/IndexSix">Home version 6</a></li>
+                                            <li><a href="/Home/IndexSeven">Home version 7</a></li>
+                                            <li><a href="/Home/IndexEight">Home version 8</a></li>
                                             </ul>*@
                                         </li>
                                         <li>
-                                            <a asp-controller="Products" asp-action="Index">SHOP</a>
+                                            <a href="/Product">SHOP</a>
                                             <ul class="sub-menu-style">
                                                 <li>
                                                     @*<a class="dropdown-title" href="#">Shop Layout</a>*@
                                                     <ul>
-                                                        <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                                        <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                                        <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
-                                                        <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                                        <li><a asp-controller="Products" asp-action="Match">Clothes Matching</a></li>
+                                                        <li><a href="/Products">standard style</a></li>
+                                                        <li><a href="/Products/Create">product create</a></li>
+                                                        <li><a href="/Products/ProductDetails">Product Details</a></li>
+                                                        <li><a href="/Products/SopList">shop list style</a></li>
+                                                        <li><a href="/Products/Match">Clothes Matching</a></li>
                                                         @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                                         <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
@@ -154,7 +154,7 @@
                                                     </ul>
                                                     </li>
                                                     <li>
-                                                    <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
+                                                    <a href="/Product/Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
                                                     </li>*@
                                                 </li>
                                             </ul>
@@ -162,26 +162,26 @@
                                         <li>
                                             <a href="#">PAGES</a>
                                             <ul class="sub-menu-style">
-                                                <li><a asp-controller="AboutUs" asp-action="Index">about us </a></li>
-                                                <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
-                                                <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
-                                                <li><a asp-controller="Member" asp-action="MyAccount">my account</a></li>
-                                                <li><a asp-controller="WishList" asp-action="Index">wishlist </a></li>
-                                                <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
-                                                <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
-                                                <li><a title="Login Register" asp-controller="Member" asp-action="Login"><i class="pe-7s-user"></i> login / register </a></li>
+                                                <li><a href="/AboutUs">about us </a></li>
+                                                <li><a href="/Cart">cart page</a></li>
+                                                <li><a href="/Cart">checkout </a></li>
+                                                <li><a href="/Member/MyAccount">my account</a></li>
+                                                <li><a href="/WishList">wishlist </a></li>
+                                                @*<li><a href="/Cart/Compare">compare </a></li>*@
+                                                <li><a href="/ContactUs">contact us </a></li>
+                                                <li><a title="Login Register" href="/Member/Login"><i class="pe-7s-user"></i> login / register </a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a asp-controller="Blog" asp-action="Index">BLOG</a>
+                                            <a href="/Blog/Index">BLOG</a>
                                             <ul class="sub-menu-style">
-                                                <li><a asp-controller="Blog" asp-action="Index">blog standard </a></li>
-                                                <li><a asp-controller="Blog" asp-action="Sidebar">blog sidebar</a></li>
-                                                <li><a asp-controller="Blog" asp-action="Details">blog details</a></li>
+                                                <li><a href="/Blog/Index">blog standard </a></li>
+                                                <li><a href="/Blog/Sidebar">blog sidebar</a></li>
+                                                <li><a href="/Blog/Details">blog details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a asp-controller="AboutUs" asp-action="Index">ABOUT</a></li>
-                                        <li><a asp-controller="ContactUs" asp-action="Index">CONTACT US</a></li>
+                                        <li><a href="/AboutUs">ABOUT</a></li>
+                                        <li><a href="/ContactUs">CONTACT US</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -201,12 +201,12 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Match" asp-controller="Products" asp-action="Match">
+                                    <a title="Match" href="/Products/Match">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Wishlist" asp-controller="WishList" asp-action="Index"><i class="pe-7s-like"></i></a>
+                                    <a title="Wishlist" href="/WishList"><i class="pe-7s-like"></i></a>
                                 </div>
 
                                 <div class="header-action-style">
@@ -266,10 +266,10 @@
                         <h4>Subtotal: <span>$170.00</span></h4>
                     </div>
                     <div class="cart-btn btn-hover">
-                        <a class="theme-color" asp-controller="Cart" asp-action="Index">view cart</a>
+                        <a class="theme-color" href="/Cart">view cart</a>
                     </div>
                     <div class="checkout-btn btn-hover">
-                        <a class="theme-color" asp-controller="Home" asp-action="Checkout">checkout</a>
+                        <a class="theme-color" href="/Cart">checkout</a>
                     </div>
                 </div>
             </div>
@@ -285,7 +285,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-about mb-40">
                                     <div class="footer-logo">
-                                        <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
+                                        <a href="/Home"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut aliqua.</p>
                                     <div class="payment-img">
@@ -297,7 +297,7 @@
                                 <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
                                     <h3 class="footer-title">Information</h3>
                                     <ul>
-                                        <li><a asp-controller="AboutUs" asp-action="Index">About Us</a></li>
+                                        <li><a href="/AboutUs">About Us</a></li>
                                         <li><a href="#">Delivery Information</a></li>
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="#">Terms & Conditions</a></li>
@@ -309,9 +309,9 @@
                                 <div class="footer-widget footer-list mb-40">
                                     <h3 class="footer-title">My Accound</h3>
                                     <ul>
-                                        <li><a asp-controller="Member" asp-action="MyAccount">My Account</a></li>
+                                        <li><a href="/Member/MyAccount">My Account</a></li>
                                         <li><a href="#">Order History</a></li>
-                                        <li><a asp-controller="WishList" asp-action="Index">Wish List</a></li>
+                                        <li><a href="/WishList">Wish List</a></li>
                                         <li><a href="#">Newsletter</a></li>
                                         <li><a href="#">Order History</a></li>
                                     </ul>
@@ -421,27 +421,27 @@
                     <div id="mobile-menu" class="slinky-mobile-menu text-left">
                         <ul>
                             <li>
-                                <a asp-controller="Home" asp-action="Index">HOME</a>
+                                <a href="/Home">HOME</a>
                                 @*<a href="#">HOME</a>
                                 <ul>
-                                <li><a asp-controller="Home" asp-action="IndexOne">Home version 1 </a></li>
-                                <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                <li><a href="/Home/IndexOne">Home version 1 </a></li>
+                                <li><a href="/Home/IndexTwo">Home version 2</a></li>
+                                <li><a href="/Home/IndexThree">Home version 3</a></li>
+                                <li><a href="/Home/IndexFour">Home version 4</a></li>
+                                <li><a href="/Home/IndexFive">Home version 5</a></li>
+                                <li><a href="/Home/IndexSix">Home version 6</a></li>
+                                <li><a href="/Home/IndexSeven">Home version 7</a></li>
+                                <li><a href="/Home/IndexEight">Home version 8</a></li>
                                 </ul>*@
                             </li>
                             <li>
                                 <a href="#">SHOP</a>
                                 <ul>
-                                    <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                    <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                    <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
-                                    <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                    <li><a asp-controller="Products" asp-action="Match">clothes catching</a></li>
+                                    <li><a href="/Products/Index">standard style</a></li>
+                                    <li><a href="/Products/Create">product create</a></li>
+                                    <li><a href="/Products/ProductDetails">Product Details</a></li>
+                                    <li><a href="/Products/SopList">shop list style</a></li>
+                                    <li><a href="/Products/Match">clothes catching</a></li>
                                     @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
@@ -462,29 +462,29 @@
                             <li>
                                 <a href="#">PAGES </a>
                                 <ul>
-                                    <li><a asp-controller="AboutUs" asp-action="Index">About Us </a></li>
-                                    <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
-                                    <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
-                                    <li><a asp-controller="Member" asp-action="MyAccount">My Account</a></li>
-                                    <li><a asp-controller="WishList" asp-action="Index">Wishlist </a></li>
-                                    <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
-                                    <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
-                                    <li><a title="Login Register" asp-controller="Member" asp-action="Login">><i class="pe-7s-user"></i> Login / Register </a></li>
+                                    <li><a href="/AboutUs/Index">About Us </a></li>
+                                    <li><a href="/Cart/Index">Cart Page</a></li>
+                                    <li><a href="/Cart/Checkout">Checkout </a></li>
+                                    <li><a href="/Member/MyAccount">My Account</a></li>
+                                    <li><a href="/WishList/Index">Wishlist </a></li>
+                                    @*<li><a href="/Cart/Compare">Compare </a></li>*@
+                                    <li><a href="/ContactUs/Index">Contact us </a></li>
+                                    <li><a title="Login Register" href="/Member/Login">><i class="pe-7s-user"></i> Login / Register </a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">BLOG </a>
                                 <ul>
-                                    <li><a asp-controller="Blog" asp-action="Index">Blog Standard </a></li>
-                                    <li><a asp-controller="Blog" asp-action="Sidebar">Blog Sidebar</a></li>
-                                    <li><a asp-controller="Blog" asp-action="Details">Blog Details</a></li>
+                                    <li><a href="/Blog/Index">Blog Standard </a></li>
+                                    <li><a href="/Blog/Sidebar">Blog Sidebar</a></li>
+                                    <li><a href="/Blog/Details">Blog Details</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
+                                <a href="/AboutUs/Index">ABOUT US</a>
                             </li>
                             <li>
-                                <a asp-controller="ContactUs" asp-action="Index">CONTACT US</a>
+                                <a href="/ContactUs/Index">CONTACT US</a>
                             </li>
                         </ul>
                     </div>
@@ -551,6 +551,7 @@
     <!-- Main JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"
             asp-fallback-src="~/lib/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script src="~/assets/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
