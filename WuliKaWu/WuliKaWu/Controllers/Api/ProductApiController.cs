@@ -35,7 +35,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         [HttpGet("{id}")]
-        public DeleteforPreviewModel GetById(int id)
+        public PreviewModel GetById(int id)
         {
             var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
 
@@ -43,35 +43,41 @@ namespace WuliKaWu.Controllers.Api
             {
                 return null;
             }
-            return new DeleteforPreviewModel
+            var model = new PreviewModel
             {
                 PicturePath = data.PicturePath,
                 ProductName = data.ProductName,
                 Color = data.Color,
                 Size = data.Size.GetDescriptionText(),
                 Price = data.Price,
+                Discount = data.Discount.HasValue ? data.Discount.Value > 0 ? true : false : false,
                 SellingPrice = data.SellingPrice.HasValue ? data.SellingPrice.Value.ToString() : "",
                 Category = data.Category,
                 Tag = (Tag)data.Tag
             };
+
+            return model;
         }
 
-        public ProductModel EditById(int id, ProductModel productModel)
+        [HttpPost("{id}")]
+        public EditModel EditById(int id, EditModel eModel)
         {
-            if (id != productModel.ProductId)
+            if (id != eModel.ProductId)
             {
                 return null;
             }
 
-            Product product = _context.Products.Find(productModel.ProductId);
-            product.ProductName = productModel.ProductName;
-            product.Color = productModel.Color;
-            product.Size = (Size)Enum.Parse(typeof(Size), productModel.Size);
-            product.Category = productModel.Category;
-            product.PicturePath = productModel.PicturePath;
-            product.Price = productModel.Price;
-            product.Discount = Convert.ToDecimal(productModel.Discount);
-            product.SellingPrice = decimal.Parse(productModel.SellingPrice);
+            Product product = _context.Products.Find(eModel.ProductId);
+            product.ProductId = eModel.ProductId;
+            product.ProductName = eModel.ProductName;
+            product.Color = eModel.Color;
+            product.Size = (Size)Enum.Parse(typeof(Size), eModel.Size);
+            product.Category = eModel.Category;
+            product.PicturePath = eModel.PicturePath;
+            product.Price = eModel.Price;
+            product.Discount = Convert.ToDecimal(eModel.Discount);
+            product.SellingPrice = decimal.Parse(eModel.SellingPrice);
+            product.Tag = (Tag)eModel.Tag;
 
             _context.Entry(product).State = EntityState.Modified;
 
@@ -91,7 +97,7 @@ namespace WuliKaWu.Controllers.Api
                 }
             }
 
-            return productModel;
+            return eModel;
         }
 
         private bool ProductModelExists(int id)
