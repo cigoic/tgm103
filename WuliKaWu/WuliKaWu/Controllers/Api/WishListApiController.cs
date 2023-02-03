@@ -170,11 +170,38 @@ namespace WuliKaWu.Controllers.Api
             _context = context;
         }
 
+        //TODO Get全部會員的所有收藏清單
+        //[HttpGet]
+        //public async Task<IEnumerable<WishListModel>> GetAll()
+        //{
+        //    var wlist = await _context.WishList.Select(x => new WishListModel
+        //    {
+        //        WishListId = x.WishListId,
+        //        ProductName = x.Product.ProductName,
+        //        Price = x.Product.Price,
+        //        SellingPrice = (decimal)x.Product.SellingPrice,
+        //        Discount = (decimal)x.Product.Discount,
+        //        PicturePath = x.Product.PicturePath,
+        //        ProductId = x.ProductId,
+        //        MemberId = x.MemberId
+        //    }).ToListAsync();
+
+        //    return wlist;
+        //}
+
+
+        /// <summary>
+        /// Get一個會員的收藏清單的所有商品
+        /// </summary>
+        /// <returns></returns>       
         [HttpGet]
-        public async Task<IEnumerable<WishListModel>> GetAll()
+        public async Task<IEnumerable<WishListModel>> GetWishList()
         {
-            return await _context.WishList.Select(x => new WishListModel
+            var myId = User.Claims.GetMemberId();
+
+            if (myId == null)
             {
+<<<<<<< HEAD
                 WishListId = x.WishListId,
                 ProductName = x.Product.ProductName,
                 Price = x.Product.Price,
@@ -190,14 +217,13 @@ namespace WuliKaWu.Controllers.Api
             }).ToListAsync();
 >>>>>>> [新增]AddWishList Action 及 AddToCart Action
         }
+=======
+                return Enumerable.Empty<WishListModel>();   //TODO
+            }
+>>>>>>> [新增]AddtToWishList Action
 
-        //TODO Get一個會員的收藏清單
-        [HttpGet("{id}")]
-        public async Task<IEnumerable<WishListModel>> GetWishList(int productId)
-        {
-            var myId = User.Claims.GetMemberId();
             return (await _context.WishList
-                .Where(w => w.ProductId == productId && w.MemberId == myId)
+                .Where(w => w.MemberId == myId)
                 .Select(w => new WishListModel
                 {
                     WishListId = w.WishListId,
@@ -213,9 +239,32 @@ namespace WuliKaWu.Controllers.Api
                 .ToListAsync());
         }
 
-        //TODO AddtoCart(右邊Button)
-        //[HttpPost("{id}")]
-        //[Authorize]
+        //TODO 加入購物車 AddtoCart(右邊Button)
+        [HttpPost("{productId}")]
+        [ActionName("Login")]
+        public async Task<string> AddToCartAsync(int productId)
+        {
+            var myId = User.Claims.GetMemberId();
+            var cart = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
+            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+
+            if (cart == null)
+            {
+                _context.Carts.Add(new Cart
+                {
+                    MemberId = myId,
+                    ProductId = productId,
+                    Quantity = 1,
+                    Product = product
+                });
+                //TODO 彈跳提醒sweetalert
+                await _context.SaveChangesAsync();
+                return "已加入購物車";
+            }
+            return "已有此商品";
+        }
+
+        //TODO 移除收藏清單
 
         //TODO 寫在商品頁面的收藏清單(Productapicontroller)
         //[Authorize]

@@ -56,61 +56,61 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
 
                     b.HasData(
                         new
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7601),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5412),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7602),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5413),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7657),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5486),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7657),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5487),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7725),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5515),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7726),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5516),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7766),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5609),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7767),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5610),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7802),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5639),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7802),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5640),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7840),
+                            CreatedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5671),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7841),
+                            ModifiedDate = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5672),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -133,7 +133,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleCategories", (string)null);
+                    b.ToTable("ArticleCategories");
 
                     b.HasData(
                         new
@@ -194,7 +194,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleContentImages", (string)null);
+                    b.ToTable("ArticleContentImages");
 
                     b.HasData(
                         new
@@ -291,7 +291,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ArticleId");
 
-                    b.ToTable("ArticleTitleImages", (string)null);
+                    b.ToTable("ArticleTitleImages");
 
                     b.HasData(
                         new
@@ -353,7 +353,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AuthorImages", (string)null);
+                    b.ToTable("AuthorImages");
 
                     b.HasData(
                         new
@@ -524,6 +524,7 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] migrations
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.ToTable("ArticleCategories");
 =======
                     b.ToTable("Cart");
@@ -537,10 +538,14 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Cart", (string)null);
 <<<<<<< HEAD
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
+=======
+                    b.ToTable("Cart");
+>>>>>>> [新增]AddtToWishList Action
 
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD
                             CartId = 1,
                             Color = 3,
                             Coupon = -100m,
@@ -562,6 +567,13 @@ namespace WuliKaWu.Migrations
 >>>>>>> 新增CartController及CartApiController
 =======
 >>>>>>> [更新] migrations
+=======
+                            CartId = 3,
+                            MemberId = 2,
+                            ProductId = 6,
+                            Quantity = 2
+                        });
+>>>>>>> [新增]AddtToWishList Action
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
@@ -1419,11 +1431,15 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<< HEAD
                     b.HasOne("WuliKaWu.Data.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+                    b.ToTable("Contact Messages");
+>>>>>>> [新增]AddtToWishList Action
                 });
 =======
                     b.Property<int>("MemberId")
@@ -1557,6 +1573,7 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("Member");
 =======
                     b.ToTable("Members", (string)null);
@@ -1569,6 +1586,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Members", (string)null);
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
+=======
+                    b.ToTable("Members");
+>>>>>>> [新增]AddtToWishList Action
 
                     b.HasData(
                         new
@@ -1577,7 +1597,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7517),
+                            Birthday = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5284),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1594,7 +1614,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7541),
+                            Birthday = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5306),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1611,7 +1631,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 2, 2, 17, 14, 56, 45, DateTimeKind.Local).AddTicks(7551),
+                            Birthday = new DateTime(2023, 2, 3, 13, 55, 1, 644, DateTimeKind.Local).AddTicks(5313),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1688,6 +1708,7 @@ namespace WuliKaWu.Migrations
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("Category");
 =======
                     b.ToTable("MemberRoles", (string)null);
@@ -1698,6 +1719,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("MemberRoles", (string)null);
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
+=======
+                    b.ToTable("MemberRoles");
+>>>>>>> [新增]AddtToWishList Action
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
@@ -1804,6 +1828,7 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.ToTable("Orders");
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 =======
@@ -1815,6 +1840,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Orders", (string)null);
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
+=======
+                    b.ToTable("Orders");
+>>>>>>> [新增]AddtToWishList Action
                 });
 
 <<<<<<< HEAD
@@ -1857,7 +1885,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
 >>>>>>> [更新] ShopContext加入圖片及訂單明細的Dbset 以及將商品編輯的檢視加入表頭
@@ -1880,7 +1908,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Pictures", (string)null);
+                    b.ToTable("Pictures");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
@@ -1938,6 +1966,7 @@ namespace WuliKaWu.Migrations
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.Navigation("StarRates");
 =======
                     b.ToTable("Products", (string)null);
@@ -1948,6 +1977,9 @@ namespace WuliKaWu.Migrations
 =======
                     b.ToTable("Products", (string)null);
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
+=======
+                    b.ToTable("Products");
+>>>>>>> [新增]AddtToWishList Action
 
 <<<<<<< HEAD
                     b.Navigation("WishList");
@@ -1991,7 +2023,7 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
@@ -2012,7 +2044,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Color", (string)null);
+                    b.ToTable("Color");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfGetPayType", b =>
@@ -2033,7 +2065,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("GetPayType", (string)null);
+                    b.ToTable("GetPayType");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfSize", b =>
@@ -2054,7 +2086,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Size", (string)null);
+                    b.ToTable("Size");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfStarRate", b =>
@@ -2075,7 +2107,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("StarRate", (string)null);
+                    b.ToTable("StarRate");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfTag", b =>
@@ -2096,7 +2128,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Tag", (string)null);
+                    b.ToTable("Tag");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
@@ -2121,7 +2153,15 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("WishLists", (string)null);
+                    b.ToTable("WishLists");
+
+                    b.HasData(
+                        new
+                        {
+                            WishListId = 1,
+                            MemberId = 2,
+                            ProductId = 1
+                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
