@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿
 
 <<<<<<< HEAD
@@ -10,6 +11,9 @@
 =======
 ﻿@model Product
 @*@model WuliKaWu.Models.ApiModel.ProductModel*@
+=======
+﻿
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
 
 <div id="ProductDetails">
 >>>>>>> [更新]商品明細檢視頁面套版重新調整
@@ -19,10 +23,14 @@
                 <h2 data-aos="fade-up" data-aos-delay="200">Product Details</h2>
                 <ul data-aos="fade-up" data-aos-delay="400">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <li><a href="/Home/Index">Home</a></li>
 =======
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
 >>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
+=======
+                    <li><a href="/Home/Index">Home</a></li>
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
                     <li><i class="ti-angle-right"></i></li>
                     <li>Product Details</li>
                 </ul>
@@ -157,7 +165,8 @@
                                     <img :src="getPicPath(product.picturePath)" alt="product picture">
                                 </a>
                             </div>
-                            <a class="easyzoom-pop-up img-popup" href="~/assets/images/product-details/pro-details-large-img-1.png">
+                            @*<a class="easyzoom-pop-up img-popup" href="~/assets/images/product-details/pro-details-large-img-1.png">*@
+                            <a class="easyzoom-pop-up img-popup" :href="getPicPath(product.picturePath)">
                                 <i class="pe-7s-search"></i>
                             </a>
                         </div>
@@ -165,10 +174,11 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
-                        <h2>@Model.ProductName</h2>
-                        <div class="product-details-price">
+                        <h2>{{product.productName}}</h2>
+                        <div class="product-price">
                             <span :class="{'old-price':product.discount}">${{product.price}}</span>
                             <span class="new-price" v-if="product.discount">${{product.sellingprice}}</span>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -177,6 +187,9 @@
 @*                            <span class="old-price">$25.89 </span>
                             <span class="new-price">$20.25</span>*@
 >>>>>>> [更新]商品明細檢視頁面套版重新調整
+=======
+
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
                         </div>
                         <div class="product-details-review">
                             <div class="product-rating">
@@ -191,9 +204,8 @@
                         <div class="product-color product-color-active product-details-color">
                             <span>Color :</span>
                             <ul>
-                                <li><a title="Pink" class="pink" href="#">pink</a></li>
-                                <li><a title="Yellow" class="active yellow" href="#">yellow</a></li>
-                                <li><a title="Purple" class="purple" href="#">purple</a></li>
+                                <li>{{product.color}}</li>
+                                
                             </ul>
                         </div>
                         <div class="product-details-action-wrap">
@@ -204,7 +216,7 @@
                                 <a href="#">Add to cart</a>
                             </div>
                             <div class="single-product-wishlist">
-                                <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
+                                <a title="Wishlist" href="/Home/WishList"><i class="pe-7s-like"></i></a>
                             </div>
                             <div class="single-product-compare">
                                 <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
@@ -220,25 +232,20 @@
                                 <li>
                                     <span class="title">Size:</span>
                                     <ul>
-                                        <li><a href="#">XS</a>,</li>
-                                        <li><a href="#">S</a>,</li>
-                                        <li><a href="#">M</a>,</li>
-                                        <li><a href="#">L</a>,</li>
-                                        <li><a href="#">XL</a></li>
+                                        <li>{{product.size}}</li>                                       
                                     </ul>
                                 </li>
 
                                 <li>
                                     <span class="title">Category:</span>
                                     <ul>
-                                        <li><a href="#">Office</a>,</li>
-                                        <li><a href="#">Home</a></li>
+                                        <li>{{product.category}}</li>                                  
                                     </ul>
                                 </li>
                                 <li>
                                     <span class="title">Tags:</span>
                                     <ul class="tag">
-                                        <li><a href="#">Furniture</a></li>
+                                        <li>{{product.tag}}</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -270,11 +277,10 @@
     <div class="description-review-area pb-85">
         <div class="container">
             <div class="description-review-topbar nav" data-aos="fade-up" data-aos-delay="200">
-                <a class="active" data-bs-toggle="tab" href="#des-details1"> Description </a>
-                <a data-bs-toggle="tab" href="#des-details2" class=""> Information </a>
                 <a data-bs-toggle="tab" href="#des-details3" class=""> Reviews </a>
             </div>
             <div class="tab-content">
+<<<<<<< HEAD
                 <div id="des-details1" class="tab-pane active">
                     <div class="product-description-content text-center">
                         <p data-aos="fade-up" data-aos-delay="400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
@@ -302,6 +308,9 @@
                     </div>
                 </div>
 >>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
+=======
+
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
                 <div id="des-details3" class="tab-pane">
                     <div class="review-wrapper">
                         <h3>1 review for Sleeve Button Cowl Neck</h3>
@@ -382,6 +391,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <div class="related-product-area pb-95">
     <div class="container">
         <div class="section-title-2 st-border-center text-center mb-75" data-aos="fade-up" data-aos-delay="200">
@@ -526,12 +536,16 @@
         </div>
     </div>
 </div>
+=======
+
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
 
 
 
 @section Scripts{
 
     <script>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -593,11 +607,29 @@
 =======
         let app = new Vue({
 >>>>>>> [更新]商品明細頁面加入Vue
+=======
+        document.addEventListener("DOMContentLoaded", () => {
+            PDEapp.$mount('#ProductDetails')
+        })
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
 
-            el:"#ProductDetails",
+        let PDEapp = new Vue({
+
+            //el:"#ProductDetails",
             data:
             {
-                products:[]
+                product:[],
+            },
+
+            mounted: function(){
+                var self = this;
+                fetch('/api/product/getbyid/'+'@ViewBag.id')
+                .then(function(response){return response.json()})
+                .then(function(result){
+                    console.log(result);
+                    self.product = result;
+                    self.product.productId = @ViewBag.id;
+                })            
             },
 
             methods:
@@ -606,16 +638,6 @@
                     console.log(picPath)    // receive pic filename
                     return picPath.replace("~", "")
                 }
-            },
-
-            mounted: function(){
-                var self = this;
-                fetch('/api/product/getbyid')
-                .then(function(response){return response.json()})
-                .then(function(result){
-                    console.log(result);
-                    self.products = result;
-                })            
             }
 
 <<<<<<< HEAD
@@ -623,6 +645,12 @@
 >>>>>>> [更新]商品明細檢視頁面套版重新調整
 =======
         });
+<<<<<<< HEAD
 >>>>>>> [更新]商品明細頁面加入Vue
+=======
+
+
+
+>>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
     </script>
 }
