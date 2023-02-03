@@ -153,7 +153,8 @@
                             <div class="easyzoom easyzoom--overlay">
                                 <a href="#">
                                     @*<img src="~/assets/images/product-details/pro-details-large-img-1.png" alt="">*@
-                                    <img src="@Url.Content(Model.PicturePath)" />
+                                    @*<img src="@Url.Content(Model.PicturePath)" />*@
+                                    <img :src="getPicPath(product.picturePath)" alt="product picture">
                                 </a>
                             </div>
                             <a class="easyzoom-pop-up img-popup" href="~/assets/images/product-details/pro-details-large-img-1.png">
@@ -597,6 +598,14 @@
             data:
             {
                 products:[]
+            },
+
+            methods:
+            {
+                getPicPath: function (picPath) {
+                    console.log(picPath)    // receive pic filename
+                    return picPath.replace("~", "")
+                }
             },
 
             mounted: function(){

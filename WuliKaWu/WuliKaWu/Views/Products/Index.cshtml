@@ -220,7 +220,7 @@
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
                                                 <a :href="getProductdetailsLink(product.productId)">
-                                                    <img :src="getPicPath(product.picturePath)" alt="product picture">
+                                                    <img :src="product.picturePath" alt="product picture">
                                                 </a>
 <<<<<<< HEAD
                                             </h3>
@@ -716,6 +716,14 @@
                 selectedSize: "All",
                 selectedItem: "2",
                 productdetailsLink: "/Products/Productdetails/",
+<<<<<<< HEAD
+=======
+                //getPic:
+                //{
+                //    type: "string",
+                //    default: "product-5.png"
+                //},
+>>>>>>> [修正] 商品的首頁及商品明細檢視頁面的圖片顯示路徑
                 priceRange: {
                     min: 0,
                     max: 100
@@ -1141,13 +1149,13 @@
                 getProductdetailsLink: function (productId) {
                     return this.productdetailsLink + productId
                 },
-                getPicPath: function (picPath) {
-                    console.log(picPath)    // receive pic filename
-                    return picPath.replace("~", "")
-                },
+                //getPicPath: function (picPath) {
+                //    console.log(picPath)    // receive pic filename
+                //    return picPath.replace("~", "")
+                //},
                 addToCart(id) {
                     console.log("CPid:", id)
-                    this.queryWishListBaseURL = 'api/product/AddToCart/' + id;
+                    this.queryWishListBaseURL = 'api/product/addtocart' + id
                     fetch(this.queryWishListBaseURL)
                         .then(function (response) { return response.json() })
                         .then(function (result) {
