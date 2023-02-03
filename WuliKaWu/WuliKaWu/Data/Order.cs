@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Data
@@ -12,7 +13,6 @@ namespace WuliKaWu.Data
         /// 訂單 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
 
         /// <summary>

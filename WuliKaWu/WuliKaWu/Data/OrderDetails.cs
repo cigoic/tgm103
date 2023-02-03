@@ -10,7 +10,6 @@ namespace WuliKaWu.Data
     public class OrderDetails
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderDetailsId { get; set; }
 
         /// <summary>

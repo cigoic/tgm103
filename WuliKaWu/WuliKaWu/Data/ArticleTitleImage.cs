@@ -13,7 +13,6 @@ namespace WuliKaWu.Data
         /// 標題影像 ID: 自動編號
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>

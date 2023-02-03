@@ -11,7 +11,6 @@ namespace WuliKaWu.Data
         /// 註冊會員 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MemberId { get; set; }
 
         /// <summary>
