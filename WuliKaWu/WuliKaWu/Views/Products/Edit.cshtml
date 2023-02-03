@@ -1,5 +1,4 @@
-@*@model WuliKaWu.Data.Product*@
-@*@model WuliKaWu.Models.ApiModel.ProductModel*@
+
 
 @{
     ViewData["Title"] = "Edit";
@@ -28,7 +27,8 @@
                             </div>
 
                             <div class="mt-5">
-                                <a asp-action="Index">Back to List</a>
+                                @*<a asp-action="Index">Back to List</a>*@
+                                <a href="/Products/Index">Back to List</a>
                             </div>
 
                         </div>
@@ -37,63 +37,49 @@
 
                                 
                                 @*<form asp-controller="Products" asp-action="Edit" method="post">*@
-                                <form v-on:submit.prevent="mySubmit" action="Edit" method="post">
+                                @*<form v-on:submit.prevent="mySubmit" action="Edit" method="post">*@
+                                <form>
                                     @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group" hidden>
-                                                @*<label asp-for="ProductId" class="control-label"></label>
-                                                <input asp-for="ProductId" class="form-control" />
-                                                <span asp-validation-for="ProductId" class="text-danger"></span>*@
-                                                <label class="control-label">ProductId</label>
+                                                <label for="ProductId" class="control-label"></label>
                                                 @*<input class="form-control" id="productId" name="ProductName" v-model="productId"/>*@
-                                                <input class="form-control" :value="product.productId" />
+                                                <input id="productId" name="ProductId" class="form-control" :value="product.productId" />
                                                 
                                             </div>
 
                                             <div class="form-group">
-                                                @*<label asp-for="ProductName" class="control-label"></label>
-                                                <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
-                                                <span asp-validation-for="ProductName" class="text-danger"></span>*@
-                                                <label class="control-label">ProductName</label>
+                                                <label for="ProductName" class="control-label">ProductName</label>
                                                 @*<input class="form-control" id="productName" name="ProductName" v-model="productName" :placeholder="product.productName"/>*@
-                                                <input class="form-control" :value="product.productName" />
+                                                <input id="productName" name="ProductName" class="form-control" :value="product.productName" />
 
                                             </div>
 
                                             <div class="form-group">
-                                                @*<label asp-for="Color" class="control-label"></label>
-                                                <input asp-for="Color" class="form-control" />
-                                                <span asp-validation-for="Color" class="text-danger"></span>*@
-                                                <label class="control-label">Color</label>
-                                                <input class="form-control" :value="product.color" />
+                                                <label for="Color" class="control-label">Color</label>
+                                                <input id="color" name="Color" class="form-control" :value="product.color" />
                                                 
                                             </div>
 
 
                                             <div class="form-group">
-                                                @*<label asp-for="Size" class="control-label"></label>
-                                                <input asp-for="Size" class="form-control" />
-                                                <span asp-validation-for="Size" class="text-danger"></span>*@
-                                                <label class="control-label">Size</label>
-                                                <input class="form-control" :value="product.size" />
+                                                <label for="Size" class="control-label">Size</label>
+                                                <input id="size" name="Size" class="form-control" :value="product.size" />
                                                 
                                             </div>
                                             <div class="form-group">
-                                                @*<label asp-for="Category" class="control-label"></label>
-                                                <input asp-for="Category" class="form-control" /> 
-                                                <span asp-validation-for="Category" class="text-danger"></span>*@
-                                                <label class="control-label">Category</label>
-                                                <input class="form-control" :value="product.category" />
+                                                <label for="Category" class="control-label">Category</label>
+                                                <input id="category" name="Category" class="form-control" :value="product.category" />
                                                
                                             </div>
                                             <div class="form-group">
                                                 @*<label asp-for="PicturePath" class="control-label"></label>
                                                 <input asp-for="PicturePath" class="form-control" type="file" id="fileupload" onchange="return ShowImagePreview(this)" />
                                                 <span asp-validation-for="PicturePath" class="text-danger"></span>*@
-                                                <label class="control-lable">PicturePath</label>
+                                                <label for="PicturePath" class="control-lable">PicturePath</label>
                                                 
-                                                <input class="form-control" type="file" id="fileupload" v-on:change="ShowImagePreview(this)" />
+                                                <input class="form-control" type="file" id="fileupload" name="PicturePath" v-on:change="ShowImagePreview(this)" />
                                                 
                                             </div>
                                         </div>
@@ -101,45 +87,32 @@
                                         <div class="col-6">
 
                                             <div class="form-group">
-                                                @*<label asp-for="Price" class="control-label"></label>
-                                                <input asp-for="Price" class="form-control" />
-                                                <span asp-validation-for="Price" class="text-danger"></span>*@
-                                                <label class="control-label">Price</label>
-                                                <input class="form-control" :value="product.price" />
+                                                <label for="Price" class="control-label">Price</label>
+                                                <input id="price" name="Price" class="form-control" :value="product.price" />
                                                 
                                             </div>
                                             <div class="form-group">
-                                                @*<label asp-for="Discount" class="control-label"></label>
-                                                <input asp-for="Discount" class="form-control" />
-                                                <span asp-validation-for="Discount" class="text-danger"></span>*@
-                                                <label class="control-label">Discount</label>
-                                                <input class="form-control" :value="product.discount" />
+                                                <label for="Discount" class="control-label">Discount</label>
+                                                <input id="discount" name="Discount" class="form-control" :value="product.discount" />
                                                 
                                             </div>
 
-
                                             <div class="form-group">
-                                                @*<label asp-for="SellingPrice" class="control-label"></label>
-                                                <input asp-for="SellingPrice" class="form-control" />
-                                                <span asp-validation-for="SellingPrice" class="text-danger"></span>*@
-                                                <label class="control-label">SellingPrice</label>
-                                                <input class="form-control" :value="product.sellingPrice" />
+                                                <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                                <input id="sellingPrice" name="SellingPrice" class="form-control" :value="product.sellingPrice" />
                                                 
                                             </div>
                                             <div class="form-group">
-                                                @*<label asp-for="Tag" class="control-label"></label>
-                                                <input asp-for="Tag" class="form-control" />
-                                                <span asp-validation-for="Tag" class="text-danger"></span>*@
-                                                <label class="control-label">Tag</label>
-                                                <input class="form-control" :value="product.tag" />
+                                                <label for="Tag" class="control-label">Tag</label>
+                                                <input id="tag" name="Tag" class="form-control" :value="product.tag" />
                                                 
                                             </div>
-
                                             <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
                                                 <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
                                                     <div>
                                                         @*<button class="submit" type="submit" id="sendMessageButton">Save Edit</button>*@
-                                                        <button class="submit">Save Edit</button>
+                                                        @*<button class="submit">Save Edit</button>*@
+                                                        <button class="submit" v-on:click="saveProductChange()">Save Edit</button>
                                                     </div>
                                                 </div>
 
@@ -166,7 +139,7 @@
         data:
         {
             product: [],
-            productEditUrl: "@Url.Action("Edit")",
+            //productEditUrl: "@Url.Action("Edit")",
 
         },
 
@@ -187,6 +160,7 @@
         methods: 
         {
             ShowImagePreview: function(input) {
+                console.log("1", typeof input.files[0].name)
                 if(input.files && input.files[0]) {
                     var fname = input.files[0].name;
                     var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
@@ -197,43 +171,56 @@
                         return false;
                     }
                     else{
+                            console.log("2")
                         var reader = new FileReader();
                         reader.onload = function (e) {
                             $('#imagePreview').prop('src', e.target.result);
                         };
                         reader.readAsDataURL(input.files[0]);
                     }
-                }         
+                }  
+                    console.log("3")
             },
 
-            mySubmit: function(){
-                $.post(this.productEditUrl, {
-                    ProductId: this.productId,
-                    ProductName: this.productName,
-                    Color: this.color,
-                    Size: this.size,
-                    Category: this.category,
-                    PicturePath: this.picturePath,
-                    Price: this.price,
-                    Discount: this.discount,
-                    SellingPrice: this.sellingPrice,
-                    Tag: this.tag
-                })
-                .then(response => 
-                    {
-                        console.log("ProductId",this.productId)
-                        console.log("ProductName",this.prductName)
-                        console.log("Color",this.color)
-                        console.log("Size",this.size)
-                        console.log("Category",this.cstegory)
-                        console.log("PicturePath",this.picturePath)
-                        console.log("Price",this.price)
-                        console.log("Discount", this.discount)
-                        console.log("SellingPrice", this.sellingPrice)
-                        console.log("Tag", this.tag)
-
+            saveProductChange: function(id)
+            {
+                var self = this;
+                this.queryEditBaseUrl = "/api/product/editbyid/" + id;
+                fetch(this.qureyEditBaseUrl,{method:"POST"})
+                    .then(function(response){return response.json()})
+                    .then(function(result){
+                        console.log(result);
                     })
-            }
+            } 
+
+            //mySubmit: function(){
+            //        console.log(this.productEditUrl)
+            //    $.post(this.productEditUrl, {
+            //        ProductId: this.productId,
+            //        ProductName: this.productName,
+            //        Color: this.color,
+            //        Size: this.size,
+            //        Category: this.category,
+            //        PicturePath: this.picturePath,
+            //        Price: this.price,
+            //        Discount: this.discount,
+            //        SellingPrice: this.sellingPrice,
+            //        Tag: this.tag
+            //    })
+            //    .then(response => 
+            //        {
+            //            console.log("ProductId",this.productId)
+            //            console.log("ProductName",this.prductName)
+            //            console.log("Color",this.color)
+            //            console.log("Size",this.size)
+            //            console.log("Category",this.cstegory)
+            //            console.log("PicturePath",this.picturePath)
+            //            console.log("Price",this.price)
+            //            console.log("Discount", this.discount)
+            //            console.log("SellingPrice", this.sellingPrice)
+            //            console.log("Tag", this.tag)
+            //        })
+            //}
         }
 
     });
