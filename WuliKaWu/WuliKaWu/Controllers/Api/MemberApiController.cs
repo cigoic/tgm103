@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
 using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+<<<<<<< HEAD
 =======
 >>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
+=======
+>>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
 
 using WuliKaWu.Data;
 using WuliKaWu.Models;
@@ -47,9 +53,14 @@ namespace WuliKaWu.Controllers.Api
             };
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
 >>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
+=======
+
+
+>>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
     }
 }
