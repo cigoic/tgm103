@@ -37,7 +37,7 @@
                         <h2>{{product.productName}}</h2>
                         <div class="product-price">
                             <span :class="{'old-price':product.discount}">${{product.price}}</span>
-                            <span class="new-price" v-if="product.discount">${{product.sellingprice}}</span>
+                            <span class="new-price" v-if="product.discount">${{product.sellingPrice}}</span>
 
                         </div>
                         <div class="product-details-review">
