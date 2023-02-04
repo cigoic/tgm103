@@ -256,6 +256,11 @@ namespace WuliKaWu.Data
 =======
 
         /// <summary>
+        /// 導覽屬性：對應到多筆 Reset Tokens，使用 ICollection
+        /// </summary>
+        public virtual ICollection<ResetToken> ResetTokens { get; set; }
+
+        /// <summary>
         /// 導覽屬性：對應到多筆訂單，使用 ICollection
         /// </summary>
         public virtual ICollection<Order>? Orders { get; set; }

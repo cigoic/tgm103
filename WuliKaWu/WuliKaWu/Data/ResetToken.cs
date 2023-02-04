@@ -13,11 +13,17 @@ namespace WuliKaWu.Data
         public int Id { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         [ForeignKey("Members")]
         public int MemberId { get; set; }
 
 =======
 >>>>>>> [更新] 會員忘記密碼, 寄送驗證信功能與檢視頁面
+=======
+        [ForeignKey("Members")]
+        public int MemberId { get; set; }
+
+>>>>>>> [更新] 重置密碼功能, 加入 Reset Token 表格定義
         /// <summary>
         /// 寄送重置密碼的會員信箱
         /// </summary>
@@ -42,12 +48,18 @@ namespace WuliKaWu.Data
         [Required]
         public bool ValidateSatus { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [更新] 重置密碼功能, 加入 Reset Token 表格定義
 
         /// <summary>
         /// 導覽屬性: 會員
         /// </summary>
         public virtual Member Member { get; set; }
+<<<<<<< HEAD
 =======
 >>>>>>> [更新] 會員忘記密碼, 寄送驗證信功能與檢視頁面
+=======
+>>>>>>> [更新] 重置密碼功能, 加入 Reset Token 表格定義
     }
 }
