@@ -22,6 +22,7 @@
     <div class="product-details-area pb-100 pt-100">
         <div class="container">
             <div class="row">
+                @*商品圖片*@
                 <div class="col-lg-6">
                     <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="easyzoom-style">
@@ -32,13 +33,14 @@
                         </div>
                     </div>
                 </div>
+
+                @*商品內容*@
                 <div class="col-lg-6">
                     <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
                         <h2>{{product.productName}}</h2>
                         <div class="product-price">
                             <span :class="{'old-price':product.discount}">${{product.price}}</span>
                             <span class="new-price" v-if="product.discount">${{product.sellingPrice}}</span>
-
                         </div>
                         <div class="product-details-review">
                             <div class="product-rating">
@@ -53,8 +55,7 @@
                         <div class="product-color product-color-active product-details-color">
                             <span>Color :</span>
                             <ul>
-                                <li>{{product.color}}</li>
-                                
+                                <li>{{product.color}}</li>                               
                             </ul>
                         </div>
                         <div class="product-details-action-wrap">
@@ -106,6 +107,8 @@
             </div>
         </div>
     </div>
+
+    @*評價區塊*@
     <div class="description-review-area pb-85">
         <div class="container">
             <div class="description-review-topbar nav" data-aos="fade-up" data-aos-delay="200">
@@ -133,6 +136,8 @@
                             </div>
                         </div>
                     </div>
+
+                    @*留評價*@
                     <div class="ratting-form-wrapper">
                         <h3>Add a Review</h3>
                         <p>Your email address will not be published. Required fields are marked <span>*</span></p>

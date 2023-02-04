@@ -123,6 +123,11 @@ namespace WuliKaWu.Controllers.Api
             return _context.Products.Any(p => p.ProductId == id);
         }
 
+        /// <summary>
+        /// 新增商品至資料庫
+        /// </summary>
+        /// <param name="addModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<String> AddProduct(AddModel addModel)
         {
