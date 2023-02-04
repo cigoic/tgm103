@@ -166,31 +166,28 @@
                         <div class="col-lg-4 col-sm-5">
                             <div class="product-list-img">
 
+                                @*商品圖片*@
                                 <a href="">
-                                    @*<img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">*@
                                     @*<img src="@Url.Content(Model.PicturePath)" id="imagePreview" alt="Product Picture" />*@
                                     <img :src="product.picturePath" id="picturePath" alt="Product Picture" />
-
                                 </a>
-
                             </div>
 
                             <div class="mt-5">
                                 @*<a asp-action="Index">Back to List</a>*@
                                 <a href="/Products/Index">Back to List</a>
                             </div>
-
                         </div>
+
                         <div class="col-lg-8 col-sm-7 contact-form-style">
                             <div class="shop-list-content">
 
-                                @*<form v-on:submit.prevent="mySubmit" action="Edit" method="post">*@
+                                @*商品內容*@
                                 <form action="/api/product/editbyid">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group" hidden>
                                                 <label for="ProductId" class="control-label">ProductId</label>
-                                                @*<input class="form-control" id="productId" name="ProductName" v-model="productId"/>*@
                                                 <input id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
                                             </div>
 
@@ -237,27 +234,24 @@
                                         </div>
 
                                         <div class="col-6">
-
+                                            @*商品圖片預覽*@
                                             <div class="form-group">
-
                                                 <label for="PicturePath" class="control-lable">PicturePath</label>
                                                 <input class="form-control" type="file" id="fileupload" name="PicturePath" onchange="ShowImagePreview(this)" />
                                                 <img src="/images/product-5.png" id="imagePreview" alt="Product Style" width="360px" height="410px">
                                                 @*<img :src="product.picturePath" id="imagePreview" alt="Product Picture" width="360" height="410px"/>*@
                                             </div>
 
-
+                                            @*儲存編輯按鍵*@
                                             <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
                                                 <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
                                                     <div>
                                                         <button type="button" class="submit" v-on:click="saveProductChange(@ViewBag.id)">Save Edit</button>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -281,25 +275,25 @@
 
 <script>
 
-        function ShowImagePreview(input) {
-            if (input.files && input.files[0]) {
-                var fname = input.files[0].name;
-                var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
-                if (!re.exec(fname)) {
-                    alert("Image not supported!");
-                    $("#fileupload").val("");
-
+    //圖片預覽
+    function ShowImagePreview(input) {
+        if (input.files && input.files[0]) {
+           var fname = input.files[0].name;
+            var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+            if (!re.exec(fname)) {
+                alert("Image not supported!");
+                $("#fileupload").val("");
                     return false;
-                }
-                else {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#imagePreview').prop('src', e.target.result);
-                    };
-                    reader.readAsDataURL(input.files[0]);
-                }
+            }
+            else {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').prop('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
             }
         }
+    }
 
     let PEapp = new Vue({
     
@@ -336,8 +330,7 @@
         },
 
         methods: 
-        {
-            
+        {            
             saveProductChange: function(id)
             {
                 var self = this;
