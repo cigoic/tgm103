@@ -40,11 +40,10 @@ namespace WuliKaWu.Controllers.Api
         //    return wlist;
         //}
 
-
         /// <summary>
         /// Get一個會員的收藏清單的所有商品
         /// </summary>
-        /// <returns></returns>       
+        /// <returns></returns>
         [HttpGet]
         public async Task<IEnumerable<WishListModel>> GetWishList()
         {
@@ -74,7 +73,6 @@ namespace WuliKaWu.Controllers.Api
 
         //TODO 加入購物車 AddtoCart(右邊Button)
         [HttpPost("{productId}")]
-        [ActionName("Login")]
         public async Task<string> AddToCartAsync(int productId)
         {
             var myId = User.Claims.GetMemberId();
