@@ -20,7 +20,7 @@
                                 <a href="">
                                     @*<img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">*@
                                     @*<img src="@Url.Content(Model.PicturePath)" id="imagePreview" alt="Product Picture" />*@
-                                    <img :src="product.picturePath" id="imagePreview" alt="Product Picture" />
+                                    <img :src="product.picturePath" id="picturePath" alt="Product Picture" />
 
                                 </a>
 
@@ -36,54 +36,53 @@
                             <div class="shop-list-content">
 
                                 @*<form v-on:submit.prevent="mySubmit" action="Edit" method="post">*@
-                                <form>                                  
+                                <form action="/api/product/editbyid">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group" hidden>
-                                                <label for="ProductId" class="control-label"></label>
+                                                <label for="ProductId" class="control-label">ProductId</label>
                                                 @*<input class="form-control" id="productId" name="ProductName" v-model="productId"/>*@
-                                                <input id="productId" name="ProductId" class="form-control" v-model="productId" />
+                                                <input id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="ProductName" class="control-label">ProductName</label>
-                                                @*<input class="form-control" id="productName" name="ProductName" v-model="productName" :placeholder="product.productName"/>*@
-                                                <input id="ProductName" name="ProductName" class="form-control" v-model="productName" :placeholder="product.productName" />
+                                                <input id="ProductName" name="ProductName" class="form-control" v-model="productFields.productName" :placeholder="product.productName" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Color" class="control-label">Color</label>
-                                                <input id="Color" name="Color" class="form-control" v-model="pColor" :placeholder="product.color" />
+                                                <input id="Color" name="Color" class="form-control" v-model="productFields.color" :placeholder="product.color" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Size" class="control-label">Size</label>
-                                                <input id="Size" name="Size" class="form-control" v-model="pSize" :placeholder="product.size" />
+                                                <input id="Size" name="Size" class="form-control" v-model="productFields.size" :placeholder="product.size" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Price" class="control-label">Price</label>
-                                                <input id="Price" name="Price" class="form-control" v-model="pPrice" :placeholder="product.price" />
+                                                <input id="Price" name="Price" class="form-control" v-model="productFields.price" :placeholder="product.price" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Discount" class="control-label">Discount</label>
-                                                <input id="Discount" name="Discount" class="form-control" v-model="pDiscount" :placeholder="product.discount" />
+                                                <input id="Discount" name="Discount" class="form-control" v-model="productFields.discount" :placeholder="product.discount" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="SellingPrice" class="control-label">SellingPrice</label>
-                                                <input id="sellingPrice" name="SellingPrice" class="form-control" v-model="pSellingPrice" :placeholder="product.sellinPrice" />
+                                                <input id="sellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" :placeholder="product.sellingPrice" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Category" class="control-label">Category</label>
-                                                <input id="Category" name="Category" class="form-control" v-model="pCategory" :placeholder="product.category" />
+                                                <input id="Category" name="Category" class="form-control" v-model="productFields.category" :placeholder="product.category" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Tag" class="control-label">Tag</label>
-                                                <input id="Tag" name="Tag" class="form-control" v-model="pTag" :placeholder="product.tag" />
+                                                <input id="Tag" name="Tag" class="form-control" v-model="productFields.tag" :placeholder="product.tag" />
                                             </div>
 
                                         </div>
@@ -93,16 +92,16 @@
                                             <div class="form-group">
 
                                                 <label for="PicturePath" class="control-lable">PicturePath</label>
-                                                <input class="form-control" type="file" id="fileupload" name="PicturePath" v-on:change="ShowImagePreview(this)" />
-
-                                                <img :src="product.picturePath" id="imagePreview" alt="Product Picture" width="360" height="410px"/>
+                                                <input class="form-control" type="file" id="fileupload" name="PicturePath" onchange="ShowImagePreview(this)" />
+                                                <img src="/images/product-5.png" id="imagePreview" alt="Product Style" width="360px" height="410px">
+                                                @*<img :src="product.picturePath" id="imagePreview" alt="Product Picture" width="360" height="410px"/>*@
                                             </div>
 
 
                                             <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
                                                 <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
                                                     <div>
-                                                        <button type="button" class="submit" v-on:click="saveProductChange(id)">Save Edit</button>
+                                                        <button type="button" class="submit" v-on:click="saveProductChange(@ViewBag.id)">Save Edit</button>
                                                     </div>
                                                 </div>
 
@@ -123,21 +122,44 @@
 @section Scripts {
 <script>
 
+        function ShowImagePreview(input) {
+            if (input.files && input.files[0]) {
+                var fname = input.files[0].name;
+                var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+                if (!re.exec(fname)) {
+                    alert("Image not supported!");
+                    $("#fileupload").val("");
+
+                    return false;
+                }
+                else {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imagePreview').prop('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+
     let PEapp = new Vue({
     
         //el: "#EditProduct",
         data:
         {
+            //queryEditBaseUrl: "/api/product/editbyid/",
             product: [],
-            productId: null,
-            productName: null,
-            pColor: null,
-            pSize: null,
-            pCategory: null,
-            pPrice: null,
-            pDiscount: false,
-            pSellingPrice: null,
-            pTag: null,
+            productFields:{
+                    productId: null,
+                    productName: null,
+                    color: null,
+                    size: null,
+                    category: null,
+                    price: null,
+                    discount: null,
+                    sellingPrice: null,
+                    tag: null,
+            }
 
         },
 
@@ -149,47 +171,28 @@
             .then(function(result){
                 console.log(result);
                 self.product = result;
-                self.product.productId = @ViewBag.id
+                //self.product.productId = @ViewBag.id,
+                self.productFields.productId = @ViewBag.id
             })
         },
 
         methods: 
         {
-            ShowImagePreview: function(input) {
-                if(input.files && input.files[0]) {
-                    var fname = input.files[0].name;
-                    var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
-                    if (!re.exec(fname)) {
-                        alert("Image not supported!");
-                        $("#fileupload").val("");
-
-                        return false;
-                    }
-                    else{
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            $('#imagePreview').prop('src', e.target.result);
-                        };
-                        reader.readAsDataURL(input.files[0]);
-                    }
-                }  
-            },
-
+            
             saveProductChange: function(id)
             {
                 var self = this;
-                this.queryEditBaseUrl = "/api/product/editbyid/" + id;
-                fetch(this.qureyEditBaseUrl,{
+                self.queryEditBaseURL = '/api/product/editbyid/' + id;
+
+                fetch(self.qureyEditBaseUrl ,{
                     method:"POST",
-                    body:JSON.stringify(data)
+                        body: JSON.stringify(productFields)
                 })
                     .then(function(response){return response.json()})
                     .then(function(result){
                         console.log(result);
                     })
-            } 
-
-            
+            }             
         }
 
     });
