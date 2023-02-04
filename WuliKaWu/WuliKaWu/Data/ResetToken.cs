@@ -12,6 +12,9 @@ namespace WuliKaWu.Data
         [Key]
         public int Id { get; set; }
 
+        [ForeignKey("Members")]
+        public int MemberId { get; set; }
+
         /// <summary>
         /// 寄送重置密碼的會員信箱
         /// </summary>
@@ -35,5 +38,10 @@ namespace WuliKaWu.Data
         /// </summary>
         [Required]
         public bool ValidateSatus { get; set; }
+
+        /// <summary>
+        /// 導覽屬性: 會員
+        /// </summary>
+        public virtual Member Member { get; set; }
     }
 }
