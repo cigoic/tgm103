@@ -227,7 +227,7 @@ namespace WuliKaWu.Controllers
         {
             Product prd = new Product
             {
-                ProductId = product.ProductId,
+                //ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 Color = product.Color,
                 Size = (Size)Enum.Parse(typeof(Size), product.Size),
@@ -242,7 +242,7 @@ namespace WuliKaWu.Controllers
             _context.Products.Add(prd);
             await _context.SaveChangesAsync();
 
-            return View(product);
+            return View();
 
             //if (ModelState.IsValid)
             //{
