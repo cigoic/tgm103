@@ -245,12 +245,23 @@ namespace WuliKaWu.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResetPassword(/* ResetPasswordModel model */)
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordModel model)
         {
             if (ModelState.IsValid == false) return View();
 
-            // TODO 產生新密碼,更新回資料庫
-            //BCrypt.Net.BCrypt.HashPassword(model.Password);
+            var ResetToken = _context.ResetTokens.FirstOrDefaultAsync(t => t.Token == model.ResetToken).Result;
+            var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == ResetToken.MemberId).Result;
+
+            if (ResetToken == null || member == null) return RedirectToAction("ForgetPassword");
+
+            // 產生新密碼,更新回資料庫
+            var CryptedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+            member.Password = CryptedPassword;
+
+            _context.Entry(member).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
             return View();
         }
 
