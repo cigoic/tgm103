@@ -35,7 +35,7 @@ namespace WuliKaWu.Controllers
 >>>>>>> [修改]名稱原Carts更改為Cart
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Carts.ToListAsync());
         }
 
 <<<<<<< HEAD

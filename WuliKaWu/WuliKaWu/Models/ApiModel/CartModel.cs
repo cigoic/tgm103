@@ -35,6 +35,7 @@ namespace WuliKaWu.Models.ApiModel
 >>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 =======
         public Product Product { get; set; }
+<<<<<<< HEAD
         //public string ProductName { get; set; }
         //public string PicturePath { get; set; }
         //public decimal Price { get; set; }
@@ -44,5 +45,7 @@ namespace WuliKaWu.Models.ApiModel
         //public Color Color { get; set; }
         //public decimal? Coupon { get; set; }
 >>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
+=======
+>>>>>>> [新增]Cartapicontroller Getcart Action及Wishlistcontroller Addtocart Action
     }
 }

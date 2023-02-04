@@ -173,6 +173,11 @@ namespace WuliKaWu.Controllers.Api
         //}
 
         //TODO 商品頁面加入"收藏清單" 加Sweet Alert
+        /// <summary>
+        /// 商品頁面加入"收藏清單"
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         //[Authorize]
         [HttpPost("{productId}")]
         public async Task AddWishListAsync(int productId)
@@ -186,10 +191,11 @@ namespace WuliKaWu.Controllers.Api
                 _context.WishList.Add(new WishList
                 {
                     ProductId = productId,
-                    MemberId = myId,
+                    //MemberId = myId,
                     Product = product
                 });
 
+                //var CountOfRecords = await _context.SaveChangesAsync();
                 await _context.SaveChangesAsync();
 
                 //TODO 彈跳提醒sweetalert
@@ -198,22 +204,32 @@ namespace WuliKaWu.Controllers.Api
         }
 
         //TODO 商品頁面"AddToCart" SweetAlert
+        /// <summary>
+        /// 商品頁面加入"購物車"
+        /// </summary>
+        /// <param name="WishListId"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         //[Authorize]
         [HttpPost("{productId}")]
         public async Task<string> AddToCartAsync(int WishListId, int productId)
         {
             var myId = User.Claims.GetMemberId();
+            var cart = await _context.Carts.FirstOrDefaultAsync(x => x.MemberId == myId);
+            if (cart == null)
+            {
+                cart = new Cart();
+            }
 
-            var cart = await _context.Carts.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
             var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-            if (cart == null)
+            if (cart != null)
             {
                 _context.Carts.Add(new Cart
                 {
                     //WishListId = WishListId,
-                    MemberId = myId,
-                    ProductId = productId,
+                    //MemberId = myId,
+                    //ProductId = productId,
                     Quantity = 1,
                     Product = product
                 });

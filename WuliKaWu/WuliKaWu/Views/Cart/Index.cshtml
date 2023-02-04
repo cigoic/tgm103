@@ -93,7 +93,7 @@
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        <tr v-for="cart in carts">
+                                        <tr v-for="cart in productInThisCart">
                                             <td class="product-thumbnail">
                                                 <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
@@ -297,7 +297,7 @@
 <<<<<<< HEAD
 =======
                 <div class="col-lg-12 col-md-12 col-12">
-                    <div class="grand-total-wrap" v-for="cart in carts">
+                    <div class="grand-total-wrap" v-for="cart in productInThisCart">
                         <div class="grand-total-content">
 >>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
                             <div class="cart-calculate-discount-wrap mb-40">
@@ -396,15 +396,15 @@
         let app = new Vue({
             el: "#cartIndex",
             data: {
-                carts: []
+                productInThisCart: []
             },
             mounted: function () {
                 var self = this;
-                fetch('/api/cart/getall')
+                fetch('/api/cart/GetCart/')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result);
-                        self.carts = result;
+                        self.productInThisCart = result;
                     })
             }
         });
