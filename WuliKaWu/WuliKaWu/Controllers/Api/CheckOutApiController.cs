@@ -70,12 +70,21 @@ namespace WuliKaWu.Controllers.Api
             {
                 CheckOutId = 2,
                 PicturePath = "/assets/images/cart/cart-2.jpg",
+<<<<<<< HEAD
                 ProductName = x.Product.ProductName,
                 Colors = x.Product.Colors.Select(x=> x.Type).ToList(),
                 Quantity = x.Quantity,
                 Size = x.Product.Size,
                 Price = x.Product.Price,
                 SellingPrice = x.Product.SellingPrice.ToString() ?? "",
+=======
+                //ProductName = x.Product.ProductName,
+                //Color = x.Product.Color,
+                //Quantity = x.Quantity,
+                //Size = x.Product.Size,
+                //Price = x.Product.Price,
+                //SellingPrice = x.Product.SellingPrice.ToString() ?? "",
+>>>>>>> [修改]Gettocart及Getwishlist
                 //Coupon = x.Product.Coupon,
                 Type = (Data.Enums.Common.GetPayType)2,
                 ShippingAddress = "台北市中山區南京西路1號",

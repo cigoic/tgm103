@@ -17,6 +17,7 @@ namespace WuliKaWu.Models.ApiModel
         public int CartId { get; set; }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int ProductId { get; set; }
         public int MemberId { get; set; }
 =======
@@ -47,5 +48,8 @@ namespace WuliKaWu.Models.ApiModel
 >>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
 =======
 >>>>>>> [新增]Cartapicontroller Getcart Action及Wishlistcontroller Addtocart Action
+=======
+        public int ProductId { get; set; }
+>>>>>>> [修改]Gettocart及Getwishlist
     }
 }

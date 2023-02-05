@@ -90,6 +90,65 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Articles");
+<<<<<<< HEAD
+=======
+
+                    b.HasData(
+                        new
+                        {
+                            ArticleId = 1,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8157),
+                            MemberId = 1,
+                            ModifiedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8157),
+                            Title = "Lorem ipsum dolor consectet."
+                        },
+                        new
+                        {
+                            ArticleId = 2,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8235),
+                            MemberId = 2,
+                            ModifiedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8236),
+                            Title = "Duis et volutpat pellentesque."
+                        },
+                        new
+                        {
+                            ArticleId = 3,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8286),
+                            MemberId = 3,
+                            ModifiedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8287),
+                            Title = "Vivamus vitae dolor convallis."
+                        },
+                        new
+                        {
+                            ArticleId = 4,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8338),
+                            MemberId = 3,
+                            ModifiedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8338),
+                            Title = "Vivamus amet tristique orci."
+                        },
+                        new
+                        {
+                            ArticleId = 5,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8385),
+                            MemberId = 2,
+                            ModifiedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8386),
+                            Title = "Pellentesque pretium place."
+                        },
+                        new
+                        {
+                            ArticleId = 6,
+                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+                            CreatedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8505),
+                            MemberId = 1,
+                            ModifiedDate = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8507),
+                            Title = "Sed euismod tristique dolor."
+                        });
+>>>>>>> [修改]Gettocart及Getwishlist
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
@@ -1461,7 +1520,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5317),
+                            Birthday = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(7948),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1478,7 +1537,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5340),
+                            Birthday = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8025),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1495,7 +1554,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5352),
+                            Birthday = new DateTime(2023, 2, 5, 13, 32, 23, 37, DateTimeKind.Local).AddTicks(8041),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,

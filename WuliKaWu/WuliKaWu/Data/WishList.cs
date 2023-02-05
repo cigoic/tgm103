@@ -30,6 +30,7 @@ namespace WuliKaWu.Data
 
         /// <summary>
         /// 導覽屬性:對應多個會員，使用 ICollection
+<<<<<<< HEAD
         /// </summary>
         public virtual Member Member { get; set; }
 
@@ -121,6 +122,10 @@ namespace WuliKaWu.Data
 =======
         public virtual Member Member { get; set; }
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
+=======
+        /// </summary>
+        public virtual ICollection<Member> Member { get; set; }
+>>>>>>> [修改]Gettocart及Getwishlist
 
         /// <summary>
         /// 導覽屬性:對應多筆商品，使用 ICollection
@@ -157,7 +162,11 @@ namespace WuliKaWu.Data
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
 =======
 
+<<<<<<< HEAD
         public virtual Product Product { get; set; }
 >>>>>>> [新增] 修改後的 Cart, Product, Wishlist 表
+=======
+        public virtual ICollection<Product> Product { get; set; }
+>>>>>>> [修改]Gettocart及Getwishlist
     }
 }

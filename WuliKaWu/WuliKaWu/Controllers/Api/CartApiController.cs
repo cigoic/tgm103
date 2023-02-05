@@ -148,10 +148,56 @@ namespace WuliKaWu.Controllers.Api
             _context = context;
         }
 
-        public List<CartModel> GetAll()
+        //public List<CartModel> GetAll()
+        //{
+        //    return _context.Carts.Select(x => new CartModel
+        //    {
+        //        CartId = x.CartId,
+        //        Product = x.Product
+        //    }).ToList();
+        //}
+
+        /// <summary>
+        /// 商品頁面加入"購物車"
+        /// </summary>
+        /// <param name="WishListId"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("{productId}")]
+        public async Task<ApiResultModel> AddToCartAsync(int productId)
         {
-            return _context.Carts.Select(x => new CartModel
+            try
             {
+                var myId = User.Claims.GetMemberId();
+                var cartItem = await _context.Carts.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
+                var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+
+                if (cartItem == null)
+                {
+                    _context.Carts.Add(new Cart
+                    {
+                        MemberId = myId,
+                        ProductId = productId,
+                        Quantity = 1,
+                    });
+
+                    await _context.SaveChangesAsync();
+
+                    return new ApiResultModel
+                    {
+                        Status = true,
+                        Message = "加入成功"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new ApiResultModel
+            {
+<<<<<<< HEAD
 <<<<<<< HEAD
                 CartId = x.CartId,
 <<<<<<< HEAD
@@ -176,6 +222,11 @@ namespace WuliKaWu.Controllers.Api
 >>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
             }).ToList();
 >>>>>>> 新增CartController及CartApiController
+=======
+                Status = false,
+                Message = "已收入購物車"
+            };
+>>>>>>> [修改]Gettocart及Getwishlist
         }
 
         //TODO Get一個會員的購物車的所有商品
@@ -194,7 +245,7 @@ namespace WuliKaWu.Controllers.Api
                 .Select(c => new CartModel
                 {
                     CartId = c.MemberId,
-                    Product = c.Product,
+                    ProductId = c.ProductId,
                 }
                 )
                 .ToListAsync());
