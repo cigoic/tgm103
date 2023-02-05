@@ -106,12 +106,12 @@ namespace WuliKaWu.Controllers.Api
             }
 
             var wishlist = await _context.Members.FindAsync(wishlistId);
-            var item = _context.WishList.Where(w => w.ProductId != wishlist.WishList.ProductId); //wishlist.WishList.ProductId).Product;
+            //var item = _context.WishList.Where(w => w.ProductId != wishlist.WishList.ProductId); //wishlist.WishList.ProductId).Product;
 
-            if (wishlist != null && item != null)
-            {
-                wishlist.WishList = (WishList?)item;
-            }
+            //if (wishlist != null && item != null)
+            //{
+            //    wishlist.WishList = (WishList?)item;
+            //}
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
