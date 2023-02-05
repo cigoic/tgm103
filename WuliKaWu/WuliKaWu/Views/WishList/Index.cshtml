@@ -3,8 +3,8 @@
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Wishlist</h2>
-                <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <ul>    
+                    <li><a href="/wishlist/Index">Home</a></li>
                     <li><i class="ti-angle-right"></i></li>
                     <li>Wishlist</li>
                 </ul>
@@ -71,9 +71,8 @@
             el: "#wishlistIndex",
             data: {
                 productInThisWishList: {
-                        wishlistId: 0,
-                        cart: null,
-                        cartId: null,
+                        wishlistId: []
+                        
                 }
             },
             mounted: function () 

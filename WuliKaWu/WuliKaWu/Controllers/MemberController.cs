@@ -20,10 +20,12 @@ namespace WuliKaWu.Controllers
     public class MemberController : Controller
     {
         private readonly ShopContext _context;
+        private readonly IConfiguration _configuration;
 
-        public MemberController(ShopContext context)
+        public MemberController(ShopContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [ActionName("Login")]
@@ -61,7 +63,7 @@ namespace WuliKaWu.Controllers
                 //new Claim(ClaimTypes.GivenName, member.FirstName),
                 //new Claim(ClaimTypes.Surname, member.LastName),
                 //new Claim(ClaimTypes.Email, member.Email),
-                //new Claim(ClaimTypes.Gender, member.Gender), // TODO    to string
+                //new Claim(ClaimTypes.Gender, member.Gender),
                 //new Claim(ClaimTypes.DateOfBirth, member.Birthday), // TODO    to string
                 //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
                 //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
@@ -289,7 +291,7 @@ namespace WuliKaWu.Controllers
             if (ModelState.IsValid == false)
                 return BadRequest(new { success = false, message = "重設密碼錯誤，請聯繫管理員!" });
 
-            var ResetToken = _context.ResetTokens.FirstOrDefaultAsync(t => t.Token == model.ResetToken).Result;
+            ResetToken ResetToken = _context.ResetTokens.FirstOrDefaultAsync(t => t.Token == model.ResetToken).Result;
             var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == ResetToken.MemberId).Result;
 
             if (ResetToken == null
@@ -301,8 +303,6 @@ namespace WuliKaWu.Controllers
             var CryptedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
             member.Password = CryptedPassword;
             ResetToken.ValidateSatus = false;
-
-            _context.Entry(member).State = EntityState.Modified;
 
             try
             {
@@ -337,24 +337,33 @@ namespace WuliKaWu.Controllers
         /// <summary>
         /// 寄送郵件
         /// </summary>
-        /// <param name="ResetToken"></param>
-        private void SendPasswordResetEmail(Guid ResetToken)
+        /// <param name="Token"></param>
+        private void SendPasswordResetEmail(Guid Token)
         {
-            var mail = new MailMessage();
-            mail.Subject = "您好！";
-            mail.SubjectEncoding = Encoding.UTF8;
-            mail.IsBodyHtml = true;
-            mail.Body = $"<h1>密碼重設 Token: {ResetToken} </h1>";
-            mail.From = new MailAddress("liang.case@gmail.com");
-            mail.To.Add(new MailAddress("liang.case@me.com"));
-
-            using (var client = new SmtpClient())
+            try
             {
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.EnableSsl = true;
-                client.Credentials = new NetworkCredential("liang.case@gmail.com", "APP_PASSWORD");
-                client.Send(mail);  // 寄信
+                var mail = new MailMessage();
+                mail.Subject = "您好！";
+                mail.SubjectEncoding = Encoding.UTF8;
+                mail.IsBodyHtml = true;
+
+                mail.Body = $"<h4>請點擊下述連結，重置密碼<hr/> <h1>{Token}</h1><br/><hr/></h4>";
+                mail.From = new MailAddress("liang.case@gmail.com");
+                mail.To.Add(new MailAddress("liang.case@me.com"));
+
+                using (var client = new SmtpClient())
+                {
+                    var SmtpAccessToken = _configuration.GetValue<string>("SMTPConnection:GmailSMTP");
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.Credentials = new NetworkCredential("liang.case@gmail.com", SmtpAccessToken);
+                    client.Send(mail);  // 寄信
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
