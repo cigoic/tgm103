@@ -89,10 +89,14 @@ builder.Services
         opt.AccessDeniedPath = "/Home/Error";   // 驗證失敗時，轉至此頁面
         opt.LoginPath = "/Member/Login";     // 當應當要登入，卻沒經過登入頁面時，轉至此頁面
 <<<<<<< HEAD
+<<<<<<< HEAD
         opt.ExpireTimeSpan = TimeSpan.FromSeconds(86400);
 =======
         opt.ExpireTimeSpan = TimeSpan.FromSeconds(300);
 >>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
+=======
+        opt.ExpireTimeSpan = TimeSpan.FromSeconds(86400);
+>>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
         opt.Cookie.Name = "WuliKaWuCookie";
         opt.Cookie.HttpOnly = true;
         opt.LogoutPath = "/";

@@ -55,6 +55,7 @@
 <<<<<<< HEAD
                                     <form id="loginForm" name="loginForm" method="post">
                                         <label for="Account" class="required">帳號</label>
+<<<<<<< HEAD
                                         <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
 
                                         <label for="Password" class="required">密碼</label>
@@ -77,9 +78,11 @@
                                     <form id="loginForm" name="loginForm" method="post">
 >>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
                                         <label for="Account" class="required"></label>
+=======
+>>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
                                         <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
 
-                                        <label for="Password" class="required"></label>
+                                        <label for="Password" class="required">密碼</label>
                                         <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
 
 >>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
@@ -261,7 +264,7 @@
                                 swal("Error!", error.response.data.message, "error");
                             }
                         });
-                    document.getElementById('restForm').reset()    // reset form
+                    //document.getElementById('loginForm').reset()    // reset form
                 },
                 handleRegister() {
                     axios.post('/Member/Register', this.fieldsRegister)
@@ -278,8 +281,12 @@
                         });
                     //document.getElementById('restForm').reset()    // reset form
                 },
+<<<<<<< HEAD
             }
 >>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
+=======
+            },
+>>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
         })
 
         document.addEventListener("DOMContentLoaded", () => {
