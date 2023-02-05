@@ -68,7 +68,7 @@ builder.Services
     {
         opt.AccessDeniedPath = "/Home/Error";   // 驗證失敗時，轉至此頁面
         opt.LoginPath = "/Member/Login";     // 當應當要登入，卻沒經過登入頁面時，轉至此頁面
-        opt.ExpireTimeSpan = TimeSpan.FromSeconds(300);
+        opt.ExpireTimeSpan = TimeSpan.FromSeconds(86400);
         opt.Cookie.Name = "WuliKaWuCookie";
         opt.Cookie.HttpOnly = true;
         opt.LogoutPath = "/";

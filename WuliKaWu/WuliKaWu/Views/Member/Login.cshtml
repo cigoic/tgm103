@@ -18,10 +18,10 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form id="loginForm" name="loginForm" method="post">
-                                        <label for="Account" class="required"></label>
+                                        <label for="Account" class="required">帳號</label>
                                         <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
 
-                                        <label for="Password" class="required"></label>
+                                        <label for="Password" class="required">密碼</label>
                                         <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
 
                                         <div class="login-toggle-btn">
@@ -111,7 +111,7 @@
                                 swal("Error!", error.response.data.message, "error");
                             }
                         });
-                    document.getElementById('restForm').reset()    // reset form
+                    //document.getElementById('loginForm').reset()    // reset form
                 },
                 handleRegister() {
                     axios.post('/Member/Register', this.fieldsRegister)
@@ -128,7 +128,7 @@
                         });
                     //document.getElementById('restForm').reset()    // reset form
                 },
-            }
+            },
         })
 
         document.addEventListener("DOMContentLoaded", () => {
