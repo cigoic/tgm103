@@ -95,7 +95,27 @@ namespace WuliKaWu.Controllers.Api
             return "已有此商品";
         }
 
-        //TODO 移除收藏清單
+        //TODO 移除收藏清單的商品 RemoveToWishlist
+
+        [HttpPost("{wishlistId}")]
+        public async Task<IActionResult> RemoveToWishlist(int wishlistId)
+        {
+            if (_context.WishList == null)
+            {
+                return Problem("Entity set 'ShopContext.Wishlist' is null.");
+            }
+
+            var wishlist = await _context.Members.FindAsync(wishlistId);
+            var item = _context.WishList.Where(w => w.ProductId != wishlist.WishList.ProductId); //wishlist.WishList.ProductId).Product;
+
+            if (wishlist != null && item != null)
+            {
+                wishlist.WishList = (WishList?)item;
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
         //TODO 寫在商品頁面的收藏清單(Productapicontroller)
         //[Authorize]
