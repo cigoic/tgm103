@@ -20,7 +20,7 @@
                                 @*商品圖片*@
                                 <a href="">
                                     @*<img src="@Url.Content(Model.PicturePath)" id="imagePreview" alt="Product Picture" />*@
-                                    <img :src="product.picturePath" id="picturePath" alt="Product Picture" />
+                                    <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
                                 </a>
                             </div>
 
@@ -34,7 +34,7 @@
                             <div class="shop-list-content">
 
                                 @*商品內容*@
-                                <form action="/api/product/editbyid">
+                                <form>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group" hidden>
@@ -44,42 +44,42 @@
 
                                             <div class="form-group">
                                                 <label for="ProductName" class="control-label">ProductName</label>
-                                                <input id="ProductName" name="ProductName" class="form-control" v-model="productFields.productName" :placeholder="product.productName" />
+                                                <input id="ProductName" name="ProductName" class="form-control" v-model="productFields.productName"  />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Color" class="control-label">Color</label>
-                                                <input id="Color" name="Color" class="form-control" v-model="productFields.color" :placeholder="product.color" />
+                                                <input id="Color" name="Color" class="form-control" v-model="productFields.color" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Size" class="control-label">Size</label>
-                                                <input id="Size" name="Size" class="form-control" v-model="productFields.size" :placeholder="product.size" />
+                                                <input id="Size" name="Size" class="form-control" v-model="productFields.size"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Price" class="control-label">Price</label>
-                                                <input id="Price" name="Price" class="form-control" v-model="productFields.price" :placeholder="product.price" />
+                                                <input id="Price" name="Price" class="form-control" v-model="productFields.price" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Discount" class="control-label">Discount</label>
-                                                <input id="Discount" name="Discount" class="form-control" v-model="productFields.discount" :placeholder="product.discount" />
+                                                <input id="Discount" name="Discount" class="form-control" v-model="productFields.discount" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="SellingPrice" class="control-label">SellingPrice</label>
-                                                <input id="sellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" :placeholder="product.sellingPrice" />
+                                                <input id="sellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Category" class="control-label">Category</label>
-                                                <input id="Category" name="Category" class="form-control" v-model="productFields.category" :placeholder="product.category" />
+                                                <input id="Category" name="Category" class="form-control" v-model="productFields.category" />
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="Tag" class="control-label">Tag</label>
-                                                <input id="Tag" name="Tag" class="form-control" v-model="productFields.tag" :placeholder="product.tag" />
+                                                <input id="Tag" name="Tag" class="form-control" v-model="productFields.tag"/>
                                             </div>
 
                                         </div>
@@ -142,17 +142,18 @@
         data:
         {
             //queryEditBaseUrl: "/api/product/editbyid/",
-            product: [],
+            
             productFields:{
-                    productId: null,
-                    productName: null,
-                    color: null,
-                    size: null,
-                    category: null,
-                    price: null,
-                    discount: null,
-                    sellingPrice: null,
-                    tag: null,
+                    productId: "",
+                    productName: "",
+                    color: "",
+                    size: "",
+                    category: "",
+                    price: "",
+                    discount: "",
+                    sellingPrice: "",
+                    tag: "",
+                    picturePath:""
             }
 
         },
@@ -164,22 +165,26 @@
             .then(function(response){return response.json()})
             .then(function(result){
                 console.log(result);
-                self.product = result;
-                //self.product.productId = @ViewBag.id,
-                self.productFields.productId = @ViewBag.id
+                //self.product = result;
+                self.productFields = result;
+                self.productFields.productId = @ViewBag.id;
+
             })
         },
 
         methods: 
         {            
-            saveProductChange: function(id)
+                saveProductChange: function (id)
             {
                 var self = this;
-                self.queryEditBaseURL = '/api/product/editbyid/' + id;
+                self.productFields.productId = @ViewBag.id
 
-                fetch(self.qureyEditBaseUrl ,{
+                var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+
+                fetch(qureyEditBaseUrl ,{
                     method:"POST",
-                        body: JSON.stringify(productFields)
+                    headers:{'content-type': 'application/json'},
+                    body: JSON.stringify(self.productFields)
                 })
                     .then(function(response){return response.json()})
                     .then(function(result){
