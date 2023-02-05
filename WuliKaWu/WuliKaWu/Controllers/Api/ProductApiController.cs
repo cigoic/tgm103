@@ -131,13 +131,7 @@ namespace WuliKaWu.Controllers.Api
         [HttpPost("{id}")]
         public EditModel EditById(int id, EditModel eModel)
         {
-            if (id != eModel.ProductId)
-            {
-                return null;
-            }
-
-            Product product = _context.Products.Find(eModel.ProductId);
-            product.ProductId = eModel.ProductId;
+            Product product = _context.Products.Find(id);
             product.ProductName = eModel.ProductName;
             product.Color = eModel.Color;
             product.Size = (Size)Enum.Parse(typeof(Size), eModel.Size);
@@ -147,8 +141,6 @@ namespace WuliKaWu.Controllers.Api
             product.Discount = Convert.ToDecimal(eModel.Discount);
             product.SellingPrice = decimal.Parse(eModel.SellingPrice);
             product.Tag = (Tag)eModel.Tag;
-
-            _context.Entry(product).State = EntityState.Modified;
 
             try
             {

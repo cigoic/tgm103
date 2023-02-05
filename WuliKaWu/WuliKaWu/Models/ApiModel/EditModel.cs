@@ -5,8 +5,12 @@ namespace WuliKaWu.Models.ApiModel
     public class EditModel
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         public int ProductId { get; set; }
+=======
+
+>>>>>>> [修改]Edit頁面部分欄位完成(仍有一部分有誤)
 
 >>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
         public string ProductName { get; set; }
