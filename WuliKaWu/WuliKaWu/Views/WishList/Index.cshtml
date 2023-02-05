@@ -21,6 +21,7 @@
         </div>
         <div class="breadcrumb-img-1">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <img src="/assets/images/banner/breadcrumb-1.png" alt="">
         </div>
         <div class="breadcrumb-img-2">
@@ -31,6 +32,12 @@
         <div class="breadcrumb-img-2">
             <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
 >>>>>>> [新增]AddWishList Action 及 AddToCart Action
+=======
+            <img src="/assets/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2">
+            <img src="/assets/images/banner/breadcrumb-2.png" alt="">
+>>>>>>> [新增]RemoveCartAction及RemoveWishList Action
         </div>
     </div>
     <div class="wishlist-area pb-100 pt-100">
@@ -38,10 +45,14 @@
             <div class="row">
                 <div class="col-12">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <form>
 =======
                     <form action="#">
 >>>>>>> [新增]AddWishList Action 及 AddToCart Action
+=======
+                    <form>
+>>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                         <div class="wishlist-table-content">
                             <div class="table-content table-responsive">
                                 <table>
@@ -51,21 +62,29 @@
                                             <th class="width-thumbnail"></th>
                                             <th class="width-name">Product</th>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <th class="width-price"> Price </th>                                            
 =======
                                             <th class="width-price"> Price </th>
                                             @*<th class="width-stock-status"> Stock status </th>*@
 >>>>>>> [新增]AddWishList Action 及 AddToCart Action
+=======
+                                            <th class="width-price"> Price </th>                                            
+>>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                                             <th class="width-wishlist-cart"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                                         <tr v-for="product in productInThisWishList">                                        
                                             <td class="pro-remove">
                                                 <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
                                              </td>
+<<<<<<< HEAD
                                             <td class="product-thumbnail">
                                                 <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
@@ -86,21 +105,20 @@
                                         <tr v-for="wishlist in productInThisWishList" :key="wishlist.WishListId" >
 >>>>>>> [新增]AddtToWishList Action
                                             <td class="product-remove"><a href="#">×</a></td>
+=======
+>>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                                             <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
+                                                <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{wishlist.productName}}</a></h5>
+                                                <h5><a href="/Products/ProductDetails">{{product.productName}}</a></h5>
                                             </td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':wishlist.price}">${{wishlist.price}}</span>
-                                                <span class="new-price" v-if="wishlist.sellingPrice">${{wishlist.sellingPrice}}</span>
-                                            </td>
-                                            @* <td class="stock-status">
-                                            <span><i class="las la-check"></i> In Stock</span>
-                                            </td>*@                                            
+                                                <span :class="{'old-price':product.price}">${{product.price}}</span>
+                                                <span class="new-price" v-if="product.sellingPrice">${{product.sellingPrice}}</span>
+                                            </td>                                         
                                             <td class="wishlist-cart btn-hover">
-                                            <button type="button" v-on:click="addToCart(cart.cartId)">Add to Cart</button>
+                                                <button type="button" v-on:click="AddToCart(cart.cartId)">Add to Cart</button>
                                             </td>
 <<<<<<< HEAD
                                             @* <td class="stock-status">
@@ -185,7 +203,11 @@
         let app = new Vue({
             el: "#wishlistIndex",
             data: {
-                productInThisWishList: []
+                productInThisWishList: {
+                        wishlistId: 0,
+                        cart: null,
+                        cartId: null,
+                }
             },
             mounted: function () 
             {
@@ -202,12 +224,23 @@
                  AddToCart(id) 
                  {
                     console.log("CPid:", id)
-                    this.queryWishListBaseURL = 'api/wishlist/AddToCart/' + id;
+                    this.queryWishListBaseURL = '/api/wishlist/AddToCart/' + id;
                     fetch(this.queryWishListBaseURL,{method: "POST" })
                         .then(function (response) { return response.json() })
-                        .then(function (result) {console.log(result);                            
+                        .then(function (result) {
+                            alert(result);                            
                         })
                   },
+                RemoveToWishlist(id)
+                {
+                    console.log("RPid",id)
+                    this.queryWishListBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
+                    fetch(this.queryWishListBaseURL,{method:"POST"})
+                        .then(function (reponse) {return response.json()})
+                        .then(function (result) {
+                            alert(result);
+                        })
+                }
 
             }
         });

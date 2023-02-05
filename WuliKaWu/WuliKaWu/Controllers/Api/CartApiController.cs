@@ -197,5 +197,27 @@ namespace WuliKaWu.Controllers.Api
 
             return cart;
         }
+
+        //TODO 移除購物車的商品
+        [HttpPost("{cartId}")]
+        public async Task<IActionResult> RemoveToCart(int cartId)
+        {
+            if (_context.Carts == null)
+            {
+                return Problem("Entity set 'ShopContext.Cart' is null.");
+            }
+
+            var cart = await _context.Members.FindAsync(cartId);
+
+            if (cart != null)
+            {
+                //var cartproduct = cart.Cart.Product;
+                //_context.Carts.Remove(cartproduct)
+                //cart.Cart.ProductId.Remove();
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
