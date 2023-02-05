@@ -120,8 +120,12 @@
 <div class="container-fluid" id="matchApp" />
 
 <div class="row p-5">
+<<<<<<< HEAD
     <div class="col-8" style="height:80vh ; background-color: #2c3e50; position: relative;">
 >>>>>>> [更新] 整合衣服搭配樣版頁面至 Product > Match
+=======
+    <div class="col-8" style="height:80vh ; background-color: #F5F5F5; position: relative;">
+>>>>>>> [更新]商品新增檢視頁面的圖片預覽及修改Match檢視中的圖片區塊色彩
         <template v-for="item in show">
             <vue-drag-resize :ref="'test'+item.id" :parent-limitation="true" :aspectRatio="false"
                              :isActive="true" v-on:resizing="resize" v-on:dragging="resize" v-on:activated="onActivated('test'+item.id)"
