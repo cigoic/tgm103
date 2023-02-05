@@ -4,25 +4,25 @@
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Cart</h2>
-                <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <ul>                    
+                    <li><a href="/cart/Index">Home</a></li>
                     <li><i class="ti-angle-right"></i></li>
                     <li>Cart</li>
                 </ul>
             </div>
         </div>
         <div class="breadcrumb-img-1">
-            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+            <img src="/assets/images/banner/breadcrumb-1.png" alt="">
         </div>
         <div class="breadcrumb-img-2">
-            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+            <img src="/assets/images/banner/breadcrumb-2.png" alt="">
         </div>
     </div>
     <div class="cart-area pt-100 pb-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#">
+                    <form >
                         <div class="cart-table-content">
                             <div class="table-content table-responsive">
                                 <table>
@@ -40,11 +40,11 @@
                                     </thead>
                                     <tbody >
                                         <tr v-for="cart in productInThisCart">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            <td class="product-thumbnail">                                                
+                                                <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.product.productName}}</a></h5>
+                                                <h5><a href="/Products/ProductDetails">{{cart.product.productName}}</a></h5>
                                             </td>
                                             <td><span>{{cart.product.size}}</span></td>
                                             <td><span>{{cart.product.color}}</span></td>
@@ -64,7 +64,7 @@
                                                 <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
                                                 <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
                                             </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                            <td class="product-remove"><i class=" ti-trash "></i></td>
                                         </tr>
                                         
                                     </tbody>
@@ -75,12 +75,13 @@
                             <div class="col-lg-12">
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="cart-shiping-update btn-hover">
-                                        <a asp-action="Index" asp-controller="Products">Continue Shopping</a>
+                                        <a href="/Products/Index">Continue Shopping</a>                                        
                                     </div>
                                     <div class="cart-clear-wrap">
                                         @*Clear Cart Action尚未完成*@
                                         <div class="cart-clear btn-hover">
-                                            <a href="#">Clear Cart</a>
+                                            <a href="/Cart/Index">Clear Cart</a>
+                                            @*<a href="#">Clear Cart</a>*@
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +131,9 @@
         let app = new Vue({
             el: "#cartIndex",
             data: {
-                productInThisCart: []
+                productInThisCart: {
+                    cartId:[]
+                }
             },
             mounted: function () {
                 var self = this;

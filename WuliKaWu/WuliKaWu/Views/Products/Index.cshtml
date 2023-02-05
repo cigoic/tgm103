@@ -368,7 +368,7 @@
                     console.log("CPid:", id)
                     this.queryCartBaseURL = '/api/cart/AddToCart/' + id;
                     fetch(this.queryCartBaseURL, { method: "POST" })
-                        .then(function (response) { return response.text() })
+                        .then(function (response) { return response.json() })
                         .then(function (result) {
                             var al={
                                 icon:'sucess',

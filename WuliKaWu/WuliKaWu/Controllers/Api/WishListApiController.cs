@@ -25,6 +25,7 @@ namespace WuliKaWu.Controllers.Api
         /// Get全部會員的所有收藏清單
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public async Task<IEnumerable<WishListModel>> GetAll()
         {
@@ -87,7 +88,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// Get一個會員的收藏清單的所有商品
+        /// Get一個會員的所有收藏清單
         /// </summary>
         /// <returns></returns>
         [Authorize]
@@ -101,32 +102,12 @@ namespace WuliKaWu.Controllers.Api
                 {
                     WishListId = x.WishListId,
                     ProductId = x.ProductId,
-                    MemberId = x.MemberId
+                    MemberId = x.MemberId,
+                    //Price = x.Product.Price,
+                    //SellingPrice = (decimal)x.Product.SellingPrice,
+                    //Discount = (decimal)x.Product.Discount,
+                    //PicturePath = x.Product.PicturePath,
                 }).ToListAsync());
-
-            //var wishItem = _context.WishList.FirstOrDefaultAsync(w => w.MemberId == myId && w.ProductId == productId);
-            //var product = _context.Products.FirstOrDefaultAsync(w => w.ProductId == productId);
-
-            //if (wishItem == null)
-            //{
-            //    return Enumerable.Empty<WishListModel>();   //TODO
-            //}
-
-            //return (await _context.WishList
-            //    .Where(w => w.MemberId == myId)
-            //    .Select(w => new WishListModel
-            //    {
-            //        WishListId = w.WishListId,
-            //        ProductName = w.Product.ProductName,
-            //        Price = w.Product.Price,
-            //        SellingPrice = (decimal)w.Product.SellingPrice,
-            //        Discount = (decimal)w.Product.Discount,
-            //        PicturePath = w.Product.PicturePath,
-            //        ProductId = w.ProductId,
-            //        MemberId = w.MemberId
-            //    }
-            //    )
-            //    .ToListAsync());
         }
 
         //TODO 加入購物車 AddtoCart(右邊Button)

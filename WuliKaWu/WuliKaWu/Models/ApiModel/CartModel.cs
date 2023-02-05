@@ -7,5 +7,6 @@ namespace WuliKaWu.Models.ApiModel
     {
         public int CartId { get; set; }
         public int ProductId { get; set; }
+        public int MemberId { get; set; }
     }
 }
