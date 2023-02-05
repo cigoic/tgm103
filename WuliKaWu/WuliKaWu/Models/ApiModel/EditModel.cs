@@ -4,7 +4,7 @@ namespace WuliKaWu.Models.ApiModel
 {
     public class EditModel
     {
-        public int ProductId { get; set; }
+
 
         public string ProductName { get; set; }
 
