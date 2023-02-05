@@ -1,17 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using static WuliKaWu.Data.Enums.Common;
 using System.ComponentModel.DataAnnotations.Schema;
-using static WuliKaWu.Data.Enums.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace WuliKaWu.Data
 {
-    [Table("Size")]
-    public class TableOfSize
+    [Table("StarRate")]
+    public class StarRate
     {
         /// <summary>
-        /// 商品尺寸ID (Primary Key)
+        /// 星等ID(Primary Key)
         /// </summary>
         [Key]
-        public int SizeId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 關聯的商品 ID (Foreign Key)
@@ -20,9 +20,9 @@ namespace WuliKaWu.Data
         public int ProductId { get; set; }
 
         /// <summary>
-        /// 商品尺寸類型值
+        /// 商品的星等類型值
         /// </summary>
-        public Size Type { get; set; }
+        public StarRate Type { get; set; }
 
         /// <summary>
         /// 導覽屬性：只對應到單一商品，不用 ICollection

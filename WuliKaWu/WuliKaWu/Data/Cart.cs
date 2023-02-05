@@ -10,7 +10,7 @@ namespace WuliKaWu.Data
         /// 購物車 ID (Primary Key , 自動編號)
         /// </summary>
         [Key]
-        public int CartId { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// 關聯的會員ID (Foreign Key)
