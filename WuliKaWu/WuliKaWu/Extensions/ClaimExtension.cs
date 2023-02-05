@@ -8,6 +8,7 @@ namespace WuliKaWu.Extensions
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : throw new ArgumentNullException("找不到ID");
 
         }
@@ -21,6 +22,10 @@ namespace WuliKaWu.Extensions
 =======
             return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : -1;
 >>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
+=======
+            return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : throw new ArgumentNullException("找不到ID");
+
+>>>>>>> 修改wishlist
         }
 
         public static bool GetRememberMeStatus(this IEnumerable<Claim> claims)

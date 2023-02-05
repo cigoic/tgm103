@@ -63,54 +63,54 @@ namespace WuliKaWu.Migrations
                         {
                             ArticleId = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(729),
+                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5462),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(730),
+                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5463),
                             Title = "Lorem ipsum dolor consectet."
                         },
                         new
                         {
                             ArticleId = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(791),
+                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5611),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(792),
+                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5613),
                             Title = "Duis et volutpat pellentesque."
                         },
                         new
                         {
                             ArticleId = 3,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(830),
+                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5666),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(831),
+                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5667),
                             Title = "Vivamus vitae dolor convallis."
                         },
                         new
                         {
                             ArticleId = 4,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(869),
+                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5730),
                             MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(870),
+                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5731),
                             Title = "Vivamus amet tristique orci."
                         },
                         new
                         {
                             ArticleId = 5,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(973),
+                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5792),
                             MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(974),
+                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5793),
                             Title = "Pellentesque pretium place."
                         },
                         new
                         {
                             ArticleId = 6,
                             Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(1015),
+                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5849),
                             MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(1015),
+                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5850),
                             Title = "Sed euismod tristique dolor."
                         });
                 });
@@ -516,8 +516,7 @@ namespace WuliKaWu.Migrations
 =======
                     b.HasKey("CartId");
 
-                    b.HasIndex("MemberId")
-                        .IsUnique();
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("ProductId")
                         .IsUnique();
@@ -1597,7 +1596,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userOne",
                             Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(590),
+                            Birthday = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5317),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1614,7 +1613,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userTwo",
                             Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(619),
+                            Birthday = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5340),
                             Email = "456@456.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -1631,7 +1630,7 @@ namespace WuliKaWu.Migrations
                             AccessFailedCount = 0,
                             Account = "userThree",
                             Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 2, 4, 9, 13, 32, 295, DateTimeKind.Local).AddTicks(629),
+                            Birthday = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5352),
                             Email = "123@123.com",
                             EmailComfirmed = true,
                             Gender = false,
@@ -2178,8 +2177,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
-                    b.HasIndex("MemberId")
-                        .IsUnique();
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("ProductId")
                         .IsUnique();
@@ -2236,8 +2234,8 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithOne("Cart")
-                        .HasForeignKey("WuliKaWu.Data.Cart", "MemberId")
+                        .WithMany("Cart")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2387,8 +2385,8 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithOne("WishList")
-                        .HasForeignKey("WuliKaWu.Data.WishList", "MemberId")
+                        .WithMany("WishList")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

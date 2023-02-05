@@ -199,7 +199,7 @@
                                 <span>Showing {{min+1}}–{{max+1}} of {{products.length}} results</span>
                             </div>
                         </div>
-                        
+
                         @*右邊下拉選單*@
                         <div class="shop-topbar-right">
                             <div class="shop-sorting-area">
@@ -404,10 +404,10 @@
                                                 <div v-if="product.discount" class="product-list-badge badge-right badge-pink">
                                                     <span>-20%</span>
                                                 </div>
-@*                                                <div class="product-list-quickview">
-                                                    <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                        <i class="pe-7s-look"></i>
-                                                    </button>
+                                                @*                                                <div class="product-list-quickview">
+                                                <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <i class="pe-7s-look"></i>
+                                                </button>
                                                 </div>*@
                                             </div>
                                         </div>
@@ -461,7 +461,7 @@
                 <div class="col-lg-3">
                     <div class="sidebar-wrapper">
                         @*商品搜尋*@
-                        <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">                           
+                        <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
                             <div class="search-wrap-2">
                                 <form class="search-2-form" action="#">
                                     <input placeholder="Search*" type="text" v-model="searchText">
@@ -581,9 +581,13 @@
                             </div>
                         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
 =======
                         
+=======
+
+>>>>>>> 修改wishlist
                         @*尺寸篩選*@
 >>>>>>> [新增]加入summary以及註記
                         <div class="sidebar-widget sidebar-widget-border mb-40 pb-35" data-aos="fade-up" data-aos-delay="200">
@@ -592,6 +596,7 @@
                             </div>
                             <div class="sidebar-widget-size sidebar-list-style">
                                 <ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                     <li v-for="item in optionSource.size"><a href="#panel" @@click="selectSize(item.type)">{{item.type}} <span>{{showCount('size',item.id)}}</span></a></li>
@@ -666,11 +671,14 @@
 =======
                                     <li v-for="item in sizeList"><a href="#panel" @@click="selectSize(item.text)">{{item.text}} <span>{{item.count}}</span></a></li>                                    
 >>>>>>> 小精靈的祝福
+=======
+                                    <li v-for="item in sizeList"><a href="#panel" @@click="selectSize(item.text)">{{item.text}} <span>{{item.count}}</span></a></li>
+>>>>>>> 修改wishlist
                                 </ul>
                             </div>
 >>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
                         </div>
-                        
+
                         @*標籤篩選*@
                         <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                             <div class="sidebar-widget-title mb-25">
@@ -719,6 +727,7 @@
             el: "#shopIndex",
             data: {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 optionSource:{
                     tag:[],
                     color:[],
@@ -728,6 +737,9 @@
 =======
                 sizeList:[],
 >>>>>>> 小精靈的祝福
+=======
+                sizeList: [],
+>>>>>>> 修改wishlist
                 searchText: "",
                 products: [],
                 currentPage: 1,
@@ -735,6 +747,9 @@
                 min: 0,
                 max: 0,
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 修改wishlist
                 selectedSize: "All",
                 selectedItem: "2",
                 productdetailsLink: "/Products/Productdetails/",
@@ -1087,6 +1102,7 @@
                     })
             },
             methods: {
+<<<<<<< HEAD
                 clickCallback: function (page) {
                     this.currentPage = page;
                     console.log(page)
@@ -1158,6 +1174,9 @@
             },
             methods: {
                 selectSize:function(text){   
+=======
+                selectSize: function (text) {
+>>>>>>> 修改wishlist
                     console.log(text);
                     this.selectedSize = text;
                 },
@@ -1190,33 +1209,52 @@
                     this.queryCartBaseURL = 'api/product/AddToCart/' + id;
 =======
                     this.queryCartBaseURL = '/api/product/AddToCart/' + id;
+<<<<<<< HEAD
 >>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                     fetch(this.queryCartBaseURL,{method: "POST" })
 <<<<<<< HEAD
 >>>>>>> [新增]AddtToWishList Action
                         .then(function (response) { return response.json() })
 =======
+=======
+                    fetch(this.queryCartBaseURL, { method: "POST" })
+>>>>>>> 修改wishlist
                         .then(function (response) { return response.text() })
 <<<<<<< HEAD
 >>>>>>> [新增]Cartapicontroller Getcart Action及Wishlistcontroller Addtocart Action
                         .then(function (result) {console.log(result);                            
 =======
                         .then(function (result) {
+<<<<<<< HEAD
                             alert(result);                            
 >>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                         })                        
+=======
+                            alert(result);
+                        })
+>>>>>>> 修改wishlist
                 },
                 addToWishlist(id) {
                     console.log("WPid:", id)
                     this.queryWishlistBaseURL = '/api/product/AddWishList/' + id;
-                    fetch(this.queryWishlistBaseURL,{ method: "POST" })
-                        .then(function (response) { return response.text() })
+                    fetch(this.queryWishlistBaseURL, { method: "POST" })
+                        .then(function (response) { return response.json() })
                         .then(function (result) {
-                            alert(result);
+                            var al = {
+                                    icon: 'success',
+                                    title: '成功',
+                                    text: result.message,
+                                    timer: 2000
+                                };
+                            if(!result.status){
+                               al.icon = "error";
+                               al.title = "失敗";
+                            }
+                            Swal.fire(al)
                         })
-                        
+
                 },
-                
+
             },
             mounted: function () {
                 var self = this;
@@ -1240,22 +1278,22 @@
                         });
 
                         //size
-                        var temp = groupBy(app.products,"size")
+                        var temp = groupBy(app.products, "size")
                         var count = 0;
                         for (let key of Object.keys(temp)) {
-                            count+=temp[key].length;
+                            count += temp[key].length;
                             self.sizeList.push({
-                                "text":key,
+                                "text": key,
                                 "count": temp[key].length
-                            })                            
+                            })
                         }
                         self.sizeList.push({
-                                "text":"All",
+                            "text": "All",
                             "count": count
-                            })
+                        })
                     });
-                
-                
+
+
             }
 <<<<<<< HEAD
         },

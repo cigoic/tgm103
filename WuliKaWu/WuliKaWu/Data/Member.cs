@@ -282,12 +282,12 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:只對應到單一個購物車，不用 ICollection
         /// </summary>
-        public virtual Cart? Cart { get; set; }
+        public virtual ICollection<Cart> Cart { get; set; }
 
         /// <summary>
         /// 導覽屬性:只對應到單一個收藏清單，不用 ICollection
         /// </summary>
-        public virtual WishList? WishList { get; set; }
+        public virtual ICollection<WishList> WishList { get; set; }
     }
 
     public enum MemberShipType
