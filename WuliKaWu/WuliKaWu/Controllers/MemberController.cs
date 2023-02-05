@@ -42,8 +42,7 @@ namespace WuliKaWu.Controllers
 
             if (member == null || !BCrypt.Net.BCrypt.Verify(model.Password, member.Password))
             {
-                TempData["error"] = "帳號密碼不對！";
-                return RedirectToAction("Login");
+                return BadRequest(new { success = false, message = "錯誤，請再試一次" });
             }
 
             //var rolesOfmember = member.Roles.Select(m => m.Type);
@@ -95,18 +94,16 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (model == null)
-                return RedirectToAction("Login");
+                return BadRequest(new { success = false, message = "錯誤，請再試一次" });
 
             if (_context.Members.Any(u => u.Account == model.Account))
             {
-                TempData["error"] = "輸入有誤！請再試一次";
-                return RedirectToAction("Login");  //TODO: 提示訊息
+                return BadRequest(new { success = false, message = "錯誤，請再試一次" });
             }
 
             if (_context.Members.Any(u => u.Email == model.Email))
             {
-                TempData["error"] = "輸入有誤！請再試一次";
-                return RedirectToAction("Login");  //TODO: 提示訊息
+                return BadRequest(new { success = false, message = "錯誤，請再試一次" });
             }
 
             if (ModelState.IsValid)
@@ -166,72 +163,21 @@ namespace WuliKaWu.Controllers
         }
 
         /// <summary>
-        /// 會員的[忘記密碼]功能
+        /// 取得 ModelState 錯誤
         /// </summary>
-        /// <param name="model"></param>
         /// <returns></returns>
-        [ActionName("ForgetPassword")]
-        [HttpPost]
-        public async Task<IActionResult> ForgetPasswordAsync(ForgetPasswordModel model)
+        private List<string> GetErrorMessages()
         {
-            if (ModelState.IsValid)
+            var errors = new List<string>();
+            foreach (var modelState in ModelState.Values)
             {
-                // 檢查用戶是否存在?
-                var user = _context.Members
-                            .Any(m => m.Account == model.Account
-                            && m.Email == model.Email);
-                if (user == false)
+                foreach (var error in modelState.Errors)
                 {
-                    // TODO 如果找不到用戶, 丟出錯誤顯示
-                    ModelState.AddModelError("", "此用戶尚未註冊!");
-                    return View();
+                    errors.Add(error.ErrorMessage);
                 }
-
-                // 產生重置密碼 token
-                Guid ResetToken = await GeneratePasswordResetTokenAsync(user);
-
-                if (ResetToken == Guid.Empty)
-                    return View();
-
-                // TODO 寄送重置密碼連結
-                SendPasswordResetEmail(ResetToken);
-
-                // TODO  通知用戶密碼確認信已寄出
             }
 
-            return View();
-        }
-
-        public async Task<Guid> GeneratePasswordResetTokenAsync(bool HasUser)
-        {
-            if (HasUser == false) return Guid.Empty;
-
-            Guid ResetToken = Guid.NewGuid();
-
-            if (await _context.ResetTokens.AnyAsync(t => t.Token == ResetToken))
-                return Guid.Empty;
-
-            return ResetToken;
-        }
-
-        private void SendPasswordResetEmail(Guid ResetToken)
-        {
-            var mail = new MailMessage();
-            mail.Subject = "您好！";
-            mail.SubjectEncoding = Encoding.UTF8;
-            mail.IsBodyHtml = true;
-            mail.Body = $"<h1>密碼重設 Token: {ResetToken} </h1>";
-            mail.From = new MailAddress("liang.case@gmail.com");
-            mail.To.Add(new MailAddress("liang.case@me.com"));
-
-            using (var client = new SmtpClient())
-            {
-                client.Host = "smtp.gmail.com";
-                client.Port = 587;
-                client.EnableSsl = true;
-                client.Credentials = new NetworkCredential("liang.case@gmail.com", "APP_PASSWORD");
-                client.Send(mail);  // 寄信
-            }
+            return errors;
         }
 
         public IActionResult ResetPassword(Guid ResetToken)
@@ -240,27 +186,6 @@ namespace WuliKaWu.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordModel model)
-        {
-            if (ModelState.IsValid == false) return View();
-
-            var ResetToken = _context.ResetTokens.FirstOrDefaultAsync(t => t.Token == model.ResetToken).Result;
-            var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == ResetToken.MemberId).Result;
-
-            if (ResetToken == null || member == null) return RedirectToAction("ForgetPassword");
-
-            // 產生新密碼,更新回資料庫
-            var CryptedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-            member.Password = CryptedPassword;
-
-            _context.Entry(member).State = EntityState.Modified;
-
-            await _context.SaveChangesAsync();
 
             return View();
         }
@@ -289,7 +214,7 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> MyAccount(AccountDetailsModel model)
         {
             if (User.Identity.IsAuthenticated == false || ModelState.IsValid == false)
-                return RedirectToAction("Index", "Home");
+                return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
 
             //var model = new MemberModel();
             //model.MemberId = User.Claims.GetMemberId();
@@ -301,17 +226,136 @@ namespace WuliKaWu.Controllers
                 .FirstOrDefault(m => m.MemberId == User.Claims.GetMemberId());
 
             if (member == null)
-                return RedirectToAction("Login");
+                return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
 
             member.Name = $"{model.LastName}+{model.FirstName}";
             member.Email = model.Email;
-            //ComparePassword(model);   //TODO
             member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd);
 
             _context.Members.Update(member);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(MyAccount));
+        }
+
+        /// <summary>
+        /// 會員的[忘記密碼]功能
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ActionName("ForgetPassword")]
+        [HttpPost]
+        public async Task<IActionResult> ForgetPasswordAsync(ForgetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
+            }
+            // 檢查用戶是否存在?
+            var user = _context.Members
+                        .Any(m => m.Account == model.Account
+                        && m.Email == model.Email);
+            if (user == false)
+            {
+                // TODO 如果找不到用戶, 丟出錯誤顯示
+                ModelState.AddModelError("", "重置錯誤!");
+                return BadRequest(new { success = false, message = GetErrorMessages() });
+            }
+
+            // 產生重置密碼 token
+            Guid ResetToken = await GeneratePasswordResetTokenAsync(user);
+
+            if (ResetToken == Guid.Empty)
+            {
+                ModelState.AddModelError("", "重置錯誤，請聯繫管理員!");
+                return BadRequest(new { success = false, message = GetErrorMessages() });
+            }
+
+            // TODO 寄送重置密碼連結(抓取組態檔中的密碼)
+            SendPasswordResetEmail(ResetToken);
+
+            return Ok(new { success = false, message = "已寄送重置密碼郵件通知!" });
+        }
+
+        /// <summary>
+        /// 密碼重置功能
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ActionName("ResetPassword")]
+        [HttpPost]
+        public async Task<IActionResult> ResetPasswordAsync(ResetPasswordModel model)
+        {
+            if (ModelState.IsValid == false)
+                return BadRequest(new { success = false, message = "重設密碼錯誤，請聯繫管理員!" });
+
+            var ResetToken = _context.ResetTokens.FirstOrDefaultAsync(t => t.Token == model.ResetToken).Result;
+            var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == ResetToken.MemberId).Result;
+
+            if (ResetToken == null
+                || member == null
+                || ResetToken.ValidateSatus == false)
+                return BadRequest(new { success = false, message = "重設密碼錯誤，請聯繫管理員!" });
+
+            // 產生新密碼,更新回資料庫
+            var CryptedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+            member.Password = CryptedPassword;
+            ResetToken.ValidateSatus = false;
+
+            _context.Entry(member).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return Ok(new { success = true, message = "Successfully Reset Password" });
+        }
+
+        /// <summary>
+        /// 產生 Token
+        /// </summary>
+        /// <param name="HasUser"></param>
+        /// <returns></returns>
+        private async Task<Guid> GeneratePasswordResetTokenAsync(bool HasUser)
+        {
+            if (HasUser == false) return Guid.Empty;
+
+            Guid ResetToken = Guid.NewGuid();
+
+            if (await _context.ResetTokens.AnyAsync(t => t.Token == ResetToken))
+                return Guid.Empty;
+
+            return ResetToken;
+        }
+
+        // TODO：帶入參數需調整
+        /// <summary>
+        /// 寄送郵件
+        /// </summary>
+        /// <param name="ResetToken"></param>
+        private void SendPasswordResetEmail(Guid ResetToken)
+        {
+            var mail = new MailMessage();
+            mail.Subject = "您好！";
+            mail.SubjectEncoding = Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.Body = $"<h1>密碼重設 Token: {ResetToken} </h1>";
+            mail.From = new MailAddress("liang.case@gmail.com");
+            mail.To.Add(new MailAddress("liang.case@me.com"));
+
+            using (var client = new SmtpClient())
+            {
+                client.Host = "smtp.gmail.com";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.Credentials = new NetworkCredential("liang.case@gmail.com", "APP_PASSWORD");
+                client.Send(mail);  // 寄信
+            }
         }
     }
 }

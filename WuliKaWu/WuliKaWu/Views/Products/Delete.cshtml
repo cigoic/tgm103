@@ -27,6 +27,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="first-column col-3"></td>
+                                        @*商品圖片*@
                                         <td class="product-list-img">
                                             <div class="col-5">
                                                 <img class="img-fluid" :src="product.picturePath" alt="Product Picture" />
@@ -85,6 +86,7 @@
         <a asp-action="Index" class="col-3">Back to List</a>
     </div>
 
+    @*商品刪除按鍵*@
     <div class="col-7">
         <form asp-action="Delete" >
             <input type="hidden"  />
@@ -92,8 +94,7 @@
         </form>
     </div>
 
-    <div class="col-1">
-    </div>
+    <div class="col-1"></div>
 </div>
 
 </div>

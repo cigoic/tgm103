@@ -20,6 +20,11 @@ namespace WuliKaWu.Controllers.Api
             _context = context;
         }
 
+        /// <summary>
+        /// 取得所有商品
+        /// </summary>
+        /// <returns></returns>
+
         public List<ProductModel> GetAll()
         {
             return _context.Products.Select(x => new ProductModel
@@ -35,6 +40,11 @@ namespace WuliKaWu.Controllers.Api
             }).ToList();
         }
 
+        /// <summary>
+        /// 取得對應id的商品
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public PreviewModel GetById(int id)
         {
@@ -61,6 +71,12 @@ namespace WuliKaWu.Controllers.Api
             return model;
         }
 
+        /// <summary>
+        /// 編輯對應id的商品
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="eModel"></param>
+        /// <returns></returns>
         [HttpPost("{id}")]
         public EditModel EditById(int id, EditModel eModel)
         {
@@ -107,19 +123,32 @@ namespace WuliKaWu.Controllers.Api
             return _context.Products.Any(p => p.ProductId == id);
         }
 
-        //[HttpDelete("{id}")]
-        //public async Task<String> DeleteProduct(int id)
-        //{
-        //    Product p = await _context.Products.FindAsync(id);
-        //    if (p == null)
-        //    {
-        //        return "can not find this product!";
-        //    }
+        /// <summary>
+        /// 新增商品至資料庫
+        /// </summary>
+        /// <param name="addModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<String> AddProduct(AddModel addModel)
+        {
+            Product prd = new Product
+            {
+                ProductName = addModel.ProductName,
+                Color = addModel.Color,
+                Size = addModel.Size,
+                PicturePath = addModel.PicturePath,
+                Price = addModel.Price,
+                Discount = addModel.Discount,
+                SellingPrice = addModel.SellingPrice,
+                Category = addModel.Category,
+                Tag = addModel.Tag
+            };
 
-        //    _context.Products.Remove(p);
-        //    await _context.SaveChangesAsync();
-        //    return "this product delete success!";
-        //}
+            _context.Add(prd);
+            await _context.SaveChangesAsync();
+
+            return "Create Success!!";
+        }
 
         //TODO 商品頁面加入"收藏清單" 加Sweet Alert
         /// <summary>

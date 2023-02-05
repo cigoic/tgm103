@@ -1,4 +1,4 @@
-﻿@model WuliKaWu.Models.ApiModel.ProductModel
+﻿
 
 @{
     ViewData["Title"] = "Create";
@@ -16,114 +16,96 @@
             <div class="tab-content jump">
                 <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
                     <div class="row">
+                        @*商品圖片*@
                         <div class="col-lg-4 col-sm-5">
                             <div class="product-list-img">
-                                <a href="#">
-                                    <img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">
-                                </a>
-
-                                @*                                <div class="product-list-quickview">
-                                <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="pe-7s-look"></i>
-                                </button>
-                                </div>*@
+                                <a>
+                                    <img src="/images/product-5.png" id="imagePreview" alt="Product Style">
+                                </a>                                   
                             </div>
 
                             <div class="mt-5">
-                                <a asp-action="Index">Back to List</a>
+                                <a href="/Products/Index">Back to List</a>
                             </div>
-
                         </div>
+
+                        @*商品欄位*@
                         <div class="col-lg-8 col-sm-7 contact-form-style">
                             <div class="shop-list-content">
-                                <form asp-action="Create" method="post">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <form action="/Products/Create" method="post">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group" hidden>
-                                                <label asp-for="ProductId" class="control-label"></label>
-                                                <input asp-for="ProductId" class="form-control" />
-                                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                                                <label for="ProductId" class="control-label">ProductId</label>
+                                                <input for="ProductId" id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
                                             </div>
 
                                             <div class="form-group">
-                                                <label asp-for="ProductName" class="control-label"></label>
-                                                <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
-                                                <span asp-validation-for="ProductName" class="text-danger"></span>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                            <label asp-for="Color" class="control-label"></label>
-                                            <input asp-for="Color" class="form-control" />
-                                            <span asp-validation-for="Color" class="text-danger"></span>
+                                                <label for="ProductName" class="control-label">ProductName</label>
+                                                <input for="ProductName" class="form-control" v-model="productFields.productName" placeholder="請輸入商品名稱" required />
                                             </div>
 
-@*                                            <div class="shop-sorting-area form-group">
-                                                <label asp-for="Color" class="control-label"></label>
-                                                <select>
-                                                    <option value="">請選擇</option>
-                                                    <option value="0">Black</option>
-                                                    <option value="1">White</option>
-                                                    <option value="2">Brown</option>
-                                                    <option value="3">Red</option>
-                                                    <option value="4">Orange</option>
-                                                </select>*@
-                                               @* <input v-model="selectedItem" asp-for="Color" value="" />
+                                            <div class="form-group">
+                                                <label for="Color" class="control-label">Color</label>
+                                                <input for="Color" id="Color" name="Color" class="form-control" v-model="productFields.color" placeholder="請輸入顏色" />
+                                            </div>
+
+                                            @*<div class="shop-sorting-area form-group">
+                                            <label for="Color" class="control-label">Color</label>
+                                            <select v-model="selectedOption">
+                                            <option value="">Choose</option>
+                                            <option v-for="color in colors" :key="color.value" :value="color.value">{{color.text}}</option>
+                                            </select>
                                             </div>*@
+                                        
+                                            <div class="form-group">
+                                                <label for="Size" class="control-label">Size</label>
+                                                <input for="Size" id="Size" name="Size" class="form-control" v-model="productFields.size" placeholder="請輸入尺寸" />
+                                            </div>
 
                                             <div class="form-group">
-                                                <label asp-for="Size" class="control-label"></label>
-                                                <input asp-for="Size" class="form-control" placeholder="請輸入尺寸" />
-                                                <span asp-validation-for="Size" class="text-danger"></span>
+                                                <label for="Category" class="control-label">Category</label>
+                                                <input for="Category" id="Category" name="Category" class="form-control" v-model="productFields.category" placeholder="請輸入分類" />
                                             </div>
+
                                             <div class="form-group">
-                                                <label asp-for="Category" class="control-label"></label>
-                                                <input asp-for="Category" class="form-control" placeholder="請輸入分類" />
-                                                <span asp-validation-for="Category" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="PicturePath" class="control-label"></label>
-                                                <input asp-for="PicturePath" class="form-control" type="file" id="fileupload" onchange="return ShowImagePreview(this)" />
-                                                <span asp-validation-for="PicturePath" class="text-danger"></span>
+                                                <label for="PicturePath" class="control-label">PicturePath</label>
+                                                <input for="PicturePath" name="PicturePath" class="form-control" type="file" id="fileupload" onchange="return ShowImagePreview(this)" v-model="picturePath"/>
                                             </div>
                                         </div>
 
                                         <div class="col-6">
 
                                             <div class="form-group">
-                                                <label asp-for="Price" class="control-label"></label>
-                                                <input asp-for="Price" class="form-control" />
-                                                <span asp-validation-for="Price" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Discount" class="control-label"></label>
-                                                <input asp-for="Discount" class="form-control" />
-                                                <span asp-validation-for="Discount" class="text-danger"></span>
+                                                <label for="Price" class="control-label">Price</label>
+                                                <input for="Price" id="Price" name="Price" class="form-control" v-model="productFields.price" placeholder="請輸入價格" />
                                             </div>
 
-
                                             <div class="form-group">
-                                                <label asp-for="SellingPrice" class="control-label"></label>
-                                                <input asp-for="SellingPrice" class="form-control" />
-                                                <span asp-validation-for="SellingPrice" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Tag" class="control-label"></label>
-                                                <input asp-for="Tag" class="form-control" />
-                                                <span asp-validation-for="Tag" class="text-danger"></span>
+                                                <label for="Discount" class="control-label">Discount</label>
+                                                <input for="Discount" id="Discount" name="Discount" class="form-control" v-model="productFields.discount" placeholder="請輸入折扣" />
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                                <input for="SellingPrice" id="SellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" placeholder="請輸入折扣價格" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Tag" class="control-label">Tag</label>
+                                                <input for="Tag" id="Tag" name="Tag" class="form-control" v-model="productFields.tag" placeholder="請輸入標籤" />
+                                            </div>
+
+                                            @*商品新增按鍵*@
                                             <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
                                                 <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
                                                     <div>
-                                                        <button class="submit" type="submit" id="sendMessageButton">Create</button>
+                                                        <button type="button" class="submit" id="sendMessageButton" v-on:click="addProduct()">Create</button>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -135,9 +117,6 @@
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
 
     <script>
         function ShowImagePreview(input) {
@@ -161,15 +140,83 @@
             }
         }
 
-        //let PCapp = new Vue({
-        //    el: "#ProductCreate",
+        let PCapp = new Vue({
+            //el: "#ProductCreate",
 
-        //    data:
-        //    {
-        //        selectedItem: ""
-        //    }
+            data:
+            {
+                product: [],
+                productFields:{
+                    //productId: null,
+                    productName: null,
+                    category: null,
+                    picturePath: null,
+                    price: null,
+                    discount: null,
+                    sellingPrice: null,
+                    tag: null,
+                },
+                
+                //selectedOption:"",
+                //colors:
+                //[
+                //    {text: "Black", value:0},
+                //    {text: "White", value:1},
+                //    {text: "Brown", value:2},
+                //    {text: "Red", value:3},
+                //    {text: "Orange", value:4},
+                //]
 
-        //})
+            },
+
+            mounted: function () {
+                var self = this;
+                fetch("/Products/Create")
+                    .then(function(response){return response.text()})
+                    .then(function(result){
+                        console.log(result);
+                        self.product = result;
+                    })
+            },
+
+            methods:
+            {
+                addProduct: function()
+                {
+                    let self = this;
+                    var request = {};
+
+                    request.ProductId = 0;  //Id是自動編號，非可填的欄位
+                    request.ProductName = self.productName;
+                    request.Color = self.color;
+                    request.Size = self.size;
+                    request.Category = self.category;
+                    request.PicturePath = self.picturePath;
+                    request.Price = self.price;
+                    request.Discount = self.discount;
+                    request.SellingPrice = self.sellingPrice;
+                    request.Tag = self.tag;
+
+                    fetch("/api/products/addproduct",{
+                        method:"post",
+                        body:JSON.stringify(request)
+                    })
+                        .then(function(response){return response.json()})
+                        .then(function(result){
+                            console.log(result);
+                        })
+                        .catch(error=> console.log(error))
+                }
+            }
+        })
+
+        //內容都跑完後再載入Vue
+        document.addEventListener("DOMContentLoaded", () => {
+            PCapp.$mount('#ProductCreate')
+        })
 
     </script>
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
