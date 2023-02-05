@@ -366,16 +366,27 @@
                 //},
                 addToCart(id) {
                     console.log("CPid:", id)
-                    this.queryCartBaseURL = '/api/product/AddToCart/' + id;
+                    this.queryCartBaseURL = '/api/cart/AddToCart/' + id;
                     fetch(this.queryCartBaseURL, { method: "POST" })
                         .then(function (response) { return response.text() })
                         .then(function (result) {
-                            alert(result);
+                            var al={
+                                icon:'sucess',
+                                title:'成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if(!result.status)
+                            {
+                                al.icon = "error";
+                                al.title = "失敗";
+                            }
+                            Swal.fire(al)
                         })
                 },
                 addToWishlist(id) {
                     console.log("WPid:", id)
-                    this.queryWishlistBaseURL = '/api/product/AddWishList/' + id;
+                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + id;
                     fetch(this.queryWishlistBaseURL, { method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
