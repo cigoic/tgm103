@@ -41,7 +41,7 @@
                                     <tbody >
                                         <tr v-for="cart in productInThisCart">
                                             <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
+                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
                                                 <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.product.productName}}</a></h5>
@@ -140,6 +140,19 @@
                         console.log(result);
                         self.productInThisCart = result;
                     })
+            },
+            methods:
+            {            
+                RemoveToWishlist(id)
+            {
+                 console.log("RPid",id)
+                            this.queryCartBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
+                    fetch(this.queryCartBaseURL,{method:"POST"})
+                        .then(function (reponse) {return response.json()})
+                        .then(function (result) {
+                            alert(result);
+                        })
+            }
             }
         });
     </script>

@@ -150,7 +150,7 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         //[Authorize]
         [HttpPost("{productId}")]
-        public async Task AddWishListAsync(int productId)
+        public async Task<ApiResultModel> AddWishListAsync(int productId)
         {
             var myId = User.Claims.GetMemberId();
             var wishItem = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
@@ -161,16 +161,26 @@ namespace WuliKaWu.Controllers.Api
                 _context.WishList.Add(new WishList
                 {
                     ProductId = productId,
-                    //MemberId = myId,
-                    Product = product
+                    MemberId = myId,
+                    //Product = product
                 });
 
                 //var CountOfRecords = await _context.SaveChangesAsync();
                 await _context.SaveChangesAsync();
 
                 //TODO 彈跳提醒sweetalert
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "加入成功"
+                };
             }
             // //TODO 彈跳提醒sweetalert
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "已放入收藏清單"
+            };
         }
 
         //TODO 商品頁面"AddToCart" SweetAlert

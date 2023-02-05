@@ -543,10 +543,19 @@
     <script src="~/assets/js/plugins/slinky.min.js"></script>
     <script src="~/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"
-            asp-fallback-src="~/lib/sweetalert/sweetalert.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script src="~/assets/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function showEorror(msg){
+            Swal.fire({
+                icon: 'success',
+                title: '成功',
+                text: msg,
+                timer: 2000
+            })
+        }
+    </script>
 </body>
 </html>
