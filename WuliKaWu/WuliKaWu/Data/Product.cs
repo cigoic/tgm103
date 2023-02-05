@@ -104,22 +104,13 @@ namespace WuliKaWu.Data
         /// 商品名稱，最大長度50
         /// </summary>
         [StringLength(50)]
+        [Required]
         public string ProductName { get; set; }
-
-        /// <summary>
-        /// 商品顏色類型值
-        /// </summary>
-        public Color Color { get; set; }
 
         /// <summary>
         /// 商品尺寸類型值
         /// </summary>
         public Size Size { get; set; }
-
-        /// <summary>
-        /// 商品圖片位址，最大 nvarchar(max)
-        /// </summary>
-        public string PicturePath { get; set; }
 
         /// <summary>
         /// 商品價格
@@ -132,6 +123,7 @@ namespace WuliKaWu.Data
         public decimal? SellingPrice { get; set; }
 
         /// <summary>
+<<<<<<< HEAD
         /// 商品折扣，可為NULL
         /// </summary>
 <<<<<<< HEAD
@@ -142,11 +134,14 @@ namespace WuliKaWu.Data
 >>>>>>> 修改衝突Product Table中Discount
 
         /// <summary>
+=======
+>>>>>>> 暫時修改
         /// 商品評價，最大 nvarchar(max)，可為NULL
         /// </summary>
         public string? Comment { get; set; }
 
         /// <summary>
+<<<<<<< HEAD
         /// 商品星等，可為NULL
         /// </summary>
         public StarRate? StarRate { get; set; }
@@ -155,9 +150,12 @@ namespace WuliKaWu.Data
 <<<<<<< HEAD
         /// 商品分類
 =======
+=======
+>>>>>>> 暫時修改
         /// 商品分類，不可為NULL
 >>>>>>> [更新]Enum/Product/Member表格
         /// </summary>
+<<<<<<< HEAD
         public Category Category { get; set; }
 
         /// <summary>
@@ -167,30 +165,31 @@ namespace WuliKaWu.Data
 <<<<<<< HEAD
 >>>>>>> [更新] 資料庫資料表
 =======
+=======
+        [ForeignKey("Category")]
+        public int CategoryId { get; set; }
+>>>>>>> 暫時修改
 
-        /// <summary>
-        /// 導覽屬性：一個商品對應到多個商品尺寸，用 ICollection
-        /// </summary>
-        public virtual ICollection<TableOfSize> TableOfSizes { get; set; }
 
         /// <summary>
         /// 導覽屬性：一個商品對應到多個商品顏色，用 ICollection
         /// </summary>
-        public virtual ICollection<TableOfColor> TableOfColors { get; set; }
+        public virtual ICollection<Color> Colors { get; set; }
 
         /// <summary>
         /// 導覽屬性：一個商品對應到多個商品星等，用 ICollection
         /// </summary>
-        public virtual ICollection<TableOfStarRate> TableOfStarRates { get; set; }
+        public virtual ICollection<StarRate> StarRates { get; set; }
 
         /// <summary>
         /// 導覽屬性：一個商品對應到多個商品標籤，用 ICollection
         /// </summary>
-        public virtual ICollection<TableOfTag> TableOfTags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
 
         /// <summary>
         /// 導覽屬性：一個商品對應到單一個商品分類，不用 ICollection
         /// </summary>
+<<<<<<< HEAD
 <<<<<<< HEAD
         public virtual ICollection<TableOfTag> TableOfTags { get; set; }
 <<<<<<< HEAD
@@ -199,6 +198,9 @@ namespace WuliKaWu.Data
 =======
         public virtual TableOfCategory TableOfCategories { get; set; }
 >>>>>>> [更新]Enum/Product/Member表格
+=======
+        public virtual Category Category { get; set; }
+>>>>>>> 暫時修改
 
         /// <summary>
         /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection
@@ -216,16 +218,20 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:只對應到單一個購物車,不用 ICollection
         /// </summary>
-        public virtual Cart? Cart { get; set; }
+        public virtual ICollection<Cart> Cart { get; set; }
 
         /// <summary>
         /// 導覽屬性:只對應到單一個收藏清單,不用 ICollection
         /// </summary>
+<<<<<<< HEAD
 <<<<<<< HEAD
         public virtual WishList WishList { get; set; }
 >>>>>>> [更改]Cart,Member,Order,OrderDetails,Product,Wishlist 的Model
 =======
         public virtual WishList? WishList { get; set; }
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
+=======
+        public virtual ICollection<WishList> WishList { get; set; }
+>>>>>>> 暫時修改
     }
 }

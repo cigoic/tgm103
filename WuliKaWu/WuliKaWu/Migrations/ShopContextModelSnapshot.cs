@@ -57,62 +57,6 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Articles");
-
-                    b.HasData(
-                        new
-                        {
-                            ArticleId = 1,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5462),
-                            MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5463),
-                            Title = "Lorem ipsum dolor consectet."
-                        },
-                        new
-                        {
-                            ArticleId = 2,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5611),
-                            MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5613),
-                            Title = "Duis et volutpat pellentesque."
-                        },
-                        new
-                        {
-                            ArticleId = 3,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5666),
-                            MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5667),
-                            Title = "Vivamus vitae dolor convallis."
-                        },
-                        new
-                        {
-                            ArticleId = 4,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5730),
-                            MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5731),
-                            Title = "Vivamus amet tristique orci."
-                        },
-                        new
-                        {
-                            ArticleId = 5,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5792),
-                            MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5793),
-                            Title = "Pellentesque pretium place."
-                        },
-                        new
-                        {
-                            ArticleId = 6,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5849),
-                            MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 5, 10, 45, 40, 205, DateTimeKind.Local).AddTicks(5850),
-                            Title = "Sed euismod tristique dolor."
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
@@ -134,44 +78,6 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ArticleId");
 
                     b.ToTable("ArticleCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArticleId = 1,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ArticleId = 2,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ArticleId = 3,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ArticleId = 4,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ArticleId = 5,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ArticleId = 6,
-                            Type = 2
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
@@ -195,80 +101,6 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ArticleId");
 
                     b.ToTable("ArticleContentImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArticleId = 1,
-                            FileName = "assets/images/blog/blog-details-2.png"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ArticleId = 1,
-                            FileName = "assets/images/blog/blog-details-3.png"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ArticleId = 2,
-                            FileName = "assets/images/blog/blog-details-2.png"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ArticleId = 2,
-                            FileName = "assets/images/blog/blog-details-3.png"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ArticleId = 3,
-                            FileName = "assets/images/blog/blog-details-2.png"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ArticleId = 3,
-                            FileName = "assets/images/blog/blog-details-3.png"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ArticleId = 4,
-                            FileName = "assets/images/blog/blog-details-2.png"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ArticleId = 4,
-                            FileName = "assets/images/blog/blog-details-3.png"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ArticleId = 5,
-                            FileName = "assets/images/blog/blog-details-2.png"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ArticleId = 5,
-                            FileName = "assets/images/blog/blog-details-3.png"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ArticleId = 6,
-                            FileName = "assets/images/blog/blog-details-2.png"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ArticleId = 6,
-                            FileName = "assets/images/blog/blog-details-3.png"
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
@@ -292,44 +124,6 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ArticleId");
 
                     b.ToTable("ArticleTitleImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArticleId = 1,
-                            FileName = "assets/images/blog/blog-details.png"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ArticleId = 2,
-                            FileName = "assets/images/blog/blog-details.png"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ArticleId = 3,
-                            FileName = "assets/images/blog/blog-details.png"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ArticleId = 4,
-                            FileName = "assets/images/blog/blog-details.png"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ArticleId = 5,
-                            FileName = "assets/images/blog/blog-details.png"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ArticleId = 6,
-                            FileName = "assets/images/blog/blog-details.png"
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.AuthorImage", b =>
@@ -354,29 +148,6 @@ namespace WuliKaWu.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AuthorImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FirstImageFileName = "assets/images/blog/blog-author.png",
-                            MemberId = 1,
-                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            FirstImageFileName = "assets/images/blog/blog-author.png",
-                            MemberId = 2,
-                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            FirstImageFileName = "assets/images/blog/blog-author.png",
-                            MemberId = 3,
-                            SecondImageFileName = "assets/images/blog/blog-author-2.png"
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
@@ -539,6 +310,7 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
 =======
                     b.ToTable("Cart");
+<<<<<<< HEAD
 >>>>>>> [新增]AddtToWishList Action
 
                     b.HasData(
@@ -573,6 +345,8 @@ namespace WuliKaWu.Migrations
                             Quantity = 2
                         });
 >>>>>>> [新增]AddtToWishList Action
+=======
+>>>>>>> 暫時修改
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
@@ -1587,6 +1361,7 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] ShopContext 等資料內容定義類別表
 =======
                     b.ToTable("Members");
+<<<<<<< HEAD
 >>>>>>> [新增]AddtToWishList Action
 
                     b.HasData(
@@ -1642,6 +1417,8 @@ namespace WuliKaWu.Migrations
                             PhoneNumber = "0876543210"
                         });
 >>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
+=======
+>>>>>>> 暫時修改
                 });
 <<<<<<< HEAD
 
@@ -1913,7 +1690,18 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
 >>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
                 {
+<<<<<<< HEAD
                     b.Navigation("ArticleCategories");
+=======
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+>>>>>>> 暫時修改
 
                     b.Navigation("ArticleContentImages");
 
@@ -1956,6 +1744,7 @@ namespace WuliKaWu.Migrations
                 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
                     b.Navigation("Pictures");
@@ -1997,6 +1786,11 @@ namespace WuliKaWu.Migrations
                             StarRate = 0
                         });
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+>>>>>>> 暫時修改
                 });
 <<<<<<< HEAD
 =======
@@ -2042,16 +1836,11 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
 
                     b.ToTable("Category");
                 });
@@ -2183,14 +1972,6 @@ namespace WuliKaWu.Migrations
                         .IsUnique();
 
                     b.ToTable("WishLists");
-
-                    b.HasData(
-                        new
-                        {
-                            WishListId = 1,
-                            MemberId = 2,
-                            ProductId = 1
-                        });
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
@@ -2305,6 +2086,17 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.TableOfCategory", "TableOfCategories")
+                        .WithMany("Product")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TableOfCategories");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -2314,17 +2106,6 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
                     b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithOne("TableOfCategories")
-                        .HasForeignKey("WuliKaWu.Data.TableOfCategory", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.TableOfColor", b =>
@@ -2438,9 +2219,6 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("Pictures");
 
-                    b.Navigation("TableOfCategories")
-                        .IsRequired();
-
                     b.Navigation("TableOfColors");
 
                     b.Navigation("TableOfSizes");
@@ -2451,6 +2229,7 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("WishList");
                 });
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> [新增]所有資料表
 =======
@@ -2471,6 +2250,13 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Roles");
                 });
 >>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
+=======
+
+            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
+                {
+                    b.Navigation("Product");
+                });
+>>>>>>> 暫時修改
 #pragma warning restore 612, 618
         }
     }

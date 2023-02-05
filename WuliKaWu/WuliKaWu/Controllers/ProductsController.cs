@@ -231,7 +231,7 @@ namespace WuliKaWu.Controllers
                 ProductName = product.ProductName,
                 Color = product.Color,
                 Size = (Size)Enum.Parse(typeof(Size), product.Size),
-                Category = product.Category,
+                CategoryId = (int)product.Category,
                 PicturePath = product.PicturePath,
                 Price = product.Price,
                 Discount = Convert.ToDecimal(product.Discount),
@@ -384,7 +384,7 @@ namespace WuliKaWu.Controllers
                 product.ProductName = model.ProductName;
                 product.Color = model.Color;
                 product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
-                product.Category = model.Category;
+                //product.Category = model.Category;
                 product.PicturePath = model.PicturePath;
                 product.Price = model.Price;
                 product.Discount = Convert.ToDecimal(model.Discount);

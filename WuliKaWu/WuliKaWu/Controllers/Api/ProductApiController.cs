@@ -115,7 +115,7 @@ namespace WuliKaWu.Controllers.Api
                 Price = data.Price,
                 Discount = data.Discount.HasValue ? data.Discount.Value > 0 ? true : false : false,
                 SellingPrice = data.SellingPrice.HasValue ? data.SellingPrice.Value.ToString() : "",
-                Category = data.Category,
+                Category = (Category)data.CategoryId,
                 Tag = (Tag)data.Tag
             };
 
@@ -135,7 +135,7 @@ namespace WuliKaWu.Controllers.Api
             product.ProductName = eModel.ProductName;
             product.Color = eModel.Color;
             product.Size = (Size)Enum.Parse(typeof(Size), eModel.Size);
-            product.Category = eModel.Category;
+            product.CategoryId = (int)eModel.Category;
             product.PicturePath = eModel.PicturePath;
             product.Price = eModel.Price;
             product.Discount = Convert.ToDecimal(eModel.Discount);
@@ -183,7 +183,7 @@ namespace WuliKaWu.Controllers.Api
                 Price = addModel.Price,
                 Discount = addModel.Discount,
                 SellingPrice = addModel.SellingPrice,
-                Category = addModel.Category,
+                CategoryId = (int)addModel.Category,
                 Tag = addModel.Tag
             };
 

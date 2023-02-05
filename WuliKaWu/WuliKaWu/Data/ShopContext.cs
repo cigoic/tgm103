@@ -592,6 +592,7 @@ namespace WuliKaWu.Data
         /// Seed
         /// </summary>
         /// <param name="modelBuilder"></param>
+<<<<<<< HEAD
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             int countArticle = 0;   // assign to Article Id
@@ -915,5 +916,329 @@ namespace WuliKaWu.Data
             });
         }
 >>>>>>> [更新] 資料庫資料表
+=======
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    int countArticle = 0;   // assign to Article Id
+        //    int countContentImage = 0;  // assign to ArticleContentImage's Id
+
+        //    modelBuilder.Entity<Product>().HasData(new Product
+        //    {
+        //        Price = 100,
+        //        ProductName = "大衣",
+        //        Color = Color.Black,
+        //        Size = Size.S,
+        //        CategoryId = (int)Category.Dress,
+        //        StarRate = StarRate.NoStar,
+        //        SellingPrice = 100,
+        //        ProductId = 1,
+        //        PicturePath = "pic1"
+        //    });
+
+        //    // 會員
+        //    modelBuilder.Entity<Member>().HasData(new Member
+        //    {
+        //        MemberId = 1,
+        //        Account = "userOne",
+        //        Password = "1314520",
+        //        Name = "NameOfUserOne",
+        //        Gender = false,
+        //        Birthday = DateTime.Now,
+        //        Email = "123@123.com",
+        //        EmailComfirmed = true,
+        //        Address = "台北市中山區",
+        //        PhoneNumber = "1234567890",
+        //        MobilePhone = "0987654321",
+        //        MemberShip = MemberShipType.NormalUser,
+        //        LockOutEnabled = false,
+        //        AccessFailedCount = 0,
+        //    });
+
+        //    // VIP
+        //    modelBuilder.Entity<Member>().HasData(new Member
+        //    {
+        //        MemberId = 2,
+        //        Account = "userTwo",
+        //        Password = "tgm10322",
+        //        Name = "NameOfVIP",
+        //        Gender = false,
+        //        Birthday = DateTime.Now,
+        //        Email = "456@456.com",
+        //        EmailComfirmed = true,
+        //        Address = "台中市中正區",
+        //        PhoneNumber = "0448938627",
+        //        MobilePhone = "0912345678",
+        //        MemberShip = MemberShipType.VIP,
+        //        LockOutEnabled = false,
+        //        AccessFailedCount = 0,
+        //    });
+
+        //    // 管理員
+        //    modelBuilder.Entity<Member>().HasData(new Member
+        //    {
+        //        MemberId = 3,
+        //        Account = "userThree",
+        //        Password = "tgm10333",
+        //        Name = "NameOfAdmin",
+        //        Gender = false,
+        //        Birthday = DateTime.Now,
+        //        Email = "123@123.com",
+        //        EmailComfirmed = true,
+        //        Address = "屏東市仁愛路5號",
+        //        PhoneNumber = "0876543210",
+        //        MobilePhone = "0913579246",
+        //        MemberShip = MemberShipType.Admin,
+        //        LockOutEnabled = false,
+        //        AccessFailedCount = 0,
+        //    });
+
+        //    modelBuilder.Entity<Cart>().HasData(new Cart
+        //    {
+        //        CartId = 3,
+        //        MemberId = 2,
+        //        ProductId = 6,
+        //        Quantity = 2,
+        //    });
+        //    modelBuilder.Entity<WishList>().HasData(new WishList
+        //    {
+        //        WishListId = 1,
+        //        ProductId = 1,
+        //        MemberId = 2
+        //    });
+
+        //    // 作者大頭照
+        //    modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+        //    {
+        //        Id = 1,
+        //        MemberId = 1,
+        //        FirstImageFileName = "assets/images/blog/blog-author.png",
+        //        SecondImageFileName = "assets/images/blog/blog-author-2.png",
+        //    });
+        //    modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+        //    {
+        //        Id = 2,
+        //        MemberId = 2,
+        //        FirstImageFileName = "assets/images/blog/blog-author.png",
+        //        SecondImageFileName = "assets/images/blog/blog-author-2.png",
+        //    });
+        //    modelBuilder.Entity<AuthorImage>().HasData(new AuthorImage
+        //    {
+        //        Id = 3,
+        //        MemberId = 3,
+        //        FirstImageFileName = "assets/images/blog/blog-author.png",
+        //        SecondImageFileName = "assets/images/blog/blog-author-2.png",
+        //    });
+
+        //    // 文章 No. 1
+        //    modelBuilder.Entity<Article>().HasData(new Article
+        //    {
+        //        ArticleId = ++countArticle,
+        //        MemberId = 1,
+        //        CreatedDate = DateTime.Now,
+        //        ModifiedDate = DateTime.Now,
+        //        Title = "Lorem ipsum dolor consectet.",
+        //        Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+        //    });
+        //    modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        Type = ArticleType.LatestBlog,
+        //    });
+        //    modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details.png",
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-2.png"
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-3.png"
+        //    });
+
+        //    // 文章 No. 2
+        //    modelBuilder.Entity<Article>().HasData(new Article
+        //    {
+        //        ArticleId = ++countArticle,
+        //        MemberId = 2,
+        //        CreatedDate = DateTime.Now,
+        //        ModifiedDate = DateTime.Now,
+        //        Title = "Duis et volutpat pellentesque.",
+        //        Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+        //    });
+        //    modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        Type = ArticleType.LatestBlog,
+        //    });
+        //    modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details.png",
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-2.png"
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-3.png"
+        //    });
+
+        //    // 文章 No. 3
+        //    modelBuilder.Entity<Article>().HasData(new Article
+        //    {
+        //        ArticleId = ++countArticle,
+        //        MemberId = 3,
+        //        CreatedDate = DateTime.Now,
+        //        ModifiedDate = DateTime.Now,
+        //        Title = "Vivamus vitae dolor convallis.",
+        //        Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+        //    });
+        //    modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        Type = ArticleType.LatestBlog,
+        //    });
+        //    modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details.png",
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-2.png"
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-3.png"
+        //    });
+
+        //    // 文章 No. 4
+        //    modelBuilder.Entity<Article>().HasData(new Article
+        //    {
+        //        ArticleId = ++countArticle,
+        //        MemberId = 3,
+        //        CreatedDate = DateTime.Now,
+        //        ModifiedDate = DateTime.Now,
+        //        Title = "Vivamus amet tristique orci.",
+        //        Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+        //    });
+        //    modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        Type = ArticleType.LatestBlog,
+        //    });
+        //    modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details.png",
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-2.png"
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-3.png"
+        //    });
+
+        //    // 文章 No. 5
+        //    modelBuilder.Entity<Article>().HasData(new Article
+        //    {
+        //        ArticleId = ++countArticle,
+        //        MemberId = 2,
+        //        CreatedDate = DateTime.Now,
+        //        ModifiedDate = DateTime.Now,
+        //        Title = "Pellentesque pretium place.",
+        //        Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+        //    });
+        //    modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        Type = ArticleType.LatestBlog,
+        //    });
+        //    modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details.png",
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-2.png"
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-3.png"
+        //    });
+
+        //    // 文章 No. 6
+        //    modelBuilder.Entity<Article>().HasData(new Article
+        //    {
+        //        ArticleId = ++countArticle,
+        //        MemberId = 1,
+        //        CreatedDate = DateTime.Now,
+        //        ModifiedDate = DateTime.Now,
+        //        Title = "Sed euismod tristique dolor.",
+        //        Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
+        //    });
+        //    modelBuilder.Entity<ArticleCategory>().HasData(new ArticleCategory
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        Type = ArticleType.LatestBlog,
+        //    });
+        //    modelBuilder.Entity<ArticleTitleImage>().HasData(new ArticleTitleImage
+        //    {
+        //        Id = countArticle,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details.png",
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-2.png"
+        //    });
+        //    modelBuilder.Entity<ArticleContentImage>().HasData(new ArticleContentImage
+        //    {
+        //        Id = ++countContentImage,
+        //        ArticleId = countArticle,
+        //        FileName = "assets/images/blog/blog-details-3.png"
+        //    });
+        //}
+>>>>>>> 暫時修改
     }
 }

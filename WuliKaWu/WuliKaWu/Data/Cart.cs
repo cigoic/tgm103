@@ -20,6 +20,7 @@ namespace WuliKaWu.Data
         /// </summary>
         [Key]
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int Id { get; set; }
 
         /// <summary>
@@ -59,6 +60,9 @@ namespace WuliKaWu.Data
 =======
 >>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
         public int CartId { get; set; }
+=======
+        public int Id { get; set; }
+>>>>>>> 暫時修改
 
         /// <summary>
         /// 關聯的會員ID (Foreign Key)
