@@ -196,6 +196,7 @@ namespace WuliKaWu.Controllers.Api
         /// Get全部會員的所有收藏清單
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public async Task<IEnumerable<WishListModel>> GetAll()
         {
@@ -281,7 +282,7 @@ namespace WuliKaWu.Controllers.Api
 >>>>>>> [修改]Gettocart及Getwishlist
 
         /// <summary>
-        /// Get一個會員的收藏清單的所有商品
+        /// Get一個會員的所有收藏清單
         /// </summary>
         /// <returns></returns>
         [Authorize]
@@ -307,8 +308,13 @@ namespace WuliKaWu.Controllers.Api
 =======
                     WishListId = x.WishListId,
                     ProductId = x.ProductId,
-                    MemberId = x.MemberId
+                    MemberId = x.MemberId,
+                    //Price = x.Product.Price,
+                    //SellingPrice = (decimal)x.Product.SellingPrice,
+                    //Discount = (decimal)x.Product.Discount,
+                    //PicturePath = x.Product.PicturePath,
                 }).ToListAsync());
+<<<<<<< HEAD
 
             //var wishItem = _context.WishList.FirstOrDefaultAsync(w => w.MemberId == myId && w.ProductId == productId);
             //var product = _context.Products.FirstOrDefaultAsync(w => w.ProductId == productId);
@@ -334,6 +340,8 @@ namespace WuliKaWu.Controllers.Api
             //    )
             //    .ToListAsync());
 >>>>>>> [修改]Gettocart及Getwishlist
+=======
+>>>>>>> [修改]Addtocart Action
         }
 
         //TODO 加入購物車 AddtoCart(右邊Button)

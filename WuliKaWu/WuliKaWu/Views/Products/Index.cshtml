@@ -1222,12 +1222,16 @@
                     this.queryCartBaseURL = '/api/cart/AddToCart/' + id;
 >>>>>>> [修改]Gettocart及Getwishlist
                     fetch(this.queryCartBaseURL, { method: "POST" })
+<<<<<<< HEAD
 >>>>>>> 修改wishlist
                         .then(function (response) { return response.text() })
 <<<<<<< HEAD
 >>>>>>> [新增]Cartapicontroller Getcart Action及Wishlistcontroller Addtocart Action
                         .then(function (result) {console.log(result);                            
 =======
+=======
+                        .then(function (response) { return response.json() })
+>>>>>>> [修改]Addtocart Action
                         .then(function (result) {
 <<<<<<< HEAD
 <<<<<<< HEAD

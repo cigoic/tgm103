@@ -22,12 +22,17 @@
             <div class="breadcrumb-content text-center">
                 <h2>Cart</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <ul>                    
                     <li><a href="/cart/Index">Home</a></li>
 =======
                 <ul>
                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
 >>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
+=======
+                <ul>                    
+                    <li><a href="/cart/Index">Home</a></li>
+>>>>>>> [修改]Addtocart Action
                     <li><i class="ti-angle-right"></i></li>
                     <li>Cart</li>
                 </ul>
@@ -94,11 +99,11 @@
                                     </thead>
                                     <tbody >
                                         <tr v-for="cart in productInThisCart">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            <td class="product-thumbnail">                                                
+                                                <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.product.productName}}</a></h5>
+                                                <h5><a href="/Products/ProductDetails">{{cart.product.productName}}</a></h5>
                                             </td>
                                             <td><span>{{cart.product.size}}</span></td>
                                             <td><span>{{cart.product.color}}</span></td>
@@ -220,7 +225,7 @@
                                                 <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
                                                 <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
                                             </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                            <td class="product-remove"><i class=" ti-trash "></i></td>
                                         </tr>
                                         
 >>>>>>> [更新] 遮蔽 Cart/WishList 原本範本產生的 CRUD Views
@@ -233,20 +238,29 @@
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="cart-shiping-update btn-hover">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <a href="/Products/Index">Continue Shopping</a>                                        
 =======
                                         <a asp-action="Index" asp-controller="Products">Continue Shopping</a>
 >>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
+=======
+                                        <a href="/Products/Index">Continue Shopping</a>                                        
+>>>>>>> [修改]Addtocart Action
                                     </div>
                                     <div class="cart-clear-wrap">
                                         @*Clear Cart Action尚未完成*@
                                         <div class="cart-clear btn-hover">
+<<<<<<< HEAD
 <<<<<<< HEAD
                                             <a href="/Cart/Index">Clear Cart</a>
                                             @*<a href="#">Clear Cart</a>*@
 =======
                                             <a href="#">Clear Cart</a>
 >>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
+=======
+                                            <a href="/Cart/Index">Clear Cart</a>
+                                            @*<a href="#">Clear Cart</a>*@
+>>>>>>> [修改]Addtocart Action
                                         </div>
                                     </div>
                                 </div>
@@ -396,7 +410,9 @@
         let app = new Vue({
             el: "#cartIndex",
             data: {
-                productInThisCart: []
+                productInThisCart: {
+                    cartId:[]
+                }
             },
             mounted: function () {
                 var self = this;

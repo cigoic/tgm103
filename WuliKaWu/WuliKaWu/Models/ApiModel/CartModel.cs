@@ -50,6 +50,10 @@ namespace WuliKaWu.Models.ApiModel
 >>>>>>> [新增]Cartapicontroller Getcart Action及Wishlistcontroller Addtocart Action
 =======
         public int ProductId { get; set; }
+<<<<<<< HEAD
 >>>>>>> [修改]Gettocart及Getwishlist
+=======
+        public int MemberId { get; set; }
+>>>>>>> [修改]Addtocart Action
     }
 }

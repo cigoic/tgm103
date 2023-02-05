@@ -229,28 +229,24 @@ namespace WuliKaWu.Controllers.Api
 >>>>>>> [修改]Gettocart及Getwishlist
         }
 
-        //TODO Get一個會員的購物車的所有商品
+        //TODO Get一個會員的所有購物車
+        /// <summary>
+        /// Get一個會員的所有購物車
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CartModel>> GetCart()
+        public async Task<IEnumerable<CartModel>> GetCartAsync()
         {
             var myId = User.Claims.GetMemberId();
-
-            if (myId == null)
-            {
-                return Enumerable.Empty<CartModel>(); //TODO
-            }
-
-            var cart = (await _context.Carts
+            return (await _context.Carts
                 .Where(c => c.MemberId == myId)
                 .Select(c => new CartModel
                 {
-                    CartId = c.MemberId,
+                    CartId = c.CartId,
                     ProductId = c.ProductId,
-                }
-                )
-                .ToListAsync());
-
-            return cart;
+                    MemberId = c.MemberId
+                }).ToListAsync());
         }
 
         //TODO 移除購物車的商品
