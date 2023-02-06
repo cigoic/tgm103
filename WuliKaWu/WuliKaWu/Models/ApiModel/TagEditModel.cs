@@ -1,4 +1,4 @@
-﻿namespace WuliKaWu.Models
+﻿namespace WuliKaWu.Models.ApiModel
 {
     public class TagEditModel
     {

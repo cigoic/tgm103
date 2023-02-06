@@ -56,7 +56,7 @@
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
                                                 <a :href="getProductdetailsLink(product.productId)">
-                                                    <img :src="product.picturePath" alt="product picture">
+                                                    <img :src="product.pictures[0]" alt="product picture">
                                                 </a>
                                                 <div v-if="product.discount" class="product-badge badge-top badge-right badge-pink">
                                                     <span>-10%</span>
@@ -199,14 +199,7 @@
                             </div>
                             <div class="sidebar-list-style">
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Shop">Accessories <span>4</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Book <span>9</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Clothing <span>5</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Homelife <span>3</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Kids & Baby <span>4</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Stationery <span>8</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Health & Beauty <span>3</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Home Appliances <span>4</span></a></li>
+                                    <li v-for="item in optionSource.category"><a >{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -218,11 +211,7 @@
                             </div>
                             <div class="sidebar-widget-color sidebar-list-style">
                                 <ul>
-                                    <li><a class="black" href="#">Black <span>4</span></a></li>
-                                    <li><a class="blue" href="#">Blue <span>9</span></a></li>
-                                    <li><a class="brown" href="#">Brown <span>5</span></a></li>
-                                    <li><a class="red" href="#">Red <span>3</span></a></li>
-                                    <li><a class="orange" href="#">Orange <span>4</span></a></li>
+                                    <li v-for="item in optionSource.color"><a>{{item.type}}<span>{{showCount('color',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -234,7 +223,7 @@
                             </div>
                             <div class="sidebar-widget-size sidebar-list-style">
                                 <ul>
-                                    <li v-for="item in sizeList"><a href="#panel" @@click="selectSize(item.text)">{{item.text}} <span>{{item.count}}</span></a></li>
+                                    <li v-for="item in optionSource.size"><a href="#panel" @@click="selectSize(item.type)">{{item.type}} <span>{{showCount('size',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -245,16 +234,7 @@
                                 <h3>Tags</h3>
                             </div>
                             <div class="sidebar-widget-tag">
-                                <a href="#">All, </a>
-                                <a href="#">Clothing, </a>
-                                <a href="#"> Kids, </a>
-                                <a href="#">Accessories, </a>
-                                <a href="#">Stationery, </a>
-                                <a href="#">Homelife, </a>
-                                <a href="#">Appliances, </a>
-                                <a href="#">Clothing, </a>
-                                <a href="#">Baby, </a>
-                                <a href="#">Beauty </a>
+                                <a v-for="item in optionSource.tag">{{item.type}}</a>
                             </div>
                         </div>
                     </div>
@@ -280,7 +260,12 @@
         let app = new Vue({
             el: "#shopIndex",
             data: {
-                sizeList: [],
+                optionSource:{
+                    tag:[],
+                    color:[],
+                    size:[],
+                    category:[]
+                },
                 searchText: "",
                 products: [],
                 currentPage: 1,
@@ -290,11 +275,6 @@
                 selectedSize: "All",
                 selectedItem: "2",
                 productdetailsLink: "/Products/Productdetails/",
-                //getPic:
-                //{
-                //    type: "string",
-                //    default: "product-5.png"
-                //},
                 priceRange: {
                     min: 0,
                     max: 100
@@ -336,16 +316,22 @@
                 },
 
             },
-            mounted: function () {
-                var self = this;
-                fetch('/api/product/getall')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.products = result;
-                    })
-            },
             methods: {
+                showCount:function(type,value){
+                    if(type == "category"){
+                        return this.products.filter(x => x.categoryId == value).length;
+                    }
+                    if(type == "color"){
+                        return this.products.filter(x=> x.colors.find(y=>y == value)).length
+                    }
+                    if(type == "tag"){
+                        return this.products.filter(x => x.tag.find(y => y == value)).length
+                    }
+                    if(type == "size"){
+                        return this.products.filter(x=>x.size == value).length
+                    }
+                    
+                },
                 selectSize: function (text) {
                     console.log(text);
                     this.selectedSize = text;
@@ -360,24 +346,19 @@
                 getProductdetailsLink: function (productId) {
                     return this.productdetailsLink + productId
                 },
-                //getPicPath: function (picPath) {
-                //    console.log(picPath)    // receive pic filename
-                //    return picPath.replace("~", "")
-                //},
                 addToCart(id) {
                     console.log("CPid:", id)
                     this.queryCartBaseURL = '/api/cart/AddToCart/' + id;
                     fetch(this.queryCartBaseURL, { method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
-                            var al={
-                                icon:'sucess',
-                                title:'成功',
+                            var al = {
+                                icon: 'sucess',
+                                title: '成功',
                                 text: result.message,
                                 timer: 2000
                             };
-                            if(!result.status)
-                            {
+                            if (!result.status) {
                                 al.icon = "error";
                                 al.title = "失敗";
                             }
@@ -391,23 +372,50 @@
                         .then(function (response) { return response.json() })
                         .then(function (result) {
                             var al = {
-                                    icon: 'success',
-                                    title: '成功',
-                                    text: result.message,
-                                    timer: 2000
-                                };
-                            if(!result.status){
-                               al.icon = "error";
-                               al.title = "失敗";
+                                icon: 'success',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
                             }
                             Swal.fire(al)
                         })
 
                 },
-
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
             },
             mounted: function () {
-                var self = this;
+                var self = this;                
+                self.GetCategoryData();
+                self.GetColorData();
+                self.GetSizeData();
+                self.GetTagData();
                 fetch('/api/product/getall')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
@@ -428,19 +436,19 @@
                         });
 
                         //size
-                        var temp = groupBy(app.products, "size")
-                        var count = 0;
-                        for (let key of Object.keys(temp)) {
-                            count += temp[key].length;
-                            self.sizeList.push({
-                                "text": key,
-                                "count": temp[key].length
-                            })
-                        }
-                        self.sizeList.push({
-                            "text": "All",
-                            "count": count
-                        })
+                        //var temp = groupBy(app.products, "size")
+                        //var count = 0;
+                        //for (let key of Object.keys(temp)) {
+                        //    count += temp[key].length;
+                        //    self.sizeList.push({
+                        //        "text": key,
+                        //        "count": temp[key].length
+                        //    })
+                        //}
+                        //self.sizeList.push({
+                        //    "text": "All",
+                        //    "count": count
+                        //})
                     });
 
 
