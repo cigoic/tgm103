@@ -62,10 +62,14 @@ namespace WuliKaWu.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 <<<<<<< HEAD
+<<<<<<< HEAD
             //return View(color);
 =======
             return View(color);
 >>>>>>> [新增]color controller以及color新增及編輯的model
+=======
+            //return View(color);
+>>>>>>> [修改]color controller及 它的 index樣式調整
         }
 
         // GET: Colors/Edit/5
