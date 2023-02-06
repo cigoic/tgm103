@@ -565,11 +565,7 @@
                             </div>
                             <div class="sidebar-widget-color sidebar-list-style">
                                 <ul>
-                                    <li><a class="black" href="#">Black <span>4</span></a></li>
-                                    <li><a class="blue" href="#">Blue <span>9</span></a></li>
-                                    <li><a class="brown" href="#">Brown <span>5</span></a></li>
-                                    <li><a class="red" href="#">Red <span>3</span></a></li>
-                                    <li><a class="orange" href="#">Orange <span>4</span></a></li>
+                                    <li v-for="item in optionSource.color"><a>{{item.type}}<span>{{showCount('color',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -589,6 +585,7 @@
                             </div>
                             <div class="sidebar-widget-size sidebar-list-style">
                                 <ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -667,6 +664,9 @@
 =======
                                     <li v-for="item in sizeList"><a href="#panel" @@click="selectSize(item.text)">{{item.text}} <span>{{item.count}}</span></a></li>
 >>>>>>> 修改wishlist
+=======
+                                    <li v-for="item in optionSource.size"><a href="#panel" @@click="selectSize(item.type)">{{item.type}} <span>{{showCount('size',item.id)}}</span></a></li>
+>>>>>>> fix product index filter tag and size
                                 </ul>
                             </div>
 >>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
@@ -678,16 +678,7 @@
                                 <h3>Tags</h3>
                             </div>
                             <div class="sidebar-widget-tag">
-                                <a href="#">All, </a>
-                                <a href="#">Clothing, </a>
-                                <a href="#"> Kids, </a>
-                                <a href="#">Accessories, </a>
-                                <a href="#">Stationery, </a>
-                                <a href="#">Homelife, </a>
-                                <a href="#">Appliances, </a>
-                                <a href="#">Clothing, </a>
-                                <a href="#">Baby, </a>
-                                <a href="#">Beauty </a>
+                                <a v-for="item in optionSource.tag">{{item.type}}</a>
                             </div>
                         </div>
                     </div>
@@ -731,6 +722,7 @@
                     category:[]
                 },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 sizeList:[],
 >>>>>>> 小精靈的祝福
@@ -739,6 +731,8 @@
 >>>>>>> product index filter-category
                 sizeList: [],
 >>>>>>> 修改wishlist
+=======
+>>>>>>> fix product index filter tag and size
                 searchText: "",
                 products: [],
                 currentPage: 1,
@@ -941,6 +935,7 @@
                         //    "text": "All",
                         //    "count": count
                         //})
+<<<<<<< HEAD
                     });
 
 
@@ -1357,6 +1352,8 @@
                             "text": "All",
                             "count": count
                         })
+=======
+>>>>>>> fix product index filter tag and size
                     });
 
 
