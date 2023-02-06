@@ -93,7 +93,7 @@
                 fieldsLogin: {
                     account: "",
                     password: "",
-                    rememberMe: @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
+                    rememberMe: false, //@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
                 },
             },
 
