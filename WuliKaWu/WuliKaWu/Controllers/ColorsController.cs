@@ -7,10 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using WuliKaWu.Models.ApiModel;
 =======
 using WuliKaWu.Models;
 >>>>>>> [新增]color controller以及color新增及編輯的model
+=======
+using WuliKaWu.Models.ApiModel;
+>>>>>>> [修改]CartApi及WishListapi的Model
 
 namespace WuliKaWu.Controllers
 {

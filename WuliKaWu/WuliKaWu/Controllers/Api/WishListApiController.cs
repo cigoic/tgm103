@@ -198,15 +198,15 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<WishListModel>> GetAll()
+        public async Task<IEnumerable<WishListGetAllModel>> GetAll()
         {
-            var wlist = await _context.WishList.Select(x => new WishListModel
+            var wlist = await _context.WishList.Select(x => new WishListGetAllModel
             {
                 WishListId = x.WishListId,
-                //ProductName = x.Product.ProductName,
-                //Price = x.Product.Price,
-                //SellingPrice = (decimal)x.Product.SellingPrice,
-                //Discount = (decimal)x.Product.Discount,
+                ProductName = x.Product.ProductName,
+                Price = x.Product.Price,
+                SellingPrice = (decimal)x.Product.SellingPrice,
+                //TODO PicturePath尚未確定
                 //PicturePath = x.Product.PicturePath,
                 ProductId = x.ProductId,
                 MemberId = x.MemberId
@@ -230,7 +230,7 @@ namespace WuliKaWu.Controllers.Api
                 var wishItem = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
                 var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-                if (wishItem == null)
+                if (wishItem == null && product != null && myId > 0)
                 {
                     _context.WishList.Add(new WishList
                     {
@@ -287,8 +287,9 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<WishListModel>> GetWishListAsync()
+        public async Task<IEnumerable<WishListGetModel>> GetWishListAsync(int wishlistid)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
             var myId = User.Claims.GetMemberId();
             return (await _context.WishList
@@ -360,32 +361,35 @@ namespace WuliKaWu.Controllers.Api
 =======
 >>>>>>> [小精靈]
         }
+=======
+            //throw new NotImplementedException();
+>>>>>>> [修改]CartApi及WishListapi的Model
 
-        //TODO 加入購物車 AddtoCart(右邊Button)
-        [HttpPost("{productId}")]
-        public async Task<string> AddToCartAsync(int productId)
-        {
             var myId = User.Claims.GetMemberId();
-            var cart = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
-            var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-            if (cart == null)
-            {
-                _context.Carts.Add(new Cart
+            return (await _context.WishList
+                .Where(x => x.MemberId == myId)
+                .Select(x => new WishListGetModel
                 {
-                    MemberId = myId,
-                    ProductId = productId,
-                    Quantity = 1,
-                    //Product = product
-                });
-                //TODO 彈跳提醒sweetalert
-                await _context.SaveChangesAsync();
-                return "已加入購物車";
-            }
-            return "已有此商品";
+                    WishListId = x.WishListId,
+                    ProductName = x.Product.ProductName,
+                    Price = x.Product.Price,
+                    SellingPrice = (decimal)x.Product.SellingPrice,
+                    //TODO PicturePath尚未確定
+                    //PicturePath = w.Product.Pictures.PicturePath,
+                    ProductId = x.ProductId,
+                    MemberId = x.MemberId
+                }
+                )
+                .ToListAsync());
         }
 
         //TODO 移除收藏清單的商品 RemoveToWishlist
+        /// <summary>
+        /// 移除收藏清單的商品 RemoveToWishlist
+        /// </summary>
+        /// <param name="wishlistId"></param>
+        /// <returns></returns>
 
         [HttpPost("{wishlistId}")]
         public async Task<IActionResult> RemoveToWishlist(int wishlistId)
@@ -406,26 +410,5 @@ namespace WuliKaWu.Controllers.Api
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
-        //TODO 寫在商品頁面的收藏清單(Productapicontroller)
-        //[Authorize]
-        //[HttpPost("{id}")]
-        //public bool AddWishList(int productId)
-        //{
-        //    var myId = User.Claims.GetMemberId();
-        //    var wishItem = _context.WishList.FirstOrDefault(x => x.MemberId == myId && x.ProductId == productId);
-        //    var product = _context.Products.FirstOrDefault(x => x.ProductId == productId);
-        //    if (wishItem == null)
-        //    {
-        //        _context.WishList.Add(new WishList
-        //        {
-        //            ProductId = productId,
-        //            MemberId = myId,
-        //        });
-        //        _context.SaveChanges();
-        //        return true;
-        //    }
-        //    return false;
-        //}
     }
 }

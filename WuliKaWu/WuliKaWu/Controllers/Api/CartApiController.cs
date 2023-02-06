@@ -236,16 +236,20 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CartModel>> GetCartAsync()
+        public async Task<IEnumerable<CartGetModel>> GetCartAsync()
         {
             var myId = User.Claims.GetMemberId();
             return (await _context.Carts
                 .Where(c => c.MemberId == myId)
-                .Select(c => new CartModel
+                .Select(c => new CartGetModel
                 {
-                    CartId = c.Id,
+                    Id = c.Id,
                     ProductId = c.ProductId,
-                    MemberId = c.MemberId
+                    MemberId = c.MemberId,
+                    ProductName = c.Product.FirstOrDefault(p => p.ProductId == c.ProductId).ProductName,
+                    Price = c.Product.FirstOrDefault(p => p.ProductId == c.ProductId).Price,
+                    SellingPrice = (decimal)c.Product.FirstOrDefault(p => p.ProductId == c.ProductId).SellingPrice,
+                    //PicturePath = c.Product.FirstOrDefault(p=> p.ProductId == c.ProductId)
                 }).ToListAsync());
         }
 
