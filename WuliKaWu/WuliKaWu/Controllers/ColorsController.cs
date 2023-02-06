@@ -57,7 +57,7 @@ namespace WuliKaWu.Controllers
             _context.Colors.Add(new Color { Type = color.Type });
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-            return View(color);
+            //return View(color);
         }
 
         // GET: Colors/Edit/5
