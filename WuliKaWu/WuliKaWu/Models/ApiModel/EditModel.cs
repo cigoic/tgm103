@@ -4,15 +4,13 @@ namespace WuliKaWu.Models.ApiModel
 {
     public class EditModel
     {
-
-
         public string ProductName { get; set; }
 
         public Color Color { get; set; }
 
         public string Size { get; set; }
 
-        public Category Category { get; set; }
+        public string Category { get; set; }
 
         public string PicturePath { get; set; }
 

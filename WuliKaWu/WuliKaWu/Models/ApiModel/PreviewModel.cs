@@ -13,7 +13,7 @@ namespace WuliKaWu.Models.ApiModel
 
         public string Size { get; set; }
 
-        public Category Category { get; set; }
+        public string Category { get; set; }
 
         public string PicturePath { get; set; }
 

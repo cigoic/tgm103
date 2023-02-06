@@ -1,0 +1,226 @@
+﻿
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="ProductCreate">
+
+    <div class="container m-5">
+        <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
+            <h2>Create Product</h2>
+        </div>
+
+
+        <div class="shop-bottom-area">
+            <div class="tab-content jump">
+                <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row">
+                        @*商品圖片*@
+                        <div class="col-lg-4 col-sm-5">
+                            <div class="form-group mb-4">
+                                <label for="PicturePath" class="control-label">Picture</label>
+                                <input for="PicturePath" class="form-control" name="PicturePath" type="file" id="fileupload" onchange="return ShowImagePreview(this)" v-model="picturePath" />
+                            </div>
+
+                            <div class="product-list-img">
+                                <a> <img src="/images/product-5.png" id="imagePreview" alt="Product Style" width="100%" height="100%"> </a>
+                            </div>
+
+                            <div class="mt-5">
+                                <a href="/Products/Index">Back to List</a>
+                            </div>
+                        </div>
+
+                        @*商品欄位*@
+                        <div class="col-lg-8 col-sm-7 contact-form-style">
+                            <div class="shop-list-content">
+                                <form action="/Products/Create" method="post">
+                                    <div class="row mt-4">
+                                        <div class="col-6 ">
+                                            <div class="form-group" hidden>
+                                                <label for="ProductId" class="control-label">ProductId</label>
+                                                <input for="ProductId" id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="ProductName" class="control-label">ProductName</label>
+                                                <input for="ProductName" class="form-control" v-model="productFields.productName" placeholder="Please Enter ProductName" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Color" class="control-label">Color</label>
+                                                <input for="Color" id="Color" name="Color" class="form-control" v-model="productFields.color" placeholder="Please Enter Color" />
+                                            </div>
+
+                                            @*<div class="shop-sorting-area form-group">
+                                            <label for="Color" class="control-label">Color</label>
+                                            <select v-model="productFields.color">
+                                            <option value="-1">---Choose---</option>
+                                            <option v-for="color in colorLists" value="{{color}}">{{color}}</option>
+                                            </select>
+                                            </div>*@
+                                        
+                                            <div class="form-group">
+                                                <label for="Size" class="control-label">Size</label>
+                                                <input for="Size" id="Size" name="Size" class="form-control" v-model="productFields.size" placeholder="Please Enter Size" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Category" class="control-label">Category</label>
+                                                <input for="Category" id="Category" name="Category" class="form-control" v-model="productFields.category" placeholder="Please Enter Category" />
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-6">
+
+                                            <div class="form-group">
+                                                <label for="Price" class="control-label">Price</label>
+                                                <input for="Price" id="Price" name="Price" class="form-control" v-model="productFields.price" placeholder="Please Enter Price" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Discount" class="control-label">Discount</label>
+                                                <input for="Discount" id="Discount" name="Discount" class="form-control" v-model="productFields.discount" placeholder="Please Enter Discount" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                                <input for="SellingPrice" id="SellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" placeholder="Please Enter SellingPrice" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Tag" class="control-label">Tag</label>
+                                                <input for="Tag" id="Tag" name="Tag" class="form-control" v-model="productFields.tag" placeholder="Please Enter Tag" />
+                                            </div>
+
+                                            @*商品新增按鍵*@
+                                            <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
+                                                <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
+                                                    <div>
+                                                        <button type="button" class="submit" id="sendMessageButton" @@click="insertProduct()">Create</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        //預覽圖片
+        function ShowImagePreview(input) {
+            debugger;
+            if (input.files && input.files[0]) {
+                var fname = input.files[0].name;
+                var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+                if (!re.exec(fname)) {
+                    alert("Image not supported!");
+                    $("#fileupload").val("");
+                    return false;
+                }
+                else {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imagePreview').prop('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+
+        let app = new Vue({
+            el: "#ProductCreate",
+            data:
+            {               
+                productFields:{
+                    productId: "",
+                    productName: "",
+                    category: "",
+                    picturePath: "",
+                    price: "",
+                    discount: "",
+                    sellingPrice: "",
+                    tag: "",
+
+                    //color:-1,
+                    //colorLists:
+                    //[
+                    //    {text: "Black", value:0},
+                    //    {text: "White", value:1},
+                    //    {text: "Brown", value:2},
+                    //    {text: "Red", value:3},
+                    //    {text: "Orange", value:4},
+                    //],
+
+                },
+                
+
+            },
+
+            mounted: function () {
+                var self = this;
+                fetch("/Products/Create")
+                    .then(function(response){return response.text()})
+                    .then(function(result){
+                        //console.log(result);
+                        //self.product = result;
+                    })
+            },
+
+            methods:
+            {
+                insertProduct: function () {
+                    let self = this;
+
+                    fetch("/api/product/addproduct",{
+                        method: "POST",
+                        headers: { "content-type": "application/json" },
+                        body: JSON.stringify(addProduct)
+                    })
+                        .then(function(response){return response.json()})
+                        .then(function(result){
+                            //console.log(result);
+                            var al =
+                            {
+                                position: "center",
+                                icon: "success",
+                                title: "Create Success!!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }
+
+                            if(!result.status)
+                            {
+                                al.icon = "error";
+                                al.title = "Create Failed!!";
+                            }
+                            Swal.fire(al)
+                        })
+                        
+                }
+            }
+        })
+
+        ////內容都跑完後再載入Vue
+        //document.addEventListener("DOMContentLoaded", () => {
+        //    PCapp.$mount('#ProductCreate')
+        //})
+
+    </script>
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
