@@ -59,7 +59,8 @@ namespace WuliKaWu.Controllers.Api
                 var wishItem = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
                 var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-                if (wishItem == null && product != null && myId > 0)
+                //if (wishItem == null && product != null && myId > 0)
+                if (wishItem == null)
                 {
                     _context.WishList.Add(new WishList
                     {
@@ -93,13 +94,13 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<WishListGetModel>> GetWishListAsync(int wishlistid)
+        public async Task<IEnumerable<WishListGetModel>> GetWishListAsync(int productId)
         {
             //throw new NotImplementedException();
 
             var myId = User.Claims.GetMemberId();
 
-            return (await _context.WishList
+            return (await _context.WishList.Include(x => x.Product)
                 .Where(x => x.MemberId == myId)
                 .Select(x => new WishListGetModel
                 {
@@ -107,8 +108,7 @@ namespace WuliKaWu.Controllers.Api
                     ProductName = x.Product.ProductName,
                     Price = x.Product.Price,
                     SellingPrice = (decimal)x.Product.SellingPrice,
-                    //TODO PicturePath尚未確定
-                    //PicturePath = w.Product.Pictures.PicturePath,
+                    Pictures = x.Product.Pictures.Select(x => x.PicturePath).ToList(),
                     ProductId = x.ProductId,
                     MemberId = x.MemberId
                 }

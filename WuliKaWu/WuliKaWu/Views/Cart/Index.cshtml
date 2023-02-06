@@ -116,7 +116,7 @@
                             </div>
                         </div>
                         <div class="grand-total-btn btn-hover">
-                            <a class="btn theme-color" asp-action="Checkout" asp-controller="Home">Proceed to checkout</a>
+                            <a class="btn theme-color" href="/api/CheckOut/Index">Proceed to checkout</a>                            
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
 @section Scripts{
 
     <script>
-        let cart = new Vue({
+        let app = new Vue({
             el: "#cartIndex",
             data: {
                 productInThisCart: {

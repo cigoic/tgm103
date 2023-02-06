@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WuliKaWu.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,21 @@ namespace WuliKaWu.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AuthorImages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,6 +73,7 @@ namespace WuliKaWu.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Account = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VerificationToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -129,6 +145,30 @@ namespace WuliKaWu.Migrations
                     table.PrimaryKey("PK_Articles", x => x.ArticleId);
                     table.ForeignKey(
                         name: "FK_Articles_Members_MemberId",
+                        column: x => x.MemberId,
+                        principalTable: "Members",
+                        principalColumn: "MemberId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CartMember",
+                columns: table => new
+                {
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    MemberId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartMember", x => new { x.CartId, x.MemberId });
+                    table.ForeignKey(
+                        name: "FK_CartMember_Cart_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Cart",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartMember_Members_MemberId",
                         column: x => x.MemberId,
                         principalTable: "Members",
                         principalColumn: "MemberId",
@@ -231,26 +271,23 @@ namespace WuliKaWu.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cart",
+                name: "CartProduct",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MemberId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cart", x => x.Id);
+                    table.PrimaryKey("PK_CartProduct", x => new { x.CartId, x.ProductId });
                     table.ForeignKey(
-                        name: "FK_Cart_Members_MemberId",
-                        column: x => x.MemberId,
-                        principalTable: "Members",
-                        principalColumn: "MemberId",
+                        name: "FK_CartProduct_Cart_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Cart",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Cart_Products_ProductId",
+                        name: "FK_CartProduct_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
@@ -490,13 +527,13 @@ namespace WuliKaWu.Migrations
                 column: "ArticleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cart_MemberId",
-                table: "Cart",
+                name: "IX_CartMember_MemberId",
+                table: "CartMember",
                 column: "MemberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cart_ProductId",
-                table: "Cart",
+                name: "IX_CartProduct_ProductId",
+                table: "CartProduct",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -585,7 +622,10 @@ namespace WuliKaWu.Migrations
                 name: "AuthorImages");
 
             migrationBuilder.DropTable(
-                name: "Cart");
+                name: "CartMember");
+
+            migrationBuilder.DropTable(
+                name: "CartProduct");
 
             migrationBuilder.DropTable(
                 name: "ColorProduct");
@@ -616,6 +656,9 @@ namespace WuliKaWu.Migrations
 
             migrationBuilder.DropTable(
                 name: "Articles");
+
+            migrationBuilder.DropTable(
+                name: "Cart");
 
             migrationBuilder.DropTable(
                 name: "Color");

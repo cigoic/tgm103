@@ -16,16 +16,17 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 註冊會員帳號，最大長度 16
         /// </summary>
+        [Required]
         [MaxLength(16)]
         public string Account { get; set; }
 
         /// <summary>
         /// 註冊會員密碼，最大 nvarchar(max)
         /// </summary>
+        [Required]
         public string Password { get; set; }
 
-        //[ForeignKey("MemberRole")]
-        //public string RoleId { get; set; }
+        public string? VerificationToken { get; set; }
 
         /// <summary>
         /// 註冊會員姓名，最大長度 24
@@ -80,12 +81,12 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 鎖住帳號登入功能啟用與否
         /// </summary>
-        public bool LockOutEnabled { get; set; }
+        //public bool LockOutEnabled { get; set; }
 
         /// <summary>
         /// 登入失敗次數
         /// </summary>
-        public int AccessFailedCount { get; set; }
+        //public int AccessFailedCount { get; set; }
 
         /// <summary>
         /// 帳號角色
