@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.NetworkInformation;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
+using static NuGet.Packaging.PackagingConstants;
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers.Api
@@ -14,10 +17,12 @@ namespace WuliKaWu.Controllers.Api
     public class ProductApiController : ControllerBase
     {
         private readonly ShopContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public ProductApiController(ShopContext context)
+        public ProductApiController(ShopContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         /// <summary>
@@ -121,30 +126,45 @@ namespace WuliKaWu.Controllers.Api
         /// <summary>
         /// 新增商品至資料庫
         /// </summary>
-        /// <param name="addModel"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<String> AddProduct(AddModel addModel)
+        public bool AddProduct([FromForm] ProductAddModel data)
         {
-            throw new NotImplementedException();
+            var prd = new Product
+            {
+                ProductName = data.ProductName,
+                Comment = data.Comment,
+                CategoryId = data.CategoryId,
+                Price = data.Price,
+                SellingPrice = data.SellingPrice,
+                Size = (Size)data.SizeId,
+                Colors = data.ColorIds.Select(x => new Data.Color { Id = x }).ToList(),
+                Tags = data.TagIds.Select(x => new Data.Tag { Id = x }).ToList(),
+            };
 
-            //Product prd = new Product
-            //{
-            //    ProductName = addModel.ProductName,
-            //    Color = addModel.Color,
-            //    Size = addModel.Size,
-            //    PicturePath = addModel.PicturePath,
-            //    Price = addModel.Price,
-            //    Discount = addModel.Discount,
-            //    SellingPrice = addModel.SellingPrice,
-            //    CategoryId = (int)addModel.Category,
-            //    Tag = addModel.Tag
-            //};
+            if (data.Pictures != null)
+            {
+                var _folder = $@"";
+                var picList = new List<Picture>();
+                foreach (var file in data.Pictures)
+                {
+                    if (file.Length > 0)
+                    {
+                        var path = $@"\images\{DateTime.Now.Ticks}-{file.FileName}";
+                        using (var stream = new FileStream($@"{_env.WebRootPath}{path}", FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                        picList.Add(new Picture() { PicturePath = path });
+                    }
+                }
+                prd.Pictures = picList;
+            }
+            _context.Products.Add(prd);
+            _context.SaveChanges();
+            return true;
 
-            //_context.Add(prd);
-            //await _context.SaveChangesAsync();
-
-            //return "Create Success!!";
         }
     }
 }
