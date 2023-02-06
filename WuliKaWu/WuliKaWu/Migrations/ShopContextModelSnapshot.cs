@@ -22,6 +22,36 @@ namespace WuliKaWu.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("CartMember", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("CartMember");
+                });
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProduct");
+                });
+
             modelBuilder.Entity("ColorProduct", b =>
                 {
                     b.Property<int>("ColorsId")
@@ -195,10 +225,6 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("ProductId");
-
                     b.ToTable("Cart");
                 });
 
@@ -287,9 +313,6 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Account")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -314,9 +337,6 @@ namespace WuliKaWu.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("LockOutEnabled")
-                        .HasColumnType("bit");
-
                     b.Property<int>("MemberShip")
                         .HasColumnType("int");
 
@@ -338,6 +358,9 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("VerificationToken")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MemberId");
 
@@ -610,6 +633,36 @@ namespace WuliKaWu.Migrations
                     b.ToTable("WishLists");
                 });
 
+            modelBuilder.Entity("CartMember", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ColorProduct", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Color", null)
@@ -636,21 +689,6 @@ namespace WuliKaWu.Migrations
                     b.HasOne("WuliKaWu.Data.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ProductWishList", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.WishList", null)
-                        .WithMany()
-                        .HasForeignKey("WishListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -691,25 +729,6 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("Cart")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("Cart")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -860,6 +879,8 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ResetTokens");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("WishList");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
