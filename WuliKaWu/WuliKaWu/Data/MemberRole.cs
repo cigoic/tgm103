@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
@@ -13,7 +14,14 @@ namespace WuliKaWu.Data
         /// </summary>
         public enum RoleType
         {
-            None, User, Admin
+            [Description("None")]
+            None,
+
+            [Description("User")]
+            User,
+
+            [Description("Admin")]
+            Admin
         }
 
         /// <summary>

@@ -1,0 +1,174 @@
+﻿
+<script src="https://cdn.jsdelivr.net/npm/vue-drag-resize@1.5.4/dist/index.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/vue-drag-resize@1.5.4/src/components/vue-drag-resize.min.css" rel="stylesheet"></link>
+<style>
+    #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+
+    img {
+        object-fit: cover;
+    }
+
+    #canvas {
+        position: relative;
+        width: 40vw;
+        height: 40vw;
+        background-color: #2f3f50;
+    }
+</style>
+
+
+<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1 mb-4">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
+            <ul data-aos="fade-up" data-aos-delay="400">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><i class="ti-angle-right"></i></li>
+                <li>Match</li>
+            </ul>
+        </div>
+    </div>
+    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
+        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+    </div>
+    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
+        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+    </div>
+</div>
+
+
+<div class="container-fluid" id="matchApp" />
+
+<div class="row p-5">
+    <div class="col-8" style="height:80vh ; background-color: #F5F5F5; position: relative;">
+        <template v-for="item in show">
+            <vue-drag-resize :ref="'test'+item.id" :parent-limitation="true" :aspectRatio="false"
+                             :isActive="true" v-on:resizing="resize" v-on:dragging="resize" v-on:activated="onActivated('test'+item.id)"
+                             v-on:clicked="onActivated('test'+item.id)">
+                <img :src="item.path" style="width:100% ;">
+            </vue-drag-resize>
+        </template>
+
+
+    </div>
+    <div class="col-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                        type="button" role="tab" aria-controls="home" aria-selected="true">
+                    ups
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                        type="button" role="tab" aria-controls="profile" aria-selected="false">
+                    buttons
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                        type="button" role="tab" aria-controls="contact" aria-selected="false">
+                    coat
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="row">
+                    <div class="card col-4" v-for="item in list.t1">
+                        <img :src="item.path" class="card-img-top" style="width:100% ;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.id}}</h5>
+                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                    <div class="card col-4" v-for="item in list.t2">
+                        <img :src="item.path" class="card-img-top" style="width:100% ;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.id}}</h5>
+                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="row">
+                    <div class="card col-4" v-for="item in list.t3">
+                        <img :src="item.path" class="card-img-top" style="width:100% ;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.id}}</h5>
+                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts
+    {
+
+    <script>
+        //Vue.component('vue-drag-resize', VueDragResize)
+        const VueDragResize = window.VueDragResize.default;
+        let matchVue = new Vue({
+            el: '#matchApp',
+            components: {
+                VueDragResize,
+            },
+            data: {
+                list: {
+                    t1: [
+                        { id: 1, path: "https://picsum.photos/100/100/?short=10" },
+                        { id: 2, path: "https://picsum.photos/100/100/?short=11" },
+                        { id: 3, path: "https://picsum.photos/100/100/?short=12" }],
+                    t2: [
+                        { id: 4, path: "https://picsum.photos/100/100/?short=13" },
+                        { id: 5, path: "https://picsum.photos/100/100/?short=14" },
+                        { id: 6, path: "https://picsum.photos/100/100/?short=15" }],
+                    t3: [
+                        { id: 7, path: "https://picsum.photos/100/100/?short=16" },
+                        { id: 8, path: "https://picsum.photos/100/100/?short=17" },
+                        { id: 9, path: "https://picsum.photos/100/100/?short=18" }]
+                },
+                show: [],
+                width: 0,
+                height: 0,
+                top: 0,
+                left: 0,
+            },
+            methods: {
+                resize(newRect) {
+                    this.width = newRect.width;
+                    this.height = newRect.height;
+                    this.top = newRect.top;
+                    this.left = newRect.left;
+                },
+                onActivated(e) {
+                    console.log(e)
+                    //console.log(this)
+                    //console.log(this.$refs)
+                    //this.$refs[e].focus();
+                    console.log(this.$refs[e])
+                },
+                add(item) {
+                    this.show.push(item)
+                }
+            }
+        })
+    </script>
+}

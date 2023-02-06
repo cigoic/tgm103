@@ -10,7 +10,6 @@ namespace WuliKaWu.Data
         /// 商品圖片 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PictureId { get; set; }
 
         /// <summary>

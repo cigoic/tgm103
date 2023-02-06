@@ -1,22 +1,6 @@
-﻿<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>Login - Register </h2>
-            <ul>
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><i class="ti-angle-right"></i></li>
-                <li>Login - Register </li>
-            </ul>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-<div class="login-register-area pb-100 pt-95">
+﻿<div class="container" id="loginApp" />
+
+<div class="login-register-area pb-100 pt-15">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12 offset-lg-2">
@@ -33,16 +17,20 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form action="Login" method="post">
-                                        <input type="text" name="Account" placeholder="Username">
-                                        <input type="password" name="Password" placeholder="Password">
+                                    <form id="loginForm" name="loginForm" method="post">
+                                        <label for="Account" class="required">帳號</label>
+                                        <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
+
+                                        <label for="Password" class="required">密碼</label>
+                                        <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
+
                                         <div class="login-toggle-btn">
-                                            <input type="checkbox">
-                                            <label>Remember me</label>
-                                            <a href="#">Forgot Password?</a>
+                                            <label for="RememberMe">Remember me</label>
+                                            <input type="checkbox" id="RememberMe" name="RememberMe" :value="fieldsLogin.RememberMe">
+                                            <a href="/Member/ForgetPassword">Forgot Password?</a>
                                         </div>
                                         <div class="button-box btn-hover">
-                                            <button type="submit">Login</button>
+                                            <button v-on:click="handleSubmit()">Login</button>
                                         </div>
                                     </form>
                                 </div>
@@ -52,11 +40,38 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form action="Register" method="post">
-                                        <input type="text" name="Account" placeholder="Username">
-                                        <input type="password" name="Password" placeholder="Password">
-                                        <input name="user-email" placeholder="Email" type="email">
+                                        <label id="Account" name="Account">帳號</label>
+                                        <input type="text" name="Account" placeholder="Username" />
+
+                                        <label id="Password" name="Password">密碼</label>
+                                        <input type="password" name="Password" placeholder="Password" />
+
+                                        <label id="Name" name="Name">名字</label>
+                                        <input type="text" name="Name" />
+
+                                        <label id="Gender" name="Gender"></label>
+                                        <select>
+                                            <option value="">性別</option>
+                                            <option value="0">Femail</option>
+                                            <option value="1">Male</option>
+                                        </select>
+
+                                        <label id="Birthday" name="Birthday">出生年月日</label>
+                                        <input type="date" id="Birthday" name="Birthday" />
+
+                                        <label id="Email" name="Email">電子信箱</label>
+                                        <input name="Email" placeholder="E-mail" type="email" />
+
+                                        <label id="Address" name="Address">住址</label>
+                                        <input type="text" name="Address" id="Address" />
+
+                                        <label id="PhoneNumber" name="PhoneNumber">住家電話</label>
+                                        <input type="text" id="PhoneNumber" name="PhoneNumber" />
+
+                                        <label id="MobilePhone" name="MobilePhone">行動電話</label>
+                                        <input type="text" id="MobilePhone" name="MobilePhone" />
                                         <div class="button-box btn-hover">
-                                            <button type="submit">Register</button>
+                                            <button v-on:click="handleRegister()">Register</button>
                                         </div>
                                     </form>
                                 </div>
@@ -68,3 +83,56 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts
+    {
+    <script>
+        let loginVue = new Vue({
+            data: {
+                fieldsLogin: {
+                    account: "",
+                    password: "",
+                    rememberMe: false, //@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
+                },
+            },
+
+            methods: {
+                handleSubmit() {
+                    axios.post.("/Member/Login", this.fieldsLogin)
+                        .then(response => {
+                            if (response.data.success) {
+                                swal("Success!", response.data.success, 'success');
+                            }
+                        })
+                        .catch(error => {
+                            if (error.response.data.message) {
+                                console.log(error.response.data.message)
+                                swal("Error!", error.response.data.message, "error");
+                            }
+                        });
+                    //document.getElementById('loginForm').reset()    // reset form
+                },
+                handleRegister() {
+                    axios.post('/Member/Register', this.fieldsRegister)
+                        .then(response => {
+                            if (response.data.success) {
+                                swal("Success!", response.data.success, 'success');
+                            }
+                        })
+                        .catch(error => {
+                            if (error.response.data.message) {
+                                console.log(error.response.data.message)
+                                swal("Error!", error.response.data.message, "error");
+                            }
+                        });
+                    //document.getElementById('restForm').reset()    // reset form
+                },
+            },
+        })
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loginVue.$mount('#loginApp')
+        })
+    </script>
+}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,13 +19,13 @@ namespace WuliKaWu.Controllers
             _context = context;
         }
 
-        // GET: Carts
+        // GET: Cart
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Carts.ToListAsync());
         }
 
-        // GET: Carts/Details/5
+        // GET: Cart/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -33,7 +34,7 @@ namespace WuliKaWu.Controllers
             }
 
             var cart = await _context.Carts
-                .FirstOrDefaultAsync(m => m.CartId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
                 return NotFound();
@@ -42,29 +43,49 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
-        // GET: Carts/Create
+        // GET: Cart/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Carts/Create
+        // POST: Cart/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
+        public async Task<IActionResult> Create(Cart cart)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(cart);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
+            //Cart crt = new Cart
+            //{
+            //    CartId = cart.CartId,
+            //    Color = cart.Color,
+            //    Coupon = cart.Coupon,
+            //    Discount = cart.Discount,
+            //    PicturePath = cart.PicturePath,
+            //    Price = cart.Price,
+            //    ProductName = cart.ProductName,
+            //    Quantity = cart.Quantity,
+            //    SellingPrice = cart.SellingPrice,
+            //    Size = cart.Size
+            //};
+
+            //_context.Carts.Add(crt);
+            //await _context.SaveChangesAsync();
+
             return View(cart);
+
+            //if (ModelState.IsValid)
+            //{
+            //    _context.Add(cart);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            //return View(cart);
         }
 
-        // GET: Carts/Edit/5
+        // GET: Cart/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -80,14 +101,14 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
-        // POST: Carts/Edit/5
+        // POST: Cart/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
         {
-            if (id != cart.CartId)
+            if (id != cart.Id)
             {
                 return NotFound();
             }
@@ -101,7 +122,7 @@ namespace WuliKaWu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CartExists(cart.CartId))
+                    if (!CartExists(cart.Id))
                     {
                         return NotFound();
                     }
@@ -115,7 +136,7 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
-        // GET: Carts/Delete/5
+        // GET: Cart/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Carts == null)
@@ -124,7 +145,7 @@ namespace WuliKaWu.Controllers
             }
 
             var cart = await _context.Carts
-                .FirstOrDefaultAsync(m => m.CartId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
                 return NotFound();
@@ -133,7 +154,7 @@ namespace WuliKaWu.Controllers
             return View(cart);
         }
 
-        // POST: Carts/Delete/5
+        // POST: Cart/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -154,7 +175,7 @@ namespace WuliKaWu.Controllers
 
         private bool CartExists(int id)
         {
-            return _context.Carts.Any(e => e.CartId == id);
+            return _context.Carts.Any(e => e.Id == id);
         }
     }
 }

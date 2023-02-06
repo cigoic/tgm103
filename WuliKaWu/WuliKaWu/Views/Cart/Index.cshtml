@@ -4,25 +4,25 @@
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Cart</h2>
-                <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <ul>                    
+                    <li><a href="/cart/Index">Home</a></li>
                     <li><i class="ti-angle-right"></i></li>
                     <li>Cart</li>
                 </ul>
             </div>
         </div>
         <div class="breadcrumb-img-1">
-            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+            <img src="/assets/images/banner/breadcrumb-1.png" alt="">
         </div>
         <div class="breadcrumb-img-2">
-            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+            <img src="/assets/images/banner/breadcrumb-2.png" alt="">
         </div>
     </div>
     <div class="cart-area pt-100 pb-100">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#">
+                    <form >
                         <div class="cart-table-content">
                             <div class="table-content table-responsive">
                                 <table>
@@ -38,88 +38,35 @@
                                             <th class="col-lg-1"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr v-for="cart in carts">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
+                                    <tbody >
+                                        <tr v-for="cart in productInThisCart">
+                                            <td class="product-thumbnail">                                                
+                                                <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.productName}}</a></h5>
+                                                <h5><a href="/Products/ProductDetails">{{cart.product.productName}}</a></h5>
                                             </td>
-                                            <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.color}}</span></td>
+                                            <td><span>{{cart.product.size}}</span></td>
+                                            <td><span>{{cart.product.color}}</span></td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
+                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price}}</span>
+                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice}}</span>
                                             </td>
                                             <td class="cart-quality">
                                                 @*<div class="product-quality">
                                                 <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
 
                                                 </div>*@
-                                                <input type="number" name="qtybutton" value="cart.quantity" readonly>
+                                                <input type="number" name="qtybutton" :value="cart.product.quantity" readonly>
                                                 @*<span>{{cart.quantity}}</span>*@
                                             </td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
+                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
+                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
                                             </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                            <td class="product-remove"><i class=" ti-trash "></i></td>
                                         </tr>
-                                        <tr v-for="cart in carts">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.productName}}</a></h5>
-                                            </td>
-                                            <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.color}}</span></td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
-                                            </td>
-                                            <td class="cart-quality">
-                                                @*<div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
-
-                                                </div>*@
-                                                <input type="number" name="qtybutton" value="cart.quantity" readonly>
-                                                @*<span>{{cart.quantity}}</span>*@
-                                            </td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
-                                            </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>
-                                        <tr v-for="cart in carts">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.productName}}</a></h5>
-                                            </td>
-                                            <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.color}}</span></td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
-                                            </td>
-                                            <td class="cart-quality">
-                                                @*<div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
-
-                                                </div>*@
-                                                <input type="number" name="qtybutton" value="cart.quantity" readonly>
-                                                @*<span>{{cart.quantity}}</span>*@
-                                            </td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
-                                            </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -128,14 +75,13 @@
                             <div class="col-lg-12">
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="cart-shiping-update btn-hover">
-                                        <a href="#">Continue Shopping</a>
+                                        <a href="/Products/Index">Continue Shopping</a>                                        
                                     </div>
                                     <div class="cart-clear-wrap">
+                                        @*Clear Cart Action尚未完成*@
                                         <div class="cart-clear btn-hover">
-                                            <button>Update Cart</button>
-                                        </div>
-                                        <div class="cart-clear btn-hover">
-                                            <a href="#">Clear Cart</a>
+                                            <a href="/Cart/Index">Clear Cart</a>
+                                            @*<a href="#">Clear Cart</a>*@
                                         </div>
                                     </div>
                                 </div>
@@ -145,36 +91,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-5 col-md-6 col-12">
-                    <div class="cart-calculate-discount-wrap mb-40">
-                        <h4>Coupon Discount </h4>
-                        <div class="calculate-discount-content">
-                            <p>Enter your coupon code if you have one.</p>
-                            <div class="input-style">
-                                @*<input type="text" placeholder="Coupon code">*@
-                            @*<select v-model="selectItem" :class={}>*@
-                                <select>  
-                                <option>Coopon code</option>
-                                <option>初春活動</option>
-                                <option>情人節活動</option>
-                            </select>
-                            </div>
-                            <div class="calculate-discount-btn btn-hover">
-                                <a class="btn theme-color" href="#">Apply Coupon</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12 col-12">
-                    <div class="grand-total-wrap">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <div class="grand-total-wrap" v-for="cart in productInThisCart">
                         <div class="grand-total-content">
-                            <h3>Subtotal <span>$180.00</span></h3>
-                            <div class="grand-total">
-                                <h4>Total <span>$185.00</span></h4>
+                            <div class="cart-calculate-discount-wrap mb-40">
+                                <h4>Coupon Discount </h4>
+                                <div class="calculate-discount-content">
+                                    <div class="input-style">
+                                        @*Discount優惠活動尚未完成*@
+                                        <select>
+                                            <option>Coupon Code</option>
+                                            <option>初春活動<span>{{cart.groupon}}</span></option>
+                                            <option>情人節活動<span>{{cart.groupon}}</span></option>
+                                        </select>
+                                    </div>
+                                    <div class="calculate-discount-btn btn-hover">
+                                        @*<a class="btn theme-color" href="#">Apply Coupon</a>*@
+                                        <h3>Subtotal <span>$180.00</span></h3>
+                                        <div class="grand-total">
+                                            <h4>Total <span>$185.00</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="grand-total-btn btn-hover">
-                            <a class="btn theme-color" href="checkout.html">Proceed to checkout</a>
+                            <a class="btn theme-color" asp-action="Checkout" asp-controller="Home">Proceed to checkout</a>
                         </div>
                     </div>
                 </div>
@@ -186,19 +128,34 @@
 @section Scripts{
 
     <script>
-        let app = new Vue({
+        let cart = new Vue({
             el: "#cartIndex",
             data: {
-                carts: []
+                productInThisCart: {
+                    cartId:[]
+                }
             },
             mounted: function () {
                 var self = this;
-                fetch('/api/cart/getall')
+                fetch('/api/cart/GetCart/')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result);
-                        self.carts = result;
+                        self.productInThisCart = result;
                     })
+            },
+            methods:
+            {            
+                RemoveToWishlist(id)
+            {
+                 console.log("RPid",id)
+                            this.queryCartBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
+                    fetch(this.queryCartBaseURL,{method:"POST"})
+                        .then(function (reponse) {return response.json()})
+                        .then(function (result) {
+                            alert(result);
+                        })
+            }
             }
         });
     </script>

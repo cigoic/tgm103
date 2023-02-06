@@ -13,7 +13,6 @@ namespace WuliKaWu.Data
         /// 文章 ID : 自動編號
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ArticleId { get; set; }
 
         /// <summary>

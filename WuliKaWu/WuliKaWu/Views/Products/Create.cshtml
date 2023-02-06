@@ -1,141 +1,103 @@
-﻿@model WuliKaWu.Data.Product
-
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<div class="ProductCreate">
-
-    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-        <div class="container">
-            <div class="breadcrumb-content text-center">
-                <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
-                <ul data-aos="fade-up" data-aos-delay="400">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-        </div>
-        <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-        </div>
-    </div>
-
+<div class="ProductCreate" id="app">
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
-            <h2>新增商品</h2>
+            <h2>Create Product</h2>
         </div>
-
-
         <div class="shop-bottom-area">
             <div class="tab-content jump">
                 <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-5">
-                            <div class="product-list-img">
-                                <a href="#">
-                                    <img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">
-                                </a>
-
-                                @*                                <div class="product-list-quickview">
-                                <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="pe-7s-look"></i>
-                                </button>
-                                </div>*@
-                            </div>
-
-                            <div class="mt-5">
-                                <a asp-action="Index">Back to List</a>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-8 col-sm-7 contact-form-style">
+                    <div class="row billing-info-wrap">
+                        @*商品欄位*@
+                        <div class="col-lg-12 col-sm-12 contact-form-style">
                             <div class="shop-list-content">
-                                <form asp-action="Create" method="post">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label asp-for="ProductName" class="control-label"></label>
-                                                <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
-                                                <span asp-validation-for="ProductName" class="text-danger"></span>
-                                            </div>
-                                            @*                                            <div class="form-group">
-                                            <label asp-for="Color" class="control-label"></label>
-                                            <input asp-for="Color" class="form-control" />
-                                            <span asp-validation-for="Color" class="text-danger"></span>
-                                            </div>*@
-
-                                            <div class="shop-sorting-area">
-                                                <select v-model="selectedItem" :class={}>
-                                                    <option value="">請選擇</option>
-                                                    <option value="0">Black</option>
-                                                    <option value="1">White</option>
-                                                    <option value="2">Brown</option>
-                                                    <option value="3">Red</option>
-                                                    <option value="4">Orange</option>
-                                                </select>
-                                                <input v-model="selectedItem" asp-for="Color" value="" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label asp-for="Size" class="control-label"></label>
-                                                <input asp-for="Size" class="form-control" />
-                                                <span asp-validation-for="Size" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Category" class="control-label"></label>
-                                                <input asp-for="Category" class="form-control" />
-                                                <span asp-validation-for="Category" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="PicturePath" class="control-label"></label>
-                                                <input asp-for="PicturePath" class="form-control" type="file" id="fileupload" onchange="return ShowImagePreview(this)" />
-                                                <span asp-validation-for="PicturePath" class="text-danger"></span>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <div class="billing-info">
+                                            <label id="ProductName" class="control-label">ProductName</label>
+                                            <input for="ProductName" class="form-control" v-model="productFields.productName"/>
                                         </div>
-
-                                        <div class="col-6">
-
-                                            <div class="form-group">
-                                                <label asp-for="Price" class="control-label"></label>
-                                                <input asp-for="Price" class="form-control" />
-                                                <span asp-validation-for="Price" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Discount" class="control-label"></label>
-                                                <input asp-for="Discount" class="form-control" />
-                                                <span asp-validation-for="Discount" class="text-danger"></span>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label asp-for="SellingPrice" class="control-label"></label>
-                                                <input asp-for="SellingPrice" class="form-control" />
-                                                <span asp-validation-for="SellingPrice" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Tag" class="control-label"></label>
-                                                <input asp-for="Tag" class="form-control" />
-                                                <span asp-validation-for="Tag" class="text-danger"></span>
-                                            </div>
-
-                                            <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
-                                                <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
-                                                    <div>
-                                                        <button class="submit" type="submit" id="sendMessageButton">新增</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Color" class="control-label">Color</label>
+                                            <select id="Color" class="form-control" v-model="productFields.colorIds" multiple>
+                                                <option v-for="item in optionSource.color" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Size" class="control-label">Size</label>
+                                            <select id="Size" class="form-control" v-model="productFields.sizeId">
+                                                <option v-for="item in optionSource.size" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Category" class="control-label">Category</label>
+                                            <select id="Category" class="form-control" v-model="productFields.categoryId">
+                                                <option v-for="item in optionSource.category" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
 
-                                </form>
+                                    <div class="col-6">
+                                        <div class="billing-info">
+                                            <label for="Price" class="control-label">Price</label>
+                                            <input id="Price"  class="form-control" v-model="productFields.price" />
+                                        </div>
+                                        <div class="billing-info">
+                                            <label for="Comment" class="control-label">Comment</label>
+                                            <input id="Comment" class="form-control" v-model="productFields.comment"/>
+                                        </div>
+                                        <div class="billing-info">
+                                            <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                            <input id="SellingPrice" class="form-control" v-model="productFields.sellingPrice"/>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Tag" class="control-label">Tag</label>
+                                            <select id="Tag" class="form-control" v-model="productFields.tagIds" multiple>
+                                                <option v-for="item in optionSource.tag" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*商品圖片*@
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group mb-4">
+                                <label for="PicturePath" class="control-label">Picture</label>
+                                <input for="PicturePath" class="form-control" name="PicturePath" type="file" id="fileupload" @@change="uploadPic" multiple/>
+                            </div>
+                            <div class="product-list-img">
+                                <div class="row">
+                                    <div class="col-3" v-for="item in picPriview">
+                                        <img :src="item" class="w-100 img-thumbnail" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-5">
+                                <a href="/Products/Index">Back to List</a>
+                            </div>
+                        </div>
+                        @*商品新增按鍵*@
+                        <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
+                            <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
+                                <div>
+                                    <button type="button" class="submit" id="sendMessageButton" @@click="insertProduct()">Create</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,41 +108,123 @@
 </div>
 
 @section Scripts {
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data:
+            {
+                optionSource: {
+                    category: [],
+                    color:[],
+                    size:[],
+                    tag:[]
+                },
+                productFields: {                    
+                    productName: "",
+                    price: "",
+                    categoryId: "",
+                    sizeId:"",
+                    colorIds:[],
+                    sellingPrice: "",
+                    tagIds: [],
+                    comment: "",
+                    picFiles:[]
+                },
+                picPriview:[]
+
+            },
+            mounted: function () {
+                this.GetCategoryData();
+                this.GetColorData();
+                this.GetSizeData();
+                this.GetTagData();                
+            },
+            methods:{
+                uploadPic:function(e){
+                    var self = this;
+                    self.productFields.picFiles = e.target.files;
+                    self.picPriview = [];
+                    for (let fileData of self.productFields.picFiles) {
+                        let reader = new FileReader();
+                        reader.addEventListener("load", (event) => {
+                            self.picPriview.push(event.target.result);
+                        });
+                        reader.readAsDataURL(fileData)
+                    }                    
+                },
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
+                insertProduct: function () {
+                    let self = this;
+                    var form = new FormData();
+                    form.append("ProductName", self.productFields.productName);
+                    form.append("Price", self.productFields.price);
+                    form.append("CategoryId", self.productFields.categoryId);
+                    form.append("SizeId", self.productFields.sizeId);                    
+                    form.append("SellingPrice", self.productFields.sellingPrice);
+                    form.append("comment", self.productFields.comment);
+                    for (let id of self.productFields.colorIds){
+                        form.append("ColorIds", id);
+                    }
+                    for (let id of self.productFields.tagIds) {
+                        form.append("TagIds", id);
+                    }
+                    for (let file of self.productFields.picFiles) {
+                        form.append("Pictures", file);
+                    }
+
+                    fetch("/api/product/addproduct", {
+                        method: "POST",                       
+                        body: form
+                    })
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {                            
+                            var al =
+                            {
+                                position: "center",
+                                icon: "success",
+                                title: "Create Success!!",
+                                showConfirmButton: false,
+                                timer: 1500
+                            }
+
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "Create Failed!!";
+                            }
+                            Swal.fire(al)
+                        })
+
+                }
+            }
+        })
+    </script>
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
-    <script>
-        function ShowImagePreview(input) {
-            debugger;
-            if (input.files && input.files[0]) {
-                var fname = input.files[0].name;
-                var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
-                if (!re.exec(fname)) {
-                    alert("Image not supported!");
-                    $("#fileupload").val("");
-
-                    return false;
-                }
-                else {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#imagePreview').prop('src', e.target.result);
-                    };
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-        }
-
-        let PCapp = new Vue({
-            el: "#ProductCreate",
-
-            data:
-            {
-                selectedItem: ""
-            }
-
-        })
-
-    </script>
 }
+

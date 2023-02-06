@@ -1,0 +1,107 @@
+﻿@model WuliKaWu.Data.Article
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container" id="blogCreateApp" />
+
+<h1>Create</h1>
+
+<h4>Article</h4>
+<hr />
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label" hidden></label>
+                <input asp-for="CreatedDate" class="form-control" hidden />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedDate" class="control-label" hidden></label>
+                <input asp-for="ModifiedDate" class="form-control" hidden />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberId" class="control-label" hidden></label>
+                <select asp-for="MemberId" class="form-control" asp-items="ViewBag.MemberId" hidden></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" type="text" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label id="Content" name="Content" class="control-label" data-val="true" data-val-required="The Content field is required."></label>
+                <textarea ref="editor" id="Content" name="Content"></textarea>
+            </div>
+            <template>
+                <div class="form-group">
+                    <label asp-for="ArticleCategories" class="control-label"></label>
+                    <select v-model="selectedOption" class="form-control">
+                        <option value="">Make a Choice...</option>
+                        <option v-for="option in options" :key="option.value" :value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+                    <span asp-validation-for="ArticleCategories" class="text-danger"></span>
+                </div>
+            </template>
+            <div class="form-group mt-15 mb-15">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        // 可能無法驗證 CK Editor
+        //await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+
+    <script>
+        let blogCreateVue = new Vue({
+            //el:'#blogCreateApp',
+            name: "blogCreateApp",
+            data: {
+                selectedOption: '',
+                options: [
+                    { text: 'Uncategorized', value: 0 },
+                    { text: 'Blog GridView', value: 1 },
+                    { text: 'Latest Blog', value: 2 },
+                    { text: 'Our Blog', value: 3 },
+                ],
+                content: '',
+                editor: null,
+            },
+            mounted: function () {
+                ClassicEditor.create(this.$refs.editor, {
+                    height: 300,
+                })
+                console.log("Hi~from Article Create")
+            },
+            watch: {
+                content(newValue) {
+                    ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
+                },
+            },
+            methods: {
+
+            },
+        })
+
+        document.addEventListener("DOMContentLoaded", () => {
+            blogCreateVue.$mount('#blogCreateApp')
+        })
+    </script>
+
+}

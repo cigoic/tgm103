@@ -3,14 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
 {
-    [Table("Contact Messages")]
+    [Table("ContactMessages")]
     public class ContactMessage
     {
         /// <summary>
         /// 聯絡訊息 ID (Primary Key, 自動編號)
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MessageId { get; set; }
 
         /// <summary>

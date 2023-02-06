@@ -1,0 +1,67 @@
+﻿<div class="container" id="activateAccountApp" />
+
+<div class="login-register-area pb-100 pt-15">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 offset-lg-2">
+                <div class="login-register-wrapper">
+                    <div class="login-register-tab-list nav">
+                        <a class="active" data-bs-toggle="tab" href="#lg1">
+                            <h4> Activate </h4>
+                        </a>
+                    </div>
+                    <div class="tab-content">
+                        <div id="lg1" class="tab-pane active">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form id="fpwdForm" name="fpwdForm" method="post">
+                                        <label for="Token" class="required" hidden></label>
+                                        <input type="text" id="Token" name="Token" v-model="Token" readonly hidden>
+
+                                        <div class="button-box btn-hover">
+                                            <button v-on:click="handleSubmit()" class="form-control">Vertify</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        let actVue = new Vue({
+            data: {
+                token: "",
+            },
+            mounted: function () {
+                console.log("!!!")
+            },
+            methods: {
+                handleSubmit() {
+                    axios.post('/Member/Activate', this.token)
+                        .then(response => {
+                            if (response.data.success) {
+                                swal("Success!", response.data.success, 'success');
+                            }
+                        })
+                        .catch(error => {
+                            if (error.response.data.message) {
+                                console.log(error.response.data.message)
+                                swal("Error!", error.response.data.message, "error");
+                            }
+                        });
+                },
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            actVue.$mount('#activateAccountApp')
+        })
+    </script>
+}

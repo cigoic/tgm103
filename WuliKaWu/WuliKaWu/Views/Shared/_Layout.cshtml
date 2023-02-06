@@ -1,9 +1,3 @@
-@{
-    string BaseAddress = @"~/assets";
-    string TGM103CssBaseAddress = $"{BaseAddress}/css";
-    string TGM103JsBaseAddress = $"{BaseAddress}/js";
-    string TGM103ImageBaseAddress = $"{BaseAddress}/images";
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,9 +76,8 @@
                                     <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
                                     <div class="currency-dropdown">
                                         <ul>
-                                            <li><a href="#">Taka (BDT) </a></li>
-                                            <li><a href="#">Riyal (SAR) </a></li>
-                                            <li><a href="#">Rupee (INR) </a></li>
+                                            <li><a href="#">New Taiwan Dollar (NTD) </a></li>
+                                            <li><a href="#">Chinese Yuan (CNY) </a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -93,8 +86,8 @@
                                     <div class="language-dropdown">
                                         <ul>
                                             <li><a href="#"><img src="~/assets/images/icon-img/flag.png" alt="">English </a></li>
-                                            <li><a href="#"><img src="~/assets/images/icon-img/spanish.png" alt="">Spanish</a></li>
-                                            <li><a href="#"><img src="~/assets/images/icon-img/arabic.png" alt="">Arabic </a></li>
+                                            <li><a href="#"><img src="~/assets/images/icon-img/taiwan16x16.png" alt="">繁中</a></li>
+                                            <li><a href="#"><img src="~/assets/images/icon-img/china16x16.png" alt="">简中</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -108,7 +101,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6 col-6">
                             <div class="logo">
-                                <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
+                                <a href="/Home"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
                             </div>
                         </div>
                         <div class="col-lg-6 d-none d-lg-block d-flex justify-content-center">
@@ -116,75 +109,73 @@
                                 <nav>
                                     <ul>
                                         <li>
-                                            <a asp-controller="Home" asp-action="Index">HOME</a>
+                                            <a href="/Home">HOME</a>
                                             @*<ul class="sub-menu-style">
-                                            <li><a asp-controller="Home" asp-action="IndexOne">Home version 1 </a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                            <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                            <li><a href="/Home/IndexOne">Home version 1 </a></li>
+                                            <li><a href="/Home/IndexTwo">Home version 2</a></li>
+                                            <li><a href="/Home/IndexThree">Home version 3</a></li>
+                                            <li><a href="/Home/IndexFour">Home version 4</a></li>
+                                            <li><a href="/Home/IndexFive">Home version 5</a></li>
+                                            <li><a href="/Home/IndexSix">Home version 6</a></li>
+                                            <li><a href="/Home/IndexSeven">Home version 7</a></li>
+                                            <li><a href="/Home/IndexEight">Home version 8</a></li>
                                             </ul>*@
                                         </li>
                                         <li>
-                                            <a asp-controller="Products" asp-action="Index">SHOP</a>
-                                            <ul class="mega-menu-style mega-menu-mrg-1">
+                                            <a href="/Products">SHOP</a>
+                                            <ul class="sub-menu-style">
                                                 <li>
+                                                    @*<a class="dropdown-title" href="#">Shop Layout</a>*@
                                                     <ul>
-                                                        <li>
-                                                            <a class="dropdown-title" href="#">Shop Layout</a>
-                                                            <ul>
-                                                                <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                                                <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                                                @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-title" href="#">Products Layout</a>
-                                                            <ul>
-                                                                <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
-                                                               @* <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>*@
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
-                                                        </li>
+                                                        <li><a href="/Products">standard style</a></li>
+                                                        <li><a href="/Products/Create">product create</a></li>
+                                                        <li><a href="/Products/ProductDetails">Product Details</a></li>
+                                                        <li><a href="/Products/SopList">shop list style</a></li>
+                                                        <li><a href="/Products/Match">Clothes Matching</a></li>
+                                                        @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                                        <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                                        <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
                                                     </ul>
+
+                                                    @*<li>
+                                                    <a class="dropdown-title" href="#">Products Layout</a>
+                                                    <ul>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
+                                                    <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>
+                                                    </ul>
+                                                    </li>
+                                                    <li>
+                                                    <a href="/Products/Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
+                                                    </li>*@
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
                                             <a href="#">PAGES</a>
                                             <ul class="sub-menu-style">
-                                                <li><a asp-controller="AboutUs" asp-action="Index">about us </a></li>
-                                                <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
-                                                <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
-                                                <li><a asp-controller="MyAccount" asp-action="Index">my account</a></li>
-                                                <li><a asp-controller="Home" asp-action="WishList">wishlist </a></li>
-                                                <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
-                                                <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
-                                                <li><a title="Login Register" asp-controller="Member" asp-action="Login"><i class="pe-7s-user"></i> login / register </a></li>
+                                                <li><a href="/AboutUs">about us </a></li>
+                                                <li><a href="/Cart">cart page</a></li>
+                                                <li><a href="/Cart">checkout </a></li>
+                                                <li><a href="/Member/MyAccount">my account</a></li>
+                                                <li><a href="/WishList">wishlist </a></li>
+                                                @*<li><a href="/Cart/Compare">compare </a></li>*@
+                                                <li><a href="/ContactUs">contact us </a></li>
+                                                <li><a title="Login Register" href="/Member/Login"><i class="pe-7s-user"></i> login / register </a></li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a asp-controller="Blog" asp-action="Index">BLOG</a>
+                                            <a href="/Blog/Index">BLOG</a>
                                             <ul class="sub-menu-style">
-                                                <li><a asp-controller="Blog" asp-action="Index">blog standard </a></li>
-                                                <li><a asp-controller="Blog" asp-action="Sidebar">blog sidebar</a></li>
-                                                <li><a asp-controller="Blog" asp-action="Details">blog details</a></li>
+                                                <li><a href="/Blog/Index">blog standard </a></li>
+                                                <li><a href="/Blog/Sidebar">blog sidebar</a></li>
+                                                <li><a href="/Blog/Details">blog details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a asp-controller="AboutUs" asp-action="Index">ABOUT</a></li>
-                                        <li><a asp-controller="ContactUs" asp-action="Index">CONTACT US</a></li>
+                                        <li><a href="/AboutUs">ABOUT</a></li>
+                                        <li><a href="/ContactUs">CONTACT US</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -204,8 +195,14 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-                                    <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
+                                    <a title="Match" href="/Products/Match">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </a>
                                 </div>
+                                <div class="header-action-style">
+                                    <a title="Wishlist" href="/WishList"><i class="pe-7s-like"></i></a>
+                                </div>
+
                                 <div class="header-action-style">
                                     @* MVC 登入相關檢視 *@
                                     @*<partial name="_LoginIdentityPartial" />*@
@@ -263,10 +260,10 @@
                         <h4>Subtotal: <span>$170.00</span></h4>
                     </div>
                     <div class="cart-btn btn-hover">
-                        <a class="theme-color" asp-controller="Cart" asp-action="Index">view cart</a>
+                        <a class="theme-color" href="/Cart">view cart</a>
                     </div>
                     <div class="checkout-btn btn-hover">
-                        <a class="theme-color" asp-controller="Home" asp-action="Checkout">checkout</a>
+                        <a class="theme-color" href="/Cart">checkout</a>
                     </div>
                 </div>
             </div>
@@ -282,7 +279,7 @@
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                                 <div class="footer-widget footer-about mb-40">
                                     <div class="footer-logo">
-                                        <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
+                                        <a href="/Home"><img src="~/assets/images/logo/logo.png" alt="logo"></a>
                                     </div>
                                     <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut aliqua.</p>
                                     <div class="payment-img">
@@ -294,7 +291,7 @@
                                 <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
                                     <h3 class="footer-title">Information</h3>
                                     <ul>
-                                        <li><a asp-controller="AboutUs" asp-action="Index">About Us</a></li>
+                                        <li><a href="/AboutUs">About Us</a></li>
                                         <li><a href="#">Delivery Information</a></li>
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="#">Terms & Conditions</a></li>
@@ -306,9 +303,9 @@
                                 <div class="footer-widget footer-list mb-40">
                                     <h3 class="footer-title">My Accound</h3>
                                     <ul>
-                                        <li><a asp-controller="MyAccount" asp-action="Index">My Account</a></li>
+                                        <li><a href="/Member/MyAccount">My Account</a></li>
                                         <li><a href="#">Order History</a></li>
-                                        <li><a asp-controller="Home" asp-action="WishList">Wish List</a></li>
+                                        <li><a href="/WishList">Wish List</a></li>
                                         <li><a href="#">Newsletter</a></li>
                                         <li><a href="#">Order History</a></li>
                                     </ul>
@@ -318,12 +315,12 @@
                                 <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
                                     <h3 class="footer-title">Get in touch</h3>
                                     <ul>
-                                        <li><span>Address: </span>Your address goes here </li>
+                                        <li><span>Address: </span>No. 321, Section 1, Jinan Rd, Zhongzheng District, Taipei City </li>
                                         <li><span>Telephone Enquiry:</span> (012) 345 6789</li>
-                                        <li><span>Email: </span>demo@example.com</li>
+                                        <li><span>Email: </span>wulikawu@gmail.com</li>
                                     </ul>
                                     <div class="open-time">
-                                        <p>Open : <span>8:00 AM</span> - Close : <span>18:00 PM</span></p>
+                                        <p>Open : <span>11:00 AM</span> - Close : <span>22:00 PM</span></p>
                                         <p>Saturday - Sunday : Close</p>
                                     </div>
                                 </div>
@@ -356,7 +353,7 @@
                         <div class="row gx-0">
                             <div class="col-lg-5 col-md-5 col-12">
                                 <div class="modal-img-wrap">
-                                    <img src="~/assets/images/product/quickview.png" alt="">
+                                    <img src="/assets/images/product/quickview.png" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-7 col-12">
@@ -418,73 +415,70 @@
                     <div id="mobile-menu" class="slinky-mobile-menu text-left">
                         <ul>
                             <li>
-                                <a asp-controller="Home" asp-action="Index">HOME</a>
+                                <a href="/Home">HOME</a>
                                 @*<a href="#">HOME</a>
                                 <ul>
-                                <li><a asp-controller="Home" asp-action="IndexOne">Home version 1 </a></li>
-                                <li><a asp-controller="Home" asp-action="IndexTwo">Home version 2</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexThree">Home version 3</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexFour">Home version 4</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexFive">Home version 5</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexSix">Home version 6</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexSeven">Home version 7</a></li>
-                                <li><a asp-controller="Home" asp-action="IndexEight">Home version 8</a></li>
+                                <li><a href="/Home/IndexOne">Home version 1 </a></li>
+                                <li><a href="/Home/IndexTwo">Home version 2</a></li>
+                                <li><a href="/Home/IndexThree">Home version 3</a></li>
+                                <li><a href="/Home/IndexFour">Home version 4</a></li>
+                                <li><a href="/Home/IndexFive">Home version 5</a></li>
+                                <li><a href="/Home/IndexSix">Home version 6</a></li>
+                                <li><a href="/Home/IndexSeven">Home version 7</a></li>
+                                <li><a href="/Home/IndexEight">Home version 8</a></li>
                                 </ul>*@
                             </li>
                             <li>
                                 <a href="#">SHOP</a>
                                 <ul>
-                                    <li>
-                                        <a href="#">Shop Layout</a>
-                                        <ul>
-                                            <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                            <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                            @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
+                                    <li><a href="/Products/Index">standard style</a></li>
+                                    <li><a href="/Products/Create">product create</a></li>
+                                    <li><a href="/Products/ProductDetails">Product Details</a></li>
+                                    <li><a href="/Products/SopList">shop list style</a></li>
+                                    <li><a href="/Products/Match">clothes catching</a></li>
+                                    @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
+                                    <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
+                                    <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
 
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Product Layout</a>
-                                        <ul>
-                                            <li><a asp-controller="Products" asp-action="ProductDetails">Tab Style 1</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
-                                            @*<li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>*@
-                                        </ul>
-                                    </li>
+                                    @*<li>
+                                    <a href="#">Product Layout</a>
+                                    <ul>
+
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
+                                    <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>
+                                    </ul>
+                                    </li>*@
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">PAGES </a>
                                 <ul>
-                                    <li><a asp-controller="AboutUs" asp-action="Index">About Us </a></li>
-                                    <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
-                                    <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
-                                    <li><a asp-controller="MyAccount" asp-action="Index">My Account</a></li>
-                                    <li><a asp-controller="Home" asp-action="WishList">Wishlist </a></li>
-                                    <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
-                                    <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
-                                    <li><a title="Login Register" asp-controller="Member" asp-action="Login">><i class="pe-7s-user"></i> Login / Register </a></li>
+                                    <li><a href="/AboutUs/Index">About Us </a></li>
+                                    <li><a href="/Cart/Index">Cart Page</a></li>
+                                    <li><a href="/Cart/Checkout">Checkout </a></li>
+                                    <li><a href="/Member/MyAccount">My Account</a></li>
+                                    <li><a href="/WishList/Index">Wishlist </a></li>
+                                    @*<li><a href="/Cart/Compare">Compare </a></li>*@
+                                    <li><a href="/ContactUs/Index">Contact us </a></li>
+                                    <li><a title="Login Register" href="/Member/Login">><i class="pe-7s-user"></i> Login / Register </a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">BLOG </a>
                                 <ul>
-                                    <li><a asp-controller="Blog" asp-action="Index">Blog Standard </a></li>
-                                    <li><a asp-controller="Blog" asp-action="Sidebar">Blog Sidebar</a></li>
-                                    <li><a asp-controller="Blog" asp-action="Details">Blog Details</a></li>
+                                    <li><a href="/Blog/Index">Blog Standard </a></li>
+                                    <li><a href="/Blog/Sidebar">Blog Sidebar</a></li>
+                                    <li><a href="/Blog/Details">Blog Details</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
+                                <a href="/AboutUs/Index">ABOUT US</a>
                             </li>
                             <li>
-                                <a asp-controller="ContactUs" asp-action="Index">CONTACT US</a>
+                                <a href="/ContactUs/Index">CONTACT US</a>
                             </li>
                         </ul>
                     </div>
@@ -494,9 +488,8 @@
                         <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
                         <div class="currency-dropdown">
                             <ul>
-                                <li><a href="#">Taka (BDT) </a></li>
-                                <li><a href="#">Riyal (SAR) </a></li>
-                                <li><a href="#">Rupee (INR) </a></li>
+                                <li><a href="#">New Taiwan Dollar (NTD) </a></li>
+                                <li><a href="#">Chinese Yuan (CNY) </a></li>
                             </ul>
                         </div>
                     </div>
@@ -505,8 +498,8 @@
                         <div class="language-dropdown">
                             <ul>
                                 <li><a href="#"><img src="~/assets/images/icon-img/flag.png" alt="">English </a></li>
-                                <li><a href="#"><img src="~/assets/images/icon-img/spanish.png" alt="">Spanish</a></li>
-                                <li><a href="#"><img src="~/assets/images/icon-img/arabic.png" alt="">Arabic </a></li>
+                                <li><a href="#"><img src="~/assets/images/icon-img/taiwan16x16.png" alt="">繁中</a></li>
+                                <li><a href="#"><img src="~/assets/images/icon-img/china16x16.png" alt="">简中</a></li>
                             </ul>
                         </div>
                     </div>
@@ -550,7 +543,20 @@
     <script src="~/assets/js/plugins/slinky.min.js"></script>
     <script src="~/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    	asp-fallback-src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
     <script src="~/assets/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function showEorror(msg){
+            Swal.fire({
+                icon: 'success',
+                title: '成功',
+                text: msg,
+                timer: 2000
+            })
+        }
+    </script>
 </body>
 </html>

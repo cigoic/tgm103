@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using WuliKaWu.Data;
 using WuliKaWu.Models.ApiModel;
+using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers
 {
@@ -33,8 +35,11 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
+        public IActionResult Match()
+        { return View(); }
+
         // GET: Products/Details/5
-        public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
+        public async Task<IActionResult> ProductDetails(int id = 2)
         {
             if (id == null || _context.Products == null)
             {
@@ -47,8 +52,11 @@ namespace WuliKaWu.Controllers
             {
                 return NotFound();
             }
+            ViewBag.id = id;
 
-            return View(product);
+            return View();
+
+            //return View(product);
         }
 
         // GET: Products/Create
@@ -57,21 +65,42 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Color,Size,Image,Price,Comment,StarRate,Category,Tag")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
-        }
+        //// POST: Products/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(ProductModel product)
+        //{
+        //    Product prd = new Product
+        //    {
+        //        //ProductId = product.ProductId,
+        //        ProductName = product.ProductName,                
+        //        CategoryId = (int)product.Category,                
+        //        Price = product.Price,                
+        //        SellingPrice = Convert.ToDecimal(product.SellingPrice),
+        //        Comment = product.Comment,
+                
+
+        //        Tags = product.Tag.Select(x=> new Data.Tag { Id = x}).ToList(),
+        //        Colors = product.Color.Select(x => new Data.Color { Id = x }).ToList(),
+        //        Size = (Size)Enum.Parse(typeof(Size), product.Size),
+        //        PicturePath = product.PicturePath,
+        //    };
+
+        //    _context.Products.Add(prd);
+        //    await _context.SaveChangesAsync();
+
+        //    return View();
+
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    _context.Add(product);
+        //    //    await _context.SaveChangesAsync();
+        //    //    return RedirectToAction(nameof(Index));
+        //    //}
+        //    //return View(product);
+        //}
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -81,26 +110,36 @@ namespace WuliKaWu.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
+
             if (product == null)
             {
                 return NotFound();
             }
+            ViewBag.id = id;
 
-            var vm = new ProductModel();
+            return View();
 
-            vm.ProductId = product.ProductId;
-            vm.ProductName = product.ProductName;
-            vm.Color = product.Color;
-            vm.Size = product.Size;
-            vm.Category = product.Category;
-            vm.PicturePath = product.PicturePath;
-            vm.Price = product.Price;
-            vm.Discount = product.Discount > 0 ? true : false;
-            vm.SellingPrice = (product.SellingPrice).ToString();
-            //vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+            //var product = await _context.Products.FindAsync(id);
+            //if (product == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return View(vm);
+            //var vm = new ProductModel();
+
+            //vm.ProductId = product.ProductId;
+            //vm.ProductName = product.ProductName;
+            //vm.Color = product.Color;
+            //vm.Size = product.Size.ToString();
+            //vm.Category = product.Category;
+            //vm.PicturePath = $"~/images/{product.PicturePath}";
+            //vm.Price = product.Price;
+            //vm.Discount = product.Discount > 0 ? true : false;
+            //vm.SellingPrice = (product.SellingPrice).ToString();
+            ////vm.Tag = (Data.Enums.Common.Tag)product.Tag;
+
+            //return View(vm);
         }
 
         // POST: Products/Edit/5
@@ -109,45 +148,45 @@ namespace WuliKaWu.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductModel model)
-
         {
-            if (id != model.ProductId)
-            {
-                return NotFound();
-            }
+            throw new NotImplementedException();
+            //if (id != model.ProductId)
+            //{
+            //    return NotFound();
+            //}
 
-            if (ModelState.IsValid)
-            {
-                var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
+            //if (ModelState.IsValid)
+            //{
+            //    var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
 
-                product.ProductId = model.ProductId;
-                product.ProductName = model.ProductName;
-                product.Color = model.Color;
-                product.Size = model.Size;
-                product.Category = model.Category;
-                product.PicturePath = model.PicturePath;
-                product.Price = model.Price;
-                product.Discount = Convert.ToDecimal(model.Discount);
-                product.SellingPrice = decimal.Parse(model.SellingPrice);
+            //    product.ProductId = model.ProductId;
+            //    product.ProductName = model.ProductName;
+            //    product.Color = model.Color;
+            //    product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
+            //    //product.Category = model.Category;
+            //    product.PicturePath = model.PicturePath;
+            //    product.Price = model.Price;
+            //    product.Discount = Convert.ToDecimal(model.Discount);
+            //    product.SellingPrice = decimal.Parse(model.SellingPrice);
 
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(model.ProductId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-            return View(model);
+            //    try
+            //    {
+            //        _context.Update(product);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!ProductExists(model.ProductId))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //}
+            //return View(model);
         }
 
         // GET: Products/Delete/5
@@ -164,20 +203,23 @@ namespace WuliKaWu.Controllers
             {
                 return NotFound();
             }
+            ViewBag.id = id;
 
-            return View(product);
+            return View();
         }
 
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, ProductModel model)
         {
             if (_context.Products == null)
             {
                 return Problem("Entity set 'ShopContext.Products'  is null.");
             }
+
             var product = await _context.Products.FindAsync(id);
+
             if (product != null)
             {
                 _context.Products.Remove(product);

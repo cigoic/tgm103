@@ -1,31 +1,11 @@
-@*@model WuliKaWu.Data.Product*@
-@model WuliKaWu.Models.ApiModel.ProductModel
-
 @{
     ViewData["Title"] = "Edit";
 }
 
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
-            <ul data-aos="fade-up" data-aos-delay="400">
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-
-<div id="ProductEdit">
+<div id="EditProduct">
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
-            <h2>修改商品</h2>
+            <h2>Edit Product</h2>
         </div>
 
         <div class="shop-bottom-area">
@@ -35,114 +15,91 @@
                         <div class="col-lg-4 col-sm-5">
                             <div class="product-list-img">
 
+                                @*商品圖片*@
                                 <a href="">
-                                    @*<img src="~/assets/images/product/product-5.png" id="imagePreview" alt="Product Style">*@
-                                    <img :src="products.PicturePath" id="imagePreview" alt="Product Picture" />
+                                    @*<img src="@Url.Content(Model.PicturePath)" id="imagePreview" alt="Product Picture" />*@
+                                    <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
                                 </a>
-
-                                @*                            <div class="product-list-quickview">
-                                <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="pe-7s-look"></i>
-                                </button>
-                                </div>*@
                             </div>
 
                             <div class="mt-5">
-                                <a asp-action="Index">Back to List</a>
+                                @*<a asp-action="Index">Back to List</a>*@
+                                <a href="/Products/Index">Back to List</a>
                             </div>
-
                         </div>
+
                         <div class="col-lg-8 col-sm-7 contact-form-style">
                             <div class="shop-list-content">
 
-                                
-                                <form asp-controller="Products" asp-action="Edit" method="post">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                @*商品內容*@
+                                <form>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group" hidden>
-                                                <label asp-for="ProductId" class="control-label"></label>
-                                                <input asp-for="ProductId" class="form-control" />
-                                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                                                <label for="ProductId" class="control-label">ProductId</label>
+                                                <input id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
                                             </div>
 
                                             <div class="form-group">
-                                                <label asp-for="ProductName" class="control-label"></label>
-                                                <input asp-for="ProductName" class="form-control" placeholder="請輸入品名" />
-                                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                                                <label for="ProductName" class="control-label">ProductName</label>
+                                                <input id="ProductName" name="ProductName" class="form-control" v-model="productFields.productName"  />
                                             </div>
 
                                             <div class="form-group">
-                                                <label asp-for="Color" class="control-label"></label>
-                                                <input asp-for="Color" class="form-control" />
-                                                <span asp-validation-for="Color" class="text-danger"></span>
+                                                <label for="Color" class="control-label">Color</label>
+                                                <input id="Color" name="Color" class="form-control" v-model="productFields.color" />
                                             </div>
 
-                                            @*<div class="shop-sorting-area">
-                                            <select v-model="selectedItem" :class={}>
-                                            <option value="">請選擇</option>
-                                            <option value="0">Black</option>
-                                            <option value="1">White</option>
-                                            <option value="2">Brown</option>
-                                            <option value="3">Red</option>
-                                            <option value="4">Orange</option>
-                                            </select>
-                                            <input v-model="selectedItem" asp-for="Color" value="" />
-                                            </div>*@
+                                            <div class="form-group">
+                                                <label for="Size" class="control-label">Size</label>
+                                                <input id="Size" name="Size" class="form-control" v-model="productFields.size"/>
+                                            </div>
 
                                             <div class="form-group">
-                                                <label asp-for="Size" class="control-label"></label>
-                                                <input asp-for="Size" class="form-control" />
-                                                <span asp-validation-for="Size" class="text-danger"></span>
+                                                <label for="Price" class="control-label">Price</label>
+                                                <input id="Price" name="Price" class="form-control" v-model="productFields.price" />
                                             </div>
+
                                             <div class="form-group">
-                                                <label asp-for="Category" class="control-label"></label>
-                                                <input asp-for="Category" class="form-control" />
-                                                <span asp-validation-for="Category" class="text-danger"></span>
+                                                <label for="Discount" class="control-label">Discount</label>
+                                                <input id="Discount" name="Discount" class="form-control" v-model="productFields.discount" />
                                             </div>
+
                                             <div class="form-group">
-                                                <label asp-for="PicturePath" class="control-label"></label>
-                                                <input asp-for="PicturePath" class="form-control" type="file" id="fileupload" onchange="return ShowImagePreview(this)" />
-                                                <span asp-validation-for="PicturePath" class="text-danger"></span>
+                                                <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                                <input id="sellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Category" class="control-label">Category</label>
+                                                <input id="Category" name="Category" class="form-control" v-model="productFields.category" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="Tag" class="control-label">Tag</label>
+                                                <input id="Tag" name="Tag" class="form-control" v-model="productFields.tag"/>
                                             </div>
                                         </div>
 
                                         <div class="col-6">
-
+                                            @*商品圖片預覽*@
                                             <div class="form-group">
-                                                <label asp-for="Price" class="control-label"></label>
-                                                <input asp-for="Price" class="form-control" />
-                                                <span asp-validation-for="Price" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Discount" class="control-label"></label>
-                                                <input asp-for="Discount" class="form-control" />
-                                                <span asp-validation-for="Discount" class="text-danger"></span>
+                                                <label for="PicturePath" class="control-lable">PicturePath</label>
+                                                <input class="form-control" type="file" id="fileupload" name="PicturePath" onchange="ShowImagePreview(this)" />
+                                                <img src="/images/product-5.png" id="imagePreview" alt="Product Style" width="360px" height="410px">
+                                                @*<img :src="product.picturePath" id="imagePreview" alt="Product Picture" width="360" height="410px"/>*@
                                             </div>
 
-
-                                            <div class="form-group">
-                                                <label asp-for="SellingPrice" class="control-label"></label>
-                                                <input asp-for="SellingPrice" class="form-control" />
-                                                <span asp-validation-for="SellingPrice" class="text-danger"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label asp-for="Tag" class="control-label"></label>
-                                                <input asp-for="Tag" class="form-control" />
-                                                <span asp-validation-for="Tag" class="text-danger"></span>
-                                            </div>
-
+                                            @*儲存編輯按鍵*@
                                             <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
                                                 <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
                                                     <div>
-                                                        <button class="submit" type="submit" id="sendMessageButton">儲存更新</button>
+                                                        <button type="button" class="submit" v-on:click="saveProductChange(@ViewBag.id)">Save Edit</button>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -155,16 +112,16 @@
 
 @section Scripts {
 <script>
+
+    //圖片預覽
     function ShowImagePreview(input) {
-        debugger;
         if (input.files && input.files[0]) {
-            var fname = input.files[0].name;
+           var fname = input.files[0].name;
             var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
             if (!re.exec(fname)) {
                 alert("Image not supported!");
                 $("#fileupload").val("");
-
-                return false;
+                    return false;
             }
             else {
                 var reader = new FileReader();
@@ -176,25 +133,62 @@
         }
     }
 
-    let PEapp = new Vue({
+    let app = new Vue({
     
-        el:"ProductEdit",
+        el: "#EditProduct",
         data:
         {
-            products:[]
+            
+            productFields:{
+                    productId: "",
+                    productName: "",
+                    color: "",
+                    size: "",
+                    category: "",
+                    price: "",
+                    discount: "",
+                    sellingPrice: "",
+                    tag: "",
+                    picturePath:""
+            }
         },
 
         mounted: function(){
             var self = this;
-            fetch("/api/product/getbyid")
+            fetch("/api/product/getbyid/"+"@ViewBag.id")
+
             .then(function(response){return response.json()})
             .then(function(result){
                 console.log(result);
-                self.products = result;
-            })
-        }
-    });
+                //self.product = result;
+                self.productFields = result;
+                self.productFields.productId = @ViewBag.id;
 
+            })
+        },
+
+        methods: 
+        {            
+                saveProductChange: function (id)
+            {
+                var self = this;
+                self.productFields.productId = @ViewBag.id
+
+                var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+
+                fetch(qureyEditBaseUrl ,{
+                    method:"POST",
+                    headers:{'content-type': 'application/json'},
+                    body: JSON.stringify(self.productFields)
+                })
+                    .then(function(response){return response.json()})
+                    .then(function(result){
+                        console.log(result);
+                    })
+            }             
+        }
+
+    });
 </script>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

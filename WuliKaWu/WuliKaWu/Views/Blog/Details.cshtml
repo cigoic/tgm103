@@ -1,4 +1,7 @@
-﻿
+﻿@model ArticleModel
+
+<div class="container" id="blogDetailsApp" />
+
 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
     <div class="container">
         <div class="breadcrumb-content text-center">
@@ -27,17 +30,17 @@
                             <img src="~/assets/images/blog/blog-details.png" alt="">
                         </div>
                         <div class="blog-details-date">
-                            <h5>01 <span>May</span></h5>
+                            <h5 v-if="articleDay(article.createdAt)">{{ aDay }} <span v-if="getMonthName(article.createdAt)">{{ aMonth }}</span></h5>
                         </div>
                     </div>
                     <div class="blog-meta-2" data-aos="fade-up" data-aos-delay="200">
                         <ul>
                             <li><a href="#">Furniture</a>,</li>
-                            <li>By:<a href="#"> Admin</a></li>
+                            <li>By:<a href="#"> @Model.MemberName</a></li>
                         </ul>
                     </div>
-                    <h1 data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consec.</h1>
-                    <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>
+                    <h1 data-aos="fade-up" data-aos-delay="200">@Model.Title</h1>
+                    <p data-aos="fade-up" data-aos-delay="200">@Model.Content</p>
                     <blockquote class="blockquote-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="quote-img">
                             <img src="~/assets/images/icon-img/quote.png" alt="">
@@ -48,16 +51,18 @@
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor.</p>
                     <div class="blog-details-middle-img-wrap">
                         <div class="row">
-                            <div class="col-md-6 col-sm-6 col-12">
-                                <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="200">
-                                    <img src="~/assets/images/blog/blog-details-2.png" alt="">
+                            @{
+                                int delayTime = 200;
+                            }
+                            @foreach (var imagePath in Model.ContentImageFileNames)
+                            {
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
+                                        <img src="@Url.Content(imagePath)" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-12">
-                                <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="400">
-                                    <img src="~/assets/images/blog/blog-details-3.png" alt="">
-                                </div>
-                            </div>
+                                delayTime += 200;
+                            }
                         </div>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>
@@ -100,19 +105,19 @@
                     <div class="blog-next-previous-post" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-prev-post-wrap">
                             <div class="blog-prev-post-icon">
-                                <a href="#"><i class="fa fa-angle-left"></i></a>
+                                <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
                             </div>
                             <div class="blog-prev-post-content">
-                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+                                <h3><a :href="articleLink(prevArticle.id)">{{ prevArticle.title }}</a></h3>
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
                             <div class="blog-next-post-icon">
-                                <a href="#"> <i class="fa fa-angle-right"></i> </a>
+                                <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
                             </div>
                             <div class="blog-next-post-content">
-                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
+                                <h3><a :href="articleLink(nextArticle.id)">{{ nextArticle.title }}</a></h3>
                                 <span>June 25, 2022</span>
                             </div>
                         </div>
@@ -301,3 +306,89 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js" integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+    <script>
+
+        let blogDetailsVue = new Vue({
+            //el:'#blogDetailsApp',
+            name: "blogDetailsApp",
+            data: {
+                article: {
+                    id: null,
+                    title: null,
+                    createdAt: null
+                },
+                prevArticle: {
+                    id: null,
+                    title: null,
+                    createdAt: null
+                },
+                nextArticle: {
+                    id: null,
+                    title: null,
+                    createdAt: null
+                },
+                articleBaseLink: "/api/Blog/GetArticleById/",
+                //articleBaseLink: "/Blog/Details/",
+                articleId: null,
+                articleCreateAt: null,
+                currentPage: 1,
+                aDay: null,
+                aMonth: null,
+            },
+            mounted: function () {
+                fetch(this.articleBaseLink + @Model.ArticleId).then(response => {
+                    //handle the response and store the next article ID
+                    console.log(response)
+                });
+
+                //let self = this
+                this.article = {
+                    id: @Model.ArticleId,
+                    title: "@Model.Title",
+                    createdAt: "@Model.CreateAt",
+                };
+                this.prevArticle = {
+                    id: @Model.PrevArticleId,
+                    title: "@Model.PrevArticleTitle",
+                    createdAt: "@Model.PrevArticleCreateAt",
+                };
+                this.nextArticle = {
+                    id: @Model.NextArticleId,
+                    title: "@Model.NextArticleTitle",
+                    createdAt: "@Model.NextArticleCreateAt",
+                };
+
+                console.log(this.article)
+                console.log(this.prevArticle)
+                console.log(this.nextArticle)
+            },
+            methods: {
+                clickCallback: function (page) {
+                    this.currentPage = page;
+                    console.log(page)
+                },
+                articleLink: function (id) {
+                    return this.articleBaseLink + id
+                },
+                articleDay(currentDate) {
+                    var date = new Date(currentDate);
+                    this.aDay = date.getDate()
+                    return this.aDay
+                },
+                getMonthName(currentDate) {
+                    const date = new Date(currentDate)
+                    this.aMonth = date.toLocaleString('default', { month: 'short' })
+                    return this.aMonth
+                },
+            }
+        })
+
+        document.addEventListener("DOMContentLoaded", () => {
+            blogDetailsVue.$mount('#blogDetailsApp')
+        })
+    </script>
+}
