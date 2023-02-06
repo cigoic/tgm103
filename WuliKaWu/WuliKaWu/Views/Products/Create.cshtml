@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ﻿@model WuliKaWu.Data.Product
 =======
@@ -131,24 +132,90 @@
 <div class="ProductCreate">
 
 >>>>>>> [修正] 將Product新增/編輯/刪除的檢視頁面之上方不需要的版面部分刪除
+=======
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="ProductCreate" id="app">
+>>>>>>> [修正]商品新增
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
             <h2>Create Product</h2>
         </div>
-
-
         <div class="shop-bottom-area">
             <div class="tab-content jump">
                 <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <div class="row">
+                    <div class="row billing-info-wrap">
+                        @*商品欄位*@
+                        <div class="col-lg-12 col-sm-12 contact-form-style">
+                            <div class="shop-list-content">
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <div class="billing-info">
+                                            <label id="ProductName" class="control-label">ProductName</label>
+                                            <input for="ProductName" class="form-control" v-model="productFields.productName"/>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Color" class="control-label">Color</label>
+                                            <select id="Color" class="form-control" v-model="productFields.colorIds" multiple>
+                                                <option v-for="item in optionSource.color" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Size" class="control-label">Size</label>
+                                            <select id="Size" class="form-control" v-model="productFields.sizeId">
+                                                <option v-for="item in optionSource.size" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Category" class="control-label">Category</label>
+                                            <select id="Category" class="form-control" v-model="productFields.categoryId">
+                                                <option v-for="item in optionSource.category" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="billing-info">
+                                            <label for="Price" class="control-label">Price</label>
+                                            <input id="Price"  class="form-control" v-model="productFields.price" />
+                                        </div>
+                                        <div class="billing-info">
+                                            <label for="Comment" class="control-label">Comment</label>
+                                            <input id="Comment" class="form-control" v-model="productFields.comment"/>
+                                        </div>
+                                        <div class="billing-info">
+                                            <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                            <input id="SellingPrice" class="form-control" v-model="productFields.sellingPrice"/>
+                                        </div>
+                                        <div class="billing-select select-style">
+                                            <label for="Tag" class="control-label">Tag</label>
+                                            <select id="Tag" class="form-control" v-model="productFields.tagIds" multiple>
+                                                <option v-for="item in optionSource.tag" :value="item.id">
+                                                    {{item.type}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         @*商品圖片*@
-                        <div class="col-lg-4 col-sm-5">
+                        <div class="col-lg-12 col-sm-12">
                             <div class="form-group mb-4">
                                 <label for="PicturePath" class="control-label">Picture</label>
-                                <input for="PicturePath" class="form-control" name="PicturePath" type="file" id="fileupload" onchange="return ShowImagePreview(this)" v-model="picturePath" />
+                                <input for="PicturePath" class="form-control" name="PicturePath" type="file" id="fileupload" @@change="uploadPic" multiple/>
                             </div>
-
                             <div class="product-list-img">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                 <a href="#">
@@ -191,6 +258,14 @@
 =======
                                 <a> <img src="/images/product-5.png" id="imagePreview" alt="Product Style" width="100%" height="100%"> </a>
 >>>>>>> [更新]商品新增檢視頁面的圖片預覽及修改Match檢視中的圖片區塊色彩
+=======
+                                <div class="row">
+                                    <div class="col-3" v-for="item in picPriview">
+                                        <img :src="item" class="w-100 img-thumbnail" />
+                                    </div>
+
+                                </div>
+>>>>>>> [修正]商品新增
                             </div>
 
                             <div class="mt-5">
@@ -198,6 +273,7 @@
 >>>>>>> [更新]商品新增的檢視頁面以Vue綁定(按鍵功能尚未完成)
                             </div>
                         </div>
+<<<<<<< HEAD
 
                         @*商品欄位*@
                         <div class="col-lg-8 col-sm-7 contact-form-style">
@@ -275,6 +351,14 @@
                                     </div>
                                 </form>
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+                        @*商品新增按鍵*@
+                        <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
+                            <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
+                                <div>
+                                    <button type="button" class="submit" id="sendMessageButton" @@click="insertProduct()">Create</button>
+                                </div>
+>>>>>>> [修正]商品新增
                             </div>
                         </div>
                     </div>
@@ -419,6 +503,7 @@
 @section Scripts {
 
     <script>
+<<<<<<< HEAD
 
         //預覽圖片
         function ShowImagePreview(input) {
@@ -468,56 +553,100 @@
         let app = new Vue({
             el: "#ProductCreate",
 >>>>>>> [更新]商品新增檢視頁面的圖片預覽及修改Match檢視中的圖片區塊色彩
+=======
+        let app = new Vue({
+            el: "#app",
+>>>>>>> [修正]商品新增
             data:
-            {               
-                productFields:{
-                    productId: "",
-                    productName: "",
-                    category: "",
-                    picturePath: "",
-                    price: "",
-                    discount: "",
-                    sellingPrice: "",
-                    tag: "",
-
-                    //color:-1,
-                    //colorChoice:
-                    //[
-                    //    {text: "Black", value:0},
-                    //    {text: "White", value:1},
-                    //    {text: "Brown", value:2},
-                    //    {text: "Red", value:3},
-                    //    {text: "Orange", value:4},
-                    //],
-
-                },
-                
-
-            },
-
-            mounted: function () {
-                var self = this;
-                fetch("/Products/Create")
-                    .then(function(response){return response.text()})
-                    .then(function(result){
-                        //console.log(result);
-                        //self.product = result;
-                    })
-            },
-
-            methods:
             {
+                optionSource: {
+                    category: [],
+                    color:[],
+                    size:[],
+                    tag:[]
+                },
+                productFields: {                    
+                    productName: "",
+                    price: "",
+                    categoryId: "",
+                    sizeId:"",
+                    colorIds:[],
+                    sellingPrice: "",
+                    tagIds: [],
+                    comment: "",
+                    picFiles:[]
+                },
+                picPriview:[]
+
+            },
+            mounted: function () {
+                this.GetCategoryData();
+                this.GetColorData();
+                this.GetSizeData();
+                this.GetTagData();                
+            },
+            methods:{
+                uploadPic:function(e){
+                    var self = this;
+                    self.productFields.picFiles = e.target.files;
+                    self.picPriview = [];
+                    for (let fileData of self.productFields.picFiles) {
+                        let reader = new FileReader();
+                        reader.addEventListener("load", (event) => {
+                            self.picPriview.push(event.target.result);
+                        });
+                        reader.readAsDataURL(fileData)
+                    }                    
+                },
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
                 insertProduct: function () {
                     let self = this;
+                    var form = new FormData();
+                    form.append("ProductName", self.productFields.productName);
+                    form.append("Price", self.productFields.price);
+                    form.append("CategoryId", self.productFields.categoryId);
+                    form.append("SizeId", self.productFields.sizeId);                    
+                    form.append("SellingPrice", self.productFields.sellingPrice);
+                    form.append("comment", self.productFields.comment);
+                    for (let id of self.productFields.colorIds){
+                        form.append("ColorIds", id);
+                    }
+                    for (let id of self.productFields.tagIds) {
+                        form.append("TagIds", id);
+                    }
+                    for (let file of self.productFields.picFiles) {
+                        form.append("Pictures", file);
+                    }
 
-                    fetch("/api/product/addproduct",{
-                        method: "POST",
-                        headers: { "content-type": "application/json" },
-                        body: JSON.stringify(addProduct)
+                    fetch("/api/product/addproduct", {
+                        method: "POST",                       
+                        body: form
                     })
-                        .then(function(response){return response.json()})
-                        .then(function(result){
-                            //console.log(result);
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {                            
                             var al =
                             {
                                 position: "center",
@@ -527,17 +656,17 @@
                                 timer: 1500
                             }
 
-                            if(!result.status)
-                            {
+                            if (!result.status) {
                                 al.icon = "error";
                                 al.title = "Create Failed!!";
                             }
                             Swal.fire(al)
                         })
-                        
+
                 }
             }
         })
+<<<<<<< HEAD
 >>>>>>> [更新]商品新增的檢視頁面以Vue綁定(按鍵功能尚未完成)
 
         ////內容都跑完後再載入Vue
@@ -552,5 +681,12 @@
     
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 >>>>>>> [更新]商品新增的檢視頁面以Vue綁定(按鍵功能尚未完成)
+=======
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+>>>>>>> [修正]商品新增
 }
 
