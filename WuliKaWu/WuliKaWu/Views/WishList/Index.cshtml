@@ -67,7 +67,7 @@
 @section Scripts{
 
     <script>
-        let app = new Vue({
+        let wishlist = new Vue({
             el: "#wishlistIndex",
             data: {
                 productInThisWishList: {
@@ -90,7 +90,7 @@
                  AddToCart(id) 
                  {
                     console.log("CPid:", id)
-                    this.queryWishListBaseURL = '/api/wishlist/AddToCart/' + id;
+                    this.queryWishListBaseURL = '/api/cart/AddToCart/' + id;
                     fetch(this.queryWishListBaseURL,{method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {

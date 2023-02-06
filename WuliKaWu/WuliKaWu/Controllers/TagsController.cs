@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
-using WuliKaWu.Models;
+using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers
 {
