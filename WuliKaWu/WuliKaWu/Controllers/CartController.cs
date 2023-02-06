@@ -56,10 +56,14 @@ namespace WuliKaWu.Controllers
 
             var cart = await _context.Carts
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .FirstOrDefaultAsync(m => m.Id == id);
 =======
                 .FirstOrDefaultAsync(m => m.CartId == id);
 >>>>>>> 新增CartController及CartApiController
+=======
+                .FirstOrDefaultAsync(m => m.Id == id);
+>>>>>>> DB修改
             if (cart == null)
             {
                 return NotFound();
@@ -206,8 +210,12 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
         {
+<<<<<<< HEAD
             if (id != cart.CartId)
 >>>>>>> 新增CartController及CartApiController
+=======
+            if (id != cart.Id)
+>>>>>>> DB修改
             {
                 return NotFound();
             }
@@ -222,10 +230,14 @@ namespace WuliKaWu.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     if (!CartExists(cart.Id))
 =======
                     if (!CartExists(cart.CartId))
 >>>>>>> 新增CartController及CartApiController
+=======
+                    if (!CartExists(cart.Id))
+>>>>>>> DB修改
                     {
                         return NotFound();
                     }
@@ -257,10 +269,14 @@ namespace WuliKaWu.Controllers
 
             var cart = await _context.Carts
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .FirstOrDefaultAsync(m => m.Id == id);
 =======
                 .FirstOrDefaultAsync(m => m.CartId == id);
 >>>>>>> 新增CartController及CartApiController
+=======
+                .FirstOrDefaultAsync(m => m.Id == id);
+>>>>>>> DB修改
             if (cart == null)
             {
                 return NotFound();
@@ -298,6 +314,7 @@ namespace WuliKaWu.Controllers
 
         private bool CartExists(int id)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
             return _context.Carts.Any(e => e.Id == id);
         }
@@ -484,6 +501,9 @@ namespace WuliKaWu.Controllers
 >>>>>>> Merge branch 'development' of https://github.com/cigoic/tgm103 into development
 =======
             return _context.Carts.Any(e => e.CartId == id);
+=======
+            return _context.Carts.Any(e => e.Id == id);
+>>>>>>> DB修改
         }
 >>>>>>> 新增CartController及CartApiController
     }

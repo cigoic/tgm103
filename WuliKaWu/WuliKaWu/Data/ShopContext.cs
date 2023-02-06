@@ -486,7 +486,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 願望清單資料表
         /// </summary>
-        public DbSet<WuliKaWu.Data.WishList> WishList { get; set; }
+        public DbSet<WishList> WishList { get; set; }
 
         /// <summary>
         /// 聯絡資訊資料表
@@ -518,39 +518,44 @@ namespace WuliKaWu.Data
         /// </summary>
         public DbSet<ResetToken> ResetTokens { get; set; }
 
+<<<<<<< HEAD
         /// <summary>
         /// 支付方式資料表
         /// </summary>
 >>>>>>> [更新]商品相關表格及願望清單表格加入summary
         public DbSet<TableOfGetPayType> TbGetPayTypes { get; set; }
+=======
+        
+>>>>>>> DB修改
 
-        /// <summary>
-        /// 商品尺寸資料表
-        /// </summary>
-        public DbSet<TableOfSize> TbSizes { get; set; }
+        
 
         /// <summary>
         /// 商品顏色資料表
         /// </summary>
-        public DbSet<TableOfColor> TbColors { get; set; }
+        public DbSet<Color> Colors { get; set; }
 
         /// <summary>
         /// 商品星等資料表
         /// </summary>
-        public DbSet<TableOfStarRate> TbStars { get; set; }
+        public DbSet<StarRate> StarRate { get; set; }
 
         /// <summary>
         /// 商品分類資料表
         /// </summary>
-        public DbSet<TableOfCategory> TbCategories { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         /// <summary>
         /// 商品標籤資料表
         /// </summary>
+<<<<<<< HEAD
         public DbSet<TableOfTag> TbTags { get; set; }
 =======
         public DbSet<MemberRole> MemberRoles { get; set; }
 >>>>>>> [更新] 新增 MemberRoles 表
+=======
+        public DbSet<Tag> Tags { get; set; }
+>>>>>>> DB修改
 
         /// <summary>
         /// 商品圖片資料表

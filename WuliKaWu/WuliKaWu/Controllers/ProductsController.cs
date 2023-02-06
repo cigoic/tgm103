@@ -173,6 +173,9 @@ namespace WuliKaWu.Controllers
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> DB修改
         //// POST: Products/Create
         //// To protect from overposting attacks, enable the specific properties you want to bind to.
         //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -209,6 +212,7 @@ namespace WuliKaWu.Controllers
         //    //}
         //    //return View(product);
         //}
+<<<<<<< HEAD
 =======
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -253,6 +257,8 @@ namespace WuliKaWu.Controllers
             //return View(product);
         }
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
+=======
+>>>>>>> DB修改
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -329,6 +335,7 @@ namespace WuliKaWu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductModel model)
 <<<<<<< HEAD
+<<<<<<< HEAD
         {
             throw new NotImplementedException();
             //if (id != model.ProductId)
@@ -370,12 +377,16 @@ namespace WuliKaWu.Controllers
             //return View(model);
 =======
 
+=======
+>>>>>>> DB修改
         {
-            if (id != model.ProductId)
-            {
-                return NotFound();
-            }
+            throw new NotImplementedException();
+            //if (id != model.ProductId)
+            //{
+            //    return NotFound();
+            //}
 
+<<<<<<< HEAD
             if (ModelState.IsValid)
             {
                 var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
@@ -409,6 +420,40 @@ namespace WuliKaWu.Controllers
             }
             return View(model);
 >>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
+=======
+            //if (ModelState.IsValid)
+            //{
+            //    var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
+
+            //    product.ProductId = model.ProductId;
+            //    product.ProductName = model.ProductName;
+            //    product.Color = model.Color;
+            //    product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
+            //    //product.Category = model.Category;
+            //    product.PicturePath = model.PicturePath;
+            //    product.Price = model.Price;
+            //    product.Discount = Convert.ToDecimal(model.Discount);
+            //    product.SellingPrice = decimal.Parse(model.SellingPrice);
+
+            //    try
+            //    {
+            //        _context.Update(product);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!ProductExists(model.ProductId))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //}
+            //return View(model);
+>>>>>>> DB修改
         }
 
         // GET: Products/Delete/5

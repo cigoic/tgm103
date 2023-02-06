@@ -19,10 +19,14 @@ namespace WuliKaWu.Models.ApiModel
         public string PicturePath { get; set; }
         public string ProductName { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
         public List<string> Colors { get; set; }
 =======
         public Color Color { get; set; }
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
+=======
+        public List<string> Colors { get; set; }
+>>>>>>> DB修改
         public int Quantity { get; set; }
         public Size Size { get; set; }
         public decimal Price { get; set; }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WuliKaWu.Data
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     [Table("ContactMessages")]
     public class ContactMessage
     {
@@ -60,6 +61,9 @@ namespace WuliKaWu.Data
         public virtual Member Member { get; set; }
 =======
     [Table("Contact Messages")]
+=======
+    [Table("ContactMessages")]
+>>>>>>> DB修改
     public class ContactMessage
     {
         /// <summary>

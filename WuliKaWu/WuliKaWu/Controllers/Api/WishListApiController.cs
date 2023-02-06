@@ -229,8 +229,7 @@ namespace WuliKaWu.Controllers.Api
                     ProductName = w.Product.ProductName,
                     Price = w.Product.Price,
                     SellingPrice = (decimal)w.Product.SellingPrice,
-                    Discount = (decimal)w.Product.Discount,
-                    PicturePath = w.Product.PicturePath,
+                    PicturePath = w.Product.Pictures.FirstOrDefault().PicturePath,
                     ProductId = w.ProductId,
                     MemberId = w.MemberId
                 }

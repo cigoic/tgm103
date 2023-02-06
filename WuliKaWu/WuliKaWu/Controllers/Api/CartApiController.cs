@@ -152,6 +152,7 @@ namespace WuliKaWu.Controllers.Api
         {
             return _context.Carts.Select(x => new CartModel
             {
+<<<<<<< HEAD
                 CartId = x.CartId,
 <<<<<<< HEAD
                 Color = x.Color,
@@ -168,6 +169,9 @@ namespace WuliKaWu.Controllers.Api
                 //TODO Total(要寫嗎?)
 >>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
 =======
+=======
+                CartId = x.Id,
+>>>>>>> DB修改
                 Product = x.Product
 >>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
             }).ToList();

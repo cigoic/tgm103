@@ -1,9 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 =======
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 >>>>>>> 暫時修改
+=======
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+>>>>>>> DB修改
 
 namespace WuliKaWu.Data
 {

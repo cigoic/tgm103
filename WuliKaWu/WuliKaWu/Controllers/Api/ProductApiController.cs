@@ -37,6 +37,7 @@ namespace WuliKaWu.Controllers.Api
         public List<ProductModel> GetAll()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return _db.Products.Select(x => new ProductModel
             {
                 ProductName = x.ProductName,
@@ -89,6 +90,20 @@ namespace WuliKaWu.Controllers.Api
                 SellingPrice = x.SellingPrice.ToString() ?? ""
 >>>>>>> [ä¿®æ­£]ProductApiControllerçš„Discountå¯«æ­»çš„æ”¹æŽ‰
             }).ToList();
+=======
+            throw new NotImplementedException();
+            //return _context.Products.Select(x => new ProductModel
+            //{
+            //    ProductName = x.ProductName,
+            //    Color = x.Color,
+            //    PicturePath = x.PicturePath,
+            //    Price = x.Price,
+            //    ProductId = x.ProductId,
+            //    Size = x.Size.GetDescriptionText(),
+            //    Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
+            //    SellingPrice = x.SellingPrice.ToString() ?? ""
+            //}).ToList();
+>>>>>>> DBä¿®æ”¹
         }
 
         /// <summary>
@@ -99,27 +114,28 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet("{id}")]
         public PreviewModel GetById(int id)
         {
-            var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
+            throw new NotImplementedException();
+            //var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
 
-            if (data == null)
-            {
-                return null;
-            }
-            var model = new PreviewModel
-            {
-                ProductId = data.ProductId,
-                PicturePath = data.PicturePath,
-                ProductName = data.ProductName,
-                Color = data.Color,
-                Size = data.Size.GetDescriptionText(),
-                Price = data.Price,
-                Discount = data.Discount.HasValue ? data.Discount.Value > 0 ? true : false : false,
-                SellingPrice = data.SellingPrice.HasValue ? data.SellingPrice.Value.ToString() : "",
-                Category = (Category)data.CategoryId,
-                Tag = (Tag)data.Tag
-            };
+            //if (data == null)
+            //{
+            //    return null;
+            //}
+            //var model = new PreviewModel
+            //{
+            //    ProductId = data.ProductId,
+            //    PicturePath = data.PicturePath,
+            //    ProductName = data.ProductName,
+            //    Color = data.Color,
+            //    Size = data.Size.GetDescriptionText(),
+            //    Price = data.Price,
+            //    Discount = data.Discount.HasValue ? data.Discount.Value > 0 ? true : false : false,
+            //    SellingPrice = data.SellingPrice.HasValue ? data.SellingPrice.Value.ToString() : "",
+            //    Category = (Category)data.CategoryId,
+            //    Tag = (Tag)data.Tag
+            //};
 
-            return model;
+            //return model;
         }
 
         /// <summary>
@@ -131,34 +147,35 @@ namespace WuliKaWu.Controllers.Api
         [HttpPost("{id}")]
         public EditModel EditById(int id, EditModel eModel)
         {
-            Product product = _context.Products.Find(id);
-            product.ProductName = eModel.ProductName;
-            product.Color = eModel.Color;
-            product.Size = (Size)Enum.Parse(typeof(Size), eModel.Size);
-            product.CategoryId = (int)eModel.Category;
-            product.PicturePath = eModel.PicturePath;
-            product.Price = eModel.Price;
-            product.Discount = Convert.ToDecimal(eModel.Discount);
-            product.SellingPrice = decimal.Parse(eModel.SellingPrice);
-            product.Tag = (Tag)eModel.Tag;
+            throw new NotImplementedException();
+            //Product product = _context.Products.Find(id);
+            //product.ProductName = eModel.ProductName;
+            //product.Color = eModel.Color;
+            //product.Size = (Size)Enum.Parse(typeof(Size), eModel.Size);
+            //product.CategoryId = (int)eModel.Category;
+            //product.PicturePath = eModel.PicturePath;
+            //product.Price = eModel.Price;
+            //product.Discount = Convert.ToDecimal(eModel.Discount);
+            //product.SellingPrice = decimal.Parse(eModel.SellingPrice);
+            //product.Tag = (Tag)eModel.Tag;
 
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductModelExists(id))
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    _context.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!ProductModelExists(id))
+            //    {
+            //        return null;
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
-            return eModel;
+            //return eModel;
         }
 
         private bool ProductModelExists(int id)
@@ -174,23 +191,25 @@ namespace WuliKaWu.Controllers.Api
         [HttpPost]
         public async Task<String> AddProduct(AddModel addModel)
         {
-            Product prd = new Product
-            {
-                ProductName = addModel.ProductName,
-                Color = addModel.Color,
-                Size = addModel.Size,
-                PicturePath = addModel.PicturePath,
-                Price = addModel.Price,
-                Discount = addModel.Discount,
-                SellingPrice = addModel.SellingPrice,
-                CategoryId = (int)addModel.Category,
-                Tag = addModel.Tag
-            };
+            throw new NotImplementedException();
 
-            _context.Add(prd);
-            await _context.SaveChangesAsync();
+            //Product prd = new Product
+            //{
+            //    ProductName = addModel.ProductName,
+            //    Color = addModel.Color,
+            //    Size = addModel.Size,
+            //    PicturePath = addModel.PicturePath,
+            //    Price = addModel.Price,
+            //    Discount = addModel.Discount,
+            //    SellingPrice = addModel.SellingPrice,
+            //    CategoryId = (int)addModel.Category,
+            //    Tag = addModel.Tag
+            //};
 
-            return "Create Success!!";
+            //_context.Add(prd);
+            //await _context.SaveChangesAsync();
+
+            //return "Create Success!!";
         }
 
         //TODO °Ó«~­¶­±¥[¤J"¦¬ÂÃ²M³æ" ¥[Sweet Alert

@@ -231,7 +231,7 @@ namespace WuliKaWu.Data.Enums
         /// FourStar: 4
         /// FiveStar: 5
         /// </summary>
-        public enum StarRate
+        public enum StarRateEnum
         {
             [Description("NoStar")]
             NoStar = 0,
