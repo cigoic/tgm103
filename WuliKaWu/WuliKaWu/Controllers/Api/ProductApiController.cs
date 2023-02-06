@@ -56,8 +56,21 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet("{id}")]
         public ProductPreviewModel GetById(int id)
         {
-            //throw new NotImplementedException();
-            var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
+            var data = _context.Products.Include(x=>x.Pictures).Include(x=>x.Colors).Include(x=>x.Tags).FirstOrDefault(x => x.ProductId == id);
+
+            //return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Where(x => x.ProductId == id).Select(x => new ProductPreviewModel
+            //{
+            //    ProductId = x.ProductId,
+            //    ProductName = x.ProductName,
+            //    Colors = x.Colors.Select(x => x.Id).ToList(),
+            //    Size = x.Size,
+            //    Price = x.Price,
+            //    Discount = x.SellingPrice.HasValue ? true : false,
+            //    SellingPrice = x.SellingPrice,
+            //    CategoryId = x.CategoryId,
+            //    Tags = x.Tags.Select(x => x.Id).ToList(),
+            //    Pictures = x.Pictures.Select(x => x.PicturePath).ToList()
+            //}).Single();
 
             if (data == null)
             {
