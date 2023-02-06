@@ -84,40 +84,44 @@ namespace WuliKaWu.Controllers.Api
         public async Task<IEnumerable<CartGetModel>> GetCartAsync()
         {
             var myId = User.Claims.GetMemberId();
-            return (await _context.Carts
+
+            return (await _context.Carts.Include(x => x.Product.Select(a => a.Pictures)).Include(x => x.Product.Select(a => a.Size))
                 .Where(c => c.MemberId == myId)
                 .Select(c => new CartGetModel
                 {
+                    MemberId = c.MemberId,
                     Id = c.Id,
                     ProductId = c.ProductId,
-                    MemberId = c.MemberId,
-                    ProductName = c.Product.FirstOrDefault(p => p.ProductId == c.ProductId).ProductName,
-                    Price = c.Product.FirstOrDefault(p => p.ProductId == c.ProductId).Price,
-                    SellingPrice = (decimal)c.Product.FirstOrDefault(p => p.ProductId == c.ProductId).SellingPrice,
-                    //PicturePath = c.Product.FirstOrDefault(p=> p.ProductId == c.ProductId)
+                    Pictures = (List<string>)c.Product.Select(a => a.Pictures),
+                    ProductName = c.Product.Select(x => x.ProductName).ToString(),
+                    Size = c.Product.Select(a => a.Size),
+                    Color = c.Product.Select(x => x.Colors),
+                    Quantity = c.Quantity,
+                    Price = Convert.ToDecimal(c.Product.Select(x => x.Price)),
+                    SellingPrice = Convert.ToDecimal(c.Product.Select(x => x.SellingPrice))
                 }).ToListAsync());
         }
 
         //TODO 移除購物車的商品
-        [HttpPost("{cartId}")]
-        public async Task<IActionResult> RemoveToCart(int cartId)
-        {
-            if (_context.Carts == null)
-            {
-                return Problem("Entity set 'ShopContext.Cart' is null.");
-            }
+        //[HttpPost("{cartId}")]
+        //public async Task<IActionResult> RemoveToCart(int cartId)
+        //{
+        //    if (_context.Carts == null)
+        //    {
+        //        return Problem("Entity set 'ShopContext.Cart' is null.");
+        //    }
 
-            var cart = await _context.Members.FindAsync(cartId);
+        //    var cart = await _context.Members.FindAsync(cartId);
 
-            if (cart != null)
-            {
-                //var cartproduct = cart.Cart.Product;
-                //_context.Carts.Remove(cartproduct)
-                //cart.Cart.ProductId.Remove();
-            }
+        //    if (cart != null)
+        //    {
+        //        //var cartproduct = cart.Cart.Product;
+        //        //_context.Carts.Remove(cartproduct)
+        //        //cart.Cart.ProductId.Remove();
+        //    }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
     }
 }
