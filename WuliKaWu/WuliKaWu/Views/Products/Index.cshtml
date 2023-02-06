@@ -56,7 +56,7 @@
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
                                                 <a :href="getProductdetailsLink(product.productId)">
-                                                    <img :src="product.picturePath" alt="product picture">
+                                                    <img :src="product.pictures[0]" alt="product picture">
                                                 </a>
                                                 <div v-if="product.discount" class="product-badge badge-top badge-right badge-pink">
                                                     <span>-10%</span>
@@ -199,14 +199,7 @@
                             </div>
                             <div class="sidebar-list-style">
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Shop">Accessories <span>4</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Book <span>9</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Clothing <span>5</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Homelife <span>3</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Kids & Baby <span>4</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Stationery <span>8</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Health & Beauty <span>3</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Home Appliances <span>4</span></a></li>
+                                    <li v-for="item in optionSource.category"><a >{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -280,6 +273,12 @@
         let app = new Vue({
             el: "#shopIndex",
             data: {
+                optionSource:{
+                    tag:[],
+                    color:[],
+                    size:[],
+                    category:[]
+                },
                 sizeList: [],
                 searchText: "",
                 products: [],
@@ -290,11 +289,6 @@
                 selectedSize: "All",
                 selectedItem: "2",
                 productdetailsLink: "/Products/Productdetails/",
-                //getPic:
-                //{
-                //    type: "string",
-                //    default: "product-5.png"
-                //},
                 priceRange: {
                     min: 0,
                     max: 100
@@ -336,16 +330,16 @@
                 },
 
             },
-            mounted: function () {
-                var self = this;
-                fetch('/api/product/getall')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.products = result;
-                    })
-            },
             methods: {
+                showCount:function(type,value){
+                    if(type == "category"){
+                        return this.products.filter(x => x.categoryId == value).length;
+                    }
+                    if(type == "color"){
+                        return this.products.filter(x=> x.colors.find(y=>y == value)).length
+                    }
+                    
+                },
                 selectSize: function (text) {
                     console.log(text);
                     this.selectedSize = text;
@@ -360,24 +354,19 @@
                 getProductdetailsLink: function (productId) {
                     return this.productdetailsLink + productId
                 },
-                //getPicPath: function (picPath) {
-                //    console.log(picPath)    // receive pic filename
-                //    return picPath.replace("~", "")
-                //},
                 addToCart(id) {
                     console.log("CPid:", id)
                     this.queryCartBaseURL = '/api/cart/AddToCart/' + id;
                     fetch(this.queryCartBaseURL, { method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
-                            var al={
-                                icon:'sucess',
-                                title:'成功',
+                            var al = {
+                                icon: 'sucess',
+                                title: '成功',
                                 text: result.message,
                                 timer: 2000
                             };
-                            if(!result.status)
-                            {
+                            if (!result.status) {
                                 al.icon = "error";
                                 al.title = "失敗";
                             }
@@ -391,23 +380,50 @@
                         .then(function (response) { return response.json() })
                         .then(function (result) {
                             var al = {
-                                    icon: 'success',
-                                    title: '成功',
-                                    text: result.message,
-                                    timer: 2000
-                                };
-                            if(!result.status){
-                               al.icon = "error";
-                               al.title = "失敗";
+                                icon: 'success',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
                             }
                             Swal.fire(al)
                         })
 
                 },
-
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
             },
             mounted: function () {
-                var self = this;
+                var self = this;                
+                self.GetCategoryData();
+                self.GetColorData();
+                self.GetSizeData();
+                self.GetTagData();
                 fetch('/api/product/getall')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
