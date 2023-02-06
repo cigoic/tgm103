@@ -26,9 +26,42 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
 =======
 =======
+=======
+            modelBuilder.Entity("CartMember", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("CartMember");
+                });
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProduct");
+                });
+
+>>>>>>> [修改] 會員表, 重建 Migration
             modelBuilder.Entity("ColorProduct", b =>
                 {
                     b.Property<int>("ColorsId")
@@ -459,6 +492,7 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] migrations
 =======
 
+<<<<<<< HEAD
                     b.HasIndex("MemberId");
 
                     b.HasIndex("ProductId");
@@ -473,6 +507,8 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Cart", (string)null);
 >>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
 =======
+=======
+>>>>>>> [修改] 會員表, 重建 Migration
                     b.ToTable("Cart");
 >>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
 =======
@@ -618,12 +654,19 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
 
+<<<<<<< HEAD
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstImageFileName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+=======
+                    b.Property<string>("Account")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+>>>>>>> [修改] 會員表, 重建 Migration
 
 <<<<<<< HEAD
                     b.Property<int>("MemberId")
@@ -648,12 +691,17 @@ namespace WuliKaWu.Migrations
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
+<<<<<<< HEAD
                     b.Property<bool>("LockOutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("MemberShip")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+=======
+                    b.Property<int>("MemberShip")
+                        .HasColumnType("int");
+>>>>>>> [修改] 會員表, 重建 Migration
 
                     b.Property<string>("MobilePhone")
                         .IsRequired()
@@ -1545,6 +1593,7 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -1553,6 +1602,11 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 =======
+=======
+                    b.Property<string>("VerificationToken")
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> [修改] 會員表, 重建 Migration
                     b.HasKey("MemberId");
 >>>>>>> 新增WishListTable及Api
 
@@ -2116,6 +2170,36 @@ namespace WuliKaWu.Migrations
                     b.ToTable("WishLists");
                 });
 
+            modelBuilder.Entity("CartMember", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ColorProduct", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Color", null)
@@ -2131,21 +2215,7 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductTag", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Cart", null)
@@ -2192,6 +2262,9 @@ namespace WuliKaWu.Migrations
                 });
 
             modelBuilder.Entity("ProductWishList", b =>
+=======
+            modelBuilder.Entity("ProductTag", b =>
+>>>>>>> [修改] 會員表, 重建 Migration
                 {
                     b.HasOne("WuliKaWu.Data.Product", null)
                         .WithMany()
@@ -2199,9 +2272,9 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WuliKaWu.Data.WishList", null)
+                    b.HasOne("WuliKaWu.Data.Tag", null)
                         .WithMany()
-                        .HasForeignKey("WishListId")
+                        .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -2373,6 +2446,8 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ResetTokens");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("WishList");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
