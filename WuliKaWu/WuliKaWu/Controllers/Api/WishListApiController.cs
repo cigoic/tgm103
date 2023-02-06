@@ -95,21 +95,22 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet]
         public async Task<IEnumerable<WishListModel>> GetWishListAsync()
         {
-            var myId = User.Claims.GetMemberId();
-            return (await _context.WishList
-                .Where(x => x.MemberId == myId)
-                .Select(x => new WishListModel
-                {
-                    WishListId = w.WishListId,
-                    ProductName = w.Product.ProductName,
-                    Price = w.Product.Price,
-                    SellingPrice = (decimal)w.Product.SellingPrice,
-                    PicturePath = w.Product.Pictures.FirstOrDefault().PicturePath,
-                    ProductId = w.ProductId,
-                    MemberId = w.MemberId
-                }
-                )
-                .ToListAsync());
+            throw new NotImplementedException();    
+            //var myId = User.Claims.GetMemberId();
+            //return (await _context.WishList
+            //    .Where(x => x.MemberId == myId)
+            //    .Select(x => new WishListModel
+            //    {
+            //        WishListId = x.WishListId,
+            //        ProductName = x.Product.ProductName,
+            //        Price = x.Product.Price,
+            //        SellingPrice = (decimal)w.Product.SellingPrice,
+            //        PicturePath = w.Product.Pictures.FirstOrDefault().PicturePath,
+            //        ProductId = w.ProductId,
+            //        MemberId = w.MemberId
+            //    }
+            //    )
+            //    .ToListAsync());
         }
 
         //TODO 加入購物車 AddtoCart(右邊Button)

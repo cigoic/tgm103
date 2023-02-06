@@ -88,7 +88,7 @@ namespace WuliKaWu.Controllers.Api
                 .Where(c => c.MemberId == myId)
                 .Select(c => new CartModel
                 {
-                    CartId = c.CartId,
+                    CartId = c.Id,
                     ProductId = c.ProductId,
                     MemberId = c.MemberId
                 }).ToListAsync());

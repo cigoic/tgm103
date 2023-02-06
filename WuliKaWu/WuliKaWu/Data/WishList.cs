@@ -27,12 +27,12 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:對應多個會員，使用 ICollection
         /// </summary>
-        public virtual ICollection<Member> Member { get; set; }
+        public virtual Member Member { get; set; }
 
         /// <summary>
         /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
 
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
