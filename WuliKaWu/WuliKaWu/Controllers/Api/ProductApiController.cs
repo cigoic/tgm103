@@ -42,8 +42,9 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <returns></returns>
 
-        public List<ProductModel> GetAll()
+        public List<ProductReadModel> GetAll()
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             return _db.Products.Select(x => new ProductModel
@@ -112,6 +113,23 @@ namespace WuliKaWu.Controllers.Api
             //    SellingPrice = x.SellingPrice.ToString() ?? ""
             //}).ToList();
 >>>>>>> DB修改
+=======
+
+            return _context.Products.Include(x=> x.Colors).Include(x=>x.Pictures).Include(x=>x.Tags).Select(x => new ProductReadModel
+            {
+                ProductName = x.ProductName,
+                CategoryId = x.CategoryId,
+                Colors = x.Colors.Select(x => x.Id).ToList(),
+                Pictures = x.Pictures.Select(x => x.PicturePath).ToList(),
+                Price = x.Price,
+                ProductId = x.ProductId,
+                Size = x.Size,
+                Discount = x.SellingPrice.HasValue ? true : false,
+                SellingPrice = x.SellingPrice,
+                Comment = x.Comment,
+                Tags = x.Tags.Select(x => x.Id).ToList()
+            }).ToList();
+>>>>>>> product index filter-category
         }
 
         /// <summary>
@@ -207,8 +225,8 @@ namespace WuliKaWu.Controllers.Api
                 Price = data.Price,
                 SellingPrice = data.SellingPrice,
                 Size = (Size)data.SizeId,
-                Colors = data.ColorIds.Select(x => new Data.Color { Id = x }).ToList(),
-                Tags = data.TagIds.Select(x => new Data.Tag { Id = x }).ToList(),
+                Colors = _context.Colors.Where(x=> data.ColorIds.Contains(x.Id)).ToList(),
+                Tags = _context.Tags.Where(x=> data.TagIds.Contains(x.Id)).ToList()
             };
 
             if (data.Pictures != null)

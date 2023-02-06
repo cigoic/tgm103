@@ -225,7 +225,7 @@
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
                                                 <a :href="getProductdetailsLink(product.productId)">
-                                                    <img :src="product.picturePath" alt="product picture">
+                                                    <img :src="product.pictures[0]" alt="product picture">
                                                 </a>
 <<<<<<< HEAD
                                             </h3>
@@ -494,14 +494,7 @@
                             </div>
                             <div class="sidebar-list-style">
                                 <ul>
-                                    <li><a asp-controller="Home" asp-action="Shop">Accessories <span>4</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Book <span>9</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Clothing <span>5</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Homelife <span>3</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Kids & Baby <span>4</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Stationery <span>8</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Health & Beauty <span>3</span></a></li>
-                                    <li><a asp-controller="Home" asp-action="Shop">Home Appliances <span>4</span></a></li>
+                                    <li v-for="item in optionSource.category"><a >{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -728,16 +721,22 @@
             data: {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> product index filter-category
                 optionSource:{
                     tag:[],
                     color:[],
                     size:[],
                     category:[]
                 },
+<<<<<<< HEAD
 =======
                 sizeList:[],
 >>>>>>> 小精靈的祝福
 =======
+=======
+>>>>>>> product index filter-category
                 sizeList: [],
 >>>>>>> 修改wishlist
                 searchText: "",
@@ -754,6 +753,7 @@
                 selectedItem: "2",
                 productdetailsLink: "/Products/Productdetails/",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 //getPic:
                 //{
@@ -761,6 +761,8 @@
                 //    default: "product-5.png"
                 //},
 >>>>>>> [修正] 商品的首頁及商品明細檢視頁面的圖片顯示路徑
+=======
+>>>>>>> product index filter-category
                 priceRange: {
                     min: 0,
                     max: 100
@@ -805,6 +807,7 @@
                 },
 
             },
+<<<<<<< HEAD
             methods: {
                 showCount:function(type,value){
                     if(type == "category"){
@@ -1175,6 +1178,18 @@
             methods: {
                 selectSize:function(text){   
 =======
+=======
+            methods: {
+                showCount:function(type,value){
+                    if(type == "category"){
+                        return this.products.filter(x => x.categoryId == value).length;
+                    }
+                    if(type == "color"){
+                        return this.products.filter(x=> x.colors.find(y=>y == value)).length
+                    }
+                    
+                },
+>>>>>>> product index filter-category
                 selectSize: function (text) {
 >>>>>>> 修改wishlist
                     console.log(text);
@@ -1190,10 +1205,6 @@
                 getProductdetailsLink: function (productId) {
                     return this.productdetailsLink + productId
                 },
-                //getPicPath: function (picPath) {
-                //    console.log(picPath)    // receive pic filename
-                //    return picPath.replace("~", "")
-                //},
                 addToCart(id) {
                     console.log("CPid:", id)
 <<<<<<< HEAD
@@ -1235,6 +1246,7 @@
                         .then(function (result) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             alert(result);                            
 >>>>>>> [新增]RemoveCartAction及RemoveWishList Action
                         })                        
@@ -1244,11 +1256,15 @@
                             var al={
                                 icon:'sucess',
                                 title:'成功',
+=======
+                            var al = {
+                                icon: 'sucess',
+                                title: '成功',
+>>>>>>> product index filter-category
                                 text: result.message,
                                 timer: 2000
                             };
-                            if(!result.status)
-                            {
+                            if (!result.status) {
                                 al.icon = "error";
                                 al.title = "失敗";
                             }
@@ -1264,23 +1280,50 @@
                         .then(function (response) { return response.json() })
                         .then(function (result) {
                             var al = {
-                                    icon: 'success',
-                                    title: '成功',
-                                    text: result.message,
-                                    timer: 2000
-                                };
-                            if(!result.status){
-                               al.icon = "error";
-                               al.title = "失敗";
+                                icon: 'success',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
                             }
                             Swal.fire(al)
                         })
 
                 },
-
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
             },
             mounted: function () {
-                var self = this;
+                var self = this;                
+                self.GetCategoryData();
+                self.GetColorData();
+                self.GetSizeData();
+                self.GetTagData();
                 fetch('/api/product/getall')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
