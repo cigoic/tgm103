@@ -34,7 +34,7 @@ namespace WuliKaWu.Controllers
             }
 
             var cart = await _context.Carts
-                .FirstOrDefaultAsync(m => m.CartId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
                 return NotFound();
@@ -108,7 +108,7 @@ namespace WuliKaWu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CartId,ProductName,Size,Color,PicturePath,Quantity,Price,SellingPrice,Discount,Coupon,Total")] Cart cart)
         {
-            if (id != cart.CartId)
+            if (id != cart.Id)
             {
                 return NotFound();
             }
@@ -122,7 +122,7 @@ namespace WuliKaWu.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CartExists(cart.CartId))
+                    if (!CartExists(cart.Id))
                     {
                         return NotFound();
                     }
@@ -145,7 +145,7 @@ namespace WuliKaWu.Controllers
             }
 
             var cart = await _context.Carts
-                .FirstOrDefaultAsync(m => m.CartId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
                 return NotFound();
@@ -175,7 +175,7 @@ namespace WuliKaWu.Controllers
 
         private bool CartExists(int id)
         {
-            return _context.Carts.Any(e => e.CartId == id);
+            return _context.Carts.Any(e => e.Id == id);
         }
     }
 }

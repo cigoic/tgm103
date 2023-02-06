@@ -24,7 +24,7 @@ namespace WuliKaWu.Controllers.Api
         {
             return _context.Carts.Select(x => new CartModel
             {
-                CartId = x.CartId,
+                CartId = x.Id,
                 Product = x.Product
             }).ToList();
         }

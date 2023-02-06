@@ -5,24 +5,21 @@ namespace WuliKaWu.Models.ApiModel
 {
     public class ProductModel
     {
-        public int ProductId { get; set; }
 
         public string ProductName { get; set; }
 
-        public Color Color { get; set; }
+        public List<int> Color { get; set; }
 
-        public string Size { get; set; }
+        public List<int> Size { get; set; }
 
-        public Category Category { get; set; }
-
-        public string PicturePath { get; set; }
+        public int CategoryId { get; set; }
 
         public decimal Price { get; set; }
 
-        public bool Discount { get; set; }
-
         public string SellingPrice { get; set; }
 
-        public Tag Tag { get; set; }
+        public List<IFormFile> PictureFiles { get; set; }
+        public List<int> Tag { get; set; }
+        public string Comment { get; set; }
     }
 }

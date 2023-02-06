@@ -23,7 +23,7 @@ namespace WuliKaWu.Controllers.Api
                 CheckOutId = 2,
                 PicturePath = "/assets/images/cart/cart-2.jpg",
                 ProductName = x.Product.ProductName,
-                Color = x.Product.Color,
+                Colors = x.Product.Colors.Select(x=> x.Type).ToList(),
                 Quantity = x.Quantity,
                 Size = x.Product.Size,
                 Price = x.Product.Price,

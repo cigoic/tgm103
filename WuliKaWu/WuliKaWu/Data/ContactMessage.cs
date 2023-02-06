@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
 {
-    [Table("Contact Messages")]
+    [Table("ContactMessages")]
     public class ContactMessage
     {
         /// <summary>

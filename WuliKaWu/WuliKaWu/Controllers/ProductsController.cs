@@ -65,40 +65,42 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ProductModel product)
-        {
-            Product prd = new Product
-            {
-                //ProductId = product.ProductId,
-                ProductName = product.ProductName,
-                Color = product.Color,
-                Size = (Size)Enum.Parse(typeof(Size), product.Size),
-                CategoryId = (int)product.Category,
-                PicturePath = product.PicturePath,
-                Price = product.Price,
-                Discount = Convert.ToDecimal(product.Discount),
-                SellingPrice = Convert.ToDecimal(product.SellingPrice),
-                Tag = product.Tag
-            };
+        //// POST: Products/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create(ProductModel product)
+        //{
+        //    Product prd = new Product
+        //    {
+        //        //ProductId = product.ProductId,
+        //        ProductName = product.ProductName,                
+        //        CategoryId = (int)product.Category,                
+        //        Price = product.Price,                
+        //        SellingPrice = Convert.ToDecimal(product.SellingPrice),
+        //        Comment = product.Comment,
+                
 
-            _context.Products.Add(prd);
-            await _context.SaveChangesAsync();
+        //        Tags = product.Tag.Select(x=> new Data.Tag { Id = x}).ToList(),
+        //        Colors = product.Color.Select(x => new Data.Color { Id = x }).ToList(),
+        //        Size = (Size)Enum.Parse(typeof(Size), product.Size),
+        //        PicturePath = product.PicturePath,
+        //    };
 
-            return View();
+        //    _context.Products.Add(prd);
+        //    await _context.SaveChangesAsync();
 
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(product);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //return View(product);
-        }
+        //    return View();
+
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    _context.Add(product);
+        //    //    await _context.SaveChangesAsync();
+        //    //    return RedirectToAction(nameof(Index));
+        //    //}
+        //    //return View(product);
+        //}
 
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -146,45 +148,45 @@ namespace WuliKaWu.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductModel model)
-
         {
-            if (id != model.ProductId)
-            {
-                return NotFound();
-            }
+            throw new NotImplementedException();
+            //if (id != model.ProductId)
+            //{
+            //    return NotFound();
+            //}
 
-            if (ModelState.IsValid)
-            {
-                var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
+            //if (ModelState.IsValid)
+            //{
+            //    var product = _context.Products.Where(p => p.ProductId == model.ProductId).FirstOrDefault();
 
-                product.ProductId = model.ProductId;
-                product.ProductName = model.ProductName;
-                product.Color = model.Color;
-                product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
-                //product.Category = model.Category;
-                product.PicturePath = model.PicturePath;
-                product.Price = model.Price;
-                product.Discount = Convert.ToDecimal(model.Discount);
-                product.SellingPrice = decimal.Parse(model.SellingPrice);
+            //    product.ProductId = model.ProductId;
+            //    product.ProductName = model.ProductName;
+            //    product.Color = model.Color;
+            //    product.Size = (Size)Enum.Parse(typeof(Size), model.Size);
+            //    //product.Category = model.Category;
+            //    product.PicturePath = model.PicturePath;
+            //    product.Price = model.Price;
+            //    product.Discount = Convert.ToDecimal(model.Discount);
+            //    product.SellingPrice = decimal.Parse(model.SellingPrice);
 
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(model.ProductId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-            return View(model);
+            //    try
+            //    {
+            //        _context.Update(product);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!ProductExists(model.ProductId))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //}
+            //return View(model);
         }
 
         // GET: Products/Delete/5

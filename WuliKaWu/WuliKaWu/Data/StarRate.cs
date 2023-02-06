@@ -19,14 +19,18 @@ namespace WuliKaWu.Data
         [ForeignKey("Product")]
         public int ProductId { get; set; }
 
+        [ForeignKey("Member")]
+        public int MemberId { get; set; }
+
         /// <summary>
         /// 商品的星等類型值
         /// </summary>
-        public StarRate Type { get; set; }
+        public StarRateEnum Type { get; set; }
 
         /// <summary>
         /// 導覽屬性：只對應到單一商品，不用 ICollection
         /// </summary>
         public virtual Product Product { get; set; }
+        public virtual Member Member { get; set; }
     }
 }
