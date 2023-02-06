@@ -35,7 +35,7 @@ namespace WuliKaWu.Data
         public virtual Member Member { get; set; }
 
         /// <summary>
-        /// 導覽屬性:對應多筆商品，使用 ICollection
+        /// 導覽屬性:只對應一筆商品，不用 ICollection
         /// </summary>
 
         public virtual Product Product { get; set; }

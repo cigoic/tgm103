@@ -9,5 +9,6 @@
         public string PicturePath { get; set; }
         public int ProductId { get; set; }
         public int MemberId { get; set; }
+        public List<string> Pictures { get; set; }
     }
 }

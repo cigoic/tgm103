@@ -1,4 +1,7 @@
-﻿namespace WuliKaWu.Models.ApiModel
+﻿using WuliKaWu.Data;
+using WuliKaWu.Data.Enums;
+
+namespace WuliKaWu.Models.ApiModel
 {
     public class CartGetModel
     {
@@ -12,6 +15,9 @@
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public decimal SellingPrice { get; set; }
-        public string PicturePath { get; set; }
+        public List<string> Pictures { get; set; }
+        public IEnumerable<Common.Size> Size { get; set; }
+        public IEnumerable<ICollection<Color>> Color { get; set; }
+        public int Quantity { get; set; }
     }
 }

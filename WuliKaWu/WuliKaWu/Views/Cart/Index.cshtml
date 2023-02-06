@@ -351,8 +351,12 @@
                             </div>
                         </div>
                         <div class="grand-total-btn btn-hover">
+<<<<<<< HEAD
                             <a class="btn theme-color" asp-action="Checkout" asp-controller="Home">Proceed to checkout</a>
 >>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
+=======
+                            <a class="btn theme-color" href="/api/CheckOut/Index">Proceed to checkout</a>                            
+>>>>>>> [新增]CartGetModel及WishListGetModel 的資料欄位
                         </div>
                     </div>
                 </div>
@@ -407,7 +411,7 @@
 @section Scripts{
 
     <script>
-        let cart = new Vue({
+        let app = new Vue({
             el: "#cartIndex",
             data: {
                 productInThisCart: {
