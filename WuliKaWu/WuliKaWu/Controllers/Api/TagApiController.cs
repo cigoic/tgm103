@@ -17,7 +17,7 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet]
         public List<TagApiModel> GetAll()
         {
-            return _context.Colors.Select(x => new TagApiModel
+            return _context.Tags.Select(x => new TagApiModel
             {
                 Id = x.Id,
                 Type = x.Type
