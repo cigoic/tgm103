@@ -484,7 +484,7 @@ namespace WuliKaWu.Controllers
 >>>>>>> [更新] 會員登入、註冊、忘記密碼等控制器功能與檢視畫面
         [HttpPost]
         [ActionName("Login")]
-        public async Task<IActionResult> LoginRegisterAsync([FromBody] MemberLoginModel model)
+        public async Task<IActionResult> LoginRegisterAsync(MemberLoginModel model)
         {
             // 資料庫比對
             var member = _context.Members
@@ -674,7 +674,7 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> MyAccount([FromBody] AccountDetailsModel model)
+        public async Task<IActionResult> MyAccount(AccountDetailsModel model)
         {
             if (User.Identity?.IsAuthenticated == false || ModelState.IsValid == false)
                 return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
