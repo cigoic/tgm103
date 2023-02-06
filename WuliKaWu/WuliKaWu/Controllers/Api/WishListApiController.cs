@@ -289,6 +289,7 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet]
         public async Task<IEnumerable<WishListModel>> GetWishListAsync()
         {
+<<<<<<< HEAD
             var myId = User.Claims.GetMemberId();
             return (await _context.WishList
                 .Where(x => x.MemberId == myId)
@@ -334,14 +335,30 @@ namespace WuliKaWu.Controllers.Api
             //        SellingPrice = (decimal)w.Product.SellingPrice,
             //        Discount = (decimal)w.Product.Discount,
             //        PicturePath = w.Product.PicturePath,
+=======
+            throw new NotImplementedException();    
+            //var myId = User.Claims.GetMemberId();
+            //return (await _context.WishList
+            //    .Where(x => x.MemberId == myId)
+            //    .Select(x => new WishListModel
+            //    {
+            //        WishListId = x.WishListId,
+            //        ProductName = x.Product.ProductName,
+            //        Price = x.Product.Price,
+            //        SellingPrice = (decimal)w.Product.SellingPrice,
+            //        PicturePath = w.Product.Pictures.FirstOrDefault().PicturePath,
+>>>>>>> [小精靈]
             //        ProductId = w.ProductId,
             //        MemberId = w.MemberId
             //    }
             //    )
             //    .ToListAsync());
+<<<<<<< HEAD
 >>>>>>> [修改]Gettocart及Getwishlist
 =======
 >>>>>>> [修改]Addtocart Action
+=======
+>>>>>>> [小精靈]
         }
 
         //TODO 加入購物車 AddtoCart(右邊Button)

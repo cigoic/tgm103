@@ -41,6 +41,9 @@ namespace WuliKaWu.Controllers.Api
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [小精靈]
             throw new NotImplementedException();
             //return _context.Carts.Select(x => new CheckOutModel
             //{
@@ -58,6 +61,7 @@ namespace WuliKaWu.Controllers.Api
             //    Recipient = "胖虎",
             //    ContactPhone = "0900 123 456"
             //}).ToList();
+<<<<<<< HEAD
 
 =======
             return _db.OrderDetails.Select(x => new CheckOutModel
@@ -92,6 +96,8 @@ namespace WuliKaWu.Controllers.Api
                 ContactPhone = "0900 123 456"
             }).ToList();
 >>>>>>> [調整]更改檔案位子至Api
+=======
+>>>>>>> [小精靈]
         }
     }
 }
