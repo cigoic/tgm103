@@ -6,7 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
+<<<<<<< HEAD
 using WuliKaWu.Models.ApiModel;
+=======
+using WuliKaWu.Models;
+>>>>>>> [新增]color controller以及color新增及編輯的model
 
 namespace WuliKaWu.Controllers
 {
@@ -57,7 +61,11 @@ namespace WuliKaWu.Controllers
             _context.Colors.Add(new Color { Type = color.Type });
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+<<<<<<< HEAD
             //return View(color);
+=======
+            return View(color);
+>>>>>>> [新增]color controller以及color新增及編輯的model
         }
 
         // GET: Colors/Edit/5
