@@ -47,6 +47,7 @@ namespace WuliKaWu.Controllers.Api
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             return _db.Products.Select(x => new ProductModel
             {
                 ProductName = x.ProductName,
@@ -116,6 +117,9 @@ namespace WuliKaWu.Controllers.Api
 =======
 
             return _context.Products.Include(x=> x.Colors).Include(x=>x.Pictures).Include(x=>x.Tags).Select(x => new ProductReadModel
+=======
+            return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
+>>>>>>> [修正]刪除不需要的Model以及更改Model名稱
             {
                 ProductName = x.ProductName,
                 CategoryId = x.CategoryId,
@@ -138,30 +142,30 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public PreviewModel GetById(int id)
+        public ProductPreviewModel GetById(int id)
         {
-            throw new NotImplementedException();
-            //var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
+            //throw new NotImplementedException();
+            var data = _context.Products.FirstOrDefault(x => x.ProductId == id);
 
-            //if (data == null)
-            //{
-            //    return null;
-            //}
-            //var model = new PreviewModel
-            //{
-            //    ProductId = data.ProductId,
-            //    PicturePath = data.PicturePath,
-            //    ProductName = data.ProductName,
-            //    Color = data.Color,
-            //    Size = data.Size.GetDescriptionText(),
-            //    Price = data.Price,
-            //    Discount = data.Discount.HasValue ? data.Discount.Value > 0 ? true : false : false,
-            //    SellingPrice = data.SellingPrice.HasValue ? data.SellingPrice.Value.ToString() : "",
-            //    Category = (Category)data.CategoryId,
-            //    Tag = (Tag)data.Tag
-            //};
+            if (data == null)
+            {
+                return null;
+            }
+            var model = new ProductPreviewModel
+            {
+                ProductId = data.ProductId,
+                Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
+                ProductName = data.ProductName,
+                Colors = data.Colors.Select(x => x.Id).ToList(),
+                Size = data.Size,
+                Price = data.Price,
+                Discount = data.SellingPrice.HasValue ? true : false,
+                SellingPrice = data.SellingPrice,
+                CategoryId = data.CategoryId,
+                Tags = data.Tags.Select(x => x.Id).ToList()
+            };
 
-            //return model;
+            return model;
         }
 
         /// <summary>
@@ -225,8 +229,8 @@ namespace WuliKaWu.Controllers.Api
                 Price = data.Price,
                 SellingPrice = data.SellingPrice,
                 Size = (Size)data.SizeId,
-                Colors = _context.Colors.Where(x=> data.ColorIds.Contains(x.Id)).ToList(),
-                Tags = _context.Tags.Where(x=> data.TagIds.Contains(x.Id)).ToList()
+                Colors = _context.Colors.Where(x => data.ColorIds.Contains(x.Id)).ToList(),
+                Tags = _context.Tags.Where(x => data.TagIds.Contains(x.Id)).ToList()
             };
 
             if (data.Pictures != null)
@@ -250,7 +254,6 @@ namespace WuliKaWu.Controllers.Api
             _context.Products.Add(prd);
             _context.SaveChanges();
             return true;
-
         }
     }
 }<<<<<<< HEAD

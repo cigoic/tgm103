@@ -134,6 +134,7 @@ namespace WuliKaWu.Controllers
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public async Task<IActionResult> ProductDetails(int id = 2)
 =======
         public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
@@ -147,6 +148,9 @@ namespace WuliKaWu.Controllers
 =======
         public async Task<IActionResult> ProductDetails(int id = 1)
 >>>>>>> [更新]將ProductController中的ProductDetails的預設id改為1
+=======
+        public async Task<IActionResult> ProductDetails(int id = 2)
+>>>>>>> [修正]刪除不需要的Model以及更改Model名稱
         {
             if (id == null || _context.Products == null)
             {
