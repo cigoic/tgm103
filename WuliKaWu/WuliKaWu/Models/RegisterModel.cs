@@ -4,7 +4,7 @@ using static WuliKaWu.Data.MemberRole;
 
 namespace WuliKaWu.Models
 {
-    public class RegisterViewModel
+    public class RegisterModel
     {
         public string Account { get; set; }
         public string Password { get; set; }
