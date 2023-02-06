@@ -22,7 +22,7 @@ namespace WuliKaWu.Models.ApiModel
 
         public decimal? SellingPrice { get; set; }
 
-        public Category Category { get; set; }
+        public string Category { get; set; }
 
         public Tag? Tag { get; set; }
     }
