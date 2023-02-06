@@ -27,7 +27,7 @@
                     <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="easyzoom-style">
                             <div class="easyzoom easyzoom--overlay">
-                                <img :src="product.picturePath" alt="product picture">
+                                <img :src="product.pictures[0]" alt="product picture">
                             </div>
 
                         </div>
@@ -84,13 +84,13 @@
                                 <li>
                                     <span class="title">Category:</span>
                                     <ul>
-                                        <li>{{product.category}}</li>                                  
+                                        <li>{{product.categoryId}}</li>                                  
                                     </ul>
                                 </li>
                                 <li>
                                     <span class="title">Tags:</span>
                                     <ul class="tag">
-                                        <li>{{product.tag}}</li>
+                                        <li>{{optionSource.tag.type}}</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -205,10 +205,22 @@
             data:
             {
                 product:[],
+                optionSource: {
+                    tag: [],
+                    color: [],
+                    size: [],
+                    category: []
+                },
+
             },
 
             mounted: function(){
                 var self = this;
+                self.GetCategoryData();
+                self.GetColorData();
+                self.GetSizeData();
+                self.GetTagData();
+
                 fetch('/api/product/getbyid/'+'@ViewBag.id')
                 .then(function(response){return response.json()})
                 .then(function(result){
@@ -221,6 +233,30 @@
             methods:
             {
 
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
             }
 
         });
