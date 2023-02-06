@@ -198,13 +198,10 @@
 @section Scripts{
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            PDEapp.$mount('#ProductDetails')
-        })
 
-        let PDEapp = new Vue({
+        let app = new Vue({
 
-            //el:"#ProductDetails",
+            el:"#ProductDetails",
             data:
             {
                 product:[],

@@ -136,12 +136,11 @@
         }
     }
 
-    let PEapp = new Vue({
+    let app = new Vue({
     
-        //el: "#EditProduct",
+        el: "#EditProduct",
         data:
         {
-            //queryEditBaseUrl: "/api/product/editbyid/",
             
             productFields:{
                     productId: "",
@@ -194,11 +193,7 @@
         }
 
     });
-        //內容都跑完後再載入Vue
 
-        document.addEventListener("DOMContentLoaded", () => {
-            PEapp.$mount('#EditProduct')
-        })
 
 </script>
 
