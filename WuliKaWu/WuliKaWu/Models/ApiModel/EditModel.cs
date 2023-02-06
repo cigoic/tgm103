@@ -6,6 +6,7 @@ namespace WuliKaWu.Models.ApiModel
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         public int ProductId { get; set; }
 =======
@@ -13,6 +14,8 @@ namespace WuliKaWu.Models.ApiModel
 >>>>>>> [修改]Edit頁面部分欄位完成(仍有一部分有誤)
 
 >>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
+=======
+>>>>>>> [新增]CategoriesController Action的Create及Edit
         public string ProductName { get; set; }
 
         public Color Color { get; set; }
@@ -20,10 +23,14 @@ namespace WuliKaWu.Models.ApiModel
         public string Size { get; set; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         public string Category { get; set; }
 =======
         public Category Category { get; set; }
 >>>>>>> [更新]將商品編輯的檢視改為用Vue(點擊儲存編輯的功能尚未完成)
+=======
+        public string Category { get; set; }
+>>>>>>> [新增]CategoriesController Action的Create及Edit
 
         public string PicturePath { get; set; }
 

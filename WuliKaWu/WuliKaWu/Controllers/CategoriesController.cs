@@ -6,7 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
+<<<<<<< HEAD
 using WuliKaWu.Models.ApiModel;
+=======
+using WuliKaWu.Models;
+>>>>>>> [新增]CategoriesController Action的Create及Edit
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers
@@ -54,6 +58,7 @@ namespace WuliKaWu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryCreateModel category)
         {
+<<<<<<< HEAD
             _context.Categories.Add(new Category
             {
                 Type = category.Type
@@ -61,6 +66,12 @@ namespace WuliKaWu.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
             //return View(category);
+=======
+            _context.Categories.Add(new Category { Type = category.Type });
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            return View(category);
+>>>>>>> [新增]CategoriesController Action的Create及Edit
         }
 
         // GET: Categories/Edit/5

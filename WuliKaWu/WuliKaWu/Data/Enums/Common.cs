@@ -253,28 +253,6 @@ namespace WuliKaWu.Data.Enums
         }
 
         /// <summary>
-        /// Enum 類型，商品分類:
-        /// Tops: 上衣_0
-        /// Buttoms: 下身_1
-        /// Outer: 外套_2
-        /// Dress: 洋裝_3
-        /// </summary>
-        public enum Category
-        {
-            [Description("Tops")]
-            Tops,
-
-            [Description("Buttoms")]
-            Buttoms,
-
-            [Description("Outer")]
-            Outer,
-
-            [Description("Dress")]
-            Dress
-        }
-
-        /// <summary>
         /// Enum 類型，商品標籤:
         /// Hot: 熱銷_0
         /// New: 新品_1
