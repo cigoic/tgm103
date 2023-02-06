@@ -21,42 +21,84 @@ namespace WuliKaWu.Controllers.Api
             _context = context;
         }
 
-        //TODO Get全部會員的所有收藏清單
-        //[HttpGet]
-        //public async Task<IEnumerable<WishListModel>> GetAll()
-        //{
-        //    var wlist = await _context.WishList.Select(x => new WishListModel
-        //    {
-        //        WishListId = x.WishListId,
-        //        ProductName = x.Product.ProductName,
-        //        Price = x.Product.Price,
-        //        SellingPrice = (decimal)x.Product.SellingPrice,
-        //        Discount = (decimal)x.Product.Discount,
-        //        PicturePath = x.Product.PicturePath,
-        //        ProductId = x.ProductId,
-        //        MemberId = x.MemberId
-        //    }).ToListAsync();
-
-        //    return wlist;
-        //}
-
         /// <summary>
-        /// Get一個會員的收藏清單的所有商品
+        /// Get全部會員的所有收藏清單
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<WishListModel>> GetWishList()
+        public async Task<IEnumerable<WishListModel>> GetAll()
+        {
+            var wlist = await _context.WishList.Select(x => new WishListModel
+            {
+                WishListId = x.WishListId,
+                //ProductName = x.Product.ProductName,
+                //Price = x.Product.Price,
+                //SellingPrice = (decimal)x.Product.SellingPrice,
+                //Discount = (decimal)x.Product.Discount,
+                //PicturePath = x.Product.PicturePath,
+                ProductId = x.ProductId,
+                MemberId = x.MemberId
+            }).ToListAsync();
+
+            return wlist;
+        }
+
+        /// <summary>
+        /// 商品頁面加入"收藏清單"
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("{productId}")]
+        public async Task<ApiResultModel> AddWishListAsync(int productId)
+        {
+            try
+            {
+                var myId = User.Claims.GetMemberId();
+                var wishItem = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
+                var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+
+                if (wishItem == null)
+                {
+                    _context.WishList.Add(new WishList
+                    {
+                        ProductId = productId,
+                        MemberId = myId,
+                    });
+
+                    await _context.SaveChangesAsync();
+
+                    return new ApiResultModel
+                    {
+                        Status = true,
+                        Message = "加入成功"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "已放入收藏清單"
+            };
+        }
+
+        /// <summary>
+        /// Get一個會員的所有收藏清單
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public async Task<IEnumerable<WishListModel>> GetWishListAsync()
         {
             var myId = User.Claims.GetMemberId();
-
-            if (myId == null)
-            {
-                return Enumerable.Empty<WishListModel>();   //TODO
-            }
-
             return (await _context.WishList
-                .Where(w => w.MemberId == myId)
-                .Select(w => new WishListModel
+                .Where(x => x.MemberId == myId)
+                .Select(x => new WishListModel
                 {
                     WishListId = w.WishListId,
                     ProductName = w.Product.ProductName,
@@ -85,7 +127,7 @@ namespace WuliKaWu.Controllers.Api
                     MemberId = myId,
                     ProductId = productId,
                     Quantity = 1,
-                    Product = product
+                    //Product = product
                 });
                 //TODO 彈跳提醒sweetalert
                 await _context.SaveChangesAsync();

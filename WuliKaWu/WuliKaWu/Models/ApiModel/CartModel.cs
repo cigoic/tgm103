@@ -6,6 +6,7 @@ namespace WuliKaWu.Models.ApiModel
     public class CartModel
     {
         public int CartId { get; set; }
-        public Product Product { get; set; }
+        public int ProductId { get; set; }
+        public int MemberId { get; set; }
     }
 }

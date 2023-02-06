@@ -20,37 +20,78 @@ namespace WuliKaWu.Controllers.Api
             _context = context;
         }
 
-        public List<CartModel> GetAll()
+        //public List<CartModel> GetAll()
+        //{
+        //    return _context.Carts.Select(x => new CartModel
+        //    {
+        //        CartId = x.CartId,
+        //        Product = x.Product
+        //    }).ToList();
+        //}
+
+        /// <summary>
+        /// 商品頁面加入"購物車"
+        /// </summary>
+        /// <param name="WishListId"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("{productId}")]
+        public async Task<ApiResultModel> AddToCartAsync(int productId)
         {
-            return _context.Carts.Select(x => new CartModel
+            try
             {
-                CartId = x.Id,
-                Product = x.Product
-            }).ToList();
+                var myId = User.Claims.GetMemberId();
+                var cartItem = await _context.Carts.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
+                var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+
+                if (cartItem == null)
+                {
+                    _context.Carts.Add(new Cart
+                    {
+                        MemberId = myId,
+                        ProductId = productId,
+                        Quantity = 1,
+                    });
+
+                    await _context.SaveChangesAsync();
+
+                    return new ApiResultModel
+                    {
+                        Status = true,
+                        Message = "加入成功"
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "已收入購物車"
+            };
         }
 
-        //TODO Get一個會員的購物車的所有商品
+        //TODO Get一個會員的所有購物車
+        /// <summary>
+        /// Get一個會員的所有購物車
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CartModel>> GetCart()
+        public async Task<IEnumerable<CartModel>> GetCartAsync()
         {
             var myId = User.Claims.GetMemberId();
-
-            if (myId == null)
-            {
-                return Enumerable.Empty<CartModel>(); //TODO
-            }
-
-            var cart = (await _context.Carts
+            return (await _context.Carts
                 .Where(c => c.MemberId == myId)
                 .Select(c => new CartModel
                 {
-                    CartId = c.MemberId,
-                    Product = c.Product,
-                }
-                )
-                .ToListAsync());
-
-            return cart;
+                    CartId = c.CartId,
+                    ProductId = c.ProductId,
+                    MemberId = c.MemberId
+                }).ToListAsync());
         }
 
         //TODO 移除購物車的商品

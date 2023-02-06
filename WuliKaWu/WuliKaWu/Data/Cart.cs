@@ -30,13 +30,13 @@ namespace WuliKaWu.Data
         public int Quantity { get; set; }
 
         /// <summary>
-        /// 導覽屬性:只對應到單個商品，不用 ICollection
+        /// 導覽屬性:對應多個商品，使用 ICollection
         /// </summary>
-        public virtual Product Product { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
 
         /// <summary>
-        /// 導覽屬性:只對應到單一個會員，不用 ICollection
+        /// 導覽屬性:對應到多個會員，使用 ICollection
         /// </summary>
-        public virtual Member Member { get; set; }
+        public virtual ICollection<Member> Member { get; set; }
     }
 }

@@ -25,14 +25,14 @@ namespace WuliKaWu.Data
         public int ProductId { get; set; }
 
         /// <summary>
-        /// 導覽屬性:只對應到單一個會員，不用 ICollection
+        /// 導覽屬性:對應多個會員，使用 ICollection
         /// </summary>
-        public virtual Member Member { get; set; }
+        public virtual ICollection<Member> Member { get; set; }
 
         /// <summary>
         /// 導覽屬性:對應多筆商品，使用 ICollection
         /// </summary>
 
-        public virtual Product Product { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }
