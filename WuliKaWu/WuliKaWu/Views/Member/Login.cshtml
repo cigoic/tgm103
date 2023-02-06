@@ -245,7 +245,7 @@
                 fieldsLogin: {
                     account: "",
                     password: "",
-                    rememberMe: @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
+                    rememberMe: false, //@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
                 },
 >>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
             },
