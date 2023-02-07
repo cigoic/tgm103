@@ -125,27 +125,5 @@ namespace WuliKaWu.Data.Enums
             [Description("Winter")]
             Winter
         }
-
-        /// <summary>
-        /// Enume 類型，部落格文章分類
-        /// Uncategorized: 未分類
-        /// BlogGridView: 部落格 GridView
-        /// LatestBlog: 最新文章
-        /// OurBlog: 關於我們的文章
-        /// </summary>
-        public enum ArticleType
-        {
-            [Description("Uncategorized")]
-            Uncategorized,
-
-            [Description("BlogGridView")]
-            BlogGridView,
-
-            [Description("LatestBlog")]
-            LatestBlog,
-
-            [Description("OurBlog")]
-            OurBlog
-        }
     }
 }

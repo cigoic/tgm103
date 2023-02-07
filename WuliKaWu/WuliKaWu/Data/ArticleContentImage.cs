@@ -17,19 +17,18 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 關聯的文章 ID
         /// </summary>
-        [Required]
         [ForeignKey("Articles")]
         public int ArticleId { get; set; }
 
         /// <summary>
-        /// 影像檔名(不含路徑)
+        /// 影像路徑
         /// </summary>
-        [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
-        public string FileName { get; set; }
+        //[MaxLength(1024, ErrorMessage = "含副檔名，長度最多 1024 個字元")]
+        public string PicturePath { get; set; }
 
         /// <summary>
         /// 導覽屬性: 關聯的文章
         /// </summary>
-        // public virtual Article Article { get; set; }
+        public virtual Article Article { get; set; }
     }
 }
