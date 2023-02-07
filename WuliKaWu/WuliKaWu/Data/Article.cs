@@ -44,6 +44,12 @@ namespace WuliKaWu.Data
         [Required]
         public string Content { get; set; }
 
+        /// <summary>
+        /// 分類，不可為NULL
+        /// </summary>
+        [ForeignKey("ArticleCategory")]
+        public int CategoryId { get; set; }
+
         // TODO 可能需要另一張表紀錄多筆評論與此文之關聯
         //public string? Comments { get; set; }
 
@@ -55,7 +61,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性: 文章關聯之分類表
         /// </summary>
-        public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
+        public virtual ArticleCategory ArticleCategorie { get; set; }
 
         /// <summary>
         /// 導覽屬性: 文章關聯之影像表

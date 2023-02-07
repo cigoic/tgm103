@@ -115,7 +115,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="article">表單欄位資料</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IResult> CreateArticleAsync(ArticleModel article)
+        public async Task<IResult> CreateArticleAsync(ArticleDetailsModel article)
         {
             //_context.Articles.Add(article);
             await _context.SaveChangesAsync();
