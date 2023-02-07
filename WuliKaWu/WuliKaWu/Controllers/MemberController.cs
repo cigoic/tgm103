@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication.Cookies;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -6,15 +7,16 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 <<<<<<< HEAD
 =======
 >>>>>>> [更新] 會員登入、註冊、忘記密碼等控制器功能與檢視畫面
+=======
+>>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
-using System.Security.Claims;
 using System.Text;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 using System.Web;
@@ -23,13 +25,13 @@ using System.Web;
 =======
 using System.Web;
 >>>>>>> [更新] 會員登入、註冊、忘記密碼等控制器功能與檢視畫面
+=======
+>>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
 
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
-
-using static WuliKaWu.Data.MemberRole;
 
 namespace WuliKaWu.Controllers
 {
@@ -104,6 +106,7 @@ namespace WuliKaWu.Controllers
 =======
 >>>>>>> [更新] 會員登入、註冊、忘記密碼等控制器功能與檢視畫面
         /// <summary>
+<<<<<<< HEAD
         /// 會員登入
         /// </summary>
         /// <param name="model">登入所需資訊</param>
@@ -532,6 +535,8 @@ namespace WuliKaWu.Controllers
         }
 
         /// <summary>
+=======
+>>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
         /// 會員註冊
         /// </summary>
         /// <param name="model">註冊所需資訊</param>
@@ -546,15 +551,17 @@ namespace WuliKaWu.Controllers
                     || _context.Members.Any(u => u.Account == model.Account)
                     || _context.Members.Any(u => u.Email == model.Email)
                     || !ModelState.IsValid)
-                    return BadRequest(new { success = false, message = "錯誤，請再試一次" });
+                    return BadRequest(new { success = false, Message = "錯誤，請再試一次" });
+
+                var verificationToken = BCrypt.Net.BCrypt.GenerateSalt();
 
                 _context.Members.Add(new Member
                 {
                     Account = model.Account,
                     // Hash the password
                     // Install-Package BCrypt.Net-Next
-                    Password = BCrypt.Net.BCrypt.HashPassword(model.Password),
-                    VerificationToken = BCrypt.Net.BCrypt.GenerateSalt(),
+                    Password = BCrypt.Net.BCrypt.HashPassword(model.Password, verificationToken),
+                    VerificationToken = verificationToken,
                     Name = model.Name,
                     Gender = model.Gender,
                     Birthday = model.Birthday,
@@ -569,6 +576,9 @@ namespace WuliKaWu.Controllers
                 });
 
                 await _context.SaveChangesAsync();
+
+                // 發送會員註冊啟用信件
+                SendConfirmationEmail(model.Email, "啟用會員帳號", verificationToken);
             }
             catch (Exception ex)
             {
@@ -677,7 +687,7 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> MyAccount(AccountDetailsModel model)
         {
             if (User.Identity?.IsAuthenticated == false || ModelState.IsValid == false)
-                return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
+                return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
             // TODO 管理角色
             //var model = new MemberModel();
@@ -691,7 +701,7 @@ namespace WuliKaWu.Controllers
             var NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
 
             if (member == null || member.EmailComfirmed == true || String.IsNullOrEmpty(NewVerificationToken))
-                return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
+                return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
             member.Name = $"{model.LastName}+{model.FirstName}";
             member.Email = model.Email;
@@ -772,41 +782,6 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        [ActionName("ForgetPassword")]
-        [HttpPost]
-        public async Task<IActionResult> ForgetPasswordAsync([FromBody] ForgetPasswordModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(new { success = false, message = "錯誤，請恰管理員" });
-            }
-            //// 檢查用戶是否存在?
-            var thisUser = _context.Members
-                        .Any(m => m.Account == model.Account
-                        && m.Email == model.Email);
-            if (thisUser == false)
-            {
-                // 如果找不到用戶, 丟出錯誤顯示
-                ModelState.AddModelError("", "重置錯誤!");
-                return BadRequest(new { success = false, message = GetErrorMessages() });
-            }
-
-            // 產生重置密碼 token
-            string email = model.Email;
-            string token = await GenerateTokenWithEmailAsync(email);
-
-            if (String.IsNullOrEmpty(token))
-            {
-                ModelState.AddModelError("", "重置錯誤，請聯繫管理員!");
-                return BadRequest(new { success = false, message = GetErrorMessages() });
-            }
-
-            // 寄送重置密碼連結
-            SendPasswordResetEmail(token, model.Email);
-
-            return Ok(new { success = false, message = "已寄送重置密碼郵件通知!" });
-        }
-
         /// <summary>
         /// Account Details 中的更換密碼功能
         /// </summary>
@@ -815,17 +790,17 @@ namespace WuliKaWu.Controllers
         [ActionName("ResetPassword")]
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetPasswordModel model)
+        public async Task<LoginMessage> ResetPasswordAsync([FromBody] ResetPasswordModel model)
         {
             try
             {
                 if (ModelState.IsValid == false)
-                    return BadRequest(new { success = false, message = "重設密碼錯誤，請聯繫管理員!" });
+                    return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
 
                 var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == User.Claims.GetMemberId()).Result;
 
                 if (member == null || member.EmailComfirmed == false)
-                    return BadRequest(new { success = false, message = "重設密碼錯誤，請聯繫管理員!" });
+                    return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
 
                 // 產生新密碼,更新回資料庫
                 var verificationToken = BCrypt.Net.BCrypt.GenerateSalt();
@@ -840,7 +815,7 @@ namespace WuliKaWu.Controllers
                 throw;
             }
 
-            return Ok(new { success = true, message = "Successfully Reset Password" });
+            return new LoginMessage { Status = true, Message = "Successfully Reset Password" };
         }
 
         /// <summary>
@@ -849,7 +824,10 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         public IActionResult Activate()
         {
-            return View();
+            IQueryCollection collection = HttpContext.Request.Query;
+            if (collection == null) RedirectToAction("Login");
+
+            return View(new ActivateModel { Email = collection["u"], Token = collection["c"] });
         }
 
         /// <summary>
@@ -858,70 +836,41 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         [ActionName("Activate")]
         [HttpPost]
-        public async Task<IActionResult> ActivateAsync(string token, string email)
+        public async Task<IActionResult> ActivateAsync([FromBody] ActivateModel urlQuery)
         {
-            // TODO 解開 Token (email + token)
-            bool IsValid = BCrypt.Net.BCrypt.EnhancedVerify(email, token);
+            // 解開 Token (email + token)
+
+            //var urlQuery = "u=userxxx@123.com&c=ke%2FVBWYJ4FZXYKJOJN6tC7i";
+            var collection = HttpContext.Request.Query;
+            //var collection = HttpUtility.ParseQueryString(urlQuery);
+            var email = urlQuery.Email; //collection["u"];
+            var token = urlQuery.Token; //collection["c"];
+
+            bool IsValid = BCrypt.Net.BCrypt.Verify(email, token);
             if (IsValid == false) return BadRequest();
 
             // IsMemberExisted
             Member? user = await _context.Members
-                .SingleOrDefaultAsync(u => u.VerificationToken == token);
+                .SingleOrDefaultAsync(u => u.Email == email);
 
             if (user == null) return NotFound();
 
             user.EmailComfirmed = true;
-            user.VerificationToken = null;
+            //user.VerificationToken = null;    // TODO 提醒會員重新更改密碼
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
 
-        /// <summary>
-        /// 產生 Token (無需會員輸入版本)
-        /// </summary>
-        /// <param name="HasUser"></param>
-        /// <returns></returns>
-        private async Task<String> GenerateTokenWithEmailAsync(string email)
-        {
-            var verificationToken = BCrypt.Net.BCrypt.GenerateSalt();
-            var token = BCrypt.Net.BCrypt.HashPassword(email, verificationToken);
-            var member = _context.Members.FirstOrDefaultAsync(m => m.Email == email).Result;
-
-            if (String.IsNullOrEmpty(email)
-                || String.IsNullOrEmpty(token)
-                || member == null)
-                return String.Empty;
-
-            member.Email = email;
-            member.VerificationToken = verificationToken;
-            member.EmailComfirmed = false;
-
-            await _context.SaveChangesAsync();
-
-            return token.ToString();
-        }
-
-        // TODO：帶入參數需調整
-        /// <summary>
-        /// 寄送郵件
-        /// </summary>
-        /// <param name="token"></param>
-        private void SendPasswordResetEmail(string token, string email)
+        private void SendConfirmationEmail(string email, string subject, string token)
         {
             if (email == null) return;
 
-            string reqestUrl = HttpContext.Request.GetEncodedUrl();
-            reqestUrl = HttpUtility.UrlEncodeUnicode($"{reqestUrl}/{token}+{email}");
-            Uri baseUrl = new Uri(reqestUrl);
-            try
-            {
-                var mail = new MailMessage();
-                mail.Subject = "您好！";
-                mail.SubjectEncoding = Encoding.UTF8;
-                mail.IsBodyHtml = true;
+            string targetUrl = Url.Action("Activate", "Member", new { u = email, c = token });
+            var link = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{targetUrl}";
 
+<<<<<<< HEAD
                 mail.Body = $"<h4>請點擊下述連結，重置密碼<hr/> <h1>{baseUrl}</h1><br/><hr/></h4>";
                 mail.From = new MailAddress("liang.case@gmail.com");
                 mail.To.Add(new MailAddress(String.IsNullOrEmpty(email) ? email : "liang.case@me.com"));
@@ -947,6 +896,8 @@ namespace WuliKaWu.Controllers
 
         private void SendConfirmationEmail(string email, string subject, string link)
         {
+=======
+>>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
             using (var smtpClient = new SmtpClient())
             {
                 var mailMessage = new MailMessage
@@ -954,13 +905,23 @@ namespace WuliKaWu.Controllers
                     From = new MailAddress("no-reply@example.com"),
                     To = { email },
                     Subject = subject,
-                    Body = $"<h3>感謝您註冊，請點擊下述連結，請至您的信箱收取確認信！</h3><br/><a href='{link}'>{link}</a>",
-                    IsBodyHtml = true
+                    Body = $"<h3>感謝您註冊成為 Wuli 會員！</h3><br/>請點擊下述連結，請至您的信箱收取確認信！<br/><hr/><a href='{link}'>{subject}</a>",
+                    IsBodyHtml = true,
+                    SubjectEncoding = Encoding.UTF8
                 };
 
+                var SmtpAccessToken = _configuration.GetValue<string>("SMTPConnection:GmailSMTP");
+                var SmtpAccessUser = _configuration.GetValue<string>("SMTPConnection:Username");
+                var SmtpHostname = _configuration.GetValue<string>("SMTPConnection:Hostname");
+                var SmtpPortNo = Convert.ToInt32(_configuration.GetValue<string>("SMTPConnection:PortNo"));
+                smtpClient.Host = SmtpHostname;
+                smtpClient.Port = SmtpPortNo;
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential(SmtpAccessUser, SmtpAccessToken);
                 smtpClient.Send(mailMessage);
             }
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// 取得 ModelState 錯誤
@@ -980,5 +941,7 @@ namespace WuliKaWu.Controllers
             return errors;
         }
 >>>>>>> [更新] 會員登入、註冊、忘記密碼等控制器功能與檢視畫面
+=======
+>>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
     }
 }
