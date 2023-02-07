@@ -128,6 +128,7 @@ namespace WuliKaWu.Data.Enums
             [Description("Winter")]
             Winter
         }
+<<<<<<< HEAD
 
         /// <summary>
         /// Enume 類型，部落格文章分類
@@ -300,5 +301,7 @@ namespace WuliKaWu.Data.Enums
             [Description("OurBlog")]
             OurBlog
         }
+=======
+>>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
     }
 }

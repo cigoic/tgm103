@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-using static WuliKaWu.Data.Enums.Common;
-
 namespace WuliKaWu.Data
 {
     /// <summary>
     /// 資料表 - 部落格文章分類
     /// </summary>
+    [Table("ArticleCategories")]
     public class ArticleCategory
     {
         /// <summary>
@@ -24,23 +23,24 @@ namespace WuliKaWu.Data
         public int Id { get; set; }
 
         /// <summary>
-        /// 關聯之部落格文章 ID
+        /// 部落格文章分類
+        /// Uncategorized: 未分類
+        /// BlogGridView: 部落格 GridView
+        /// LatestBlog: 最新文章
+        /// OurBlog: 關於我們的文章
         /// </summary>
-        [Required]
-        [ForeignKey("Articles")]
-        public int ArticleId { get; set; }
-
-        /// <summary>
-        /// 文章分類
-        /// </summary>
-        public ArticleType Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// 導覽屬性: 關聯的文章
         /// </summary>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public virtual Article Article { get; set; }
+=======
+        public virtual ICollection<Article> Articles { get; set; }
+>>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
     }
 <<<<<<< HEAD
 }

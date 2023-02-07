@@ -271,7 +271,7 @@ namespace WuliKaWu.Controllers
             if (ArticleId <= 0)
                 return NotFound();
 
-            var article = _context.Articles.Where(a => a.ArticleId == ArticleId).FirstOrDefault();
+            var article = _context.Articles.Where(a => a.Id == ArticleId).FirstOrDefault();
             if (article == null)
                 return NotFound();
 
@@ -282,24 +282,24 @@ namespace WuliKaWu.Controllers
             {
                 ArticleId = ArticleId,
                 MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
-                FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName,
+                FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.Id == article!.Id).FirstOrDefault()!.PicturePath,
                 Title = article.Title,
                 Content = article.Content,
-                TitleImageFileName = $"~/{_context.ArticleTitleImages.AsEnumerable().Where(t => t.ArticleId == article!.ArticleId).FirstOrDefault()!.FileName}",
+                TitleImageFileName = $"~/{_context.ArticleTitleImages.AsEnumerable().Where(t => t.Id == article!.Id).FirstOrDefault()!.PicturePath}",
                 ContentImageFileNames = new List<string>(),
                 PrevArticleId = prevId,
                 NextArticleId = nextId,
                 CreateAt = article.CreatedDate,
-                PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.ArticleId == prevId).CreatedDate,
-                NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.ArticleId == nextId).CreatedDate,
-                PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.ArticleId == prevId).Title,
-                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.ArticleId == nextId).Title,
+                PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate,
+                NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate,
+                PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title,
+                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title,
             };
 
-            var images = _context.ArticleContentImages.Where(c => c.ArticleId == article!.ArticleId).ToList();
+            var images = _context.ArticleContentImages.Where(c => c.Id == article!.Id).ToList();
             foreach (var img in images)
             {
-                var imgPath = $"~/{img.FileName}";
+                var imgPath = $"~/{img.PicturePath}";
                 model.ContentImageFileNames.Add(imgPath);
             }
 
@@ -344,13 +344,13 @@ namespace WuliKaWu.Controllers
         {
             var PrevArticle = _context.Articles
                .OrderBy(a => a.CreatedDate)
-               .Where(a => a.ArticleId < CurrentArticleId)
+               .Where(a => a.Id < CurrentArticleId)
                .LastOrDefault();
 
             if (PrevArticle == null)
                 return CurrentArticleId;
 
-            return PrevArticle.ArticleId;
+            return PrevArticle.Id;
         }
 
         /// <summary>
@@ -362,13 +362,13 @@ namespace WuliKaWu.Controllers
         {
             var NextArticle = _context.Articles
                 .OrderBy(a => a.CreatedDate)
-                .Where(a => a.ArticleId > CurrentArticleId)
+                .Where(a => a.Id > CurrentArticleId)
                 .FirstOrDefault();
 
             if (NextArticle == null)
                 return CurrentArticleId;
 
-            return NextArticle.ArticleId;
+            return NextArticle.Id;
         }
 
         [HttpPost]

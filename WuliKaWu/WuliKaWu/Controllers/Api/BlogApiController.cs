@@ -130,13 +130,13 @@ namespace WuliKaWu.Controllers.Api
         {
             var PrevArticle = _context.Articles
                            .OrderBy(a => a.CreatedDate)
-                           .Where(a => a.ArticleId < CurrentArticleId)
+                           .Where(a => a.Id < CurrentArticleId)
                            .LastOrDefault();
 
             if (PrevArticle == null)
                 return Results.Ok(new { CurrentArticleId });
 
-            var PrevArticleId = PrevArticle.ArticleId;
+            var PrevArticleId = PrevArticle.Id;
             return Results.Ok(new { PrevArticleId });
         }
 
@@ -152,13 +152,13 @@ namespace WuliKaWu.Controllers.Api
         {
             var NextArticle = _context.Articles
                             .OrderBy(a => a.CreatedDate)
-                            .Where(a => a.ArticleId > CurrentArticleId)
+                            .Where(a => a.Id > CurrentArticleId)
                             .FirstOrDefault();
 
             if (NextArticle == null)
                 return Results.Ok(new { CurrentArticleId });
 
-            var NextArticleId = NextArticle.ArticleId;
+            var NextArticleId = NextArticle.Id;
             return Results.Ok(new { NextArticleId });
         }
 

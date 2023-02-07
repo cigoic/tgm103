@@ -20,13 +20,14 @@ namespace WuliKaWu.Data
         /// </summary>
         [Key]
         public int CategoryId { get; set; }
+
         /// <summary>
         /// 商品分類類型值
         /// </summary>
         public string Type { get; set; }
 
         /// <summary>
-        /// 導覽屬性：只對應到單一產品，不用 ICollection
+        /// 導覽屬性：對應到多個產品
         /// </summary>
         public virtual ICollection<Product> Product { get; set; }
     }
