@@ -99,21 +99,55 @@ namespace WuliKaWu.Controllers.Api
             //throw new NotImplementedException();
 
             var myId = User.Claims.GetMemberId();
+            try
+            {
+                var wish = _context.WishList
+                    .Where(x => x.MemberId == myId)
+                    .Select(x => new WishListGetModel
+                    {
+                        ProductId = productId,
+                        MemberId = myId,
+                        WishListId = x.WishListId,
+                        ProductName = x.Product.ProductName,
+                        Price = x.Product.Price,
+                        SellingPrice = (decimal)x.Product.SellingPrice,
+                        PicturePath = x.Product.Pictures.Select(x => x.PicturePath).ToList()
+                    });
+                return await wish.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
-            return (await _context.WishList.Include(x => x.Product)
-                .Where(x => x.MemberId == myId)
-                .Select(x => new WishListGetModel
-                {
-                    WishListId = x.WishListId,
-                    ProductName = x.Product.ProductName,
-                    Price = x.Product.Price,
-                    SellingPrice = (decimal)x.Product.SellingPrice,
-                    Pictures = x.Product.Pictures.Select(x => x.PicturePath).ToList(),
-                    ProductId = x.ProductId,
-                    MemberId = x.MemberId
-                }
-                )
-                .ToListAsync());
+            //return (await _context.WishList
+            //        .Where(x => x.MemberId == myId)
+            //        .Select(x => new WishListGetModel
+            //        {
+            //            ProductId = productId,
+            //            MemberId = myId,
+            //            WishListId = x.WishListId,
+            //            ProductName = x.Product.ProductName,
+            //            Price = x.Product.Price,
+            //            SellingPrice = (decimal)x.Product.SellingPrice,
+            //            Pictures = (List<string>)x.Product.Pictures
+            //        })
+            //    .ToListAsync());
+
+            //return (await _context.WishList.Include(x => x.Product)
+            //    .Where(x => x.MemberId == myId)
+            //    .Select(x => new WishListGetModel
+            //    {
+            //        WishListId = x.WishListId,
+            //        ProductName = x.Product.ProductName,
+            //        Price = x.Product.Price,
+            //        SellingPrice = (decimal)x.Product.SellingPrice,
+            //        Pictures = x.Product.Pictures.Select(x => x.PicturePath).ToList(),
+            //        ProductId = x.ProductId,
+            //        MemberId = x.MemberId
+            //    }
+            //    )
+            //    .ToListAsync());
         }
 
         //TODO 移除收藏清單的商品 RemoveToWishlist

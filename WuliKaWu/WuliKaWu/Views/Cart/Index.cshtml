@@ -44,25 +44,25 @@
                                                 <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a href="/Products/ProductDetails">{{cart.product.productName}}</a></h5>
+                                                <h5><a href="/Products/ProductDetails">{{cart.products.productName}}</a></h5>
                                             </td>
-                                            <td><span>{{cart.product.size}}</span></td>
-                                            <td><span>{{cart.product.color}}</span></td>
+                                            <td><span>{{cart.products.size}}</span></td>
+                                            <td><span>{{cart.products.color}}</span></td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price}}</span>
-                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice}}</span>
+                                                <span :class="{'old-price':cart.products.price}">${{cart.products.price}}</span>
+                                                <span class="new-price" v-if="cart.products.sellingPrice">${{cart.products.sellingPrice}}</span>
                                             </td>
                                             <td class="cart-quality">
                                                 @*<div class="product-quality">
                                                 <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
 
                                                 </div>*@
-                                                <input type="number" name="qtybutton" :value="cart.product.quantity" readonly>
+                                                <input type="number" name="qtybutton" :value="cart.products.quantity" readonly>
                                                 @*<span>{{cart.quantity}}</span>*@
                                             </td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
-                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
+                                                <span :class="{'old-price':cart.products.price}">${{cart.products.price*cart.products.quantity}}</span>
+                                                <span class="new-price" v-if="cart.products.sellingPrice">${{cart.products.sellingPrice*cart.products.quantity}}</span>
                                             </td>
                                             <td class="product-remove"><i class=" ti-trash "></i></td>
                                         </tr>
