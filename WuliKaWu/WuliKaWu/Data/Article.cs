@@ -13,7 +13,13 @@ namespace WuliKaWu.Data
         /// 文章 ID : 自動編號
         /// </summary>
         [Key]
-        public int ArticleId { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 作者(會員) ID
+        /// </summary>
+        [ForeignKey("Members")]
+        public int MemberId { get; set; }
 
         /// <summary>
         /// 建立日期: 自動編號
@@ -26,16 +32,10 @@ namespace WuliKaWu.Data
         public DateTime ModifiedDate { get; set; }
 
         /// <summary>
-        /// 作者(會員) ID
-        /// </summary>
-        [ForeignKey("Members")]
-        public int MemberId { get; set; }
-
-        /// <summary>
-        /// 文章標題 (最長 50 個字元)
+        /// 文章標題 (最長 128 個字元)
         /// </summary>
         [Required]
-        [MaxLength(50)]
+        [MaxLength(128)]
         public string Title { get; set; }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace WuliKaWu.Data
         public string Content { get; set; }
 
         // TODO 可能需要另一張表紀錄多筆評論與此文之關聯
-        //public string Comments { get; set; }
+        //public string? Comments { get; set; }
 
         /// <summary>
         /// 導覽屬性: 文章關聯之標題影像表
@@ -61,5 +61,10 @@ namespace WuliKaWu.Data
         /// 導覽屬性: 文章關聯之影像表
         /// </summary>
         public virtual ICollection<ArticleContentImage> ArticleContentImages { get; set; }
+
+        /// <summary>
+        /// 導覽屬性：對應到多個商品標籤，用 ICollection
+        /// </summary>
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

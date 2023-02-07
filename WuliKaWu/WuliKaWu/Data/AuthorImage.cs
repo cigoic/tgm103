@@ -13,21 +13,19 @@ namespace WuliKaWu.Data
         public int Id { get; set; }
 
         /// <summary>
-        /// 作者(會員) ID
+        /// 關聯的作者(會員)
         /// </summary>
         [ForeignKey("Members")]
         public int MemberId { get; set; }
 
         /// <summary>
-        /// 第一張作者圖像檔案名稱(不含路徑)
+        /// 作者圖像檔案路徑
         /// </summary>
-        [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
-        public string? FirstImageFileName { get; set; }
+        public string PicturePatch { get; set; }
 
         /// <summary>
-        /// 第二張作者圖像檔案名稱(不含路徑)
+        /// 導覽屬性：作者(會員)
         /// </summary>
-        [MaxLength(256, ErrorMessage = "含副檔名，長度最多 256 個字元")]
-        public string? SecondImageFileName { get; set; }
+        public virtual Member Memeber { get; set; }
     }
 }
