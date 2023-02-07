@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 
 <<<<<<< HEAD
@@ -278,7 +280,7 @@ namespace WuliKaWu.Controllers
             int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
             int nextId = GetNextArticleId(ArticleId);
 
-            var model = new ArticleModel()
+            var model = new ArticleDetailsModel()
             {
                 ArticleId = ArticleId,
                 MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
@@ -319,21 +321,125 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <param name="article"></param>
         /// <returns></returns>
-        //[Authorize]
+        [Authorize]
+        [ActionName("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAsync(Article article)
+        public async Task<IActionResult> CreateAsync(ArticleCreateModel article)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Articles.Add(article);
+            Article model = new Article
+            {
+                CreatedDate = article.CreatedDate,
+                ModifiedDate = article.ModifiedDate,
+                MemberId = User.Claims.GetMemberId(),
+                Title = article.Title,
+                Content = article.Content,
+                CategoryId = article.CategoryId,
+            };
+
+            _context.Articles.Add(model);
             await _context.SaveChangesAsync();
 
             return View();
         }
+
+        // GET: Blog/Edit/5
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null || _context.Articles == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var article = await _context.Articles.FindAsync(id);
+        //    if (article == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(article);
+        //}
+
+        // POST: Blog/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,MemberId,CreatedDate,ModifiedDate,Title,Content")] Article article)
+        //{
+        //    if (id != article.Id)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(article);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!ArticleExists(article.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(article);
+        //}
+
+        // GET: Blog/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Articles == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var article = await _context.Articles
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (article == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(article);
+        //}
+
+        // POST: Blog/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    if (_context.Articles == null)
+        //    {
+        //        return Problem("Entity set 'ShopContext.Articles'  is null.");
+        //    }
+        //    var article = await _context.Articles.FindAsync(id);
+        //    if (article != null)
+        //    {
+        //        _context.Articles.Remove(article);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        //private bool ArticleExists(int id)
+        //{
+        //    return _context.Articles.Any(e => e.Id == id);
+        //}
 
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID

@@ -26,6 +26,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-12">
+<<<<<<< HEAD
 =======
 <template>
     <div>
@@ -134,6 +135,42 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+=======
+        <div class="form-group">
+            <label for="CreatedDate" class="control-label" hidden></label>
+            <input asp-for="CreatedDate" class="form-control" hidden />
+        </div>
+        <div class="form-group">
+            <label for="ModifiedDate" class="control-label" hidden></label>
+            <input asp-for="ModifiedDate" class="form-control" hidden />
+        </div>
+        <div class="form-group">
+            <label for="MemberId" class="control-label" hidden></label>
+            <select asp-for="MemberId" class="form-control" asp-items="ViewBag.MemberId" hidden></select>
+        </div>
+        <div class="form-group">
+            <label for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" type="text" />
+        </div>
+        <div class="form-group">
+            <label id="Content" name="Content" class="control-label"></label>
+            <textarea ref="editor" id="Content" name="Content"></textarea>
+        </div>
+        <template>
+            <div class="form-group">
+                <label for="CategoryId" class="control-label"></label>
+                <select v-model="selectedOption" class="form-control">
+                    <option value="">Make a Choice...</option>
+                    <option v-for="option in options" :key="option.value" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+        </template>
+        <div class="form-group mt-15 mb-15">
+            <button type="button" @@click.prevent="handleSubmit()" value="Create" class="btn btn-primary" />
+        </div>
+>>>>>>> [修改] Article 資料內容定義類別表與 ArticleCategory 的關係
     </div>
 </div>
 

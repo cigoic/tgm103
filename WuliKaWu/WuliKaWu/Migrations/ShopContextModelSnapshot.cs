@@ -28,6 +28,7 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
 =======
 =======
@@ -49,6 +50,8 @@ namespace WuliKaWu.Migrations
                 });
 
 >>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
+=======
+>>>>>>> [修改] Article 資料內容定義類別表與 ArticleCategory 的關係
             modelBuilder.Entity("CartMember", b =>
                 {
                     b.Property<int>("CartId")
@@ -193,6 +196,12 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ArticleCategorieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +221,8 @@ namespace WuliKaWu.Migrations
                         .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArticleCategorieId");
 
                     b.HasIndex("MemberId");
 
@@ -2205,21 +2216,6 @@ namespace WuliKaWu.Migrations
                     b.ToTable("WishLists");
                 });
 
-            modelBuilder.Entity("ArticleArticleCategory", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.ArticleCategory", null)
-                        .WithMany()
-                        .HasForeignKey("ArticleCategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Article", null)
-                        .WithMany()
-                        .HasForeignKey("ArticlesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("CartMember", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Cart", null)
@@ -2337,11 +2333,19 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
                 {
+                    b.HasOne("WuliKaWu.Data.ArticleCategory", "ArticleCategorie")
+                        .WithMany("Articles")
+                        .HasForeignKey("ArticleCategorieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WuliKaWu.Data.Member", null)
                         .WithMany("Articles")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ArticleCategorie");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
@@ -2512,6 +2516,11 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ArticleTitleImages");
 
                     b.Navigation("Tags");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
+                {
+                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Category", b =>
