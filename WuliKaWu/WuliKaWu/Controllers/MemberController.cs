@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication.Cookies;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -9,12 +10,16 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 >>>>>>> [更新] 會員登入、註冊、忘記密碼等控制器功能與檢視畫面
 =======
 >>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
+=======
+using Microsoft.AspNetCore.Authentication.Cookies;
+>>>>>>> [修正] 將登入移回 Controller > MemberController
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Text;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -32,6 +37,8 @@ using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
+
+using static WuliKaWu.Data.MemberRole;
 
 namespace WuliKaWu.Controllers
 {
@@ -159,6 +166,62 @@ namespace WuliKaWu.Controllers
             await HttpContext.SignInAsync(claimsPrincipal);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// 會員登入
+        /// </summary>
+        /// <param name="model">登入所需資訊</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ActionName("Login")]
+        public async Task<IActionResult> LoginRegisterAsync(MemberLoginModel model)
+        {
+            // 資料庫比對
+            var member = _context.Members
+                            .SingleOrDefault(x => x.Account == model.Account && x.EmailComfirmed == true);
+
+            if (member == null || !BCrypt.Net.BCrypt.Verify(model.Password, member.Password))
+            {
+                return BadRequest(new LoginMessage { Status = false, Message = "錯誤，請再試一次" });
+                //return new LoginMessage { Status = false, Message = "錯誤，請再試一次" };
+            }
+
+            // 帳號密碼符合！給 cookie(s): principal > identity > claim
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
+                // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
+                new Claim(ClaimTypes.Role, RoleType.User.GetDescriptionText()),    // 資料庫裡的角色
+                //new Claim(ClaimTypes.Role, "User"),
+                //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
+                //new Claim("Id", member.MemberId.ToString()),
+                new Claim("RememberMe", model.RememberMe.ToString()),
+                new Claim(ClaimTypes.Sid, member.MemberId.ToString()),
+                //new Claim(ClaimTypes.GivenName, member.FirstName),
+                //new Claim(ClaimTypes.Surname, member.LastName),
+                //new Claim(ClaimTypes.Email, member.Email),
+                //new Claim(ClaimTypes.Gender, member.Gender),
+                //new Claim(ClaimTypes.DateOfBirth, member.Birthday),
+                //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
+                //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
+            };
+
+            // 直接定義這是"身分證明"
+            // 指定 Authentication Type 名稱，以是任何詞彙，但前後端設定必須一致
+            // 如果無法，可用 CookieAuthenticationDefaults.AuthenticationScheme
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity); // 到時候要用的憑證
+
+            //HttpContext.SignInAsync(claimsPrincipal, new AuthenticationProperties()
+            //{
+            // 何時過期...或填空值
+            //});
+            await HttpContext.SignInAsync(claimsPrincipal);
+
+            return View();
+            // return new LoginMessage { Status = true, Message = $"歡迎回來！{User.Identity?.Name}" };
         }
 
         /// <summary>
