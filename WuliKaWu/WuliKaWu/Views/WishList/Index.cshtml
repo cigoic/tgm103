@@ -94,8 +94,16 @@
                                                 <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
                                              </td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <td class="product-thumbnail">
+=======
+                                            @*<td class="product-thumbnail">
+>>>>>>> [修改]WishlistApi 的getwishlist
                                                 <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            </td>*@
+                                            @*找class可以去套版*@
+                                            <td class="product-thumbnail">
+                                                <img class="width-thumbnail" style="width:120px" :src="product.picturePath[1]"></img>
                                             </td>
                                             <td class="product-name">
                                                 <h5><a href="/Products/ProductDetails">{{product.productName}}</a></h5>
@@ -104,8 +112,11 @@
                                                 <span :class="{'old-price':product.price}">${{product.price}}</span>
                                                 <span class="new-price" v-if="product.sellingPrice">${{product.sellingPrice}}</span>
                                             </td>                                         
-                                            <td class="wishlist-cart btn-hover">
+                                            @*<td class="wishlist-cart btn-hover">
                                                 <button type="button" v-on:click="AddToCart(cart.cartId)">Add to Cart</button>
+                                            </td>*@
+                                            <td class="wishlist-cart btn-hover">
+                                                <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i> Add to cart</button>                                                
                                             </td>
                                         </tr>                                       
 =======
@@ -213,8 +224,8 @@
             el: "#wishlistIndex",
             data: {
                 productInThisWishList: {
-                        wishlistId: []
-                        
+                        wishlistId: [],
+                        product:[]                        
                 }
             },
             mounted: function () 

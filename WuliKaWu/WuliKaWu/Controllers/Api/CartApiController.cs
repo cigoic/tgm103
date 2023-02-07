@@ -240,21 +240,32 @@ namespace WuliKaWu.Controllers.Api
         {
             var myId = User.Claims.GetMemberId();
 
-            return (await _context.Carts.Include(x => x.Product.Select(a => a.Pictures)).Include(x => x.Product.Select(a => a.Size))
+            return (await _context.Carts/*.Include(x => x.Product.Select(a => a.Pictures)).Include(x => x.Product.Select(a => a.Size))*/
                 .Where(c => c.MemberId == myId)
                 .Select(c => new CartGetModel
                 {
                     MemberId = c.MemberId,
                     Id = c.Id,
                     ProductId = c.ProductId,
-                    Pictures = (List<string>)c.Product.Select(a => a.Pictures),
-                    ProductName = c.Product.Select(x => x.ProductName).ToString(),
-                    Size = c.Product.Select(a => a.Size),
-                    Color = c.Product.Select(x => x.Colors),
-                    Quantity = c.Quantity,
-                    Price = Convert.ToDecimal(c.Product.Select(x => x.Price)),
-                    SellingPrice = Convert.ToDecimal(c.Product.Select(x => x.SellingPrice))
+                    //Pictures = (List<string>)c.Product.Select(a => a.Pictures),
+                    //ProductName = c.Product.Select(x => x.ProductName).ToString(),
+                    //Size = c.Product.Select(a => a.Size),
+                    //Color = c.Product.Select(x => x.Colors),
+                    Quantity = c.Quantity
+                    //Price = Convert.ToDecimal(c.Product.Select(x => x.Price)),
+                    //SellingPrice = Convert.ToDecimal(c.Product.Select(x => x.SellingPrice))
                 }).ToListAsync());
+
+            //return (await _context.Carts
+            //    .Where(c => c.MemberId == myId)
+            //    .Select(c => new CartGetModel
+            //    {
+            //        MemberId = c.MemberId,
+            //        Id =c.Id,
+            //        ProductId= c.ProductId,
+            //        Pictures = List<Picture> {  c.Product.Picture { } }
+            //    })
+            //    );
         }
 
         //TODO 移除購物車的商品
