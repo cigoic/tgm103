@@ -27,7 +27,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性:對應多個會員，使用 ICollection
         /// </summary>
-        public virtual Member Member { get; set; }
+        public virtual ICollection<Member> Member { get; set; }
 
         /// <summary>
         /// 導覽屬性:只對應一筆商品，不用 ICollection

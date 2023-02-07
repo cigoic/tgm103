@@ -1,4 +1,6 @@
-﻿<div class="container" id="activateAccountApp" />
+﻿@model ActivateModel
+
+<div class="container" id="activateAccountApp" />
 
 <div class="login-register-area pb-100 pt-15">
     <div class="container">
@@ -15,11 +17,11 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form id="fpwdForm" name="fpwdForm" method="post">
-                                        <label for="Token" class="required" hidden></label>
-                                        <input type="text" id="Token" name="Token" v-model="Token" readonly hidden>
+                                        <label for="urlQuery" class="required" hidden></label>
+                                        <input type="text" id="urlQuery" name="urlQuery" v-model="urlQuery" readonly hidden>
 
                                         <div class="button-box btn-hover">
-                                            <button v-on:click="handleSubmit()" class="form-control">Vertify</button>
+                                            <button type="button" v-on:click="handleSubmit()" class="form-control">Vertify</button>
                                         </div>
                                     </form>
                                 </div>
@@ -37,23 +39,28 @@
     <script>
         let actVue = new Vue({
             data: {
-                token: "",
+                urlQuery: {
+                    email: "",
+                    token: "",
+                },
             },
             mounted: function () {
-                console.log("!!!")
+                let self = this
+                self.urlQuery.email = "@Model.Email"
+                self.urlQuery.token = "@Model.Token"
             },
             methods: {
                 handleSubmit() {
-                    axios.post('/Member/Activate', this.token)
+                    axios.post('/Member/Activate', this.urlQuery)
                         .then(response => {
                             if (response.data.success) {
-                                swal("Success!", response.data.success, 'success');
+                                Swal.fire("Success!", response.data.success, 'success');
                             }
                         })
                         .catch(error => {
                             if (error.response.data.message) {
                                 console.log(error.response.data.message)
-                                swal("Error!", error.response.data.message, "error");
+                                Swal.fire("Error!", error.response.data.message, "error");
                             }
                         });
                 },
