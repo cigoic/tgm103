@@ -96,23 +96,23 @@
                     rememberMe: "",
                 },
             },
-            mounted: function () {
-                let self = this
-                if (@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value)
-                    self.fieldsLogin.rememberMe = @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value;
-            },
+            //mounted: function () {
+            //    let self = this
+            //    if (@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value)
+            //        self.fieldsLogin.rememberMe = @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value;
+            //},
             methods: {
                 handleSubmit() {
                     axios.post.("/Member/Login", this.fieldsLogin)
                         .then(response => {
                             if (response.data.success) {
-                                swal("Success!", response.data.success, 'success');
+                                tgm103ShowSuccess("Success!", response.data.success, 'success');
                             }
                         })
                         .catch(error => {
                             if (error.response.data.message) {
                                 console.log(error.response.data.message)
-                                swal("Error!", error.response.data.message, "error");
+                                tgm103ShowError("Error!", error.response.data.message, "error");
                             }
                         });
                     //document.getElementById('loginForm').reset()    // reset form
