@@ -166,36 +166,36 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [ActionName("ResetPassword")]
-        [HttpPost]
-        [Authorize]
-        public async Task<LoginMessage> ResetPasswordAsync([FromBody] ResetPasswordModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid == false)
-                    return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
+        //[ActionName("ResetPassword")]
+        //[HttpPost]
+        //[Authorize]
+        //public async Task<LoginMessage> ResetPasswordAsync([FromBody] ResetPasswordModel model)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid == false)
+        //            return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
 
-                var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == User.Claims.GetMemberId()).Result;
+        //        var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == User.Claims.GetMemberId()).Result;
 
-                if (member == null || member.EmailComfirmed == false)
-                    return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
+        //        if (member == null || member.EmailComfirmed == false)
+        //            return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
 
-                // 產生新密碼,更新回資料庫
-                var verificationToken = BCrypt.Net.BCrypt.GenerateSalt();
-                var token = BCrypt.Net.BCrypt.HashPassword(member.Email, verificationToken);
-                member.Password = token;
-                member.VerificationToken = verificationToken;
+        //        // 產生新密碼,更新回資料庫
+        //        var verificationToken = BCrypt.Net.BCrypt.GenerateSalt();
+        //        var token = BCrypt.Net.BCrypt.HashPassword(member.Email, verificationToken);
+        //        member.Password = token;
+        //        member.VerificationToken = verificationToken;
 
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
 
-            return new LoginMessage { Status = true, Message = "Successfully Reset Password" };
-        }
+        //    return new LoginMessage { Status = true, Message = "Successfully Reset Password" };
+        //}
 
         /// <summary>
         /// 開通帳號
@@ -242,6 +242,7 @@ namespace WuliKaWu.Controllers
             return RedirectToAction("Login");
         }
 
+        // TODO 重複功能，將移至 ApiController 中
         private void SendConfirmationEmail(string email, string subject, string token)
         {
             if (email == null) return;

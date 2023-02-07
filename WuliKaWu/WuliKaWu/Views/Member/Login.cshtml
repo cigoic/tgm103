@@ -93,10 +93,14 @@
                 fieldsLogin: {
                     account: "",
                     password: "",
-                    rememberMe: false, //@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
+                    rememberMe: "",
                 },
             },
-
+            mounted: function () {
+                let self = this
+                if (@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value)
+                    self.fieldsLogin.rememberMe = @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value;
+            },
             methods: {
                 handleSubmit() {
                     axios.post.("/Member/Login", this.fieldsLogin)
