@@ -1,18 +1,12 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
-using System.Security.Claims;
 using System.Text;
 
 using WuliKaWu.Data;
-using WuliKaWu.Extensions;
 using WuliKaWu.Models;
-
-using static WuliKaWu.Data.MemberRole;
 
 namespace WuliKaWu.Controllers.Api
 {
@@ -27,60 +21,6 @@ namespace WuliKaWu.Controllers.Api
         {
             _context = context;
             _configuration = configuration;
-        }
-
-        /// <summary>
-        /// 會員登入
-        /// </summary>
-        /// <param name="model">登入所需資訊</param>
-        /// <returns></returns>
-        [HttpPost]
-        [ActionName("Login")]
-        public async Task<LoginMessage> LoginRegisterAsync(MemberLoginModel model)
-        {
-            // 資料庫比對
-            var member = _context.Members
-                            .SingleOrDefault(x => x.Account == model.Account && x.EmailComfirmed == true);
-
-            if (member == null || !BCrypt.Net.BCrypt.Verify(model.Password, member.Password))
-            {
-                return new LoginMessage { Status = false, Message = "錯誤，請再試一次" };
-            }
-
-            // 帳號密碼符合！給 cookie(s): principal > identity > claim
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
-                // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
-                new Claim(ClaimTypes.Role, RoleType.User.GetDescriptionText()),    // 資料庫裡的角色
-                //new Claim(ClaimTypes.Role, "User"),
-                //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
-                //new Claim("Id", member.MemberId.ToString()),
-                new Claim("RememberMe", model.RememberMe.ToString()),
-                new Claim(ClaimTypes.Sid, member.MemberId.ToString()),
-                //new Claim(ClaimTypes.GivenName, member.FirstName),
-                //new Claim(ClaimTypes.Surname, member.LastName),
-                //new Claim(ClaimTypes.Email, member.Email),
-                //new Claim(ClaimTypes.Gender, member.Gender),
-                //new Claim(ClaimTypes.DateOfBirth, member.Birthday),
-                //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
-                //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
-            };
-
-            // 直接定義這是"身分證明"
-            // 指定 Authentication Type 名稱，以是任何詞彙，但前後端設定必須一致
-            // 如果無法，可用 CookieAuthenticationDefaults.AuthenticationScheme
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity); // 到時候要用的憑證
-
-            //HttpContext.SignInAsync(claimsPrincipal, new AuthenticationProperties()
-            //{
-            // 何時過期...或填空值
-            //});
-            await HttpContext.SignInAsync(claimsPrincipal);
-
-            return new LoginMessage { Status = true, Message = $"歡迎回來！{User.Identity?.Name}" };
         }
 
         /// <summary>
