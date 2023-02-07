@@ -760,6 +760,9 @@
                 priceRange: {
                     min: 0,
                     max: 100
+                },
+                product: { 
+                    productId:""
                 }
             },
             computed: {
@@ -832,9 +835,9 @@
                 getProductdetailsLink: function (productId) {
                     return this.productdetailsLink + productId
                 },
-                addToCart(id) {
-                    console.log("CPid:", id)
-                    this.queryCartBaseURL = '/api/cart/AddToCart/' + id;
+                addToCart: function (productId) {
+                    console.log("CPid:", productId)
+                    this.queryCartBaseURL = '/api/cart/AddToCart/' + productId;
                     fetch(this.queryCartBaseURL, { method: "POST" })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
@@ -851,11 +854,18 @@
                             Swal.fire(al)
                         })
                 },
-                addToWishlist(id) {
-                    console.log("WPid:", id)
-                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + id;
-                    fetch(this.queryWishlistBaseURL, { method: "POST" })
-                        .then(function (response) { return response.json() })
+                addToWishlist: function (productId) {
+                    console.log("WPid:", productId)                   
+                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + productId;
+                    fetch(this.queryWishlistBaseURL, {
+                        method: "POST"
+                        //body: JSON.stringify(product.productId)
+                    })
+                        .then(function (response) {
+                            console.table(response)
+                            let wresp = response
+                            return response.json() 
+                        })
                         .then(function (result) {
                             var al = {
                                 icon: 'success',

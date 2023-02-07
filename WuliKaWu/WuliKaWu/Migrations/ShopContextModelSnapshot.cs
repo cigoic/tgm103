@@ -98,6 +98,21 @@ namespace WuliKaWu.Migrations
                     b.ToTable("ColorProduct");
                 });
 
+            modelBuilder.Entity("MemberWishList", b =>
+                {
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WishListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MemberId", "WishListId");
+
+                    b.HasIndex("WishListId");
+
+                    b.ToTable("MemberWishList");
+                });
+
             modelBuilder.Entity("ProductTag", b =>
 =======
                     b.HasKey("CartId", "ProductId");
@@ -2167,6 +2182,11 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
+<<<<<<< HEAD
+=======
+                    b.HasIndex("ProductId");
+
+>>>>>>> [修改]ModifyWishlistModel的Member為ICollection
                     b.ToTable("WishLists");
                 });
 
@@ -2216,6 +2236,7 @@ namespace WuliKaWu.Migrations
                 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Cart", null)
@@ -2246,6 +2267,8 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
+=======
+>>>>>>> [修改]ModifyWishlistModel的Member為ICollection
             modelBuilder.Entity("MemberWishList", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", null)
@@ -2261,8 +2284,11 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("ProductWishList", b =>
 =======
+=======
+>>>>>>> [修改]ModifyWishlistModel的Member為ICollection
             modelBuilder.Entity("ProductTag", b =>
 >>>>>>> [修改] 會員表, 重建 Migration
                 {
@@ -2421,6 +2447,20 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+<<<<<<< HEAD
+=======
+            modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("WishList")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+>>>>>>> [修改]ModifyWishlistModel的Member為ICollection
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
                 {
                     b.Navigation("ArticleCategories");
@@ -2446,8 +2486,6 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ResetTokens");
 
                     b.Navigation("Roles");
-
-                    b.Navigation("WishList");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
