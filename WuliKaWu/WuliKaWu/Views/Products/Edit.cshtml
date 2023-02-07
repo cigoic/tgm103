@@ -11,96 +11,100 @@
         <div class="shop-bottom-area">
             <div class="tab-content jump">
                 <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-5">
-                            <div class="product-list-img">
+                    <div class="row billing-info-wrap">
+                        <div class="col-lg-12 col-sm-12 contact-form-style">
+                            <div class="shop-list-content">
+                                @*商品內容*@
+                                <div class="row billing-select select-style">
+                                    <div class="col-6 ">
+                                        <div class="form-group" hidden>
+                                            <label for="ProductId" class="control-label">ProductId</label>
+                                            <input id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ProductName" class="control-label">ProductName</label>
+                                            <input id="ProductName" name="ProductName" class="form-control" v-model="productFields.productName" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Price" class="control-label">Price</label>
+                                            <input id="Price" name="Price" class="form-control" v-model="productFields.price" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="SellingPrice" class="control-label">SellingPrice</label>
+                                            <input id="SellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" />
+                                        </div>
 
-                                @*商品圖片*@
+                                        <div class="form-group">
+                                            <label for="Comment" class="control-label">Comment</label>
+                                            <input id="Comment" name="Comment" class="form-control" v-model="productFields.comment" />
+                                        </div>
+                                    </div>
+                                    <div class="col-6 ">
+                                        <div class="form-group">
+                                            <label for="Color" class="control-label">Color</label>
+                                            <select id="Color" class="form-control" v-model="productFields.colorIds" multiple>
+                                                <option v-for="item in optionSource.color" :value="item.id">{{item.type}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Size" class="control-label">Size</label>
+                                            <select id="Size" class="form-control" v-model="productFields.sizeIds">
+                                                <option v-for="item in optionSource.size" :value="item.id">{{item.type}}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Category" class="control-label">Category</label>
+                                            <select id="Category" class="form-control" v-model="productFields.categoryId">
+                                                <option v-for="item in optionSource.category" :value="item.id">{{item.type}}</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Tag" class="control-label">Tag</label>
+                                            <select id="Tag" class="form-control" v-model="productFields.tagIds" multiple>
+                                                <option v-for="item in optionSource.tag" :value="item.id">{{item.type}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        @*商品圖片*@
+                        <div class="col-lg-12 col-sm-12 contact-form-style">
+                            <div class="product-list-img ">
                                 <a href="">
-                                    @*<img src="@Url.Content(Model.PicturePath)" id="imagePreview" alt="Product Picture" />*@
                                     <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
                                 </a>
                             </div>
+                        </div>
+                        @*商品圖片上傳預覽*@
+                        <div class="col-lg-12 col-sm-12 contact-form-style">
+                            <div class="form-group mb-4">
+                                <label for="PicturePath" class="control-label">Picture</label>
+                                <input for="PicturePath" class="form-control" name="PicturePath" type="file" id="fileupload" @@change="uploadPic" multiple />
+                            </div>
+                            <div class="product-list-img">
+                                <div class="row">
+                                    <div class="col-3" v-for="item in picPriview">
+                                        <img :src="item" class="w-100 img-thumbnail" />
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="mt-5">
-                                @*<a asp-action="Index">Back to List</a>*@
                                 <a href="/Products/Index">Back to List</a>
                             </div>
                         </div>
-
-                        <div class="col-lg-8 col-sm-7 contact-form-style">
-                            <div class="shop-list-content">
-
-                                @*商品內容*@
-                                <form>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group" hidden>
-                                                <label for="ProductId" class="control-label">ProductId</label>
-                                                <input id="ProductId" name="ProductId" class="form-control" v-model="productFields.productId" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="ProductName" class="control-label">ProductName</label>
-                                                <input id="ProductName" name="ProductName" class="form-control" v-model="productFields.productName"  />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Color" class="control-label">Color</label>
-                                                <input id="Color" name="Color" class="form-control" v-model="productFields.color" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Size" class="control-label">Size</label>
-                                                <input id="Size" name="Size" class="form-control" v-model="productFields.size"/>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Price" class="control-label">Price</label>
-                                                <input id="Price" name="Price" class="form-control" v-model="productFields.price" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Discount" class="control-label">Discount</label>
-                                                <input id="Discount" name="Discount" class="form-control" v-model="productFields.discount" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="SellingPrice" class="control-label">SellingPrice</label>
-                                                <input id="sellingPrice" name="SellingPrice" class="form-control" v-model="productFields.sellingPrice" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Category" class="control-label">Category</label>
-                                                <input id="Category" name="Category" class="form-control" v-model="productFields.category" />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="Tag" class="control-label">Tag</label>
-                                                <input id="Tag" name="Tag" class="form-control" v-model="productFields.tag"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6">
-                                            @*商品圖片預覽*@
-                                            <div class="form-group">
-                                                <label for="PicturePath" class="control-lable">PicturePath</label>
-                                                <input class="form-control" type="file" id="fileupload" name="PicturePath" onchange="ShowImagePreview(this)" />
-                                                <img src="/images/product-5.png" id="imagePreview" alt="Product Style" width="360px" height="410px">
-                                                @*<img :src="product.picturePath" id="imagePreview" alt="Product Picture" width="360" height="410px"/>*@
-                                            </div>
-
-                                            @*儲存編輯按鍵*@
-                                            <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
-                                                <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
-                                                    <div>
-                                                        <button type="button" class="submit" v-on:click="saveProductChange(@ViewBag.id)">Save Edit</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                        @*儲存編輯按鍵*@
+                        <div class="col-lg-12 col-md-3 ms-60 p-80 contact-form-style">
+                            <div class="col-lg-12 col-md-12 col-12 p-4 pe-0 contact-us-btn btn-hover">
+                                <div>
+                                    <button type="button" class="submit" v-on:click="saveProductChange(@ViewBag.id)">Save Edit</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,87 +113,117 @@
         </div>
     </div>
 </div>
+</div>
 
 @section Scripts {
-<script>
+    <script>
 
-    //圖片預覽
-    function ShowImagePreview(input) {
-        if (input.files && input.files[0]) {
-           var fname = input.files[0].name;
-            var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
-            if (!re.exec(fname)) {
-                alert("Image not supported!");
-                $("#fileupload").val("");
-                    return false;
-            }
-            else {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagePreview').prop('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    }
+        let app = new Vue({
 
-    let app = new Vue({
-    
-        el: "#EditProduct",
-        data:
-        {
-            
-            productFields:{
+            el: "#EditProduct",
+            data:
+            {
+                optionSource: {
+                    category: [],
+                    color: [],
+                    size: [],
+                    tag: []
+                },
+                productFields: {
                     productId: "",
                     productName: "",
-                    color: "",
-                    size: "",
-                    category: "",
+                    colorIds: [],
+                    sizeId: "",
+                    categoryId: "",
                     price: "",
                     discount: "",
                     sellingPrice: "",
-                    tag: "",
-                    picturePath:""
-            }
-        },
+                    tagIds: [],
+                    picturePath: "",
+                    comment: "",
+                },
+                picPriview: [],
+            },
 
-        mounted: function(){
-            var self = this;
-            fetch("/api/product/getbyid/"+"@ViewBag.id")
-
-            .then(function(response){return response.json()})
-            .then(function(result){
-                console.log(result);
-                //self.product = result;
-                self.productFields = result;
-                self.productFields.productId = @ViewBag.id;
-
-            })
-        },
-
-        methods: 
-        {            
-                saveProductChange: function (id)
-            {
+            mounted: function () {
                 var self = this;
-                self.productFields.productId = @ViewBag.id
+                this.GetCategoryData();
+                this.GetColorData();
+                this.GetSizeData();
+                this.GetTagData();
 
-                var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+                fetch("/api/product/getbyid/" + "@ViewBag.id")
 
-                fetch(qureyEditBaseUrl ,{
-                    method:"POST",
-                    headers:{'content-type': 'application/json'},
-                    body: JSON.stringify(self.productFields)
-                })
-                    .then(function(response){return response.json()})
-                    .then(function(result){
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
                         console.log(result);
+                        //self.product = result;
+                        self.productFields = result;
+                        self.productFields.productId = @ViewBag.id;
+
                     })
-            }             
-        }
+            },
 
-    });
-</script>
+            methods:
+            {
+                uploadPic: function (e) {
+                    var self = this;
+                    self.productFields.picFiles = e.target.files;
+                    self.picPriview = [];
+                    for (let fileData of self.productFields.picFiles) {
+                        let reader = new FileReader();
+                        reader.addEventListener("load", (event) => {
+                            self.picPriview.push(event.target.result);
+                        });
+                        reader.readAsDataURL(fileData)
+                    }
+                },
+                GetCategoryData: function () {
+                    var self = this;
+                    fetch("/api/category/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.category = result })
+                },
+                GetColorData: function () {
+                    var self = this;
+                    fetch("/api/color/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.color = result })
+                },
+                GetSizeData: function () {
+                    var self = this;
+                    fetch("/api/size/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.size = result })
+                },
+                GetTagData: function () {
+                    var self = this;
+                    fetch("/api/tag/getall")
+                        .then(function (response) { return response.json() })
+                        .then(function (result) { self.optionSource.tag = result })
+                },
+                saveProductChange: function (id) {
+                    var self = this;
+                    self.productFields.productId = @ViewBag.id
 
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                        var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+
+                    fetch(qureyEditBaseUrl, {
+                        method: "POST",
+                        headers: { 'content-type': 'application/json' },
+                        body: JSON.stringify(self.productFields)
+                    })
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result);
+                        })
+                }
+            }
+
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
