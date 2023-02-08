@@ -137,28 +137,16 @@
         </form>
 =======
         <div class="form-group">
-            <label for="CreatedDate" class="control-label" hidden></label>
-            <input asp-for="CreatedDate" class="form-control" hidden />
+            <label for="Title" class="control-label">標題</label>
+            <input for="Title" class="form-control" type="text" v-model="title" />
         </div>
         <div class="form-group">
-            <label for="ModifiedDate" class="control-label" hidden></label>
-            <input asp-for="ModifiedDate" class="form-control" hidden />
-        </div>
-        <div class="form-group">
-            <label for="MemberId" class="control-label" hidden></label>
-            <select asp-for="MemberId" class="form-control" asp-items="ViewBag.MemberId" hidden></select>
-        </div>
-        <div class="form-group">
-            <label for="Title" class="control-label"></label>
-            <input asp-for="Title" class="form-control" type="text" />
-        </div>
-        <div class="form-group">
-            <label id="Content" name="Content" class="control-label"></label>
-            <textarea ref="editor" id="Content" name="Content"></textarea>
+            <label id="Content" name="Content" class="control-label">內容</label>
+            <textarea ref="editor" for="Content" id="Content" name="Content" v-model="content"></textarea>
         </div>
         <template>
             <div class="form-group">
-                <label for="CategoryId" class="control-label"></label>
+                <label for="CategoryId" class="control-label">文章分類</label>
                 <select v-model="selectedOption" class="form-control">
                     <option value="">Make a Choice...</option>
                     <option v-for="option in options" :key="option.value" :value="option.value">
@@ -168,7 +156,7 @@
             </div>
         </template>
         <div class="form-group mt-15 mb-15">
-            <button type="button" @@click.prevent="handleSubmit()" value="Create" class="btn btn-primary" />
+            <button type="button" @@click.prevent="handleSubmit()" class="btn btn-primary">送出</button>
         </div>
 >>>>>>> [修改] Article 資料內容定義類別表與 ArticleCategory 的關係
     </div>
@@ -243,13 +231,15 @@
 >>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
                 selectedOption: '',
                 options: [
-                    { text: 'Uncategorized', value: 0 },
-                    { text: 'Blog GridView', value: 1 },
-                    { text: 'Latest Blog', value: 2 },
-                    { text: 'Our Blog', value: 3 },
+                    { text: 'Uncategorized', value: 1 },
+                    { text: 'Blog GridView', value: 2 },
+                    { text: 'Latest Blog', value: 3 },
+                    { text: 'Our Blog', value: 4 },
                 ],
-                content: '',
-                editor: null,
+                title: "",
+                content: {},
+                category: "",
+                editor: "",
             },
 <<<<<<< HEAD
             mounted: function (){
@@ -260,6 +250,7 @@
 =======
             mounted: function () {
                 ClassicEditor.create(this.$refs.editor, {
+<<<<<<< HEAD
                     height: 300,
 <<<<<<< HEAD
                 });
@@ -267,6 +258,17 @@
 =======
                 })
 >>>>>>> [更新] 會員登入功能, 調整註冊功能
+=======
+                    height: 500,
+                    language: 'zh',
+                    //ckfinder: { uploadUrl: '/Blog/UploadImage' },
+                    //mediaEmbed: {
+                    //    previewWidth: 575,
+                    //    previewHeight: 400,
+                    //}
+                }).then(editor => { console.log("CK:", editor) })
+                    .catch(error => { tgm103ShowError(error) })
+>>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
                 console.log("Hi~from Article Create")
 >>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
             },
@@ -276,7 +278,22 @@
                 },
             },
             methods: {
+                //Create
+                handleSubmit: function () {
+                    let self = this;
+                    let form = new FormData();
+                    form.append("Title", self.title);
+                    form.append("CategoryId", self.selectedOption)
+                    form.append("Content", self.content);
 
+                    axios.post('/api/Blog/Create', form, {
+                        method: "POST",
+                        //'Content-Type': 'multipart/form-data'
+                        //'Content-Type': 'application/x-www-form-urlencoded'
+                    })
+                        .then(response => { tgm103ShowSuccess(response.data.message) })
+                        .catch(error => { tgm103ShowError(error.response.data.message) })
+                }
             },
         })
 

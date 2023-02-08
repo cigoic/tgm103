@@ -196,9 +196,6 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ArticleCategorieId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -208,6 +205,11 @@ namespace WuliKaWu.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
@@ -222,7 +224,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArticleCategorieId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("MemberId");
 
@@ -2333,9 +2335,9 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
                 {
-                    b.HasOne("WuliKaWu.Data.ArticleCategory", "ArticleCategorie")
+                    b.HasOne("WuliKaWu.Data.ArticleCategory", "ArticleCategory")
                         .WithMany("Articles")
-                        .HasForeignKey("ArticleCategorieId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2345,7 +2347,7 @@ namespace WuliKaWu.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ArticleCategorie");
+                    b.Navigation("ArticleCategory");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>

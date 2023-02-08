@@ -15,10 +15,13 @@ using Microsoft.AspNetCore.Http;
 >>>>>>> Productvue (#6)
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using System.Net.NetworkInformation;
+
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
+
 using static NuGet.Packaging.PackagingConstants;
 using static WuliKaWu.Data.Enums.Common;
 
@@ -38,7 +41,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ¨ú±o©Ò¦³°Ó«~
+        /// ï¿½ï¿½ï¿½oï¿½Ò¦ï¿½ï¿½Ó«~
         /// </summary>
         /// <returns></returns>
 
@@ -137,14 +140,14 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ¨ú±o¹ïÀ³idªº°Ó«~
+        /// ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½Ó«~
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
         public ProductPreviewModel GetById(int id)
         {
-            var data = _context.Products.Include(x=>x.Pictures).Include(x=>x.Colors).Include(x=>x.Tags).FirstOrDefault(x => x.ProductId == id);
+            var data = _context.Products.Include(x => x.Pictures).Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
 
             //return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Where(x => x.ProductId == id).Select(x => new ProductPreviewModel
             //{
@@ -182,7 +185,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ½s¿è¹ïÀ³idªº°Ó«~
+        /// ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½Ó«~
         /// </summary>
         /// <param name="id"></param>
         /// <param name="eModel"></param>
@@ -227,7 +230,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ·s¼W°Ó«~¦Ü¸ê®Æ®w
+        /// ï¿½sï¿½Wï¿½Ó«~ï¿½Ü¸ï¿½Æ®w
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
