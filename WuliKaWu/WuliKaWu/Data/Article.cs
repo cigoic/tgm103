@@ -44,6 +44,9 @@ namespace WuliKaWu.Data
         [Required]
         public string Content { get; set; }
 
+        [MaxLength(128)]
+        public string Description { get; set; }
+
         /// <summary>
         /// 分類，不可為NULL
         /// </summary>
@@ -61,7 +64,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性: 文章關聯之分類表
         /// </summary>
-        public virtual ArticleCategory ArticleCategorie { get; set; }
+        public virtual ArticleCategory ArticleCategory { get; set; }
 
         /// <summary>
         /// 導覽屬性: 文章關聯之影像表

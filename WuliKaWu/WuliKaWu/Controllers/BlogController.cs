@@ -124,17 +124,23 @@ namespace WuliKaWu.Controllers
                 return BadRequest(ModelState);
             }
 
+            //string articleContent = "版面讓我們不停更是彩色同事，打開每個人，幸福狀況谷歌您是部隊不懂唯一導致權限風雲漫畫及其，新年筆者來的居住優質我說，利潤出席以來思路最大服裝許多人物巨大，回覆收到醫藥建設點點資源加入時間同事聯繫看法感動頻率客戶進行，家電一聲應當比如三大看著期限，雙方明顯殺手晶片，好了大家都參觀形式國際已被，因為金幣親自只有模擬線上死了廣播留下激動監管新人私服元素告訴我，投入新手效果網絡哪些屬性，通過右鍵內心顯然達到全市，你自己很有有限買賣對手兒童值得故意整合生意，烏日形象忽然開關安排自行專用免費電影程度群眾求購全家部落，漢化滑鼠公佈，防止新竹步驟找不到古代應用做好西安證券產品符合接着老婆，來說民族跟我未經願意，要在浙江結合教育活動說什麼提示訊息方便免費版，和他此時而已落實病毒沉默奧客軍隊細節擔心課堂重要，優點有時面議遭遇軍事一切要有合同日本如有本論壇，兩個廣大別的，女孩子。";
+            int maxLength = 64;
+
             Article model = new Article
             {
-                CreatedDate = article.CreatedDate,
-                ModifiedDate = article.ModifiedDate,
+                CreatedDate = DateTime.UtcNow,
+                ModifiedDate = DateTime.UtcNow,
                 MemberId = User.Claims.GetMemberId(),
                 Title = article.Title,
                 Content = article.Content,
+                Description = article.Content.Length <= maxLength
+                    ? article.Content : article.Content.Substring(0, maxLength) + "...",
                 CategoryId = article.CategoryId,
             };
 
             _context.Articles.Add(model);
+
             await _context.SaveChangesAsync();
 
             return View();
@@ -269,18 +275,18 @@ namespace WuliKaWu.Controllers
             return NextArticle.Id;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UploadImage(IFormFile image)
+        public async Task<IActionResult> UploadImage([FromForm] IFormFile image)
         {
             // Save the image file to the desired location
-            var filePath = Path.Combine("path/to/image", image.FileName);
+            var rootPath = $@"{_env.WebRootPath}/images/cheditor";
+            var filePath = Path.Combine(rootPath, image.FileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await image.CopyToAsync(stream);
             }
 
             // Return a success response
-            return Json(new { success = true });
+            return Json(new { Status = true, Message = "成功上傳" });
         }
     }
 }
