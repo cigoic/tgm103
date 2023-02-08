@@ -82,7 +82,7 @@
                             <p>{{ article.description }}</p>
 
                             <div class="blog-btn-2 btn-hover">
-                                <a class="btn hover-border-radius theme-color" :href="articleLink(article.articleId)">Read More</a>
+                                <a class="btn hover-border-radius theme-color" :href="articleLink(article.id)">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -152,7 +152,6 @@
 @section Scripts{
 
     <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js" integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     <script>
         Vue.component('paginate', VuejsPaginate);
 
@@ -183,7 +182,6 @@
                         modifiedAt: '2023-02-08',
                     }
                 ],
-                //articleBaseLink: "/api/Blog/GetArticleById/",
                 articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
                 countPerPage: 2,
@@ -195,13 +193,9 @@
                 fetch('/api/Blog/GetArticles')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
-                        console.log(result);
+                        //console.log(result);
                         self.articles = result;
                     })
-                //axios
-                //    .get('/api/Blog/GetArticles')
-                //    .then(response => (self.articles = response.data))
-                //    .catch(error => console.log(error))
             },
             computed: {
                 filterArticles: function () {

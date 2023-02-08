@@ -106,10 +106,15 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
                             @{
                                 int delayTime = 200;
+=======
+                            @* @{
+                            int delayTime = 200;
+>>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
                             }
                             @foreach (var imagePath in Model.ContentImageFileNames)
 <<<<<<< HEAD
@@ -120,6 +125,7 @@
 =======
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
                             {
+<<<<<<< HEAD
                                 <div class="col-md-6 col-sm-6 col-12">
                                     <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
                                         <img src="@Url.Content(imagePath)" alt="">
@@ -145,6 +151,15 @@
                                 delayTime += 200;
                             }
 >>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
+=======
+                            <div class="col-md-6 col-sm-6 col-12">
+                            <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
+                            <img src="@Url.Content(imagePath)" alt="">
+                            </div>
+                            </div>
+                            delayTime += 200;
+                            }*@
+>>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
                         </div>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>

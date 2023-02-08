@@ -70,7 +70,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 導覽屬性: 文章關聯之標題影像表
         /// </summary>
-        public virtual ICollection<ArticleTitleImage> ArticleTitleImages { get; set; }
+        public virtual ArticleTitleImage ArticleTitleImage { get; set; }
 
         /// <summary>
         /// 導覽屬性: 文章關聯之分類表

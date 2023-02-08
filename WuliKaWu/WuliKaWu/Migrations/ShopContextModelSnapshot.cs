@@ -334,7 +334,8 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArticleId");
+                    b.HasIndex("ArticleId")
+                        .IsUnique();
 
                     b.ToTable("ArticleTitleImages");
                 });
@@ -2338,8 +2339,8 @@ namespace WuliKaWu.Migrations
             modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Article", "Article")
-                        .WithMany("ArticleTitleImages")
-                        .HasForeignKey("ArticleId")
+                        .WithOne("ArticleTitleImage")
+                        .HasForeignKey("WuliKaWu.Data.ArticleTitleImage", "ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -2516,7 +2517,8 @@ namespace WuliKaWu.Migrations
                 {
                     b.Navigation("ArticleContentImages");
 
-                    b.Navigation("ArticleTitleImages");
+                    b.Navigation("ArticleTitleImage")
+                        .IsRequired();
 
                     b.Navigation("Tags");
                 });
