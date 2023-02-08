@@ -20,8 +20,9 @@
             <input for="Title" class="form-control" type="text" v-model="title" />
         </div>
         <div class="form-group">
-            <label id="Content" name="Content" class="control-label">內容</label>
-            <textarea ref="editor" for="Content" id="Content" name="Content" v-model="content"></textarea>
+            @*<label id="ck" name="Content" class="control-label">內容</label>*@
+            @*<textarea ref="editor" id="ckeditor" name="Content" v-model="editorContent"></textarea>*@
+            <textarea id="ck" v-model="content"></textarea>
         </div>
         <template>
             <div class="form-group">
@@ -62,12 +63,14 @@
                     { text: 'Our Blog', value: 4 },
                 ],
                 title: "",
-                content: {},
+                content: "",
                 category: "",
-                editor: "",
+                ck: {},
+                //editor: ClassicEditor,
             },
             mounted: function () {
-                ClassicEditor.create(this.$refs.editor, {
+                //ClassicEditor.create(this.$refs.editor, {
+                ClassicEditor.create(document.querySelector("#ck"), {
                     height: 500,
                     language: 'zh',
                     //ckfinder: { uploadUrl: '/Blog/UploadImage' },
@@ -75,32 +78,34 @@
                     //    previewWidth: 575,
                     //    previewHeight: 400,
                     //}
-                }).then(editor => { console.log("CK:", editor) })
+                }).then(editor => { this.ck = editor })
                     .catch(error => { tgm103ShowError(error) })
                 console.log("Hi~from Article Create")
             },
-            watch: {
-                content(newValue) {
-                    ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
-                },
-            },
+            //watch: {
+            //    content(newValue) {
+            //        ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
+            //    },
+            //},
             methods: {
                 //Create
-                handleSubmit: function () {
+                handleSubmit: async function () {
                     let self = this;
                     let form = new FormData();
                     form.append("Title", self.title);
                     form.append("CategoryId", self.selectedOption)
-                    form.append("Content", self.content);
+                    form.append("Content", self.ck.getData());
 
+                    //const content = this.ck.getData()
                     axios.post('/api/Blog/Create', form, {
-                        method: "POST",
+                        //"Accept": "application/json",
+                        //"Content-Type": "application/json",
                         //'Content-Type': 'multipart/form-data'
                         //'Content-Type': 'application/x-www-form-urlencoded'
                     })
                         .then(response => { tgm103ShowSuccess(response.data.message) })
                         .catch(error => { tgm103ShowError(error.response.data.message) })
-                }
+                },
             },
         })
 

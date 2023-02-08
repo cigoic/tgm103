@@ -51,18 +51,18 @@
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor.</p>
                     <div class="blog-details-middle-img-wrap">
                         <div class="row">
-                            @{
-                                int delayTime = 200;
+                            @* @{
+                            int delayTime = 200;
                             }
                             @foreach (var imagePath in Model.ContentImageFileNames)
                             {
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
-                                        <img src="@Url.Content(imagePath)" alt="">
-                                    </div>
-                                </div>
-                                delayTime += 200;
-                            }
+                            <div class="col-md-6 col-sm-6 col-12">
+                            <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
+                            <img src="@Url.Content(imagePath)" alt="">
+                            </div>
+                            </div>
+                            delayTime += 200;
+                            }*@
                         </div>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>

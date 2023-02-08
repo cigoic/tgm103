@@ -28,7 +28,12 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         public async Task<IEnumerable<Article>> GetArticles()
         {
-            return await _context.Articles.ToListAsync();
+            return await _context.Articles
+                .Include(a => a.ArticleTitleImage)
+                .Include(a => a.ArticleContentImages)
+                .Include(a => a.Tags)
+                //.Select(a => new NewArticleModel { ... })
+                .ToListAsync();
         }
 
         /// <summary>
@@ -43,7 +48,7 @@ namespace WuliKaWu.Controllers.Api
             return await _context.Articles.FindAsync(ArticleId)
                 is Article model
                     ? Results.Ok(model)
-                    : Results.NotFound();
+                    : Results.NotFound(new { Status = false, Message = "找無內容!" });
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace WuliKaWu.Controllers.Api
                 var article = await _context.Articles.FindAsync(ArticleId);
                 if (article == null)
                 {
-                    return Results.NotFound();
+                    return Results.NotFound(new { Status = false, Message = "找無文章!" });
                 }
 
                 _context.Update(article);
@@ -141,6 +146,8 @@ namespace WuliKaWu.Controllers.Api
                         ? article.Content : article.Content.Substring(0, maxLength) + "...",
                     CategoryId = article.CategoryId,
                 };
+                if (model == null)
+                    return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
 
                 _context.Articles.Add(model);
                 await _context.SaveChangesAsync();
@@ -149,7 +156,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 throw;
             }
-            return Results.Ok(new { Status = true, Message = "文章成功新增!" });
+            return Results.Ok(new { Status = true, Message = "文章新增成功!" });
         }
 
         // DELETE   api/Blog/Delete/{ArticleId}
@@ -158,16 +165,18 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="ArticleId">文章 ID</param>
         /// <returns></returns>
-        public async Task<IResult> DeleteAsync(int ArticleId)
+        [Authorize]
+        [HttpPost, ActionName("Delete")]
+        public async Task<IResult> DeleteConfirmed(int id)
         {
-            if (await _context.Articles.FindAsync(ArticleId) is Article article)
+            if (await _context.Articles.FindAsync(id) is Article article)
             {
                 _context.Articles.Remove(article);
                 await _context.SaveChangesAsync();
-                return Results.Ok(article);
+                return Results.Ok(new { Status = true, Message = "文章刪除成功!" });
             }
 
-            return Results.NotFound();
+            return Results.NotFound(new { Status = false, Message = "文章刪除失敗!" });
         }
     }
 }
