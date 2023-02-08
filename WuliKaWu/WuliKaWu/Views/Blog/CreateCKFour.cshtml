@@ -43,14 +43,14 @@
             </div>
             <template>
                 <div class="form-group">
-                    <label asp-for="ArticleCategories" class="control-label"></label>
+                    <label asp-for="CategoryId" class="control-label"></label>
                     <select v-model="selectedOption" class="form-control">
                         <option value="">Make a Choice...</option>
                         <option v-for="option in options" :key="option.value" :value="option.value">
                             {{ option.text }}
                         </option>
                     </select>
-                    <span asp-validation-for="ArticleCategories" class="text-danger"></span>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
             </template>
             <div class="form-group mt-15 mb-15">

@@ -95,7 +95,7 @@ namespace WuliKaWu.Controllers
             //});
             await HttpContext.SignInAsync(claimsPrincipal);
 
-            return View();
+            return RedirectToAction("Index", "Home");
             // return new LoginMessage { Status = true, Message = $"歡迎回來！{User.Identity?.Name}" };
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace WuliKaWu.Models
 {
-    public class ArticleModel
+    public class ArticleDetailsModel
     {
         public int ArticleId { get; set; }
         public string MemberName { get; set; }
