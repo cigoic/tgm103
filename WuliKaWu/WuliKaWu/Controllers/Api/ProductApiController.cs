@@ -178,7 +178,8 @@ namespace WuliKaWu.Controllers.Api
                 Discount = data.SellingPrice.HasValue ? true : false,
                 SellingPrice = data.SellingPrice,
                 CategoryId = data.CategoryId,
-                Tags = data.Tags.Select(x => x.Id).ToList()
+                Tags = data.Tags.Select(x => x.Id).ToList(),
+                Comment = data.Comment
             };
 
             return model;
@@ -191,9 +192,28 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="eModel"></param>
         /// <returns></returns>
         [HttpPost("{id}")]
-        public EditModel EditById(int id, EditModel eModel)
+        public ProductEditModel EditById(int id)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var data = _context.Products.Include(x => x.Pictures).Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
+
+            if (data == null) return null;
+            var model = new ProductEditModel
+            {
+                Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
+                ProductName = data.ProductName,
+                Color = data.Colors.Select(x => x.Id).ToList(),
+                Size = data.Size,
+                Price = data.Price,
+                SellingPrice = data.SellingPrice,
+                CategoryId = data.CategoryId,
+                Tag = data.Tags.Select(x => x.Id).ToList(),
+                Comment = data.Comment
+            };
+            _context.SaveChanges();
+
+            return model;
+
             //Product product = _context.Products.Find(id);
             //product.ProductName = eModel.ProductName;
             //product.Color = eModel.Color;
@@ -270,6 +290,39 @@ namespace WuliKaWu.Controllers.Api
             _context.Products.Add(prd);
             _context.SaveChanges();
             return true;
+        }
+
+        /// <summary>
+        /// 從資料庫刪除對應Id的商品
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost("{id}")]
+        public ProductDeleteModel DeleteById([FromBody]Int32 id)
+        {
+            //throw new NotImplementedException();
+
+            var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
+
+            if (data != null)
+            {
+                var deletemodel = new ProductDeleteModel
+                {
+                    ProductName = data.ProductName,
+                    Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
+                    Color = data.Colors.Select(x => x.Id).ToList(),
+                    Size = data.Size,
+                    Price = data.Price,
+                    SellingPrice = data.SellingPrice,
+                    CategoryId = data.CategoryId,
+                    Tag = data.Tags.Select(x => x.Id).ToList()
+                };
+
+                _context.Products.Remove(data);
+                _context.SaveChanges();
+
+            }
+            return null;
         }
     }
 }<<<<<<< HEAD
