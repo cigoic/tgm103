@@ -92,6 +92,7 @@
                                         <tr v-for="product in productInThisWishList">                                        
                                             <td class="pro-remove">
                                                 <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
+<<<<<<< HEAD
                                              </td>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -101,9 +102,12 @@
 >>>>>>> [修改]WishlistApi 的getwishlist
                                                 <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>*@
+=======
+                                             </td>                                            
+>>>>>>> [修改]Cartapicontroller的gettocart action(有抓到值,前端渲染不完整)
                                             @*找class可以去套版*@
                                             <td class="product-thumbnail">
-                                                <img class="width-thumbnail" style="width:120px" :src="product.picturePath[1]"></img>
+                                                <img class="width-thumbnail" style="width:120px" :src="product.picturePath[0]"></img>
                                             </td>
                                             <td class="product-name">
                                                 <h5><a href="/Products/ProductDetails">{{product.productName}}</a></h5>

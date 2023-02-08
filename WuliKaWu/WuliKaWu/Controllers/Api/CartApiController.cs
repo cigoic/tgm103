@@ -236,36 +236,64 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CartGetModel>> GetCartAsync()
+        public async Task<IEnumerable<CartGetModel>> GetCartAsync(int? productId)
         {
             var myId = User.Claims.GetMemberId();
 
-            return (await _context.Carts/*.Include(x => x.Product.Select(a => a.Pictures)).Include(x => x.Product.Select(a => a.Size))*/
-                .Where(c => c.MemberId == myId)
-                .Select(c => new CartGetModel
-                {
-                    MemberId = c.MemberId,
-                    Id = c.Id,
-                    ProductId = c.ProductId,
-                    //Pictures = (List<string>)c.Product.Select(a => a.Pictures),
-                    //ProductName = c.Product.Select(x => x.ProductName).ToString(),
-                    //Size = c.Product.Select(a => a.Size),
-                    //Color = c.Product.Select(x => x.Colors),
-                    Quantity = c.Quantity
-                    //Price = Convert.ToDecimal(c.Product.Select(x => x.Price)),
-                    //SellingPrice = Convert.ToDecimal(c.Product.Select(x => x.SellingPrice))
-                }).ToListAsync());
+            try
+            {
+                var cart = _context.Carts
+                    .Where(c => c.MemberId == myId)
+                    //.Select(c => c.Product);
 
-            //return (await _context.Carts
+                    //var itemsInCart = new List<CartGetModel>();
+
+                    //foreach (var product in productsInCart)
+                    //{
+                    //    itemsInCart.Add(new CartGetModel
+                    //    {
+                    //        MemberId = myId,
+                    //        ProductId = product.First().ProductId,
+                    //        PicturePath = (IEnumerable<List<string>>)product.First().Pictures.Select(x => x.PicturePath),
+                    //    });
+                    //}
+                    //return itemsInCart.ToList();
+
+                    .Select(c => new CartGetModel
+                    {
+                        MemberId = myId,
+                        ProductId = c.ProductId,
+                        Id = c.Id,
+                        ProductName = c.Product.Select(x => x.ProductName).ToList(),
+                        Quantity = c.Quantity,
+                        PicturePath = c.Product.Select(x => x.Pictures.Select(x => x.PicturePath).ToList()),
+                        Size = c.Product.Select(x => x.Size),
+                        Color = c.Product.Select(x => x.Colors).ToList(),
+                        Price = c.Product.Select(x => x.Price),
+                        SellingPrice = c.Product.Select(x => x.SellingPrice)
+                    });
+                return await cart.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            //return (await _context.Carts.Include(x => x.Product.Select(a => a.Pictures)).Include(x => x.Product.Select(a => a.Size))
             //    .Where(c => c.MemberId == myId)
             //    .Select(c => new CartGetModel
             //    {
             //        MemberId = c.MemberId,
-            //        Id =c.Id,
-            //        ProductId= c.ProductId,
-            //        Pictures = List<Picture> {  c.Product.Picture { } }
-            //    })
-            //    );
+            //        Id = c.Id,
+            //        ProductId = c.ProductId,
+            //        Pictures = (List<string>)c.Product.Select(a => a.Pictures),
+            //        ProductName = c.Product.Select(x => x.ProductName).ToString(),
+            //        Size = c.Product.Select(a => a.Size),
+            //        Color = c.Product.Select(x => x.Colors),
+            //        Quantity = c.Quantity
+            //        Price = Convert.ToDecimal(c.Product.Select(x => x.Price)),
+            //        SellingPrice = Convert.ToDecimal(c.Product.Select(x => x.SellingPrice))
+            //    }).ToListAsync());
         }
 
         //TODO 移除購物車的商品
