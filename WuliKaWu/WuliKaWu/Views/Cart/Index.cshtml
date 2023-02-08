@@ -40,31 +40,43 @@
                                     </thead>
                                     <tbody >
                                         <tr v-for="cart in productInThisCart">
-                                            <td class="product-thumbnail">                                                
-                                                <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
+                                            @*<td class="product-thumbnail">                                                
+                                                <img class="width-thumbnail" style="width:120px" :src="cart.picturePath[1]"></img>
+                                            </td>*@
+                                            <td class="product-thumbnail">
+                                                <img :src="cart.picturePath[0]"></img>
                                             </td>
+                                            @*<td class="product-name">
+                                                <h5><a href="/Products/ProductDetails">{{cart.productName}}</a></h5>
+                                            </td>*@
                                             <td class="product-name">
-                                                <h5><a href="/Products/ProductDetails">{{cart.products.productName}}</a></h5>
+                                                <h5><a href="/Products/ProductDetails">{{cart.productName}}</a></h5>
                                             </td>
-                                            <td><span>{{cart.products.size}}</span></td>
-                                            <td><span>{{cart.products.color}}</span></td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.products.price}">${{cart.products.price}}</span>
-                                                <span class="new-price" v-if="cart.products.sellingPrice">${{cart.products.sellingPrice}}</span>
-                                            </td>
+                                            <td><span>{{cart.size}}</span></td>
+                                            <td><span>{{cart.color}}</span></td>
+                                          @*  <td class="product-price">
+                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
+                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
+                                            </td>*@
+                                             <td class="product-price">
+                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
+                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
+                                            </td> 
                                             <td class="cart-quality">
                                                 @*<div class="product-quality">
                                                 <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
 
-                                                </div>*@
-                                                <input type="number" name="qtybutton" :value="cart.products.quantity" readonly>
+                                                </div>
+                                                <input type="number" name="qtybutton" :value="cart.quantity" readonly>
                                                 @*<span>{{cart.quantity}}</span>*@
                                             </td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.products.price}">${{cart.products.price*cart.products.quantity}}</span>
-                                                <span class="new-price" v-if="cart.products.sellingPrice">${{cart.products.sellingPrice*cart.products.quantity}}</span>
+                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
+                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
                                             </td>
-                                            <td class="product-remove"><i class=" ti-trash "></i></td>
+                                            <td class="product-remove">
+                                                <button type="button" v-on:click="RemoveToCart(cart.Id)"><i class=" ti-trash "></i></button>
+                                            </td>
                                         </tr>
                                         
                                     </tbody>
@@ -131,11 +143,14 @@
         let app = new Vue({
             el: "#cartIndex",
             data: {
-                productInThisCart: {
-                    cartId:[]
-                }
+                productInThisCart:{
+                    cart:[],
+                    Id:[]
+
+                }                   
             },
-            mounted: function () {
+            mounted: function ()
+            {
                 var self = this;
                 fetch('/api/cart/GetCart/')
                     .then(function (response) { return response.json() })
@@ -146,10 +161,10 @@
             },
             methods:
             {            
-                RemoveToWishlist(id)
+                RemoveToCart(id)
             {
                  console.log("RPid",id)
-                            this.queryCartBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
+                            this.queryCartBaseURL = '/api/wishlist/RemoveToCart/' + id;
                     fetch(this.queryCartBaseURL,{method:"POST"})
                         .then(function (reponse) {return response.json()})
                         .then(function (result) {

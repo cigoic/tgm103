@@ -59,7 +59,6 @@ namespace WuliKaWu.Controllers.Api
                 var wishItem = await _context.WishList.FirstOrDefaultAsync(x => x.MemberId == myId && x.ProductId == productId);
                 var product = await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-                //if (wishItem == null && product != null && myId > 0)
                 if (wishItem == null)
                 {
                     _context.WishList.Add(new WishList
