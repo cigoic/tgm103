@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WuliKaWu.Data;
 
@@ -11,9 +12,10 @@ using WuliKaWu.Data;
 namespace WuliKaWu.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230208090431_ModifyArticleImagesTables")]
+    partial class ModifyArticleImagesTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,36 @@ namespace WuliKaWu.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CartMember", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "MemberId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("CartMember");
+                });
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProduct");
+                });
 
             modelBuilder.Entity("ColorProduct", b =>
                 {
@@ -35,6 +67,21 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ColorProduct");
+                });
+
+            modelBuilder.Entity("MemberWishList", b =>
+                {
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WishListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MemberId", "WishListId");
+
+                    b.HasIndex("WishListId");
+
+                    b.ToTable("MemberWishList");
                 });
 
             modelBuilder.Entity("ProductTag", b =>
@@ -198,11 +245,7 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Carts");
+                    b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Category", b =>
@@ -608,11 +651,39 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
-                    b.HasIndex("MemberId");
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("WishLists");
+                });
+
+            modelBuilder.Entity("CartMember", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ColorProduct", b =>
@@ -626,6 +697,21 @@ namespace WuliKaWu.Migrations
                     b.HasOne("WuliKaWu.Data.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MemberWishList", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", null)
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.WishList", null)
+                        .WithMany()
+                        .HasForeignKey("WishListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -693,25 +779,6 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
                     b.Navigation("Memeber");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("Cart")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("Cart")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -827,19 +894,11 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
                 {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("WishList")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WuliKaWu.Data.Product", "Product")
                         .WithMany("WishList")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Member");
 
                     b.Navigation("Product");
                 });
@@ -868,8 +927,6 @@ namespace WuliKaWu.Migrations
                 {
                     b.Navigation("Articles");
 
-                    b.Navigation("Cart");
-
                     b.Navigation("ContactMessages");
 
                     b.Navigation("Orders");
@@ -877,8 +934,6 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ResetTokens");
 
                     b.Navigation("Roles");
-
-                    b.Navigation("WishList");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
@@ -888,8 +943,6 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
-                    b.Navigation("Cart");
-
                     b.Navigation("Pictures");
 
                     b.Navigation("StarRates");

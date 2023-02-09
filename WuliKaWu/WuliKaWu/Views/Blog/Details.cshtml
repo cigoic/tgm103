@@ -2,25 +2,7 @@
 
 <div class="container" id="blogDetailsApp" />
 
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2 data-aos="fade-up" data-aos-delay="200">Blog Details</h2>
-            <ul data-aos="fade-up" data-aos-delay="400">
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><i class="ti-angle-right"></i></li>
-                <li>Blog Details</li>
-            </ul>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-<div class="blog-details-area pt-100 pb-100">
+<div class="blog-details-area pt-15 pb-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -51,18 +33,18 @@
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor.</p>
                     <div class="blog-details-middle-img-wrap">
                         <div class="row">
-                            @{
-                                int delayTime = 200;
+                            @* @{
+                            int delayTime = 200;
                             }
                             @foreach (var imagePath in Model.ContentImageFileNames)
                             {
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
-                                        <img src="@Url.Content(imagePath)" alt="">
-                                    </div>
-                                </div>
-                                delayTime += 200;
-                            }
+                            <div class="col-md-6 col-sm-6 col-12">
+                            <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
+                            <img src="@Url.Content(imagePath)" alt="">
+                            </div>
+                            </div>
+                            delayTime += 200;
+                            }*@
                         </div>
                     </div>
                     <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>
@@ -122,86 +104,86 @@
                             </div>
                         </div>
                     </div>
-                    <div class="blog-comment-wrapper">
-                        <h4 class="blog-dec-title" data-aos="fade-up" data-aos-delay="200">Comments (02)</h4>
-                        <div class="single-comment-wrapper single-comment-border" data-aos="fade-up" data-aos-delay="400">
-                            <div class="blog-comment-img">
-                                <img src="~/assets/images/blog/blog-comment-1.png" alt="">
-                            </div>
-                            <div class="blog-comment-content">
-                                <div class="comment-info-reply-wrap">
-                                    <div class="comment-info">
-                                        <span>October 14, 2022 </span>
-                                        <h4>Anthony Stephens</h4>
-                                    </div>
-                                    <div class="comment-reply">
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consecteg adipisicing elit sed do eius tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minikl veniam, quis nostrud exercitatio. </p>
-                            </div>
-                        </div>
-                        <div class="single-comment-wrapper single-comment-ml" data-aos="fade-up" data-aos-delay="600">
-                            <div class="blog-comment-img">
-                                <img src="~/assets/images/blog/blog-comment-2.png" alt="">
-                            </div>
-                            <div class="blog-comment-content">
-                                <div class="comment-info-reply-wrap">
-                                    <div class="comment-info">
-                                        <span>October 14, 2022 </span>
-                                        <h4>DX Joxova</h4>
-                                    </div>
-                                    <div class="comment-reply">
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodl tempor incididunt ut labore et dolore </p>
-                            </div>
-                        </div>
+                    @*<div class="blog-comment-wrapper">
+                    <h4 class="blog-dec-title" data-aos="fade-up" data-aos-delay="200">Comments (02)</h4>
+                    <div class="single-comment-wrapper single-comment-border" data-aos="fade-up" data-aos-delay="400">
+                    <div class="blog-comment-img">
+                    <img src="~/assets/images/blog/blog-comment-1.png" alt="">
+                    </div>
+                    <div class="blog-comment-content">
+                    <div class="comment-info-reply-wrap">
+                    <div class="comment-info">
+                    <span>October 14, 2022 </span>
+                    <h4>Anthony Stephens</h4>
+                    </div>
+                    <div class="comment-reply">
+                    <a href="#">Reply</a>
+                    </div>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consecteg adipisicing elit sed do eius tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minikl veniam, quis nostrud exercitatio. </p>
+                    </div>
+                    </div>
+                    <div class="single-comment-wrapper single-comment-ml" data-aos="fade-up" data-aos-delay="600">
+                    <div class="blog-comment-img">
+                    <img src="~/assets/images/blog/blog-comment-2.png" alt="">
+                    </div>
+                    <div class="blog-comment-content">
+                    <div class="comment-info-reply-wrap">
+                    <div class="comment-info">
+                    <span>October 14, 2022 </span>
+                    <h4>DX Joxova</h4>
+                    </div>
+                    <div class="comment-reply">
+                    <a href="#">Reply</a>
+                    </div>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodl tempor incididunt ut labore et dolore </p>
+                    </div>
+                    </div>
                     </div>
                     <div class="blog-comment-form-wrap">
-                        <div class="blog-comment-form-title">
-                            <h2 data-aos="fade-up" data-aos-delay="200">Leave a Reply</h2>
-                            <p data-aos="fade-up" data-aos-delay="400">Your email address will not be published. please fill out this form.</p>
-                        </div>
-                        <div class="blog-comment-form">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="200">
-                                            <input type="text" placeholder="Your Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="300">
-                                            <input type="email" placeholder="Your Mail">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="400">
-                                            <input type="text" placeholder="Your Website">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="500">
-                                            <textarea placeholder="Comment"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="single-blog-comment-checkbox" data-aos="fade-up" data-aos-delay="600">
-                                            <input type="checkbox">
-                                            <label>Save my name, email, and website in this browser for the next time I comment.</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="comment-submit-btn btn-hover" data-aos="fade-up" data-aos-delay="700">
-                                            <button class="submit" type="submit">Post Comment <i class=" ti-arrow-right"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="blog-comment-form-title">
+                    <h2 data-aos="fade-up" data-aos-delay="200">Leave a Reply</h2>
+                    <p data-aos="fade-up" data-aos-delay="400">Your email address will not be published. please fill out this form.</p>
                     </div>
+                    <div class="blog-comment-form">
+                    <form action="#">
+                    <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                    <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" placeholder="Your Name">
+                    </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                    <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="300">
+                    <input type="email" placeholder="Your Mail">
+                    </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                    <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="400">
+                    <input type="text" placeholder="Your Website">
+                    </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                    <div class="single-blog-comment-form" data-aos="fade-up" data-aos-delay="500">
+                    <textarea placeholder="Comment"></textarea>
+                    </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                    <div class="single-blog-comment-checkbox" data-aos="fade-up" data-aos-delay="600">
+                    <input type="checkbox">
+                    <label>Save my name, email, and website in this browser for the next time I comment.</label>
+                    </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                    <div class="comment-submit-btn btn-hover" data-aos="fade-up" data-aos-delay="700">
+                    <button class="submit" type="submit">Post Comment <i class=" ti-arrow-right"></i></button>
+                    </div>
+                    </div>
+                    </div>
+                    </form>
+                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-lg-4">
@@ -309,7 +291,6 @@
 
 @section Scripts{
 
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js" integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
     <script>
 
         let blogDetailsVue = new Vue({

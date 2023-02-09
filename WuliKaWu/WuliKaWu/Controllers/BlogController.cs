@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
-using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 
 namespace WuliKaWu.Controllers
@@ -14,7 +14,7 @@ namespace WuliKaWu.Controllers
     {
         private readonly ShopContext _context;
 
-        private IWebHostEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
         public BlogController(ShopContext context, IWebHostEnvironment environment)
         {
@@ -65,84 +65,44 @@ namespace WuliKaWu.Controllers
             if (ArticleId <= 0)
                 return NotFound();
 
-            var article = _context.Articles.Where(a => a.Id == ArticleId).FirstOrDefault();
+            var article = _context.Articles.FirstOrDefault(a => a.Id == ArticleId);
             if (article == null)
                 return NotFound();
 
+            // TODO 可能要改用前端將前後文 ID 帶回
             int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
             int nextId = GetNextArticleId(ArticleId);
 
-            var model = new ArticleDetailsModel()
+            var model = new ArticleDetailsModel();
             {
-                ArticleId = ArticleId,
-                MemberName = _context.Members.AsEnumerable().Where(m => m.MemberId == article!.MemberId).FirstOrDefault()!.Name,
-                FileName = _context.ArticleContentImages.AsEnumerable().Where(m => m.Id == article!.Id).FirstOrDefault()!.PicturePath,
-                Title = article.Title,
-                Content = article.Content,
-                TitleImageFileName = $"~/{_context.ArticleTitleImages.AsEnumerable().Where(t => t.Id == article!.Id).FirstOrDefault()!.PicturePath}",
-                ContentImageFileNames = new List<string>(),
-                PrevArticleId = prevId,
-                NextArticleId = nextId,
-                CreateAt = article.CreatedDate,
-                PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate,
-                NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate,
-                PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title,
-                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title,
+                model.ArticleId = ArticleId;
+                model.MemberName = _context.Members.FirstOrDefault(m => m.MemberId == article!.MemberId)!.Name;
+                //model.FileName = article.ArticleContentImages.FirstOrDefault(i => i.Id == ArticleId).PicturePath;
+                model.Title = article.Title;
+                model.Content = article.Content;
+                //model.TitleImageFileName = $"~/{article.ArticleTitleImages.FirstOrDefault(t => t.Id == ArticleId)!.PicturePath}";
+                //model.ContentImageFileNames = new List<string>();
+                model.PrevArticleId = prevId;
+                model.NextArticleId = nextId;
+                model.CreateAt = article.CreatedDate;
+                model.PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate;
+                model.NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate;
+                model.PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title;
+                model.NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title;
             };
 
-            var images = _context.ArticleContentImages.Where(c => c.Id == article!.Id).ToList();
-            foreach (var img in images)
-            {
-                var imgPath = $"~/{img.PicturePath}";
-                model.ContentImageFileNames.Add(imgPath);
-            }
+            //foreach (var img in article.ArticleContentImages)
+            //{
+            //    var imgPath = $"~/{img.PicturePath}";
+            //    model.ContentImageFileNames.Add(imgPath);
+            //}
 
             return View(model);
         }
 
-        // GET  /Blog/Create
-        //[Authorize]
+        [Authorize]
         public IActionResult Create()
         {
-            return View();
-        }
-
-        // POST /Blog/Create
-        /// <summary>
-        /// 建立部落格文章
-        /// </summary>
-        /// <param name="article"></param>
-        /// <returns></returns>
-        [Authorize]
-        [ActionName("Create")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateAsync(ArticleCreateModel article)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            //string articleContent = "版面讓我們不停更是彩色同事，打開每個人，幸福狀況谷歌您是部隊不懂唯一導致權限風雲漫畫及其，新年筆者來的居住優質我說，利潤出席以來思路最大服裝許多人物巨大，回覆收到醫藥建設點點資源加入時間同事聯繫看法感動頻率客戶進行，家電一聲應當比如三大看著期限，雙方明顯殺手晶片，好了大家都參觀形式國際已被，因為金幣親自只有模擬線上死了廣播留下激動監管新人私服元素告訴我，投入新手效果網絡哪些屬性，通過右鍵內心顯然達到全市，你自己很有有限買賣對手兒童值得故意整合生意，烏日形象忽然開關安排自行專用免費電影程度群眾求購全家部落，漢化滑鼠公佈，防止新竹步驟找不到古代應用做好西安證券產品符合接着老婆，來說民族跟我未經願意，要在浙江結合教育活動說什麼提示訊息方便免費版，和他此時而已落實病毒沉默奧客軍隊細節擔心課堂重要，優點有時面議遭遇軍事一切要有合同日本如有本論壇，兩個廣大別的，女孩子。";
-            int maxLength = 64;
-
-            Article model = new Article
-            {
-                CreatedDate = DateTime.UtcNow,
-                ModifiedDate = DateTime.UtcNow,
-                MemberId = User.Claims.GetMemberId(),
-                Title = article.Title,
-                Content = article.Content,
-                Description = article.Content.Length <= maxLength
-                    ? article.Content : article.Content.Substring(0, maxLength) + "...",
-                CategoryId = article.CategoryId,
-            };
-
-            _context.Articles.Add(model);
-
-            await _context.SaveChangesAsync();
-
             return View();
         }
 
@@ -198,22 +158,21 @@ namespace WuliKaWu.Controllers
         //}
 
         // GET: Blog/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null || _context.Articles == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Articles == null)
+            {
+                return NotFound();
+            }
 
-        //    var article = await _context.Articles
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (article == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var article = await _context.Articles.FirstOrDefaultAsync(m => m.Id == id);
+            if (article == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(article);
-        //}
+            return View(article);
+        }
 
         // POST: Blog/Delete/5
         //[HttpPost, ActionName("Delete")]
@@ -247,7 +206,7 @@ namespace WuliKaWu.Controllers
         private int GetPrevArticleId(int CurrentArticleId)
         {
             var PrevArticle = _context.Articles
-               .OrderBy(a => a.CreatedDate)
+               .OrderBy(a => a.CreatedDate) // TODO 可能效能會有問題
                .Where(a => a.Id < CurrentArticleId)
                .LastOrDefault();
 
@@ -275,14 +234,29 @@ namespace WuliKaWu.Controllers
             return NextArticle.Id;
         }
 
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile image)
+        public async Task<IActionResult> UploadImage([FromForm] IFormCollection images)//List<IFormFile> images)
         {
+            if (images == null || images.Count <= 0)
+                return Json(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
+
             // Save the image file to the desired location
-            var rootPath = $@"{_env.WebRootPath}/images/cheditor";
-            var filePath = Path.Combine(rootPath, image.FileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            var rootPath = $@"{_env.WebRootPath}/images/ckeditor";
+            if (!Directory.Exists(rootPath))
             {
-                await image.CopyToAsync(stream);
+                Directory.CreateDirectory(rootPath);
+            }
+
+            foreach (var image in images.Files)
+            {
+                var filePath = Path.Combine(rootPath, image.FileName);
+                // TODO 將圖片位置存入資料庫！
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    //if (stream == null)
+                    //    return Json(new { Status = false, Message = "圖片上傳失敗" });
+
+                    await image.CopyToAsync(stream);
+                }
             }
 
             // Return a success response

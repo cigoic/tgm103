@@ -20,8 +20,11 @@
             <input for="Title" class="form-control" type="text" v-model="title" />
         </div>
         <div class="form-group">
-            <label id="Content" name="Content" class="control-label">內容</label>
-            <textarea ref="editor" for="Content" id="Content" name="Content" v-model="content"></textarea>
+            @*<label id="ck" name="Content" class="control-label">內容</label>*@
+            @*<textarea ref="editor" id="ckeditor" name="Content" v-model="editorContent"></textarea>*@
+            <textarea id="ck" v-model="content"></textarea>
+            @*<ckeditor :editor="editor" v-model="content"></ckeditor>*@
+            @*<ckeditor :ref="editor" v-model="content"></ckeditor>*@
         </div>
         <template>
             <div class="form-group">
@@ -62,50 +65,97 @@
                     { text: 'Our Blog', value: 4 },
                 ],
                 title: "",
-                content: {},
+                content: "",
                 category: "",
-                editor: "",
+                editor: {}, //ClassicEditor,
             },
+            //components: {
+            //    ckeditor: CKEditor.component
+            //},
             mounted: function () {
-                ClassicEditor.create(this.$refs.editor, {
+                //this.editor = CKEDITOR.replace(this.$refs.editor);
+                //this.editor.on("change", () => {
+                //    this.content = this.editor.getData();
+                //});
+                //ClassicEditor.create(this.$refs.editor, {
+                ClassicEditor.create(document.querySelector("#ck"), {
                     height: 500,
                     language: 'zh',
-                    //ckfinder: { uploadUrl: '/Blog/UploadImage' },
-                    //mediaEmbed: {
-                    //    previewWidth: 575,
-                    //    previewHeight: 400,
-                    //}
-                }).then(editor => { console.log("CK:", editor) })
+                    ckfinder: {
+                        uploadUrl: '/api/Blog/UploadImage',
+                        options: {
+                            resourceType: 'Images'
+                        }
+                    },
+                    mediaEmbed: {
+                        previewWidth: 575,
+                        previewHeight: 400,
+                    }
+                }).then(editor => {
+                    //CKFinder.setupCKEditor(editor, '/images/ckfinder/');
+                    this.editor = editor
+                    //this.editor.setData(this.content) //顯示文章內容
+                })
                     .catch(error => { tgm103ShowError(error) })
                 console.log("Hi~from Article Create")
             },
-            watch: {
-                content(newValue) {
-                    ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
-                },
-            },
+            //beforeDestroy() {
+            //    this.editor.destroy();
+            //    this.editor = {};
+            //},
+            //watch: {
+            //    content(newValue) {
+            //        ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
+            //    },
+            //},
             methods: {
                 //Create
-                handleSubmit: function () {
+                handleSubmit: async function () {
                     let self = this;
+                    self.content = self.editor.getData();
                     let form = new FormData();
                     form.append("Title", self.title);
                     form.append("CategoryId", self.selectedOption)
-                    form.append("Content", self.content);
+                    form.append("Content", self.editor.getData());
 
-                    axios.post('/api/Blog/Create', form, {
-                        method: "POST",
-                        //'Content-Type': 'multipart/form-data'
-                        //'Content-Type': 'application/x-www-form-urlencoded'
-                    })
-                        .then(response => { tgm103ShowSuccess(response.data.message) })
-                        .catch(error => { tgm103ShowError(error.response.data.message) })
-                }
+                    // append images to formData
+                    //let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
+                    //images.forEach((image, i) => form.append(`images[${i}]`, image));
+
+                    // II
+                    //const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
+                    //    .map(match => match[1]);
+
+                    //images.forEach(async (image, index) => {
+                    //    const response = await axios.get(image, { responseType: 'arraybuffer' });
+                    //    const buffer = new Uint8Array(response.data);
+                    //    const blob = new Blob([buffer], { type: 'image/png' });
+                    //    formData.append(`image${index}`, blob, `image${index}.png`);
+                    //});
+
+                    try {
+                        await axios.post('/api/Blog/Create', form, {
+                            headers: { 'Content-Type': 'multipart/form-data' }
+                            //"Accept": "application/json",
+                            //"Content-Type": "application/json",
+                            //'Content-Type': 'multipart/form-data'
+                            //'Content-Type': 'application/x-www-form-urlencoded'
+                        })
+                            .then(response => {
+                                tgm103ShowSuccess(response.data.uploaded)
+                                //alert('Image uploaded successfully');
+                            })
+                            .catch(error => { tgm103ShowError(error.response.data.message) })
+                    } catch (error) {
+                        tgm103ShowError(error);
+                    }
+                },
             },
         })
 
         document.addEventListener("DOMContentLoaded", () => {
             blogCreateVue.$mount('#blogCreateApp')
+
         })
     </script>
 
