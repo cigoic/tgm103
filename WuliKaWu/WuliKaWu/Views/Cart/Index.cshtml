@@ -53,7 +53,7 @@
                                                 <h5><a href="/Products/ProductDetails">{{cart.productName}}</a></h5>
                                             </td>
                                             <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.color}}</span></td>
+                                            <td><span>{{cart.type}}</span></td>
                                           @*  <td class="product-price">
                                                 <span :class="{'old-price':cart.price}">${{cart.price}}</span>
                                                 <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
@@ -144,8 +144,7 @@
             el: "#cartIndex",
             data: {
                 productInThisCart:{
-                    cart:[],
-                    Id:[]
+                    type:""
 
                 }                   
             },

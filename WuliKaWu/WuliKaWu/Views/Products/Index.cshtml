@@ -352,7 +352,11 @@
                     console.log("CPid:", productId)
                     this.queryCartBaseURL = '/api/cart/AddToCart/' + productId;
                     fetch(this.queryCartBaseURL, { method: "POST" })
-                        .then(function (response) { return response.json() })
+                        .then(function (response) { 
+                            console.table(response)
+                            let cartp =response
+                            return response.json()
+                        })
                         .then(function (result) {
                             var al = {
                                 icon: 'sucess',
@@ -370,10 +374,7 @@
                 addToWishlist: function (productId) {
                     console.log("WPid:", productId)                   
                     this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + productId;
-                    fetch(this.queryWishlistBaseURL, {
-                        method: "POST"
-                        //body: JSON.stringify(product.productId)
-                    })
+                    fetch(this.queryWishlistBaseURL, { method: "POST"})
                         .then(function (response) {
                             console.table(response)
                             let wresp = response
