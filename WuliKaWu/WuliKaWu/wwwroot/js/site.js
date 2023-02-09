@@ -27,6 +27,6 @@ function tgm103ShowError(msg) {
         icon: 'error',
         title: '失敗',
         text: msg,
-        timer: 2000
+        timer: 10000,
     })
 }

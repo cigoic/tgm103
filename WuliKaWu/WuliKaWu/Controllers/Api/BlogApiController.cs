@@ -17,9 +17,12 @@ namespace WuliKaWu.Controllers.Api
     {
         private readonly ShopContext _context;
 
-        public BlogApiController(ShopContext context)
+        private readonly IWebHostEnvironment _env;
+
+        public BlogApiController(ShopContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _env = environment;
         }
 
         /// <summary>
@@ -109,7 +112,6 @@ namespace WuliKaWu.Controllers.Api
                     return Results.NotFound(new { Status = false, Message = "找無文章!" });
                 }
 
-                _context.Update(article);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -177,6 +179,46 @@ namespace WuliKaWu.Controllers.Api
             }
 
             return Results.NotFound(new { Status = false, Message = "文章刪除失敗!" });
+        }
+
+        /// <summary>
+        /// 上傳圖片
+        /// </summary>
+        /// <param name="images"></param>
+        /// <returns></returns>
+        public async Task<IResult> UploadImage([FromForm] IFormCollection images)//List<IFormFile> images)
+        {
+            if (images == null || images.Count <= 0)
+                return Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
+
+            var rootPath = $@"{_env.WebRootPath}\images\ckeditor";
+            if (!Directory.Exists(rootPath))
+            {
+                Directory.CreateDirectory(rootPath);
+            }
+
+            string filePath = "";
+            string fileName = "";
+            foreach (var image in images.Files)
+            {
+                fileName = Path.GetFileName(image.FileName);
+                filePath = Path.Combine(rootPath, fileName);
+                // TODO 將圖片位置存入資料庫！
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    //if (stream == null)
+                    //    return Json(new { Status = false, Message = "圖片上傳失敗" });
+
+                    await image.CopyToAsync(stream);
+                }
+            }
+
+            return Results.Ok(new
+            {
+                fileName = fileName,
+                uploaded = true,
+                url = $"{filePath}"
+            });
         }
     }
 }
