@@ -92,9 +92,9 @@
                         previewHeight: 400,
                     }
                 }).then(editor => {
-                    CKFinder.setupCKEditor(editor, '/images/ckfinder/');
+                    //CKFinder.setupCKEditor(editor, '/images/ckfinder/');
                     this.editor = editor
-                    this.editor.setData(this.content) //顯示文章內容
+                    //this.editor.setData(this.content) //顯示文章內容
                 })
                     .catch(error => { tgm103ShowError(error) })
                 console.log("Hi~from Article Create")
@@ -119,8 +119,8 @@
                     form.append("Content", self.editor.getData());
 
                     // append images to formData
-                    let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
-                    images.forEach((image, i) => form.append(`images[${i}]`, image));
+                    //let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
+                    //images.forEach((image, i) => form.append(`images[${i}]`, image));
 
                     // II
                     //const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
