@@ -1,5 +1,6 @@
 ﻿@model WuliKaWu.Data.Article
 
+<<<<<<< HEAD
 @{
     ViewData["Title"] = "Create";
 }
@@ -7,6 +8,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+=======
+>>>>>>> [更新] 編輯部落格文章頁面
 <div class="container" id="blogCreateApp" />
 =======
 <div class="container" id="blogCreateApp"/>
@@ -270,6 +273,7 @@
             //    ckeditor: CKEditor.component
             //},
             mounted: function () {
+                let self = this
                 //this.editor = CKEDITOR.replace(this.$refs.editor);
                 //this.editor.on("change", () => {
                 //    this.content = this.editor.getData();
@@ -292,18 +296,21 @@
                     }
                 }).then(editor => {
                     //CKFinder.setupCKEditor(editor, '/images/ckfinder/');
-                    this.editor = editor
-                    //this.editor.setData(this.content) //顯示文章內容
+                    self.editor = editor
+                    //self.editor.setData(this.content) //顯示文章內容
                 })
                     .catch(error => { tgm103ShowError(error) })
+<<<<<<< HEAD
 >>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
                 console.log("Hi~from Article Create")
 >>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
+=======
+>>>>>>> [更新] 編輯部落格文章頁面
             },
-            //beforeDestroy() {
-            //    this.editor.destroy();
-            //    this.editor = {};
-            //},
+            beforeDestroy() {
+                self.editor.destroy();
+                self.editor = {};
+            },
             //watch: {
             //    content(newValue) {
             //        ClassicEditor.instances[this.$refs.editor.name].setData(newValue);

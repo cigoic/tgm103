@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+using System.Net.Http.Headers;
+
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models;
@@ -288,7 +290,8 @@ namespace WuliKaWu.Controllers.Api
             string fileName = "";
             foreach (var image in images.Files)
             {
-                fileName = Path.GetFileName(image.FileName);
+                fileName = ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"');
+                //fileName = Path.GetFileName(image.FileName);
                 filePath = Path.Combine(rootPath, fileName);
                 // TODO 將圖片位置存入資料庫！
                 using (var stream = new FileStream(filePath, FileMode.Create))

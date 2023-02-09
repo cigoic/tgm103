@@ -59,7 +59,7 @@
                 <div class="blog-details-wrapper">
                     <div class="blog-details-img-date-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-details-img">
-                            <img src="~/assets/images/blog/blog-details.png" alt="">
+                            <img src="/assets/images/blog/blog-details.png" alt="">
                         </div>
                         <div class="blog-details-date">
 <<<<<<< HEAD
@@ -99,7 +99,7 @@
 >>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
                     <blockquote class="blockquote-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="quote-img">
-                            <img src="~/assets/images/icon-img/quote.png" alt="">
+                            <img src="/assets/images/icon-img/quote.png" alt="">
                         </div>
                         <h2>Lorem ipsum dolor sit amet, con adipis elit sed do eiusmod tempor incididunt ut labore et dolore.</h2>
                         <h4>Jont utdo</h4>
@@ -189,7 +189,7 @@
                     </div>
                     <div class="blog-author-wrap-2" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-img-2">
-                            <img src="~/assets/images/blog/blog-author-2.png" alt="">
+                            <img src="/assets/images/blog/blog-author-2.png" alt="">
                         </div>
                         <div class="blog-author-content-2">
                             <h2>Admin Name</h2>
@@ -269,7 +269,7 @@
                     <h4 class="blog-dec-title" data-aos="fade-up" data-aos-delay="200">Comments (02)</h4>
                     <div class="single-comment-wrapper single-comment-border" data-aos="fade-up" data-aos-delay="400">
                     <div class="blog-comment-img">
-                    <img src="~/assets/images/blog/blog-comment-1.png" alt="">
+                    <img src="/assets/images/blog/blog-comment-1.png" alt="">
                     </div>
                     <div class="blog-comment-content">
                     <div class="comment-info-reply-wrap">
@@ -286,7 +286,7 @@
                     </div>
                     <div class="single-comment-wrapper single-comment-ml" data-aos="fade-up" data-aos-delay="600">
                     <div class="blog-comment-img">
-                    <img src="~/assets/images/blog/blog-comment-2.png" alt="">
+                    <img src="/assets/images/blog/blog-comment-2.png" alt="">
                     </div>
                     <div class="blog-comment-content">
                     <div class="comment-info-reply-wrap">
@@ -359,7 +359,7 @@
                     </div>
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-author.png" alt=""></a>
+                            <a asp-controller="Blog" asp-action="Details"><img src="/assets/images/blog/blog-author.png" alt=""></a>
                             <h2>Writer Name</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -391,7 +391,7 @@
                         <div class="latest-post-wrap">
                             <div class="single-latest-post">
                                 <div class="latest-post-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/latest-post-1.png" alt=""></a>
+                                    <a asp-controller="Blog" asp-action="Details"><img src="/assets/images/blog/latest-post-1.png" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
                                     <span>01 May 2022</span>
@@ -403,7 +403,7 @@
                             </div>
                             <div class="single-latest-post">
                                 <div class="latest-post-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/latest-post-2.png" alt=""></a>
+                                    <a asp-controller="Blog" asp-action="Details"><img src="/assets/images/blog/latest-post-2.png" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
                                     <span>08 Dec 2022</span>
@@ -415,7 +415,7 @@
                             </div>
                             <div class="single-latest-post">
                                 <div class="latest-post-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/latest-post-3.png" alt=""></a>
+                                    <a asp-controller="Blog" asp-action="Details"><img src="/assets/images/blog/latest-post-3.png" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
                                     <span>01 Feb 2022</span>
@@ -441,7 +441,7 @@
                     </div>
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/banner/banner-29.png" alt=""></a>
+                            <a asp-controller="Home" asp-action="ProductDetails"><img src="/assets/images/banner/banner-29.png" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -500,28 +500,32 @@
                 aMonth: null,
             },
             mounted: function () {
-                fetch(this.articleBaseLink + @Model.ArticleId).then(response => {
-                    //handle the response and store the next article ID
-                    console.log(response)
-                });
+                axios.get(this.articleBaseLink + "@ViewBag.ArticleId")
+                    .then(response => {
+                        console.table(".......", response.data)
+                        tgm103ShowSuccess(response.data.message)
+                    })
+                    .catch(error => { tgm103ShowError(error.response.data.message) })
+            });
 
-                //let self = this
-                this.article = {
-                    id: @Model.ArticleId,
-                    title: "@Model.Title",
-                    createdAt: "@Model.CreateAt",
-                };
-                this.prevArticle = {
-                    id: @Model.PrevArticleId,
-                    title: "@Model.PrevArticleTitle",
-                    createdAt: "@Model.PrevArticleCreateAt",
-                };
-                this.nextArticle = {
-                    id: @Model.NextArticleId,
-                    title: "@Model.NextArticleTitle",
-                    createdAt: "@Model.NextArticleCreateAt",
-                };
+        //let self = this
+        this.article = {
+            id: @Model.ArticleId,
+            title: "@Model.Title",
+            createdAt: "@Model.CreateAt",
+        };
+        this.prevArticle = {
+            id: @Model.PrevArticleId,
+            title: "@Model.PrevArticleTitle",
+            createdAt: "@Model.PrevArticleCreateAt",
+        };
+        this.nextArticle = {
+            id: @Model.NextArticleId,
+            title: "@Model.NextArticleTitle",
+            createdAt: "@Model.NextArticleCreateAt",
+        };
 
+<<<<<<< HEAD
                 console.log(this.article)
                 console.log(this.prevArticle)
                 console.log(this.nextArticle)
@@ -654,6 +658,32 @@
             }
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         })
+=======
+        console.log(this.article)
+        console.log(this.prevArticle)
+        console.log(this.nextArticle)
+                                                                    },
+        methods: {
+            clickCallback: function (page) {
+                this.currentPage = page;
+                console.log(page)
+            },
+            articleLink: function (id) {
+                return this.articleBaseLink + id
+            },
+            articleDay(currentDate) {
+                var date = new Date(currentDate);
+                this.aDay = date.getDate()
+                return this.aDay
+            },
+            getMonthName(currentDate) {
+                const date = new Date(currentDate)
+                this.aMonth = date.toLocaleString('default', { month: 'short' })
+                return this.aMonth
+            },
+        }
+                                                                })
+>>>>>>> [更新] 編輯部落格文章頁面
 
         document.addEventListener("DOMContentLoaded", () => {
             blogDetailsVue.$mount('#blogDetailsApp')

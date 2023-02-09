@@ -277,6 +277,7 @@ namespace WuliKaWu.Controllers
             if (ArticleId <= 0)
                 return NotFound();
 
+            ViewBag.ArticleId = ArticleId;
             var article = _context.Articles.FirstOrDefault(a => a.Id == ArticleId);
             if (article == null)
                 return NotFound();
