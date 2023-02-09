@@ -12,9 +12,9 @@ namespace WuliKaWu.Models.ApiModel
 
         public int ProductId { get; set; }
         public int MemberId { get; set; }
-        public IEnumerable<string> ProductName { get; set; }
-        public IEnumerable<decimal> Price { get; set; }
-        public IEnumerable<decimal?> SellingPrice { get; set; }
+        public string ProductName { get; set; }
+        public decimal Price { get; set; }
+        public decimal? SellingPrice { get; set; }
         public IEnumerable<List<string>> PicturePath { get; set; }
         public IEnumerable<Common.Size> Size { get; set; }
         public IEnumerable<ICollection<Color>> Color { get; set; }

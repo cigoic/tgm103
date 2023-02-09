@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WuliKaWu.Data
 {
-    [Table("Cart")]
+    [Table("Carts")]
     public class Cart
     {
         /// <summary>
@@ -15,28 +15,25 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 關聯的會員ID (Foreign Key)
         /// </summary>
-        [ForeignKey("Members")]
+        [ForeignKey("Member")]
         public int MemberId { get; set; }
 
         /// <summary>
         /// 關聯的商品ID (Foreign Key)
         /// </summary>
-        [ForeignKey("Products")]
+        [ForeignKey("Product")]
         public int ProductId { get; set; }
 
-        /// <summary>
-        /// 商品數量
-        /// </summary>
         public int Quantity { get; set; }
 
         /// <summary>
-        /// 導覽屬性:對應多個商品，使用 ICollection
+        /// 導覽屬性:只對應一個商品，不用 ICollection
         /// </summary>
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual Product Product { get; set; }
 
         /// <summary>
-        /// 導覽屬性:對應到多個會員，使用 ICollection
+        /// 導覽屬性:只對應到一個會員，不用 ICollection
         /// </summary>
-        public virtual ICollection<Member> Member { get; set; }
+        public virtual Member Member { get; set; }
     }
 }

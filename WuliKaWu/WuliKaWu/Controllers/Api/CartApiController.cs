@@ -89,33 +89,19 @@ namespace WuliKaWu.Controllers.Api
             {
                 var cart = _context.Carts
                     .Where(c => c.MemberId == myId)
-                    //.Select(c => c.Product);
-
-                    //var itemsInCart = new List<CartGetModel>();
-
-                    //foreach (var product in productsInCart)
-                    //{
-                    //    itemsInCart.Add(new CartGetModel
-                    //    {
-                    //        MemberId = myId,
-                    //        ProductId = product.First().ProductId,
-                    //        PicturePath = (IEnumerable<List<string>>)product.First().Pictures.Select(x => x.PicturePath),
-                    //    });
-                    //}
-                    //return itemsInCart.ToList();
-
                     .Select(c => new CartGetModel
                     {
                         MemberId = myId,
                         ProductId = c.ProductId,
                         Id = c.Id,
-                        ProductName = c.Product.Select(x => x.ProductName).ToList(),
+                        ProductName = c.Product.ProductName,
                         Quantity = c.Quantity,
-                        PicturePath = c.Product.Select(x => x.Pictures.Select(x => x.PicturePath).ToList()),
-                        Size = c.Product.Select(x => x.Size),
-                        Color = c.Product.Select(x => x.Colors).ToList(),
-                        Price = c.Product.Select(x => x.Price),
-                        SellingPrice = c.Product.Select(x => x.SellingPrice)
+                        PicturePath = (IEnumerable<List<string>>)c.Product.Pictures.Select(p => p.PicturePath)
+
+                        //Size = c.Product.Select(x => x.Size),
+                        //Color = c.Product.Select(x => x.Colors).ToList(),
+                        //Price = c.Product.Select(x => x.Price),
+                        //SellingPrice = c.Product.Select(x => x.SellingPrice)
                     });
                 return await cart.ToListAsync();
             }
