@@ -144,6 +144,8 @@
             @*<label id="ck" name="Content" class="control-label">內容</label>*@
             @*<textarea ref="editor" id="ckeditor" name="Content" v-model="editorContent"></textarea>*@
             <textarea id="ck" v-model="content"></textarea>
+            @*<ckeditor :editor="editor" v-model="content"></ckeditor>*@
+            @*<ckeditor :ref="editor" v-model="content"></ckeditor>*@
         </div>
         <template>
             <div class="form-group">
@@ -240,9 +242,9 @@
                 title: "",
                 content: "",
                 category: "",
-                ck: {},
-                //editor: ClassicEditor,
+                editor: {}, //ClassicEditor,
             },
+<<<<<<< HEAD
 <<<<<<< HEAD
             mounted: function (){
 <<<<<<< HEAD
@@ -263,22 +265,45 @@
 >>>>>>> [更新] 會員登入功能, 調整註冊功能
 =======
 =======
+=======
+            //components: {
+            //    ckeditor: CKEditor.component
+            //},
+            mounted: function () {
+                //this.editor = CKEDITOR.replace(this.$refs.editor);
+                //this.editor.on("change", () => {
+                //    this.content = this.editor.getData();
+                //});
+>>>>>>> [更新] 持續修改新增文章上傳圖片, 目前後端檔案有上傳，但是前端頁面回提示警告說無法上傳檔案
                 //ClassicEditor.create(this.$refs.editor, {
                 ClassicEditor.create(document.querySelector("#ck"), {
 >>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
                     height: 500,
                     language: 'zh',
-                    //ckfinder: { uploadUrl: '/Blog/UploadImage' },
-                    //mediaEmbed: {
-                    //    previewWidth: 575,
-                    //    previewHeight: 400,
-                    //}
-                }).then(editor => { this.ck = editor })
+                    ckfinder: {
+                        uploadUrl: '/api/Blog/UploadImage',
+                        options: {
+                            resourceType: 'Images'
+                        }
+                    },
+                    mediaEmbed: {
+                        previewWidth: 575,
+                        previewHeight: 400,
+                    }
+                }).then(editor => {
+                    CKFinder.setupCKEditor(editor, '/images/ckfinder/');
+                    this.editor = editor
+                    this.editor.setData(this.content) //顯示文章內容
+                })
                     .catch(error => { tgm103ShowError(error) })
 >>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
                 console.log("Hi~from Article Create")
 >>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
             },
+            //beforeDestroy() {
+            //    this.editor.destroy();
+            //    this.editor = {};
+            //},
             //watch: {
             //    content(newValue) {
             //        ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
@@ -288,26 +313,50 @@
                 //Create
                 handleSubmit: async function () {
                     let self = this;
+                    self.content = self.editor.getData();
                     let form = new FormData();
                     form.append("Title", self.title);
                     form.append("CategoryId", self.selectedOption)
-                    form.append("Content", self.ck.getData());
+                    form.append("Content", self.editor.getData());
 
-                    //const content = this.ck.getData()
-                    axios.post('/api/Blog/Create', form, {
-                        //"Accept": "application/json",
-                        //"Content-Type": "application/json",
-                        //'Content-Type': 'multipart/form-data'
-                        //'Content-Type': 'application/x-www-form-urlencoded'
-                    })
-                        .then(response => { tgm103ShowSuccess(response.data.message) })
-                        .catch(error => { tgm103ShowError(error.response.data.message) })
+                    // append images to formData
+                    let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
+                    images.forEach((image, i) => form.append(`images[${i}]`, image));
+
+                    // II
+                    //const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
+                    //    .map(match => match[1]);
+
+                    //images.forEach(async (image, index) => {
+                    //    const response = await axios.get(image, { responseType: 'arraybuffer' });
+                    //    const buffer = new Uint8Array(response.data);
+                    //    const blob = new Blob([buffer], { type: 'image/png' });
+                    //    formData.append(`image${index}`, blob, `image${index}.png`);
+                    //});
+
+                    try {
+                        await axios.post('/api/Blog/Create', form, {
+                            headers: { 'Content-Type': 'multipart/form-data' }
+                            //"Accept": "application/json",
+                            //"Content-Type": "application/json",
+                            //'Content-Type': 'multipart/form-data'
+                            //'Content-Type': 'application/x-www-form-urlencoded'
+                        })
+                            .then(response => {
+                                tgm103ShowSuccess(response.data.uploaded)
+                                //alert('Image uploaded successfully');
+                            })
+                            .catch(error => { tgm103ShowError(error.response.data.message) })
+                    } catch (error) {
+                        tgm103ShowError(error);
+                    }
                 },
             },
         })
 
         document.addEventListener("DOMContentLoaded", () => {
             blogCreateVue.$mount('#blogCreateApp')
+
         })
     </script>
 <<<<<<< HEAD

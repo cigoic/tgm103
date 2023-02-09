@@ -20,7 +20,11 @@ namespace WuliKaWu.Controllers
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         private IWebHostEnvironment _env;
+=======
+        private readonly IWebHostEnvironment _env;
+>>>>>>> [更新] 持續修改新增文章上傳圖片, 目前後端檔案有上傳，但是前端頁面回提示警告說無法上傳檔案
 
         public BlogController(ShopContext context, IWebHostEnvironment environment)
         {
@@ -442,14 +446,29 @@ namespace WuliKaWu.Controllers
             return NextArticle.Id;
         }
 
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile image)
+        public async Task<IActionResult> UploadImage([FromForm] IFormCollection images)//List<IFormFile> images)
         {
+            if (images == null || images.Count <= 0)
+                return Json(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
+
             // Save the image file to the desired location
-            var rootPath = $@"{_env.WebRootPath}/images/cheditor";
-            var filePath = Path.Combine(rootPath, image.FileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            var rootPath = $@"{_env.WebRootPath}/images/ckeditor";
+            if (!Directory.Exists(rootPath))
             {
-                await image.CopyToAsync(stream);
+                Directory.CreateDirectory(rootPath);
+            }
+
+            foreach (var image in images.Files)
+            {
+                var filePath = Path.Combine(rootPath, image.FileName);
+                // TODO 將圖片位置存入資料庫！
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    //if (stream == null)
+                    //    return Json(new { Status = false, Message = "圖片上傳失敗" });
+
+                    await image.CopyToAsync(stream);
+                }
             }
 
             // Return a success response
