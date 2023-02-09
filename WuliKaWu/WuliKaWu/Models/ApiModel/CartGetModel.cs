@@ -15,9 +15,9 @@ namespace WuliKaWu.Models.ApiModel
         public string ProductName { get; set; }
         public decimal Price { get; set; }
         public decimal? SellingPrice { get; set; }
-        public IEnumerable<List<string>> PicturePath { get; set; }
-        public IEnumerable<Common.Size> Size { get; set; }
-        public IEnumerable<ICollection<Color>> Color { get; set; }
+        public List<string> PicturePath { get; set; }
+        public string Size { get; set; }
+        public List<string> Type { get; set; }
         public int Quantity { get; set; }
     }
 }

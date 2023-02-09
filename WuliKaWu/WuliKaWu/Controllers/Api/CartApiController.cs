@@ -236,7 +236,7 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public async Task<IEnumerable<CartGetModel>> GetCartAsync(int? productId)
+        public async Task<IEnumerable<CartGetModel>> GetCartAsync(int productId)
         {
             var myId = User.Claims.GetMemberId();
 
@@ -251,12 +251,11 @@ namespace WuliKaWu.Controllers.Api
                         Id = c.Id,
                         ProductName = c.Product.ProductName,
                         Quantity = c.Quantity,
-                        PicturePath = (IEnumerable<List<string>>)c.Product.Pictures.Select(p => p.PicturePath)
-
-                        //Size = c.Product.Select(x => x.Size),
-                        //Color = c.Product.Select(x => x.Colors).ToList(),
-                        //Price = c.Product.Select(x => x.Price),
-                        //SellingPrice = c.Product.Select(x => x.SellingPrice)
+                        PicturePath = c.Product.Pictures.Select(x => x.PicturePath).ToList(),
+                        Price = c.Product.Price,
+                        SellingPrice = c.Product.SellingPrice,
+                        Size = c.Product.Size.GetDescriptionText(),
+                        Type = c.Product.Colors.Select(x => x.Type).ToList()
                     });
                 return await cart.ToListAsync();
             }
@@ -264,22 +263,6 @@ namespace WuliKaWu.Controllers.Api
             {
                 throw;
             }
-
-            //return (await _context.Carts.Include(x => x.Product.Select(a => a.Pictures)).Include(x => x.Product.Select(a => a.Size))
-            //    .Where(c => c.MemberId == myId)
-            //    .Select(c => new CartGetModel
-            //    {
-            //        MemberId = c.MemberId,
-            //        Id = c.Id,
-            //        ProductId = c.ProductId,
-            //        Pictures = (List<string>)c.Product.Select(a => a.Pictures),
-            //        ProductName = c.Product.Select(x => x.ProductName).ToString(),
-            //        Size = c.Product.Select(a => a.Size),
-            //        Color = c.Product.Select(x => x.Colors),
-            //        Quantity = c.Quantity
-            //        Price = Convert.ToDecimal(c.Product.Select(x => x.Price)),
-            //        SellingPrice = Convert.ToDecimal(c.Product.Select(x => x.SellingPrice))
-            //    }).ToListAsync());
         }
 
         //TODO 移除購物車的商品
