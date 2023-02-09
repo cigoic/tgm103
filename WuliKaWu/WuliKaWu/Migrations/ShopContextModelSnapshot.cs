@@ -29,6 +29,7 @@ namespace WuliKaWu.Migrations
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
 =======
 =======
@@ -83,6 +84,8 @@ namespace WuliKaWu.Migrations
                 });
 
 >>>>>>> [修改] 會員表, 重建 Migration
+=======
+>>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
             modelBuilder.Entity("ColorProduct", b =>
                 {
                     b.Property<int>("ColorsId")
@@ -117,21 +120,6 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ColorProduct");
-                });
-
-            modelBuilder.Entity("MemberWishList", b =>
-                {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WishListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MemberId", "WishListId");
-
-                    b.HasIndex("WishListId");
-
-                    b.ToTable("MemberWishList");
                 });
 
             modelBuilder.Entity("ProductTag", b =>
@@ -531,6 +519,7 @@ namespace WuliKaWu.Migrations
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     b.HasIndex("MemberId");
 
                     b.HasIndex("ProductId");
@@ -592,6 +581,13 @@ namespace WuliKaWu.Migrations
 >>>>>>> [新增]AddtToWishList Action
 =======
 >>>>>>> 暫時修改
+=======
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Carts");
+>>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
                 });
 
 <<<<<<< HEAD
@@ -2211,41 +2207,16 @@ namespace WuliKaWu.Migrations
                     b.HasKey("WishListId");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+                    b.HasIndex("MemberId");
+
+>>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
                     b.HasIndex("ProductId");
 
 >>>>>>> [修改]ModifyWishlistModel的Member為ICollection
                     b.ToTable("WishLists");
-                });
-
-            modelBuilder.Entity("CartMember", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Cart", null)
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Cart", null)
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ColorProduct", b =>
@@ -2263,6 +2234,7 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             modelBuilder.Entity("CartMember", b =>
@@ -2317,6 +2289,8 @@ namespace WuliKaWu.Migrations
 =======
 =======
 >>>>>>> [修改]ModifyWishlistModel的Member為ICollection
+=======
+>>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
             modelBuilder.Entity("ProductTag", b =>
 >>>>>>> [修改] 會員表, 重建 Migration
                 {
@@ -2381,6 +2355,25 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
 
                     b.Navigation("Memeber");
+                });
+
+            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("Cart")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WuliKaWu.Data.Product", "Product")
+                        .WithMany("Cart")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
@@ -2501,11 +2494,19 @@ namespace WuliKaWu.Migrations
 >>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
                 {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("WishList")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WuliKaWu.Data.Product", "Product")
                         .WithMany("WishList")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Member");
 
                     b.Navigation("Product");
                 });
@@ -2534,6 +2535,8 @@ namespace WuliKaWu.Migrations
                 {
                     b.Navigation("Articles");
 
+                    b.Navigation("Cart");
+
                     b.Navigation("ContactMessages");
 
                     b.Navigation("Orders");
@@ -2541,6 +2544,8 @@ namespace WuliKaWu.Migrations
                     b.Navigation("ResetTokens");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("WishList");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
@@ -2550,6 +2555,8 @@ namespace WuliKaWu.Migrations
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
                 {
+                    b.Navigation("Cart");
+
                     b.Navigation("Pictures");
 
                     b.Navigation("StarRates");
