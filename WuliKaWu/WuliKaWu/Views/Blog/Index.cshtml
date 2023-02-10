@@ -136,13 +136,10 @@
             },
             mounted: function () {
                 var self = this;
-                axios.get("/api/Blog/GetArticles")
-                    .then(response => { self.articles = response.data.value })
-                    .catch(error => { console.table(error.response.data) })
+                self.getArticles()
             },
             computed: {
                 filterArticles: function () {
-                    console.log(this.articles)
                     var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
                     var max = this.countPerPage * this.currentPage;
                     this.min = min;
@@ -153,7 +150,6 @@
             methods: {
                 clickCallback: function (page) {
                     this.currentPage = page;
-                    console.log(page)
                 },
                 articleLink(articleId) {
                     return this.articleBaseLink + articleId
@@ -167,6 +163,11 @@
                     const date = new Date(currentDate)
                     this.aMonth = date.toLocaleString('default', { month: 'short' })
                     return this.aMonth
+                },
+                getArticles: function () {
+                    axios.get("/api/Blog/GetArticles")
+                        .then(response => { this.articles = response.data.value })
+                        .catch(error => { tgm103ShowError(error.response.data) })
                 },
             },
         })

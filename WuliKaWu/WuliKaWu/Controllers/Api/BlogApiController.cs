@@ -47,7 +47,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// 取得部落格文章全部清單
+        /// 取得部落格文章全部清單(首頁使用)
         /// </summary>
         /// <returns></returns>
         public async Task<IResult> GetArticles()
@@ -73,6 +73,9 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         public async Task<IResult> GetMembersArticles(int articleId)
         {
+            if (articleId == 0)
+                return Results.NotFound(new { Status = false, Message = "找無相關文章!" });
+
             var memberId = _context.Articles
                 .FirstOrDefaultAsync(a => a.Id == articleId)
                 .Result.MemberId;
@@ -155,6 +158,7 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         [HttpGet]
         public IResult GetPrevArticleId(int CurrentArticleId)
@@ -206,6 +210,8 @@ namespace WuliKaWu.Controllers.Api
         //[Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         //[HttpGet]
         //public IResult GetPrevArticleId(int CurrentArticleId)
+=======
+>>>>>>> [更新] 修正一些瀏覽文章時會出錯的頁面錯誤
         private int GetPrevArticleId(int CurrentArticleId)
 >>>>>>> [修正] 部落格 Details 顯示頁面
         {
@@ -216,11 +222,9 @@ namespace WuliKaWu.Controllers.Api
 
             if (PrevArticle == null)
                 return CurrentArticleId;
-            //return Results.Ok(new { CurrentArticleId });
 
             var PrevArticleId = PrevArticle.Id;
             return PrevArticleId;
-            //return Results.Ok(new { PrevArticleId });
         }
 
         /// <summary>
@@ -228,6 +232,7 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
+<<<<<<< HEAD
 <<<<<<< HEAD
         [Route("api/Blog/NextArticle/{CurrentArticleId}")]
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
@@ -237,6 +242,8 @@ namespace WuliKaWu.Controllers.Api
         //[Route("api/Blog/NextArticle/{CurrentArticleId}")]
         //[HttpGet]
         //public IResult GetNextArticleId(int CurrentArticleId)
+=======
+>>>>>>> [更新] 修正一些瀏覽文章時會出錯的頁面錯誤
         private int GetNextArticleId(int CurrentArticleId)
 >>>>>>> [修正] 部落格 Details 顯示頁面
         {
@@ -247,19 +254,20 @@ namespace WuliKaWu.Controllers.Api
 
             if (NextArticle == null)
                 return CurrentArticleId;
-            //return Results.Ok(new { CurrentArticleId });
 
             var NextArticleId = NextArticle.Id;
             return NextArticleId;
-            //return Results.Ok(new { NextArticleId });
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
         // GET  api/Blog/GetArticleDetails/{ArticleId}
 =======
         // GET  api/Blog/Details/{ArticleId}
 >>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
+=======
+>>>>>>> [更新] 修正一些瀏覽文章時會出錯的頁面錯誤
         /// <summary>
         /// 取得特定文章內容
         /// </summary>
@@ -289,7 +297,6 @@ namespace WuliKaWu.Controllers.Api
             return Results.NoContent();
         }
 
-        // POST api/Blog/CreateArticle
         /// <summary>
         /// 建立部落格文章
         /// </summary>
@@ -313,7 +320,7 @@ namespace WuliKaWu.Controllers.Api
                     Content = article.Content,
                     Description = article.Content.Length <= maxLength
                         ? article.Content : article.Content.Substring(0, maxLength) + "...",
-                    CategoryId = article.CategoryId,
+                    CategoryId = (article.CategoryId <= 1) ? 1 : article.CategoryId,
                 };
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });

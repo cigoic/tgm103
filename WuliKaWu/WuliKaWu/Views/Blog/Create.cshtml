@@ -283,8 +283,12 @@
 >>>>>>> [更新] 持續修改新增文章上傳圖片, 目前後端檔案有上傳，但是前端頁面回提示警告說無法上傳檔案
                 //ClassicEditor.create(this.$refs.editor, {
                 ClassicEditor.create(document.querySelector("#ck"), {
+<<<<<<< HEAD
 >>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
                     height: 500,
+=======
+                    height: '500px',
+>>>>>>> [更新] 修正一些瀏覽文章時會出錯的頁面錯誤
                     language: 'zh',
                     ckfinder: {
                         uploadUrl: '/api/Blog/UploadImage',
@@ -311,7 +315,6 @@
             },
             beforeDestroy() {
                 self.editor.destroy();
-                self.editor = null;
             },
             //watch: {
             //    content(newValue) {
@@ -362,7 +365,7 @@
                     self.title = ""
                     self.content = ""
                     self.selectedOption = ""
-                    self.editor = {}
+                    self.editor.setData("")
                 },
             },
         })
