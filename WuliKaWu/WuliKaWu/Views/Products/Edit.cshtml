@@ -42,13 +42,13 @@
                                     <div class="col-6 ">
                                         <div class="form-group">
                                             <label for="Color" class="control-label">Color</label>
-                                            <select id="Color" class="form-control" v-model="productFields.colorIds" multiple>
+                                            <select id="Color" class="form-control" v-model="productFields.colors" multiple>
                                                 <option v-for="item in optionSource.color" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Size" class="control-label">Size</label>
-                                            <select id="Size" class="form-control" v-model="productFields.sizeIds">
+                                            <select id="Size" class="form-control" v-model="productFields.size">
                                                 <option v-for="item in optionSource.size" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
@@ -62,14 +62,11 @@
 
                                         <div class="form-group">
                                             <label for="Tag" class="control-label">Tag</label>
-                                            <select id="Tag" class="form-control" v-model="productFields.tagIds" multiple>
+                                            <select id="Tag" class="form-control" v-model="productFields.tags" multiple>
                                                 <option v-for="item in optionSource.tag" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -132,16 +129,16 @@
                 productFields: {
                     productId: "",
                     productName: "",
-                    colorIds: [],
-                    sizeId: "",
+                    colors: [],
+                    size: "",
                     categoryId: "",
                     price: "",
-                    discount: "",
                     sellingPrice: "",
-                    tagIds: [],
-                    picturePath: "",
+                    tags: [],
+                    pictures: [],
                     comment: "",
                 },
+                picFiles: [],
                 picPriview: [],
             },
 
@@ -157,10 +154,8 @@
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result);
-                        //self.product = result;
                         self.productFields = result;
                         self.productFields.productId = @ViewBag.id;
-
                     })
             },
 
@@ -168,9 +163,9 @@
             {
                 uploadPic: function (e) {
                     var self = this;
-                    self.productFields.picFiles = e.target.files;
+                    self.productFields.pictures = e.target.files;
                     self.picPriview = [];
-                    for (let fileData of self.productFields.picFiles) {
+                    for (let fileData of self.productFields.pictures) {
                         let reader = new FileReader();
                         reader.addEventListener("load", (event) => {
                             self.picPriview.push(event.target.result);
@@ -204,18 +199,56 @@
                 },
                 saveProductChange: function (id) {
                     var self = this;
-                    self.productFields.productId = @ViewBag.id
+                    //self.productFields.productId = @ViewBag.id
+                    var Id = self.productFields.productId
 
-                        var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+                    //var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+                    var qureyEditBaseUrl = '/api/product/editbyid/' + Id;
+
+                    let form = new FormData();
+                    Object.keys(self.productFields).forEach(key => {
+                        if (key == "colors" || key == "tags" ) {
+                            console.log("ct",self.productFields[key])
+                            self.productFields[key].forEach(x=>{
+                                form.append(key, x)
+                            })
+                        }
+                        else if(key=="pictures")
+                        {   
+                            console.log("p", self.productFields[key])
+                            Array.from(self.productFields[key]).forEach(x => {
+                                form.append(key, x)});
+
+                        }
+                        else
+                        {
+                            form.append(key, self.productFields[key]);
+                        }
+ 
+
+                    });
+
+                    console.log(self.productFields)
 
                     fetch(qureyEditBaseUrl, {
                         method: "POST",
-                        headers: { 'content-type': 'application/json' },
-                        body: JSON.stringify(self.productFields)
+                        body: form
+                        //headers: {'content-type': 'multipart/form-data'}
                     })
                         .then(function (response) { return response.json() })
                         .then(function (result) {
                             console.log(result);
+                            //var al = {
+                            //    icon: 'success',
+                            //    title: 'Edit Save Success!!!',
+                            //    text: result.message,
+                            //    timer: 2000
+                            //};
+                            //if (!result.status) {
+                            //    al.icon = "error";
+                            //    al.title = "Edit Save Failed!!!";
+                            //}
+                            //Swal.fire(al)
                         })
                 }
             }

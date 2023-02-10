@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using NuGet.Packaging;
 using System.Net.NetworkInformation;
 
 using WuliKaWu.Data;
@@ -29,7 +29,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// 嚙踝蕭嚙緻嚙課佗蕭嚙諉品
+        /// 拿到所有的商品
         /// </summary>
         /// <returns></returns>
 
@@ -52,7 +52,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// 嚙踝蕭嚙緻嚙踝蕭嚙踝蕭id嚙踝蕭嚙諉品
+        /// 從資料庫拿到對應Id的商品
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -98,71 +98,84 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// 嚙編嚙踝蕭嚙踝蕭嚙箠d嚙踝蕭嚙諉品
+        /// 編輯對應Id的商品存到資料庫
         /// </summary>
         /// <param name="id"></param>
         /// <param name="eModel"></param>
         /// <returns></returns>
         [HttpPost("{id}")]
-        public ProductEditModel EditById(int id)
+        public ApiResultModel EditById([FromForm] ProductEditModel model)
         {
             //throw new NotImplementedException();
-            var data = _context.Products.Include(x => x.Pictures).Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
 
-            if (data == null) return null;
-            var model = new ProductEditModel
+            var data = _context.Products.Include(x=>x.Colors).Include(x=>x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
+
+            data.ProductName = model.ProductName;
+            data.Colors.Clear();
+            data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
+            data.Size = model.Size;
+            data.CategoryId = model.CategoryId;
+            data.Price = model.Price;
+
+            //TODO sellingprice 本來為null 編輯時沒有更動仍是null的話會出錯
+            data.SellingPrice = model.SellingPrice;
+            data.Tags.Clear();
+            data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
+            
+            if (model.Pictures != null)
             {
-                Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
-                ProductName = data.ProductName,
-                Color = data.Colors.Select(x => x.Id).ToList(),
-                Size = data.Size,
-                Price = data.Price,
-                SellingPrice = data.SellingPrice,
-                CategoryId = data.CategoryId,
-                Tag = data.Tags.Select(x => x.Id).ToList(),
-                Comment = data.Comment
-            };
+                var _folder = $@"";
+                var picList = new List<Picture>();
+                foreach (var file in model.Pictures)
+                {
+                    if (file.Length > 0)
+                    {
+                        var path = $@"\images\{DateTime.Now.Ticks}-{file.FileName}";
+                        using (var stream = new FileStream($@"{_env.WebRootPath}{path}", FileMode.Create))
+                        {
+                            file.CopyTo(stream);
+                        }
+                        picList.Add(new Picture() { PicturePath = path });
+                    }
+                }
+                data.Pictures = picList;
+            }
+
+            _context.Products.Update(data);
             _context.SaveChanges();
 
-            return model;
+            return new ApiResultModel
+            {
+                Status = true,
+                Message = "Edit Save Success!"
+            };
 
-            //Product product = _context.Products.Find(id);
-            //product.ProductName = eModel.ProductName;
-            //product.Color = eModel.Color;
-            //product.Size = (Size)Enum.Parse(typeof(Size), eModel.Size);
-            //product.CategoryId = (int)eModel.Category;
-            //product.PicturePath = eModel.PicturePath;
-            //product.Price = eModel.Price;
-            //product.Discount = Convert.ToDecimal(eModel.Discount);
-            //product.SellingPrice = decimal.Parse(eModel.SellingPrice);
-            //product.Tag = (Tag)eModel.Tag;
+            //    //if (data == null) return null;
+            //    //var model = new ProductEditModel
+            //    //{
+            //    //    //Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
+            //    //    //ProductName = data.ProductName,
+            //    //    //Color = data.Colors.Select(x => x.Id).ToList(),
+            //    //    //Size = data.Size,
+            //    //    //Price = data.Price,
+            //    //    //SellingPrice = data.SellingPrice,
+            //    //    //CategoryId = data.CategoryId,
+            //    //    //Tag = data.Tags.Select(x => x.Id).ToList(),
+            //    //    //Comment = data.Comment
+            //    //};
+            //    //_context.SaveChanges();
 
-            //try
-            //{
-            //    _context.SaveChanges();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!ProductModelExists(id))
-            //    {
-            //        return null;
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
+            //    //return model;
             //}
 
-            //return eModel;
-        }
-
-        private bool ProductModelExists(int id)
-        {
-            return _context.Products.Any(p => p.ProductId == id);
+            //    private bool ProductModelExists(int id)
+            //{
+            //    return _context.Products.Any(p => p.ProductId == id);
+            //}
         }
 
         /// <summary>
-        /// 嚙編嚙磕嚙諉品嚙豌賂蕭おw
+        /// 新增商品到資料庫
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -210,7 +223,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("{id}")]
-        public ProductDeleteModel DeleteById([FromBody]Int32 id)
+        public ProductDeleteModel DeleteById([FromBody] Int32 id)
         {
             //throw new NotImplementedException();
 
@@ -232,7 +245,6 @@ namespace WuliKaWu.Controllers.Api
 
                 _context.Products.Remove(data);
                 _context.SaveChanges();
-
             }
             return null;
         }
