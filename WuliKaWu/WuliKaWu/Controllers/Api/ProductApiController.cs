@@ -149,20 +149,6 @@ namespace WuliKaWu.Controllers.Api
         {
             var data = _context.Products.Include(x => x.Pictures).Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
 
-            //return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Where(x => x.ProductId == id).Select(x => new ProductPreviewModel
-            //{
-            //    ProductId = x.ProductId,
-            //    ProductName = x.ProductName,
-            //    Colors = x.Colors.Select(x => x.Id).ToList(),
-            //    Size = x.Size,
-            //    Price = x.Price,
-            //    Discount = x.SellingPrice.HasValue ? true : false,
-            //    SellingPrice = x.SellingPrice,
-            //    CategoryId = x.CategoryId,
-            //    Tags = x.Tags.Select(x => x.Id).ToList(),
-            //    Pictures = x.Pictures.Select(x => x.PicturePath).ToList()
-            //}).Single();
-
             if (data == null)
             {
                 return null;
@@ -183,6 +169,20 @@ namespace WuliKaWu.Controllers.Api
             };
 
             return model;
+
+            //return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Where(x => x.ProductId == id).Select(x => new ProductPreviewModel
+            //{
+            //    ProductId = x.ProductId,
+            //    ProductName = x.ProductName,
+            //    Colors = x.Colors.Select(x => x.Id).ToList(),
+            //    Size = x.Size,
+            //    Price = x.Price,
+            //    Discount = x.SellingPrice.HasValue ? true : false,
+            //    SellingPrice = x.SellingPrice,
+            //    CategoryId = x.CategoryId,
+            //    Tags = x.Tags.Select(x => x.Id).ToList(),
+            //    Pictures = x.Pictures.Select(x => x.PicturePath).ToList()
+            //}).Single();
         }
 
         /// <summary>
@@ -237,29 +237,6 @@ namespace WuliKaWu.Controllers.Api
                 Status = true,
                 Message = "Edit Save Success!"
             };
-
-            //    //if (data == null) return null;
-            //    //var model = new ProductEditModel
-            //    //{
-            //    //    //Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
-            //    //    //ProductName = data.ProductName,
-            //    //    //Color = data.Colors.Select(x => x.Id).ToList(),
-            //    //    //Size = data.Size,
-            //    //    //Price = data.Price,
-            //    //    //SellingPrice = data.SellingPrice,
-            //    //    //CategoryId = data.CategoryId,
-            //    //    //Tag = data.Tags.Select(x => x.Id).ToList(),
-            //    //    //Comment = data.Comment
-            //    //};
-            //    //_context.SaveChanges();
-
-            //    //return model;
-            //}
-
-            //    private bool ProductModelExists(int id)
-            //{
-            //    return _context.Products.Any(p => p.ProductId == id);
-            //}
         }
 
         /// <summary>
