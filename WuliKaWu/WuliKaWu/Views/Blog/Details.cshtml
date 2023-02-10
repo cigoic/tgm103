@@ -155,8 +155,8 @@
                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                     return date.toLocaleDateString(date, options)
                 },
-                getArticleById(id) {
-                    axios.get(this.articleBaseLink + id)
+                getArticleById: async function (id) {
+                    await axios.get(this.articleBaseLink + id)
                         .then(response => {
                             console.log(".......", response)
                             this.article = response.data.value
@@ -166,7 +166,7 @@
                 getTags: function (id) {
                     axios.get("/api/Blog/GetTagsById/" + id)
                         .then(response => { this.tags = response.data.value })
-                        .catch(error => { console.table(error.response.data) })
+                        .catch(error => { tgm103ShowError(error.response.data) })
                 },
             }
         })
