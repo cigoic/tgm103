@@ -85,6 +85,7 @@ namespace WuliKaWu.Controllers
 >>>>>>> [更新] Blog Index 檢視可顯示單筆部落格文章與圖片
         }
 
+<<<<<<< HEAD
 =======
 namespace WuliKaWu.Controllers
 {
@@ -130,7 +131,15 @@ namespace WuliKaWu.Controllers
 
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         public IActionResult Sidebar()
+=======
+        /// <summary>
+        /// 作者的所有相關文章首頁
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Sidebar(int? id)
+>>>>>>> [更新] 調整、顯示作者所有文章的頁面
         {
+            ViewBag.ArticleId = id;
             return View();
         }
 <<<<<<< HEAD

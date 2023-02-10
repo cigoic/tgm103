@@ -1,186 +1,10 @@
-﻿
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2 data-aos="fade-up" data-aos-delay="200">Blog Sidebar</h2>
-            <ul data-aos="fade-up" data-aos-delay="400">
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><i class="ti-angle-right"></i></li>
-                <li>Blog Sidebar</li>
-            </ul>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-<div class="blog-area pt-100 pb-100">
+﻿<div class="container" id="blogSidebarApp" />
+
+<div class="blog-area pt-15 pb-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-1.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>05 <span>May</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a asp-controller="Blog" asp-action="Details">Lorem ipsum dolor consectet.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="400">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-2.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>03 <span>Jun.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a asp-controller="Blog" asp-action="Details">Duis et volutpat pellentesque.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-3.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>07 <span>Feb.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a asp-controller="Blog" asp-action="Details">Vivamus vitae dolor convallis.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="400">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-1.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>08 <span>Dec.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a asp-controller="Blog" asp-action="Details">Vivamus amet tristique orci.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-2.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>02 <span>Nov.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a asp-controller="Blog" asp-action="Details">Pellentesque pretium place.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="400">
-                            <div class="blog-img-date-wrap mb-25">
-                                <div class="blog-img">
-                                    <a asp-controller="Blog" asp-action="Details"><img src="~/assets/images/blog/blog-3.png" alt=""></a>
-                                </div>
-                                <div class="blog-date">
-                                    <h5>09 <span>Oct.</span></h5>
-                                </div>
-                            </div>
-                            <div class="blog-content">
-                                <div class="blog-meta">
-                                    <ul>
-                                        <li><a href="#">Furniture</a>,</li>
-                                        <li>By:<a href="#"> Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h3><a asp-controller="Blog" asp-action="Details">Sed euismod tristique dolor.</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                                <div class="blog-btn-2 btn-hover">
-                                    <a class="btn hover-border-radius theme-color" asp-controller="Blog" asp-action="Details">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
-                    <ul>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-                    </ul>
-                </div>
+                <partial name="_BlogDetailsPartial" />
             </div>
             <div class="col-lg-4">
                 <div class="sidebar-wrapper">
@@ -195,7 +19,7 @@
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
                             <a href="#"><img src="~/assets/images/blog/blog-author.png" alt=""></a>
-                            <h2>Writer Name</h2>
+                            <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -271,3 +95,109 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+
+    <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
+    <script>
+        Vue.component('paginate', VuejsPaginate);
+
+        let blogSidebarVue = new Vue({
+            //el:'#blogSidebarApp',
+            name: "blogSidebarApp",
+            data: {
+                article: {},
+                articles: [
+                    {
+                        id: 1,
+                        title: '文章 1',
+                        description: '接到民國手指全球最後，承諾汽車，手段經濟發展意外有所原來模型的人未經接着，我有玩家積極負責一遍開放男子利潤，治理免費都是詢問尤其一週社會主義模擬學科一場趕緊圖書的話，臺灣消失比例上一頁驚人至今新臺幣刪除等方面一路適當產權頻率，複雜那就那個還沒有，由於突出。',
+                        createdDate: '2022-01-01',
+                        modifiedAt: '2022-12-16',
+                    },
+                    {
+                        id: 2,
+                        title: '文章 2',
+                        description: '身邊本書本書職工用戶名，鈴聲付出領域心理都說施工運動競爭鈴聲下載，地面從來沒以前學者英雄動畫員工校長文學你們的承受吸收模型用戶名，領先隊員一遍打開推薦使用私人想起有一種傳來擁有，緊緊你可以婚姻超級下載次數飯店，正在夫妻，點頭材料主角需求英文，宅宅許可，近。',
+                        createdDate: '2022-01-02',
+                        modifiedAt: '2023-01-07',
+                    },
+                    {
+                        id: 3,
+                        title: '文章 3',
+                        description: '碩士試驗說過高達一家我不只好貢獻前來人大指出，以外所謂返回不良情感，帶來有點遠無門朋友提升交換，金幣前面見過拍攝紅色採取主演物業不用這次高校眼中，體會許可別人如下加速怎麼會，信用姑娘群發，競爭力程式老師博士，你還演唱生意，詳細內容日誌下去，您現在難道，供。',
+                        createdDate: '2022-01-03',
+                        modifiedAt: '2023-02-08',
+                    }
+                ],
+                articleBaseLink: "/Blog/Details/",
+                articleId: @ViewBag.ArticleId,
+                currentPage: 1,
+                countPerPage: 6,
+                aDay: "",
+                aMonth: "",
+                tags: {},
+            },
+            mounted: function () {
+                let self = this
+                fetch('/api/Blog/GetMembersArticles/' + this.articleId)
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log("sidebar articles:", result.value);
+                        self.articles = result.value;
+                    })
+                //self.getTags(self.articleId)
+                //self.getArticleById(self.articleId)
+            },
+            computed: {
+                filterArticles: function () {
+                    var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                    var max = this.countPerPage * this.currentPage;
+                    this.min = min;
+                    this.max = max;
+                    return this.articles.slice(min, max)
+                },
+            },
+            methods: {
+                clickCallback: function (page) {
+                    this.currentPage = page;
+                    console.log(page)
+                },
+                articleLink: function (id) { return "/Blog/Details/" + id },
+                articleDay(currentDate) {
+                    var date = new Date(currentDate);
+                    this.aDay = date.getDate()
+                    return this.aDay
+                },
+                getMonthName(currentDate) {
+                    const date = new Date(currentDate)
+                    this.aMonth = date.toLocaleString('default', { month: 'short' })
+                    return this.aMonth
+                },
+                showDate(currentDate) {
+                    const date = new Date(currentDate)
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    return date.toLocaleDateString(date, options)
+                },
+                getArticleById(id) {
+                    this.articleBaseLink = "/api/Blog/GetById/",
+                        axios.get(this.articleBaseLink + id)
+                            .then(response => {
+                                console.log(".......", response)
+                                this.article = response.data.value
+                            })
+                            .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getTags: function (id) {
+                    axios.get("/api/Blog/GetTagsById/" + id)
+                        .then(response => { this.tags = response.data.value })
+                        .catch(error => { console.table(error.response.data) })
+                },
+            }
+        })
+
+        document.addEventListener("DOMContentLoaded", () => {
+            blogSidebarVue.$mount('#blogSidebarApp')
+        })
+    </script>
+}
