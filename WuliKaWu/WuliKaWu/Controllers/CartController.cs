@@ -40,11 +40,20 @@ namespace WuliKaWu.Controllers
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         // GET: Cart/Details/5
 =======
         // GET: Carts/Details/5
 >>>>>>> 新增CartController及CartApiController
 =======
+=======
+        // GET: Checkout
+        public async Task<IActionResult> Checkout()
+        {
+            return View(/*await _context.Carts.ToListAsync()*/);
+        }
+
+>>>>>>> [修改]_layout 修改checkout路徑
         // GET: Cart/Details/5
 >>>>>>> [修改]名稱原Carts更改為Cart
         public async Task<IActionResult> Details(int? id)

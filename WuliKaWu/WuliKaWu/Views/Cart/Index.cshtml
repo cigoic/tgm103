@@ -98,36 +98,22 @@
                                         </tr>
                                     </thead>
                                     <tbody >
-                                        <tr v-for="cart in productInThisCart">
-                                            @*<td class="product-thumbnail">                                                
-                                                <img class="width-thumbnail" style="width:120px" :src="cart.picturePath[1]"></img>
-                                            </td>*@
+                                        <tr v-for="cart in productInThisCart">                            
                                             <td class="product-thumbnail">
-                                                <img :src="cart.picturePath[0]"></img>
-                                            </td>
-                                            @*<td class="product-name">
-                                                <h5><a href="/Products/ProductDetails">{{cart.productName}}</a></h5>
-                                            </td>*@
+                                                <img class="width-thumbnail" style="width:120px" :src="cart.picturePath[0]"></img>
+                                            </td>                                    
                                             <td class="product-name">
-                                                <h5><a href="/Products/ProductDetails">{{cart.productName}}</a></h5>
+                                                <h5>>{{cart.productName}}</h5>
                                             </td>
                                             <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.type}}</span></td>
-                                          @*  <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
-                                            </td>*@
+                                            <td><span>{{cart.type[0]}}</span></td>
+                                      
                                              <td class="product-price">
                                                 <span :class="{'old-price':cart.price}">${{cart.price}}</span>
                                                 <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
                                             </td> 
-                                            <td class="cart-quality">
-                                                @*<div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
-
-                                                </div>
-                                                <input type="number" name="qtybutton" :value="cart.quantity" readonly>
-                                                @*<span>{{cart.quantity}}</span>*@
+                                            <td class="cart-quality"> 
+                                                <input type="number" name="qtybutton" :value="cart.quantity" readonly>                                               
                                             </td>
                                             <td class="product-price">
 <<<<<<< HEAD
@@ -251,8 +237,11 @@
                                             </td>
                                             <td class="product-remove"><i class=" ti-trash "></i></td>
                                         </tr>
+<<<<<<< HEAD
                                         
 >>>>>>> [更新] 遮蔽 Cart/WishList 原本範本產生的 CRUD Views
+=======
+>>>>>>> [修改]_layout 修改checkout路徑
                                     </tbody>
                                 </table>
                             </div>
@@ -439,7 +428,7 @@
             el: "#cartIndex",
             data: {
                 productInThisCart:{
-                    type:""
+                    type:[]
 
                 }                   
             },

@@ -7,6 +7,7 @@ namespace WuliKaWu.Models.ApiModel
     {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int CheckOutId { get; set; }
 =======
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
@@ -27,9 +28,18 @@ namespace WuliKaWu.Models.ApiModel
 =======
         public List<string> Colors { get; set; }
 >>>>>>> DB修改
+=======
+        public int Id { get; set; }
+        public int ProductId { get; set; }
+        public int MemberId { get; set; }
+        public List<string> PicturePath { get; set; }
+        public string ProductName { get; set; }
+        public List<string> Type { get; set; }
+>>>>>>> [修改]_layout 修改checkout路徑
         public int Quantity { get; set; }
-        public Size Size { get; set; }
+        public string Size { get; set; }
         public decimal Price { get; set; }
+<<<<<<< HEAD
         public string? SellingPrice { get; set; }
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -40,6 +50,13 @@ namespace WuliKaWu.Models.ApiModel
 =======
         public GetPayType Type { get; set; }
 >>>>>>> [修改]支付方式的型態
+=======
+        public decimal? SellingPrice { get; set; }
+        public GetPayType GetPayType { get; set; }
+>>>>>>> [修改]_layout 修改checkout路徑
         public decimal? Coupon { get; set; }
+        public string ShippingAddress { get; set; }
+        public string Recipient { get; set; }
+        public string ContactPhone { get; set; }
     }
 }
