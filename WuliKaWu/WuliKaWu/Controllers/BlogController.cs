@@ -49,8 +49,13 @@ namespace WuliKaWu.Controllers
             //return View(vm.AsEnumerable());
         }
 
-        public IActionResult Sidebar()
+        /// <summary>
+        /// 作者的所有相關文章首頁
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Sidebar(int? id)
         {
+            ViewBag.ArticleId = id;
             return View();
         }
 

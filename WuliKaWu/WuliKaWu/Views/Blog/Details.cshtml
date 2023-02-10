@@ -1,6 +1,4 @@
-﻿@model ArticleDetailsModel
-
-<div class="container" id="blogDetailsApp" />
+﻿<div class="container" id="blogDetailsApp" />
 
 <div class="blog-details-area pt-15 pb-100">
     <div class="container">
@@ -69,7 +67,7 @@
 
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a :href="articleLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
+                            <a :href="memberArticlesLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -141,6 +139,7 @@
             },
             methods: {
                 articleLink: function (id) { return "/Blog/Details/" + id },
+                memberArticlesLink: function (id) { return "/Blog/Sidebar/" + id },
                 articleDay(currentDate) {
                     var date = new Date(currentDate);
                     this.aDay = date.getDate()

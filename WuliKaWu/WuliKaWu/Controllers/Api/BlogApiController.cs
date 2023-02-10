@@ -42,6 +42,27 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
+        /// 取得特定作者的文章清單
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IResult> GetMembersArticles(int articleId)
+        {
+            var memberId = _context.Articles
+                .FirstOrDefaultAsync(a => a.Id == articleId)
+                .Result.MemberId;
+
+            return await _context.Articles
+            .Include(a => a.ArticleTitleImage)
+            .Include(a => a.ArticleContentImages)
+            .Include(a => a.Tags)
+            .Where(m => m.MemberId == memberId)
+            .ToListAsync()
+             is IEnumerable<Article> articles
+             ? Results.Ok(articles)
+             : Results.NotFound(new { Status = false, Message = "找無相關文章!" });
+        }
+
+        /// <summary>
         /// 取得部落格文章
         /// </summary>
         /// <param name="ArticleId">文章 ID</param>
@@ -225,14 +246,23 @@ namespace WuliKaWu.Controllers.Api
         [ActionName("GetTagsById")]
         public IResult GetTagsByIdAsync(int? id)
         {
-            //return _context.Articles.Where(a => a.Id == id).Select(a => a.Tags)
-            return _context.Tags.Select(t => new ArticleTagModel
+            if (id > 0)
             {
-                Id = t.Id,
-                Type = t.Type
-            }) is IEnumerable<ArticleTagModel> tags
+                return _context.Articles.Where(a => a.Id == id).Select(a => a.Tags)
+                    is IEnumerable<Tag> tags
                 ? Results.Ok(tags)
                 : Results.NoContent();
+            }
+            else
+            {
+                return _context.Tags.Select(t => new ArticleTagModel
+                {
+                    Id = t.Id,
+                    Type = t.Type
+                }) is IEnumerable<ArticleTagModel> tags
+                    ? Results.Ok(tags)
+                    : Results.NoContent();
+            }
         }
 
         /// <summary>
