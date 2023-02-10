@@ -50,11 +50,13 @@ namespace WuliKaWu.Controllers
         }
 
         /// <summary>
-        /// 作者的所有相關文章首頁
+        /// 顯示作者的所有相關文章
         /// </summary>
         /// <returns></returns>
-        public IActionResult Sidebar(int? id)
+        public IActionResult Sidebar(int? id = 0)
         {
+            if (id <= 0) RedirectToAction("Index");
+
             ViewBag.ArticleId = id;
             return View();
         }
@@ -68,12 +70,12 @@ namespace WuliKaWu.Controllers
         public IActionResult Details(int ArticleId)
         {
             if (ArticleId <= 0)
-                return NotFound();
+                return RedirectToAction("Index");
 
             ViewBag.ArticleId = ArticleId;
             var article = _context.Articles.FirstOrDefault(a => a.Id == ArticleId);
             if (article == null)
-                return NotFound();
+                return RedirectToAction("Index");
 
             // TODO 可能要改用前端將前後文 ID 帶回
             int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID

@@ -31,14 +31,21 @@ namespace WuliKaWu.Controllers.Api
         /// 取得部落格文章全部清單
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Article>> GetArticles()
+        public async Task<IResult> GetArticles()
         {
             return await _context.Articles
-                .Include(a => a.ArticleTitleImage)
-                .Include(a => a.ArticleContentImages)
-                .Include(a => a.Tags)
-                //.Select(a => new NewArticleModel { ... })
-                .ToListAsync();
+                            .Include(a => a.ArticleTitleImage)
+                            //.Include(a => a.Tags)
+                            .Select(a => new ArticleDescriptionModel
+                            {
+                                Id = a.Id,
+                                Title = a.Title,
+                                Description = a.Description,
+                                ModifiedDate = a.ModifiedDate,
+                            }).ToListAsync()
+                            is IEnumerable<ArticleDescriptionModel> articles
+                              ? Results.Ok(articles)
+                              : Results.NotFound(new { Status = false, Message = "找無內容!" });
         }
 
         /// <summary>
