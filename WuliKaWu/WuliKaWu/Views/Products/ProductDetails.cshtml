@@ -46,31 +46,40 @@
     </div>    
     <div class="product-details-area pb-100 pt-100">
         <div class="container">
-            <div class="row">
-                @*商品圖片*@
-                <div class="col-lg-6">
-                    <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
-                        <div class="easyzoom-style">
-                            <div class="easyzoom easyzoom--overlay">
-                                <img :src="product.pictures[0]" alt="product picture">
+            @*商品圖片*@
+            <div class="col-lg-12">
+                <div class="product-details-img-wrap" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-list-img">
+                        <div class="row">
+                            <div class="col-3" v-for="item in productFields.pictures">
+                                <img :src="item" class="w-100 img-thumbnail" alt="product picture"/>
                             </div>
-
                         </div>
                     </div>
                 </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> [新增]加入summary以及註記
+=======
+            </div>
+>>>>>>> [修正]Vue以渲染成功
 
-                @*商品內容*@
-                <div class="col-lg-6">
+            @*商品內容*@
+            <div class="row">
+                <div class="col-lg-12">
                     <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
-                        <h2>{{product.productName}}</h2>
+                        <h2>{{productFields.productName}}</h2>
                         <div class="product-price">
+<<<<<<< HEAD
                             <span :class="{'old-price':product.discount}">${{product.price}}</span>
                             <span class="new-price" v-if="product.discount">${{product.sellingPrice}}</span>
 <<<<<<< HEAD
+=======
+                            <span :class="{'old-price':productFields.discount}">${{productFields.price}}</span>
+                            <span class="new-price" v-if="productFields.discount">${{productFields.sellingPrice}}</span>
+>>>>>>> [修正]Vue以渲染成功
                         </div>
                         <div class="product-details-review">
                             <div class="product-rating">
@@ -85,7 +94,7 @@
                         <div class="product-color product-color-active product-details-color">
                             <span>Color :</span>
                             <ul>
-                                <li>{{product.color}}</li>                               
+                                <li>{{productFields.colors}}</li>
                             </ul>
                         </div>
                         <div class="product-details-action-wrap">
@@ -107,20 +116,20 @@
                                 <li>
                                     <span class="title">Size:</span>
                                     <ul>
-                                        <li>{{product.size}}</li>                                       
+                                        <li>{{productFields.size}}</li>                                       
                                     </ul>
                                 </li>
 
                                 <li>
                                     <span class="title">Category:</span>
                                     <ul>
-                                        <li>{{product.categoryId}}</li>                                  
+                                        <li>{{productFields.categoryId}}</li>                                  
                                     </ul>
                                 </li>
                                 <li>
                                     <span class="title">Tags:</span>
-                                    <ul class="tag">
-                                        <li>{{optionSource.tag.type}}</li>
+                                    <ul class="tag" id="tag" >
+                                        <li >{{productFields.tags}}</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -568,6 +577,7 @@
             el:"#ProductDetails",
             data:
             {
+<<<<<<< HEAD
                 product:[],
 =======
         let app = new Vue({
@@ -577,47 +587,91 @@
             {
                 products:[]
 >>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
+=======
+                productFields: {
+                    productId: "",
+                    productName: "",
+                    colors: [],
+                    size: "",
+                    categoryId: "",
+                    price: "",
+                    sellingPrice: "",
+                    tags: [],
+                    pictures: [],
+                    comment: "",
+                },
+
+                //optionSource: {
+                //    tag: [],
+                //    color: [],
+                //    size: [],
+                //    category: []
+                //},
+
+>>>>>>> [修正]Vue以渲染成功
             },
 
             mounted: function(){
                 var self = this;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                //self.GetCategoryData();
+                //self.GetColorData();
+                //self.GetSizeData();
+                //self.GetTagData();
+
+>>>>>>> [修正]Vue以渲染成功
                 fetch('/api/product/getbyid/'+'@ViewBag.id')
                 .then(function(response){return response.json()})
                 .then(function(result){
                     console.log(result);
-                    self.product = result;
-                    self.product.productId = @ViewBag.id;
+                    self.productFields = result;
+                        self.productFields.productId = @ViewBag.id;
                 })            
             },
 
             methods:
             {
+                //showColor:function(id){
+                //    switch(id)
+                //        {
+                //            case 0: return "black";
+                //            case 1: return "red";
+                //            default: return "請選擇";
+                //        }
+                //}
+                //showData:function(type,value){
+                    
+                //    if(type == "tag"){
+                //        return this.optionSource.filter(p => p.tag.find(y => y == value))
+                //    }
+                //},
 
-                GetCategoryData: function () {
-                    var self = this;
-                    fetch("/api/category/getall")
-                        .then(function (response) { return response.json() })
-                        .then(function (result) { self.optionSource.category = result })
-                },
-                GetColorData: function () {
-                    var self = this;
-                    fetch("/api/color/getall")
-                        .then(function (response) { return response.json() })
-                        .then(function (result) { self.optionSource.color = result })
-                },
-                GetSizeData: function () {
-                    var self = this;
-                    fetch("/api/size/getall")
-                        .then(function (response) { return response.json() })
-                        .then(function (result) { self.optionSource.size = result })
-                },
-                GetTagData: function () {
-                    var self = this;
-                    fetch("/api/tag/getall")
-                        .then(function (response) { return response.json() })
-                        .then(function (result) { self.optionSource.tag = result })
-                },
+                //GetCategoryData: function () {
+                //    var self = this;
+                //    fetch("/api/category/getall")
+                //        .then(function (response) { return response.json() })
+                //        .then(function (result) { self.optionSource.category = result })
+                //},
+                //GetColorData: function () {
+                //    var self = this;
+                //    fetch("/api/color/getall")
+                //        .then(function (response) { return response.json() })
+                //        .then(function (result) { self.optionSource.color = result })
+                //},
+                //GetSizeData: function () {
+                //    var self = this;
+                //    fetch("/api/size/getall")
+                //        .then(function (response) { return response.json() })
+                //        .then(function (result) { self.optionSource.size = result })
+                //},
+                //GetTagData: function () {
+                //    var self = this;
+                //    fetch("/api/tag/getall")
+                //        .then(function (response) { return response.json() })
+                //        .then(function (result) { self.optionSource.tag = result })
+                //},
             }
 
         });
