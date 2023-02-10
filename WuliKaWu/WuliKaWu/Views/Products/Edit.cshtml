@@ -96,10 +96,22 @@
                         @*商品圖片*@
                         <div class="col-lg-12 col-sm-12 contact-form-style">
                             <div class="product-list-img ">
+<<<<<<< HEAD
                                 <a href="">
                                     <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
 <<<<<<< HEAD
                                 </a>
+=======
+                                @*<a href="">
+                                <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
+                                </a>*@
+
+                                <div class="row">
+                                    <div class="col-3" v-for="item in productFields.pictures">
+                                        <img :src="item" class="w-100 img-thumbnail" alt="product picture" />
+                                    </div>
+                                </div>
+>>>>>>> [更新]Edit頁面讓原商品圖片顯示出來，Delete頁面Vue有渲染出來但內容仍要調整(顏色/尺寸/分類/標籤)
                             </div>
                         </div>
                         @*商品圖片上傳預覽*@
