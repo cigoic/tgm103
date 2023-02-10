@@ -68,6 +68,7 @@ namespace WuliKaWu.Controllers.Api
         /// <returns>Results.NotFound</returns>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         [ActionName("GetArticleById")]
 =======
 >>>>>>> [更新] 新增部落格 API 控制器(初版)
@@ -79,11 +80,38 @@ namespace WuliKaWu.Controllers.Api
 =======
         public async Task<IResult> GetArticleIdAsync(int ArticleId)
 >>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
+=======
+        [ActionName("GetById")]
+        public async Task<IResult> GetByIdAsync(int ArticleId)
+>>>>>>> [修正] 部落格 Details 顯示頁面
         {
-            return await _context.Articles.FindAsync(ArticleId)
-                is Article model
-                    ? Results.Ok(model)
-                    : Results.NotFound(new { Status = false, Message = "找無內容!" });
+            int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
+            int nextId = GetNextArticleId(ArticleId);
+
+            var article = await _context.Articles
+                .Include(a => a.ArticleTitleImage)
+                .Include(a => a.ArticleContentImages)
+                .Include(a => a.Tags)
+                .FirstOrDefaultAsync(a => a.Id == ArticleId);
+
+            var model = new ArticleDetailsModel
+            {
+                Id = ArticleId,
+                MemberName = _context.Members.Find(article.MemberId).Name,
+                Title = article.Title,
+                Content = article.Content,
+                PrevArticleId = prevId,
+                NextArticleId = nextId,
+                CreatedDate = article.CreatedDate,
+                PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate,
+                NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate,
+                PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title,
+                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title
+            };
+
+            return (model != null)
+                   ? Results.Ok(model)
+                   : Results.NotFound(new { Status = false, Message = "找無內容!" });
         }
 
 <<<<<<< HEAD
@@ -97,6 +125,7 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
+<<<<<<< HEAD
 <<<<<<< HEAD
         [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         [HttpGet]
@@ -145,6 +174,12 @@ namespace WuliKaWu.Controllers.Api
         [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
         [HttpGet]
         public IResult GetPrevArticleId(int CurrentArticleId)
+=======
+        //[Route("api/Blog/PrevArticle/{CurrentArticleId}")]
+        //[HttpGet]
+        //public IResult GetPrevArticleId(int CurrentArticleId)
+        private int GetPrevArticleId(int CurrentArticleId)
+>>>>>>> [修正] 部落格 Details 顯示頁面
         {
             var PrevArticle = _context.Articles
                            .OrderBy(a => a.CreatedDate)
@@ -152,10 +187,12 @@ namespace WuliKaWu.Controllers.Api
                            .LastOrDefault();
 
             if (PrevArticle == null)
-                return Results.Ok(new { CurrentArticleId });
+                return CurrentArticleId;
+            //return Results.Ok(new { CurrentArticleId });
 
             var PrevArticleId = PrevArticle.Id;
-            return Results.Ok(new { PrevArticleId });
+            return PrevArticleId;
+            //return Results.Ok(new { PrevArticleId });
         }
 
         /// <summary>
@@ -163,10 +200,17 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         [Route("api/Blog/NextArticle/{CurrentArticleId}")]
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         [HttpGet]
         public IResult GetNextArticleId(int CurrentArticleId)
+=======
+        //[Route("api/Blog/NextArticle/{CurrentArticleId}")]
+        //[HttpGet]
+        //public IResult GetNextArticleId(int CurrentArticleId)
+        private int GetNextArticleId(int CurrentArticleId)
+>>>>>>> [修正] 部落格 Details 顯示頁面
         {
             var NextArticle = _context.Articles
                             .OrderBy(a => a.CreatedDate)
@@ -174,10 +218,12 @@ namespace WuliKaWu.Controllers.Api
                             .FirstOrDefault();
 
             if (NextArticle == null)
-                return Results.Ok(new { CurrentArticleId });
+                return CurrentArticleId;
+            //return Results.Ok(new { CurrentArticleId });
 
             var NextArticleId = NextArticle.Id;
-            return Results.Ok(new { NextArticleId });
+            return NextArticleId;
+            //return Results.Ok(new { NextArticleId });
         }
 
 <<<<<<< HEAD
@@ -195,7 +241,11 @@ namespace WuliKaWu.Controllers.Api
         {
             try
             {
-                var article = await _context.Articles.FindAsync(ArticleId);
+                var article = await _context.Articles
+                    .Include(a => a.ArticleTitleImage)
+                    .Include(a => a.ArticleContentImages)
+                    .Include(a => a.Tags)
+                    .FirstOrDefaultAsync(a => a.Id == ArticleId);
                 if (article == null)
                 {
                     return Results.NotFound(new { Status = false, Message = "找無文章!" });
@@ -240,6 +290,7 @@ namespace WuliKaWu.Controllers.Api
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
 
+                // TODO 影像？
                 //if (article.Image != null)
                 {
                     //Save article.Image.FileName;
