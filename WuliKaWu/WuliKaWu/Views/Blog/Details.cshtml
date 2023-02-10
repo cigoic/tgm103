@@ -82,7 +82,11 @@
                             <li><a href="#">Furniture</a>,</li>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <li>By:<a href="#"> @Model.MemberName</a></li>
+=======
+                            <li>By:<a href="#"> {{ article.memberName }}</a></li>
+>>>>>>> [更新] 文章 Details 頁面，顯示 tags, 作者名
                         </ul>
                     </div>
                     <h1 data-aos="fade-up" data-aos-delay="200">@Model.Title</h1>
@@ -186,10 +190,8 @@
                     <div class="tag-social-wrap">
                         <div class="tag-wrap" data-aos="fade-up" data-aos-delay="200">
                             <span>Tags:</span>
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li><a href="#">Electronic</a>,</li>
-                                <li><a href="#">Fashion</a></li>
+                            <ul v-for="tag in tags">
+                                <li><a href="#">{{tag.type}}</a>,</li>
                             </ul>
                         </div>
                     </div>
@@ -228,8 +230,12 @@
                             </div>
                             <div class="blog-prev-post-content">
                                 <h3><a :href="articleLink(article.prevArticleId)">{{ article.prevArticleTitle }}</a></h3>
+<<<<<<< HEAD
 >>>>>>> [修正] 部落格 Details 顯示頁面
                                 <span>June 25, 2022</span>
+=======
+                                <span>{{ showDate(article.prevArticleCreateAt) }}</span>
+>>>>>>> [更新] 文章 Details 頁面，顯示 tags, 作者名
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
@@ -265,8 +271,12 @@
                             </div>
                             <div class="blog-next-post-content">
                                 <h3><a :href="articleLink(article.nextArticleId)">{{ article.nextArticleTitle }}</a></h3>
+<<<<<<< HEAD
 >>>>>>> [修正] 部落格 Details 顯示頁面
                                 <span>June 25, 2022</span>
+=======
+                                <span>{{ showDate(article.nextArticleCreateAt) }}</span>
+>>>>>>> [更新] 文章 Details 頁面，顯示 tags, 作者名
                             </div>
                         </div>
                     </div>
@@ -277,8 +287,8 @@
 
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a asp-controller="Blog" asp-action="Details"><img src="/assets/images/blog/blog-author.png" alt=""></a>
-                            <h2>Writer Name</h2>
+                            <a :href="articleLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
+                            <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -316,6 +326,7 @@
                     </div>*@
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
+                            <span>TODO  刪除 | 編輯 按鍵 </span>
                             <a href="/Products/ProductDetails"><img src="/assets/images/banner/banner-29.png" alt=""></a>
                         </div>
                     </div>
@@ -379,6 +390,7 @@
                 currentPage: 1,
                 aDay: "",
                 aMonth: "",
+                tags: {},
             },
             mounted: function () {
 <<<<<<< HEAD
@@ -568,6 +580,7 @@
 >>>>>>> [更新] 編輯部落格文章頁面
 =======
                 let self = this
+                self.getTags(self.articleId)
                 self.getArticleById(self.articleId)
             },
             methods: {
@@ -582,13 +595,23 @@
                     this.aMonth = date.toLocaleString('default', { month: 'short' })
                     return this.aMonth
                 },
+                showDate(currentDate) {
+                    const date = new Date(currentDate)
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    return date.toLocaleDateString(date, options)
+                },
                 getArticleById(id) {
                     axios.get(this.articleBaseLink + id)
                         .then(response => {
-                            //console.log(".......", response)
+                            console.log(".......", response)
                             this.article = response.data.value
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getTags: function (id) {
+                    axios.get("/api/Blog/GetTagsById/" + id)
+                        .then(response => { this.tags = response.data.value })
+                        .catch(error => { console.table(error.response.data) })
                 },
             }
         })
