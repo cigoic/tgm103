@@ -28,7 +28,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// 取得部落格文章全部清單
+        /// 取得部落格文章全部清單(首頁使用)
         /// </summary>
         /// <returns></returns>
         public async Task<IResult> GetArticles()
@@ -54,6 +54,9 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         public async Task<IResult> GetMembersArticles(int articleId)
         {
+            if (articleId == 0)
+                return Results.NotFound(new { Status = false, Message = "找無相關文章!" });
+
             var memberId = _context.Articles
                 .FirstOrDefaultAsync(a => a.Id == articleId)
                 .Result.MemberId;
@@ -112,9 +115,6 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
-        //[Route("api/Blog/PrevArticle/{CurrentArticleId}")]
-        //[HttpGet]
-        //public IResult GetPrevArticleId(int CurrentArticleId)
         private int GetPrevArticleId(int CurrentArticleId)
         {
             var PrevArticle = _context.Articles
@@ -124,11 +124,9 @@ namespace WuliKaWu.Controllers.Api
 
             if (PrevArticle == null)
                 return CurrentArticleId;
-            //return Results.Ok(new { CurrentArticleId });
 
             var PrevArticleId = PrevArticle.Id;
             return PrevArticleId;
-            //return Results.Ok(new { PrevArticleId });
         }
 
         /// <summary>
@@ -136,9 +134,6 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
-        //[Route("api/Blog/NextArticle/{CurrentArticleId}")]
-        //[HttpGet]
-        //public IResult GetNextArticleId(int CurrentArticleId)
         private int GetNextArticleId(int CurrentArticleId)
         {
             var NextArticle = _context.Articles
@@ -148,14 +143,11 @@ namespace WuliKaWu.Controllers.Api
 
             if (NextArticle == null)
                 return CurrentArticleId;
-            //return Results.Ok(new { CurrentArticleId });
 
             var NextArticleId = NextArticle.Id;
             return NextArticleId;
-            //return Results.Ok(new { NextArticleId });
         }
 
-        // GET  api/Blog/Details/{ArticleId}
         /// <summary>
         /// 取得特定文章內容
         /// </summary>
@@ -185,7 +177,6 @@ namespace WuliKaWu.Controllers.Api
             return Results.NoContent();
         }
 
-        // POST api/Blog/CreateArticle
         /// <summary>
         /// 建立部落格文章
         /// </summary>
@@ -209,7 +200,7 @@ namespace WuliKaWu.Controllers.Api
                     Content = article.Content,
                     Description = article.Content.Length <= maxLength
                         ? article.Content : article.Content.Substring(0, maxLength) + "...",
-                    CategoryId = article.CategoryId,
+                    CategoryId = (article.CategoryId <= 1) ? 1 : article.CategoryId,
                 };
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
