@@ -31,42 +31,42 @@
                                             <td class="product-list-img">
 @*                                                <div class="col-5" v-for="item in product.pictures">
 *@                                                <div class="col-5">
-                                                    <img class="img-fluid" :src="product.pictures[0]" alt="Product Picture" multiple />
+                                                    <img class="img-fluid" :src="productFields.pictures[0]" alt="Product Picture" multiple />
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="first-column">Name</td>
-                                            <td class="title">{{product.productName}}</td>
+                                            <td class="title">{{productFields.productName}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="first-column">Color</td>
-                                            <td class="pro-color">{{product.colorIds}}</td>
+                                            <td class="pro-color">{{productFields.colors}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="first-column">Size</td>
-                                            <td class="pro-stock">{{product.sizeId}}</td>
+                                            <td class="pro-stock">{{productFields.size}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="first-column">Price</td>
-                                            <td class="pro-price">${{product.price}}</td>
+                                            <td class="pro-price">${{productFields.price}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="first-column">Selling Price</td>
-                                            <td class="pro-price">${{product.sellingPrice}}</td>
+                                            <td class="pro-price">${{productFields.sellingPrice}}</td>
 
                                         <tr>
                                             <td class="first-column">Category</td>
-                                            <td class="pro-stock">{{product.categoryId}}</td>
+                                            <td class="pro-stock">{{productFields.categoryId}}</td>
                                         </tr>
 
                                         <tr>
                                             <td class="first-column">Tag</td>
-                                            <td class="pro-stock">{{product.tagIds}}</td>
+                                            <td class="pro-stock">{{productFields.tags}}</td>
                                         </tr>
 
 
@@ -106,18 +106,19 @@
         data: 
         {
             //product:[],
-            product: {                    
+            productFields: {                    
+                productId: "",
                 productName: "",
                 price: "",
                 categoryId: "",
-                sizeId:"",
-                colorIds:[],
+                size:"",
+                colors:[],
                 sellingPrice: "",
-                tagIds: [],
-                comment: "",
-                pictures:[]
+                tags: [],
+                pictures:[],
             },
-            picPriview:[]
+
+            picPriview:[],
         },
         
         mounted: function(){
@@ -126,10 +127,10 @@
             .then(function(response){return response.json()})
             .then(function(result){
                 
-                self.product = result;
-                self.product.productId = @ViewBag.id
+                self.productFields = result;
+                self.productFields.productId = @ViewBag.id
                 
-                console.log(result)
+                console.log("...........",result)
             })
 
         },
