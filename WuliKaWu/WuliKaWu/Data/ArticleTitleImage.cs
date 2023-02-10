@@ -25,7 +25,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 關聯之文章 ID
         /// </summary>
-        [ForeignKey("Articles")]
+        [ForeignKey("Article")]
         public int ArticleId { get; set; }
 
         /// <summary>

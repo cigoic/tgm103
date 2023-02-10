@@ -240,6 +240,11 @@ namespace WuliKaWu.Controllers.Api
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
 
+                //if (article.Image != null)
+                {
+                    //Save article.Image.FileName;
+                }
+
                 _context.Articles.Add(model);
                 await _context.SaveChangesAsync();
             }
@@ -275,7 +280,8 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="images"></param>
         /// <returns></returns>
-        public async Task<IResult> UploadImage([FromForm] IFormCollection images)//List<IFormFile> images)
+        public async Task<IResult> UploadImage([FromForm] IFormCollection images)
+        //public async Task<IResult> UploadImage([FromForm] IFormFile image)
         {
             if (images == null || images.Count <= 0)
                 return Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
@@ -292,20 +298,19 @@ namespace WuliKaWu.Controllers.Api
             {
                 fileName = ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"');
                 //fileName = Path.GetFileName(image.FileName);
+                if (string.IsNullOrEmpty(fileName)) return Results.NotFound(new { success = false, uploaded = false });
+
                 filePath = Path.Combine(rootPath, fileName);
                 // TODO 將圖片位置存入資料庫！
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    //if (stream == null)
-                    //    return Json(new { Status = false, Message = "圖片上傳失敗" });
-
                     await image.CopyToAsync(stream);
                 }
             }
 
             return Results.Ok(new
             {
-                fileName = fileName,
+                fileName = $"{fileName}",
                 uploaded = true,
                 url = $"{filePath}"
             });

@@ -28,7 +28,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 作者(會員) ID
         /// </summary>
-        [ForeignKey("Members")]
+        [ForeignKey("Member")]
         public int MemberId { get; set; }
 >>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
 
