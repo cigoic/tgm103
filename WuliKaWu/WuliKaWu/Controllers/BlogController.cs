@@ -133,12 +133,18 @@ namespace WuliKaWu.Controllers
         public IActionResult Sidebar()
 =======
         /// <summary>
-        /// 作者的所有相關文章首頁
+        /// 顯示作者的所有相關文章
         /// </summary>
         /// <returns></returns>
+<<<<<<< HEAD
         public IActionResult Sidebar(int? id)
 >>>>>>> [更新] 調整、顯示作者所有文章的頁面
+=======
+        public IActionResult Sidebar(int? id = 0)
+>>>>>>> [更新] 修正文章首頁
         {
+            if (id <= 0) RedirectToAction("Index");
+
             ViewBag.ArticleId = id;
             return View();
         }
@@ -284,12 +290,12 @@ namespace WuliKaWu.Controllers
 >>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
         {
             if (ArticleId <= 0)
-                return NotFound();
+                return RedirectToAction("Index");
 
             ViewBag.ArticleId = ArticleId;
             var article = _context.Articles.FirstOrDefault(a => a.Id == ArticleId);
             if (article == null)
-                return NotFound();
+                return RedirectToAction("Index");
 
             // TODO 可能要改用前端將前後文 ID 帶回
             int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
