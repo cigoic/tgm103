@@ -19,7 +19,9 @@
             @*<textarea ref="editor" id="ckeditor" name="Content" v-model="editorContent"></textarea>*@
             <textarea id="ck" v-model="content"></textarea>
             @*<ckeditor :editor="editor" v-model="content"></ckeditor>*@
-            @*<ckeditor :ref="editor" v-model="content"></ckeditor>*@
+            @*<ckeditor :editor="editor"></ckeditor>*@
+            @*<ckeditor :ref="editor"></ckeditor>*@
+
         </div>
         <template>
             <div class="form-group">
@@ -62,7 +64,7 @@
                 title: "",
                 content: "",
                 category: "",
-                editor: {}, //ClassicEditor,
+                editor: null, //ClassicEditor,
             },
             //components: {
             //    ckeditor: CKEditor.component
@@ -84,8 +86,8 @@
                         }
                     },
                     mediaEmbed: {
-                        previewWidth: 575,
-                        previewHeight: 400,
+                        previewWidth: 320,
+                        previewHeight: 240,
                     }
                 }).then(editor => {
                     //CKFinder.setupCKEditor(editor, '/images/ckfinder/');
@@ -96,7 +98,7 @@
             },
             beforeDestroy() {
                 self.editor.destroy();
-                self.editor = {};
+                self.editor = null;
             },
             //watch: {
             //    content(newValue) {
@@ -111,11 +113,11 @@
                     let form = new FormData();
                     form.append("Title", self.title);
                     form.append("CategoryId", self.selectedOption)
-                    form.append("Content", self.editor.getData());
+                    form.append("Content", self.content);
 
                     // append images to formData
                     //let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
-                    //images.forEach((image, i) => form.append(`images[${i}]`, image));
+                    //images.forEach((image, i) => form.append(`image[${i}]`, image));
 
                     // II
                     //const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))

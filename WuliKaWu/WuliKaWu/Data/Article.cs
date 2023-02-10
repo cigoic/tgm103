@@ -18,7 +18,7 @@ namespace WuliKaWu.Data
         /// <summary>
         /// 作者(會員) ID
         /// </summary>
-        [ForeignKey("Members")]
+        [ForeignKey("Member")]
         public int MemberId { get; set; }
 
         /// <summary>
