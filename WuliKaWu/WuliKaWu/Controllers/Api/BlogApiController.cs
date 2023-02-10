@@ -222,6 +222,19 @@ namespace WuliKaWu.Controllers.Api
             return Results.NotFound(new { Status = false, Message = "文章刪除失敗!" });
         }
 
+        [ActionName("GetTagsById")]
+        public IResult GetTagsByIdAsync(int? id)
+        {
+            //return _context.Articles.Where(a => a.Id == id).Select(a => a.Tags)
+            return _context.Tags.Select(t => new ArticleTagModel
+            {
+                Id = t.Id,
+                Type = t.Type
+            }) is IEnumerable<ArticleTagModel> tags
+                ? Results.Ok(tags)
+                : Results.NoContent();
+        }
+
         /// <summary>
         /// 上傳圖片
         /// </summary>
