@@ -23,6 +23,7 @@
                 <h2>Cart</h2>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <ul>                    
                     <li><a href="/cart/Index">Home</a></li>
 =======
@@ -31,6 +32,9 @@
 >>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
 =======
                 <ul>                    
+=======
+                <ul>
+>>>>>>> [修改]Checkout及Cart View修改資料內容
                     <li><a href="/cart/Index">Home</a></li>
 >>>>>>> [修改]Addtocart Action
                     <li><i class="ti-angle-right"></i></li>
@@ -49,7 +53,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form >
+                    <form>
                         <div class="cart-table-content">
                             <div class="table-content table-responsive">
                                 <table>
@@ -58,6 +62,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
                                             <th class="col-lg-2"></th>
+<<<<<<< HEAD
 =======
                                             <th class="col-lg-3"></th>
 >>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
@@ -65,6 +70,9 @@
                                             <th class="col-lg-2"></th>
 >>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
                                             <th class="col-lg-2">Product</th>
+=======
+                                            <th class="col-lg-1">Product</th>
+>>>>>>> [修改]Checkout及Cart View修改資料內容
                                             <th class="col-lg-1"> Size</th>
                                             <th class="col-lg-1"> Color</th>
                                             <th class="col-lg-1"> Price</th>
@@ -97,23 +105,23 @@
                                             <th class="col-lg-1"></th>
                                         </tr>
                                     </thead>
-                                    <tbody >
-                                        <tr v-for="cart in productInThisCart">                            
+                                    <tbody>
+                                        <tr v-for="cart in productInThisCart">
                                             <td class="product-thumbnail">
                                                 <img class="width-thumbnail" style="width:120px" :src="cart.picturePath[0]"></img>
-                                            </td>                                    
+                                            </td>
                                             <td class="product-name">
-                                                <h5>>{{cart.productName}}</h5>
+                                                <h5>{{cart.productName}}</h5>
                                             </td>
                                             <td><span>{{cart.size}}</span></td>
                                             <td><span>{{cart.type[0]}}</span></td>
-                                      
-                                             <td class="product-price">
+
+                                            <td class="product-price">
                                                 <span :class="{'old-price':cart.price}">${{cart.price}}</span>
                                                 <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
-                                            </td> 
-                                            <td class="cart-quality"> 
-                                                <input type="number" name="qtybutton" :value="cart.quantity" readonly>                                               
+                                            </td>
+                                            <td class="cart-quality">
+                                                <input type="number" name="qtybutton" :value="cart.quantity" readonly>
                                             </td>
                                             <td class="product-price">
 <<<<<<< HEAD
@@ -252,6 +260,7 @@
                                     <div class="cart-shiping-update btn-hover">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <a href="/Products/Index">Continue Shopping</a>                                        
 =======
                                         <a asp-action="Index" asp-controller="Products">Continue Shopping</a>
@@ -259,10 +268,14 @@
 =======
                                         <a href="/Products/Index">Continue Shopping</a>                                        
 >>>>>>> [修改]Addtocart Action
+=======
+                                        <a href="/Products/Index">Continue Shopping</a>
+>>>>>>> [修改]Checkout及Cart View修改資料內容
                                     </div>
                                     <div class="cart-clear-wrap">
-                                        @*Clear Cart Action尚未完成*@
+                                        @*Proceed to checkout尚未完成*@
                                         <div class="cart-clear btn-hover">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                                             <a href="/Cart/Index">Clear Cart</a>
@@ -274,6 +287,9 @@
                                             <a href="/Cart/Index">Clear Cart</a>
                                             @*<a href="#">Clear Cart</a>*@
 >>>>>>> [修改]Addtocart Action
+=======
+                                            <a href="/Cart/Index">Proceed to checkout</a>
+>>>>>>> [修改]Checkout及Cart View修改資料內容
                                         </div>
                                     </div>
                                 </div>
@@ -334,13 +350,13 @@
                                         @*Discount優惠活動尚未完成*@
                                         <select>
                                             <option>Coupon Code</option>
-                                            <option>初春活動<span>{{cart.groupon}}</span></option>
-                                            <option>情人節活動<span>{{cart.groupon}}</span></option>
+                                            <option>Spring Activity <span>{{cart.groupon}}</span></option>
+                                            <option>End-of-season-sale<span>{{cart.groupon}}</span></option>
                                         </select>
                                     </div>
                                     <div class="calculate-discount-btn btn-hover">
-                                        @*<a class="btn theme-color" href="#">Apply Coupon</a>*@
                                         <h3>Subtotal <span>$180.00</span></h3>
+
                                         <div class="grand-total">
                                             <h4>Total <span>$185.00</span></h4>
                                         </div>
@@ -365,11 +381,15 @@
                         </div>
                         <div class="grand-total-btn btn-hover">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <a class="btn theme-color" asp-action="Checkout" asp-controller="Home">Proceed to checkout</a>
 >>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
 =======
                             <a class="btn theme-color" href="/api/CheckOut/Index">Proceed to checkout</a>                            
 >>>>>>> [新增]CartGetModel及WishListGetModel 的資料欄位
+=======
+                            <a class="btn theme-color" href="/api/CheckOut/Index">Proceed to checkout</a>
+>>>>>>> [修改]Checkout及Cart View修改資料內容
                         </div>
                     </div>
                 </div>
@@ -427,13 +447,12 @@
         let app = new Vue({
             el: "#cartIndex",
             data: {
-                productInThisCart:{
-                    type:[]
+                productInThisCart: {
+                    type: []
 
-                }                   
+                }
             },
-            mounted: function ()
-            {
+            mounted: function () {
                 var self = this;
                 fetch('/api/cart/GetCart/')
                     .then(function (response) { return response.json() })
@@ -443,17 +462,16 @@
                     })
             },
             methods:
-            {            
-                RemoveToCart(id)
             {
-                 console.log("RPid",id)
-                            this.queryCartBaseURL = '/api/wishlist/RemoveToCart/' + id;
-                    fetch(this.queryCartBaseURL,{method:"POST"})
-                        .then(function (reponse) {return response.json()})
+                RemoveToCart(id) {
+                    console.log("RPid", id)
+                    this.queryCartBaseURL = '/api/wishlist/RemoveToCart/' + id;
+                    fetch(this.queryCartBaseURL, { method: "POST" })
+                        .then(function (reponse) { return response.json() })
                         .then(function (result) {
                             alert(result);
                         })
-            }
+                }
             }
         });
     </script>
