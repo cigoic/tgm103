@@ -35,8 +35,7 @@ namespace WuliKaWu.Controllers.Api
                 ProductName = x.Product.ProductName,
                 Price = x.Product.Price,
                 SellingPrice = (decimal)x.Product.SellingPrice,
-                //TODO PicturePath尚未確定
-                //PicturePath = x.Product.PicturePath,
+                PicturePath = x.Product.Pictures.Select(p => p.PicturePath).ToString(),
                 ProductId = x.ProductId,
                 MemberId = x.MemberId
             }).ToListAsync();
@@ -91,8 +90,8 @@ namespace WuliKaWu.Controllers.Api
         /// Get一個會員的所有收藏清單
         /// </summary>
         /// <returns></returns>
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<WishListGetModel>> GetWishListAsync(int productId)
         {
             var myId = User.Claims.GetMemberId();

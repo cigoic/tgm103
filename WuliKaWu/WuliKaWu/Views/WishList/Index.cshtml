@@ -39,7 +39,7 @@
                                             <td class="pro-remove">
                                                 <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
                                              </td>                                            
-                                            @*找class可以去套版*@
+                                            
                                             <td class="product-thumbnail">
                                                 <img class="width-thumbnail" style="width:120px" :src="product.picturePath[0]"></img>
                                             </td>
@@ -49,12 +49,10 @@
                                             <td class="product-price">
                                                 <span :class="{'old-price':product.price}">${{product.price}}</span>
                                                 <span class="new-price" v-if="product.sellingPrice">${{product.sellingPrice}}</span>
-                                            </td>                                         
-                                            @*<td class="wishlist-cart btn-hover">
-                                                <button type="button" v-on:click="AddToCart(cart.cartId)">Add to Cart</button>
-                                            </td>*@
+                                            </td>   
+                                            @*加入購物車Button 尚未完成*@                                            
                                             <td class="wishlist-cart btn-hover">
-                                                <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i> Add to cart</button>                                                
+                                                <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </td>
                                         </tr>                                       
                                     </tbody>
@@ -76,7 +74,7 @@
             data: {
                 productInThisWishList: {
                         wishlistId: [],
-                        product:[]                        
+                        product:[],                        
                 }
             },
             mounted: function () 
@@ -91,14 +89,27 @@
             },
             methods:
             {
-                 AddToCart(id) 
-                 {
-                    console.log("CPid:", id)
-                    this.queryWishListBaseURL = '/api/cart/AddToCart/' + id;
-                    fetch(this.queryWishListBaseURL,{method: "POST" })
-                        .then(function (response) { return response.json() })
+                addToCart: function (productId) {
+                    console.log("CPid:", productId)
+                    this.queryCartBaseURL = '/api/cart/AddToCart/' + productId;
+                    fetch(this.queryCartBaseURL, { method: "POST" })
+                        .then(function (response) {
+                            console.table(response)
+                            let cartp = response
+                            return response.json()
+                        })
                         .then(function (result) {
-                            alert(result);                            
+                            var al = {
+                                icon: 'sucess',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
+                            }
+                            Swal.fire(al)
                         })
                   },
                 RemoveToWishlist(id)
