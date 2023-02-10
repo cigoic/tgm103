@@ -47,13 +47,36 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="ArticleId">文章 ID</param>
         /// <returns>Results.OK(Article model)</returns>
         /// <returns>Results.NotFound</returns>
-        [ActionName("GetArticleById")]
-        public async Task<IResult> GetArticleIdAsync(int ArticleId)
+        [ActionName("GetById")]
+        public async Task<IResult> GetByIdAsync(int ArticleId)
         {
-            return await _context.Articles.FindAsync(ArticleId)
-                is Article model
-                    ? Results.Ok(model)
-                    : Results.NotFound(new { Status = false, Message = "找無內容!" });
+            int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
+            int nextId = GetNextArticleId(ArticleId);
+
+            var article = await _context.Articles
+                .Include(a => a.ArticleTitleImage)
+                .Include(a => a.ArticleContentImages)
+                .Include(a => a.Tags)
+                .FirstOrDefaultAsync(a => a.Id == ArticleId);
+
+            var model = new ArticleDetailsModel
+            {
+                Id = ArticleId,
+                MemberName = _context.Members.Find(article.MemberId).Name,
+                Title = article.Title,
+                Content = article.Content,
+                PrevArticleId = prevId,
+                NextArticleId = nextId,
+                CreatedDate = article.CreatedDate,
+                PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate,
+                NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate,
+                PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title,
+                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title
+            };
+
+            return (model != null)
+                   ? Results.Ok(model)
+                   : Results.NotFound(new { Status = false, Message = "找無內容!" });
         }
 
         /// <summary>
@@ -61,9 +84,10 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
-        [Route("api/Blog/PrevArticle/{CurrentArticleId}")]
-        [HttpGet]
-        public IResult GetPrevArticleId(int CurrentArticleId)
+        //[Route("api/Blog/PrevArticle/{CurrentArticleId}")]
+        //[HttpGet]
+        //public IResult GetPrevArticleId(int CurrentArticleId)
+        private int GetPrevArticleId(int CurrentArticleId)
         {
             var PrevArticle = _context.Articles
                            .OrderBy(a => a.CreatedDate)
@@ -71,10 +95,12 @@ namespace WuliKaWu.Controllers.Api
                            .LastOrDefault();
 
             if (PrevArticle == null)
-                return Results.Ok(new { CurrentArticleId });
+                return CurrentArticleId;
+            //return Results.Ok(new { CurrentArticleId });
 
             var PrevArticleId = PrevArticle.Id;
-            return Results.Ok(new { PrevArticleId });
+            return PrevArticleId;
+            //return Results.Ok(new { PrevArticleId });
         }
 
         /// <summary>
@@ -82,9 +108,10 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="CurrentArticleId"></param>
         /// <returns></returns>
-        [Route("api/Blog/NextArticle/{CurrentArticleId}")]
-        [HttpGet]
-        public IResult GetNextArticleId(int CurrentArticleId)
+        //[Route("api/Blog/NextArticle/{CurrentArticleId}")]
+        //[HttpGet]
+        //public IResult GetNextArticleId(int CurrentArticleId)
+        private int GetNextArticleId(int CurrentArticleId)
         {
             var NextArticle = _context.Articles
                             .OrderBy(a => a.CreatedDate)
@@ -92,10 +119,12 @@ namespace WuliKaWu.Controllers.Api
                             .FirstOrDefault();
 
             if (NextArticle == null)
-                return Results.Ok(new { CurrentArticleId });
+                return CurrentArticleId;
+            //return Results.Ok(new { CurrentArticleId });
 
             var NextArticleId = NextArticle.Id;
-            return Results.Ok(new { NextArticleId });
+            return NextArticleId;
+            //return Results.Ok(new { NextArticleId });
         }
 
         // GET  api/Blog/Details/{ArticleId}
@@ -108,7 +137,11 @@ namespace WuliKaWu.Controllers.Api
         {
             try
             {
-                var article = await _context.Articles.FindAsync(ArticleId);
+                var article = await _context.Articles
+                    .Include(a => a.ArticleTitleImage)
+                    .Include(a => a.ArticleContentImages)
+                    .Include(a => a.Tags)
+                    .FirstOrDefaultAsync(a => a.Id == ArticleId);
                 if (article == null)
                 {
                     return Results.NotFound(new { Status = false, Message = "找無文章!" });
@@ -153,6 +186,7 @@ namespace WuliKaWu.Controllers.Api
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
 
+                // TODO 影像？
                 //if (article.Image != null)
                 {
                     //Save article.Image.FileName;

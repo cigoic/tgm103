@@ -2,7 +2,7 @@
 {
     public class ArticleDetailsModel
     {
-        public int ArticleId { get; set; }
+        public int Id { get; set; }
         public string MemberName { get; set; }
 
         //public string FileName { get; set; }
@@ -10,7 +10,7 @@
 
         public string Content { get; set; }
 
-        public DateTime CreateAt { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         //public string TitleImageFileName { get; set; }
         //public List<string> ContentImageFileNames { get; set; }

@@ -76,7 +76,7 @@ namespace WuliKaWu.Controllers
 
             var model = new ArticleDetailsModel();
             {
-                model.ArticleId = ArticleId;
+                model.Id = ArticleId;
                 model.MemberName = _context.Members.FirstOrDefault(m => m.MemberId == article!.MemberId)!.Name;
                 //model.FileName = article.ArticleContentImages.FirstOrDefault(i => i.Id == ArticleId).PicturePath;
                 model.Title = article.Title;
@@ -85,7 +85,7 @@ namespace WuliKaWu.Controllers
                 //model.ContentImageFileNames = new List<string>();
                 model.PrevArticleId = prevId;
                 model.NextArticleId = nextId;
-                model.CreateAt = article.CreatedDate;
+                model.CreatedDate = article.CreatedDate;
                 model.PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate;
                 model.NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate;
                 model.PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title;
