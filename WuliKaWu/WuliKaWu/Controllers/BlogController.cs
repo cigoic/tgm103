@@ -49,8 +49,13 @@ namespace WuliKaWu.Controllers
             //return View(vm.AsEnumerable());
         }
 
-        public IActionResult Sidebar()
+        /// <summary>
+        /// 作者的所有相關文章首頁
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Sidebar(int? id)
         {
+            ViewBag.ArticleId = id;
             return View();
         }
 
@@ -76,7 +81,7 @@ namespace WuliKaWu.Controllers
 
             var model = new ArticleDetailsModel();
             {
-                model.ArticleId = ArticleId;
+                model.Id = ArticleId;
                 model.MemberName = _context.Members.FirstOrDefault(m => m.MemberId == article!.MemberId)!.Name;
                 //model.FileName = article.ArticleContentImages.FirstOrDefault(i => i.Id == ArticleId).PicturePath;
                 model.Title = article.Title;
@@ -85,7 +90,7 @@ namespace WuliKaWu.Controllers
                 //model.ContentImageFileNames = new List<string>();
                 model.PrevArticleId = prevId;
                 model.NextArticleId = nextId;
-                model.CreateAt = article.CreatedDate;
+                model.CreatedDate = article.CreatedDate;
                 model.PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate;
                 model.NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate;
                 model.PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title;
