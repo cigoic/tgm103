@@ -20,6 +20,7 @@ using System.Net.NetworkInformation;
 
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
+using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
 
 using static NuGet.Packaging.PackagingConstants;
@@ -147,42 +148,52 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet("{id}")]
         public ProductPreviewModel GetById(int id)
         {
-            var data = _context.Products.Include(x => x.Pictures).Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
+            var data = _context.Products.Include(x => x.Category).Include(x => x.Pictures).Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
 
             if (data == null)
             {
                 return null;
             }
+            var tagsViewModel = data.Tags.Select(x => new TagsViewModel
+            {
+                Id = x.Id,
+                Type = x.Type
+            }).ToList();
+
+            var colorsViewModel = data.Colors.Select(x => new CorlorsViewModel
+            {
+                Type = x.Type,
+                Id = x.Id
+            }).ToList();
+
+            var sizeViewModel = new SizeViewModel
+            {
+                Type = data.Size.ToString(),
+                Id = (int)data.Size
+            };
+
             var model = new ProductPreviewModel
             {
                 ProductId = data.ProductId,
                 Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
                 ProductName = data.ProductName,
-                Colors = data.Colors.Select(x => x.Id).ToList(),
-                Size = data.Size,
+                Colors = colorsViewModel,
+                Size = sizeViewModel,
                 Price = data.Price,
                 Discount = data.SellingPrice.HasValue ? true : false,
                 SellingPrice = data.SellingPrice,
-                CategoryId = data.CategoryId,
-                Tags = data.Tags.Select(x => x.Id).ToList(),
+                CategoryName = new CategoryViewModel
+                {
+                    Id = data.CategoryId,
+                    CategoryName = data.Category.Type
+                },
+
+                //Tags = data.Tags.Select(x => x.Id).ToList(),
+                Tags = tagsViewModel,
                 Comment = data.Comment
             };
 
             return model;
-
-            //return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Where(x => x.ProductId == id).Select(x => new ProductPreviewModel
-            //{
-            //    ProductId = x.ProductId,
-            //    ProductName = x.ProductName,
-            //    Colors = x.Colors.Select(x => x.Id).ToList(),
-            //    Size = x.Size,
-            //    Price = x.Price,
-            //    Discount = x.SellingPrice.HasValue ? true : false,
-            //    SellingPrice = x.SellingPrice,
-            //    CategoryId = x.CategoryId,
-            //    Tags = x.Tags.Select(x => x.Id).ToList(),
-            //    Pictures = x.Pictures.Select(x => x.PicturePath).ToList()
-            //}).Single();
         }
 
         /// <summary>
@@ -196,7 +207,7 @@ namespace WuliKaWu.Controllers.Api
         {
             //throw new NotImplementedException();
 
-            var data = _context.Products.Include(x=>x.Colors).Include(x=>x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
+            var data = _context.Products.Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
 
             data.ProductName = model.ProductName;
             data.Colors.Clear();
@@ -209,7 +220,7 @@ namespace WuliKaWu.Controllers.Api
             data.SellingPrice = model.SellingPrice;
             data.Tags.Clear();
             data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
-            
+
             if (model.Pictures != null)
             {
                 var _folder = $@"";
@@ -288,31 +299,54 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("{id}")]
-        public ProductDeleteModel DeleteById([FromBody] Int32 id)
+        public ApiResultModel DeleteById([FromBody] ProductDeleteModel model)
         {
-            //throw new NotImplementedException();
+            var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
 
-            var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
+            data.ProductName = model.ProductName;
+            data.Pictures = _context.Pictures.Where(x => model.Pictures.Any(y => y == x.PicturePath)).ToList();
+            data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
+            data.Size = model.Size;
+            data.Price = model.Price;
+            data.SellingPrice = model.SellingPrice;
+            data.CategoryId = model.CategoryId;
+            data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
 
-            if (data != null)
+            _context.Remove(data);
+            _context.SaveChanges();
+
+            return new ApiResultModel
             {
-                var deletemodel = new ProductDeleteModel
-                {
-                    ProductName = data.ProductName,
-                    Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
-                    Color = data.Colors.Select(x => x.Id).ToList(),
-                    Size = data.Size,
-                    Price = data.Price,
-                    SellingPrice = data.SellingPrice,
-                    CategoryId = data.CategoryId,
-                    Tag = data.Tags.Select(x => x.Id).ToList()
-                };
-
-                _context.Products.Remove(data);
-                _context.SaveChanges();
-            }
-            return null;
+                Status = true,
+                Message = "Delete Success!!!"
+            };
         }
+
+        //public ProductDeleteModel DeleteById([FromBody] Int32 id)
+        //{
+        //    //throw new NotImplementedException();
+
+        //    var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
+
+        //    if (data != null)
+        //    {
+        //        var deletemodel = new ProductDeleteModel
+        //        {
+        //            ProductName = data.ProductName,
+        //            Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
+        //            Colors = data.Colors.Select(x => x.Id).ToList(),
+        //            Size = data.Size,
+        //            Price = data.Price,
+        //            SellingPrice = data.SellingPrice,
+        //            CategoryId = data.CategoryId,
+        //            Tag = data.Tags.Select(x => x.Id).ToList()
+        //        };
+
+        //        _context.Products.Remove(data);
+        //        _context.SaveChanges();
+        //    }
+        //    return null;
+        //}
     }
 }<<<<<<< HEAD
 >>>>>>> [更新] 資料庫資料表

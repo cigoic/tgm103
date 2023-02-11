@@ -194,12 +194,11 @@ namespace WuliKaWu.Controllers
         //    Product prd = new Product
         //    {
         //        //ProductId = product.ProductId,
-        //        ProductName = product.ProductName,                
-        //        CategoryId = (int)product.Category,                
-        //        Price = product.Price,                
+        //        ProductName = product.ProductName,
+        //        CategoryId = (int)product.Category,
+        //        Price = product.Price,
         //        SellingPrice = Convert.ToDecimal(product.SellingPrice),
         //        Comment = product.Comment,
-                
 
         //        Tags = product.Tag.Select(x=> new Data.Tag { Id = x}).ToList(),
         //        Colors = product.Color.Select(x => new Data.Color { Id = x }).ToList(),
