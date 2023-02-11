@@ -306,8 +306,7 @@
                                             <td class="first-column col-3"></td>
                                             @*商品圖片*@
                                             <td class="product-list-img">
-@*                                                <div class="col-5" v-for="item in product.pictures">
-*@                                                <div class="col-5">
+                                                <div class="col-5">
                                                     <img class="img-fluid" :src="productFields.pictures[0]" alt="Product Picture" multiple />
                                                 </div>
                                             </td>
@@ -318,11 +317,11 @@
                                         </tr>
                                         <tr>
                                             <td class="first-column">Color</td>
-                                            <td class="pro-color">{{productFields.colors}}</td>
+                                            <td class="pro-color">{{productFields.colors.map(x=>x.type).join(',')}}</td>
                                         </tr>
                                         <tr>
                                             <td class="first-column">Size</td>
-                                            <td class="pro-stock">{{productFields.size}}</td>
+                                            <td class="pro-stock">{{productFields.size.type}}</td>
                                         </tr>
                                         <tr>
                                             <td class="first-column">Price</td>
@@ -333,18 +332,14 @@
                                                 </div>
                                             </td>
                                         </tr>
-
                                         <tr>
                                             <td class="first-column">Category</td>
-                                            <td class="pro-stock">{{productFields.categoryId}}</td>
+                                            <td class="pro-stock">{{productFields.categoryName.categoryName}}</td>
                                         </tr>
-
                                         <tr>
                                             <td class="first-column">Tag</td>
-                                            <td class="pro-stock">{{productFields.tags}}</td>
+                                            <td class="pro-stock"><span>{{productFields.tags.map(x=>x.type).join(',')}}</span></td>
                                         </tr>
-
-
                                     </tbody>
                                 </table>
                         </div>
@@ -421,7 +416,7 @@
                 productId: "",
                 productName: "",
                 price: "",
-                categoryId: "",
+                categoryName: "",
                 size:"",
                 colors:[],
                 sellingPrice: "",
@@ -437,6 +432,7 @@
             fetch('/api/product/getbyid/'+'@ViewBag.id')
             .then(function(response){return response.json()})
             .then(function(result){
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 
@@ -463,6 +459,13 @@
 =======
                 console.log(result)
 >>>>>>> [更新]調整價格欄位顯示方式
+=======
+                console.log(result)
+                self.productFields = result;
+                self.productFields.productId = @ViewBag.id
+                
+                
+>>>>>>> [修改]畫面顯示除了Edit的下拉選項部分有問題外其他都沒問題，但是儲存編輯與刪除的按鍵連動按鍵有點問題要再調整
             })
 
         },
@@ -482,10 +485,13 @@
             removeProduct: function(id)
             {
                 var self = this;
-                self.product.productId = @ViewBag.id
-                fetch('/api/product/deletebyid/@ViewBag.id',{
+                //self.productFields.productId = @ViewBag.id
+                let Id = self.productFields.productId;
+                let qureyEditBaseUrl = '/api/product/editbyid/' + Id;
+
+                fetch(qureyEditBaseUrl, {
                     method: "POST",
-                    body:JSON.stringify(self.product.productId),
+                    body:JSON.stringify(self.productFields.productId),
                     headers:{'content-type':'application/json'}
 
                 })
