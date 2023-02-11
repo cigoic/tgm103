@@ -96,6 +96,7 @@
                         <div class="col-lg-12 col-sm-12 contact-form-style">
                             <div class="product-list-img ">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <a href="">
                                     <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
 <<<<<<< HEAD
@@ -105,8 +106,10 @@
                                 <img :src="productFields.picturePath" id="picturePath" alt="Product Picture" />
                                 </a>*@
 
+=======
+>>>>>>> [修正]圖片選擇後援商品圖不出現以及sellingPrice null後仍是null時會發生錯誤的問題解決(但console仍有Cannot read properties of undefined (reading 'some')的問題)
                                 <div class="row">
-                                    <div class="col-3" v-for="item in productFields.pictures">
+                                    <div class="col-3" v-for="item in productFields.picturesPath">
                                         <img :src="item" class="w-100 img-thumbnail" alt="product picture" />
                                     </div>
                                 </div>
@@ -126,7 +129,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="mt-5">
                                 <a href="/Products/Index">Back to List</a>
                             </div>
@@ -450,9 +452,7 @@
 >>>>>>> [更新]調整商品編輯的檢視頁面(商品圖及儲存修改的按鍵綁定)
 @section Scripts {
     <script>
-
         let app = new Vue({
-
             el: "#EditProduct",
             data:
             {
@@ -462,51 +462,56 @@
                     size: [],
                     tag: []
                 },
+
                 productFields: {
                     productId: "",
                     productName: "",
                     colors: [],
-                    size: {id:0},
-                    categoryName: {id:0},
+                    size: { id: 0 },
+                    categoryName: { id: 0 },
                     price: "",
                     sellingPrice: "",
-                    tags: [{id:0}],
+                    tags: [{ id: 0 }],
                     pictures: [],
+                    picturesPath: [],
                     comment: "",
                 },
+
                 picFiles: [],
                 picPriview: [],
-                test:[],
+                test: [],
+                tempPic: [],
             },
 
-            mounted: function () {
-                var self = this;
-                this.GetCategoryData();
-                this.GetColorData();
-                this.GetSizeData();
-                this.GetTagData();
-
-                fetch("/api/product/getbyid/" + "@ViewBag.id")
-
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.productFields = result;
-                        self.productFields.productId = @ViewBag.id;
-                        self.productFields.tags = self.productFields.tags.map(x=>x.id)
-                        self.productFields.colors = self.productFields.colors.map(x => x.id)
-                        self.productFields.categoryName = self.productFields.categoryName.id
-                        self.productFields.size = self.productFields.size.id
-                    })
-            },
-
+            mounted() { this.getData(); },
             methods:
             {
+                getData: function () {
+                    var self = this;
+                    this.GetCategoryData();
+                    this.GetColorData();
+                    this.GetSizeData();
+                    this.GetTagData();
+                    
+                    fetch("/api/product/getbyid/" + "@ViewBag.id")                    
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            console.log(result);
+                            self.productFields = result;
+                            self.productFields.productId = @ViewBag.id;
+                            self.productFields.tags = self.productFields.tags.map(x => x.id)
+                            self.productFields.colors = self.productFields.colors.map(x => x.id)
+                            self.productFields.categoryName = self.productFields.categoryName.id
+                            self.productFields.size = self.productFields.size.id
+                            self.productFields.picturesPath = self.productFields.pictures
+                            self.picPriview=[]
+                        })
+                },
                 uploadPic: function (e) {
                     var self = this;
                     self.productFields.pictures = e.target.files;
-                    self.picPriview = [];
                     for (let fileData of self.productFields.pictures) {
+
                         let reader = new FileReader();
                         reader.addEventListener("load", (event) => {
                             self.picPriview.push(event.target.result);
@@ -540,10 +545,13 @@
                 },
                 saveProductChange: function (id) {
                     var self = this;
-                    //self.productFields.productId = @ViewBag.id
                     var Id = self.productFields.productId
 
-                    //var qureyEditBaseUrl = '/api/product/editbyid/' + '@ViewBag.id';
+                    if(self.productFields.sellingPrice==null)
+                    {
+                        self.productFields.sellingPrice = "";
+                    }
+
                     var qureyEditBaseUrl = '/api/product/editbyid/' + Id;
 
                     let form = new FormData();
@@ -563,7 +571,6 @@
                         else {
                             form.append(key, self.productFields[key]);
                         }
-
                     });
 
                     console.log(self.productFields)
@@ -587,10 +594,9 @@
                                 al.title = "Edit Save Failed!!!";
                             }
                             Swal.fire(al)
+                            self.getData();
                         })
                 }
-
-
             }
 
         });
