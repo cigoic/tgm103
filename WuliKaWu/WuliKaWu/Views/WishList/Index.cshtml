@@ -3,7 +3,7 @@
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Wishlist</h2>
-                <ul>    
+                <ul>
                     <li><a href="/wishlist/Index">Home</a></li>
                     <li><i class="ti-angle-right"></i></li>
                     <li>Wishlist</li>
@@ -30,16 +30,15 @@
                                             <th class="width-remove"></th>
                                             <th class="width-thumbnail"></th>
                                             <th class="width-name">Product</th>
-                                            <th class="width-price">Price</th>                                                                                  
+                                            <th class="width-price">Price</th>
                                             <th class="width-wishlist-cart"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="product in productInThisWishList">                                        
+                                        <tr v-for="product in productInThisWishList">
                                             <td class="pro-remove">
                                                 <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
-                                             </td>                                            
-                                            
+                                            </td>
                                             <td class="product-thumbnail">
                                                 <img class="width-thumbnail" style="width:120px" :src="product.picturePath[0]"></img>
                                             </td>
@@ -49,12 +48,12 @@
                                             <td class="product-price">
                                                 <span :class="{'old-price':product.price}">${{product.price}}</span>
                                                 <span class="new-price" v-if="product.sellingPrice">${{product.sellingPrice}}</span>
-                                            </td>   
-                                            @*加入購物車Button 尚未完成*@                                            
+                                            </td>
+                                            @*加入購物車Button 尚未完成*@
                                             <td class="wishlist-cart btn-hover">
                                                 <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </td>
-                                        </tr>                                       
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -73,12 +72,11 @@
             el: "#wishlistIndex",
             data: {
                 productInThisWishList: {
-                        wishlistId: [],
-                        product:[],                        
+                    wishlistId: [],
+                    product: [],
                 }
             },
-            mounted: function () 
-            {
+            mounted: function () {
                 var self = this;
                 fetch('/api/wishlist/GetWishList/')
                     .then(function (response) { return response.json() })
@@ -111,13 +109,12 @@
                             }
                             Swal.fire(al)
                         })
-                  },
-                RemoveToWishlist(id)
-                {
-                    console.log("RPid",id)
+                },
+                RemoveToWishlist(id) {
+                    console.log("RPid", id)
                     this.queryWishListBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
-                    fetch(this.queryWishListBaseURL,{method:"POST"})
-                        .then(function (reponse) {return response.json()})
+                    fetch(this.queryWishListBaseURL, { method: "POST" })
+                        .then(function (reponse) { return response.json() })
                         .then(function (result) {
                             alert(result);
                         })

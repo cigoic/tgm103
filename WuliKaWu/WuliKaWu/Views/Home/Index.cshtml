@@ -13,7 +13,7 @@
                                         <h3 class="animated">Up To 40% Off</h3>
                                         <h1 class="font-inc animated">Summer <br>Collection</h1>
                                         <div class="slider-btn-2 btn-hover">
-                                            <a asp-controller="Home" asp-action="ProductDetails" class="btn hover-border-radius theme-color animated">
+                                            <a href="/Products" class="btn hover-border-radius theme-color animated">
                                                 Shop Now
                                             </a>
                                         </div>
@@ -28,7 +28,7 @@
                                         <h3 class="animated">Up To 40% Off</h3>
                                         <h1 class="font-inc animated">Summer <br>Collection</h1>
                                         <div class="slider-btn-2 btn-hover">
-                                            <a asp-controller="Home" asp-action="ProductDetails" class="btn hover-border-radius theme-color animated">
+                                            <a href="/Products" class="btn hover-border-radius theme-color animated">
                                                 Shop Now
                                             </a>
                                         </div>
@@ -43,13 +43,13 @@
             </div>
             <div class="col-lg-4 col-md-5">
                 <div class="banner-wrap banner-wrap-margin">
-                    <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/banner/banner-10.png" alt=""></a>
+                    <a href="/Products"><img src="/assets/images/banner/banner-10.png" alt=""></a>
                     <div class="banner-content-7">
                         <h2>Exceptional</h2>
                         <span>Officr Chair</span>
                     </div>
                     <div class="btn-style-4">
-                        <a class="btn" asp-controller="Home" asp-action="ProductDetails">Shop Now</a>
+                        <a class="btn" href="/Products">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     <template v-for="item in leftsideItems">
                         <div class="col-lg-12 col-md-8 col-12">
                             <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                                <a :href="linkToProductDetails(item.id)"><img :src="item.pictures" alt=""></a>
+                                <a :href="linkToProductDetails(item.id)"><img :src="item.pictures" style="height:50%" alt=""></a>
                                 <div class="banner-content-1">
                                     <h5>new arrival</h5>
                                     <h3>{{ item.productName }}</h3>
@@ -94,47 +94,15 @@
                 <div class="tab-content jump">
                     <div id="pro-1" class="tab-pane">
                         <div class="row">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <div class="product-wrap mb-35">
-                                    <div class="product-img img-zoom mb-25">
-                                        <a asp-controller="Home" asp-action="ProductDetails">
-                                            <img src="~/assets/images/product/product-9.png" alt="">
-                                        </a>
-                                        <div class="product-badge badge-top badge-right badge-pink">
-                                            <span>-10%</span>
-                                        </div>
-                                        <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="pe-7s-look"></i>
-                                            </button>
-                                        </div>
-                                        <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3><a asp-controller="Home" asp-action="ProductDetails">Modern Lounge Chairs</a></h3>
-                                        <div class="product-price">
-                                            <span class="old-price">$25.89 </span>
-                                            <span class="new-price">$20.25 </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="pro-2" class="tab-pane active">
-                        <div class="row">
-                            <template v-for="nitem in newItems">
+                            <template v-for="(cItem, index) in combinedItems" :key="index">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="product-wrap mb-35" data-aos="fade-up" :data-aos-delay="200+200*(index+1)">
                                         <div class="product-img img-zoom mb-25">
-                                            <a :href="linkToProductDetails(nitem.id)">
-                                                <img :src="nitem.pictures[0]" alt="">
+                                            <a :href="linkToProductDetails(cItem.id)">
+                                                <img :src="cItem.pictures[0]" alt="">
                                             </a>
                                             <div class="product-badge badge-top badge-right badge-pink">
-                                                <span>-10%</span>
+                                                <span v-if="cItem.sellingPrice">-{{ discount(cItem.price, cItem.sellingPrice) }}%</span>
                                             </div>
                                             <div class="product-action-wrap">
                                                 <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -147,10 +115,44 @@
                                             </div>
                                         </div>
                                         <div class="product-content">
-                                            <h3><a :href="linkToProductDetails(nitem.id)">{{ nitem.productName }}</a></h3>
+                                            <h3><a :href="linkToProductDetails(cItem.id)">{{ cItem.productName }}</a></h3>
                                             <div class="product-price">
-                                                <span :class="{'old-price':nitem.discount}">${{nitem.price}}</span>
-                                                <span class="new-price" v-if="nitem.discount">${{nitem.sellingPrice}}</span>
+                                                <span :class="{'old-price':cItem.discount}">${{cItem.price}}</span>
+                                                <span class="new-price" v-if="cItem.discount">${{cItem.sellingPrice}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                    <div id="pro-2" class="tab-pane active">
+                        <div class="row">
+                            <template v-for="(nItem, index) in newItems" :key="index">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <div class="product-wrap mb-35" data-aos="fade-up" :data-aos-delay="200*(index+1)">
+                                        <div class="product-img img-zoom mb-25">
+                                            <a :href="linkToProductDetails(nItem.id)">
+                                                <img :src="nItem.pictures[0]" alt="">
+                                            </a>
+                                            <div class="product-badge badge-top badge-right badge-pink">
+                                                <span v-if="nItem.sellingPrice">-{{ discount(nItem.price, nItem.sellingPrice) }}%</span>
+                                            </div>
+                                            <div class="product-action-wrap">
+                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
+                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="pe-7s-look"></i>
+                                                </button>
+                                            </div>
+                                            <div class="product-action-2-wrap">
+                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <h3><a :href="linkToProductDetails(nItem.id)">{{ nItem.productName }}</a></h3>
+                                            <div class="product-price">
+                                                <span :class="{'old-price':nItem.discount}">${{nItem.price}}</span>
+                                                <span class="new-price" v-if="nItem.discount">${{nItem.sellingPrice}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -160,15 +162,15 @@
                     </div>
                     <div id="pro-3" class="tab-pane">
                         <div class="row">
-                            <template v-for="tItem in topNItems">
+                            <template v-for="(tItem, index) in topNItems" :key="index">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product-wrap mb-35">
+                                    <div class="product-wrap mb-35" data-aos="fade-up" :data-aos-delay="200+200*(index+1)">
                                         <div class="product-img img-zoom mb-25">
                                             <a :href="linkToProductDetails(tItem.id)">
                                                 <img :src="tItem.pictures[0]" alt="">
                                             </a>
                                             <div class="product-badge badge-top badge-right badge-pink">
-                                                <span>-10%</span>
+                                                <span v-if="tItem.sellingPrice">-{{ discount(tItem.price, tItem.sellingPrice) }}%</span>
                                             </div>
                                             <div class="product-action-wrap">
                                                 <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -194,34 +196,36 @@
                     </div>
                     <div id="pro-4" class="tab-pane">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="product-wrap mb-35">
-                                    <div class="product-img img-zoom mb-25">
-                                        <a asp-controller="Home" asp-action="ProductDetails">
-                                            <img src="~/assets/images/product/product-4.png" alt="">
-                                        </a>
-                                        <div class="product-badge badge-top badge-right badge-pink">
-                                            <span>-10%</span>
+                            <template v-for="(sItem, index) in saleItems" :key="index">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="product-wrap mb-35" data-aos="fade-up" :data-aos-delay="200+200*(index+1)">
+                                        <div class="product-img img-zoom mb-25">
+                                            <a :href="linkToProductDetails(sItem.id)">
+                                                <img :src="sItem.pictures[0]" alt="">
+                                            </a>
+                                            <div class="product-badge badge-top badge-right badge-pink">
+                                                <span v-if="sItem.sellingPrice">-{{ discount(sItem.price, sItem.sellingPrice) }}%</span>
+                                            </div>
+                                            <div class="product-action-wrap">
+                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
+                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="pe-7s-look"></i>
+                                                </button>
+                                            </div>
+                                            <div class="product-action-2-wrap">
+                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                            </div>
                                         </div>
-                                        <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="pe-7s-look"></i>
-                                            </button>
-                                        </div>
-                                        <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3><a asp-controller="Home" asp-action="ProductDetails">Stylish Swing Chair</a></h3>
-                                        <div class="product-price">
-                                            <span class="old-price">$25.89 </span>
-                                            <span class="new-price">$20.25 </span>
+                                        <div class="product-content">
+                                            <h3><a :href="linkToProductDetails(sItem.id)">{{ sItem.productName }}</a></h3>
+                                            <div class="product-price">
+                                                <span :class="{'old-price':sItem.discount}">${{sItem.price}}</span>
+                                                <span class="new-price" v-if="sItem.discount">${{sItem.sellingPrice}}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -234,24 +238,24 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/banner/banner-11.png" alt=""></a>
+                    <a href="/Products"><img src="/assets/images/banner/banner-11.png" alt=""></a>
                     <div class="banner-content-8 banner-position-1">
                         <span class="border-left">Up To 50% Off</span>
                         <h2 class="h2-width">New Furniture Sofa Set</h2>
                         <div class="btn-style-5 btn-hover">
-                            <a class="btn theme-color" asp-controller="Home" asp-action="ProductDetails">Shop Now</a>
+                            <a class="btn theme-color" href="/Products">Shop Now</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="400">
-                    <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/banner/banner-12.png" alt=""></a>
+                    <a href="/Products"><img src="/assets/images/banner/banner-12.png" alt=""></a>
                     <div class="banner-content-8 text-center banner-position-2">
                         <span class="border-left-right">Up To 50% Off</span>
                         <h2 class="font-dec">New Furniture <br>Sofa Set</h2>
                         <div class="btn-style-5 btn-hover">
-                            <a class="btn theme-color" asp-controller="Home" asp-action="ProductDetails">Shop Now</a>
+                            <a class="btn theme-color" href="/Products">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -269,7 +273,7 @@
                 <div class="swiper-slide">
                     <div class="single-testimonial" data-aos="fade-up" data-aos-delay="200">
                         <div class="testimonial-img">
-                            <img src="~/assets/images/testimonial/client-1.png" alt="">
+                            <img src="/assets/images/testimonial/client-1.png" alt="">
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore.</p>
                         <div class="testimonial-info">
@@ -281,7 +285,7 @@
                 <div class="swiper-slide">
                     <div class="single-testimonial" data-aos="fade-up" data-aos-delay="400">
                         <div class="testimonial-img">
-                            <img src="~/assets/images/testimonial/client-2.png" alt="">
+                            <img src="/assets/images/testimonial/client-2.png" alt="">
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore.</p>
                         <div class="testimonial-info">
@@ -293,7 +297,7 @@
                 <div class="swiper-slide">
                     <div class="single-testimonial" data-aos="fade-up" data-aos-delay="600">
                         <div class="testimonial-img">
-                            <img src="~/assets/images/testimonial/client-1.png" alt="">
+                            <img src="/assets/images/testimonial/client-1.png" alt="">
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore.</p>
                         <div class="testimonial-info">
@@ -305,7 +309,7 @@
                 <div class="swiper-slide">
                     <div class="single-testimonial" data-aos="fade-up" data-aos-delay="800">
                         <div class="testimonial-img">
-                            <img src="~/assets/images/testimonial/client-2.png" alt="">
+                            <img src="/assets/images/testimonial/client-2.png" alt="">
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore.</p>
                         <div class="testimonial-info">
@@ -324,32 +328,32 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#"><img src="~/assets/images/brand-logo/brand-logo-1.png" alt=""></a>
+                        <a href="#"><img src="/assets/images/brand-logo/brand-logo-1.png" alt=""></a>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="400">
-                        <a href="#"><img src="~/assets/images/brand-logo/brand-logo-2.png" alt=""></a>
+                        <a href="#"><img src="/assets/images/brand-logo/brand-logo-2.png" alt=""></a>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="600">
-                        <a href="#"><img src="~/assets/images/brand-logo/brand-logo-3.png" alt=""></a>
+                        <a href="#"><img src="/assets/images/brand-logo/brand-logo-3.png" alt=""></a>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="800">
-                        <a href="#"><img src="~/assets/images/brand-logo/brand-logo-4.png" alt=""></a>
+                        <a href="#"><img src="/assets/images/brand-logo/brand-logo-4.png" alt=""></a>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="1000">
-                        <a href="#"><img src="~/assets/images/brand-logo/brand-logo-5.png" alt=""></a>
+                        <a href="#"><img src="/assets/images/brand-logo/brand-logo-5.png" alt=""></a>
                     </div>
                 </div>
                 <div class="swiper-slide">
                     <div class="single-brand-logo" data-aos="fade-up" data-aos-delay="1200">
-                        <a href="#"><img src="~/assets/images/brand-logo/brand-logo-1.png" alt=""></a>
+                        <a href="#"><img src="/assets/images/brand-logo/brand-logo-1.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -374,8 +378,8 @@
                 <div class="swiper-slide">
                     <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">
                         <div class="product-img img-zoom mb-25">
-                            <a asp-controller="Home" asp-action="ProductDetails">
-                                <img src="~/assets/images/product/product-1.png" alt="">
+                            <a href="/Products">
+                                <img src="/assets/images/product/product-1.png" alt="">
                             </a>
                             <div class="product-badge badge-top badge-right badge-pink">
                                 <span>-10%</span>
@@ -391,7 +395,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a asp-controller="Home" asp-action="ProductDetails">New Modern Sofa Set</a></h3>
+                            <h3><a href="/Products">New Modern Sofa Set</a></h3>
                             <div class="product-price">
                                 <span class="old-price">$25.89 </span>
                                 <span class="new-price">$20.25 </span>
@@ -402,8 +406,8 @@
                 <div class="swiper-slide">
                     <div class="product-wrap" data-aos="fade-up" data-aos-delay="400">
                         <div class="product-img img-zoom mb-25">
-                            <a asp-controller="Home" asp-action="ProductDetails">
-                                <img src="~/assets/images/product/product-2.png" alt="">
+                            <a href="/Products">
+                                <img src="/assets/images/product/product-2.png" alt="">
                             </a>
                             <div class="product-action-wrap">
                                 <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -416,7 +420,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a asp-controller="Home" asp-action="ProductDetails">New Modern Sofa Set</a></h3>
+                            <h3><a href="/Products">New Modern Sofa Set</a></h3>
                             <div class="product-price">
                                 <span>$50.25 </span>
                             </div>
@@ -426,8 +430,8 @@
                 <div class="swiper-slide">
                     <div class="product-wrap" data-aos="fade-up" data-aos-delay="600">
                         <div class="product-img img-zoom mb-25">
-                            <a asp-controller="Home" asp-action="ProductDetails">
-                                <img src="~/assets/images/product/product-3.png" alt="">
+                            <a href="/Products">
+                                <img src="/assets/images/product/product-3.png" alt="">
                             </a>
                             <div class="product-badge badge-top badge-right badge-pink">
                                 <span>-10%</span>
@@ -443,7 +447,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a asp-controller="Home" asp-action="ProductDetails">Easy Modern Chair</a></h3>
+                            <h3><a href="/Products">Easy Modern Chair</a></h3>
                             <div class="product-price">
                                 <span class="old-price">$45.00 </span>
                                 <span class="new-price">$40.00 </span>
@@ -454,8 +458,8 @@
                 <div class="swiper-slide">
                     <div class="product-wrap" data-aos="fade-up" data-aos-delay="800">
                         <div class="product-img img-zoom mb-25">
-                            <a asp-controller="Home" asp-action="ProductDetails">
-                                <img src="~/assets/images/product/product-4.png" alt="">
+                            <a href="/Products">
+                                <img src="/assets/images/product/product-4.png" alt="">
                             </a>
                             <div class="product-action-wrap">
                                 <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -468,7 +472,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a asp-controller="Home" asp-action="ProductDetails">Stylish Swing Chair</a></h3>
+                            <h3><a href="/Products">Stylish Swing Chair</a></h3>
                             <div class="product-price">
                                 <span>$30.25 </span>
                             </div>
@@ -478,8 +482,8 @@
                 <div class="swiper-slide">
                     <div class="product-wrap" data-aos="fade-up" data-aos-delay="1000">
                         <div class="product-img img-zoom mb-25">
-                            <a asp-controller="Home" asp-action="ProductDetails">
-                                <img src="~/assets/images/product/product-2.png" alt="">
+                            <a href="/Products">
+                                <img src="/assets/images/product/product-2.png" alt="">
                             </a>
                             <div class="product-badge badge-top badge-right badge-pink">
                                 <span>-10%</span>
@@ -495,7 +499,7 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a asp-controller="Home" asp-action="ProductDetails">New Modern Sofa Set</a></h3>
+                            <h3><a href="/Products">New Modern Sofa Set</a></h3>
                             <div class="product-price">
                                 <span class="old-price">$80.50 </span>
                                 <span class="new-price">$75.25 </span>
@@ -515,81 +519,33 @@
             <h2>Latest News</h2>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Home" asp-action="BlogDetails"><img src="~/assets/images/blog/blog-1.png" alt=""></a>
+            <template v-for="lstPost in posts">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-img-date-wrap mb-25">
+                            <div class="blog-img">
+                                <a :href="linkToBlogDetails(lstPost.id)"><img src="/assets/images/blog/blog-1.png" alt=""></a>
+                            </div>
+                            <div class="blog-date">
+                                <h5>{{ getPostDay(lstPost.createdDate) }} <span>{{ getPostMonth(lstPost.createdDate) }}</span></h5>
+                            </div>
                         </div>
-                        <div class="blog-date">
-                            <h5>05 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#"> Admin</a></li>
-                            </ul>
-                        </div>
-                        <h3><a asp-controller="Home" asp-action="BlogDetails">Lorem ipsum dolor consectet.</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Home" asp-action="BlogDetails">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="400">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Home" asp-action="BlogDetails"><img src="~/assets/images/blog/blog-2.png" alt=""></a>
-                        </div>
-                        <div class="blog-date">
-                            <h5>06 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#"> Admin</a></li>
-                            </ul>
-                        </div>
-                        <h3><a asp-controller="Home" asp-action="BlogDetails">Duis et volutpat pellentesque.</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Home" asp-action="BlogDetails">Read More</a>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <ul>
+                                    <li><a href="#">{{ lstPost.category }}</a>,</li>
+                                    <li>By:<a :href="linkToMembersPosts(lstPost.id)"> {{ lstPost.memberName }}</a></li>
+                                </ul>
+                            </div>
+                            <h3><a :href="linkToBlogDetails(lstPost.id)">{{ lstPost.title }}</a></h3>
+                            <p v-html="lstPost.description">{{ lstPost.description }}</p>
+                            <div class="blog-btn-2 btn-hover">
+                                <a class="btn hover-border-radius theme-color" :href="linkToBlogDetails(lstPost.id)">Read More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="600">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Home" asp-action="BlogDetails"><img src="~/assets/images/blog/blog-3.png" alt=""></a>
-                        </div>
-                        <div class="blog-date">
-                            <h5>07 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#"> Admin</a></li>
-                            </ul>
-                        </div>
-                        <h3><a asp-controller="Home" asp-action="BlogDetails">Vivamus vitae dolor convallis.</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Home" asp-action="BlogDetails">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </template>
         </div>
     </div>
 </div>
@@ -602,33 +558,50 @@
             //el:'#homeApp',
             name: "homeApp",
             data: {
-                topNItems: {},
-                newItems: {},
+                newItems: [],
+                topNItems: [],
+                saleItems: [],
                 leftsideItems: [],
+                posts: [],
                 limit: 3,
+                aDay: "",
+                aMonth: "",
             },
             mounted: function () {
                 let self = this
-                self.getNewProdcuts()
-                self.getTopNProdcuts()
+                self.getNewItems()
+                self.getTopNItems()
+                self.getSaleItems()
+                self.getLastestPost()
+            },
+            computed: {
+                combinedItems() {
+                    return this.newItems.concat(this.topNItems, this.saleItems);
+                }
             },
             methods: {
                 linkToProductDetails: function (productId) {
                     return "/Products/ProductDetails/" + productId
                 },
-                getNewProdcuts: function () {
-                    axios.get("/api/Home/GetNewItems")
+                linkToBlogDetails(articleId) {
+                    return "/Blog/Details/" + articleId
+                },
+                linkToMembersPosts: function (articleId) { return "/Blog/Sidebar/" + articleId },
+                //linkToCategoryPosts: function (categoryId) { return "/Blog/Sidebar/" + categoryId },
+                getNewItems: async function () {
+                    await axios.get("/api/Home/GetNewItems")
                         .then(response => {
                             console.log("at mounted, newest:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
                                 this.newItems = response.data.value
                                 this.leftsideItems = response.data.value.slice(0, this.limit)
+
                             }
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
-                getTopNProdcuts: function () {
-                    axios.get("/api/Home/GetTopNItems")
+                getTopNItems: async function () {
+                    await axios.get("/api/Home/GetTopNItems")
                         .then(response => {
                             console.log("at mounted, topN:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
@@ -636,6 +609,39 @@
                             }
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getSaleItems: async function () {
+                    await axios.get("/api/Home/GetSaleItems")
+                        .then(response => {
+                            console.log("at mounted, sales:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.saleItems = response.data.value
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                discount: function (p, sp) {
+                    return sp ? ((p - sp) / p * 100).toFixed(0) : "";
+                },
+                getLastestPost: async function () {
+                    await axios.get("/api/Home/GetLastestPost")
+                        .then(response => {
+                            console.log("at mounted, posts:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.posts = response.data.value
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getPostDay: function (currentDate) {
+                    let date = new Date(currentDate)
+                    return date.getDate()
+                    //return this.aDay
+                },
+                getPostMonth: function (currentDate) {
+                    let date = new Date(currentDate)
+                    return date.toLocaleString('default', { month: 'short' })
+                    //return this.aMonth
                 },
             },
         })

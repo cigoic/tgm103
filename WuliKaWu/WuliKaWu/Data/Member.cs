@@ -104,6 +104,11 @@ namespace WuliKaWu.Data
         public virtual ICollection<Order>? Orders { get; set; }
 
         /// <summary>
+        /// 導覽屬性:對應到多筆確認訂單,使用 ICollection
+        /// </summary>
+        public virtual ICollection<CheckOut>? CheckOuts { get; set; }
+
+        /// <summary>
         /// 導覽屬性:對應到多筆聯絡訊息，使用 ICollection
         /// </summary>
         public virtual ICollection<ContactMessage?> ContactMessages { get; set; }
