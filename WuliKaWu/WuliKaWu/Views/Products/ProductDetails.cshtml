@@ -679,7 +679,7 @@
 
                 addToCart: function (productId) {
                     console.log("CPid:", productId)
-                    this.queryCartBaseURL = '/api/cart/AddToCart/' + productId;
+                    this.queryCartBaseURL = '/api/cart/AddToCart/' + this.productFields.productId;
                     fetch(this.queryCartBaseURL, { method: "POST" })
                         .then(function (response) {
                             console.table(response)
@@ -702,7 +702,7 @@
                 },
                 addToWishlist: function (productId) {
                     console.log("WPid:", productId)
-                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + productId;
+                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + this.productFields.productId;
                     fetch(this.queryWishlistBaseURL, { method: "POST" })
                         .then(function (response) {
                             console.table(response)
