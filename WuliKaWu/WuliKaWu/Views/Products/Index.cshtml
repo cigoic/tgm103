@@ -27,7 +27,7 @@
                         @*商品筆數顯示*@
                         <div class="shop-topbar-left">
                             <div class="showing-item">
-                                <span>Showing {{min+1}}–{{max+1}} of {{products.length}} results</span>
+                                <span>Showing {{min+1}}–{{max>products.length? products.length:max}} of {{products.length}} results</span>
                             </div>
                         </div>
 
@@ -287,10 +287,14 @@
                     return "$" + this.priceRange.min + " - $" + this.priceRange.max
                 },
                 filterProducts: function () {
-                    var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
-                    var max = this.countPerPage * this.currentPage;
+                    let min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                    let max = this.countPerPage * this.currentPage;
                     this.min = min;
                     this.max = max;
+                    console.log("min",min);
+                    console.log("max",max);
+                    console.log("page",this.currentPage)
+
                     return this.selectedItemStyle.slice(min, max)
                 },
                 selectedItemStyle: function () {
