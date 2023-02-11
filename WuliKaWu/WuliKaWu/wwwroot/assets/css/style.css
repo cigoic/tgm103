@@ -200,7 +200,7 @@ select {
 }
 
 option {
-  background: #fff;
+/*  background: #fff;*/
   border: 0px solid #626262;
   padding-left: 10px;
   font-size: 14px;
