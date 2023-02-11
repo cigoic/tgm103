@@ -94,34 +94,36 @@
                 <div class="tab-content jump">
                     <div id="pro-1" class="tab-pane">
                         <div class="row">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <div class="product-wrap mb-35">
-                                    <div class="product-img img-zoom mb-25">
-                                        <a asp-controller="Home" asp-action="ProductDetails">
-                                            <img src="~/assets/images/product/product-9.png" alt="">
-                                        </a>
-                                        <div class="product-badge badge-top badge-right badge-pink">
-                                            <span>-10%</span>
+                            <template v-for="cItem in combinedItems">
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <div class="product-wrap mb-35">
+                                        <div class="product-img img-zoom mb-25">
+                                            <a :href="linkToProductDetails(cItem.id)">
+                                                <img :src="cItem.pictures[0]" alt="">
+                                            </a>
+                                            <div class="product-badge badge-top badge-right badge-pink">
+                                                <span v-if="cItem.sellingPrice">-{{ discount(cItem.price, cItem.sellingPrice) }}%</span>
+                                            </div>
+                                            <div class="product-action-wrap">
+                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
+                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="pe-7s-look"></i>
+                                                </button>
+                                            </div>
+                                            <div class="product-action-2-wrap">
+                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                            </div>
                                         </div>
-                                        <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="pe-7s-look"></i>
-                                            </button>
-                                        </div>
-                                        <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3><a asp-controller="Home" asp-action="ProductDetails">Modern Lounge Chairs</a></h3>
-                                        <div class="product-price">
-                                            <span class="old-price">$25.89 </span>
-                                            <span class="new-price">$20.25 </span>
+                                        <div class="product-content">
+                                            <h3><a :href="linkToProductDetails(cItem.id)">{{ cItem.productName }}</a></h3>
+                                            <div class="product-price">
+                                                <span :class="{'old-price':cItem.discount}">${{cItem.price}}</span>
+                                                <span class="new-price" v-if="cItem.discount">${{cItem.sellingPrice}}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </template>
                         </div>
                     </div>
                     <div id="pro-2" class="tab-pane active">
@@ -604,9 +606,9 @@
             //el:'#homeApp',
             name: "homeApp",
             data: {
-                newItems: {},
-                topNItems: {},
-                saleItems: {},
+                newItems: [],
+                topNItems: [],
+                saleItems: [],
                 leftsideItems: [],
                 limit: 3,
             },
@@ -615,6 +617,11 @@
                 self.getNewItems()
                 self.getTopNItems()
                 self.getSaleItems()
+            },
+            computed: {
+                combinedItems() {
+                    return this.newItems.concat(this.topNItems, this.saleItems);
+                }
             },
             methods: {
                 linkToProductDetails: function (productId) {
