@@ -93,5 +93,30 @@ namespace WuliKaWu.Controllers.Api
                 ? Results.Ok(products)
                 : Results.NoContent();
         }
+
+        /// <summary>
+        /// 取回最新文章列表
+        /// </summary>
+        /// <param name="numberOfArticles">要取回的文章篇數</param>
+        /// <returns></returns>
+        public IResult GetLastestPost(int numberOfArticles = 3)
+        {
+            return _context.Articles
+                .Include(a => a.ArticleCategory)
+                .OrderByDescending(a => a.CreatedDate)
+                .Take(numberOfArticles)
+                .Select(a => new HomeLastestPostModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Description = a.Description,
+                    CreatedDate = a.CreatedDate,
+                    MemberName = _context.Members.FirstOrDefault(m => m.MemberId == a.MemberId).Name,
+                    Category = a.ArticleCategory.Type
+                })
+                is IEnumerable<HomeLastestPostModel> articles
+                ? Results.Ok(articles)
+                : Results.NotFound(new { Status = false, Message = "無法取回最新文章列表" });
+        }
     }
 }

@@ -65,7 +65,7 @@
                     <template v-for="item in leftsideItems">
                         <div class="col-lg-12 col-md-8 col-12">
                             <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                                <a :href="linkToProductDetails(item.id)"><img :src="item.pictures" alt=""></a>
+                                <a :href="linkToProductDetails(item.id)"><img :src="item.pictures" style="height:50%" alt=""></a>
                                 <div class="banner-content-1">
                                     <h5>new arrival</h5>
                                     <h3>{{ item.productName }}</h3>
@@ -519,81 +519,33 @@
             <h2>Latest News</h2>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Home" asp-action="BlogDetails"><img src="~/assets/images/blog/blog-1.png" alt=""></a>
+            <template v-for="lstPost in posts">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-img-date-wrap mb-25">
+                            <div class="blog-img">
+                                <a :href="linkToBlogDetails(lstPost.id)"><img src="/assets/images/blog/blog-1.png" alt=""></a>
+                            </div>
+                            <div class="blog-date">
+                                <h5>{{ getPostDay(lstPost.createdDate) }} <span>{{ getPostMonth(lstPost.createdDate) }}</span></h5>
+                            </div>
                         </div>
-                        <div class="blog-date">
-                            <h5>05 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#"> Admin</a></li>
-                            </ul>
-                        </div>
-                        <h3><a asp-controller="Home" asp-action="BlogDetails">Lorem ipsum dolor consectet.</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Home" asp-action="BlogDetails">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="400">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Home" asp-action="BlogDetails"><img src="~/assets/images/blog/blog-2.png" alt=""></a>
-                        </div>
-                        <div class="blog-date">
-                            <h5>06 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#"> Admin</a></li>
-                            </ul>
-                        </div>
-                        <h3><a asp-controller="Home" asp-action="BlogDetails">Duis et volutpat pellentesque.</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Home" asp-action="BlogDetails">Read More</a>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <ul>
+                                    <li><a href="#">{{ lstPost.category }}</a>,</li>
+                                    <li>By:<a :href="linkToMembersPosts(lstPost.id)"> {{ lstPost.memberName }}</a></li>
+                                </ul>
+                            </div>
+                            <h3><a :href="linkToBlogDetails(lstPost.id)">{{ lstPost.title }}</a></h3>
+                            <p v-html="lstPost.description">{{ lstPost.description }}</p>
+                            <div class="blog-btn-2 btn-hover">
+                                <a class="btn hover-border-radius theme-color" :href="linkToBlogDetails(lstPost.id)">Read More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="600">
-                    <div class="blog-img-date-wrap mb-25">
-                        <div class="blog-img">
-                            <a asp-controller="Home" asp-action="BlogDetails"><img src="~/assets/images/blog/blog-3.png" alt=""></a>
-                        </div>
-                        <div class="blog-date">
-                            <h5>07 <span>May</span></h5>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <ul>
-                                <li><a href="#">Furniture</a>,</li>
-                                <li>By:<a href="#"> Admin</a></li>
-                            </ul>
-                        </div>
-                        <h3><a asp-controller="Home" asp-action="BlogDetails">Vivamus vitae dolor convallis.</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.</p>
-                        <div class="blog-btn-2 btn-hover">
-                            <a class="btn hover-border-radius theme-color" asp-controller="Home" asp-action="BlogDetails">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </template>
         </div>
     </div>
 </div>
@@ -610,13 +562,17 @@
                 topNItems: [],
                 saleItems: [],
                 leftsideItems: [],
+                posts: [],
                 limit: 3,
+                aDay: "",
+                aMonth: "",
             },
             mounted: function () {
                 let self = this
                 self.getNewItems()
                 self.getTopNItems()
                 self.getSaleItems()
+                self.getLastestPost()
             },
             computed: {
                 combinedItems() {
@@ -627,8 +583,13 @@
                 linkToProductDetails: function (productId) {
                     return "/Products/ProductDetails/" + productId
                 },
-                getNewItems: function () {
-                    axios.get("/api/Home/GetNewItems")
+                linkToBlogDetails(articleId) {
+                    return "/Blog/Details/" + articleId
+                },
+                linkToMembersPosts: function (articleId) { return "/Blog/Sidebar/" + articleId },
+                //linkToCategoryPosts: function (categoryId) { return "/Blog/Sidebar/" + categoryId },
+                getNewItems: async function () {
+                    await axios.get("/api/Home/GetNewItems")
                         .then(response => {
                             console.log("at mounted, newest:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
@@ -638,8 +599,8 @@
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
-                getTopNItems: function () {
-                    axios.get("/api/Home/GetTopNItems")
+                getTopNItems: async function () {
+                    await axios.get("/api/Home/GetTopNItems")
                         .then(response => {
                             console.log("at mounted, topN:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
@@ -648,8 +609,8 @@
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
-                getSaleItems: function () {
-                    axios.get("/api/Home/GetSaleItems")
+                getSaleItems: async function () {
+                    await axios.get("/api/Home/GetSaleItems")
                         .then(response => {
                             console.log("at mounted, sales:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
@@ -660,7 +621,27 @@
                 },
                 discount: function (p, sp) {
                     return sp ? ((p - sp) / p * 100).toFixed(0) : "";
-                }
+                },
+                getLastestPost: async function () {
+                    await axios.get("/api/Home/GetLastestPost")
+                        .then(response => {
+                            console.log("at mounted, posts:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.posts = response.data.value
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getPostDay: function (currentDate) {
+                    let date = new Date(currentDate)
+                    return date.getDate()
+                    //return this.aDay
+                },
+                getPostMonth: function (currentDate) {
+                    let date = new Date(currentDate)
+                    return date.toLocaleString('default', { month: 'short' })
+                    //return this.aMonth
+                },
             },
         })
 
