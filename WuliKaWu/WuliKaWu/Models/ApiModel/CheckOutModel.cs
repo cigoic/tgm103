@@ -15,10 +15,5 @@ namespace WuliKaWu.Models.ApiModel
         public string Size { get; set; }
         public decimal Price { get; set; }
         public decimal? SellingPrice { get; set; }
-        public GetPayType GetPayType { get; set; }
-        public decimal? Coupon { get; set; }
-        public string ShippingAddress { get; set; }
-        public string Recipient { get; set; }
-        public string ContactPhone { get; set; }
     }
 }
