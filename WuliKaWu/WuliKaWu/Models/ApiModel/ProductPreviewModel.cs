@@ -10,9 +10,7 @@ namespace WuliKaWu.Models.ApiModel
 
         public string ProductName { get; set; }
 
-        public Size Size { get; set; }
-
-        public int CategoryId { get; set; }
+        public CategoryViewModel CategoryName { get; set; }
 
         public decimal Price { get; set; }
 
@@ -24,10 +22,12 @@ namespace WuliKaWu.Models.ApiModel
 
         public string? Comment { get; set; }
 
-        public List<int>? Tags { get; set; }
+        //public List<int>? Tags { get; set; }
 
-        public List<int>? Colors { get; set; }
+        public List<TagsViewModel> Tags { get; set; }
 
-        public List<string>? Pictures { get; set; }
+        public List<string> Pictures { get; set; }
+        public List<CorlorsViewModel> Colors { get; set; }
+        public SizeViewModel Size { get; set; }
     }
 }
