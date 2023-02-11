@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ï»¿using Microsoft.AspNetCore.Http;
 =======
@@ -13,17 +14,15 @@ using Microsoft.AspNetCore.Hosting;
 >>>>>>> [ä¿®æ­£]å•†å“æ–°å¢
 using Microsoft.AspNetCore.Http;
 >>>>>>> Productvue (#6)
+=======
+>>>>>>> [æ–°å¢] é¦–é ç•«é¢é¡¯ç¤ºç†±é–€èˆ‡æœ€æ–°ä¸Šæ¶ä¸Šå“
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Packaging;
-using System.Net.NetworkInformation;
 
 using WuliKaWu.Data;
-using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
 
-using static NuGet.Packaging.PackagingConstants;
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers.Api
@@ -42,7 +41,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ®³¨ì©Ò¦³ªº°Ó«~
+        /// ï¿½ï¿½ï¿½ï¿½Ò¦ï¿½ï¿½ï¿½ï¿½Ó«~
         /// </summary>
         /// <returns></returns>
 
@@ -141,7 +140,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ±q¸ê®Æ®w®³¨ì¹ïÀ³Idªº°Ó«~
+        /// ï¿½qï¿½ï¿½Æ®wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½Ó«~
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -197,7 +196,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ½s¿è¹ïÀ³Idªº°Ó«~¦s¨ì¸ê®Æ®w
+        /// ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½Ó«~ï¿½sï¿½ï¿½ï¿½Æ®w
         /// </summary>
         /// <param name="id"></param>
         /// <param name="eModel"></param>
@@ -216,7 +215,7 @@ namespace WuliKaWu.Controllers.Api
             data.CategoryId = model.CategoryId;
             data.Price = model.Price;
 
-            //TODO sellingprice ¥»¨Ó¬°null ½s¿è®É¨S¦³§ó°Ê¤´¬Onullªº¸Ü·|¥X¿ù
+            //TODO sellingprice ï¿½ï¿½ï¿½Ó¬ï¿½null ï¿½sï¿½ï¿½É¨Sï¿½ï¿½ï¿½ï¿½Ê¤ï¿½ï¿½Onullï¿½ï¿½ï¿½Ü·|ï¿½Xï¿½ï¿½
             data.SellingPrice = model.SellingPrice;
             data.Tags.Clear();
             data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
@@ -251,7 +250,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ·s¼W°Ó«~¨ì¸ê®Æ®w
+        /// ï¿½sï¿½Wï¿½Ó«~ï¿½ï¿½ï¿½Æ®w
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -294,7 +293,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ±q¸ê®Æ®w§R°£¹ïÀ³Idªº°Ó«~
+        /// ï¿½qï¿½ï¿½Æ®wï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½Ó«~
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
