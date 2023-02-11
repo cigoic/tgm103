@@ -211,53 +211,31 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("{id}")]
-        public ApiResultModel DeleteById([FromBody] ProductDeleteModel model)
+        public ApiResultModel DeleteById([FromBody] Int32 id)
         {
-            var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
+            var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
 
-            data.ProductName = model.ProductName;
-            data.Pictures = _context.Pictures.Where(x => model.Pictures.Any(y => y == x.PicturePath)).ToList();
-            data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
-            data.Size = model.Size;
-            data.Price = model.Price;
-            data.SellingPrice = model.SellingPrice;
-            data.CategoryId = model.CategoryId;
-            data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
-
-            _context.Remove(data);
-            _context.SaveChanges();
-
-            return new ApiResultModel
+            if (data != null)
             {
-                Status = true,
-                Message = "Delete Success!!!"
+                var deletemodel = new ProductDeleteModel
+                {
+                    ProductName = data.ProductName,
+                    Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
+                    Colors = data.Colors.Select(x => x.Id).ToList(),
+                    Size = data.Size,
+                    Price = data.Price,
+                    SellingPrice = data.SellingPrice,
+                    CategoryId = data.CategoryId,
+                    Tags = data.Tags.Select(x => x.Id).ToList()
+                };
+                _context.Products.Remove(data);
+                _context.SaveChanges();
+            }
+            return new ApiResultModel 
+            { 
+                Status = true, 
+                Message = "Delete Success!!"
             };
         }
-
-        //public ProductDeleteModel DeleteById([FromBody] Int32 id)
-        //{
-        //    //throw new NotImplementedException();
-
-        //    var data = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == id);
-
-        //    if (data != null)
-        //    {
-        //        var deletemodel = new ProductDeleteModel
-        //        {
-        //            ProductName = data.ProductName,
-        //            Pictures = data.Pictures.Select(x => x.PicturePath).ToList(),
-        //            Colors = data.Colors.Select(x => x.Id).ToList(),
-        //            Size = data.Size,
-        //            Price = data.Price,
-        //            SellingPrice = data.SellingPrice,
-        //            CategoryId = data.CategoryId,
-        //            Tag = data.Tags.Select(x => x.Id).ToList()
-        //        };
-
-        //        _context.Products.Remove(data);
-        //        _context.SaveChanges();
-        //    }
-        //    return null;
-        //}
     }
 }
