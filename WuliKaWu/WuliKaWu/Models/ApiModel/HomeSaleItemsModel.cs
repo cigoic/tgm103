@@ -1,6 +1,6 @@
 ﻿namespace WuliKaWu.Models.ApiModel
 {
-    public class HomeNewProductsModel
+    public class HomeSaleItemsModel
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
