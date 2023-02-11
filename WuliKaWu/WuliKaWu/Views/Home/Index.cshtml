@@ -126,15 +126,15 @@
                     </div>
                     <div id="pro-2" class="tab-pane active">
                         <div class="row">
-                            <template v-for="nitem in newItems">
+                            <template v-for="nItem in newItems">
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                     <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                         <div class="product-img img-zoom mb-25">
-                                            <a :href="linkToProductDetails(nitem.id)">
-                                                <img :src="nitem.pictures[0]" alt="">
+                                            <a :href="linkToProductDetails(nItem.id)">
+                                                <img :src="nItem.pictures[0]" alt="">
                                             </a>
                                             <div class="product-badge badge-top badge-right badge-pink">
-                                                <span>-10%</span>
+                                                <span v-if="nItem.sellingPrice">-{{ discount(nItem.price, nItem.sellingPrice) }}%</span>
                                             </div>
                                             <div class="product-action-wrap">
                                                 <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -147,10 +147,10 @@
                                             </div>
                                         </div>
                                         <div class="product-content">
-                                            <h3><a :href="linkToProductDetails(nitem.id)">{{ nitem.productName }}</a></h3>
+                                            <h3><a :href="linkToProductDetails(nItem.id)">{{ nItem.productName }}</a></h3>
                                             <div class="product-price">
-                                                <span :class="{'old-price':nitem.discount}">${{nitem.price}}</span>
-                                                <span class="new-price" v-if="nitem.discount">${{nitem.sellingPrice}}</span>
+                                                <span :class="{'old-price':nItem.discount}">${{nItem.price}}</span>
+                                                <span class="new-price" v-if="nItem.discount">${{nItem.sellingPrice}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -168,7 +168,7 @@
                                                 <img :src="tItem.pictures[0]" alt="">
                                             </a>
                                             <div class="product-badge badge-top badge-right badge-pink">
-                                                <span>-10%</span>
+                                                <span v-if="tItem.sellingPrice">-{{ discount(tItem.price, tItem.sellingPrice) }}%</span>
                                             </div>
                                             <div class="product-action-wrap">
                                                 <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
@@ -194,34 +194,36 @@
                     </div>
                     <div id="pro-4" class="tab-pane">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="product-wrap mb-35">
-                                    <div class="product-img img-zoom mb-25">
-                                        <a asp-controller="Home" asp-action="ProductDetails">
-                                            <img src="~/assets/images/product/product-4.png" alt="">
-                                        </a>
-                                        <div class="product-badge badge-top badge-right badge-pink">
-                                            <span>-10%</span>
+                            <template v-for="sItem in saleItems">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="product-wrap mb-35">
+                                        <div class="product-img img-zoom mb-25">
+                                            <a :href="linkToProductDetails(sItem.id)">
+                                                <img :src="sItem.pictures[0]" alt="">
+                                            </a>
+                                            <div class="product-badge badge-top badge-right badge-pink">
+                                                <span v-if="sItem.sellingPrice">-{{ discount(sItem.price, sItem.sellingPrice) }}%</span>
+                                            </div>
+                                            <div class="product-action-wrap">
+                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
+                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <i class="pe-7s-look"></i>
+                                                </button>
+                                            </div>
+                                            <div class="product-action-2-wrap">
+                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                            </div>
                                         </div>
-                                        <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="pe-7s-look"></i>
-                                            </button>
-                                        </div>
-                                        <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="product-content">
-                                        <h3><a asp-controller="Home" asp-action="ProductDetails">Stylish Swing Chair</a></h3>
-                                        <div class="product-price">
-                                            <span class="old-price">$25.89 </span>
-                                            <span class="new-price">$20.25 </span>
+                                        <div class="product-content">
+                                            <h3><a :href="linkToProductDetails(sItem.id)">{{ sItem.productName }}</a></h3>
+                                            <div class="product-price">
+                                                <span :class="{'old-price':sItem.discount}">${{sItem.price}}</span>
+                                                <span class="new-price" v-if="sItem.discount">${{sItem.sellingPrice}}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </template>
                         </div>
                     </div>
                 </div>
@@ -602,21 +604,23 @@
             //el:'#homeApp',
             name: "homeApp",
             data: {
-                topNItems: {},
                 newItems: {},
+                topNItems: {},
+                saleItems: {},
                 leftsideItems: [],
                 limit: 3,
             },
             mounted: function () {
                 let self = this
-                self.getNewProdcuts()
-                self.getTopNProdcuts()
+                self.getNewItems()
+                self.getTopNItems()
+                self.getSaleItems()
             },
             methods: {
                 linkToProductDetails: function (productId) {
                     return "/Products/ProductDetails/" + productId
                 },
-                getNewProdcuts: function () {
+                getNewItems: function () {
                     axios.get("/api/Home/GetNewItems")
                         .then(response => {
                             console.log("at mounted, newest:", response)
@@ -627,7 +631,7 @@
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
-                getTopNProdcuts: function () {
+                getTopNItems: function () {
                     axios.get("/api/Home/GetTopNItems")
                         .then(response => {
                             console.log("at mounted, topN:", response)
@@ -637,6 +641,19 @@
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
+                getSaleItems: function () {
+                    axios.get("/api/Home/GetSaleItems")
+                        .then(response => {
+                            console.log("at mounted, sales:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.saleItems = response.data.value
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                discount: function (p, sp) {
+                    return sp ? ((p - sp) / p * 100).toFixed(0) : "";
+                }
             },
         })
 
