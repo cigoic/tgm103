@@ -8,8 +8,8 @@ namespace WuliKaWu.Models.ApiModel
         public string ProductName { get; set; }
         public List<int> Colors { get; set; }
         public Size Size { get; set; }
-        public int CategoryId { get; set; }
-        public List<IFormFile> Pictures { get; set; }
+        public int CategoryName { get; set; }
+        public List<IFormFile>? Pictures { get; set; }
         public decimal Price { get; set; }
         public decimal? SellingPrice { get; set; }
         public List<int> Tags { get; set; }
