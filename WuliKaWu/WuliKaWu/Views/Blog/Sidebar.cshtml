@@ -144,6 +144,7 @@
                     console.log(page)
                 },
                 articleLink: function (id) { return "/Blog/Details/" + id },
+                memberArticlesLink: function (id) { return "/Blog/Sidebar/" + id },
                 articleDay(currentDate) {
                     var date = new Date(currentDate);
                     this.aDay = date.getDate()
