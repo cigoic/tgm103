@@ -23,5 +23,19 @@ namespace WuliKaWu.Controllers.Api
                 Type = x.Type
             }).ToList();
         }
+
+        [HttpGet]
+        public TagApiModel GetById (int id) 
+        {
+            var data = _context.Tags.FirstOrDefault(x => x.Id == id);
+
+            if (data == null) return null;
+            var model = new TagApiModel
+            {
+                Id = data.Id,
+                Type = data.Type
+            };
+            return model;
+        }
     }
 }
