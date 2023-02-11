@@ -611,6 +611,48 @@ namespace WuliKaWu.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.CheckOut", b =>
+                {
+                    b.Property<int>("CheckOutId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CheckOutId"), 1L, 1);
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal?>("Coupon")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Memo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Recipient")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("CheckOutId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("CheckOuts");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.Color", b =>
                 {
                     b.Property<int>("Id")
@@ -2377,6 +2419,17 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("WuliKaWu.Data.CheckOut", b =>
+                {
+                    b.HasOne("WuliKaWu.Data.Member", "Member")
+                        .WithMany("CheckOuts")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+                });
+
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -2538,6 +2591,8 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Articles");
 
                     b.Navigation("Cart");
+
+                    b.Navigation("CheckOuts");
 
                     b.Navigation("ContactMessages");
 
