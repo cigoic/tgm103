@@ -7,7 +7,6 @@
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
             <h2>Edit Product</h2>
         </div>
-
         <div class="shop-bottom-area">
             <div class="tab-content jump">
                 <div class="shop-list-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
@@ -42,27 +41,27 @@
                                     <div class="col-6 ">
                                         <div class="form-group">
                                             <label for="Color" class="control-label">Color</label>
-                                            <select id="Color" class="form-control" v-model="productFields.colors" multiple>
+                                            <select id="Color" class="form-control" v-model="productFields.colors.id" value="productFields.colors.id" multiple>
                                                 <option v-for="item in optionSource.color" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="Size" class="control-label">Size</label>
-                                            <select id="Size" class="form-control" v-model="productFields.size">
+                                            <select id="Size" class="form-control" v-model="productFields.size" value="productFields.size">
                                                 <option v-for="item in optionSource.size" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="Category" class="control-label">Category</label>
-                                            <select id="Category" class="form-control" v-model="productFields.categoryId">
+                                            <select id="Category" class="form-control" v-model="productFields.categoryName" value="productFields.categoryName">
                                                 <option v-for="item in optionSource.category" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="Tag" class="control-label">Tag</label>
-                                            <select id="Tag" class="form-control" v-model="productFields.tags" multiple>
+                                            <select id="Tag" class="form-control" v-model="productFields.tags" value="productFields.tags" multiple>
                                                 <option v-for="item in optionSource.tag" :value="item.id">{{item.type}}</option>
                                             </select>
                                         </div>
@@ -136,16 +135,17 @@
                     productId: "",
                     productName: "",
                     colors: [],
-                    size: "",
-                    categoryId: "",
+                    size: {id:0},
+                    categoryName: {id:0},
                     price: "",
                     sellingPrice: "",
-                    tags: [],
+                    tags: [{id:0}],
                     pictures: [],
                     comment: "",
                 },
                 picFiles: [],
                 picPriview: [],
+                test:[],
             },
 
             mounted: function () {
@@ -162,6 +162,10 @@
                         console.log(result);
                         self.productFields = result;
                         self.productFields.productId = @ViewBag.id;
+                        self.productFields.tags = self.productFields.tags.map(x=>x.id)
+                        self.productFields.colors = self.productFields.colors.map(x => x.id)
+                        self.productFields.categoryName = self.productFields.categoryName.id
+                        self.productFields.size = self.productFields.size.id
                     })
             },
 
@@ -213,24 +217,21 @@
 
                     let form = new FormData();
                     Object.keys(self.productFields).forEach(key => {
-                        if (key == "colors" || key == "tags" ) {
-                            console.log("ct",self.productFields[key])
-                            self.productFields[key].forEach(x=>{
+                        if (key == "colors" || key == "tags") {
+                            console.log("ct", self.productFields[key])
+                            self.productFields[key].forEach(x => {
                                 form.append(key, x)
                             })
                         }
-                        else if(key=="pictures")
-                        {   
+                        else if (key == "pictures") {
                             console.log("p", self.productFields[key])
                             Array.from(self.productFields[key]).forEach(x => {
-                                form.append(key, x)});
-
+                                form.append(key, x)
+                            });
                         }
-                        else
-                        {
+                        else {
                             form.append(key, self.productFields[key]);
                         }
- 
 
                     });
 
@@ -257,6 +258,8 @@
                             Swal.fire(al)
                         })
                 }
+
+
             }
 
         });
