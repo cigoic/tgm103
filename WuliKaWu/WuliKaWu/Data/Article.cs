@@ -44,6 +44,9 @@ namespace WuliKaWu.Data
         [Required]
         public string Content { get; set; }
 
+        /// <summary>
+        /// 文章簡述（最長 128 個字元）
+        /// </summary>
         [MaxLength(128)]
         public string Description { get; set; }
 
