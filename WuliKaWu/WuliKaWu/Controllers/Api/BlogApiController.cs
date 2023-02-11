@@ -159,6 +159,38 @@ namespace WuliKaWu.Controllers.Api
 
         public IResult CountCategories()
         {
+            Dictionary<string, int> count = GetCategoriesCount();
+            return Results.Ok(count);
+        }
+
+        /// <summary>
+        /// 取得特定分類的文章列表
+        /// </summary>
+        /// <param name="categoryType">文章的分類類型</param>
+        /// <returns></returns>
+        public IResult GetCategoriesPost(string categoryType)
+        {
+            return _context.Articles
+                .Include(a => a.ArticleCategory)
+                .Where(a => a.ArticleCategory.Type == categoryType)
+                .Select(a => new ArticleDescriptionModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Description = a.Description,
+                    ModifiedDate = a.ModifiedDate,
+                })
+                is IEnumerable<ArticleDescriptionModel> articles
+                ? Results.Ok(articles)
+                : Results.NotFound(new { Status = false, Message = "無法取回分類的文章列表" });
+        }
+
+        /// <summary>
+        /// 計算部落格各分類的文章數量
+        /// </summary>
+        /// <returns></returns>
+        private Dictionary<string, int> GetCategoriesCount()
+        {
             var count = new Dictionary<string, int>();
             var articles = _context.Articles.Include(a => a.ArticleCategory).OrderBy(a => a.ArticleCategory.Type);
 
@@ -173,7 +205,8 @@ namespace WuliKaWu.Controllers.Api
                     count[article.ArticleCategory.Type] = 1;
                 }
             }
-            return Results.Ok(count);
+
+            return count;
         }
 
         /// <summary>

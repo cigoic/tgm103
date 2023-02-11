@@ -103,6 +103,7 @@
                 articles: [],   // get all articles
                 categories: {},
                 lastestPosts: {},
+                catPosts: [],
                 articleBaseLink: "/Blog/Details/",
                 articleId: @ViewBag.ArticleId,
                 currentPage: 1,
@@ -177,6 +178,16 @@
                                 this.categories = response.data.value
                             }
                         })
+                },
+                getCategoriesPost: async function () {
+                    await axios.get("/api/Home/GetCategoriesPost")
+                        .then(response => {
+                            console.log("at mounted, category posts:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.catPosts = response.data.value
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
                 },
                 getLastestPosts: function () {
                     axios.get('/api/Blog/GetLastestPost')
