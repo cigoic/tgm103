@@ -66,9 +66,9 @@
 <div class="blog-area pt-15 pb-100">
     <div class="container">
         <div class="row">
-            <template v-for="article in filterArticles" :key="article.id">
+            <template v-for="(article, index) in filterArticles" :key="index">
                 <div class="col-lg-4 col-md-6">
-                    <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-wrap mb-50" data-aos="fade-up" :data-aos-delay="index * 200">
                         <div class="blog-img-date-wrap mb-25">
                             <div class="blog-img">
                                 <a href="/Blog/Details"><img src="/assets/images/blog/blog-details.png" alt=""></a>
@@ -101,7 +101,7 @@
             </ul>
             *@
 
-            <paginate :page-count="Math.ceil(articles.length/countPerPage)"
+            <paginate :page-count="Math.ceil(articles.columns.length/countPerPage)"
                       :page-range="10"
                       :margin-pages="1"
                       :click-handler="clickCallback"
@@ -127,16 +127,19 @@
             //el:'#blogApp',
             name: "blogApp",
             data: {
-                articles: [],
+                articles: {
+                    columns: [],
+                },
                 articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
                 countPerPage: 2,
-                aDay: null,
-                aMonth: null,
+                aDay: "",
+                aMonth: "",
             },
             mounted: function () {
                 var self = this;
                 self.getArticles()
+
             },
             computed: {
                 filterArticles: function () {
@@ -144,7 +147,7 @@
                     var max = this.countPerPage * this.currentPage;
                     this.min = min;
                     this.max = max;
-                    return this.articles.slice(min, max)
+                    return this.articles.columns.slice(min, max)
                 },
             },
             methods: {
@@ -166,7 +169,11 @@
                 },
                 getArticles: function () {
                     axios.get("/api/Blog/GetArticles")
-                        .then(response => { this.articles = response.data.value })
+                        .then(response => {
+                            console.log("at mounted, response:", response)
+                            if (response.status == 200 && response.data.statusCode === 200)
+                                this.articles.columns = response.data.value
+                        })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
             },
