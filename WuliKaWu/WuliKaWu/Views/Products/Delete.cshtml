@@ -487,16 +487,19 @@
                 var self = this;
                 //self.productFields.productId = @ViewBag.id
                 let Id = self.productFields.productId;
-                let qureyEditBaseUrl = '/api/product/editbyid/' + Id;
+                let qureyEditBaseUrl = '/api/product/deletebyid/' + Id;
 
                 fetch(qureyEditBaseUrl, {
                     method: "POST",
                     body:JSON.stringify(self.productFields.productId),
                     headers:{'content-type':'application/json'}
-
                 })
-                .then(function(response){return response.json()})
+                .then(function(response){
+                    console.log('~~~',response)
+                    return response.json()
+                })
                 .then(function(result){
+                    console.log(result.message);
                     var al = {
                         icon: 'success',
                         title: 'Delete Success!!!',
