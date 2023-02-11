@@ -77,7 +77,7 @@
                 //});
                 //ClassicEditor.create(this.$refs.editor, {
                 ClassicEditor.create(document.querySelector("#ck"), {
-                    height: 500,
+                    height: '500px',
                     language: 'zh',
                     ckfinder: {
                         uploadUrl: '/api/Blog/UploadImage',
@@ -98,7 +98,6 @@
             },
             beforeDestroy() {
                 self.editor.destroy();
-                self.editor = null;
             },
             //watch: {
             //    content(newValue) {
@@ -146,6 +145,10 @@
                     } catch (error) {
                         tgm103ShowError(error);
                     }
+                    self.title = ""
+                    self.content = ""
+                    self.selectedOption = ""
+                    self.editor.setData("")
                 },
             },
         })

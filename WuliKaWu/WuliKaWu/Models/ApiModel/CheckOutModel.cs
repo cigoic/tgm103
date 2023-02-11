@@ -5,18 +5,20 @@ namespace WuliKaWu.Models.ApiModel
 {
     public class CheckOutModel
     {
-        public int CheckOutId { get; set; }
+        public int Id { get; set; }
+        public int ProductId { get; set; }
+        public int MemberId { get; set; }
+        public List<string> PicturePath { get; set; }
+        public string ProductName { get; set; }
+        public List<string> Type { get; set; }
+        public int Quantity { get; set; }
+        public string Size { get; set; }
+        public decimal Price { get; set; }
+        public decimal? SellingPrice { get; set; }
+        public GetPayType GetPayType { get; set; }
+        public decimal? Coupon { get; set; }
         public string ShippingAddress { get; set; }
         public string Recipient { get; set; }
         public string ContactPhone { get; set; }
-        public string PicturePath { get; set; }
-        public string ProductName { get; set; }
-        public List<string> Colors { get; set; }
-        public int Quantity { get; set; }
-        public Size Size { get; set; }
-        public decimal Price { get; set; }
-        public string? SellingPrice { get; set; }
-        public GetPayType Type { get; set; }
-        public decimal? Coupon { get; set; }
     }
 }

@@ -25,6 +25,12 @@ namespace WuliKaWu.Controllers
             return View(await _context.Carts.ToListAsync());
         }
 
+        // GET: Checkout
+        public async Task<IActionResult> Checkout()
+        {
+            return View(/*await _context.Carts.ToListAsync()*/);
+        }
+
         // GET: Cart/Details/5
         public async Task<IActionResult> Details(int? id)
         {

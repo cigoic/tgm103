@@ -1,0 +1,232 @@
+﻿
+<div id="checkoutIndex">
+    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2>Checkout </h2>
+                <ul>
+                    <li><a href="/Cart/checkout/">Home</a></li>
+                    <li><i class="ti-angle-right"></i></li>
+                    <li>Checkout </li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1">
+            <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2">
+            <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
+        </div>
+    </div>
+    <div class="checkout-main-area pb-100 pt-100">
+        <div class="container">
+            <div class="checkout-wrap pt-30">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="your-order-area">
+                            <div class="billing-info-wrap">
+                                <h3><strong>寄送資訊</strong></h3>
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9">
+                                        <div class="billing-info mb-20">
+                                            <label><strong>收件人<abbr class="required" title="required">*</abbr></strong></label>
+                                            <input type="text" placeholder="請輸入姓名">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 mt-5">
+                                        <p><strong>先生/小姐</strong></p>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="billing-info mb-20">
+                                            <label><strong>收件地址<abbr class="required" title="required">*</abbr></strong></label>
+                                            <div class="col-lg-4 col-md-4">
+                                                <span>縣市</span>
+                                                <span>
+                                                    <select>
+                                                        <option>請選擇</option>
+                                                        <option>臺北市</option>
+                                                        <option>新北市</option>
+                                                        <option>桃園市</option>
+                                                        <option>臺中市</option>
+                                                        <option>臺南市</option>
+                                                        <option>高雄市</option>
+                                                        <option>基隆市</option>
+                                                        <option>新竹市</option>
+                                                        <option>嘉義市</option>
+                                                        <option>新竹縣</option>
+                                                        <option>苗栗縣</option>
+                                                        <option>彰化縣</option>
+                                                        <option>南投縣</option>
+                                                        <option>雲林縣</option>
+                                                        <option>嘉義縣</option>
+                                                        <option>屏東縣</option>
+                                                        <option>宜蘭縣</option>
+                                                        <option>花蓮縣</option>
+                                                        <option>臺東縣</option>
+                                                        <option>澎湖縣</option>
+                                                        <option>金門縣</option>
+                                                        <option>連江縣</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="billing-info mb-20">
+                                                <label>區域/街道<abbr class="required" title="required"></abbr></label>
+                                                <input type="text" placeholder="請輸入區域/街道">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20">
+                                        <label><strong>收件人電話<abbr class="required" title="required">*</abbr></strong></label>
+                                        <input type="text" placeholder="09** *** ***">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="billing-info-wrap">
+                                <h3><strong>付款資訊</strong></h3>
+                                <div class="row">
+                                    <div class="your-order-wrap gray-bg-4">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="billing-info mb-20">
+                                                <label><strong>付款方式<abbr class="required" title="required">*</abbr></strong></label>
+                                                <span>FirstName</span>
+                                                <input type="text" placeholder="LEE">
+                                                <span>LastName</span>
+                                                <input type="text" placeholder="John">
+                                                <span>CardNumber</span>
+                                                <input type="text" placeholder="**** **** ****">
+                                                <span>Expiry date</span>
+                                                <input type="text" placeholder="MM/YY">
+                                                <span>Security code</span>
+                                                <input type="text" placeholder="後三碼" />
+                                                <div class="payment-method">
+                                                    <div class="pay-top sin-payment">
+                                                        <input id="payment_method_1" class="input-radio" type="radio" value="cheque" checked="checked" name="payment_method">
+                                                        <label for="payment_method_1"> Direct Bank Transfer </label>
+                                                        <div class="payment-box payment_method_bacs">
+                                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pay-top sin-payment">
+                                                        <input id="payment-method-2" class="input-radio" type="radio" value="cheque" name="payment_method">
+                                                        <label for="payment-method-2">Check payments</label>
+                                                        <div class="payment-box payment_method_bacs">
+                                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pay-top sin-payment">
+                                                        <input id="payment-method-3" class="input-radio" type="radio" value="cheque" name="payment_method">
+                                                        <label for="payment-method-3">Cash on delivery </label>
+                                                        <div class="payment-box payment_method_bacs">
+                                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pay-top sin-payment sin-payment-3">
+                                                        <input id="payment-method-4" class="input-radio" type="radio" value="cheque" name="payment_method">
+                                                        <label for="payment-method-4">PayPal <img alt="" src="~/assets/images/icon-img/payment.png"><a href="#">What is PayPal?</a></label>
+                                                        <div class="payment-box payment_method_bacs">
+                                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="your-order-area">
+                            <h3><strong>訂單資訊</strong></h3>
+                            <div class="your-order-wrap gray-bg-4">
+                                <div class="your-order-info-wrap">
+                                    <div class="your-order-info">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th class="col-lg-2"></th>
+                                                    <th class="col-lg-2">Product</th>
+                                                    <th class="col-lg-1">Color</th>
+                                                    <th class="col-lg-1">Quantity</th>
+                                                    <th class="col-lg-1">Size</th>
+                                                    <th class="col-lg-1">Price</th>
+                                                </tr>
+                                                <tr v-for="checkout in checkoutInThisCheckOut">
+                                                    <td class="product-thumbnail">
+                                                        <img class="width-thumbnail" style="width:120px" :src="checkout.picturePath[0]"></img>
+                                                    </td>
+                                                    <td><span>{{checkout.productName}}</span></td>
+                                                    <td><span>{{checkout.type[0]}}</span></td>
+                                                    <td class="cart-quality">
+                                                        <input type="number" name="qtybutton" :value="checkout.quantity" readonly>
+                                                    </td>
+                                                    <td>{{checkout.size}}</td>
+                                                    <td class="product-price">
+                                                        <span :class="{'old-price':checkout.price}">${{checkout.price}}</span>
+                                                        <span class="new-price" v-if="checkout.sellingPrice">${{checkout.sellingPrice}}</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    @*<div class="your-order-middle">
+                                        <ul>
+                                            <li>Product Name X 1 <span>$329 </span></li>
+                                            <li>Product Name X 1 <span>$329 </span></li>
+                                        </ul>
+                                    </div>*@
+
+
+                                    <div class="your-order-info order-subtotal">
+                                        <ul>
+                                            <li>Groupon <span>$329 </span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-info order-total">
+                                        <ul>
+                                            <li>Total <span>$273.00 </span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Place-order btn-hover">
+                                <a href="#">Place Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        let app = new Vue({
+            el: "#checkoutIndex",
+            data: {
+                checkoutInThisCheckOut: {
+                    checkout: [],
+                }
+            },
+            mounted: function () {
+                var self = this;
+                fetch('/api/checkout/GetCheckOut/')
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result);
+                        self.checkoutInThisCheckOut = result;
+                    })
+
+            },
+            method:
+            {
+
+            }
+        });
+    </script>
+    }

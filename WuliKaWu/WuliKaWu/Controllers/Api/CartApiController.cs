@@ -74,13 +74,12 @@ namespace WuliKaWu.Controllers.Api
             };
         }
 
-        //TODO Get一個會員的所有購物車
         /// <summary>
         /// Get一個會員的所有購物車
         /// </summary>
         /// <returns></returns>
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<CartGetModel>> GetCartAsync(int productId)
         {
             var myId = User.Claims.GetMemberId();
