@@ -198,7 +198,7 @@
                             </div>
                             <div class="sidebar-list-style">
                                 <ul>
-                                    <li v-for="item in optionSource.category"><a >{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
+                                    <li v-for="item in optionSource.category"><a>{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -259,11 +259,11 @@
         let app = new Vue({
             el: "#shopIndex",
             data: {
-                optionSource:{
-                    tag:[],
-                    color:[],
-                    size:[],
-                    category:[]
+                optionSource: {
+                    tag: [],
+                    color: [],
+                    size: [],
+                    category: []
                 },
                 searchText: "",
                 products: [],
@@ -278,8 +278,8 @@
                     min: 0,
                     max: 100
                 },
-                product: { 
-                    productId:""
+                product: {
+                    productId: ""
                 }
             },
             computed: {
@@ -323,20 +323,20 @@
 
             },
             methods: {
-                showCount:function(type,value){
-                    if(type == "category"){
+                showCount: function (type, value) {
+                    if (type == "category") {
                         return this.products.filter(x => x.categoryId == value).length;
                     }
-                    if(type == "color"){
-                        return this.products.filter(x=> x.colors.find(y=>y == value)).length
+                    if (type == "color") {
+                        return this.products.filter(x => x.colors.find(y => y == value)).length
                     }
-                    if(type == "tag"){
+                    if (type == "tag") {
                         return this.products.filter(x => x.tag.find(y => y == value)).length
                     }
-                    if(type == "size"){
-                        return this.products.filter(x=>x.size == value).length
+                    if (type == "size") {
+                        return this.products.filter(x => x.size == value).length
                     }
-                    
+
                 },
                 selectSize: function (text) {
                     console.log(text);
@@ -356,9 +356,9 @@
                     console.log("CPid:", productId)
                     this.queryCartBaseURL = '/api/cart/AddToCart/' + productId;
                     fetch(this.queryCartBaseURL, { method: "POST" })
-                        .then(function (response) { 
+                        .then(function (response) {
                             console.table(response)
-                            let cartp =response
+                            let cartp = response
                             return response.json()
                         })
                         .then(function (result) {
@@ -376,13 +376,13 @@
                         })
                 },
                 addToWishlist: function (productId) {
-                    console.log("WPid:", productId)                   
+                    console.log("WPid:", productId)
                     this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + productId;
-                    fetch(this.queryWishlistBaseURL, { method: "POST"})
+                    fetch(this.queryWishlistBaseURL, { method: "POST" })
                         .then(function (response) {
                             console.table(response)
                             let wresp = response
-                            return response.json() 
+                            return response.json()
                         })
                         .then(function (result) {
                             var al = {
@@ -425,7 +425,7 @@
                 },
             },
             mounted: function () {
-                var self = this;                
+                var self = this;
                 self.GetCategoryData();
                 self.GetColorData();
                 self.GetSizeData();

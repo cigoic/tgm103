@@ -31,21 +31,23 @@ namespace WuliKaWu.Controllers.Api
         /// 取得部落格文章全部清單(首頁使用)
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetArticles()
+        public IResult GetArticles()
         {
-            return await _context.Articles
-                            .Include(a => a.ArticleTitleImage)
-                            //.Include(a => a.Tags)
-                            .Select(a => new ArticleDescriptionModel
-                            {
-                                Id = a.Id,
-                                Title = a.Title,
-                                Description = a.Description,
-                                ModifiedDate = a.ModifiedDate,
-                            }).ToListAsync()
-                            is IEnumerable<ArticleDescriptionModel> articles
-                              ? Results.Ok(articles)
-                              : Results.NotFound(new { Status = false, Message = "找無內容!" });
+            return _context.Articles
+                  //.Include(a => a.ArticleTitleImage)
+                  //.Include(a => a.Tags)
+                  //.ToListAsync()
+                  // is IEnumerable<Article> articles
+                  .Select(a => new ArticleDescriptionModel
+                  {
+                      Id = a.Id,
+                      Title = a.Title,
+                      Description = a.Description,
+                      ModifiedDate = a.ModifiedDate,
+                  })
+                  is IEnumerable<ArticleDescriptionModel> articles
+                  ? Results.Ok(articles)
+                  : Results.NotFound(new { Status = false, Message = "找無內容!" });
         }
 
         /// <summary>
@@ -55,21 +57,31 @@ namespace WuliKaWu.Controllers.Api
         public async Task<IResult> GetMembersArticles(int articleId)
         {
             if (articleId == 0)
-                return Results.NotFound(new { Status = false, Message = "找無相關文章!" });
+                return Results.NotFound(new { Status = false, Message = "找無會員相關文章!" });
 
             var memberId = _context.Articles
                 .FirstOrDefaultAsync(a => a.Id == articleId)
-                .Result.MemberId;
+                .Result?.MemberId;
+            if (memberId == 0)
+                return Results.NotFound(new { Status = false, Message = "找無會員相關文章!" });
 
             return await _context.Articles
-            .Include(a => a.ArticleTitleImage)
-            .Include(a => a.ArticleContentImages)
-            .Include(a => a.Tags)
             .Where(m => m.MemberId == memberId)
+            //.Include(a => a.ArticleTitleImage)
+            //.Include(a => a.ArticleContentImages)
+            //.Include(a => a.Tags)
             .ToListAsync()
              is IEnumerable<Article> articles
+             //.Select(a => new ArticleDescriptionModel
+             //{
+             //    Id = a.Id,
+             //    Title = a.Title,
+             //    Description = a.Description,
+             //    ModifiedDate = a.ModifiedDate,
+             //})
+             //is IEnumerable<ArticleDescriptionModel> articles
              ? Results.Ok(articles)
-             : Results.NotFound(new { Status = false, Message = "找無相關文章!" });
+             : Results.NotFound(new { Status = false, Message = "找無會員相關文章!" });
         }
 
         /// <summary>
@@ -107,13 +119,53 @@ namespace WuliKaWu.Controllers.Api
 
             return (model != null)
                    ? Results.Ok(model)
-                   : Results.NotFound(new { Status = false, Message = "找無內容!" });
+                   : Results.NotFound(new { Status = false, Message = "找無此文章!" });
+        }
+
+        public IResult CountCategories()
+        {
+            var count = new Dictionary<string, int>();
+            var articles = _context.Articles.Include(a => a.ArticleCategory).OrderBy(a => a.ArticleCategory.Type);
+
+            foreach (var article in articles)
+            {
+                if (count.ContainsKey(article.ArticleCategory.Type))
+                {
+                    count[article.ArticleCategory.Type]++;
+                }
+                else
+                {
+                    count[article.ArticleCategory.Type] = 1;
+                }
+            }
+            return Results.Ok(count);
+        }
+
+        /// <summary>
+        /// 取回最新文章列表
+        /// </summary>
+        /// <param name="numberOfArticles">要取回的文章篇數</param>
+        /// <returns></returns>
+        public IResult GetLastestPost(int numberOfArticles = 3)
+        {
+            return _context.Articles
+                .OrderByDescending(a => a.CreatedDate)
+                .Take(numberOfArticles)
+                .Select(a => new ArticleLastestPostModel
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    CreatedDate = a.CreatedDate,
+                })
+                is IEnumerable<ArticleLastestPostModel> articles
+                ? Results.Ok(articles)
+                : Results.NotFound(new { Status = false, Message = "無法取回最新文章列表" });
         }
 
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
         /// </summary>
-        /// <param name="CurrentArticleId"></param>
+        /// <param name="CurrentArticleId">當前文章 ID</param>
         /// <returns></returns>
         private int GetPrevArticleId(int CurrentArticleId)
         {
@@ -132,7 +184,7 @@ namespace WuliKaWu.Controllers.Api
         /// <summary>
         /// 找尋下一篇文章 ID, 如果找無, 回傳目前文章 ID
         /// </summary>
-        /// <param name="CurrentArticleId"></param>
+        /// <param name="CurrentArticleId">當前文章 ID</param>
         /// <returns></returns>
         private int GetNextArticleId(int CurrentArticleId)
         {
@@ -164,7 +216,7 @@ namespace WuliKaWu.Controllers.Api
                     .FirstOrDefaultAsync(a => a.Id == ArticleId);
                 if (article == null)
                 {
-                    return Results.NotFound(new { Status = false, Message = "找無文章!" });
+                    return Results.NotFound(new { Status = false, Message = "找無相關文章內容!" });
                 }
 
                 await _context.SaveChangesAsync();

@@ -8,17 +8,20 @@
             </div>
             <div class="col-lg-4">
                 <div class="sidebar-wrapper">
-                    <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
-                        <div class="search-wrap-3">
-                            <form class="search-3-form" action="#">
-                                <input placeholder="Search*" type="text">
-                                <button class="button-search"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
+                    @*搜尋列*@
+                    @*<div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
+                    <div class="search-wrap-3">
+                    <form class="search-3-form" action="#">
+                    <input placeholder="Search*" type="text">
+                    <button class="button-search"><i class="fa fa-search"></i></button>
+                    </form>
                     </div>
+                    </div>*@
+
+                    @*作者欄位*@
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a href="#"><img src="~/assets/images/blog/blog-author.png" alt=""></a>
+                            <a :href="memberArticlesLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -30,44 +33,34 @@
                             </div>
                         </div>
                     </div>
+
+                    @*分類 Categories*@
                     <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-widget-title-2 mb-25">
                             <h3>Categories</h3>
                         </div>
                         <div class="sidebar-list-style-2">
-                            <ul>
-                                <li><a href="#">Blog Grid View (09)</a></li>
-                                <li><a href="#">Latest blog (02)</a></li>
-                                <li><a href="#">Our Blog (12)</a></li>
+                            <ul v-for="(count, category) in categories" :key="category">
+                                <li><a href="#">{{ category }} ({{ count }})</a></li>
                             </ul>
                         </div>
                     </div>
+
+                    @*最新發表文章*@
                     <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-widget-title-2 mb-30">
                             <h3>Latest Post</h3>
                         </div>
                         <div class="latest-post-wrap">
-                            <div class="single-latest-post">
+                            <div class="single-latest-post" v-for="larticle in lastestPosts">
                                 <div class="latest-post-img">
-                                    <a href="#"><img src="~/assets/images/blog/latest-post-1.png" alt=""></a>
+                                    <a href="#"><img src="/assets/images/blog/latest-post-1.png" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
-                                    <span>01 May 2022</span>
-                                    <h4><a href="#">Lorem ipsum dolor sit am conse ctetur adipis</a></h4>
+                                    <span>{{ showDate(larticle.createdDate) }}</span>
+                                    <h4><a :href="articleLink(larticle.id)">{{ larticle.title }}</a></h4>
                                     <div class="latest-post-btn">
-                                        <a href="#">Continue Reading...</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-latest-post">
-                                <div class="latest-post-img">
-                                    <a href="#"><img src="~/assets/images/blog/latest-post-2.png" alt=""></a>
-                                </div>
-                                <div class="latest-post-content">
-                                    <span>08 Dec 2022</span>
-                                    <h4><a href="#">Phasellus vehicula sit amet nibh vitae posuere</a></h4>
-                                    <div class="latest-post-btn">
-                                        <a href="#">Continue Reading...</a>
+                                        <a :href="articleLink(larticle.id)">Continue Reading...</a>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +80,7 @@
                     </div>
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <a href="#"><img src="~/assets/images/banner/banner-29.png" alt=""></a>
+                            <a href="#"><img src="/assets/images/banner/banner-29.png" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -106,34 +99,14 @@
             //el:'#blogSidebarApp',
             name: "blogSidebarApp",
             data: {
-                article: {},
-                articles: [
-                    //{
-                    //    id: 1,
-                    //    title: '文章 1',
-                    //    description: '接到民國手指全球最後，承諾汽車，手段經濟發展意外有所原來模型的人未經接着，我有玩家積極負責一遍開放男子利潤，治理免費都是詢問尤其一週社會主義模擬學科一場趕緊圖書的話，臺灣消失比例上一頁驚人至今新臺幣刪除等方面一路適當產權頻率，複雜那就那個還沒有，由於突出。',
-                    //    createdDate: '2022-01-01',
-                    //    modifiedAt: '2022-12-16',
-                    //},
-                    //{
-                    //    id: 2,
-                    //    title: '文章 2',
-                    //    description: '身邊本書本書職工用戶名，鈴聲付出領域心理都說施工運動競爭鈴聲下載，地面從來沒以前學者英雄動畫員工校長文學你們的承受吸收模型用戶名，領先隊員一遍打開推薦使用私人想起有一種傳來擁有，緊緊你可以婚姻超級下載次數飯店，正在夫妻，點頭材料主角需求英文，宅宅許可，近。',
-                    //    createdDate: '2022-01-02',
-                    //    modifiedAt: '2023-01-07',
-                    //},
-                    //{
-                    //    id: 3,
-                    //    title: '文章 3',
-                    //    description: '碩士試驗說過高達一家我不只好貢獻前來人大指出，以外所謂返回不良情感，帶來有點遠無門朋友提升交換，金幣前面見過拍攝紅色採取主演物業不用這次高校眼中，體會許可別人如下加速怎麼會，信用姑娘群發，競爭力程式老師博士，你還演唱生意，詳細內容日誌下去，您現在難道，供。',
-                    //    createdDate: '2022-01-03',
-                    //    modifiedAt: '2023-02-08',
-                    //}
-                ],
+                article: {},    // get article by id
+                articles: [],   // get all articles
+                categories: {},
+                lastestPosts: {},
                 articleBaseLink: "/Blog/Details/",
                 articleId: @ViewBag.ArticleId,
                 currentPage: 1,
-                countPerPage: 6,
+                countPerPage: 2,
                 aDay: "",
                 aMonth: "",
                 tags: {},
@@ -143,8 +116,8 @@
                 fetch('/api/Blog/GetMembersArticles/' + this.articleId)
                     .then(function (response) { return response.json() })
                     .then(function (result) {
-                        if (result.value.status) {
-                            //console.log("sidebar articles:", result.value);
+                        if (result.value.status === 200 || result.statusCode === 200) {
+                            //console.table("sidebar articles:", result.value);
                             self.articles = result.value;
                         } else {
                             tgm103ShowError(result.value.message)
@@ -152,6 +125,8 @@
                     })
                 //self.getTags(self.articleId)
                 //self.getArticleById(self.articleId)
+                self.getCategories()
+                self.getLastestPosts()
             },
             computed: {
                 filterArticles: function () {
@@ -161,6 +136,7 @@
                     this.max = max;
                     return this.articles.slice(min, max)
                 },
+
             },
             methods: {
                 clickCallback: function (page) {
@@ -168,6 +144,7 @@
                     console.log(page)
                 },
                 articleLink: function (id) { return "/Blog/Details/" + id },
+                memberArticlesLink: function (id) { return "/Blog/Sidebar/" + id },
                 articleDay(currentDate) {
                     var date = new Date(currentDate);
                     this.aDay = date.getDate()
@@ -187,13 +164,36 @@
                     this.articleBaseLink = "/api/Blog/GetById/",
                         axios.get(this.articleBaseLink + id)
                             .then(response => {
-                                this.article = response.data.value
+                                if (response.status === 200 && response.data.statusCode === 200)
+                                    this.article = response.data.value
                             })
                             .catch(error => { tgm103ShowError(error.response.data) })
                 },
+                getCategories: function () {
+                    axios.get('/api/Blog/CountCategories')
+                        .then(response => {
+                            if (response.status === 200 && response.data.statusCode === 200) {
+                                console.log("count categories:", response.data.value)
+                                this.categories = response.data.value
+                            }
+                        })
+                },
+                getLastestPosts: function () {
+                    axios.get('/api/Blog/GetLastestPost')
+                        .then(response => {
+                            if (response.status === 200 && response.data.statusCode === 200) {
+                                console.log("lastes posts:", response.data.value)
+                                this.lastestPosts = response.data.value
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
                 getTags: function (id) {
                     axios.get("/api/Blog/GetTagsById/" + id)
-                        .then(response => { this.tags = response.data.value })
+                        .then(response => {
+                            if (response.status === 200 && response.data.statusCode === 200)
+                                this.tags = response.data.value
+                        })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
             }
