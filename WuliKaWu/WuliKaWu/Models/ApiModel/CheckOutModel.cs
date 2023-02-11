@@ -52,11 +52,14 @@ namespace WuliKaWu.Models.ApiModel
 >>>>>>> [修改]支付方式的型態
 =======
         public decimal? SellingPrice { get; set; }
+<<<<<<< HEAD
         public GetPayType GetPayType { get; set; }
 >>>>>>> [修改]_layout 修改checkout路徑
         public decimal? Coupon { get; set; }
         public string ShippingAddress { get; set; }
         public string Recipient { get; set; }
         public string ContactPhone { get; set; }
+=======
+>>>>>>> [新增]CheckoutApiController及CheckoutDetailModel、CheckoutModel
     }
 }

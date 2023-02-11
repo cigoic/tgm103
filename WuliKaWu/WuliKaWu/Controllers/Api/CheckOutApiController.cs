@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Http;
 ﻿using Microsoft.AspNetCore.Http;
 >>>>>>> [調整]更改檔案位子至Api
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.Xml;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models.ApiModel;
@@ -127,9 +129,8 @@ namespace WuliKaWu.Controllers.Api
         //    }).ToList();
         //}
 
-        //TODO Get一個會員的所有購物車 做確認Checkout
         /// <summary>
-        /// Get一個會員的所有購物車 做確認Checkout
+        /// Get一個會員的所有購物車 確認"訂單資訊"
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
@@ -162,6 +163,54 @@ namespace WuliKaWu.Controllers.Api
                 throw;
             }
 >>>>>>> [修改]_layout 修改checkout路徑
+        }
+
+        //[HttpGet]
+        //[Authorize]
+        //public async Task<IEnumerable>
+
+        /// <summary>
+        /// Add 寄送資訊明細
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        public async Task<ApiResultModel> PostCheckOutAsync([FromBody] CheckOutDetailModel model)
+        {
+            try
+            {
+                var myId = User.Claims.GetMemberId();
+
+                Order order = new Order
+                {
+                    MemberId = myId,
+                    Recipient = model.Recipient,
+                    ContactPhone = model.ContactPhone,
+                    ShippingAddress = model.ShippingAddress,
+                    Memo = model.Memo,
+                    Coupon = model.Coupon,
+                    //Type = model.GetPayType.GetDescriptionText(),
+                };
+
+                _context.Orders.Add(order);
+                await _context.SaveChangesAsync();
+
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "Established in order"
+                };
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "Uncomplete"
+            };
         }
     }
 }

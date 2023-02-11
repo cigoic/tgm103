@@ -9,7 +9,11 @@
                 <h2>Wishlist</h2>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <ul>    
+=======
+                <ul>
+>>>>>>> [新增]CheckoutApiController及CheckoutDetailModel、CheckoutModel
                     <li><a href="/wishlist/Index">Home</a></li>
 =======
                 <ul>
@@ -69,6 +73,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                             <th class="width-price"> Price </th>                                            
 =======
                                             <th class="width-price"> Price </th>
@@ -80,10 +85,14 @@
 =======
                                             <th class="width-price">Price</th>                                                                                  
 >>>>>>> [新增]CartGetModel及WishListGetModel 的資料欄位
+=======
+                                            <th class="width-price">Price</th>
+>>>>>>> [新增]CheckoutApiController及CheckoutDetailModel、CheckoutModel
                                             <th class="width-wishlist-cart"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -110,6 +119,12 @@
 =======
                                             
 >>>>>>> [修改]_layout 修改checkout路徑
+=======
+                                        <tr v-for="product in productInThisWishList">
+                                            <td class="pro-remove">
+                                                <button type="button" v-on:click="RemoveToWishlist(product.wishlistId)"><i class=" ti-trash "></i></button>
+                                            </td>
+>>>>>>> [新增]CheckoutApiController及CheckoutDetailModel、CheckoutModel
                                             <td class="product-thumbnail">
                                                 <img class="width-thumbnail" style="width:120px" :src="product.picturePath[0]"></img>
                                             </td>
@@ -119,11 +134,12 @@
                                             <td class="product-price">
                                                 <span :class="{'old-price':product.price}">${{product.price}}</span>
                                                 <span class="new-price" v-if="product.sellingPrice">${{product.sellingPrice}}</span>
-                                            </td>   
-                                            @*加入購物車Button 尚未完成*@                                            
+                                            </td>
+                                            @*加入購物車Button 尚未完成*@
                                             <td class="wishlist-cart btn-hover">
                                                 <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </td>
+<<<<<<< HEAD
                                         </tr>                                       
 =======
                                         <tr v-for="wishlist in wishlists" :key="wishlist.WishListId">
@@ -156,6 +172,9 @@
 =======
                                         </tr>                                       
 >>>>>>> [新增]AddtToWishList Action
+=======
+                                        </tr>
+>>>>>>> [新增]CheckoutApiController及CheckoutDetailModel、CheckoutModel
                                     </tbody>
                                 </table>
                             </div>
@@ -230,12 +249,11 @@
             el: "#wishlistIndex",
             data: {
                 productInThisWishList: {
-                        wishlistId: [],
-                        product:[],                        
+                    wishlistId: [],
+                    product: [],
                 }
             },
-            mounted: function () 
-            {
+            mounted: function () {
                 var self = this;
                 fetch('/api/wishlist/GetWishList/')
                     .then(function (response) { return response.json() })
@@ -268,13 +286,12 @@
                             }
                             Swal.fire(al)
                         })
-                  },
-                RemoveToWishlist(id)
-                {
-                    console.log("RPid",id)
+                },
+                RemoveToWishlist(id) {
+                    console.log("RPid", id)
                     this.queryWishListBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
-                    fetch(this.queryWishListBaseURL,{method:"POST"})
-                        .then(function (reponse) {return response.json()})
+                    fetch(this.queryWishListBaseURL, { method: "POST" })
+                        .then(function (reponse) { return response.json() })
                         .then(function (result) {
                             alert(result);
                         })
