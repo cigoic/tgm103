@@ -16,6 +16,6 @@ namespace WuliKaWu.Models.ApiModel
         public decimal? SellingPrice { get; set; }
         public List<string> Pictures { get; set; }
         public List<int> Tags { get; set; }
-        public string Comment { get; set; }
+
     }
 }
