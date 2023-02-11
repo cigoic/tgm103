@@ -23,7 +23,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// ����Ҧ����ӫ~
+        /// 從資料庫取得所有商品資料
         /// </summary>
         /// <returns></returns>
 
@@ -46,7 +46,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// �q��Ʈw�������Id���ӫ~
+        /// 從資料庫取得對應Id的商品資料
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// �s�����Id���ӫ~�s���Ʈw
+        /// 編輯對應Id的商品
         /// </summary>
         /// <param name="id"></param>
         /// <param name="eModel"></param>
@@ -156,7 +156,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// �s�W�ӫ~���Ʈw
+        /// 新增商品到資料庫
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// �q��Ʈw�R������Id���ӫ~
+        /// 從資料庫刪除對應Id的商品
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
