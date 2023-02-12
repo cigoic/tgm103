@@ -39,6 +39,7 @@
                         <div class="shop-topbar-right">
                             <div class="shop-sorting-area">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 <select v-model="selectedItem">
                                     <option>Default Sorting</option>
                                     <option>Sort by popularity</option>
@@ -51,6 +52,13 @@
                                     <option value="3">Sort by average rating</option>
                                     <option value="4">Sort by latest</option>
 >>>>>>> 123
+=======
+                                <select id="sortBy" name="sortBy" v-model="selectedIndex">
+                                    <option value="0">----- Sort -----</option>
+                                    <option value="1">Price High => Low</option>
+                                    <option value="2">Price Low => High</option>
+                                    @*<option value="3">Sort by latest</option>*@
+>>>>>>> [修改]點擊篩選綁定完成(篩選條件更換時要刷新頁面才能再實現篩選的小bug待解決)
                                 </select>
                             </div>
                             <div class="shop-view-mode nav">
@@ -63,7 +71,7 @@
                         <div class="tab-content jump">
                             <div id="shop-1" class="tab-pane active">
                                 <div class="row">
-                                    @*商品顯示區塊*@
+                                    @*一般商品顯示區塊*@
                                     <div class="col-lg-4 col-md-4 col-sm-6 col-12" v-for="product in filterProducts">
                                         <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                             <div class="product-img img-zoom mb-25">
@@ -93,7 +101,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 @*分頁*@
                                 <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
                                     <paginate :page-count="Math.ceil(products.length/countPerPage)"
@@ -109,27 +116,23 @@
                                     </paginate>
                                 </div>
                             </div>
+                            @*右上角條列式產品顯示區塊*@
                             <div id="shop-2" class="tab-pane">
                                 <div class="shop-list-wrap mb-30" v-for="product in filterProducts">
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-5">
                                             <div class="product-list-img">
-                                                <a asp-controller="Home" asp-action="ProductDetails">
-                                                    <img src="~/assets/images/product/product-5.png" alt="Product Style">
+                                                <a :href="getProductdetailsLink(product.productId)">
+                                                    <img :src="product.pictures[0]" alt="Product Style">
                                                 </a>
                                                 <div v-if="product.discount" class="product-list-badge badge-right badge-pink">
-                                                    <span>-20%</span>
+                                                    <span>-10%</span>
                                                 </div>
-                                                @*                                                <div class="product-list-quickview">
-                                                <button class="product-action-btn-2" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="pe-7s-look"></i>
-                                                </button>
-                                                </div>*@
                                             </div>
                                         </div>
                                         <div class="col-lg-8 col-sm-7">
                                             <div class="shop-list-content">
-                                                <h3><a asp-controller="Home" asp-action="ProductDetails"><span style="color:red">{{product.productName}}</span></a></h3>
+                                                <h3><a :href="getProductdetailsLink(product.productId)">{{product.productName}}</a></h3>
                                                 <div class="product-price">
                                                     <span :class="{'old-price':product.discount}">${{product.price}}</span>
                                                     <span class="new-price" v-if="product.discount">${{product.sellingPrice}} </span>
@@ -141,11 +144,13 @@
                                                     <i class=" ti-star"></i>
                                                     <i class=" ti-star"></i>
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod tempor labor incididunt ut et dolore magna aliqua.</p>
+                                                @*<p>Lorem ipsum dolor sit amet, consectetur adipic it, sed do eiusmod tempor labor incididunt ut et dolore magna aliqua.</p>*@
+                                                <p>{{product.comment}}</p>
+                                                @*加購物車/願望清單/商品比較*@
                                                 <div class="product-list-action">
-                                                    <button class="product-action-btn-3" title="Add to cart"><i class="pe-7s-cart"></i></button>
-                                                    <button class="product-action-btn-3" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                    <button class="product-action-btn-3" title="Compare"><i class="pe-7s-shuffle"></i></button>
+                                                    <button class="product-action-btn-3" title="Add to cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i></button>
+                                                    <button class="product-action-btn-3" title="Wishlist" v-on:click="addToWishlist(product.productId)"><i class="pe-7s-like"></i></button>
+                                                    @*<button class="product-action-btn-3" title="Compare"><i class="pe-7s-shuffle"></i></button>*@
                                                 </div>
 =======
 ﻿
@@ -434,11 +439,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                @*分頁*@
                                 <div class="pagination-style-1">
-                                    @*<ul>
-                                    <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
-                                    <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-                                    </ul>*@
                                     <paginate :page-count="Math.ceil(products.length/countPerPage)"
                                               :page-range="10"
                                               :margin-pages="1"
@@ -493,7 +495,7 @@
                             </div>
                             <div class="sidebar-list-style">
                                 <ul>
-                                    <li v-for="item in optionSource.category"><a>{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
+                                    <li v-for="item in optionSource.category"><a @@click="selectedCategory=item.id">{{item.type}}<span>{{showCount('category',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -545,9 +547,9 @@
                             <div class="sidebar-widget-title mb-25">
                                 <h3>Choose Colour</h3>
                             </div>
-                            <div class="sidebar-widget-color sidebar-list-style">
+                            <div class="sidebar-list-style">
                                 <ul>
-                                    <li v-for="item in optionSource.color"><a>{{item.type}}<span>{{showCount('color',item.id)}}</span></a></li>
+                                    <li v-for="item in optionSource.color"><a @@click="selectedColor=item.id">{{item.type}}<span>{{showCount('color',item.id)}}</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -588,7 +590,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <li v-for="item in optionSource.size"><a href="#panel" @@click="selectSize(item.type)">{{item.type}} <span>{{showCount('size',item.id)}}</span></a></li>
+=======
+                                    <li v-for="item in optionSource.size"><a href="#panel" @@click="selectSize(item.id)">{{item.type}} <span>{{showCount('size',item.id)}}</span></a></li>
+>>>>>>> [修改]點擊篩選綁定完成(篩選條件更換時要刷新頁面才能再實現篩選的小bug待解決)
                                 </ul>
                             </div>
                         </div>
@@ -599,7 +605,8 @@
                                 <h3>Tags</h3>
                             </div>
                             <div class="sidebar-widget-tag">
-                                <a v-for="item in optionSource.tag">{{item.type}}</a>
+                                @*<a v-for="item in optionSource.tag" @@click="selectedTag.id">{{item.type}}</a>*@
+                                <span v-for="item in optionSource.tag"><a @@click="selectedTag=item.id">{{item.type}}</a></span>
                             </div>
                         </div>
                     </div>
@@ -704,10 +711,10 @@
             }, {});
         };
 
-
         Vue.component('paginate', VuejsPaginate);
         let app = new Vue({
             el: "#shopIndex",
+<<<<<<< HEAD
             data: {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -721,6 +728,9 @@
                     size:[],
                     category:[]
 =======
+=======
+            data: {                                   
+>>>>>>> [修改]點擊篩選綁定完成(篩選條件更換時要刷新頁面才能再實現篩選的小bug待解決)
                 optionSource: {
                     tag: [],
                     color: [],
@@ -751,7 +761,10 @@
 =======
 >>>>>>> 修改wishlist
                 selectedSize: "All",
-                selectedItem: "2",
+                selectedCategory: "All",
+                selectedColor: "All",
+                selectedTag: "All",
+                selectedIndex: 0,
                 productdetailsLink: "/Products/Productdetails/",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -781,42 +794,78 @@
                     let max = this.countPerPage * this.currentPage;
                     this.min = min;
                     this.max = max;
-                    console.log("min",min);
-                    console.log("max",max);
-                    console.log("page",this.currentPage)
+                    //console.log("min", min);
+                    //console.log("max", max);
+                    //console.log("page", this.currentPage)
 
                     return this.selectedItemStyle.slice(min, max)
                 },
                 selectedItemStyle: function () {
-                    var self = this;
-                    var temp = this.products;
+                    let temp = this.products;
+                    //console.log("start", temp);
                     if (this.searchText.length > 0) {
-                        temp = temp.filter(function (item) {
-                            return item.productName.includes(self.searchText);
-                        })
+                        temp = temp.filter(item => item.productName.includes(this.searchText));
                     }
+<<<<<<< HEAD
 =======
 </div>
 >>>>>>> Productvue (#6)
 
                     //price
+=======
+>>>>>>> [修改]點擊篩選綁定完成(篩選條件更換時要刷新頁面才能再實現篩選的小bug待解決)
                     temp = temp.filter(x => {
                         var price = x.sellingPrice == "" ? x.price : x.sellingPrice;
-                        return price >= self.priceRange.min && price <= self.priceRange.max;
+                        return price >= this.priceRange.min && price <= this.priceRange.max;
                     });
 
-                    //size
-                    if (self.selectedSize != "All") {
-                        temp = temp.filter(x => x.size == self.selectedSize);
+                    if (this.selectedSize != "All") {
+                        temp = temp.filter(x => x.size === this.selectedSize);                       
                     }
 
+                    if (this.selectedCategory != "All") {
+                        temp = temp.filter(x => x.categoryId === this.selectedCategory);
+                    }
 
+                    if (this.selectedColor != "All"){
+                        temp = temp.filter(x =>x.colors.includes(this.selectedColor));
+                    }
+
+                    if (this.selectedTag != "All"){
+                        temp = temp.filter(x => x.tags.includes(this.selectedTag));
+                    }
+
+                    if (this.selectedIndex==1) {
+                        temp = temp.sort((x, y) => {
+                            let p = x.price ;
+                            let s = y.price ;
+                            if(x.sellingPrice != null)p = x.sellingPrice;
+                            if(y.sellingPrice != null)s = y.sellingPrice;
+                            return s-p;})
+                    }
+
+                    if(this.selectedIndex==2){
+                        temp = temp.sort((x, y) => {
+                            let p = x.price;
+                            let s = y.price;
+                            if (x.sellingPrice != null) p = x.sellingPrice;
+                            if (y.sellingPrice != null) s = y.sellingPrice;
+                            return p-s;})
+                    }
+                    //console.log("end", temp);
                     return temp;
                 },
-
             },
 <<<<<<< HEAD
             methods: {
+                sortBy: function()
+                {
+                    let temp = this.products;
+                    console.log("test");
+                    console.log(this.selectedItem);
+                    return this.filterProducts();
+                },
+
                 showCount: function (type, value) {
                     if (type == "category") {
                         return this.products.filter(x => x.categoryId == value).length;
@@ -830,14 +879,12 @@
                     if (type == "size") {
                         return this.products.filter(x => x.size == value).length
                     }
-
                 },
                 selectSize: function (text) {
                     console.log(text);
                     this.selectedSize = text;
                 },
                 search: function () {
-
                 },
                 clickCallback: function (page) {
                     this.currentPage = page;
