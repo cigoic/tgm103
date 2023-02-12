@@ -50,15 +50,15 @@
                                             <td><span>{{cart.type[0]}}</span></td>
 
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
+                                                <span :class="{'old-price':cart.discount}">${{cart.price}}</span>
+                                                <span class="new-price" v-if="cart.discount">${{cart.sellingPrice}}</span>
                                             </td>
                                             <td class="cart-quality">
                                                 <input type="number" name="qtybutton" :value="cart.quantity" readonly>
                                             </td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
+                                                <span :class="{'old-price':cart.discount}">${{cart.price*cart.quantity}}</span>
+                                                <span class="new-price" v-if="cart.discount">${{cart.sellingPrice*cart.quantity}}</span>
                                             </td>
                                             <td class="product-remove">
                                                 <button type="button" v-on:click="RemoveToCart(cart.Id)"><i class=" ti-trash "></i></button>

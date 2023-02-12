@@ -33,6 +33,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 WishListId = x.WishListId,
                 ProductName = x.Product.ProductName,
+                Discount = x.Product.SellingPrice.HasValue ? true : false,
                 Price = x.Product.Price,
                 SellingPrice = (decimal)x.Product.SellingPrice,
                 PicturePath = x.Product.Pictures.Select(p => p.PicturePath).ToString(),
@@ -105,6 +106,7 @@ namespace WuliKaWu.Controllers.Api
                         MemberId = myId,
                         WishListId = x.WishListId,
                         ProductName = x.Product.ProductName,
+                        Discount = x.Product.SellingPrice.HasValue ? true : false,
                         Price = x.Product.Price,
                         SellingPrice = x.Product.SellingPrice,
                         PicturePath = x.Product.Pictures.Select(x => x.PicturePath).ToList()
