@@ -34,6 +34,7 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="myaccount-tab-menu nav" role="tablist">
                                 <a href="#dashboad" class="active" data-bs-toggle="tab">Dashboard</a>
+<<<<<<< HEAD
                                 <a href="#orders" data-bs-toggle="tab">Orders</a>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -47,6 +48,9 @@
                                 <a href="#payment-method" data-bs-toggle="tab">Payment Method</a>
                                 <a href="#address-edit" data-bs-toggle="tab">Address</a>
 =======
+=======
+                                @*<a href="#orders" data-bs-toggle="tab" hidden>Orders</a>*@
+>>>>>>> [修正] 文章首頁清單，因為日期時間轉換耗能導致顯示卡住的問題
                                 @*<a href="#download" data-bs-toggle="tab">Download</a>*@
                                 @*<a href="#payment-method" data-bs-toggle="tab">Payment Method</a>*@
                                 @*<a href="#address-edit" data-bs-toggle="tab">Address</a>*@
@@ -85,7 +89,7 @@
                                 </div>
                                 <!-- Single Tab Content End -->
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="orders" role="tabpanel">
+                                <div class="tab-pane fade" id="orders" role="tabpanel" hidden>
                                     <div class="myaccount-content">
                                         <h3>Orders</h3>
                                         <div class="myaccount-table table-responsive text-center">
@@ -152,7 +156,7 @@
                                 </div>
                                 <!-- Single Tab Content End -->
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="download" role="tabpanel">
+                                <div class="tab-pane fade" id="download" role="tabpanel" hidden>
                                     <div class="myaccount-content">
                                         <h3>Downloads</h3>
                                         <div class="myaccount-table table-responsive text-center">
@@ -414,6 +418,7 @@
                 })
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
         });
 
         @*$(document).ready(function () {*@
@@ -421,6 +426,9 @@
 =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             }
 >>>>>>> [更新] 會員登入功能, 調整註冊功能
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
+>>>>>>> [修正] 文章首頁清單，因為日期時間轉換耗能導致顯示卡住的問題
         document.addEventListener("DOMContentLoaded", () => {
             myAccountVue.$mount('#myAccountApp')
         })
