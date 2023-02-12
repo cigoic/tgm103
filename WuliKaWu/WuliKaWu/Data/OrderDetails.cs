@@ -39,6 +39,11 @@ namespace WuliKaWu.Data
         public string PicturePath { get; set; }
 
         /// <summary>
+        /// 商品折扣價格，可為NULL
+        /// </summary>
+        public decimal? SellingPrice { get; set; }
+
+        /// <summary>
         /// 商品價格
         /// </summary>
         public decimal Price { get; set; }
