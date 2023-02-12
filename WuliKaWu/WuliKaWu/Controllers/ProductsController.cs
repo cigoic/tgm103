@@ -136,6 +136,7 @@ namespace WuliKaWu.Controllers
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public async Task<IActionResult> ProductDetails(int id = 2)
 =======
         public async Task<IActionResult> ProductDetails(int id = 7) //TODO 預設值要修改回來(清空) 可能ProductId之後要考慮要自動編號或我們給予編號
@@ -155,6 +156,9 @@ namespace WuliKaWu.Controllers
 =======
         public async Task<IActionResult> ProductDetails(int id = 3)
 >>>>>>> [修正]ProductApiController中的GetById方法修正，並將資料庫中已刪除的資料之圖片一併刪除
+=======
+        public async Task<IActionResult> ProductDetails(int id = 1)
+>>>>>>> [修改]修改id預設值
         {
             if (id == null || _context.Products == null)
             {
