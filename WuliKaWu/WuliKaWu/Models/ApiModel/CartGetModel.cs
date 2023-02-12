@@ -10,6 +10,7 @@ namespace WuliKaWu.Models.ApiModel
         /// </summary>
         public int Id { get; set; }
 
+        public bool Discount { get; set; }
         public int ProductId { get; set; }
         public int MemberId { get; set; }
         public string ProductName { get; set; }

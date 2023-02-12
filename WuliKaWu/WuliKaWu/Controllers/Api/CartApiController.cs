@@ -251,6 +251,7 @@ namespace WuliKaWu.Controllers.Api
                         ProductName = c.Product.ProductName,
                         Quantity = c.Quantity,
                         PicturePath = c.Product.Pictures.Select(x => x.PicturePath).ToList(),
+                        Discount = c.Product.SellingPrice.HasValue ? true : false,
                         Price = c.Product.Price,
                         SellingPrice = c.Product.SellingPrice,
                         Size = c.Product.Size.GetDescriptionText(),

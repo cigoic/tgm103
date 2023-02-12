@@ -38,6 +38,7 @@ namespace WuliKaWu.Models.ApiModel
 >>>>>>> [修改]_layout 修改checkout路徑
         public int Quantity { get; set; }
         public string Size { get; set; }
+        public bool Discount { get; set; }
         public decimal Price { get; set; }
 <<<<<<< HEAD
         public string? SellingPrice { get; set; }
