@@ -92,7 +92,7 @@ namespace WuliKaWu.Controllers.Api
                     return new ApiResultModel
                     {
                         Status = true,
-                        Message = "加入成功"
+                        Message = "Added Success!!"
                     };
                 }
             }
@@ -103,7 +103,7 @@ namespace WuliKaWu.Controllers.Api
             return new ApiResultModel
             {
                 Status = false,
-                Message = "已放入收藏清單"
+                Message = "Product Is Already In WishList"
             };
         }
 
