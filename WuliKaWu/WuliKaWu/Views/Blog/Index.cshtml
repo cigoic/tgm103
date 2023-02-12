@@ -47,8 +47,8 @@
                           :next-text="'Next'"
                           :container-class="'pagination'"
                           :page-class="'page-item'">
-                    <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
-                    <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
+                    <span v-if="articles.length > 1" slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+                    <span v-if="articles.length > 1" slot="nextContent"><i class=" ti-angle-double-right "></i></span>
                 </paginate>
             </div>
 
