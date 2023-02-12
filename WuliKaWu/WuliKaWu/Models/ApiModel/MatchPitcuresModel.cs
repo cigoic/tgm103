@@ -3,6 +3,7 @@
     public class MatchPicturesModel
     {
         public int ProductId;
+        public string ProductName;
         public string PitcurePath;
     }
 
