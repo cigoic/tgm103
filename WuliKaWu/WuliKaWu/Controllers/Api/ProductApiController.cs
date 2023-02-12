@@ -124,11 +124,11 @@ namespace WuliKaWu.Controllers.Api
             {
                 data.SellingPrice = null;
             }
-            else 
+            else
             {
                 data.SellingPrice = model.SellingPrice;
             }
-            
+
             data.Tags.Clear();
             data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
 
@@ -167,7 +167,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost]
-        public bool AddProduct([FromForm] ProductAddModel data)
+        public ApiResultModel AddProduct([FromForm] ProductAddModel data)
         {
             var prd = new Product
             {
@@ -201,7 +201,11 @@ namespace WuliKaWu.Controllers.Api
             }
             _context.Products.Add(prd);
             _context.SaveChanges();
-            return true;
+            return new ApiResultModel
+            {
+                Status = true,
+                Message = "Delete Success!!"
+            };
         }
 
         /// <summary>
@@ -230,9 +234,9 @@ namespace WuliKaWu.Controllers.Api
                 _context.Products.Remove(data);
                 _context.SaveChanges();
             }
-            return new ApiResultModel 
-            { 
-                Status = true, 
+            return new ApiResultModel
+            {
+                Status = true,
                 Message = "Delete Success!!"
             };
         }
