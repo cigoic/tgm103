@@ -63,6 +63,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="wwwroot\ckfinder\userfiles\files\" />
     <Folder Include="wwwroot\images\ckeditor\" />
   </ItemGroup>
 

@@ -479,7 +479,8 @@ namespace WuliKaWu.Controllers.Api
             if (images == null || images.Count <= 0)
                 return Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
 
-            var rootPath = $@"{_env.WebRootPath}\images\ckeditor";
+            //var rootPath = $@"{_env.WebRootPath}\images\ckeditor";
+            var rootPath = $@"{_env.WebRootPath}\ckfinder\userfiles\files";
             if (!Directory.Exists(rootPath))
             {
                 Directory.CreateDirectory(rootPath);
@@ -505,8 +506,20 @@ namespace WuliKaWu.Controllers.Api
             {
                 fileName = $"{fileName}",
                 uploaded = true,
-                url = $"{filePath}"
+                url = $"https://localhost:7082/ckfinder/userfiles/files"
+                //resourceType = "Images",//"Files",
+                //currentFolder = new
+                //{
+                //    path = "/",
+                //    //url = "/images/ckeditor/",  //"/ckfinder/userfiles/files/",
+                //    url = $"{rootPath}",    //"/ckfinder/userfiles/files/",
+                //    acl = 255
+                //},
+                //fileName = $"{fileName}",
+                //uploaded = true
             });
+
+            //return Results.Ok();
         }
     }
 <<<<<<< HEAD

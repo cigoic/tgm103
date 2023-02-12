@@ -15,7 +15,9 @@ using System.Text;
 >>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
 
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 using WuliKaWu.Models;
+using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
 {
@@ -167,6 +169,22 @@ namespace WuliKaWu.Controllers.Api
                 throw;
             }
         }
+<<<<<<< HEAD
 >>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
+=======
+
+        public IResult GetUerInfo()
+        {
+            var mId = User.Claims.GetMemberId();
+            if (mId == 0) return Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
+
+            return _context.Members.Where(m => m.MemberId == mId).Select(m => new MemberInfoModel
+            {
+                Name = m.Name,
+            }) is MemberInfoModel userInfo
+             ? Results.Ok(userInfo)
+             : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
+        }
+>>>>>>> [更新] 第一版修正部落格文章 CK Editor 上傳圖片問題
     }
 }

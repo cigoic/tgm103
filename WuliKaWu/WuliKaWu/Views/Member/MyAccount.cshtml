@@ -306,57 +306,53 @@
     {
     <script>
 
-        const myAccountDetailUrl = @Url.Action("MyAccount")
-            let myAccountVue = new Vue({
-                //el:'#myAccountApp',
-                name: "myAccountApp",
-                data: {
-                    firstName: "",
-                    lastName: "",
-                    displayName: "",
-                    email: "",
-                    currentPwd: "",
-                    newPwd: "",
-                    confirmPwd: "",
-                },
-                mounted: function () {
-                    //console.log("hi~~Vue~~")
-                },
-                methods: {
-        @* TODO: Form Valiadation *@
-                handleSubmit(){
-                //let request = {}
-
-                //request.FirstName = this.firstName,
-                //request.LastName = this.lastName,
-                //request.DisplayName = this.displayName,
-                //request.Email = this.email,
-                //request.CurrentPwd = this.currentPwd,
-                //request.NewPwd = this.newPwd,
-                //request.ConfirmPwd = this.confirmPwd
-
-                $.post(myAccountDetailUrl, {
-                    FirstName: this.firstName,
-                    LastName: this.lastName,
-                    DisplayName: this.displayName,
-                    Email: this.email,
-                    CurrentPwd: this.currentPwd,
-                    NewPwd: this.newPwd,
-                    ConfirmPwd: this.confirmPwd
-                }).then(response => {
-                    //console.log("Done!")
-                    //console.log("First Name:", this.firstName)
-                    //console.log("Last Name:", this.lastName)
-                    //console.log("Display Name:", this.displayName)
-                    //console.log("Email:", this.email)
-                    //console.log("Current Password:", this.currentPwd)
-                    //console.log("New Password:", this.newPwd)
-                    //console.log("Confirmed Password:", this.confirmPwd)
-
-        @* Reset Form *@
+        //const myAccountDetailUrl = @Url.Action("MyAccount")
+        let myAccountVue = new Vue({
+            //el:'#myAccountApp',
+            name: "myAccountApp",
+            data: {
+                firstName: "",
+                lastName: "",
+                displayName: "",
+                email: "",
+                currentPwd: "",
+                newPwd: "",
+                confirmPwd: "",
+                myAccountDetailUrl: "/Member/MyAccount",
+                userinfo: [],
+            },
+            created() {
+                this.getUserInfo()
+            },
+            methods: {
+                handleSubmit: function () {
+                    axios.post(this.myAccountDetailUrl, {
+                        FirstName: this.firstName,
+                        LastName: this.lastName,
+                        DisplayName: this.displayName,
+                        Email: this.email,
+                        CurrentPwd: this.currentPwd,
+                        NewPwd: this.newPwd,
+                        ConfirmPwd: this.confirmPwd
+                    }).then(response => {
+                        console.log(response)
                         document.getElementById('myAccountForm').reset()
-                })
+                    })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getUserInfo: async function () {
+                    await axios('/api/Member/GetUerInfo')
+                        .then(response => {
+                            console.log("at created, response:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.userinfo = response.data.value
+                                console.log("userinfo:", this.userinfo)
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
+                },
             }
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             }
 =======
 
@@ -429,6 +425,9 @@
 =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }
 >>>>>>> [修正] 文章首頁清單，因為日期時間轉換耗能導致顯示卡住的問題
+=======
+        })
+>>>>>>> [更新] 第一版修正部落格文章 CK Editor 上傳圖片問題
         document.addEventListener("DOMContentLoaded", () => {
             myAccountVue.$mount('#myAccountApp')
         })

@@ -53,11 +53,12 @@
                 getArticleFrom: "/api/Blog/GetArticleById/",
                 postBaseUrl: "/api/Blog/Edit/",
                 article: {},
+                articleId: @ViewBag.ArticleId,
             },
             mounted: function () {
                 let self = this
                 self.getArticleFrom = self.getArticleFrom
-                axios.get(self.getArticleFrom, @ViewBag.ArticleId)
+                axios.get(self.getArticleFrom, this.articleId)
                     .then(response => { console.log("成功取文:", response.data) })
                     .catch(error => { tgm103ShowError(error.response.data.message) })
             },
