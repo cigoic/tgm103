@@ -191,7 +191,6 @@ namespace WuliKaWu.Controllers.Api
                 Tags = tagsViewModel,
                 Comment = data.Comment
             };
-
             return model;
         }
 
@@ -212,11 +211,18 @@ namespace WuliKaWu.Controllers.Api
             data.Colors.Clear();
             data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
             data.Size = model.Size;
-            data.CategoryId = model.CategoryId;
+            data.CategoryId = model.CategoryName;
             data.Price = model.Price;
-
-            //TODO sellingprice ���Ӭ�null �s��ɨS����ʤ��Onull���ܷ|�X��
-            data.SellingPrice = model.SellingPrice;
+            //解決sellingPrice為null且儲存時也是null時的錯誤判斷式
+            if (model.SellingPrice == 0)
+            {
+                data.SellingPrice = null;
+            }
+            else 
+            {
+                data.SellingPrice = model.SellingPrice;
+            }
+            
             data.Tags.Clear();
             data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
 
