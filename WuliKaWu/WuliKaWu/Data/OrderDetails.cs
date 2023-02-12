@@ -84,6 +84,11 @@ namespace WuliKaWu.Data
 >>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
 
         /// <summary>
+        /// 商品折扣價格，可為NULL
+        /// </summary>
+        public decimal? SellingPrice { get; set; }
+
+        /// <summary>
         /// 商品價格
         /// </summary>
         public decimal Price { get; set; }
