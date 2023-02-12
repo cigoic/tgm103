@@ -104,14 +104,13 @@
                                             <div class="product-badge badge-top badge-right badge-pink">
                                                 <span v-if="cItem.sellingPrice">-{{ discount(cItem.price, cItem.sellingPrice) }}%</span>
                                             </div>
+                                            @*加入願望清單按鈕*@
                                             <div class="product-action-wrap">
-                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    <i class="pe-7s-look"></i>
-                                                </button>
+                                                <button class="product-action-btn-1" title="Wishlist" v-on:click="addToWishlist(cItem.productId)"><i class="pe-7s-like"></i></button>
                                             </div>
+                                            @*加入購物車按鈕*@
                                             <div class="product-action-2-wrap">
-                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                                <button class="product-action-btn-2" title="Add To Cart" v-on:click="addToCart(cItem.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </div>
                                         </div>
                                         <div class="product-content">
@@ -138,14 +137,13 @@
                                             <div class="product-badge badge-top badge-right badge-pink">
                                                 <span v-if="nItem.sellingPrice">-{{ discount(nItem.price, nItem.sellingPrice) }}%</span>
                                             </div>
+                                            @*加入願望清單按鈕*@
                                             <div class="product-action-wrap">
-                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    <i class="pe-7s-look"></i>
-                                                </button>
+                                                <button class="product-action-btn-1" title="Wishlist" v-on:click="addToWishlist(nItem.productId)"><i class="pe-7s-like"></i></button>
                                             </div>
+                                            @*加入購物車按鈕*@
                                             <div class="product-action-2-wrap">
-                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                                <button class="product-action-btn-2" title="Add To Cart" v-on:click="addToCart(nItem.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </div>
                                         </div>
                                         <div class="product-content">
@@ -172,14 +170,13 @@
                                             <div class="product-badge badge-top badge-right badge-pink">
                                                 <span v-if="tItem.sellingPrice">-{{ discount(tItem.price, tItem.sellingPrice) }}%</span>
                                             </div>
+                                            @*加入願望清單按鈕*@
                                             <div class="product-action-wrap">
-                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    <i class="pe-7s-look"></i>
-                                                </button>
+                                                <button class="product-action-btn-1" title="Wishlist" v-on:click="addToWishlist(tItem.productId)"><i class="pe-7s-like"></i></button>
                                             </div>
+                                            @*加入購物車按鈕*@
                                             <div class="product-action-2-wrap">
-                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                                <button class="product-action-btn-2" title="Add To Cart" v-on:click="addToCart(tItem.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </div>
                                         </div>
                                         <div class="product-content">
@@ -206,14 +203,13 @@
                                             <div class="product-badge badge-top badge-right badge-pink">
                                                 <span v-if="sItem.sellingPrice">-{{ discount(sItem.price, sItem.sellingPrice) }}%</span>
                                             </div>
+                                            @*加入願望清單按鈕*@
                                             <div class="product-action-wrap">
-                                                <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    <i class="pe-7s-look"></i>
-                                                </button>
+                                                <button class="product-action-btn-1" title="Wishlist" v-on:click="addToWishlist(sItem.productId)"><i class="pe-7s-like"></i></button>
                                             </div>
+                                            @*加入購物車按鈕*@
                                             <div class="product-action-2-wrap">
-                                                <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                                <button class="product-action-btn-2" title="Add To Cart" v-on:click="addToCart(sItem.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </div>
                                         </div>
                                         <div class="product-content">
@@ -566,6 +562,7 @@
                 limit: 3,
                 aDay: "",
                 aMonth: "",
+                
             },
             mounted: function () {
                 let self = this
@@ -643,6 +640,55 @@
                     return date.toLocaleString('default', { month: 'short' })
                     //return this.aMonth
                 },
+                ///////////// Cart
+                addToCart: function (productId) {
+                    console.log("CPid:", productId)
+                    const queryCartBaseURL = '/api/cart/AddToCart/' + productId;
+                    fetch(queryCartBaseURL, { method: "POST" })
+                        .then(function (response) {
+                            console.table(response)
+                            let cartp = response
+                            return response.json()
+                        })
+                        .then(function (result) {
+                            var al = {
+                                icon: 'sucess',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
+                            }
+                            Swal.fire(al)
+                        })
+                },
+                addToWishlist: function (productId) {
+                    console.log("WPid:", productId)
+                    const queryWishlistBaseURL = '/api/wishlist/AddWishList/' + productId;
+                    fetch(queryWishlistBaseURL, { method: "POST" })
+                        .then(function (response) {
+                            console.table(response)
+                            let wresp = response
+                            return response.json()
+                        })
+                        .then(function (result) {
+                            var al = {
+                                icon: 'success',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
+                            }
+                            Swal.fire(al)
+                        })
+
+                },
+                ////////////
             },
         })
 

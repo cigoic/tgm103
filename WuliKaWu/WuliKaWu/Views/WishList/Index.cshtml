@@ -46,8 +46,8 @@
                                                 <h5><a href="/Products/ProductDetails">{{product.productName}}</a></h5>
                                             </td>
                                             <td class="product-price">
-                                                <span :class="{'old-price':product.price}">${{product.price}}</span>
-                                                <span class="new-price" v-if="product.sellingPrice">${{product.sellingPrice}}</span>
+                                                <span :class="{'old-price':product.discount}">${{product.price}}</span>
+                                                <span class="new-price" v-if="product.discount">${{product.sellingPrice}}</span>
                                             </td>
                                             @*加入購物車Button 尚未完成*@
                                             <td class="wishlist-cart btn-hover">

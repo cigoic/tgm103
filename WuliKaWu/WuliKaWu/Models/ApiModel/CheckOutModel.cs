@@ -13,6 +13,7 @@ namespace WuliKaWu.Models.ApiModel
         public List<string> Type { get; set; }
         public int Quantity { get; set; }
         public string Size { get; set; }
+        public bool Discount { get; set; }
         public decimal Price { get; set; }
         public decimal? SellingPrice { get; set; }
     }

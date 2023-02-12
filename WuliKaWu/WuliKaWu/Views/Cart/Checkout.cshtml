@@ -143,8 +143,8 @@
                                                     </td>
                                                     <td>{{checkout.size}}</td>
                                                     <td class="product-price">
-                                                        <span :class="{'old-price':checkout.price}">${{checkout.price}}</span>
-                                                        <span class="new-price" v-if="checkout.sellingPrice">${{checkout.sellingPrice}}</span>
+                                                        <span :class="{'old-price':checkout.discount}">${{checkout.price}}</span>
+                                                        <span class="new-price" v-if="checkout.discount">${{checkout.sellingPrice}}</span>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -152,12 +152,12 @@
                                     </div>
                                     <div class="your-order-info order-subtotal">
                                         <ul>
-                                            <li>Groupon <span>$329 </span></li>
+                                            <li>Groupon <span>${{totalprice*0.1}} </span></li>
                                         </ul>
                                     </div>
                                     <div class="your-order-info order-total">
                                         <ul>
-                                            <li>Total <span>$273.00 </span></li>
+                                            <li>Total <span>${{totalprice*0.9}}</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -188,8 +188,8 @@
                     ContactPhone: "",
                     Type:"",
                     Memo:""
-
                 },
+                totalprice:0,
             },
             mounted: function () {
                 var self = this;
@@ -198,6 +198,10 @@
                     .then(function (result) {
                         console.log(result);
                         self.checkoutInThisCheckOut = result;
+                        for (i = 0; i < result.length;i++){
+                            self.totalprice = self.totalprice + result[i].price
+                        }
+
                     })
 
             },

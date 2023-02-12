@@ -66,6 +66,7 @@ namespace WuliKaWu.Controllers.Api
                           Type = c.Product.Colors.Select(c => c.Type).ToList(),
                           Quantity = c.Quantity,
                           Size = c.Product.Size.GetDescriptionText(),
+                          Discount = c.Product.SellingPrice.HasValue ? true : false,
                           Price = c.Product.Price,
                           SellingPrice = c.Product.SellingPrice
                       });
