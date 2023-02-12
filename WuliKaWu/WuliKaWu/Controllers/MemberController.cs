@@ -733,7 +733,7 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <param name="MemberId"></param>
         /// <returns></returns>
-        //[Authorize]
+        [Authorize]
         public IActionResult MyAccount()
         {
             return View();
