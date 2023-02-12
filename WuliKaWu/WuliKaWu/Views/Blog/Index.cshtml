@@ -2,17 +2,17 @@
 
 
 <div class="blog-area pt-15 pb-100">
-    <div class="container">
-        <div class="row">
-            <template v-for="(article, index) in filterArticles" :key="index">
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog-wrap mb-50" data-aos="fade-up" :data-aos-delay="index * 200">
+    <template>
+        <div class="container">
+            <div class="row">
+                <div v-for="(article, index) in formattedArticles" :key="index" class="col-lg-4 col-md-6">
+                    <div class="blog-wrap mb-50" data-aos="fade-up" :data-aos-delay="200+ 200*index">
                         <div class="blog-img-date-wrap mb-25">
                             <div class="blog-img">
                                 <a href="/Blog/Details"><img src="/assets/images/blog/blog-details.png" alt=""></a>
                             </div>
                             <div class="blog-date">
-                                <h5 v-if="articleDay(article.modifiedDate)"> {{ aDay }} <span v-if="getMonthName(article.modifiedDate)">{{ aMonth }}</span></h5>
+                                <h5> {{ article.timeInDay }} <span>{{ article.timeInMonth }}</span></h5>
                             </div>
                         </div>
 
@@ -26,32 +26,34 @@
                         </div>
                     </div>
                 </div>
-            </template>
+            </div>
+
+            @*分頁*@
+            <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
+                @*<div id="loading" class="spinner-border center" role="status">
+                <span class="visually-hidden">Loading...</span>
+                </div>*@
+                @*
+                <ul>
+                <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+                <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+                </ul>
+                *@
+                <paginate :page-count="Math.ceil(articles.length/countPerPage)"
+                          :page-range="10"
+                          :margin-pages="1"
+                          :click-handler="clickCallback"
+                          :prev-text="'Prev'"
+                          :next-text="'Next'"
+                          :container-class="'pagination'"
+                          :page-class="'page-item'">
+                    <span v-if="articles.length > 1" slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+                    <span v-if="articles.length > 1" slot="nextContent"><i class=" ti-angle-double-right "></i></span>
+                </paginate>
+            </div>
+
         </div>
-
-        @*分頁*@
-        <div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
-            @*
-            <ul>
-            <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
-            <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
-            </ul>
-            *@
-
-            <paginate :page-count="Math.ceil(articles.columns.length/countPerPage)"
-                      :page-range="10"
-                      :margin-pages="1"
-                      :click-handler="clickCallback"
-                      :prev-text="'Prev'"
-                      :next-text="'Next'"
-                      :container-class="'pagination'"
-                      :page-class="'page-item'">
-                <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
-                <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
-            </paginate>
-
-        </div>
-    </div>
+    </template>
 </div>
 
 @section Scripts{
@@ -64,19 +66,28 @@
             //el:'#blogApp',
             name: "blogApp",
             data: {
-                articles: {
-                    columns: [],
-                },
+                articles: [],
+                //visibleArticles: [],
                 articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
-                countPerPage: 2,
-                aDay: "",
-                aMonth: "",
+                countPerPage: 5,
+                //currentIndex: 0,
+            },
+            created() {
+                this.getArticles()
             },
             mounted: function () {
                 var self = this;
-                self.getArticles()
-
+                //const options = {
+                //    threshold: 0.25
+                //};
+                //var load = document.getElementById("loading")
+                //var ob = new IntersectionObserver(function () {
+                //    self.currentIndex++;
+                //    self.visibleArticles.push(self.articles[self.currentIndex])
+                //    //self.getData()
+                //}, options)
+                //ob.observe(load);
             },
             computed: {
                 filterArticles: function () {
@@ -84,32 +95,35 @@
                     var max = this.countPerPage * this.currentPage;
                     this.min = min;
                     this.max = max;
-                    return this.articles.columns.slice(min, max)
+                    return this.articles.slice(min, max)
                 },
+                formattedArticles() {
+                    return this.filterArticles.map(article => {
+                        const date = new Date(article.modifiedDate);
+                        return {
+                            ...article,
+                            timeInDay: `${date.getDate()}`,
+                            timeInMonth: `${date.toLocaleString('default', { month: 'short' })}` //`${this.getMonthName(date.getMonth())}`
+                        };
+                    });
+                }
             },
             methods: {
                 clickCallback: function (page) {
                     this.currentPage = page;
                 },
-                articleLink(articleId) {
+                articleLink: function (articleId) {
                     return this.articleBaseLink + articleId
                 },
-                articleDay(currentDate) {
-                    var date = new Date(currentDate);
-                    this.aDay = date.getDate()
-                    return this.aDay
-                },
-                getMonthName(currentDate) {
-                    const date = new Date(currentDate)
-                    this.aMonth = date.toLocaleString('default', { month: 'short' })
-                    return this.aMonth
-                },
-                getArticles: function () {
-                    axios.get("/api/Blog/GetArticles")
+                getArticles: async function () {
+                    await axios.get("/api/Blog/GetArticles")
                         .then(response => {
-                            console.log("at mounted, response:", response)
-                            if (response.status == 200 && response.data.statusCode === 200)
-                                this.articles.columns = response.data.value
+                            console.log("at created, article response:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.articles = response.data.value
+                                this.visibleArticles = this.articles.slice(0, this.countPerPage);
+                                console.log("articles:", this.articles)
+                            }
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },

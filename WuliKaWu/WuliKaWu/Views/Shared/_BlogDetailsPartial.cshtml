@@ -1,7 +1,7 @@
 ﻿@*<div class="container" id="blogPartialApp" />*@
 
 <div class="row">
-    <template v-for="article in filterArticles" :key="article.id">
+    <template v-for="article in formattedArticles" :key="article.id">
         <div class="col-lg-4 col-md-6">
             <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
                 <div class="blog-img-date-wrap mb-25">
@@ -9,7 +9,7 @@
                         <a :href="articleLink(article.id)"><img src="/assets/images/blog/blog-details.png" alt=""></a>
                     </div>
                     <div class="blog-date">
-                        <h5 v-if="articleDay(article.modifiedDate)"> {{ aDay }} <span v-if="getMonthName(article.modifiedDate)">{{ aMonth }}</span></h5>
+                        <h5> {{ article.timeInDay }} <span>{{ article.timeInMonth }}</span></h5>
                     </div>
                 </div>
 
@@ -43,8 +43,8 @@
               :next-text="'Next'"
               :container-class="'pagination'"
               :page-class="'page-item'">
-        <span slot="prevContent"><i class=" ti-angle-double-left "></i></span>
-        <span slot="nextContent"><i class=" ti-angle-double-right "></i></span>
+        <span v-if="articles.length > 1" slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+        <span v-if="articles.length > 1" slot="nextContent"><i class=" ti-angle-double-right "></i></span>
     </paginate>
 
 </div>

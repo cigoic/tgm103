@@ -97,7 +97,6 @@ namespace WuliKaWu.Controllers.Api
                 Tags = tagsViewModel,
                 Comment = data.Comment
             };
-
             return model;
         }
 
@@ -118,11 +117,18 @@ namespace WuliKaWu.Controllers.Api
             data.Colors.Clear();
             data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
             data.Size = model.Size;
-            data.CategoryId = model.CategoryId;
+            data.CategoryId = model.CategoryName;
             data.Price = model.Price;
+            //解決sellingPrice為null且儲存時也是null時的錯誤判斷式
+            if (model.SellingPrice == 0)
+            {
+                data.SellingPrice = null;
+            }
+            else
+            {
+                data.SellingPrice = model.SellingPrice;
+            }
 
-            //TODO sellingprice ���Ӭ�null �s��ɨS����ʤ��Onull���ܷ|�X��
-            data.SellingPrice = model.SellingPrice;
             data.Tags.Clear();
             data.Tags = _context.Tags.Where(x => model.Tags.Any(y => y == x.Id)).ToList();
 
@@ -161,7 +167,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="data"></param>
         /// <returns></returns>
         [HttpPost]
-        public bool AddProduct([FromForm] ProductAddModel data)
+        public ApiResultModel AddProduct([FromForm] ProductAddModel data)
         {
             var prd = new Product
             {
@@ -195,7 +201,11 @@ namespace WuliKaWu.Controllers.Api
             }
             _context.Products.Add(prd);
             _context.SaveChanges();
-            return true;
+            return new ApiResultModel
+            {
+                Status = true,
+                Message = "Delete Success!!"
+            };
         }
 
         /// <summary>
@@ -224,9 +234,9 @@ namespace WuliKaWu.Controllers.Api
                 _context.Products.Remove(data);
                 _context.SaveChanges();
             }
-            return new ApiResultModel 
-            { 
-                Status = true, 
+            return new ApiResultModel
+            {
+                Status = true,
                 Message = "Delete Success!!"
             };
         }
