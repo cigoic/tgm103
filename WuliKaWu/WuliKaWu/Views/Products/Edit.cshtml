@@ -108,6 +108,7 @@
 >>>>>>> [修正]圖片選擇後援商品圖不出現以及sellingPrice null後仍是null時會發生錯誤的問題解決(但console仍有Cannot read properties of undefined (reading 'some')的問題)
                                 <div class="row">
                                     <div class="col-3" v-for="item in productFields.picturesPath">
+                                        <button :name="item" v-on:click="deletePic(event)">X</button>
                                         <img :src="item" class="w-100 img-thumbnail" alt="product picture" />
                                     </div>
                                 </div>
@@ -471,7 +472,6 @@
                     sellingPrice: "",
                     tags: [{ id: 0 }],
                     pictures: [],
-                    picturesPath: [],
                     comment: "",
                 },
 
@@ -479,6 +479,7 @@
                 picPriview: [],
                 test: [],
                 tempPic: [],
+                deletePics:[]
             },
 
             mounted() { this.getData(); },
@@ -501,7 +502,6 @@
                             self.productFields.colors = self.productFields.colors.map(x => x.id)
                             self.productFields.categoryName = self.productFields.categoryName.id
                             self.productFields.size = self.productFields.size.id
-                            self.productFields.picturesPath = self.productFields.pictures
                             self.picPriview=[]
                         })
                 },
@@ -516,6 +516,11 @@
                         });
                         reader.readAsDataURL(fileData)
                     }
+                },
+                deletePic: function(event){
+                    console.log(event.target.parentElement);
+                    event.target.parentElement.remove();
+                    this.deletePics.push(event.target)
                 },
                 GetCategoryData: function () {
                     var self = this;
