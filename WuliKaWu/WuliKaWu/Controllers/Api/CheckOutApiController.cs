@@ -176,12 +176,11 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public async Task<ApiResultModel> PostCheckOutAsync([FromBody] CheckOutDetailModel model)
+        public async Task<ApiResultModel> PostCheckOutAsync([FromForm] CheckOutDetailModel model)
         {
             try
             {
                 var myId = User.Claims.GetMemberId();
-
                 Order order = new Order
                 {
                     MemberId = myId,
@@ -189,8 +188,11 @@ namespace WuliKaWu.Controllers.Api
                     ContactPhone = model.ContactPhone,
                     ShippingAddress = model.ShippingAddress,
                     Memo = model.Memo,
-                    Coupon = model.Coupon,
+                    //Coupon = model.Coupon,
                     //Type = model.GetPayType.GetDescriptionText(),
+                    OrderDate = DateTime.UtcNow,
+                    ShippingDate = DateTime.UtcNow.AddDays(7),
+                    //Status= ,
                 };
 
                 _context.Orders.Add(order);
@@ -206,11 +208,13 @@ namespace WuliKaWu.Controllers.Api
             {
                 throw;
             }
-            return new ApiResultModel
-            {
-                Status = false,
-                Message = "Uncomplete"
-            };
+
+            //if(Status != ture)
+            ////return new ApiResultModel
+            //{
+            //    Status = false,
+            //    Message = "Uncomplete"
+            //};
         }
     }
 }
