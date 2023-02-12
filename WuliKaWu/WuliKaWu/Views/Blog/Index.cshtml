@@ -22,6 +22,8 @@
 
                             <div class="blog-btn-2 btn-hover">
                                 <a class="btn hover-border-radius theme-color" :href="articleLink(article.id)">Read More</a>
+                                <a class="btn btn-primary hover-border-radius theme-color" :href="linkToEdit(article.id)">Edit</a>
+                                <a class="btn btn-danger hover-border-radius theme-color" :href="linkToDel(article.id)">Del</a>
                             </div>
                         </div>
                     </div>
@@ -114,6 +116,14 @@
                 },
                 articleLink: function (articleId) {
                     return this.articleBaseLink + articleId
+                },
+                linkToEdit: function (id) {
+                    const queryEditBaseLink = "/Blog/Edit/" + id
+                    return queryEditBaseLink
+                },
+                linkToDel: function (id) {
+                    const queryDelBaseLink = "/Blog/Delete/" + id
+                    return queryDelBaseLink
                 },
                 getArticles: async function () {
                     await axios.get("/api/Blog/GetArticles")

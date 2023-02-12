@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -151,17 +152,29 @@ namespace WuliKaWu.Controllers.Api
             }
         }
 
+        [Authorize]
         public IResult GetUerInfo()
         {
             var mId = User.Claims.GetMemberId();
             if (mId == 0) return Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
 
-            return _context.Members.Where(m => m.MemberId == mId).Select(m => new MemberInfoModel
+            var member = _context.Members
+                .FirstOrDefault(m => m.MemberId == mId);
+
+            return new MemberInfoModel
             {
-                Name = m.Name,
-            }) is MemberInfoModel userInfo
-             ? Results.Ok(userInfo)
-             : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
+                Name = member.Name,
+                //Gender = m.Gender,
+                //MemberShip = m.MemberShip,
+                //Email = m.Email,
+                //Birthday = m.Birthday,
+                //Address = m.Address,
+                //PhoneNumber = m.PhoneNumber,
+                //MobilePhone = m.MobilePhone,
+                //Role = m.Roles.Single().Type,
+            } is MemberInfoModel userInfo
+                ? Results.Ok(userInfo)
+                : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
         }
     }
 }
