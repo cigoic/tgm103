@@ -86,6 +86,7 @@
 
     img {
         object-fit: cover;
+        margin-top: 30px;
     }
 
     #canvas {
@@ -93,6 +94,52 @@
         width: 40vw;
         height: 40vw;
         background-color: #2f3f50;
+    }
+
+    .button {
+        border-top: 1px solid #d1c592;
+        background: #9c9880;
+        background: -webkit-gradient(linear, left top, left bottom, from(#8f855a), to(#9c9880));
+        background: -moz-linear-gradient(top, #8f855a, #9c9880);
+        padding: 5.5px 11px;
+        -webkit-border-radius: 9px;
+        -moz-border-radius: 9px;
+        border-radius: 9px;
+        -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        box-shadow: rgba(0,0,0,1) 0 1px 0;
+        text-shadow: rgba(0,0,0,.4) 0 1px 0;
+        color: white;
+        font-size: 11px;
+        font-family: 'Arial Black', Gadget, sans-serif;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+        .button:hover {
+            border-top-color: #7d876a;
+            background: #7d876a;
+            color: #b3b1b8;
+        }
+
+        .button:active {
+            border-top-color: #ffffff;
+            background: #ffffff;
+        }
+
+.font{
+        font-size: 81.25%;
+        font-style: normal;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 500;
+        font-variant: normal;
+        color: #000000;
+        letter-spacing: 6.25%;
+        text-align: center;
+        background: #fffcfc;
+        /*padding: 31.25%;*/
+        text-shadow: none;
     }
 </style>
 
@@ -127,10 +174,10 @@
     <div class="col-8" style="height:80vh ; background-color: #F5F5F5; position: relative;">
 >>>>>>> [更新]商品新增檢視頁面的圖片預覽及修改Match檢視中的圖片區塊色彩
         <template v-for="item in show">
-            <vue-drag-resize :ref="'test'+item.id" :parent-limitation="true" :aspectRatio="false"
-                             :isActive="true" v-on:resizing="resize" v-on:dragging="resize" v-on:activated="onActivated('test'+item.id)"
-                             v-on:clicked="onActivated('test'+item.id)">
-                <img :src="item.path" style="width:100% ;">
+            <vue-drag-resize :ref="'test'+item.ProductId" :parent-limitation="true" :aspectRatio="false"
+                             :isActive="true" v-on:resizing="resize" v-on:dragging="resize" v-on:activated="onActivated('test'+item.ProductId)"
+                             v-on:clicked="onActivated('test'+item.ProductId)">
+                <img :src="item.PitcurePath" style="width:100% ;">
             </vue-drag-resize>
         </template>
 
@@ -184,6 +231,7 @@
                         type="button" role="tab" aria-controls="contact" aria-selected="false">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     coat
 =======
                     褲子
@@ -191,6 +239,9 @@
 =======
                     coat
 >>>>>>> [更新]Layout中的Match連結及Product的Match檢視頁面切版調整
+=======
+                    dress
+>>>>>>> [修改]將寫死的圖改為商品圖做連動並調整文字和按鍵樣式
                 </button>
             </li>
         </ul>
@@ -199,9 +250,9 @@
                 <div class="row">
                     <div class="card col-4" v-for="item in parts.TopsPartsList">
                         <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.ProductId}}</h5>
-                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        <div class="card-body" align="center">
+                            <h5 class="card-title font">{{item.ProductName}}</h5>
+                            <button class="button" v-on:click="add(item)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -210,9 +261,9 @@
                 <div class="row">
                     <div class="card col-4" v-for="item in parts.BottomPartsList">
                         <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.ProductId}}</h5>
-                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        <div class="card-body" align="center">
+                            <h5 class="card-title font">{{item.ProductName}}</h5>
+                            <button class="button" v-on:click="add(item)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -221,9 +272,9 @@
                 <div class="row">
                     <div class="card col-4" v-for="item in parts.CoatPartsList">
                         <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.ProductId}}</h5>
-                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        <div class="card-body" align="center">
+                            <h5 class="card-title font">{{item.ProductName}}</h5>
+                            <button class="button" v-on:click="add(item)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -232,9 +283,9 @@
                 <div class="row">
                     <div class="card col-4" v-for="item in parts.DressPartsList">
                         <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.ProductId}}</h5>
-                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        <div class="card-body" align="center">
+                            <h5 class="card-title font">{{item.ProductName}}</h5>
+                            <button class="button" v-on:click="add(item)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -257,20 +308,6 @@
                 VueDragResize,
             },
             data: {
-                list: {
-                    t1: [
-                        { id: 1, path: "https://picsum.photos/100/100/?short=10" },
-                        { id: 2, path: "https://picsum.photos/100/100/?short=11" },
-                        { id: 3, path: "https://picsum.photos/100/100/?short=12" }],
-                    t2: [
-                        { id: 4, path: "https://picsum.photos/100/100/?short=13" },
-                        { id: 5, path: "https://picsum.photos/100/100/?short=14" },
-                        { id: 6, path: "https://picsum.photos/100/100/?short=15" }],
-                    t3: [
-                        { id: 7, path: "https://picsum.photos/100/100/?short=16" },
-                        { id: 8, path: "https://picsum.photos/100/100/?short=17" },
-                        { id: 9, path: "https://picsum.photos/100/100/?short=18" }]
-                },
                 parts: null,
                 show: [],
                 width: 0,
@@ -310,7 +347,6 @@
                         }).catch(err => console.log(err))
                 }
             }
-
 
         })
     </script>
