@@ -115,55 +115,14 @@ namespace WuliKaWu.Controllers
         }
 
         // GET: Blog/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _context.Articles == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == 0) RedirectToAction("Index");
 
-        //    var article = await _context.Articles.FindAsync(id);
-        //    if (article == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(article);
-        //}
+            ViewBag.ArticleId = id;
+            return View();
+        }
 
-        // POST: Blog/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,MemberId,CreatedDate,ModifiedDate,Title,Content")] Article article)
-        //{
-        //    if (id != article.Id)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(article);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ArticleExists(article.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(article);
-        //}
 
         // GET: Blog/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -179,7 +138,7 @@ namespace WuliKaWu.Controllers
                 return NotFound();
             }
 
-            return View(article);
+            return View();
         }
 
         // POST: Blog/Delete/5
@@ -201,10 +160,7 @@ namespace WuliKaWu.Controllers
         //    return RedirectToAction(nameof(Index));
         //}
 
-        //private bool ArticleExists(int id)
-        //{
-        //    return _context.Articles.Any(e => e.Id == id);
-        //}
+
 
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
