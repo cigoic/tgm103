@@ -652,14 +652,14 @@
                         })
                         .then(function (result) {
                             var al = {
-                                icon: 'sucess',
-                                title: '成功',
+                                icon: 'success',
+                                title: 'Added Success',
                                 text: result.message,
                                 timer: 2000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "失敗";
+                                al.title = "Added Failed!!";
                             }
                             Swal.fire(al)
                         })
@@ -676,13 +676,13 @@
                         .then(function (result) {
                             var al = {
                                 icon: 'success',
-                                title: '成功',
+                                title: 'Added Success!!',
                                 text: result.message,
                                 timer: 2000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "失敗";
+                                al.title = "Added Failed!!";
                             }
                             Swal.fire(al)
                         })
