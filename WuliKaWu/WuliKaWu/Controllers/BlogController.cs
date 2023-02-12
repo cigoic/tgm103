@@ -114,7 +114,7 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // GET: Blog/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == 0) RedirectToAction("Index");
@@ -123,8 +123,7 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-
-        // GET: Blog/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Articles == null)

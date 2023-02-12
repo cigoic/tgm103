@@ -315,9 +315,6 @@ namespace WuliKaWu.Controllers.Api
         [Authorize]
         public async Task<IResult> GetEditArticleById(int ArticleId)
         {
-            int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
-            int nextId = GetNextArticleId(ArticleId);
-
             var article = await _context.Articles
                 .Include(a => a.ArticleTitleImage)
                 .Include(a => a.ArticleContentImages)
@@ -329,6 +326,7 @@ namespace WuliKaWu.Controllers.Api
             var model = new ArticleEditModel
             {
                 Id = ArticleId,
+                MemberId = article.MemberId,
                 MemberName = _context.Members.Find(article.MemberId).Name,
                 Title = article.Title,
                 Content = article.Content,
@@ -348,11 +346,12 @@ namespace WuliKaWu.Controllers.Api
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Edit(ArticleEditModel model)
+        [ActionName("Edit")]
+        public async Task<IResult> EditAsync([FromForm] ArticleUpdateModel model)
         {
-            if (model.Id <= 0)
+            if (model.ArticleId <= 0)
             {
-                return NotFound();
+                return Results.NotFound(new { Status = false, Message = "無法編輯" });
             }
 
             if (ModelState.IsValid)
@@ -361,20 +360,21 @@ namespace WuliKaWu.Controllers.Api
                 {
                     int maxLength = 64;
 
-                    var article = _context.Articles.FirstOrDefault(a => a.Id == model.Id);
+                    var article = _context.Articles.FirstOrDefault(a => a.Id == model.ArticleId);
 
                     if (article.MemberId != model.MemberId)
-                        return NotFound();
+                        return Results.NotFound(new { Status = false, Message = "非此篇作者，無法編輯" });
 
                     article.Title = model.Title;
                     article.Content = model.Content;
                     article.Description = model.Content.Length <= maxLength
                         ? model.Content : model.Content.Substring(0, maxLength) + "...";
-                    article.ModifiedDate = model.ModifiedDate;
+                    article.ModifiedDate = DateTime.UtcNow;
                     article.CategoryId = model.CategoryId;
 
                     // TODO:    save pics
-                    //PicturePath = new List<string> {
+                    //article.ArticleTitleImage.PicturePath = string.Empty;
+                    //new List<string> {
                     //    article.ArticleTitleImage.PicturePath,
                     //    //contentImgs
                     //},
@@ -384,18 +384,18 @@ namespace WuliKaWu.Controllers.Api
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ArticleExists(model.Id))
+                    if (!ArticleExists(model.ArticleId))
                     {
-                        return NotFound();
+                        return Results.NotFound(new { Status = false, Message = "文章不存在，無法更新" });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), "Blog");
+                return Results.Ok(new { Status = true, Message = "文章修改，更新成功" });
             }
-            return RedirectToAction(nameof(Edit), "Blog", model.Id);
+            return Results.NotFound(new { Status = true, Message = "請再試一次！" });
         }
 
         private bool ArticleExists(int id)

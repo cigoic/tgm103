@@ -6,23 +6,23 @@
 <hr />
 <div class="row">
     <div class="col-sm-12 col-md-12 col-12">
-        <input type="hidden" for="Id" v-model="article.id" />
-        <input type="hidden" for="MemberId" v-model="article.memberId" />
+        <input type="hidden" id="ArticleId" name="ArticleId" v-model="articleId" />
+        <input type="hidden" id="MemberId" name="MemberId" v-model="memberId" />
         <div class="form-group">
             <label for="MemberName" class="control-label">作者</label>
-            <input for="MemberName" class="form-control" type="text" v-model="article.memberName" readonly />
+            <input id="MemberName" name="MemberName" class="form-control" v-model="memberName" readonly />
         </div>
         <div class="form-group">
             <label for="Title" class="control-label">標題</label>
-            <input for="Title" class="form-control" type="text" v-model="article.title" />
+            <input id="Title" name="Title" class="form-control" v-model="title" />
         </div>
         <div class="form-group">
             <label for="CreatedDate" class="control-label"></label>
-            <input id="CreatedDate" class="form-control" v-model="article.createdDate" readonly />
+            <input id="CreatedDate" class="form-control" v-model="createdDate" readonly />
         </div>
         <div class="form-group">
             <label for="ModifiedDate" class="control-label"></label>
-            <input id="ModifiedDate" class="form-control" v-model="article.modifiedDate" readonly />
+            <input id="ModifiedDate" class="form-control" v-model="modifiedDate" readonly />
         </div>
         <div class="form-group">
             <textarea id="ck" v-model="content"></textarea>
@@ -30,8 +30,8 @@
         <template>
             <div class="form-group">
                 <label for="CategoryId" class="control-label">文章分類</label>
-                <select v-model="selectedOption" class="form-control">
-                    <option :value="article.categoryId">Make a Choice...Current: ({{ showSelectOpts(article.categoryId) }})</option>
+                <select v-model="selectedOption" id="CategoryId" name="CategoryId" class="form-control">
+                    <option value="">Make a Choice...Current: ({{ showSelectOpts(article.categoryId) }})</option>
                     <option v-for="option in options" :key="option.value" :value="option.value">
                         {{ option.text }}
                     </option>
@@ -40,7 +40,7 @@
         </template>
         <div class="form-group">
             <button type="button" v-if="isEditable" @@click.prevent="handleSubmit" class="btn btn-primary">修改</button>
-            <button v-if="!isEditable">返回</button>
+            <button v-if="!isEditable" class="btn btn-secondary">返回</button>
         </div>
     </div>
 </div>
@@ -64,14 +64,19 @@
                     { text: 'Our Blog', value: 4 },
                 ],
                 postBaseUrl: "/api/Blog/Edit/",
-                article: [],
+                article: {},
                 articleId: 0,
+                memberId: 0,
+                memberName: "",
+                title: "",
+                createdDate: "",
+                modifiedDate: "",
+                categoryId: 0,
                 content: "",
                 editor: null,
                 isEditable: true,
             },
             computed: {
-
             },
             mounted: function () {
 
@@ -96,9 +101,9 @@
                 this.articleId = @ViewBag.ArticleId;
                 this.getContent(this.articleId)
             },
-            beforeDestroy() {
-                self.editor.destroy();
-            },
+            //beforeDestroy() {
+            //    self.editor.destroy();
+            //},
             methods: {
                 showSelectOpts: function (type) {
                     if (type == 1) return "Uncategorized"
@@ -106,18 +111,22 @@
                     if (type == 3) return "Latest Blog"
                     if (type == 4) return "Our Blog"
                 },
+
                 handleSubmit: async function () {
                     let self = this;
-                    self.content = self.editor.getData();
+                    console.log("article:", self.article)
                     self.title = self.title
-                    self.selectedOption = self.selectedOption
-                    console.log("...title:", self.title)
-                    console.log("...catg:", self.selectedOption)
+                    self.content = self.editor.getData();
+                    if (self.selectedOption == "") {
+                        self.selectedOption = self.categoryId
+                    }
 
                     let form = new FormData();
+                    form.append("ArticleId", self.articleId)
+                    form.append("MemberId", self.memberId)
                     form.append("Title", self.title);
-                    form.append("CategoryId", self.selectedOption)
                     form.append("Content", self.content);
+                    form.append("CategoryId", self.selectedOption)
 
                     try {
                         await axios.post('/api/Blog/Edit', form, {
@@ -125,8 +134,8 @@
                         })
                             .then(response => {
                                 console.table("成功編輯：", response);
-                                //tgm103ShowSuccess(response.data.uploaded)
                                 self.isEditable = false
+                                tgm103ShowSuccess(response.status)
                             })
                             .catch(error => { tgm103ShowError(error.response.message) })
                     } catch (error) {
@@ -142,6 +151,13 @@
                             if (response.status == 200 && response.data.statusCode === 200) {
                                 self.article = response.data.value
                                 self.editor.setData(self.article.content) //顯示文章內容
+                                self.title = self.article.title
+                                self.categoryId = self.article.categoryId
+                                self.articleId = self.article.id
+                                self.memberId = self.article.memberId
+                                self.memberName = self.article.memberName
+                                self.createdDate = self.article.createdDate
+                                self.modifiedDate = self.article.modifiedDate
                                 console.log("article:", self.article)
                             }
                         })
