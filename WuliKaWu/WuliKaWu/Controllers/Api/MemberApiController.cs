@@ -6,7 +6,9 @@ using System.Net.Mail;
 using System.Text;
 
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 using WuliKaWu.Models;
+using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
 {
@@ -147,6 +149,19 @@ namespace WuliKaWu.Controllers.Api
             {
                 throw;
             }
+        }
+
+        public IResult GetUerInfo()
+        {
+            var mId = User.Claims.GetMemberId();
+            if (mId == 0) return Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
+
+            return _context.Members.Where(m => m.MemberId == mId).Select(m => new MemberInfoModel
+            {
+                Name = m.Name,
+            }) is MemberInfoModel userInfo
+             ? Results.Ok(userInfo)
+             : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
         }
     }
 }
