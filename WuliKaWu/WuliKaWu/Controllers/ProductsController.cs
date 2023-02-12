@@ -39,7 +39,7 @@ namespace WuliKaWu.Controllers
         { return View(); }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> ProductDetails(int id = 3)
+        public async Task<IActionResult> ProductDetails(int id = 1)
         {
             if (id == null || _context.Products == null)
             {
