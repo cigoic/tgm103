@@ -480,7 +480,7 @@ namespace WuliKaWu.Controllers.Api
                 return Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
 
             //var rootPath = $@"{_env.WebRootPath}\images\ckeditor";
-            var rootPath = $@"{_env.WebRootPath}\ckfinder\userfiles\files";
+            var rootPath = $@"/images/ckeditor";
             if (!Directory.Exists(rootPath))
             {
                 Directory.CreateDirectory(rootPath);
@@ -494,7 +494,9 @@ namespace WuliKaWu.Controllers.Api
                 //fileName = Path.GetFileName(image.FileName);
                 if (string.IsNullOrEmpty(fileName)) return Results.NotFound(new { success = false, uploaded = false });
 
-                filePath = Path.Combine(rootPath, fileName);
+                //filePath = Path.Combine(rootPath, fileName);
+                filePath = Path.Combine(
+                   Directory.GetCurrentDirectory(), "wwwroot/images/ckeditor/", fileName);
                 // TODO 將圖片位置存入資料庫！
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
@@ -502,11 +504,17 @@ namespace WuliKaWu.Controllers.Api
                 }
             }
 
+            var url = $"{"/images/ckeditor/"}{fileName}";
+
             return Results.Ok(new
             {
-                fileName = $"{fileName}",
-                uploaded = true,
-                url = $"https://localhost:7082/ckfinder/userfiles/files"
+                Uploaded = 1,
+                FileName = $"{fileName}",
+                Url = url,
+                //Error = new
+                //{
+                //    Message = "圖檔上傳失敗!"
+                //}
                 //resourceType = "Images",//"Files",
                 //currentFolder = new
                 //{
