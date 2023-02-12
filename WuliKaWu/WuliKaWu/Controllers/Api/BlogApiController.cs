@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models;
+using WuliKaWu.Models.ApiModel;
 
 namespace WuliKaWu.Controllers.Api
 {
@@ -306,6 +307,102 @@ namespace WuliKaWu.Controllers.Api
             return Results.Ok(new { Status = true, Message = "文章新增成功!" });
         }
 
+        /// <summary>
+        /// 編輯部落格文章
+        /// </summary>
+        /// <param name="ArticleId"></param>
+        /// <returns></returns>
+        [Authorize]
+        public async Task<IResult> GetEditArticleById(int ArticleId)
+        {
+            int prevId = GetPrevArticleId(ArticleId);   // 前一篇文章 ID
+            int nextId = GetNextArticleId(ArticleId);
+
+            var article = await _context.Articles
+                .Include(a => a.ArticleTitleImage)
+                .Include(a => a.ArticleContentImages)
+                .Include(a => a.Tags)
+                .FirstOrDefaultAsync(a => a.Id == ArticleId);
+
+            var contentImgs = article.ArticleContentImages.Select(a => a.PicturePath).ToList();
+
+            var model = new ArticleEditModel
+            {
+                Id = ArticleId,
+                MemberName = _context.Members.Find(article.MemberId).Name,
+                Title = article.Title,
+                Content = article.Content,
+                CreatedDate = article.CreatedDate,
+                ModifiedDate = article.ModifiedDate,
+                CategoryId = article.CategoryId,
+                //PicturePath = new List<string> {
+                //    article.ArticleTitleImage.PicturePath,
+                //    //contentImgs
+                //},
+            };
+
+            return (model != null)
+                   ? Results.Ok(model)
+                   : Results.NotFound(new { Status = false, Message = "找無此文章!" });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Edit(ArticleEditModel model)
+        {
+            if (model.Id <= 0)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    int maxLength = 64;
+
+                    var article = _context.Articles.FirstOrDefault(a => a.Id == model.Id);
+
+                    if (article.MemberId != model.MemberId)
+                        return NotFound();
+
+                    article.Title = model.Title;
+                    article.Content = model.Content;
+                    article.Description = model.Content.Length <= maxLength
+                        ? model.Content : model.Content.Substring(0, maxLength) + "...";
+                    article.ModifiedDate = model.ModifiedDate;
+                    article.CategoryId = model.CategoryId;
+
+                    // TODO:    save pics
+                    //PicturePath = new List<string> {
+                    //    article.ArticleTitleImage.PicturePath,
+                    //    //contentImgs
+                    //},
+
+                    _context.Update(article);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ArticleExists(model.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index), "Blog");
+            }
+            return RedirectToAction(nameof(Edit), "Blog", model.Id);
+        }
+
+        private bool ArticleExists(int id)
+        {
+            return _context.Articles.Any(e => e.Id == id);
+        }
+
         // DELETE   api/Blog/Delete/{ArticleId}
         /// <summary>
         /// 刪除部落格文章
@@ -353,11 +450,11 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="images"></param>
         /// <returns></returns>
-        public async Task<IResult> UploadImage([FromForm] IFormCollection images)
+        public async Task<MsgBlogUploadImageModel> UploadImage([FromForm] IFormCollection images)
         //public async Task<IResult> UploadImage([FromForm] IFormFile image)
         {
             if (images == null || images.Count <= 0)
-                return Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
+                return null;//Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
 
             //var rootPath = $@"{_env.WebRootPath}\images\ckeditor";
             var rootPath = $@"/images/ckeditor";
@@ -372,7 +469,13 @@ namespace WuliKaWu.Controllers.Api
             {
                 fileName = ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"');
                 //fileName = Path.GetFileName(image.FileName);
-                if (string.IsNullOrEmpty(fileName)) return Results.NotFound(new { success = false, uploaded = false });
+                if (string.IsNullOrEmpty(fileName))
+                    return new MsgBlogUploadImageModel
+                    {
+                        Uploaded = false,
+                        FileName = "",
+                        Url = ""
+                    };
 
                 //filePath = Path.Combine(rootPath, fileName);
                 filePath = Path.Combine(
@@ -386,26 +489,12 @@ namespace WuliKaWu.Controllers.Api
 
             var url = $"{"/images/ckeditor/"}{fileName}";
 
-            return Results.Ok(new
+            return new MsgBlogUploadImageModel
             {
-                Uploaded = 1,
+                Uploaded = true,
                 FileName = $"{fileName}",
-                Url = url,
-                //Error = new
-                //{
-                //    Message = "圖檔上傳失敗!"
-                //}
-                //resourceType = "Images",//"Files",
-                //currentFolder = new
-                //{
-                //    path = "/",
-                //    //url = "/images/ckeditor/",  //"/ckfinder/userfiles/files/",
-                //    url = $"{rootPath}",    //"/ckfinder/userfiles/files/",
-                //    acl = 255
-                //},
-                //fileName = $"{fileName}",
-                //uploaded = true
-            });
+                Url = url
+            };
 
             //return Results.Ok();
         }
