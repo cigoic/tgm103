@@ -134,6 +134,7 @@
                     sellingPrice: "",
                     tags: [{ id: 0 }],
                     pictures: [],
+                    picturesPath: [],
                     comment: "",
                 },
 
@@ -164,6 +165,7 @@
                             self.productFields.colors = self.productFields.colors.map(x => x.id)
                             self.productFields.categoryName = self.productFields.categoryName.id
                             self.productFields.size = self.productFields.size.id
+                            self.productFields.picturesPath = self.productFields.pictures
                             self.picPriview=[]
                         })
                 },
@@ -180,9 +182,8 @@
                     }
                 },
                 deletePic: function(event){
-                    console.log(event.target.parentElement);
                     event.target.parentElement.remove();
-                    this.deletePics.push(event.target)
+                    this.deletePics.push(event.target.getAttribute("name"));
                 },
                 GetCategoryData: function () {
                     var self = this;
@@ -236,7 +237,7 @@
                         }
                     });
 
-                    console.log(self.productFields)
+                    form.append("deletePictures", this.deletePics)
 
                     fetch(qureyEditBaseUrl, {
                         method: "POST",

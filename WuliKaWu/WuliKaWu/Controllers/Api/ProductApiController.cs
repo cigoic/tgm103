@@ -29,7 +29,7 @@ namespace WuliKaWu.Controllers.Api
 
         public List<ProductReadModel> GetAll()
         {
-            return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
+            var model = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
             {
                 ProductName = x.ProductName,
                 CategoryId = x.CategoryId,
@@ -43,6 +43,7 @@ namespace WuliKaWu.Controllers.Api
                 Comment = x.Comment,
                 Tags = x.Tags.Select(x => x.Id).ToList()
             }).ToList();
+            return model;
         }
 
         /// <summary>
@@ -110,9 +111,8 @@ namespace WuliKaWu.Controllers.Api
         public ApiResultModel EditById([FromForm] ProductEditModel model)
         {
             //throw new NotImplementedException();
-
+            var deletePics = model.DeletePictures;
             var data = _context.Products.Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
-
             data.ProductName = model.ProductName;
             data.Colors.Clear();
             data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
@@ -150,6 +150,15 @@ namespace WuliKaWu.Controllers.Api
                 }
                 data.Pictures = picList;
             }
+
+            deletePics.ForEach(dp =>
+            {
+                var deletePic = _context.Pictures.Where(p => p.PicturePath == dp).FirstOrDefault();
+                if (deletePic != null)
+                {
+                    _context.Pictures.Remove(deletePic);
+                }
+            });
 
             _context.Products.Update(data);
             _context.SaveChanges();
@@ -265,6 +274,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 PitcurePath = x.PicturePath,
                 ProductId = x.ProductId,
+                ProductName = x.Product.ProductName
             }).ToList();
         }
     }
