@@ -188,12 +188,11 @@ namespace WuliKaWu.Controllers.Api
                     Recipient = model.Recipient,
                     ContactPhone = model.ContactPhone,
                     ShippingAddress = model.ShippingAddress,
-                    Memo = model.Memo,
-                    //Coupon = model.Coupon,
+                    Memo = model.Memo,                 
                     //Type = model.GetPayType.GetDescriptionText(),
                     OrderDate = DateTime.UtcNow,
                     ShippingDate = DateTime.UtcNow.AddDays(7),
-                    //Status= ,
+                    //Status = model.Status,
                 };
 
                 _context.Orders.Add(order);
