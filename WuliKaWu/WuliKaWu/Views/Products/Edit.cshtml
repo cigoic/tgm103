@@ -247,7 +247,8 @@
                                 text: result.message,
                                 timer: 2000
                             };
-                            if (!result.status) {
+                            //if (!result.status) {
+                            if (result.status!=true) {
                                 al.icon = "error";
                                 al.title = "Edit Save Failed!!!";
                             }
