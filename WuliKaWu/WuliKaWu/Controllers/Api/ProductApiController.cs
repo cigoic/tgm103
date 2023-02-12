@@ -51,6 +51,7 @@ namespace WuliKaWu.Controllers.Api
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             return _db.Products.Select(x => new ProductModel
             {
                 ProductName = x.ProductName,
@@ -123,6 +124,9 @@ namespace WuliKaWu.Controllers.Api
 =======
             return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
 >>>>>>> [修正]刪除不需要的Model以及更改Model名稱
+=======
+            var model = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
+>>>>>>> [更新]重新調整照片上傳的功能
             {
                 ProductName = x.ProductName,
                 CategoryId = x.CategoryId,
@@ -136,7 +140,11 @@ namespace WuliKaWu.Controllers.Api
                 Comment = x.Comment,
                 Tags = x.Tags.Select(x => x.Id).ToList()
             }).ToList();
+<<<<<<< HEAD
 >>>>>>> product index filter-category
+=======
+            return model;
+>>>>>>> [更新]重新調整照片上傳的功能
         }
 
         /// <summary>
@@ -204,9 +212,8 @@ namespace WuliKaWu.Controllers.Api
         public ApiResultModel EditById([FromForm] ProductEditModel model)
         {
             //throw new NotImplementedException();
-
+            var deletePics = model.DeletePictures;
             var data = _context.Products.Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
-
             data.ProductName = model.ProductName;
             data.Colors.Clear();
             data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
@@ -244,6 +251,15 @@ namespace WuliKaWu.Controllers.Api
                 }
                 data.Pictures = picList;
             }
+
+            deletePics.ForEach(dp =>
+            {
+                var deletePic = _context.Pictures.Where(p => p.PicturePath == dp).FirstOrDefault();
+                if (deletePic != null)
+                {
+                    _context.Pictures.Remove(deletePic);
+                }
+            });
 
             _context.Products.Update(data);
             _context.SaveChanges();
@@ -359,6 +375,7 @@ namespace WuliKaWu.Controllers.Api
             {
                 PitcurePath = x.PicturePath,
                 ProductId = x.ProductId,
+                ProductName = x.Product.ProductName
             }).ToList();
         }
     }
