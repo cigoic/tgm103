@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using NuGet.Protocol;
 using WuliKaWu.Data;
 using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
@@ -239,6 +239,33 @@ namespace WuliKaWu.Controllers.Api
                 Status = true,
                 Message = "Delete Success!!"
             };
+        }
+
+        [HttpGet]
+        public IActionResult GetMatchProducts()
+        {
+            var allProducts = _context.Pictures.Select(x => x);
+            var tops = GetMatchModels(allProducts, 1);
+            var buttons = GetMatchModels(allProducts, 2);
+            var coats = GetMatchModels(allProducts, 3);
+            var dress = GetMatchModels(allProducts, 4);
+            MatchPartPicturesModel matchPartPicturesModels = new()
+            {
+                TopsPartsList = tops,
+                BottomPartsList = buttons,
+                CoatPartsList = coats,
+                DressPartsList = dress
+            };
+            return Ok(matchPartPicturesModels.ToJson());
+        }
+
+        public List<MatchPicturesModel> GetMatchModels(IQueryable<Picture> allProducts, int categoryId)
+        {
+            return allProducts.Where(x => x.Product.CategoryId == categoryId).Select(x => new MatchPicturesModel
+            {
+                PitcurePath = x.PicturePath,
+                ProductId = x.ProductId,
+            }).ToList();
         }
     }
 }

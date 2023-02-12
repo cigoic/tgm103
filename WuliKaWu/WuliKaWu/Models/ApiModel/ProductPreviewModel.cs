@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using WuliKaWu.Data;
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Models.ApiModel

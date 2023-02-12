@@ -10,6 +10,8 @@ namespace WuliKaWu.Models.ApiModel
         public Size Size { get; set; }
         public int CategoryName { get; set; }
         public List<IFormFile>? Pictures { get; set; }
+        public List<IFormFile>? DeletePictures { get; set; }
+
         public decimal Price { get; set; }
         public decimal? SellingPrice { get; set; }
         public List<int> Tags { get; set; }

@@ -61,53 +61,70 @@
     <div class="col-4">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#top"
                         type="button" role="tab" aria-controls="home" aria-selected="true">
                     ups
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bottom"
                         type="button" role="tab" aria-controls="profile" aria-selected="false">
                     buttons
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#coat"
+                        type="button" role="tab" aria-controls="contact" aria-selected="false">
+                    coat
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#dress"
                         type="button" role="tab" aria-controls="contact" aria-selected="false">
                     coat
                 </button>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade show active" id="top" role="tabpanel" aria-labelledby="home-tab">
                 <div class="row">
-                    <div class="card col-4" v-for="item in list.t1">
-                        <img :src="item.path" class="card-img-top" style="width:100% ;">
+                    <div class="card col-4" v-for="item in parts.TopsPartsList">
+                        <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
                         <div class="card-body">
-                            <h5 class="card-title">{{item.id}}</h5>
+                            <h5 class="card-title">{{item.ProductId}}</h5>
                             <button class="btn btn-primary" v-on:click="add(item)">加入</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="tab-pane fade" id="bottom" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="row">
-                    <div class="card col-4" v-for="item in list.t2">
-                        <img :src="item.path" class="card-img-top" style="width:100% ;">
+                    <div class="card col-4" v-for="item in parts.BottomPartsList">
+                        <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
                         <div class="card-body">
-                            <h5 class="card-title">{{item.id}}</h5>
+                            <h5 class="card-title">{{item.ProductId}}</h5>
                             <button class="btn btn-primary" v-on:click="add(item)">加入</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="tab-pane fade" id="coat" role="tabpanel" aria-labelledby="contact-tab">
                 <div class="row">
-                    <div class="card col-4" v-for="item in list.t3">
-                        <img :src="item.path" class="card-img-top" style="width:100% ;">
+                    <div class="card col-4" v-for="item in parts.CoatPartsList">
+                        <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
                         <div class="card-body">
-                            <h5 class="card-title">{{item.id}}</h5>
+                            <h5 class="card-title">{{item.ProductId}}</h5>
+                            <button class="btn btn-primary" v-on:click="add(item)">加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="dress" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="row">
+                    <div class="card col-4" v-for="item in parts.DressPartsList">
+                        <img :src="item.PitcurePath" class="card-img-top" style="width:100% ;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.ProductId}}</h5>
                             <button class="btn btn-primary" v-on:click="add(item)">加入</button>
                         </div>
                     </div>
@@ -145,11 +162,15 @@
                         { id: 8, path: "https://picsum.photos/100/100/?short=17" },
                         { id: 9, path: "https://picsum.photos/100/100/?short=18" }]
                 },
+                parts: null,
                 show: [],
                 width: 0,
                 height: 0,
                 top: 0,
                 left: 0,
+            },
+            created:function(){
+                this.getAllPitcures();
             },
             methods: {
                 resize(newRect) {
@@ -167,8 +188,21 @@
                 },
                 add(item) {
                     this.show.push(item)
+                },
+                getAllPitcures() {
+                    fetch("/api/product/GetMatchProducts", {
+                        method: "GET",
+                        headers: { "Content-Type": "application/json" },
+                    })
+                        .then((r) => r.json())
+                        .then((r) => {
+                            this.parts = r
+                            console.log(r)
+                        }).catch(err => console.log(err))
                 }
             }
+
+
         })
     </script>
 }
