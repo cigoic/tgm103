@@ -8,5 +8,6 @@
         public DateTime CreatedDate { get; set; }
         public string MemberName { get; set; }
         public string Category { get; set; }
+        public string TitleImage { get; set; }
     }
 }
