@@ -316,25 +316,7 @@
             beforeDestroy() {
                 self.editor.destroy();
             },
-            //watch: {
-            //    content(newValue) {
-            //        ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
-            //    },
-            //},
             methods: {
-                parseImages() {
-                    let html = this.content;
-                    let pattern = /<img[^>]+src="([^"]+)"[^>]+>/g;
-                    let matches = html.match(pattern);
-
-                    if (matches) {
-                        for (let i = 0; i < matches.length; i++) {
-                            let match = matches[i];
-                            let imageUrl = match.match(/src="([^"]+)"/)[1];
-                            console.log("2...", imageUrl);
-                        }
-                    }
-                },
                 //Create
                 handleSubmit: async function () {
                     let self = this;
@@ -344,27 +326,12 @@
                     form.append("CategoryId", self.selectedOption)
                     form.append("Content", self.content);
 
-                    // append images to formData
-                    //let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
-                    //if (images != null)
-                    //    images.forEach((image, i) => form.append(`images[${i}]`, image));
-
-                    // II
                     const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
                         .map(match => match[1]);
-                    console.log("1...images", ...images)
+                    console.log("...images", ...images)
                     if (images != null)
                         images.forEach((image, i) => form.append(`Images[${i}]`, image));
 
-                    //images.forEach(async (image, index) => {
-                    //    const response = await axios.get(image, { responseType: 'arraybuffer' });
-                    //    const buffer = new Uint8Array(response.data);
-                    //    const blob = new Blob([buffer], { type: 'image/png' });
-                    //    formData.append(`image${index}`, blob, `image${index}.png`);
-                    //});
-
-                    // III
-                    self.parseImages()
 
                     try {
                         await axios.post('/api/Blog/Create', form, {

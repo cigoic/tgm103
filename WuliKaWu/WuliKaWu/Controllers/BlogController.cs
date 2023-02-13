@@ -346,18 +346,13 @@ namespace WuliKaWu.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Articles == null)
+            if (await _context.Articles.FirstOrDefaultAsync(m => m.Id == id) is Article article)
             {
-                return NotFound();
+                ViewBag.ArticleId = id;
+                return View();
             }
 
-            var article = await _context.Articles.FirstOrDefaultAsync(m => m.Id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return View();
+            return NotFound();
         }
 
         // POST: Blog/Delete/5
@@ -378,8 +373,6 @@ namespace WuliKaWu.Controllers
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
-
-
 
         /// <summary>
         /// 找尋上一篇文章 ID, 如果找無, 回傳目前文章 ID
