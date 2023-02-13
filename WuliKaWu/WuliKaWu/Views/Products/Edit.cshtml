@@ -121,9 +121,10 @@
 =======
 >>>>>>> [修正]圖片選擇後援商品圖不出現以及sellingPrice null後仍是null時會發生錯誤的問題解決(但console仍有Cannot read properties of undefined (reading 'some')的問題)
                                 <div class="row">
-                                    <div class="col-3" v-for="item in productFields.picturesPath">
-                                        <img :src="item" class="w-100 img-thumbnail" style="position: relative; padding: 14px;" alt="product picture" />
-                                        <button class="btn-danger" style="border:none; position: absolute; top: 0; left: 0; font-size: 20px;" :name="item" v-on:click="deletePic(event)"><i class=" ti-trash "></i></button>                                        
+                                    <div class="col-3" v-for="item in productFields.picturesPath" style="position:relative">
+                                        <img :src="item" class="w-100 img-thumbnail" style="padding: 12px;" alt="product picture" />
+                                        <button class="btn-danger" style="border:none; background-color:transparent; font-size:20px; position: absolute; top: 0; left: 15px;" 
+                                        :name="item" v-on:click="deletePic(event)"><i class=" ti-trash "></i></button>
                                     </div>
                                 </div>
 >>>>>>> [更新]Edit頁面讓原商品圖片顯示出來，Delete頁面Vue有渲染出來但內容仍要調整(顏色/尺寸/分類/標籤)
