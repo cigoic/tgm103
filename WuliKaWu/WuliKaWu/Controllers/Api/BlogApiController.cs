@@ -29,6 +29,15 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
+        /// 判斷用戶是否登入
+        /// </summary>
+        /// <returns></returns>
+        public bool GetLoginStatus()
+        {
+            return User.Identity.IsAuthenticated;
+        }
+
+        /// <summary>
         /// 取得部落格文章全部清單(首頁使用)
         /// </summary>
         /// <returns></returns>
