@@ -45,6 +45,9 @@ namespace WuliKaWu.Controllers.Api
                       Title = a.Title,
                       Description = a.Description,
                       ModifiedDate = a.ModifiedDate,
+                      TitleImage = (a.ArticleTitleImage != null)
+                        ? a.ArticleTitleImage.PicturePath
+                        : $"https://picsum.photos/id/{randIdx()}/600/400",
                   })
                   is IEnumerable<ArticleDescriptionModel> articles
                   ? Results.Ok(articles)
@@ -136,6 +139,7 @@ namespace WuliKaWu.Controllers.Api
                 ? Results.Ok(picturePath)
                 : Results.NoContent();
         }
+
         private static int randIdx()
         {
             Random random = new Random();

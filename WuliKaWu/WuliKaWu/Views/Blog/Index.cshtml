@@ -9,7 +9,7 @@
                     <div class="blog-wrap mb-50" data-aos="fade-up" :data-aos-delay="200+ 200*index">
                         <div class="blog-img-date-wrap mb-25">
                             <div class="blog-img">
-                                <a href="/Blog/Details"><img src="/assets/images/blog/blog-details.png" alt=""></a>
+                                <a href="/Blog/Details"><img :src="article.titleImage" alt=""></a>
                             </div>
                             <div class="blog-date">
                                 <h5> {{ article.timeInDay }} <span>{{ article.timeInMonth }}</span></h5>
@@ -74,7 +74,6 @@
                 articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
                 countPerPage: 5,
-                isAuthorized: false,
                 //currentIndex: 0,
             },
             created() {
@@ -134,7 +133,7 @@
                             console.log("at created, article response:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
                                 this.articles = response.data.value
-                                this.visibleArticles = this.articles.slice(0, this.countPerPage);
+                                //this.visibleArticles = this.articles.slice(0, this.countPerPage);
                                 console.log("articles:", this.articles)
                             }
                         })
