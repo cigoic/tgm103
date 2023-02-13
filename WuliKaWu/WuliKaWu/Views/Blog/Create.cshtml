@@ -322,6 +322,19 @@
             //    },
             //},
             methods: {
+                parseImages() {
+                    let html = this.content;
+                    let pattern = /<img[^>]+src="([^"]+)"[^>]+>/g;
+                    let matches = html.match(pattern);
+
+                    if (matches) {
+                        for (let i = 0; i < matches.length; i++) {
+                            let match = matches[i];
+                            let imageUrl = match.match(/src="([^"]+)"/)[1];
+                            console.log("2...", imageUrl);
+                        }
+                    }
+                },
                 //Create
                 handleSubmit: async function () {
                     let self = this;
@@ -333,11 +346,15 @@
 
                     // append images to formData
                     //let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
-                    //images.forEach((image, i) => form.append(`image[${i}]`, image));
+                    //if (images != null)
+                    //    images.forEach((image, i) => form.append(`images[${i}]`, image));
 
                     // II
-                    //const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
-                    //    .map(match => match[1]);
+                    const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
+                        .map(match => match[1]);
+                    console.log("1...images", ...images)
+                    if (images != null)
+                        images.forEach((image, i) => form.append(`Images[${i}]`, image));
 
                     //images.forEach(async (image, index) => {
                     //    const response = await axios.get(image, { responseType: 'arraybuffer' });
@@ -345,6 +362,9 @@
                     //    const blob = new Blob([buffer], { type: 'image/png' });
                     //    formData.append(`image${index}`, blob, `image${index}.png`);
                     //});
+
+                    // III
+                    self.parseImages()
 
                     try {
                         await axios.post('/api/Blog/Create', form, {
@@ -355,8 +375,8 @@
                             //'Content-Type': 'application/x-www-form-urlencoded'
                         })
                             .then(response => {
-                                tgm103ShowSuccess(response.data.uploaded)
-                                //alert('Image uploaded successfully');
+                                //console.log("upload img response:", response)
+                                tgm103ShowSuccess(response.data.value.message)
                             })
                             .catch(error => { tgm103ShowError(error.response.data.message) })
                     } catch (error) {
