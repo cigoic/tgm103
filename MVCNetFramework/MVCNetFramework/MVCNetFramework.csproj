@@ -166,12 +166,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Diagrams\Article.cs" />
+    <Compile Include="Diagrams\ArticleCategory.cs" />
+    <Compile Include="Diagrams\ArticleContentImage.cs" />
+    <Compile Include="Diagrams\ArticleTitleImage.cs" />
+    <Compile Include="Diagrams\AuthorImage.cs" />
     <Compile Include="Diagrams\Cart.cs" />
     <Compile Include="Diagrams\ContactMessage.cs" />
     <Compile Include="Diagrams\Enums\Common.cs" />
     <Compile Include="Diagrams\Member.cs" />
+    <Compile Include="Diagrams\MemberRole.cs" />
     <Compile Include="Diagrams\Orders.cs" />
     <Compile Include="Diagrams\Product.cs" />
+    <Compile Include="Diagrams\ResetToken.cs" />
     <Compile Include="Diagrams\ShopContext.cs" />
     <Compile Include="Diagrams\WishList.cs" />
     <Compile Include="Global.asax.cs">
@@ -195,6 +202,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Diagrams\ClassDiagram.cd" />
+    <Content Include="Diagrams\ClassDiagram2023.cd" />
     <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
