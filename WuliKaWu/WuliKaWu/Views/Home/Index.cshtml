@@ -7,13 +7,13 @@
                 <div class="slider-active swiper-container">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="intro-section slider-height-2 slider-content-center bg-img single-animation-wrap slider-bg-color-3" style="background-image:url('@Url.Content("~/assets/images/slider/slider-bg-3.jpg")')">
+                            <div class="intro-section slider-height-2 slider-content-center bg-img single-animation-wrap slider-bg-color-3" style="background-image:url('@Url.Content("~/assets/images/slider/sideit-image.jpg")')">
                                 <div class="hm2-slider-animation">
                                     <div class="slider-content-2 slider-content-2-mrg slider-animated-3">
-                                        <h3 class="animated">Up To 40% Off</h3>
-                                        <h1 class="font-inc animated">Summer <br>Collection</h1>
+                                        <h3 class="animated" style="color:beige">Up To 40% Off</h3>
+                                        <h1 class="font-inc animated" style="color:whitesmoke">Summer <br>Collection</h1>
                                         <div class="slider-btn-2 btn-hover">
-                                            <a href="/Products" class="btn hover-border-radius theme-color animated">
+                                            <a href="/Products" class="btn hover-border-radius theme-color animated" style="color:beige;border-color:beige;">
                                                 Shop Now
                                             </a>
                                         </div>
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="intro-section slider-height-2 slider-content-center bg-img single-animation-wrap slider-bg-color-3" style="background-image:url('@Url.Content("~/assets/images/slider/slider-bg-3-2.jpg")')">
+                            <div class="intro-section slider-height-2 slider-content-center bg-img single-animation-wrap slider-bg-color-3" style="background-image:url('@Url.Content("~/assets/images/slider/sideit-image2.jpg")')">
                                 <div class="hm2-slider-animation">
                                     <div class="slider-content-2 slider-content-2-mrg slider-animated-3">
                                         <h3 class="animated">Up To 40% Off</h3>
@@ -43,13 +43,13 @@
             </div>
             <div class="col-lg-4 col-md-5">
                 <div class="banner-wrap banner-wrap-margin">
-                    <a href="/Products"><img src="/assets/images/banner/banner-10.png" alt=""></a>
+                    <a href="/Products"><img src="/assets/images/slider/sideit-image2.jpg" alt=""></a>
                     <div class="banner-content-7">
-                        <h2>Exceptional</h2>
+                        <h2 style="color:whitesmoke">Exceptional</h2>
                         <span>Officr Chair</span>
                     </div>
                     <div class="btn-style-4">
-                        <a class="btn" href="/Products">Shop Now</a>
+                        <a class="btn" href="/Products" style="color:beige">Shop Now</a>
                     </div>
                 </div>
             </div>
@@ -234,7 +234,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                    <a href="/Products"><img src="/assets/images/banner/banner-11.png" alt=""></a>
+                    <a href="/Products"><img src="/assets/images/slider/sideit-image3.jpg" alt=""></a>
                     <div class="banner-content-8 banner-position-1">
                         <span class="border-left">Up To 50% Off</span>
                         <h2 class="h2-width">New Furniture Sofa Set</h2>
@@ -246,7 +246,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="400">
-                    <a href="/Products"><img src="/assets/images/banner/banner-12.png" alt=""></a>
+                    <a href="/Products"><img src="/assets/images/slider/sideit-image4.jpg" alt=""></a>
                     <div class="banner-content-8 text-center banner-position-2">
                         <span class="border-left-right">Up To 50% Off</span>
                         <h2 class="font-dec">New Furniture <br>Sofa Set</h2>
@@ -520,7 +520,7 @@
                     <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-img-date-wrap mb-25">
                             <div class="blog-img">
-                                <a :href="linkToBlogDetails(lstPost.id)"><img src="/assets/images/blog/blog-1.png" alt=""></a>
+                                <a :href="linkToBlogDetails(lstPost.id)"><img :src="lstPost.titleImage" alt=""></a>
                             </div>
                             <div class="blog-date">
                                 <h5>{{ getPostDay(lstPost.createdDate) }} <span>{{ getPostMonth(lstPost.createdDate) }}</span></h5>
@@ -562,7 +562,6 @@
                 limit: 3,
                 aDay: "",
                 aMonth: "",
-
             },
             mounted: function () {
                 let self = this

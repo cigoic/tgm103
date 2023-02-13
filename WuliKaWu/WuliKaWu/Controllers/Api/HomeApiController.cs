@@ -112,11 +112,20 @@ namespace WuliKaWu.Controllers.Api
                     Description = a.Description,
                     CreatedDate = a.CreatedDate,
                     MemberName = _context.Members.FirstOrDefault(m => m.MemberId == a.MemberId).Name,
-                    Category = a.ArticleCategory.Type
+                    Category = a.ArticleCategory.Type,
+                    TitleImage = (a.ArticleTitleImage != null)
+                        ? a.ArticleTitleImage.PicturePath
+                        : $"https://picsum.photos/id/{randIdx()}/600/400",
                 })
                 is IEnumerable<HomeLastestPostModel> articles
                 ? Results.Ok(articles)
                 : Results.NotFound(new { Status = false, Message = "無法取回最新文章列表" });
+        }
+
+        private static int randIdx()
+        {
+            Random random = new Random();
+            return random.Next(0, 1000);
         }
     }
 }
