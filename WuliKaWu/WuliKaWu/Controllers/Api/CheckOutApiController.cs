@@ -78,15 +78,11 @@ namespace WuliKaWu.Controllers.Api
             }
         }
 
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IEnumerable>
-
         /// <summary>
         /// Add 寄送資訊明細
         /// </summary>
         /// <param name="productId"></param>
-        /// <returns></returns>
+        /// <returns>Established in order</returns>
         [HttpPost]
         [Authorize]
         public async Task<ApiResultModel> PostCheckOutAsync([FromForm] CheckOutDetailModel model)
@@ -100,7 +96,7 @@ namespace WuliKaWu.Controllers.Api
                     Recipient = model.Recipient,
                     ContactPhone = model.ContactPhone,
                     ShippingAddress = model.ShippingAddress,
-                    Memo = model.Memo,                 
+                    Memo = model.Memo,
                     //Type = model.GetPayType.GetDescriptionText(),
                     OrderDate = DateTime.UtcNow,
                     ShippingDate = DateTime.UtcNow.AddDays(7),

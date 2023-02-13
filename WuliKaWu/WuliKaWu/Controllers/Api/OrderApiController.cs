@@ -19,15 +19,20 @@ namespace WuliKaWu.Controllers.Api
             _context = context;
         }
 
+        /// <summary>
+        /// 會員的訂單
+        /// </summary>
+        /// <param name="checkoutId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public async Task<IEnumerable<OrderApiModel>> GetOrderAsync(int checkoutId)
+        public async Task<IEnumerable<OrderApiModel>> GetOrderAsync()
         {
             var myId = User.Claims.GetMemberId();
             try
             {
                 var order = _context.Orders
-                    .Where(o => o.MemberId == myId)
+                    .Where(o => o.MemberId == myId )
                     .Select(o => new OrderApiModel
                     {
                         MemberId = myId,
