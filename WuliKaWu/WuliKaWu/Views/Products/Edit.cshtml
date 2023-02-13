@@ -25,6 +25,20 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <style>
+        .btn-danger i {
+            color: black;
+        }
+
+        .btn-danger:hover i {
+            color: red;
+        }
+    </style>
+
+
+>>>>>>> [修改]刪除原有圖片的按鈕樣式調整(但目前有若有兩張圖的話只有第一張圖會有刪除紐的問題待解決)
 <div id="EditProduct">
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
@@ -108,8 +122,8 @@
 >>>>>>> [修正]圖片選擇後援商品圖不出現以及sellingPrice null後仍是null時會發生錯誤的問題解決(但console仍有Cannot read properties of undefined (reading 'some')的問題)
                                 <div class="row">
                                     <div class="col-3" v-for="item in productFields.picturesPath">
-                                        <button :name="item" v-on:click="deletePic(event)">X</button>
-                                        <img :src="item" class="w-100 img-thumbnail" alt="product picture" />
+                                        <img :src="item" class="w-100 img-thumbnail" style="position: relative; padding: 14px;" alt="product picture" />
+                                        <button class="btn-danger" style="border:none; position: absolute; top: 0; left: 0; font-size: 20px;" :name="item" v-on:click="deletePic(event)"><i class=" ti-trash "></i></button>                                        
                                     </div>
                                 </div>
 >>>>>>> [更新]Edit頁面讓原商品圖片顯示出來，Delete頁面Vue有渲染出來但內容仍要調整(顏色/尺寸/分類/標籤)
