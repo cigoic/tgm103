@@ -9,7 +9,7 @@
                     <div class="blog-wrap mb-50" data-aos="fade-up" :data-aos-delay="200+ 200*index">
                         <div class="blog-img-date-wrap mb-25">
                             <div class="blog-img">
-                                <a href="/Blog/Details"><img src="/assets/images/blog/blog-details.png" alt=""></a>
+                                <a href="/Blog/Details"><img :src="article.titleImage" alt=""></a>
                             </div>
                             <div class="blog-date">
                                 <h5> {{ article.timeInDay }} <span>{{ article.timeInMonth }}</span></h5>
@@ -22,9 +22,9 @@
 
                             <div class="blog-btn-2 btn-hover">
                                 <a class="btn hover-border-radius theme-color" :href="articleLink(article.id)">Read More</a>
-                                <a class="btn btn-primary hover-border-radius theme-color" :href="linkToEdit(article.id)">Edit</a>
-                                @*<a class="btn btn-danger hover-border-radius theme-color" :href="linkToDel(article.id)">Del</a>*@
-                                <a class="btn btn-danger hover-border-radius theme-color" @@click="showConfirm(article.id)">Del</a>
+                                <a v-if="IsAuthorized" class="btn btn-primary hover-border-radius theme-color" :href="linkToEdit(article.id)">Edit</a>
+                                @*<a class="btn btn-danger hover-border-radius theme-color" :href="linkToCreate(article.id)">Create</a>*@
+                                <a v-if="IsAuthorized" class="btn btn-danger hover-border-radius theme-color" @@click="showConfirm(article.id)">Del</a>
                             </div>
                         </div>
                     </div>
@@ -74,10 +74,14 @@
                 articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
                 countPerPage: 5,
-                isAuthorized: false,
+                IsAuthorized: false,
                 //currentIndex: 0,
             },
             created() {
+                axios.get("/api/Blog/GetLoginStatus")
+                    .then(response => { this.IsAuthorized = response.data; })
+                    .catch(error => { tgm103ShowError(error); });
+
                 this.getArticles()
             },
             mounted: function () {
@@ -124,9 +128,9 @@
                     const queryEditBaseLink = "/Blog/Edit/" + id
                     return queryEditBaseLink
                 },
-                linkToDel: function (id) {
-                    const queryDelBaseLink = "/Blog/Delete/" + id
-                    return queryDelBaseLink
+                linkToCreate: function (id) {
+                    const queryCreateBaseLink = "/Blog/Create"
+                    return queryCreateBaseLink
                 },
                 getArticles: async function () {
                     await axios.get("/api/Blog/GetArticles")
@@ -134,7 +138,7 @@
                             console.log("at created, article response:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
                                 this.articles = response.data.value
-                                this.visibleArticles = this.articles.slice(0, this.countPerPage);
+                                //this.visibleArticles = this.articles.slice(0, this.countPerPage);
                                 console.log("articles:", this.articles)
                             }
                         })

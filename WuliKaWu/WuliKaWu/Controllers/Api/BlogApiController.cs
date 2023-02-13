@@ -29,6 +29,15 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
+        /// 判斷用戶是否登入
+        /// </summary>
+        /// <returns></returns>
+        public bool GetLoginStatus()
+        {
+            return User.Identity.IsAuthenticated;
+        }
+
+        /// <summary>
         /// 取得部落格文章全部清單(首頁使用)
         /// </summary>
         /// <returns></returns>
@@ -45,6 +54,9 @@ namespace WuliKaWu.Controllers.Api
                       Title = a.Title,
                       Description = a.Description,
                       ModifiedDate = a.ModifiedDate,
+                      TitleImage = (a.ArticleTitleImage != null)
+                        ? a.ArticleTitleImage.PicturePath
+                        : $"https://picsum.photos/id/{randIdx()}/600/400",
                   })
                   is IEnumerable<ArticleDescriptionModel> articles
                   ? Results.Ok(articles)
@@ -115,12 +127,32 @@ namespace WuliKaWu.Controllers.Api
                 PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate,
                 NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate,
                 PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title,
-                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title
+                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title,
+                TitleImage = (article.ArticleTitleImage != null)
+                    ? article.ArticleTitleImage.PicturePath
+                    : $"https://picsum.photos/id/{randIdx()}/600/400",
             };
 
             return (model != null)
                    ? Results.Ok(model)
                    : Results.NotFound(new { Status = false, Message = "找無此文章!" });
+        }
+
+        public IResult GetRandomProductPic()
+        {
+            Random random = new Random();
+            int count = _context.Pictures.Count();
+            int skip = random.Next(0, count - 1);
+            return Path.Combine(_env.WebRootPath, _context.Pictures.Skip(skip).Take(1).FirstOrDefault().PicturePath)
+                is string picturePath
+                ? Results.Ok(picturePath)
+                : Results.NoContent();
+        }
+
+        private static int randIdx()
+        {
+            Random random = new Random();
+            return random.Next(0, 1000);
         }
 
         public IResult CountCategories()

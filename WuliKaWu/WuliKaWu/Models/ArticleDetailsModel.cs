@@ -21,5 +21,6 @@
         public string NextArticleTitle { get; set; }
         public DateTime PrevArticleCreateAt { get; set; }
         public DateTime NextArticleCreateAt { get; set; }
+        public string TitleImage { get; set; }
     }
 }

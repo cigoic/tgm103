@@ -7,7 +7,7 @@
                 <div class="blog-details-wrapper">
                     <div class="blog-details-img-date-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-details-img">
-                            <img src="/assets/images/blog/blog-details.png" alt="">
+                            <img :src="titleImg" alt="">
                         </div>
                         <div class="blog-details-date">
                             <h5 v-if="articleDay(article.createdDate)">{{ aDay }} <span v-if="getMonthName(article.createdDate)">{{ aMonth }}</span></h5>
@@ -67,7 +67,7 @@
 
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a :href="memberArticlesLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
+                            <a :href="memberArticlesLink(article.id)"><img :src="getAuthorIcon()" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -109,8 +109,7 @@
                     </div>*@
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <span>TODO  刪除 | 編輯 按鍵 </span>
-                            <a href="/Products/ProductDetails"><img src="/assets/images/banner/banner-29.png" alt=""></a>
+                            <a href="/Products/ProductDetails"><img :src="productImg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -135,12 +134,15 @@
                 aMonth: "",
                 categories: {},
                 tags: {},
+                titleImg: "",
+                productImg: "",
             },
             mounted: function () {
                 let self = this
                 self.getCategories()
                 self.getTags(self.articleId)
                 self.getArticleById(self.articleId)
+                self.getRandomProductPic()
             },
             methods: {
                 articleLink: function (id) { return "/Blog/Details/" + id },
@@ -161,11 +163,15 @@
                     return date.toLocaleDateString(date, options)
                 },
                 getArticleById: async function (id) {
-                    await axios.get(this.articleBaseLink + id)
+                    let self = this
+                    await axios.get(self.articleBaseLink + id)
                         .then(response => {
                             console.log("get article by id:", response)
-                            if (response.status == 200 && response.data.statusCode === 200)
-                                this.article = response.data.value
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                self.article = response.data.value
+                                self.titleImg = response.data.value.titleImage
+                                console.log("get title image:", self.titleImg)
+                            }
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
@@ -182,6 +188,17 @@
                     axios.get("/api/Blog/GetTagsById/" + id)
                         .then(response => { this.tags = response.data.value })
                         .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getAuthorIcon: function () {
+                    let id = Math.floor(Math.random() * 100)
+                    queryIcon = "https://picsum.photos/id/" + id + "/200/200"
+                    return queryIcon
+                },
+                getRandomProductPic: function () {
+                    axios.get("/api/Blog/GetRandomProductPic")
+                        .then(response => { this.productImg = response.data.value })
+                        .catch(error => { tgm103ShowError(error.response.data) }
+                        )
                 },
             }
         })
