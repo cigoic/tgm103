@@ -552,6 +552,22 @@ namespace WuliKaWu.Controllers.Api
                     // 影像
                     if (model.Images != null)
                     {
+                        // 有無重複的圖？先去除舊的標題圖
+                        var oImg = _context.ArticleTitleImages.FirstOrDefault(i => i.ArticleId == model.ArticleId);
+                        if (oImg != null)
+                        {
+                            _context.ArticleTitleImages.Remove(oImg);
+                        }
+
+                        var oldImgs = _context.ArticleContentImages.Where(i => i.ArticleId == model.ArticleId);
+                        if (oldImgs != null)
+                        {
+                            foreach (var img in oldImgs)
+                            {
+                                _context.ArticleContentImages.Remove(img);
+                            }
+                        }
+
                         int cnt = 0;    // 跳過前五筆來自 FormData 的紀錄(ArticleId, MemberId, Title, CategoryId, Content)
                         foreach (var key in model.Images.Keys)
                         {
@@ -560,16 +576,18 @@ namespace WuliKaWu.Controllers.Api
                             {
                                 // 使用第一張圖做部落格文章 titile image
                                 fileName = model.Images[key];
+
                                 article.ArticleTitleImage.PicturePath = fileName;
                             }
                             else if (cnt > 5 && key.StartsWith("Images["))
                             {
                                 // 其餘圖片為內文圖片
-                                article.ArticleContentImages
-                                    .Add(new ArticleContentImage
-                                    {
-                                        PicturePath = model.Images[key]
-                                    });
+                                if (article.ArticleContentImages.Any(i => i.PicturePath != model.Images[key]))
+                                    article.ArticleContentImages
+                                        .Add(new ArticleContentImage
+                                        {
+                                            PicturePath = model.Images[key]
+                                        });
                             }
                             cnt++;
                         }
@@ -714,6 +732,15 @@ namespace WuliKaWu.Controllers.Api
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await image.CopyToAsync(stream);
+                    //using (MagickImage image = new MagickImage(stream))
+                    //{
+                    //    image.Resize(new MagickGeometry(320, 270));
+
+                    //    using (FileStream outputStream = new FileStream("output.jpg", FileMode.Create))
+                    //    {
+                    //        image.Write(outputStream);
+                    //    }
+                    //}
                 }
             }
 
