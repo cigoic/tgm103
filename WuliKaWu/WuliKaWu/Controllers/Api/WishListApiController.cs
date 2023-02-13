@@ -126,24 +126,42 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="wishlistId"></param>
         /// <returns></returns>
 
-        [HttpPost("{wishlistId}")]
-        public async Task<IActionResult> RemoveToWishlist(int wishlistId)
+        [HttpPost("{id}")]
+        [Authorize]
+        public async Task<ApiResultModel> RemoveToWishlist([FromBody] Int32 id)
         {
-            if (_context.WishList == null)
+            WishList wishList = await _context.WishList.FindAsync(id);
+            if (wishList != null)
             {
-                return Problem("Entity set 'ShopContext.Wishlist' is null.");
+                _context.WishList.Remove(wishList);
+                await _context.SaveChangesAsync();
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "Remove Success!"
+                };
             }
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "Remove Failed!"
+            };
 
-            var wishlist = await _context.Members.FindAsync(wishlistId);
-            //var item = _context.WishList.Where(w => w.ProductId != wishlist.WishList.ProductId); //wishlist.WishList.ProductId).Product;
+            //    if (_context.WishList == null)
+            //    {
+            //        return Problem("Entity set 'ShopContext.Wishlist' is null.");
+            //    }
 
-            //if (wishlist != null && item != null)
-            //{
-            //    wishlist.WishList = (WishList?)item;
-            //}
+            //    var wishlist = await _context.Members.FindAsync(id);
+            //    //var item = _context.WishList.Where(w => w.ProductId != wishlist.WishList.ProductId); //wishlist.WishList.ProductId).Product;
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            //    //if (wishlist != null && item != null)
+            //    //{
+            //    //    wishlist.WishList = (WishList?)item;
+            //    //}
+
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction("Index");
         }
     }
 }
