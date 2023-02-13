@@ -287,17 +287,41 @@ namespace WuliKaWu.Controllers.Api
                     Description = article.Content.Length <= maxLength
                         ? article.Content : article.Content.Substring(0, maxLength) + "...",
                     CategoryId = (article.CategoryId <= 1) ? 1 : article.CategoryId,
+                    ArticleTitleImage = new ArticleTitleImage(),
+                    ArticleContentImages = new List<ArticleContentImage>(),
                 };
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
 
-                // TODO 影像？
-                //if (article.Image != null)
+                //_context.Articles.Add(model);
+
+                // 影像
+                if (article.Images != null)
                 {
-                    //Save article.Image.FileName;
+                    int cnt = 0;    // 跳過前三筆紀錄(Title, CategoryId, Content)
+                    foreach (var key in article.Images.Keys)
+                    {
+                        var fileName = "";
+                        if (cnt > 2 && key.StartsWith("Images[0]"))
+                        {
+                            // 使用第一張圖做部落格文章 titile image
+                            fileName = article.Images[key];
+                            model.ArticleTitleImage.PicturePath = fileName;
+                        }
+                        else if (cnt > 3 && key.StartsWith("Images["))
+                        {
+                            // 其餘圖片為內文圖片
+                            model.ArticleContentImages
+                                .Add(new ArticleContentImage
+                                {
+                                    PicturePath = article.Images[key]
+                                });
+                        }
+                        cnt++;
+                    }
                 }
 
-                _context.Articles.Add(model);
+                _context.Articles.Update(model);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
