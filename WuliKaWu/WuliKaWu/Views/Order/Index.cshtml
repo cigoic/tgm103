@@ -65,7 +65,7 @@
                                                 <ul class="product-thumbnail">
                                                     <strong>ShippingStatus:</strong>
                                                     <li><span>{{order.status}}</span></li>
-
+                                                    @*<li><span>{{order.status[0]}}</span></li>*@
                                                 </ul>
                                             </div>
                                         </div>
@@ -172,7 +172,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>                               
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -202,15 +202,20 @@
                     .then(function (result) {
                         console.log(result);
                         self.checkoutInThisCheckOut = result;
-                        for (i = 0; i < result.length; i++) {
-                            self.totalprice = self.totalprice + result[i].price
+
+                        for ( let i = 0; i < result.length; i++) {
+                            self.totalprice += result[i].sellingPrice || result[i].price; 
+                            //if(result[i].sellingPrice == null){
+                            //self.totalprice = self.totalprice + result[i].price
+                            //}
+                            //self.totalprice = self.totalprice + result[i].sellingPrice
                         }
                     })
                 fetch('/api/order/GetOrder/')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         console.log(result);
-                        self.order = result;
+                        self.orderItems = result;
                     })
             },
         });
