@@ -67,7 +67,7 @@
 
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a :href="memberArticlesLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
+                            <a :href="memberArticlesLink(article.id)"><img :src="getAuthorIcon()" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -109,7 +109,7 @@
                     </div>*@
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <a href="/Products/ProductDetails"><img src="/assets/images/banner/banner-29.png" alt=""></a>
+                            <a href="/Products/ProductDetails"><img :src="productImg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -135,12 +135,14 @@
                 categories: {},
                 tags: {},
                 titleImg: "",
+                productImg: "",
             },
             mounted: function () {
                 let self = this
                 self.getCategories()
                 self.getTags(self.articleId)
                 self.getArticleById(self.articleId)
+                self.getRandomProductPic()
             },
             methods: {
                 articleLink: function (id) { return "/Blog/Details/" + id },
@@ -186,6 +188,17 @@
                     axios.get("/api/Blog/GetTagsById/" + id)
                         .then(response => { this.tags = response.data.value })
                         .catch(error => { tgm103ShowError(error.response.data) })
+                },
+                getAuthorIcon: function () {
+                    let id = Math.floor(Math.random() * 100)
+                    queryIcon = "https://picsum.photos/id/" + id + "/200/200"
+                    return queryIcon
+                },
+                getRandomProductPic: function () {
+                    axios.get("/api/Blog/GetRandomProductPic")
+                        .then(response => { this.productImg = response.data.value })
+                        .catch(error => { tgm103ShowError(error.response.data) }
+                        )
                 },
             }
         })
