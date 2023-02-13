@@ -65,12 +65,12 @@
                     <template v-for="item in leftsideItems">
                         <div class="col-lg-12 col-md-8 col-12">
                             <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                                <a :href="linkToProductDetails(item.id)"><img :src="item.pictures" style="height:50%" alt=""></a>
+                                <a :href="linkToProductDetails(item.id)"><img :src="item.pictures" style="width:50%;opacity=0.25;" alt=""></a>
                                 <div class="banner-content-1">
-                                    <h5>new arrival</h5>
-                                    <h3>{{ item.productName }}</h3>
+                                    <h5 class="text-secondary">new arrival</h5>
+                                    <h3 class="text-secondary">{{ item.productName }}</h3>
                                     <div class="banner-btn">
-                                        <a :href="linkToProductDetails(item.id)">Shop Now</a>
+                                        <a class="text-secondary" :href="linkToProductDetails(item.id)">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -562,7 +562,7 @@
                 limit: 3,
                 aDay: "",
                 aMonth: "",
-                
+
             },
             mounted: function () {
                 let self = this

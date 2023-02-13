@@ -89,9 +89,9 @@
 
                             <div class="blog-btn-2 btn-hover">
                                 <a class="btn hover-border-radius theme-color" :href="articleLink(article.id)">Read More</a>
-                                <a class="btn btn-primary hover-border-radius theme-color" :href="linkToEdit(article.id)">Edit</a>
+                                <a v-if="IsAuthorized" class="btn btn-primary hover-border-radius theme-color" :href="linkToEdit(article.id)">Edit</a>
                                 @*<a class="btn btn-danger hover-border-radius theme-color" :href="linkToCreate(article.id)">Create</a>*@
-                                <a class="btn btn-danger hover-border-radius theme-color" @@click="showConfirm(article.id)">Del</a>
+                                <a v-if="IsAuthorized" class="btn btn-danger hover-border-radius theme-color" @@click="showConfirm(article.id)">Del</a>
                             </div>
                         </div>
                     </div>
@@ -141,9 +141,14 @@
                 articleBaseLink: "/Blog/Details/",
                 currentPage: 1,
                 countPerPage: 5,
+                IsAuthorized: false,
                 //currentIndex: 0,
             },
             created() {
+                axios.get("/api/Blog/GetLoginStatus")
+                    .then(response => { this.IsAuthorized = response.data; })
+                    .catch(error => { tgm103ShowError(error); });
+
                 this.getArticles()
             },
             mounted: function () {
