@@ -265,26 +265,33 @@ namespace WuliKaWu.Controllers.Api
             }
         }
 
-        //TODO 移除購物車的商品
-        //[HttpPost("{cartId}")]
-        //public async Task<IActionResult> RemoveToCart(int cartId)
-        //{
-        //    if (_context.Carts == null)
-        //    {
-        //        return Problem("Entity set 'ShopContext.Cart' is null.");
-        //    }
+        //TODO 移除購物車的商品 RemoveToCart
+        /// <summary>
+        /// 移除購物車的商品 RemoveToCart
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
-        //    var cart = await _context.Members.FindAsync(cartId);
-
-        //    if (cart != null)
-        //    {
-        //        //var cartproduct = cart.Cart.Product;
-        //        //_context.Carts.Remove(cartproduct)
-        //        //cart.Cart.ProductId.Remove();
-        //    }
-
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost("{id}")]
+        [Authorize]
+        public async Task<ApiResultModel> RemoveToCart([FromBody] Int32 id)
+        {
+            Cart cart = await _context.Carts.FindAsync(id);
+            if (cart != null)
+            {
+                _context.Carts.Remove(cart);
+                await _context.SaveChangesAsync();
+                return new ApiResultModel
+                {
+                    Status = true,
+                    Message = "Remove Success!"
+                };
+            }
+            return new ApiResultModel
+            {
+                Status = false,
+                Message = "Remove Failed!"
+            };
+        }
     }
 }
