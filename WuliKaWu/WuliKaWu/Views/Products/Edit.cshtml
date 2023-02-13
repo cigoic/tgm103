@@ -2,6 +2,17 @@
     ViewData["Title"] = "Edit";
 }
 
+    <style>
+        .btn-danger i {
+            color: black;
+        }
+
+        .btn-danger:hover i {
+            color: red;
+        }
+    </style>
+
+
 <div id="EditProduct">
     <div class="container m-5">
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
@@ -71,9 +82,13 @@
                         <div class="col-lg-12 col-sm-12 contact-form-style">
                             <div class="product-list-img ">
                                 <div class="row">
-                                    <div class="col-3" v-for="item in productFields.picturesPath">
-                                        <button :name="item" v-on:click="deletePic(event)">X</button>
-                                        <img :src="item" class="w-100 img-thumbnail" alt="product picture" />
+                                    <div class="col-3" v-for="item in productFields.picturesPath" style="position:relative">
+                                        <button class="btn-danger" style="border:none; background-color:transparent; font-size:20px; position: absolute; top: 0; left: 15px; "
+                                                :name="item" v-on:click="deletePic(event)">
+                                            <i class=" ti-trash " style="pointer-events: none;"></i>
+                                        </button>
+                                        <img :src="item" class="w-100 img-thumbnail" style="padding: 12px;" alt="product picture" />
+
                                     </div>
                                 </div>
                             </div>

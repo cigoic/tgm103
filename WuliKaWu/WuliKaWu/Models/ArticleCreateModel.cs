@@ -6,5 +6,6 @@
 
         public string Content { get; set; }
         public int CategoryId { get; set; }
+        public IFormCollection Images { get; set; }
     }
 }

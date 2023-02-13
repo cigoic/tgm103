@@ -6,69 +6,38 @@
 
 <div class="container" id="blogDeleteApp" />
 
-<template>
-    <!-- Blog Article -->
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="article" :key="index">
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
-                <td>
-                    @*<button class="btn btn-primary btn-sm" @@click="selectarticle(article)">Edit</button>*@
-                    <button class="btn btn-danger btn-sm" @@click="deleteBlogArticle(article.id)">刪除</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</template>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-12">
+        <div class="form-group">
+            <label for="Title" class="control-label">標題</label>
+            <input for="Title" class="form-control" type="text" v-model="title" readonly />
+        </div>
+        <div class="form-group">
+            @*<label id="ck" name="Content" class="control-label">內容</label>*@
+            @*<textarea ref="editor" id="ckeditor" name="Content" v-model="editorContent"></textarea>*@
+            <textarea id="ck" v-model="content"></textarea>
+            @*<ckeditor :editor="editor" v-model="content"></ckeditor>*@
+            @*<ckeditor :editor="editor"></ckeditor>*@
+            @*<ckeditor :ref="editor"></ckeditor>*@
 
-@*<h1>Delete</h1>
+        </div>
+        <template>
+            <div class="form-group">
+                <label for="CategoryId" class="control-label">文章分類</label>
+                <select v-model="selectedOption" class="form-control">
+                    <option value="">Current: ({{ showSelectOpts(article.categoryId) }}</option>
+                    <option v-for="option in options" :key="option.value" :value="option.value">
+                        {{ option.text }}
+                    </option>
+                </select>
+            </div>
+        </template>
+        <div class="form-group mt-15 mb-15">
+            <button type="button" @@click.prevent="handleSubmit(articleId)" class="btn btn-danger">確認刪除</button>
+        </div>
+    </div>
+</div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Article</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ModifiedDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-    </dl>
-
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>*@
 
 @section Scripts{
 
@@ -78,21 +47,62 @@
             //el:'#blogDeleteApp',
             name: "blogDeleteApp",
             data: {
-                article: @Model,
+                selectedOption: '',
+                options: [
+                    { text: 'Uncategorized', value: 1 },
+                    { text: 'Blog GridView', value: 2 },
+                    { text: 'Latest Blog', value: 3 },
+                    { text: 'Our Blog', value: 4 },
+                ],
+                article: {},//@Model,
+                articleId: 0,
+                isAuthorized: false,
             },
             mounted: function () {
-                var self = this;
-                console.log("DELETE:", self.article)
-                //axios.get('/api/Blog/GetArticleById')
+                this.isAuthorized = localStorage.getItem("token") !== null;
+                console.log("...is authorized?", this.isAuthorized)
+
+                ClassicEditor.create(document.querySelector("#ck"), {
+                    height: '500px',
+                    language: 'zh',
+                }).then(editor => {
+                    this.editor = editor;
+                })
+                    .catch(error => { tgm103ShowError(error) })
+
+                this.articleId = @ViewBag.ArticleId;
+                this.getContent(this.articleId)
             },
             methods: {
                 // Delete
                 handleSubmit: function (id) {
-                    axios.post('/api/Blog/Delete', id, {
-                        method: "POST",
-                    })
-                        .then(response => { tgm103ShowSuccess(response.data.message) })
-                        .catch(error => { tgm103ShowError(error.response.data.message) })
+                    console.log("submit....id:", id)
+                    //axios.post('/api/Blog/Delete', id, {
+                    //    method: "POST",
+                    //})
+                    //    .then(response => { tgm103ShowSuccess(response.data.message) })
+                    //    .catch(error => { tgm103ShowError(error.response.data.message) })
+                },
+                getContent: async function (id) {
+                    let self = this
+                    const queryArticleUrl = "/api/Blog/GetEditArticleById/" + id
+                    await axios.get(queryArticleUrl)
+                        .then(response => {
+                            console.log("成功取文:", response.data)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                self.article = response.data.value
+                                self.editor.setData(self.article.content) //顯示文章內容
+                                //self.title = self.article.title
+                                //self.categoryId = self.article.categoryId
+                                //self.articleId = self.article.id
+                                //self.memberId = self.article.memberId
+                                //self.memberName = self.article.memberName
+                                //self.createdDate = self.article.createdDate
+                                //self.modifiedDate = self.article.modifiedDate
+                                console.log("article:", self.article)
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
                 },
             }
         })

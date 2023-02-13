@@ -99,11 +99,6 @@
             beforeDestroy() {
                 self.editor.destroy();
             },
-            //watch: {
-            //    content(newValue) {
-            //        ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
-            //    },
-            //},
             methods: {
                 //Create
                 handleSubmit: async function () {
@@ -114,20 +109,12 @@
                     form.append("CategoryId", self.selectedOption)
                     form.append("Content", self.content);
 
-                    // append images to formData
-                    //let images = self.editor.editing.view.document.getRoot().getChildren().map(imgElement => imgElement.getAttribute('src'));
-                    //images.forEach((image, i) => form.append(`image[${i}]`, image));
+                    const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
+                        .map(match => match[1]);
+                    console.log("...images", ...images)
+                    if (images != null)
+                        images.forEach((image, i) => form.append(`Images[${i}]`, image));
 
-                    // II
-                    //const images = Array.from(self.content.matchAll(/<img [^>]*src="([^"]+)"/g))
-                    //    .map(match => match[1]);
-
-                    //images.forEach(async (image, index) => {
-                    //    const response = await axios.get(image, { responseType: 'arraybuffer' });
-                    //    const buffer = new Uint8Array(response.data);
-                    //    const blob = new Blob([buffer], { type: 'image/png' });
-                    //    formData.append(`image${index}`, blob, `image${index}.png`);
-                    //});
 
                     try {
                         await axios.post('/api/Blog/Create', form, {
@@ -138,8 +125,8 @@
                             //'Content-Type': 'application/x-www-form-urlencoded'
                         })
                             .then(response => {
-                                tgm103ShowSuccess(response.data.uploaded)
-                                //alert('Image uploaded successfully');
+                                //console.log("upload img response:", response)
+                                tgm103ShowSuccess(response.data.value.message)
                             })
                             .catch(error => { tgm103ShowError(error.response.data.message) })
                     } catch (error) {
