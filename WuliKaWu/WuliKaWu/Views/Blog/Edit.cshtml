@@ -40,7 +40,7 @@
         </template>
         <div class="form-group">
             <button type="button" v-if="isEditable" @@click.prevent="handleSubmit" class="btn btn-primary">修改</button>
-            <button v-if="!isEditable" class="btn btn-secondary">返回</button>
+            <button v-if="!isEditable" class="btn btn-secondary" @@click.prevent="backtoIndex">返回</button>
         </div>
     </div>
 </div>
@@ -141,7 +141,7 @@
                             .then(response => {
                                 console.table("成功編輯：", response);
                                 self.isEditable = false
-                                tgm103ShowSuccess(response.status)
+                                tgm103ShowSuccess(response.data.value.message)
                             })
                             .catch(error => { tgm103ShowError(error.response.message) })
                     } catch (error) {
@@ -169,6 +169,9 @@
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
+                backtoIndex: function () {
+                    window.location = "/Blog"
+                }
             }
         })
 
