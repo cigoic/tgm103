@@ -61,8 +61,10 @@
                                                 <span class="new-price" v-if="cart.discount">${{cart.sellingPrice*cart.quantity}}</span>
                                             </td>
                                             <td class="product-remove">
-                                                <button type="button" v-on:click="RemoveToCart(cart.Id)"><i class=" ti-trash "></i></button>
+                                                <button type="button" v-on:click="RemoveToCart(cart.id)"><i class=" ti-trash "></i></button>
                                             </td>
+
+                                            
                                         </tr>
                                     </tbody>
                                 </table>
@@ -76,7 +78,7 @@
                                         <a href="/Products/Index">Continue Shopping</a>
                                     </div>
                                     <div class="cart-clear-wrap">
-                                        @*Proceed to checkout尚未完成*@
+                                        
                                         <div class="cart-clear btn-hover">
                                             @*<button type="button" v-on:click="getCheckOut(productInThisCart)">Proceed to checkout</button>*@
                                             <a href="/Cart/Checkout">Proceed to checkout</a>
@@ -115,17 +117,31 @@
             },
             methods:
             {
-                //RemoveToCart: function(id) {
-                //    console.log("RPid", id)
-                //    this.queryCartBaseURL = '/api/wishlist/RemoveToCart/' + id;
-                //    fetch(this.queryCartBaseURL, { method: "POST" })
-                //        .then(function (response) { return response.json() })
-                //        .then(function (result) {
-                //            alert(result);
-                //        })
-                //},
-
-
+                RemoveToCart: function (id) {
+                    var self = this;
+                    console.log(id)
+                    var queryCartBaseURL = '/api/cart/RemoveToCart/' + id;
+                    fetch(queryCartBaseURL, {
+                        method: "POST",
+                        body: JSON.stringify(id),
+                        headers: { "content-type": "application/json" }
+                    })
+                        .then(function (response) { return response.json() })
+                        .then(function (result) {
+                            var al = {
+                                icon: 'sucess',
+                                title: '成功',
+                                text: result.message,
+                                timer: 2000
+                            };
+                            if (!result.status) {
+                                al.icon = "error";
+                                al.title = "失敗";
+                            }
+                            Swal.fire(al)
+                            window.location = "/Cart/Index"
+                        })
+                }
             }
         });
     </script>

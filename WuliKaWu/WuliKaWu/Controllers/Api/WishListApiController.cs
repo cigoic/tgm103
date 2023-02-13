@@ -123,7 +123,7 @@ namespace WuliKaWu.Controllers.Api
         /// <summary>
         /// 移除收藏清單的商品 RemoveToWishlist
         /// </summary>
-        /// <param name="wishlistId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
 
         [HttpPost("{id}")]
@@ -146,22 +146,6 @@ namespace WuliKaWu.Controllers.Api
                 Status = false,
                 Message = "Remove Failed!"
             };
-
-            //    if (_context.WishList == null)
-            //    {
-            //        return Problem("Entity set 'ShopContext.Wishlist' is null.");
-            //    }
-
-            //    var wishlist = await _context.Members.FindAsync(id);
-            //    //var item = _context.WishList.Where(w => w.ProductId != wishlist.WishList.ProductId); //wishlist.WishList.ProductId).Product;
-
-            //    //if (wishlist != null && item != null)
-            //    //{
-            //    //    wishlist.WishList = (WishList?)item;
-            //    //}
-
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction("Index");
         }
     }
 }
