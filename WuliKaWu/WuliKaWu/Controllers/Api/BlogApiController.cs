@@ -150,7 +150,10 @@ namespace WuliKaWu.Controllers.Api
                 PrevArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == prevId).CreatedDate,
                 NextArticleCreateAt = _context.Articles.FirstOrDefault(a => a.Id == nextId).CreatedDate,
                 PrevArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == prevId).Title,
-                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title
+                NextArticleTitle = _context.Articles.FirstOrDefault(a => a.Id == nextId).Title,
+                TitleImage = (article.ArticleTitleImage != null)
+                    ? article.ArticleTitleImage.PicturePath
+                    : "/assets/images/blog/blog-details.png",
             };
 
             return (model != null)
