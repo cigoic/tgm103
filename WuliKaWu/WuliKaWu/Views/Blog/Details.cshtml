@@ -7,7 +7,7 @@
                 <div class="blog-details-wrapper">
                     <div class="blog-details-img-date-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-details-img">
-                            <img src="/assets/images/blog/blog-details.png" alt="">
+                            <img :src="titleImg" alt="">
                         </div>
                         <div class="blog-details-date">
                             <h5 v-if="articleDay(article.createdDate)">{{ aDay }} <span v-if="getMonthName(article.createdDate)">{{ aMonth }}</span></h5>
@@ -109,7 +109,6 @@
                     </div>*@
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <span>TODO  刪除 | 編輯 按鍵 </span>
                             <a href="/Products/ProductDetails"><img src="/assets/images/banner/banner-29.png" alt=""></a>
                         </div>
                     </div>
@@ -135,6 +134,7 @@
                 aMonth: "",
                 categories: {},
                 tags: {},
+                titleImg: "",
             },
             mounted: function () {
                 let self = this
@@ -161,11 +161,15 @@
                     return date.toLocaleDateString(date, options)
                 },
                 getArticleById: async function (id) {
-                    await axios.get(this.articleBaseLink + id)
+                    let self = this
+                    await axios.get(self.articleBaseLink + id)
                         .then(response => {
                             console.log("get article by id:", response)
-                            if (response.status == 200 && response.data.statusCode === 200)
-                                this.article = response.data.value
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                self.article = response.data.value
+                                self.titleImg = response.data.value.titleImage
+                                console.log("get title image:", self.titleImg)
+                            }
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
