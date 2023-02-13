@@ -293,8 +293,6 @@ namespace WuliKaWu.Controllers.Api
                 if (model == null)
                     return Results.NotFound(new { Status = false, Message = "文章建立失敗!" });
 
-                //_context.Articles.Add(model);
-
                 // 影像
                 if (article.Images != null)
                 {
@@ -321,7 +319,7 @@ namespace WuliKaWu.Controllers.Api
                     }
                 }
 
-                _context.Articles.Update(model);
+                _context.Articles.Add(model);
                 await _context.SaveChangesAsync();
             }
             catch (Exception)
@@ -357,10 +355,8 @@ namespace WuliKaWu.Controllers.Api
                 CreatedDate = article.CreatedDate,
                 ModifiedDate = article.ModifiedDate,
                 CategoryId = article.CategoryId,
-                //PicturePath = new List<string> {
-                //    article.ArticleTitleImage.PicturePath,
-                //    //contentImgs
-                //},
+                //TitlePicurePath = article.ArticleTitleImage.PicturePath,
+                //ContentPicturePath = article.ArticleContentImages.Select(i => i.PicturePath).ToList(),
             };
 
             return (model != null)
@@ -396,12 +392,36 @@ namespace WuliKaWu.Controllers.Api
                     article.ModifiedDate = DateTime.UtcNow;
                     article.CategoryId = model.CategoryId;
 
-                    // TODO:    save pics
-                    //article.ArticleTitleImage.PicturePath = string.Empty;
-                    //new List<string> {
-                    //    article.ArticleTitleImage.PicturePath,
-                    //    //contentImgs
-                    //},
+                    if (article.ArticleTitleImage == null)
+                        article.ArticleTitleImage = new ArticleTitleImage();
+                    if (article.ArticleContentImages == null)
+                        article.ArticleContentImages = new List<ArticleContentImage>();
+
+                    // 影像
+                    if (model.Images != null)
+                    {
+                        int cnt = 0;    // 跳過前五筆來自 FormData 的紀錄(ArticleId, MemberId, Title, CategoryId, Content)
+                        foreach (var key in model.Images.Keys)
+                        {
+                            var fileName = "";
+                            if (cnt > 4 && key.StartsWith("Images[0]"))
+                            {
+                                // 使用第一張圖做部落格文章 titile image
+                                fileName = model.Images[key];
+                                article.ArticleTitleImage.PicturePath = fileName;
+                            }
+                            else if (cnt > 5 && key.StartsWith("Images["))
+                            {
+                                // 其餘圖片為內文圖片
+                                article.ArticleContentImages
+                                    .Add(new ArticleContentImage
+                                    {
+                                        PicturePath = model.Images[key]
+                                    });
+                            }
+                            cnt++;
+                        }
+                    }
 
                     _context.Update(article);
                     await _context.SaveChangesAsync();
@@ -434,11 +454,40 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="ArticleId">文章 ID</param>
         /// <returns></returns>
         [Authorize]
-        [HttpPost, ActionName("Delete")]
-        public async Task<IResult> DeleteConfirmed(int id)
+        [ActionName("Delete")]
+        public async Task<IResult> DeleteConfirmed(int ArticleId)
         {
-            if (await _context.Articles.FindAsync(id) is Article article)
+            if (await _context.Articles
+                .Include(a => a.ArticleTitleImage)
+                .Include(a => a.ArticleContentImages)
+                .FirstOrDefaultAsync(a => a.Id == ArticleId) is Article article)
             {
+                // 移除影像檔
+                if (article.ArticleTitleImage != null)
+                {
+                    var tImg = article.ArticleTitleImage;
+                    if (tImg != null)
+                        _context.ArticleTitleImages.Remove(tImg);
+                }
+
+                if (article.ArticleContentImages != null)
+                {
+                    foreach (var cimg in article.ArticleContentImages)
+                    {
+                        var fileName = Path.Combine(_env.WebRootPath, cimg.PicturePath);
+                        var f2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", cimg.PicturePath);
+                        var AreTheSame = System.IO.FileInfo.ReferenceEquals(fileName, f2);
+
+                        if (AreTheSame && System.IO.File.Exists(fileName))
+                            System.IO.File.Delete(fileName);
+
+                        if (AreTheSame && System.IO.File.Exists(f2))
+                            System.IO.File.Delete(f2);
+
+                        article.ArticleContentImages.Remove(cimg);
+                    }
+                }
+
                 _context.Articles.Remove(article);
                 await _context.SaveChangesAsync();
                 return Results.Ok(new { Status = true, Message = "文章刪除成功!" });
@@ -478,7 +527,12 @@ namespace WuliKaWu.Controllers.Api
         //public async Task<IResult> UploadImage([FromForm] IFormFile image)
         {
             if (images == null || images.Count <= 0)
-                return null;//Results.NotFound(new { Status = false, Message = "圖片媒體有誤，無法上傳！" });
+                return new MsgBlogUploadImageModel
+                {
+                    Uploaded = false,
+                    FileName = "",
+                    Url = ""
+                };
 
             //var rootPath = $@"{_env.WebRootPath}\images\ckeditor";
             var rootPath = $@"/images/ckeditor";
@@ -491,7 +545,7 @@ namespace WuliKaWu.Controllers.Api
             string fileName = "";
             foreach (var image in images.Files)
             {
-                fileName = ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"');
+                fileName = $"{DateTime.UtcNow.Ticks}-{ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"')}";
                 //fileName = Path.GetFileName(image.FileName);
                 if (string.IsNullOrEmpty(fileName))
                     return new MsgBlogUploadImageModel
@@ -504,7 +558,7 @@ namespace WuliKaWu.Controllers.Api
                 //filePath = Path.Combine(rootPath, fileName);
                 filePath = Path.Combine(
                    Directory.GetCurrentDirectory(), "wwwroot/images/ckeditor/", fileName);
-                // TODO 將圖片位置存入資料庫！
+
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await image.CopyToAsync(stream);
@@ -519,8 +573,6 @@ namespace WuliKaWu.Controllers.Api
                 FileName = $"{fileName}",
                 Url = url
             };
-
-            //return Results.Ok();
         }
     }
 }

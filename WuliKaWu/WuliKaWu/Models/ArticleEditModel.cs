@@ -15,8 +15,8 @@
         public DateTime ModifiedDate { get; set; }
         public int CategoryId { get; set; }
 
-        //public string TitleImageFileName { get; set; }
-        public List<string>? PicturePath { get; set; }
+        public string? TitlePicurePath { get; set; }
+        public List<string>? ContentPicturePath { get; set; }
 
         //public int PrevArticleId { get; set; }
 
