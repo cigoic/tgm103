@@ -3,49 +3,49 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
   <Class Name="WuliKaWu.Data.Orders">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAQQAAAAAAAEAAAAAAAAAAAAACAAAAgAAIAAA=</HashCode>
       <FileName>Diagrams\Orders.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.Cart">
-    <Position X="4.5" Y="4" Width="1.5" />
+    <Position X="11.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAQAAgAIAAAAAAAAEAAAAQAAAAgAAgAAICAA=</HashCode>
       <FileName>Diagrams\Cart.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.ContactMessage">
-    <Position X="8" Y="0.5" Width="1.5" />
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAIAAAAQAAAAAAAAEAAAAIAAAAAA=</HashCode>
       <FileName>Diagrams\ContactMessage.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.Product">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAgAAEAQAggAAAAAAAAAAEBAAAAAAAAAAAgAIICAA=</HashCode>
       <FileName>Diagrams\Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.ShopContext">
-    <Position X="6.25" Y="0.5" Width="1.5" />
+    <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAEAAAAAAAAAAAAAAAAACAAAEAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Diagrams\ShopContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.WishList">
-    <Position X="2.75" Y="4" Width="1.5" />
+    <Position X="9.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAgAAAAQAAAAAAAAAAAAAEAAAAAAAAAgAAAACJAAA=</HashCode>
       <FileName>Diagrams\WishList.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WuliKaWu.Data.Enums.Common">
-    <Position X="0.75" Y="4" Width="1.5" />
+    <Position X="7.25" Y="4.5" Width="1.5" />
     <NestedTypes>
       <Enum Name="WuliKaWu.Data.Enums.Common.GetPayType" Collapsed="true">
         <TypeIdentifier>
@@ -83,13 +83,14 @@
       <FileName>Diagrams\Enums\Common.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WuliKaWu.Data.Member">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+  <Class Name="MVCNetFramework.Controllers.Member">
+    <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAEA=</HashCode>
+      <HashCode>BAEACEAIACAAhAiAAABEQQQAAgAIAEACAAAAAAAAAEA=</HashCode>
       <FileName>Diagrams\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
+<<<<<<< HEAD
 =======
   <Class Name="MVCNetFramework.CartViewModel">
     <Position X="0.5" Y="0.5" Width="1.5" />
@@ -195,5 +196,63 @@
     </TypeIdentifier>
   </Class>
 >>>>>>> 新增Members類別圖
+=======
+  <Class Name="MVCNetFramework.MemberRole">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="MVCNetFramework.MemberRole.RoleType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Diagrams\MemberRole.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAQAAAAAIAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\MemberRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Controllers.Article" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgQgAkAAAAAIAwAAAgAAAEAAAgAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\Article.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Controllers.ArticleCategory" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\ArticleCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Controllers.ArticleTitleImage" Collapsed="true">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\ArticleTitleImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Controllers.AuthorImage" Collapsed="true">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAQAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\AuthorImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Controllers.ResetToken" Collapsed="true">
+    <Position X="2.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAiAAAAAAAAAAAQAAAAAIAAAAAAAAAAABAAE=</HashCode>
+      <FileName>Diagrams\ResetToken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MVCNetFramework.Controllers.ArticleContentImage" Collapsed="true">
+    <Position X="4" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Diagrams\ArticleContentImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+>>>>>>> [更新] 類別圖: 會員、部落格
   <Font Name="jf-openhuninn-1.1" Size="10" />
 </ClassDiagram>
