@@ -26,55 +26,55 @@
                         <div class="cart-shiping-update-wrapper">
                             <div class="your-order-area">
                                 <div class="billing-info-wrap">
+
                                     @*Order訂單*@
                                     <h3><strong>Order</strong></h3>
-                                    <div class="row">
+                                    <div class="row" v-for="order in orderItems">
                                         @*OrderId*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                              <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>OrderId:</strong>
-                                                    <li><span>order.OrderId</span></li>
-                                                    @*<li><span>{{order.OrderId}}</span></li>*@
-                                                </ul>    
+                                                    <li><span>{{order.orderId}}</span></li>
+                                                </ul>
                                             </div>
                                         </div>
                                         @*OrderDate*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                                 <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>OrderDate:</strong>
-                                                    <li><span>order.OrderDate</span></li>
-                                                    @*<li><span>{{order.OrderDate}}</span></li>*@
+                                                    <li><span>{{order.orderDate}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
                                         @*ShippingDate*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                                 <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>ShippingDate:</strong>
-                                                    <li><span>order.ShippingDate</span></li>
-                                                    @*<li><span>{{order.ShippingDate}}</span></li>*@
+                                                    <li><span>{{order.shippingDate}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
                                         @*ShippingStatus*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                                 <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>ShippingStatus:</strong>
-                                                    <li><span>order.Status</span></li>
-                                                    @*<li><span>{{order.Status}}</span></li>*@
+                                                    <li><span>{{order.status}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
                                         @*GetPayType*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                                  <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>GetPayType:</strong>
-                                                    <li><span>order.Type[2]</span></li>
+                                                    <li><span>{{order.type}}</span></li>
                                                     @*<li><span>{{order.Type[2]}}</span></li>*@
                                                 </ul>
                                             </div>
@@ -82,10 +82,10 @@
                                         @*Recipient*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                                 <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>Recipient:</strong>
-                                                    <li><span>order.Recipient</span></li>
-                                                    @*<li><span>{{order.Recipient}}</span></li>*@
+                                                    <li><span>{{order.recipient}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -94,18 +94,18 @@
                                             <div class="billing-info mb-20">
                                                 <ul class="product-thumbnail">
                                                     <strong>ShippingAddress:</strong>
-                                                    <li><span>order.ShippingAddress</span></li>
-                                                    @*<li><span>{{order.ShippingAddress}}</span></li>*@
+                                                    <li><span>{{order.shippingAddress}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
                                         @*ContactPhone*@
                                         <div class="col-lg-12 col-md-12">
                                             <div class="billing-info mb-20">
-                                                 <ul class="product-thumbnail">
+                                                <ul class="product-thumbnail">
                                                     <strong>ContactPhone:</strong>
-                                                    <li><span>order.ContactPhone</span></li>
-                                                    @*<li><span>{{order.ContactPhone}}</span></li>*@
+                                                    <li><span>{{order.contactPhone}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
@@ -114,29 +114,11 @@
                                             <div class="billing-info mb-20">
                                                 <ul class="product-thumbnail">
                                                     <strong>Memo:</strong>
-                                                    <li><span>order.Memo</span></li>
-                                                    @*<li><span>{{order.Memo}}</span></li>*@
+                                                    <li><span>{{order.memo}}</span></li>
+
                                                 </ul>
                                             </div>
                                         </div>
-                                        @*  <div class="col-lg-12 col-md-12">
-                                        <div class="billing-info mb-20">
-                                        <label><strong>收件人<abbr class="required">*</abbr></strong></label>
-                                        <input type="text" id="Recipient" name="Recipient" placeholder="請輸入姓名" v-model="addcheckoutdetails.Recipient" required>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12">
-                                        <div class="billing-info mb-20">
-                                        <label><strong>收件人電話<abbr class="required">*</abbr></strong></label>
-                                        <input type="text" id="ContactPhone" name="ContactPhone" placeholder="09** *** ***" v-model="addcheckoutdetails.ContactPhone" required>
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12">
-                                        <div class="billing-info mb-20">
-                                        <label><strong>收件地址<abbr class="required">*</abbr></strong></label>
-                                        <input type="text" id="ShippingAddress" name="ShippingAddress" placeholder="請輸入縣市/區域/街道" v-model="addcheckoutdetails.ShippingAddress" required>
-                                        </div>
-                                        </div>*@
 
                                     </div>
                                 </div>
@@ -190,10 +172,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="cart-clear btn-hover">
-                                    <button type="button" v-on:click="postCheckOut(addcheckoutdetails)">Place Order</button>
-                                </div>
+                                </div>                               
                             </div>
                         </div>
                     </div>
@@ -212,60 +191,28 @@
                     checkout: [],
                 },
                 totalprice: 0,
-        @**@
-            addcheckoutdetails: {
-            Recipient: "",
-            ShippingAddress: "",
-            ContactPhone: "",
-            Type: "",
-            Memo: ""
-        },
+                orderItems: {},
+                order: [],
 
-                    },
-        mounted: function () {
-            var self = this;
-            fetch('/api/checkout/GetCheckOut/')
-                .then(function (response) { return response.json() })
-                .then(function (result) {
-                    console.log(result);
-                    self.checkoutInThisCheckOut = result;
-                    for (i = 0; i < result.length; i++) {
-                        self.totalprice = self.totalprice + result[i].price
-                    }
-
-                })
-        },
-        methods:
-        {
-            postCheckOut: function (addcheckoutdetails) {
-                let data = new FormData();
-                data.append("Recipient", this.addcheckoutdetails.Recipient)
-                data.append("ShippingAddress", this.addcheckoutdetails.ShippingAddress)
-                data.append("ContactPhone", this.addcheckoutdetails.ContactPhone)
-                data.append("Memo", this.addcheckoutdetails.Memo)
-                console.log(data)
-
-                fetch("/api/checkout/PostCheckOut", {
-                    method: "POST",
-                    body: data
-
-                })
+            },
+            mounted: function () {
+                var self = this;
+                fetch('/api/checkout/GetCheckOut/')
                     .then(function (response) { return response.json() })
                     .then(function (result) {
-                        var al = {
-                            icon: 'success',
-                            title: 'Established in order',
-                            text: result.message,
-                            timer: 2000
-                        };
-                        if (!result.status) {
-                            al.icon = "error";
-                            al.title = "Uncomplete";
+                        console.log(result);
+                        self.checkoutInThisCheckOut = result;
+                        for (i = 0; i < result.length; i++) {
+                            self.totalprice = self.totalprice + result[i].price
                         }
-                        Swal.fire(al)
                     })
-            }
-        }
-                });
+                fetch('/api/order/GetOrder/')
+                    .then(function (response) { return response.json() })
+                    .then(function (result) {
+                        console.log(result);
+                        self.order = result;
+                    })
+            },
+        });
     </script>
     }
