@@ -213,11 +213,13 @@
                 handleSubmit() {
                     axios.post.("/Member/Login", this.fieldsLogin)
                         .then(response => {
+                            console.log("....response", response)
                             if (response.data.success) {
                                 tgm103ShowSuccess("Success!", response.data.success, 'success');
                             }
                         })
                         .catch(error => {
+                            console.log("login error...", error)
                             if (error.response.data.message) {
                                 console.log(error.response.data.message)
                                 tgm103ShowError("Error!", error.response.data.message, "error");

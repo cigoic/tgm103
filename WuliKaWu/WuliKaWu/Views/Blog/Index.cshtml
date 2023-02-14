@@ -89,9 +89,9 @@
 
                             <div class="blog-btn-2 btn-hover">
                                 <a class="btn hover-border-radius theme-color" :href="articleLink(article.id)">Read More</a>
-                                <a v-if="IsAuthorized" class="btn btn-primary hover-border-radius theme-color" :href="linkToEdit(article.id)">Edit</a>
+                                <a v-if="IsAuthorized" class="btn btn-primary hover-border-radius theme-color" style="background-color:cadetblue" :href="linkToEdit(article.id)">Edit</a>
                                 @*<a class="btn btn-danger hover-border-radius theme-color" :href="linkToCreate(article.id)">Create</a>*@
-                                <a v-if="IsAuthorized" class="btn btn-danger hover-border-radius theme-color" @@click="showConfirm(article.id)">Del</a>
+                                <a v-if="IsAuthorized" class="btn btn-danger hover-border-radius theme-color" style="background-color:indianred" @@click="showConfirm(article.id)">Del</a>
                             </div>
                         </div>
                     </div>
