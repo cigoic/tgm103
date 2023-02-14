@@ -1,4 +1,4 @@
-<div class="container" id="blogApp" />
+<div class="container" id="app" />
 
 
 <div class="blog-area pt-15 pb-100">
@@ -65,9 +65,9 @@
     <script>
         Vue.component('paginate', VuejsPaginate);
 
-        let blogVue = new Vue({
-            //el:'#blogApp',
-            name: "blogApp",
+        let app = new Vue({
+            //el:'#app',
+            name: "app",
             data: {
                 articles: [],
                 //visibleArticles: [],
@@ -180,7 +180,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogVue.$mount('#blogApp')
+            app.$mount('#app')
         })
     </script>
 }

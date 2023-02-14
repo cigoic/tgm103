@@ -1,4 +1,4 @@
-﻿<div class="container" id="loginApp" />
+﻿<div class="container" id="app" />
 
 <div class="login-register-area pb-100 pt-15">
     <div class="container">
@@ -52,7 +52,7 @@
                                         <label id="Gender" name="Gender"></label>
                                         <select>
                                             <option value="">性別</option>
-                                            <option value="0">Femail</option>
+                                            <option value="0">Female</option>
                                             <option value="1">Male</option>
                                         </select>
 
@@ -88,7 +88,7 @@
 @section Scripts
     {
     <script>
-        let loginVue = new Vue({
+        let app = new Vue({
             data: {
                 fieldsLogin: {
                     account: "",
@@ -138,7 +138,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            loginVue.$mount('#loginApp')
+            app.$mount('#app')
         })
     </script>
 }

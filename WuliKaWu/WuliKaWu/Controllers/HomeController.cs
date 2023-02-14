@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using System.Diagnostics;
+
 using WuliKaWu.Models;
 
 namespace WuliKaWu.Controllers
@@ -18,6 +20,7 @@ namespace WuliKaWu.Controllers
         /// 關於我們
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult AboutUs()
         {
             return View();
@@ -27,6 +30,7 @@ namespace WuliKaWu.Controllers
         /// 部落格
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult Blog()
         {
             return View();
@@ -36,6 +40,7 @@ namespace WuliKaWu.Controllers
         /// 部落格文章
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult BlogDetails()
         {
             return View();
@@ -45,6 +50,7 @@ namespace WuliKaWu.Controllers
         /// 部落格測邊欄
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult BlogSidebar()
         {
             return View();
@@ -54,6 +60,7 @@ namespace WuliKaWu.Controllers
         /// 購物車
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult Cart()
         {
             return View();
@@ -63,6 +70,7 @@ namespace WuliKaWu.Controllers
         /// 結帳
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [ActionName("Checkout")]
         public IActionResult CheckoutCart()
         {
@@ -73,6 +81,7 @@ namespace WuliKaWu.Controllers
         /// 產品比較
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [ActionName("Compare")]
         public IActionResult CompareProducts()
         {
@@ -83,6 +92,7 @@ namespace WuliKaWu.Controllers
         /// 聯絡我們
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ContactUs()
         {
             return View();
@@ -179,7 +189,7 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO: 與 Identity 檢視整合
+        [Authorize(Roles = "Admin")]
         public IActionResult MyAccount()
         {
             return View();
@@ -195,6 +205,7 @@ namespace WuliKaWu.Controllers
         /// 產品資訊 1
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ProductDetails()
         {
             return View();
@@ -204,6 +215,7 @@ namespace WuliKaWu.Controllers
         /// 產品資訊 2
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ProductDetailsTwo()
         {
             return View();
@@ -213,6 +225,7 @@ namespace WuliKaWu.Controllers
         /// 產品聯盟行銷
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ProductDetailsAffiliate()
         {
             return View();
@@ -222,6 +235,7 @@ namespace WuliKaWu.Controllers
         /// 產品細節 - 固定尺寸影像
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ProductDetailsFixedImg()
         {
             return View();
@@ -231,6 +245,7 @@ namespace WuliKaWu.Controllers
         /// 產品細節 - 集錦集
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ProductDetailsGallery()
         {
             return View();
@@ -240,6 +255,7 @@ namespace WuliKaWu.Controllers
         /// 產品細節 - 群組
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ProductDetailsGroup()
         {
             return View();
@@ -249,6 +265,7 @@ namespace WuliKaWu.Controllers
         /// 購物
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult Shop()
         {
             return View();
@@ -258,6 +275,7 @@ namespace WuliKaWu.Controllers
         /// 購物清單
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ShopList()
         {
             return View();
@@ -267,6 +285,7 @@ namespace WuliKaWu.Controllers
         /// 產品購物清單 - List 側欄
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ShopListSidebar()
         {
             return View();
@@ -276,6 +295,7 @@ namespace WuliKaWu.Controllers
         /// 商店位置
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ShopLocation()
         {
             return View();
@@ -285,6 +305,7 @@ namespace WuliKaWu.Controllers
         /// 產品購物清單 - 右側欄
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ShopRightSidebar()
         {
             return View();
@@ -294,6 +315,7 @@ namespace WuliKaWu.Controllers
         /// 產品購物清單 - 側邊欄位
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult ShopSidebar()
         {
             return View();
@@ -303,6 +325,7 @@ namespace WuliKaWu.Controllers
         /// 願望清單
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public IActionResult WishList()
         {
             return View();

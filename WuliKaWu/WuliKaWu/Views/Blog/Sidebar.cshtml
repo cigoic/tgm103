@@ -1,4 +1,4 @@
-﻿<div class="container" id="blogSidebarApp" />
+﻿<div class="container" id="app" />
 
 <div class="blog-area pt-15 pb-100">
     <div class="container">
@@ -21,7 +21,7 @@
                     @*作者欄位*@
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a :href="memberArticlesLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
+                            <a :href="memberArticlesLink(article.id)"><img :src="getAuthorIcon()" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -54,7 +54,7 @@
                         <div class="latest-post-wrap">
                             <div class="single-latest-post" v-for="larticle in lastestPosts">
                                 <div class="latest-post-img">
-                                    <a href="#"><img src="/assets/images/blog/latest-post-1.png" alt=""></a>
+                                    <a href="#"><img :src="larticle.titleImage" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
                                     <span>{{ larticle.createdDate }}</span>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <a href="#"><img src="/assets/images/banner/banner-29.png" alt=""></a>
+                            <a href="/Products/ProductDetails"><img :src="productImg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -95,9 +95,9 @@
     <script>
         Vue.component('paginate', VuejsPaginate);
 
-        let blogSidebarVue = new Vue({
-            //el:'#blogSidebarApp',
-            name: "blogSidebarApp",
+        let app = new Vue({
+            //el:'#app',
+            name: "app",
             data: {
                 article: {},    // get article by id
                 articles: [],   // get all articles
@@ -109,6 +109,7 @@
                 currentPage: 1,
                 countPerPage: 3,
                 tags: {},
+                productImg: "",
             },
             created: function () {
                 let self = this
@@ -116,7 +117,7 @@
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         if (result.value.status === 200 || result.statusCode === 200) {
-                            //console.table("sidebar articles:", result.value);
+                            console.table("sidebar articles:", result.value);
                             self.articles = result.value;
                         } else {
                             tgm103ShowError(result.value.message)
@@ -126,10 +127,11 @@
             mounted: function () {
                 let self = this
 
-                //self.getTags(self.articleId)
                 //self.getArticleById(self.articleId)
                 self.getCategories()
                 self.getLastestPosts()
+                //self.getTags(self.articleId)
+                self.getRandomProductPic()
             },
             computed: {
                 filterArticles: function () {
@@ -157,6 +159,11 @@
                 },
                 articleLink: function (id) { return "/Blog/Details/" + id },
                 memberArticlesLink: function (id) { return "/Blog/Sidebar/" + id },
+                getAuthorIcon: function () {
+                    let id = Math.floor(Math.random() * 100)
+                    queryIcon = "https://picsum.photos/id/" + id + "/200/200"
+                    return queryIcon
+                },
                 getArticleById(id) {
                     this.articleBaseLink = "/api/Blog/GetById/",
                         axios.get(this.articleBaseLink + id)
@@ -210,11 +217,17 @@
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
+                getRandomProductPic: function () {
+                    axios.get("/api/Blog/GetRandomProductPic")
+                        .then(response => { this.productImg = response.data.value })
+                        .catch(error => { tgm103ShowError(error.response.data) }
+                        )
+                },
             }
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogSidebarVue.$mount('#blogSidebarApp')
+            app.$mount('#app')
         })
     </script>
 }

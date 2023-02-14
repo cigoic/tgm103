@@ -1,6 +1,6 @@
 ﻿@model WuliKaWu.Data.Article
 
-<div class="container" id="blogCreateApp" />
+<div class="container" id="app" />
 
 <h1>Create</h1>
 
@@ -50,9 +50,9 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
 
     <script>
-        let blogCreateVue = new Vue({
-            //el:'#blogCreateApp',
-            name: "blogCreateApp",
+        let app = new Vue({
+            //el:'#app',
+            name: "app",
             data: {
                 selectedOption: '',
                 options: [
@@ -141,7 +141,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogCreateVue.$mount('#blogCreateApp')
+            app.$mount('#app')
 
         })
     </script>
