@@ -197,11 +197,7 @@
                         self.checkoutInThisCheckOut = result;
 
                          for ( let i = 0; i < result.length; i++) {
-                            self.totalprice += result[i].sellingPrice || result[i].price; 
-                            //if(result[i].sellingPrice == null){
-                            //self.totalprice = self.totalprice + result[i].price
-                            //}
-                            //self.totalprice = self.totalprice + result[i].sellingPrice
+                            self.totalprice += result[i].sellingPrice || result[i].price;                            
                         }
 
                     })

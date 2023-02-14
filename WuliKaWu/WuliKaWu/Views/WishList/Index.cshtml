@@ -90,9 +90,9 @@
                 addToCart: function (wishlistid) {
                     var self = this;
                     console.log(wishlistid)
-                    this.queryCartBaseURL = '/api/cart/AddToCart/' + wishlistid;
-                    fetch(this.queryCartBaseURL, {
-                            method: "POST",
+                    self.queryCartBaseURL = `/api/cart/AddToCart/`;
+                    fetch(self.queryCartBaseURL, {
+                        method: "POST",
                         body: JSON.stringify(wishlistid),
                         headers: {"content-type":"application/json" }
                     })
@@ -112,11 +112,11 @@
                             window.location = "/WishList/Index"
                         })
                 },
-                RemoveToWishlist:function(wishlistid) {
+                RemoveToWishlist: function (wishlistid) {
                     var self = this;
                     console.log(wishlistid)
-                    var queryWishListBaseURL = '/api/wishlist/RemoveToWishlist/' + wishlistid;
-                    fetch(queryWishListBaseURL, {
+                    self.queryWishListBaseURL = `/api/wishlist/RemoveToWishlist/`;
+                    fetch(self.queryWishListBaseURL, {
                         method: "POST",
                         body: JSON.stringify(wishlistid),
                         headers:{"content-type":"application/json" }

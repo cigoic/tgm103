@@ -379,32 +379,38 @@
                     return this.productdetailsLink + productId
                 },
                 addToCart: function (productId) {
-                    console.log("CPid:", productId)
-                    this.queryCartBaseURL = '/api/cart/AddToCart/' + productId;
-                    fetch(this.queryCartBaseURL, { method: "POST" })
-                        .then(function (response) {
-                            console.table(response)
-                            let cartp = response
-                            return response.json()
-                        })
+                    var self = this;
+                    console.log(productId)
+                    self.queryCartBaseURL = `/api/cart/AddToCart/`;
+                    fetch(self.queryCartBaseURL, { 
+                        method: "POST",
+                        body: JSON.stringify(productId),
+                        headers:{"content-type":"application/json"}
+                    })
+                        .then(function (response) { return response.json() })
                         .then(function (result) {
                             var al = {
-                                icon: 'sucess',
-                                title: '成功',
+                                icon: 'success',
+                                title: 'success',
                                 text: result.message,
                                 timer: 2000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "失敗";
+                                al.title = "error";
                             }
                             Swal.fire(al)
                         })
                 },
                 addToWishlist: function (productId) {
-                    console.log("WPid:", productId)
-                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + productId;
-                    fetch(this.queryWishlistBaseURL, { method: "POST" })
+                    var self = this;
+                    console.log(productId)
+                    self.queryWishlistBaseURL = `/api/wishlist/AddWishList/`;
+                    fetch( self.queryWishlistBaseURL , {
+                        method: "POST",
+                        body: JSON.stringify(productId),
+                        headers: {"content-type":"application/json"}
+                        })
                         .then(function (response) {
                             console.table(response)
                             let wresp = response
@@ -413,13 +419,13 @@
                         .then(function (result) {
                             var al = {
                                 icon: 'success',
-                                title: '成功',
+                                title: 'success',
                                 text: result.message,
                                 timer: 2000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "失敗";
+                                al.title = "error";
                             }
                             Swal.fire(al)
                         })

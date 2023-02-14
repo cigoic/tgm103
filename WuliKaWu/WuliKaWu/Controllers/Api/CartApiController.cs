@@ -36,8 +36,8 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="productId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpPost("{productId}")]
-        public async Task<ApiResultModel> AddToCartAsync(int productId)
+        [HttpPost]
+        public async Task<ApiResultModel> AddToCartAsync([FromBody]int productId)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
 
-        [HttpPost("{id}")]
+        [HttpPost]
         [Authorize]
         public async Task<ApiResultModel> RemoveToCart([FromBody] Int32 id)
         {

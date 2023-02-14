@@ -50,8 +50,8 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="productId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpPost("{productId}")]
-        public async Task<ApiResultModel> AddWishListAsync(int productId)
+        [HttpPost]
+        public async Task<ApiResultModel> AddWishListAsync([FromBody]int productId)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
 
-        [HttpPost("{id}")]
+        [HttpPost]
         [Authorize]
         public async Task<ApiResultModel> RemoveToWishlist([FromBody] Int32 id)
         {
