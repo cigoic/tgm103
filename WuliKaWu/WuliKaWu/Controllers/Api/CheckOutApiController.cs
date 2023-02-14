@@ -204,13 +204,6 @@ namespace WuliKaWu.Controllers.Api
             {
                 throw;
             }
-
-            //if(Status != ture)
-            ////return new ApiResultModel
-            //{
-            //    Status = false,
-            //    Message = "Uncomplete"
-            //};
         }
     }
 }
