@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 
 namespace WuliKaWu.Controllers
 {
@@ -94,6 +96,10 @@ namespace WuliKaWu.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == 0) RedirectToAction("Index");
+
+            var article = await _context.Articles.FirstOrDefaultAsync(x => x.Id == id);
+            if (article == null || article.MemberId != User.Claims.GetMemberId())
+                RedirectToAction("Index", "Blog");
 
             ViewBag.ArticleId = id;
             return View();
