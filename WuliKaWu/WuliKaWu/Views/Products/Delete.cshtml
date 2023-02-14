@@ -1,70 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿
-=======
-﻿@model WuliKaWu.Data.Product
->>>>>>> [更新] 資料庫資料表
-=======
-﻿@*@model WuliKaWu.Data.Product*@
-@model WuliKaWu.Models.ApiModel.ProductModel
->>>>>>> [修正]商品刪除檢視頁面的圖片顯示綁定
-=======
-﻿
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 <div id="deleteProduct">
-
-<div id="deleteProduct">
-<<<<<<< HEAD
-
-<div class="container m-5 mb-2">
-    <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
-        <h2>Delete Product</h2>
-
-        <div class="section-title-4 text-center mb-50 mt-3" data-aos="fade-up" data-aos-delay="200">
-            <h5>Make Sure Before You Click Delete Button!</h5>
-=======
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
-            <ul data-aos="fade-up" data-aos-delay="400">
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-
-=======
->>>>>>> [修正] 將Product新增/編輯/刪除的檢視頁面之上方不需要的版面部分刪除
-
-<div class="container m-5 mb-2">
-    <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
-        <h2>Delete Product</h2>
-
-        <div class="section-title-4 text-center mb-50 mt-3" data-aos="fade-up" data-aos-delay="200">
-<<<<<<< HEAD
-            <h5>你確定要刪除這個商品嗎?</h5>
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-            <h5>Make Sure Before You Click Delete Button!</h5>
->>>>>>> [修正] 將Product新增/編輯/刪除的檢視頁面之上方不需要的版面部分刪除
-=======
     <div class="container m-5 mb-2">
         @*表頭*@
         <div class="section-title-4 text-center mb-55" data-aos="fade-up" data-aos-delay="200">
@@ -72,226 +13,8 @@
             <div class="section-title-4 text-center mb-50 mt-3" data-aos="fade-up" data-aos-delay="200">
                 <h5>Make Sure Before You Click Delete Button!</h5>
             </div>
->>>>>>> [修正]修復商品刪除按鍵的連動(之後要補上sweetalert)
         </div>
 
-<<<<<<< HEAD
-    <div class="compare-page-wrapper pb-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Content Start -->
-                    <div class="compare-page-content-wrap">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <span class="compare-table table-responsive">
-                            <table class="table table-bordered mb-0">
-                                <tbody>
-                                    <tr>
-                                        <td class="first-column col-3"></td>
-                                        @*商品圖片*@
-                                        <td class="product-list-img">
-                                            <div class="col-5">
-                                                <img class="img-fluid" :src="product.picturePath" alt="Product Picture" />
-                                            </div>
-=======
-                        <div class="compare-table table-responsive">
-                            <table class="table table-bordered mb-0">
-                                <tbody>
-                                    <tr>
-                                        <td class="first-column"></td>
-                                        <td class="product-image-title">
-                                            <img class="img-fluid" src="~/assets/images/product/product-9.png" alt="">
-                                            @Html.DisplayFor(model => model.Picture)
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-                        <span class="compare-table table-responsive">
-                            <table class="table table-bordered mb-0">
-                                <tbody>
-                                    <tr>
-                                        <td class="first-column col-3"></td>
-                                        @*商品圖片*@
-                                        <td class="product-list-img">
-                                            <div class="col-5">
-                                                <img class="img-fluid" :src="product.picturePath" alt="Product Picture" />
-                                            </div>
->>>>>>> [修正]商品刪除檢視頁面的圖片顯示綁定
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="first-column">Name</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <td class="title">{{product.productName}}</td>
-=======
-                                        <td class="title">@Html.DisplayFor(model => model.ProductName)</td>
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-                                        <td class="title">{{product.productName}}</td>
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-                                    </tr>
-
-                                    <tr>
-                                        <td class="first-column">Color</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <td class="pro-color">{{product.color}}</td>
-=======
-                                        <td class="pro-color">@Html.DisplayFor(model => model.Color)</td>
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-                                        <td class="pro-color">{{product.color}}</td>
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-                                    </tr>
-
-                                    <tr>
-                                        <td class="first-column">Size</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <td class="pro-stock">{{product.size}}</td>
-=======
-                                        <td class="pro-stock">@Html.DisplayFor(model => model.Size)</td>
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-                                        <td class="pro-stock">{{product.size}}</td>
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-                                    </tr>
-
-                                    <tr>
-                                        <td class="first-column">Price</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <td class="pro-price">${{product.price}}</td>
-=======
-                                        <td class="pro-price">$@Html.DisplayFor(model => model.Price)</td>
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-                                        <td class="pro-price">${{product.price}}</td>
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-                                    </tr>
-
-                                    <tr>
-                                        <td class="first-column">Selling Price</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <td class="pro-price">${{product.sellingPrice}}</td>
-
-                                    <tr>
-                                        <td class="first-column">Category</td>
-                                        <td class="pro-stock">{{product.category}}</td>
-=======
-                                        <td class="pro-price">$@Html.DisplayFor(model => model.SellingPrice)</td>
-
-                                    <tr>
-                                        <td class="first-column">Category</td>
-                                        <td class="pro-stock">@Html.DisplayFor(model => model.Category)</td>
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-=======
-                                        <td class="pro-price">${{product.sellingPrice}}</td>
-
-                                    <tr>
-                                        <td class="first-column">Category</td>
-                                        <td class="pro-stock">{{product.category}}</td>
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-                                    </tr>
-
-                                    <tr>
-                                        <td class="first-column">Tag</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <td class="pro-stock">{{product.tag}}</td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-                    </div>
-                </div>
-                <!-- Content End -->
-            </div>
-        </div>
-    </div>
-=======
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Size)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Size)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PicturePath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PicturePath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Comment)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StarRate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StarRate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tag)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tag)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ProductId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
->>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
-=======
-                                        <td class="pro-stock">@Html.DisplayFor(model => model.Tag)</td>
-=======
-                                        <td class="pro-stock">{{product.tag}}</td>
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-=======
         @*商品區塊*@
         <div class="compare-page-wrapper pb-50">
             <div class="container">
@@ -343,7 +66,6 @@
                                     </tbody>
                                 </table>
                         </div>
->>>>>>> [修正]修復商品刪除按鍵的連動(之後要補上sweetalert)
                     </div>
                     <!-- Content End -->
                 </div>
@@ -369,44 +91,9 @@
 
 </div>
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
->>>>>>> [更新]商品新增表格加上POST方法,商品刪除表格切版調整
-</div>
-
-
-<div class="row mb-30 ms-3">
-
-    <div class="col-3 ms-5">
-        <a asp-action="Index" class="col-3">Back to List</a>
-    </div>
-
-    @*商品刪除按鍵*@
-    <div class="col-7">
-        <form asp-action="Delete" >
-            <input type="hidden"  />
-            <input type="submit" value="Delete" id="myDelete" class="btn btn-danger" />
-        </form>
-    </div>
-
-    <div class="col-1"></div>
-</div>
-
-</div>
-
 <script>
 
     let app = new Vue({
-=======
-<script>
-
-<<<<<<< HEAD
-    let PDapp = new Vue({
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-=======
-    let app = new Vue({
->>>>>>> [更新] 修正命名
         
         el:"#deleteProduct",
         data: 
@@ -432,40 +119,11 @@
             fetch('/api/product/getbyid/'+'@ViewBag.id')
             .then(function(response){return response.json()})
             .then(function(result){
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                
-                self.product = result;
-                self.product.productId = @ViewBag.id
-                
-                console.log(result)
-=======
-                console.log(result)
-                self.product = result;
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-=======
-                
-                self.productFields = result;
-                self.productFields.productId = @ViewBag.id
-                
-<<<<<<< HEAD
-<<<<<<< HEAD
-                console.log(result)
->>>>>>> [更新]將商品修改及商品明細的檢視頁面改用Vue綁定(未解決:按鍵綁定尚未成功以及圖片預覽失效)
-=======
-                console.log("...........",result)
->>>>>>> [更新]Edit頁面讓原商品圖片顯示出來，Delete頁面Vue有渲染出來但內容仍要調整(顏色/尺寸/分類/標籤)
-=======
-                console.log(result)
->>>>>>> [更新]調整價格欄位顯示方式
-=======
                 console.log(result)
                 self.productFields = result;
                 self.productFields.productId = @ViewBag.id
                 
                 
->>>>>>> [修改]畫面顯示除了Edit的下拉選項部分有問題外其他都沒問題，但是儲存編輯與刪除的按鍵連動按鍵有點問題要再調整
             })
 
         },
@@ -518,8 +176,3 @@
     })
 
 </script>
-<<<<<<< HEAD
-=======
->>>>>>> [更新]將商品編輯及商品刪除檢視頁面中不需要的程式碼做刪減，並在wwwroot中加入sweetalert靜態文件
-=======
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel

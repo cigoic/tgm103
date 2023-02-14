@@ -6,15 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
-<<<<<<< HEAD
-<<<<<<< HEAD
 using WuliKaWu.Models.ApiModel;
-=======
-using WuliKaWu.Models;
->>>>>>> [新增]CategoriesController Action的Create及Edit
-=======
-using WuliKaWu.Models.ApiModel;
->>>>>>> [修改]CartApi及WishListapi的Model
 using static WuliKaWu.Data.Enums.Common;
 
 namespace WuliKaWu.Controllers
@@ -62,29 +54,13 @@ namespace WuliKaWu.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryCreateModel category)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修改]CartApi及WishListapi的Model
             _context.Categories.Add(new Category
             {
                 Type = category.Type
             });
-<<<<<<< HEAD
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
             //return View(category);
-=======
-            _context.Categories.Add(new Category { Type = category.Type });
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-            return View(category);
->>>>>>> [新增]CategoriesController Action的Create及Edit
-=======
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-            //return View(category);
->>>>>>> [修改]CartApi及WishListapi的Model
         }
 
         // GET: Categories/Edit/5

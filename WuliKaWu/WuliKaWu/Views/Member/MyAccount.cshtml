@@ -1,29 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿<div class="container" id="myAccountApp" />
 
 <!-- my account wrapper start -->
 <div class="my-account-wrapper pb-100 pt-15">
-=======
-﻿@{
-    ViewData["Title"] = "My Account";
-}
-@if (User.Identity.IsAuthenticated)
-{
-    <h1 class="text-bg-info">登入成功!!!!!</h1>
-}
-<div class="container" id="myAccountApp" />
-=======
-﻿<div class="container" id="myAccountApp" />
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
-
-<!-- my account wrapper start -->
-<<<<<<< HEAD
-<div class="my-account-wrapper pb-100 pt-100">
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-<div class="my-account-wrapper pb-100 pt-15">
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -34,34 +12,12 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="myaccount-tab-menu nav" role="tablist">
                                 <a href="#dashboad" class="active" data-bs-toggle="tab">Dashboard</a>
-<<<<<<< HEAD
-                                <a href="#orders" data-bs-toggle="tab">Orders</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                @*<a href="#download" data-bs-toggle="tab">Download</a>*@
-                                @*<a href="#payment-method" data-bs-toggle="tab">Payment Method</a>*@
-                                @*<a href="#address-edit" data-bs-toggle="tab">Address</a>*@
-                                <a href="#account-info" data-bs-toggle="tab">Account Details</a>
-                                <a href="Logout">Logout</a>
-=======
-                                <a href="#download" data-bs-toggle="tab">Download</a>
-                                <a href="#payment-method" data-bs-toggle="tab">Payment Method</a>
-                                <a href="#address-edit" data-bs-toggle="tab">Address</a>
-=======
-=======
                                 @*<a href="#orders" data-bs-toggle="tab" hidden>Orders</a>*@
->>>>>>> [修正] 文章首頁清單，因為日期時間轉換耗能導致顯示卡住的問題
                                 @*<a href="#download" data-bs-toggle="tab">Download</a>*@
                                 @*<a href="#payment-method" data-bs-toggle="tab">Payment Method</a>*@
                                 @*<a href="#address-edit" data-bs-toggle="tab">Address</a>*@
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
                                 <a href="#account-info" data-bs-toggle="tab">Account Details</a>
-<<<<<<< HEAD
-                                <a asp-controller="Member" asp-action="Logout">Logout</a>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
                                 <a href="Logout">Logout</a>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -73,23 +29,7 @@
                                     <div class="myaccount-content">
                                         <h3>Dashboard</h3>
                                         <div class="welcome">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                            <p>Hello, <strong>TGM103</strong> (If Not <strong>TGM103 !</strong><a href="Logout" class="logout"> Logout</a>)</p>
-=======
-                                            <p>Hello, <strong>TGM103</strong> (If Not <strong>TGM103 !</strong><a asp-controller="Member" asp-action="Logout" class="logout"> Logout</a>)</p>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                            <p>Hello, <strong>TGM103</strong> (If Not <strong>TGM103 !</strong><a href="Logout" class="logout"> Logout</a>)</p>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
-                                            <p>Hello, <strong>{{ userinfo.Name }}</strong> (If Not <strong>{{  userinfo.Name }} !</strong><a href="Logout" class="logout"> Logout</a>)</p>
->>>>>>> [新增] 初版文章編輯、刪除功能
-=======
                                             <p>Hello, <strong>{{ userinfo.name }}</strong> (If Not <strong>{{  userinfo.name }} !</strong><a href="Logout" class="logout"> Logout</a>)</p>
->>>>>>> [更新] 文章圖片，修正 MyAccount 顯示會員名稱
                                         </div>
 
                                         <p class="mb-0">From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
@@ -117,45 +57,21 @@
                                                         <td>Aug 22, 2022</td>
                                                         <td>Pending</td>
                                                         <td>$3000</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                         <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
-=======
-                                                        <td><a asp-controller="Home" asp-action="Cart" class="check-btn sqr-btn ">View</a></td>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                                        <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                                     </tr>
                                                     <tr>
                                                         <td>2</td>
                                                         <td>July 22, 2022</td>
                                                         <td>Approved</td>
                                                         <td>$200</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                         <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
-=======
-                                                        <td><a asp-controller="Home" asp-action="Cart" class="check-btn sqr-btn ">View</a></td>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                                        <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                                     </tr>
                                                     <tr>
                                                         <td>3</td>
                                                         <td>June 12, 2017</td>
                                                         <td>On Hold</td>
                                                         <td>$990</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                         <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
-=======
-                                                        <td><a asp-controller="Home" asp-action="Cart" class="check-btn sqr-btn ">View</a></td>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                                        <td><a href="/Cart/Index" class="check-btn sqr-btn ">View</a></td>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -225,16 +141,7 @@
                                     <div class="myaccount-content">
                                         <h3>Account Details</h3>
                                         <div class="account-details-form">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                             <form v-on:submit.prevent="handleSubmit" id="myAccountForm" action="MyAccount" method="post">
-=======
-                                            <form v-on:submit.prevent="handleSubmit" id="myAccountForm">
-                                            @*<form asp-controller="MyAccount" asp-action="AccountDetails">*@
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                            <form v-on:submit.prevent="handleSubmit" id="myAccountForm" action="MyAccount" method="post">
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="single-input-item">
@@ -250,16 +157,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="single-input-item">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                                                    <label for="displayName" class="required">Display Name</label>
-                                                    <input type="text" id="displayName" name="DisplayName" v-model="displayName"/>
-                                                </div>
-                                                <div class="single-input-item">
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                                     <label for="email" class="required">Email Addres</label>
                                                     <input type="email" id="email" name="Email" v-model="email" />
                                                 </div>
@@ -267,15 +164,7 @@
                                                     <legend>Password change</legend>
                                                     <div class="single-input-item">
                                                         <label for="currentPwd" class="required">Current Password</label>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                         <input type="password" id="currentPwd" name="CurrentPwd" v-model="currentPwd" />
-=======
-                                                        <input type="password" id="currentPwd" name="CurrentPwd" v-model="currentPwd"/>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                                        <input type="password" id="currentPwd" name="CurrentPwd" v-model="currentPwd" />
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-6">
@@ -308,8 +197,6 @@
     </div>
 </div>
 <!-- my account wrapper end -->
-<<<<<<< HEAD
-<<<<<<< HEAD
 @section Scripts
     {
     <script>
@@ -363,99 +250,14 @@
                         .catch(error => { tgm103ShowError(error.response.data) })
                 },
             }
-<<<<<<< HEAD
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
-=======
-
-=======
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-@section Scripts
-    {
-    <script>
-
-        const myAccountDetailUrl = @Url.Action("MyAccount")
-            let myAccountVue = new Vue({
-                //el:'#myAccountApp',
-                name: "myAccountApp",
-                data: {
-                    firstName: "",
-                    lastName: "",
-                    displayName: "",
-                    email: "",
-                    currentPwd: "",
-                    newPwd: "",
-                    confirmPwd: "",
-                },
-                mounted: function () {
-                    //console.log("hi~~Vue~~")
-                },
-                methods: {
-        @* TODO: Form Valiadation *@
-                handleSubmit(){
-                //let request = {}
-
-                //request.FirstName = this.firstName,
-                //request.LastName = this.lastName,
-                //request.DisplayName = this.displayName,
-                //request.Email = this.email,
-                //request.CurrentPwd = this.currentPwd,
-                //request.NewPwd = this.newPwd,
-                //request.ConfirmPwd = this.confirmPwd
-
-                $.post(myAccountDetailUrl, {
-                    FirstName: this.firstName,
-                    LastName: this.lastName,
-                    DisplayName: this.displayName,
-                    Email: this.email,
-                    CurrentPwd: this.currentPwd,
-                    NewPwd: this.newPwd,
-                    ConfirmPwd: this.confirmPwd
-                }).then(response => {
-                    //console.log("Done!")
-                    //console.log("First Name:", this.firstName)
-                    //console.log("Last Name:", this.lastName)
-                    //console.log("Display Name:", this.displayName)
-                    //console.log("Email:", this.email)
-                    //console.log("Current Password:", this.currentPwd)
-                    //console.log("New Password:", this.newPwd)
-                    //console.log("Confirmed Password:", this.confirmPwd)
-
-        @* Reset Form *@
-                        document.getElementById('myAccountForm').reset()
-                })
-            }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        });
-
-        @*$(document).ready(function () {*@
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
->>>>>>> [修正] 文章首頁清單，因為日期時間轉換耗能導致顯示卡住的問題
-=======
         })
->>>>>>> [更新] 第一版修正部落格文章 CK Editor 上傳圖片問題
         document.addEventListener("DOMContentLoaded", () => {
             myAccountVue.$mount('#myAccountApp')
         })
 
     </script>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-=======
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
->>>>>>> [更新] 會員登入功能, 調整註冊功能
 }

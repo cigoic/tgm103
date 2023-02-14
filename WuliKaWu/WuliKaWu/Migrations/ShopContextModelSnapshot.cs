@@ -22,99 +22,14 @@ namespace WuliKaWu.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("CartMember", b =>
-=======
-=======
-=======
-=======
-            modelBuilder.Entity("ArticleArticleCategory", b =>
-                {
-                    b.Property<int>("ArticleCategoriesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArticlesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArticleCategoriesId", "ArticlesId");
-
-                    b.HasIndex("ArticlesId");
-
-                    b.ToTable("ArticleArticleCategory");
-                });
-
->>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
-=======
->>>>>>> [修改] Article 資料內容定義類別表與 ArticleCategory 的關係
-            modelBuilder.Entity("CartMember", b =>
-                {
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartId", "MemberId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("CartMember");
-                });
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartProduct");
-                });
-
->>>>>>> [修改] 會員表, 重建 Migration
-=======
->>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
             modelBuilder.Entity("ColorProduct", b =>
                 {
                     b.Property<int>("ColorsId")
-=======
-            modelBuilder.Entity("CartMember", b =>
-                {
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CartId", "MemberId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("CartMember");
-                });
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.Property<int>("CartId")
->>>>>>> [修改]cart及wishlish model
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
                     b.HasKey("ColorsId", "ProductId");
 
                     b.HasIndex("ProductId");
@@ -123,36 +38,10 @@ namespace WuliKaWu.Migrations
                 });
 
             modelBuilder.Entity("ProductTag", b =>
-=======
-                    b.HasKey("CartId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartProduct");
-                });
-
-            modelBuilder.Entity("MemberWishList", b =>
-                {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WishListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MemberId", "WishListId");
-
-                    b.HasIndex("WishListId");
-
-                    b.ToTable("MemberWishList");
-                });
-
-            modelBuilder.Entity("ProductWishList", b =>
->>>>>>> [修改]cart及wishlish model
                 {
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
                     b.Property<int>("TagsId")
                         .HasColumnType("int");
 
@@ -163,19 +52,6 @@ namespace WuliKaWu.Migrations
                     b.ToTable("ProductTag");
                 });
 
->>>>>>> DB修改
-=======
-                    b.Property<int>("WishListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "WishListId");
-
-                    b.HasIndex("WishListId");
-
-                    b.ToTable("ProductWishList");
-                });
-
->>>>>>> [修改]cart及wishlish model
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
                 {
                     b.Property<int>("Id")
@@ -217,65 +93,6 @@ namespace WuliKaWu.Migrations
                     b.HasIndex("MemberId");
 
                     b.ToTable("Articles");
-<<<<<<< HEAD
-=======
-
-                    b.HasData(
-                        new
-                        {
-                            ArticleId = 1,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9360),
-                            MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9361),
-                            Title = "Lorem ipsum dolor consectet."
-                        },
-                        new
-                        {
-                            ArticleId = 2,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9439),
-                            MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9440),
-                            Title = "Duis et volutpat pellentesque."
-                        },
-                        new
-                        {
-                            ArticleId = 3,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9488),
-                            MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9489),
-                            Title = "Vivamus vitae dolor convallis."
-                        },
-                        new
-                        {
-                            ArticleId = 4,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9540),
-                            MemberId = 3,
-                            ModifiedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9541),
-                            Title = "Vivamus amet tristique orci."
-                        },
-                        new
-                        {
-                            ArticleId = 5,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9631),
-                            MemberId = 2,
-                            ModifiedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9632),
-                            Title = "Pellentesque pretium place."
-                        },
-                        new
-                        {
-                            ArticleId = 6,
-                            Content = "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut labo et dolore magna aliqua.",
-                            CreatedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9686),
-                            MemberId = 1,
-                            ModifiedDate = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9687),
-                            Title = "Sed euismod tristique dolor."
-                        });
->>>>>>> [修改]Gettocart及Getwishlist
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
@@ -363,237 +180,31 @@ namespace WuliKaWu.Migrations
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
->>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
                 {
-<<<<<<< HEAD
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-<<<<<<< HEAD
-                    b.HasKey("CartId", "MemberId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("CartMember");
-                });
-=======
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
->>>>>>> DB修改
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.Property<int>("CartId")
-=======
-                    b.Property<int>("MemberId")
->>>>>>> [更新] migrations
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-<<<<<<< HEAD
-
-                    b.HasKey("CartId", "ProductId");
-
-<<<<<<< HEAD
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartProduct");
-                });
-
-            modelBuilder.Entity("ColorProduct", b =>
-                {
-                    b.Property<int>("ColorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-<<<<<<< HEAD
-                    b.HasKey("ColorsId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ColorProduct");
-                });
-=======
-                    b.ToTable("Cart");
->>>>>>> [修改]cart及wishlish model
-
-            modelBuilder.Entity("ProductTag", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "TagsId");
-
-                    b.HasIndex("TagsId");
-
-                    b.ToTable("ProductTag");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
-                {
-                    b.Property<int>("ArticleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleId"), 1L, 1);
-
-                    b.Property<string>("Content")
-=======
-                    b.Property<string>("PicturePath")
->>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-=======
->>>>>>> [更新] migrations
-
-                    b.HasKey("ArticleId");
-
-                    b.HasIndex("MemberId");
-
-                    b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
-=======
-            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
->>>>>>> [更新] 資料庫資料表
-                {
-                    b.Property<int>("CartId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
-
-<<<<<<< HEAD
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-<<<<<<< HEAD
-                    b.Property<int>("Type")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-<<<<<<< HEAD
-=======
-                    b.HasKey("CartId");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.HasIndex("ArticleId");
-=======
-                    b.HasKey("CartId");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
->>>>>>> [更新] migrations
-=======
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("ProductId");
->>>>>>> DB修改
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.ToTable("ArticleCategories");
-=======
-                    b.ToTable("Cart");
-=======
-                    b.ToTable("Cart", (string)null);
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-=======
->>>>>>> [修改] 會員表, 重建 Migration
-                    b.ToTable("Cart");
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-=======
-                    b.ToTable("Cart", (string)null);
-<<<<<<< HEAD
->>>>>>> [更新] ShopContext 等資料內容定義類別表
-=======
-                    b.ToTable("Cart");
-<<<<<<< HEAD
->>>>>>> [新增]AddtToWishList Action
-
-                    b.HasData(
-                        new
-                        {
-<<<<<<< HEAD
-                            CartId = 1,
-                            Color = 3,
-                            Coupon = -100m,
-                            PicturePath = "pic1",
-                            Price = 1000m,
-                            ProductName = "裙子",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            Quantity = 0,
-=======
-                            Quantity = 2,
->>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
-=======
-                            Quantity = 2,
->>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
-                            SellingPrice = 800m,
-                            Size = 2
-                        });
->>>>>>> 新增CartController及CartApiController
-=======
->>>>>>> [更新] migrations
-=======
-                            CartId = 3,
-                            MemberId = 2,
-                            ProductId = 6,
-                            Quantity = 2
-                        });
->>>>>>> [新增]AddtToWishList Action
-=======
->>>>>>> 暫時修改
-=======
                     b.HasIndex("MemberId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("Carts");
->>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
-=======
             modelBuilder.Entity("WuliKaWu.Data.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -671,231 +282,6 @@ namespace WuliKaWu.Migrations
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
->>>>>>> DB修改
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-<<<<<<< HEAD
-=======
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.ToTable("ArticleContentImages");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.ToTable("ArticleTitleImages");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.AuthorImage", b =>
-                {
-                    b.Property<int>("MemberID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
-
-<<<<<<< HEAD
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstImageFileName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-=======
-                    b.Property<string>("Account")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
->>>>>>> [修改] 會員表, 重建 Migration
-
-<<<<<<< HEAD
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-=======
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailComfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-<<<<<<< HEAD
-                    b.Property<bool>("LockOutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MemberShip")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-=======
-                    b.Property<int>("MemberShip")
-                        .HasColumnType("int");
->>>>>>> [修改] 會員表, 重建 Migration
-
-                    b.Property<string>("MobilePhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(24)
-                        .HasColumnType("nvarchar(24)");
-<<<<<<< HEAD
->>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
-=======
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-                    b.Property<string>("SecondImageFileName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(max)");
-=======
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-                    b.HasKey("MemberID");
-
-                    b.ToTable("AuthorImages");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Cart", b =>
-=======
-            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
-                {
-                    b.Property<int>("RoleID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
-
-                    b.Property<int>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoleID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("MemberRoles");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
->>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cart");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.HasKey("CategoryId");
-
-<<<<<<< HEAD
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Color", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-<<<<<<< HEAD
-                    b.HasKey("Id");
-
-                    b.ToTable("Color");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
                 {
                     b.Property<int>("MessageId")
                         .ValueGeneratedOnAdd()
@@ -910,33 +296,11 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
-=======
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("Coupon")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
->>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("Message")
                         .IsRequired()
-<<<<<<< HEAD
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-=======
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
->>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -966,7 +330,6 @@ namespace WuliKaWu.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-<<<<<<< HEAD
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
 
                     b.Property<string>("Account")
@@ -1014,18 +377,6 @@ namespace WuliKaWu.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-=======
-                    b.Property<decimal?>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("CartId");
->>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("VerificationToken")
                         .HasColumnType("nvarchar(max)");
@@ -1051,149 +402,12 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("RoleId");
 
-<<<<<<< HEAD
                     b.HasIndex("MemberId");
 
                     b.ToTable("MemberRoles");
-=======
-                    b.ToTable("Cart");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"), 1L, 1);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nchar(16)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MessageId");
-
-                    b.ToTable("Contact Messages");
->>>>>>> 刪除migration (#2)
-                });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
-=======
-=======
-            modelBuilder.Entity("WuliKaWu.Data.Member", b =>
-                {
-                    b.Property<int>("MemberID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberID"), 1L, 1);
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Account")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailComfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockOutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MemberShip")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MobilePhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(24)
-                        .HasColumnType("nvarchar(24)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MemberID");
-
-                    b.ToTable("Members");
-                });
-
-<<<<<<< HEAD
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-            modelBuilder.Entity("WuliKaWu.Data.Orders", b =>
->>>>>>> [更新] 資料庫資料表
-=======
-            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
-                {
-                    b.Property<int>("RoleID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleID"), 1L, 1);
-
-                    b.Property<int>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoleID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("MemberRoles");
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Order", b =>
->>>>>>> [新增]所有資料表
                 {
                     b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
@@ -1201,7 +415,6 @@ namespace WuliKaWu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"), 1L, 1);
 
-<<<<<<< HEAD
                     b.Property<string>("ContactPhone")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -1212,15 +425,10 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
-=======
-                    b.Property<decimal?>("CouponDiscount")
-                        .HasColumnType("decimal(18,2)");
->>>>>>> [更新] 資料庫資料表
 
                     b.Property<string>("Memo")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -1239,10 +447,6 @@ namespace WuliKaWu.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-=======
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
->>>>>>> [更新] 資料庫資料表
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -1282,6 +486,9 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<decimal?>("SellingPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
@@ -1309,15 +516,11 @@ namespace WuliKaWu.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-<<<<<<< HEAD
                     b.HasKey("PictureId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("Pictures");
-=======
-                    b.ToTable("Orders");
->>>>>>> 刪除migration (#2)
                 });
 
             modelBuilder.Entity("WuliKaWu.Data.Product", b =>
@@ -1334,13 +537,6 @@ namespace WuliKaWu.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
-                    b.Property<string>("Picture")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
->>>>>>> [更新] 資料庫資料表
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -1349,813 +545,18 @@ namespace WuliKaWu.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.Property<decimal?>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
-=======
-                    b.Property<int?>("SellingPrice")
-                        .HasColumnType("int");
->>>>>>> 刪除migration (#2)
-=======
-                    b.Property<decimal?>("SellingPrice")
-                        .HasColumnType("decimal(18,2)");
->>>>>>> [更新] 資料庫資料表
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-<<<<<<< HEAD
-                    b.HasKey("ProductId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-=======
-                    b.Property<int?>("StarRate")
->>>>>>> 刪除migration (#2)
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-<<<<<<< HEAD
-                    b.Property<Guid>("Token")
-                        .HasColumnType("uniqueidentifier");
-
-<<<<<<< HEAD
-                    b.Property<bool>("ValidateSatus")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-=======
-                    b.Property<decimal?>("discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ProductId");
->>>>>>> [更新] 資料庫資料表
-
-                    b.ToTable("ResetTokens");
-=======
-                    b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            Category = 3,
-                            Color = 0,
-                            Picture = "pic1",
-                            Price = 100m,
-                            ProductName = "大衣",
-                            SellingPrice = 100m,
-                            Size = 1,
-                            StarRate = 0
-                        });
->>>>>>> 刪除migration (#2)
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.StarRate", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("StarRate");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tag");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
-                {
-                    b.Property<int>("WishListId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishListId"), 1L, 1);
-
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("WishListId");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("WishLists");
-                });
-
-            modelBuilder.Entity("CartMember", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Cart", null)
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-                    b.HasIndex("MemberId");
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.ToTable("Contact Messages");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-=======
-                    b.ToTable("Contact Messages", (string)null);
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-                    b.ToTable("Contact Messages");
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-=======
-                    b.ToTable("Contact Messages", (string)null);
->>>>>>> [更新] ShopContext 等資料內容定義類別表
-                });
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-<<<<<<< HEAD
-                    b.HasOne("WuliKaWu.Data.Cart", null)
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-<<<<<<< HEAD
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-                    b.ToTable("Contact Messages");
->>>>>>> [新增]AddtToWishList Action
-=======
-                    b.ToTable("ContactMessages");
->>>>>>> DB修改
-                });
-=======
-                    b.Property<int>("MemberId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"), 1L, 1);
->>>>>>> 新增WishListTable及Api
-
-            modelBuilder.Entity("ColorProduct", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Color", null)
-                        .WithMany()
-                        .HasForeignKey("ColorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ProductTag", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", null)
-                        .WithMany("Articles")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ArticleCategory", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Article", "Article")
-                        .WithMany("ArticleCategories")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Article");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ArticleContentImage", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Article", null)
-                        .WithMany("ArticleContentImages")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.ArticleTitleImage", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Article", null)
-                        .WithMany("ArticleTitleImages")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-=======
-                    b.Property<int>("MemberShip")
-                        .HasColumnType("int");
->>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.ContactMessage", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("ContactMessages")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-                    b.Property<string>("MobilePhone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
->>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
-
-                    b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("Roles")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-<<<<<<< HEAD
-                    b.Navigation("Member");
-                });
-=======
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
->>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("Orders")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-=======
-                    b.Property<string>("VerificationToken")
-                        .HasColumnType("nvarchar(max)");
-
->>>>>>> [修改] 會員表, 重建 Migration
-                    b.HasKey("MemberId");
->>>>>>> 新增WishListTable及Api
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.Navigation("Member");
-=======
-                    b.ToTable("Members", (string)null);
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-                    b.ToTable("Members");
-<<<<<<< HEAD
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-=======
-=======
-                    b.ToTable("Members", (string)null);
->>>>>>> [更新] ShopContext 等資料內容定義類別表
-=======
-                    b.ToTable("Members");
-<<<<<<< HEAD
->>>>>>> [新增]AddtToWishList Action
-
-                    b.HasData(
-                        new
-                        {
-                            MemberId = 1,
-                            AccessFailedCount = 0,
-                            Account = "userOne",
-                            Address = "台北市中山區",
-                            Birthday = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9204),
-                            Email = "123@123.com",
-                            EmailComfirmed = true,
-                            Gender = false,
-                            LockOutEnabled = false,
-                            MemberShip = 1,
-                            MobilePhone = "0987654321",
-                            Name = "NameOfUserOne",
-                            Password = "1314520",
-                            PhoneNumber = "1234567890"
-                        },
-                        new
-                        {
-                            MemberId = 2,
-                            AccessFailedCount = 0,
-                            Account = "userTwo",
-                            Address = "台中市中正區",
-                            Birthday = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9233),
-                            Email = "456@456.com",
-                            EmailComfirmed = true,
-                            Gender = false,
-                            LockOutEnabled = false,
-                            MemberShip = 2,
-                            MobilePhone = "0912345678",
-                            Name = "NameOfVIP",
-                            Password = "tgm10322",
-                            PhoneNumber = "0448938627"
-                        },
-                        new
-                        {
-                            MemberId = 3,
-                            AccessFailedCount = 0,
-                            Account = "userThree",
-                            Address = "屏東市仁愛路5號",
-                            Birthday = new DateTime(2023, 2, 5, 15, 43, 47, 887, DateTimeKind.Local).AddTicks(9246),
-                            Email = "123@123.com",
-                            EmailComfirmed = true,
-                            Gender = false,
-                            LockOutEnabled = false,
-                            MemberShip = 3,
-                            MobilePhone = "0913579246",
-                            Name = "NameOfAdmin",
-                            Password = "tgm10333",
-                            PhoneNumber = "0876543210"
-                        });
->>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
-=======
->>>>>>> 暫時修改
-                });
-<<<<<<< HEAD
-
-            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
-                {
-<<<<<<< HEAD
-                    b.HasOne("WuliKaWu.Data.Color", "Color")
-                        .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Order", "Orders")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-<<<<<<< HEAD
-                    b.Navigation("Color");
-=======
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
->>>>>>> 新增WishListTable及Api
-
-                    b.Navigation("Orders");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("Pictures")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-                    b.HasKey("RoleId");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-<<<<<<< HEAD
-                    b.Navigation("Product");
-                });
-=======
-                    b.HasIndex("MemberId");
->>>>>>> 新增WishListTable及Api
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Category", "Category")
-                        .WithMany("Product")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.Navigation("Category");
-=======
-                    b.ToTable("MemberRoles", (string)null);
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-                    b.ToTable("MemberRoles");
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-=======
-                    b.ToTable("MemberRoles", (string)null);
->>>>>>> [更新] ShopContext 等資料內容定義類別表
-=======
-                    b.ToTable("MemberRoles");
->>>>>>> [新增]AddtToWishList Action
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("ResetTokens")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-                });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.StarRate", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-=======
-                    b.Property<string>("ContactPhone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<decimal?>("Coupon")
-                        .HasColumnType("decimal(18,2)");
-
->>>>>>> [更新] migrations
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("StarRates")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-<<<<<<< HEAD
-                    b.Navigation("Member");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("WishList")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-<<<<<<< HEAD
-                    b.HasOne("WuliKaWu.Data.Product", "Product")
-                        .WithMany("WishList")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-=======
-                    b.Property<string>("OrderDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-=======
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
->>>>>>> [更新] migrations
-
-                    b.Property<string>("Recipient")
-                        .IsRequired()
-                        .HasMaxLength(24)
-                        .HasColumnType("nvarchar(24)");
-
-                    b.Property<string>("ShippingAddress")
-                        .IsRequired()
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(max)");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-=======
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("ShippingDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
->>>>>>> [更新] migrations
-
-                    b.Navigation("Member");
-
-<<<<<<< HEAD
-                    b.Navigation("Product");
-=======
-                    b.HasIndex("MemberId");
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.ToTable("Orders");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-=======
-                    b.ToTable("Orders", (string)null);
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-                    b.ToTable("Orders");
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-=======
-                    b.ToTable("Orders", (string)null);
->>>>>>> [更新] ShopContext 等資料內容定義類別表
-=======
-                    b.ToTable("Orders");
->>>>>>> [新增]AddtToWishList Action
-                });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Article", b =>
-=======
-=======
-            modelBuilder.Entity("WuliKaWu.Data.OrderDetails", b =>
-                {
-                    b.Property<int>("OrderDetailsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailsId"), 1L, 1);
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PicturePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.Property<decimal?>("SellingPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Size")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderDetailsId");
-
-                    b.HasIndex("ColorId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetails");
-                });
-
->>>>>>> [更新] ShopContext加入圖片及訂單明細的Dbset 以及將商品編輯的檢視加入表頭
-            modelBuilder.Entity("WuliKaWu.Data.Picture", b =>
-                {
-                    b.Property<int>("PictureId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PictureId"), 1L, 1);
-
-                    b.Property<string>("PicturePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PictureId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Pictures");
-                });
-
-            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
->>>>>>> [新增] 商品圖片表並且在商品表加上商品圖片導覽屬性
-                {
-<<<<<<< HEAD
-                    b.Navigation("ArticleCategories");
-=======
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
->>>>>>> 暫時修改
-
-<<<<<<< HEAD
-                    b.Navigation("ArticleContentImages");
-
-                    b.Navigation("ArticleTitleImages");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Category", b =>
-                {
-                    b.Navigation("Product");
-                });
-=======
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("PicturePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-
-            modelBuilder.Entity("WuliKaWu.Data.Member", b =>
-                {
-                    b.Navigation("Articles");
-=======
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
->>>>>>> DB修改
-
-                    b.Navigation("ContactMessages");
-
-                    b.Navigation("Orders");
-
-                    b.Navigation("ResetTokens");
-
-<<<<<<< HEAD
-                    b.Navigation("Roles");
-
-                    b.Navigation("WishList");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Product", b =>
-                {
-                    b.Navigation("Pictures");
-=======
-=======
->>>>>>> DB修改
                     b.HasKey("ProductId");
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    b.Navigation("StarRates");
-=======
-                    b.ToTable("Products", (string)null);
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-                    b.ToTable("Products");
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-=======
-                    b.ToTable("Products", (string)null);
->>>>>>> [更新] ShopContext 等資料內容定義類別表
-=======
-                    b.ToTable("Products");
->>>>>>> [新增]AddtToWishList Action
-
-<<<<<<< HEAD
-                    b.Navigation("WishList");
-=======
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            Category = 3,
-                            Color = 0,
-                            PicturePath = "pic1",
-                            Price = 100m,
-                            ProductName = "大衣",
-                            SellingPrice = 100m,
-                            Size = 1,
-                            StarRate = 0
-                        });
->>>>>>> [新增]CheckOut table的ApiModel[修改]原Picture改成PicturePath
-=======
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
->>>>>>> 暫時修改
                 });
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 資料庫資料表
-=======
 
             modelBuilder.Entity("WuliKaWu.Data.ResetToken", b =>
                 {
@@ -2252,16 +653,10 @@ namespace WuliKaWu.Migrations
 
                     b.HasKey("WishListId");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
                     b.HasIndex("MemberId");
 
->>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
                     b.HasIndex("ProductId");
 
->>>>>>> [修改]ModifyWishlistModel的Member為ICollection
                     b.ToTable("WishLists");
                 });
 
@@ -2280,65 +675,7 @@ namespace WuliKaWu.Migrations
                         .IsRequired();
                 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            modelBuilder.Entity("CartMember", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Cart", null)
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CartProduct", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Cart", null)
-                        .WithMany()
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-=======
->>>>>>> [修改]ModifyWishlistModel的Member為ICollection
-            modelBuilder.Entity("MemberWishList", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WuliKaWu.Data.WishList", null)
-                        .WithMany()
-                        .HasForeignKey("WishListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("ProductWishList", b =>
-=======
-=======
->>>>>>> [修改]ModifyWishlistModel的Member為ICollection
-=======
->>>>>>> [修改]Cart及Wishlist Model的Member、Product為virtual
             modelBuilder.Entity("ProductTag", b =>
->>>>>>> [修改] 會員表, 重建 Migration
                 {
                     b.HasOne("WuliKaWu.Data.Product", null)
                         .WithMany()
@@ -2537,10 +874,6 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
             modelBuilder.Entity("WuliKaWu.Data.Tag", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Article", null)
@@ -2548,7 +881,6 @@ namespace WuliKaWu.Migrations
                         .HasForeignKey("ArticleId");
                 });
 
->>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
             modelBuilder.Entity("WuliKaWu.Data.WishList", b =>
                 {
                     b.HasOne("WuliKaWu.Data.Member", "Member")
@@ -2568,7 +900,6 @@ namespace WuliKaWu.Migrations
                     b.Navigation("Product");
                 });
 
->>>>>>> [修改]ModifyWishlistModel的Member為ICollection
             modelBuilder.Entity("WuliKaWu.Data.Article", b =>
                 {
                     b.Navigation("ArticleContentImages");
@@ -2623,41 +954,6 @@ namespace WuliKaWu.Migrations
 
                     b.Navigation("WishList");
                 });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> [新增]所有資料表
-=======
-
-            modelBuilder.Entity("WuliKaWu.Data.MemberRole", b =>
-                {
-                    b.HasOne("WuliKaWu.Data.Member", "Member")
-                        .WithMany("Roles")
-                        .HasForeignKey("MemberID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-                });
-
-<<<<<<< HEAD
-            modelBuilder.Entity("WuliKaWu.Data.Member", b =>
-                {
-                    b.Navigation("Roles");
-                });
->>>>>>> [更新加入] 會員 Member/MemberRole 資料內容類別表定義
-=======
-
-            modelBuilder.Entity("WuliKaWu.Data.TableOfCategory", b =>
-                {
-                    b.Navigation("Product");
-=======
-                    b.Navigation("TableOfTags");
->>>>>>> [修改]cart及wishlish model
-                });
->>>>>>> 暫時修改
-=======
->>>>>>> DB修改
 #pragma warning restore 612, 618
         }
     }

@@ -50,10 +50,6 @@
           asp-fallback-href="~/assets/css/plugins/select2.min.css" />
     <link rel="stylesheet" href="~/assets/css/plugins/easyzoom.css" />
     <link rel="stylesheet" href="~/assets/css/plugins/slinky.css" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
     @*
     不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
@@ -61,42 +57,6 @@
     *@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
             asp-fallback-src="~/js/vue.min.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-    @*<link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />*@
->>>>>>> Productvue (#6)
-    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
->>>>>>> 123
-=======
-    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
-    <script src="~/js/vue.js"></script>
-    <script src="~/js/vue.min.js"></script>
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
-=======
-=======
-    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
-    @*
-    不建議放此,會有 URWAbbeyW01-Bold.woff 字型參考問題
-    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    *@
->>>>>>> [修正] JS, CSS 樣式表引用
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js" integrity="sha512-BAMfk70VjqBkBIyo9UTRLl3TBJ3M0c6uyy2VMUrq370bWs7kchLNN9j1WiJQus9JAJVqcriIUX859JOm12LWtw==" crossorigin="anonymous" referrerpolicy="no-referrer"
-            asp-fallback-src="~/js/vue.min.js"></script>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-    @await RenderSectionAsync("Styles", required: false)
->>>>>>> [更新] 整合衣服搭配樣版頁面至 Product > Match
-=======
->>>>>>> [更新] Product > Match CSS/JS 引用敘述
 </head>
 
 <body>
@@ -162,74 +122,7 @@
                                             </ul>*@
                                         </li>
                                         <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                                             <a href="/Products">SHOP</a>
-                                            <ul class="sub-menu-style">
-                                                <li>
-                                                    @*<a class="dropdown-title" href="#">Shop Layout</a>*@
-                                                    <ul>
-<<<<<<< HEAD
-                                                        <li><a href="/Products">standard style</a></li>
-                                                        <li><a href="/Products/Create">product create</a></li>
-                                                        <li><a href="/Products/ProductDetails">Product Details</a></li>
-                                                        <li><a href="/Products/SopList">shop list style</a></li>
-                                                        <li><a href="/Products/Match">Clothes Matching</a></li>
-                                                        @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                                        <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                                        <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
-=======
-                                                        <li>
-                                                            <a class="dropdown-title" href="#">Shop Layout</a>
-                                                            <ul>
-                                                                <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-<<<<<<< HEAD
-                                                                <li><a asp-controller="Products" asp-action="Create">Product Create</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopSidebar">shop grid sidebar</a></li>
-                                                                @*<li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-=======
-                                                                <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-<<<<<<< HEAD
-                                                               @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
->>>>>>> 幫艾汶更改product的action
-=======
-                                                                @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
->>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
-                                                                <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-title" href="#">Products Layout</a>
-                                                            <ul>
-                                                                <li><a asp-controller="Products" asp-action="ProductDetails">tab style 1</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
-                                                               @* <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsGroup">group style</a></li>
-                                                                <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">fixed image style </a></li>*@
-                                                            </ul>
-                                                        </li>
-                                                        <li>
-                                                            <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
-                                                        </li>
->>>>>>> [更新] 商品新增頁面套版調整完成，幫書嫻改CartModel及CartApiController
-                                                    </ul>
-
-                                                    @*<li>
-                                                    <a class="dropdown-title" href="#">Products Layout</a>
-                                                    <ul>
-=======
-                                            <a asp-controller="Products" asp-action="Index">SHOP</a>
-=======
-                                            <a href="/Product">SHOP</a>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-=======
-                                            <a href="/Products">SHOP</a>
->>>>>>> [修正] 產品首頁連結
                                             <ul class="sub-menu-style">
                                                 <li>
                                                     @*<a class="dropdown-title" href="#">Shop Layout</a>*@
@@ -247,7 +140,6 @@
                                                     @*<li>
                                                     <a class="dropdown-title" href="#">Products Layout</a>
                                                     <ul>
->>>>>>> [修正]Layout中商品導覽列下拉顯示的頁面
                                                     <li><a asp-controller="Home" asp-action="ProductDetailsTwo">tab style 2</a></li>
                                                     <li><a asp-controller="Home" asp-action="ProductDetailsGallery">gallery style </a></li>
                                                     <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">affiliate style</a></li>
@@ -256,19 +148,7 @@
                                                     </ul>
                                                     </li>
                                                     <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                     <a href="/Products/Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
-=======
-                                                    <a asp-controller="Products" asp-action="Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
->>>>>>> [修正]Layout中商品導覽列下拉顯示的頁面
-=======
-                                                    <a href="/Product/Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-=======
-                                                    <a href="/Products/Index"><img src="~/assets/images/banner/menu.png" alt=""></a>
->>>>>>> [修正] 產品首頁連結
                                                     </li>*@
                                                 </li>
                                             </ul>
@@ -276,11 +156,6 @@
                                         <li>
                                             <a href="#">PAGES</a>
                                             <ul class="sub-menu-style">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                                                 <li><a href="/AboutUs">about us </a></li>
                                                 <li><a href="/WishList">wishlist </a></li>
                                                 <li><a href="/Cart">cart page</a></li>
@@ -290,24 +165,9 @@
                                                 @*<li><a href="/Cart/Compare">compare </a></li>*@
                                                 <li><a href="/ContactUs">contact us </a></li>
                                                 <li><a title="Login Register" href="/Member/Login"><i class="pe-7s-user"></i> login / register </a></li>
-<<<<<<< HEAD
-=======
-                                                <li><a asp-controller="Home" asp-action="AboutUs">about us </a></li>
-=======
-                                                <li><a asp-controller="AboutUs" asp-action="Index">about us </a></li>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-                                                <li><a asp-controller="Cart" asp-action="Index">cart page</a></li>
-                                                <li><a asp-controller="Home" asp-action="Checkout">checkout </a></li>
-                                                <li><a asp-controller="Member" asp-action="MyAccount">my account</a></li>
-                                                <li><a asp-controller="WishList" asp-action="Index">wishlist </a></li>
-                                                <li><a asp-controller="Home" asp-action="Compare">compare </a></li>
-                                                <li><a asp-controller="ContactUs" asp-action="Index">contact us </a></li>
-                                                <li><a title="Login Register" asp-controller="Member" asp-action="Login"><i class="pe-7s-user"></i> login / register </a></li>
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                             </ul>
                                         </li>
                                         <li>
-<<<<<<< HEAD
                                             <a href="/Blog/Index">BLOG</a>
                                             <ul class="sub-menu-style">
                                                 <li><a href="/Blog/Create"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> create post </a></li>
@@ -318,28 +178,6 @@
                                         </li>
                                         <li><a href="/AboutUs">ABOUT</a></li>
                                         <li><a href="/ContactUs">CONTACT US</a></li>
-=======
-                                            <a asp-controller="Blog" asp-action="Index">BLOG</a>
-=======
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="/Blog/Index">BLOG</a>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-                                            <ul class="sub-menu-style">
-                                                <li><a href="/Blog/Index">blog standard </a></li>
-                                                <li><a href="/Blog/Sidebar">blog sidebar</a></li>
-                                                <li><a href="/Blog/Details">blog details</a></li>
-                                            </ul>
-                                        </li>
-<<<<<<< HEAD
-                                        <li><a asp-controller="AboutUs" asp-action="Index">ABOUT</a></li>
-                                        <li><a asp-controller="ContactUs" asp-action="Index">CONTACT US</a></li>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                        <li><a href="/AboutUs">ABOUT</a></li>
-                                        <li><a href="/ContactUs">CONTACT US</a></li>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                                     </ul>
                                 </nav>
                             </div>
@@ -359,9 +197,6 @@
                                     </div>
                                 </div>
                                 <div class="header-action-style">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                                     <a title="Match" href="/Products/Match">
                                         <i class="fa fa-magic" aria-hidden="true"></i>
                                     </a>
@@ -371,34 +206,6 @@
                                 </div>
 
                                 <div class="header-action-style">
-=======
-=======
-                                    <a title="Match" asp-controller="Products" asp-action="Match">
-=======
-                                    <a title="Match" href="/Products/Match">
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <div class="header-action-style">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> [更新]Layout中的Match連結及Product的Match檢視頁面切版調整
-                                    <a title="Wishlist" asp-controller="Home" asp-action="WishList"><i class="pe-7s-like"></i></a>
-=======
-                                    <a title="Wishlist" asp-controller="WishList" asp-action="WishList"><i class="pe-7s-like"></i></a>
->>>>>>> [修改]WishList的asp-controller為WishList
-=======
-                                    <a title="Wishlist" asp-controller="WishList" asp-action="Index"><i class="pe-7s-like"></i></a>
->>>>>>> [修正] _Layout wishlist 連結, 加入 sweetalert 引用,修改語系標題, 聯絡資訊
-=======
-                                    <a title="Wishlist" href="/WishList"><i class="pe-7s-like"></i></a>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-                                </div>
-
-                                <div class="header-action-style">
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
                                     @* MVC 登入相關檢視 *@
                                     @*<partial name="_LoginIdentityPartial" />*@
                                     <partial name="_LoginPartial" />
@@ -486,15 +293,7 @@
                                 <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
                                     <h3 class="footer-title">Information</h3>
                                     <ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                         <li><a href="/AboutUs">About Us</a></li>
-=======
-                                        <li><a asp-controller="AboutUs" asp-action="Index">About Us</a></li>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                        <li><a href="/AboutUs">About Us</a></li>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                                         <li><a href="#">Delivery Information</a></li>
                                         <li><a href="#">Privacy Policy</a></li>
                                         <li><a href="#">Terms & Conditions</a></li>
@@ -506,31 +305,9 @@
                                 <div class="footer-widget footer-list mb-40">
                                     <h3 class="footer-title">My Accound</h3>
                                     <ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <li><a href="/Member/MyAccount">My Account</a></li>
-=======
-                                        <li><a asp-controller="MyAccount" asp-action="Index">My Account</a></li>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                        <li><a asp-controller="Member" asp-action="MyAccount">My Account</a></li>
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-                                        <li><a href="#">Order History</a></li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <li><a href="/WishList">Wish List</a></li>
-=======
-                                        <li><a asp-controller="WishList" asp-action="WishList">Wish List</a></li>
->>>>>>> [修改]WishList的asp-controller為WishList
-=======
-                                        <li><a asp-controller="WishList" asp-action="Index">Wish List</a></li>
->>>>>>> [修正] _Layout wishlist 連結, 加入 sweetalert 引用,修改語系標題, 聯絡資訊
-=======
                                         <li><a href="/Member/MyAccount">My Account</a></li>
                                         <li><a href="#">Order History</a></li>
                                         <li><a href="/WishList">Wish List</a></li>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                                         <li><a href="#">Newsletter</a></li>
                                         <li><a href="#">Order History</a></li>
                                     </ul>
@@ -655,27 +432,12 @@
                             <li>
                                 <a href="#">SHOP</a>
                                 <ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-                                    <li><a href="/Products/Index">standard style</a></li>
-                                    <li><a href="/Products/Create">product create</a></li>
-                                    <li><a href="/Products/ProductDetails">Product Details</a></li>
-                                    <li><a href="/Products/SopList">shop list style</a></li>
-                                    <li><a href="/Products/Match">clothes catching</a></li>
-<<<<<<< HEAD
-                                    @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-=======
                                     <li><a href="/Products/Index">products</a></li>
                                     <li><a href="/Products/Create">product create</a></li>
                                     @* <li><a href="/Products/Match">clothes matching</a></li>
                                     <li><a href="/Products/ProductDetails">Product Details</a></li>
                                     <li><a href="/Products/SopList">shop list style</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
->>>>>>> [修改]將不必要的頁面取消掉
                                     <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
                                     <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
 
@@ -690,65 +452,11 @@
                                     <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>
                                     </ul>
                                     </li>*@
-=======
-                                    <li>
-                                        <a href="#">Shop Layout</a>
-                                        <ul>
-                                            <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                            <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                            @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                            <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
-
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Product Layout</a>
-                                        <ul>
-                                            <li><a asp-controller="Products" asp-action="ProductDetails">Tab Style 1</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
-                                            @*<li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
-                                            <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>*@
-                                        </ul>
-                                    </li>
->>>>>>> [更新]微調檢視頁面(商品新增/商品明細/layout)及ProductController
-=======
-                                    <li><a asp-controller="Products" asp-action="Index">standard style</a></li>
-                                    <li><a asp-controller="Products" asp-action="Create">product create</a></li>
-                                    <li><a asp-controller="Products" asp-action="ProductDetails">Product Details</a></li>
-                                    <li><a asp-controller="Home" asp-action="ShopList">shop list style</a></li>
-                                    <li><a asp-controller="Products" asp-action="Match">clothes catching</a></li>
-=======
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
-                                    @* <li><a asp-controller="Home" asp-action="ShopListSidebar">shop list sidebar</a></li>
-                                    <li><a asp-controller="Home" asp-action="ShopRightSidebar">shop right sidebar</a></li>
-                                    <li><a asp-controller="Home" asp-action="ShopLocation">store location</a></li>*@
-
-                                    @*<li>
-                                    <a href="#">Product Layout</a>
-                                    <ul>
-
-                                    <li><a asp-controller="Home" asp-action="ProductDetailsTwo">Tab Style 2</a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetailsGallery">Gallery style </a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetailsAffiliate">Affiliate style</a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetailsGroup">Group Style</a></li>
-                                    <li><a asp-controller="Home" asp-action="ProductDetailsFixedImg">Fixed Image Style </a></li>
-                                    </ul>
-                                    </li>*@
->>>>>>> [修正]Layout中商品導覽列下拉顯示的頁面
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">PAGES </a>
                                 <ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                                     <li><a href="/AboutUs/Index">About Us </a></li>
                                     <li><a href="/WishList/Index">Wishlist </a></li>
                                     <li><a href="/Cart/Index">Cart Page</a></li>
@@ -758,72 +466,19 @@
                                     @*<li><a href="/Cart/Compare">Compare </a></li>*@
                                     <li><a href="/ContactUs/Index">Contact us </a></li>
                                     <li><a title="Login Register" href="/Member/Login">><i class="pe-7s-user"></i> Login / Register </a></li>
-<<<<<<< HEAD
-=======
-                                    <li><a asp-controller="Home" asp-action="AboutUs">About Us </a></li>
-=======
-                                    <li><a asp-controller="AboutUs" asp-action="Index">About Us </a></li>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-                                    <li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
-                                    <li><a asp-controller="Home" asp-action="Checkout">Checkout </a></li>
-                                    <li><a asp-controller="Member" asp-action="MyAccount">My Account</a></li>
-                                    <li><a asp-controller="WishList" asp-action="Index">Wishlist </a></li>
-                                    <li><a asp-controller="Home" asp-action="Compare">Compare </a></li>
-                                    <li><a asp-controller="ContactUs" asp-action="Index">Contact us </a></li>
-                                    <li><a title="Login Register" asp-controller="Member" asp-action="Login">><i class="pe-7s-user"></i> Login / Register </a></li>
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                                 </ul>
                             </li>
                             <li>
-<<<<<<< HEAD
-                                <a href="#">BLOG </a>
-                                <ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                    <li><a href="/Blog/Index">Blog Standard </a></li>
-                                    <li><a href="/Blog/Sidebar">Blog Sidebar</a></li>
-                                    <li><a href="/Blog/Details">Blog Details</a></li>
-                                </ul>
-=======
                                 <a href="/Blog/Index">BLOG </a>
-<<<<<<< HEAD
-                                @*<ul>
-                                <li><a href="/Blog/Index">Blog Standard </a></li>
-                                <li><a href="/Blog/Sidebar">Blog Sidebar</a></li>
-                                <li><a href="/Blog/Details">Blog Details</a></li>
-                                </ul>*@
->>>>>>> [更新] 調整、顯示作者所有文章的頁面
-=======
                                 <ul>
                                     <li><a href="/Blog/Create"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Create Post </a></li>
                                     @*<li><a href="/Blog/Index">Blog Standard </a></li>
                                     <li><a href="/Blog/Sidebar">Blog Sidebar</a></li>
                                     <li><a href="/Blog/Details">Blog Details</a></li>*@
                                 </ul>
->>>>>>> [調整] 首頁導覽列連結與圖示、首頁左邊區塊文字顯示、部落格判斷用戶是否登入，而決定是否顯示修改、刪除按鈕
                             </li>
                             <li>
                                 <a href="/AboutUs/Index">ABOUT US</a>
-=======
-                                    <li><a asp-controller="Blog" asp-action="Index">Blog Standard </a></li>
-                                    <li><a asp-controller="Blog" asp-action="Sidebar">Blog Sidebar</a></li>
-                                    <li><a asp-controller="Blog" asp-action="Details">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                    <li><a href="/Blog/Index">Blog Standard </a></li>
-                                    <li><a href="/Blog/Sidebar">Blog Sidebar</a></li>
-                                    <li><a href="/Blog/Details">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/AboutUs/Index">ABOUT US</a>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
                             </li>
                             <li>
                                 <a href="/ContactUs/Index">CONTACT US</a>
@@ -857,16 +512,7 @@
     </div>
 
     <!-- All JS is here -->
-<<<<<<< HEAD
-<<<<<<< HEAD
     <script src="~/assets/js/vendor/modernizr-3.11.7.min.js"></script>
-=======
-    <script src="https://cdn.jsdelivr.net/npm/modernizr@3.11.7/modernizr.min.js"
-            asp-fallback-src="~/assets/js/vendor/modernizr-3.11.7.min.js"></script>
->>>>>>> [更新] _Layout 中 CSS, JS 來源引用新增 fallback 標籤敘述
-=======
-    <script src="~/assets/js/vendor/modernizr-3.11.7.min.js"></script>
->>>>>>> [修正] JS, CSS 樣式表引用
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
             asp-fallback-src="~/assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.2/jquery-migrate.min.js" integrity="sha512-3fMsI1vtU2e/tVxZORSEeuMhXnT9By80xlmXlsOku7hNwZSHJjwcOBpmy+uu+fyWwGCLkMvdVbHkeoXdAzBv+w==" crossorigin="anonymous" referrerpolicy="no-referrer"
@@ -900,55 +546,10 @@
     <script src="~/assets/js/plugins/slinky.min.js"></script>
     <script src="~/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    	asp-fallback-src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
-=======
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"
-            asp-fallback-src="~/lib/sweetalert/sweetalert.min.js"></script>
-<<<<<<< HEAD
->>>>>>> [修正] _Layout wishlist 連結, 加入 sweetalert 引用,修改語系標題, 聯絡資訊
-=======
-=======
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> 修改wishlist
-=======
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    	asp-fallback-src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
-=======
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
->>>>>>> [修改]Wishlist的Member改成ICollection
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
->>>>>>> [修正] _Layout 中使用的 asp-controller 連結敘述
     <script src="~/assets/js/main.js" asp-append-version="true"></script>
     <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 修改wishlist
-    <script>
-        function showEorror(msg){
-            Swal.fire({
-                icon: 'success',
-                title: '成功',
-                text: msg,
-                timer: 2000
-            })
-        }
-    </script>
-<<<<<<< HEAD
-=======
->>>>>>> 123
-=======
->>>>>>> 修改wishlist
-=======
->>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
 </body>
 </html>

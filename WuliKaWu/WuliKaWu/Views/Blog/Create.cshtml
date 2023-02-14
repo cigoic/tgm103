@@ -1,144 +1,15 @@
 ﻿@model WuliKaWu.Data.Article
 
-<<<<<<< HEAD
-@{
-    ViewData["Title"] = "Create";
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> [更新] 編輯部落格文章頁面
 <div class="container" id="blogCreateApp" />
-=======
-<div class="container" id="blogCreateApp"/>
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-
-<div class="container" id="blogCreateApp" />
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
 
 <h1>Create</h1>
 
 <h4>Article</h4>
 <hr />
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-12">
-<<<<<<< HEAD
-=======
-<template>
-    <div>
-        <select v-model="selectedOption">
-            <option v-for="option in options" :key="option.value" :value="option.value">
-                {{ option.text }}
-            </option>
-        </select>
-    </div>
-</template>
-=======
-
-<<<<<<< HEAD
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
-
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
-<div class="row">
-<<<<<<< HEAD
-    <div class="col-md-4">
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-    <div class="col-sm-12 col-md-12 col-12">
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label" hidden></label>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <input asp-for="CreatedDate" class="form-control" hidden />
-=======
-                <input asp-for="CreatedDate" class="form-control" hidden/>
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-                <input asp-for="CreatedDate" class="form-control" hidden />
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label" hidden></label>
-                <input asp-for="ModifiedDate" class="form-control" hidden />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MemberId" class="control-label" hidden></label>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <select asp-for="MemberId" class="form-control" asp-items="ViewBag.MemberId" hidden></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" type="text" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label id="Content" name="Content" class="control-label" data-val="true" data-val-required="The Content field is required."></label>
-                <textarea ref="editor" id="Content" name="Content"></textarea>
-            </div>
-            <template>
-                <div class="form-group">
-                    <label asp-for="ArticleCategories" class="control-label"></label>
-                    <select v-model="selectedOption" class="form-control">
-                        <option value="">Make a Choice...</option>
-                        <option v-for="option in options" :key="option.value" :value="option.value">
-                            {{ option.text }}
-                        </option>
-                    </select>
-                    <span asp-validation-for="ArticleCategories" class="text-danger"></span>
-                </div>
-            </template>
-            <div class="form-group mt-15 mb-15">
-=======
-                <select asp-for="MemberId" class ="form-control" asp-items="ViewBag.MemberId" hidden></select>
-=======
-                <select asp-for="MemberId" class="form-control" asp-items="ViewBag.MemberId" hidden></select>
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
-            </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" type="text" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label id="Content" name="Content" class="control-label" data-val="true" data-val-required="The Content field is required."></label>
-                <textarea ref="editor" id="Content" name="Content"></textarea>
-            </div>
-            <template>
-                <div class="form-group">
-                    <label asp-for="ArticleCategories" class="control-label"></label>
-                    <select v-model="selectedOption" class="form-control">
-                        <option value="">Make a Choice...</option>
-                        <option v-for="option in options" :key="option.value" :value="option.value">
-                            {{ option.text }}
-                        </option>
-                    </select>
-                    <span asp-validation-for="ArticleCategories" class="text-danger"></span>
-                </div>
-            </template>
-<<<<<<< HEAD
-            <div class="form-group">
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-            <div class="form-group mt-15 mb-15">
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-=======
         <div class="form-group">
             <label for="Title" class="control-label">標題</label>
             <input for="Title" class="form-control" type="text" v-model="title" />
@@ -166,12 +37,9 @@
         <div class="form-group mt-15 mb-15">
             <button type="button" @@click.prevent="handleSubmit()" class="btn btn-primary">送出</button>
         </div>
->>>>>>> [修改] Article 資料內容定義類別表與 ArticleCategory 的關係
     </div>
 </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 @section Scripts {
     @{
@@ -180,63 +48,12 @@
     }
 
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
-=======
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-=======
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-
-@section Scripts {
-<<<<<<< HEAD
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-    @{
-        // 可能無法驗證 CK Editor
-        //await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-
-<<<<<<< HEAD
-    @*<script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>*@
-    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
-=======
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
 
     <script>
         let blogCreateVue = new Vue({
             //el:'#blogCreateApp',
             name: "blogCreateApp",
-<<<<<<< HEAD
-<<<<<<< HEAD
             data: {
-                selectedOption: '',
-                options: [
-                    { text: 'Uncategorized', value: 0 },
-                    { text: 'Blog GridView', value: 1 },
-                    { text: 'Latest Blog', value: 2 },
-                    { text: 'Our Blog', value: 3 },
-                ],
-                content: '',
-                editor: null,
-            },
-            mounted: function () {
-                ClassicEditor.create(this.$refs.editor, {
-                    height: 300,
-                })
-                console.log("Hi~from Article Create")
-            },
-            watch: {
-                content(newValue) {
-                    ClassicEditor.instances[this.$refs.editor.name].setData(newValue);
-                },
-=======
-            data:{
-=======
-            data: {
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
                 selectedOption: '',
                 options: [
                     { text: 'Uncategorized', value: 1 },
@@ -249,28 +66,6 @@
                 category: "",
                 editor: null, //ClassicEditor,
             },
-<<<<<<< HEAD
-<<<<<<< HEAD
-            mounted: function (){
-<<<<<<< HEAD
-
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-=======
-            mounted: function () {
-<<<<<<< HEAD
-                ClassicEditor.create(this.$refs.editor, {
-<<<<<<< HEAD
-                    height: 300,
-<<<<<<< HEAD
-                });
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
-=======
-                })
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
-=======
-=======
             //components: {
             //    ckeditor: CKEditor.component
             //},
@@ -280,15 +75,9 @@
                 //this.editor.on("change", () => {
                 //    this.content = this.editor.getData();
                 //});
->>>>>>> [更新] 持續修改新增文章上傳圖片, 目前後端檔案有上傳，但是前端頁面回提示警告說無法上傳檔案
                 //ClassicEditor.create(this.$refs.editor, {
                 ClassicEditor.create(document.querySelector("#ck"), {
-<<<<<<< HEAD
->>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
-                    height: 500,
-=======
                     height: '500px',
->>>>>>> [更新] 修正一些瀏覽文章時會出錯的頁面錯誤
                     language: 'zh',
                     ckfinder: {
                         uploadUrl: '/api/Blog/UploadImage',
@@ -306,12 +95,6 @@
                     //self.editor.setData(this.content) //顯示文章內容
                 })
                     .catch(error => { tgm103ShowError(error) })
-<<<<<<< HEAD
->>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
-                console.log("Hi~from Article Create")
->>>>>>> [更新] 將會員資訊頁併入 Member 控制器與檢視, 調整 _Layout 連結, 顯示會員資訊以及修改功能需要補齊
-=======
->>>>>>> [更新] 編輯部落格文章頁面
             },
             beforeDestroy() {
                 self.editor.destroy();
@@ -362,12 +145,5 @@
 
         })
     </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> [更新] 新增部落格 API 控制器(初版)
-=======
-
->>>>>>> [新增]  (初版) CK Editor 4 引用 script 至 Blog > Create 檢視, 可以正確產生出 Editor 編輯畫面, 送出的內容可於控制器端收取(HTML 格式), 需要進一步修正控制器端收取的資料參數格式,將表單資料正確存入資料庫中
 }

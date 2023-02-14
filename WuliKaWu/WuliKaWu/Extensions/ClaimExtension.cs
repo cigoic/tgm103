@@ -6,26 +6,8 @@ namespace WuliKaWu.Extensions
     {
         public static int GetMemberId(this IEnumerable<Claim> claims)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
             return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : throw new ArgumentNullException("找不到ID");
 
-        }
-
-        public static bool GetRememberMeStatus(this IEnumerable<Claim> claims)
-        {
-            return bool.TryParse(claims.FirstOrDefault(x => x.Type == "RememberMe")?.Value, out var memberId) ? memberId : false;
-=======
-            return int.TryParse(claims.FirstOrDefault(x => x.Type == "Id")?.Value, out var memberId) ? memberId : -1;
->>>>>>> [新增]ClaimExtension Class的GetMemberId
-=======
-            return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : -1;
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
-=======
-            return int.TryParse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Sid)?.Value, out var memberId) ? memberId : throw new ArgumentNullException("找不到ID");
-
->>>>>>> 修改wishlist
         }
 
         public static bool GetRememberMeStatus(this IEnumerable<Claim> claims)

@@ -1,19 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
 using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
-=======
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
 
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
@@ -87,8 +78,6 @@ namespace WuliKaWu.Controllers.Api
 
             return errors;
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         /// <summary>
         /// 產生 Token (無需會員輸入版本)
@@ -120,14 +109,6 @@ namespace WuliKaWu.Controllers.Api
             return verificationToken.ToString();
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
-=======
-
-
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
-=======
         /// <summary>
         /// 寄送郵件
         /// </summary>
@@ -170,9 +151,6 @@ namespace WuliKaWu.Controllers.Api
                 throw;
             }
         }
-<<<<<<< HEAD
->>>>>>> [更新] 會員重置密碼、驗證信寄送、新增啟用會員帳號功能, 修正 _Layout 中 Sweetalert2 JS 引用連結
-=======
 
         [Authorize]
         public IResult GetUerInfo()
@@ -198,6 +176,5 @@ namespace WuliKaWu.Controllers.Api
                 ? Results.Ok(userInfo)
                 : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
         }
->>>>>>> [更新] 第一版修正部落格文章 CK Editor 上傳圖片問題
     }
 }

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-﻿namespace WuliKaWu.Controllers
-=======
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
 
 namespace WuliKaWu.Controllers
->>>>>>> [更新] 資料庫資料表
 {
     public class ContactUsController : Controller
     {

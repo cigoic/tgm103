@@ -17,15 +17,7 @@ namespace WuliKaWu.Controllers.Api
         [HttpGet]
         public List<TagApiModel> GetAll()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
             return _context.Tags.Select(x => new TagApiModel
-=======
-            return _context.Colors.Select(x => new TagApiModel
->>>>>>> [修正]商品新增
-=======
-            return _context.Tags.Select(x => new TagApiModel
->>>>>>> fix product index filter tag and size
             {
                 Id = x.Id,
                 Type = x.Type

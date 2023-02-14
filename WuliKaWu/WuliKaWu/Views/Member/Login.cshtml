@@ -1,39 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿<div class="container" id="loginApp" />
 
 <div class="login-register-area pb-100 pt-15">
-=======
-﻿<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-=======
-﻿<div class="container" id="loginApp" />
-
-<<<<<<< HEAD
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>Login - Register </h2>
-            <ul>
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><i class="ti-angle-right"></i></li>
-                <li>Login - Register </li>
-            </ul>
-            <h3 class="text-danger">@TempData["error"]</h3>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-<div class="login-register-area pb-100 pt-95">
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
-<div class="login-register-area pb-100 pt-15">
->>>>>>> [更新] 會員忘記密碼, 寄送驗證信功能與檢視頁面
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12 offset-lg-2">
@@ -50,12 +17,8 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
                                     <form id="loginForm" name="loginForm" method="post">
                                         <label for="Account" class="required">帳號</label>
-<<<<<<< HEAD
                                         <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
 
                                         <label for="Password" class="required">密碼</label>
@@ -68,36 +31,6 @@
                                         </div>
                                         <div class="button-box btn-hover">
                                             <button v-on:click="handleSubmit()">Login</button>
-=======
-                                    <form action="Login" method="post">
-                                        <input type="text" name="Account" placeholder="Username">
-                                        <input type="password" name="Password" placeholder="Password">
-=======
-                                    <form v-on:submit.prevent="handleSubmit" id="loginForm" name="loginForm" method="post">
-=======
-                                    <form id="loginForm" name="loginForm" method="post">
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
-                                        <label for="Account" class="required"></label>
-=======
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
-                                        <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
-
-                                        <label for="Password" class="required">密碼</label>
-                                        <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
-
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
-                                        <div class="login-toggle-btn">
-                                            <label for="RememberMe">Remember me</label>
-                                            <input type="checkbox" id="RememberMe" name="RememberMe" :value="fieldsLogin.RememberMe">
-                                            <a href="/Member/ForgetPassword">Forgot Password?</a>
-                                        </div>
-                                        <div class="button-box btn-hover">
-<<<<<<< HEAD
-                                            <button type="submit">Login</button>
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
-                                            <button v-on:click="handleSubmit()">Login</button>
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
                                         </div>
                                     </form>
                                 </div>
@@ -107,10 +40,6 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
                                     <form action="Register" method="post">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 會員登入功能, 調整註冊功能
                                         <label id="Account" name="Account">帳號</label>
                                         <input type="text" name="Account" placeholder="Username" />
 
@@ -127,15 +56,10 @@
                                             <option value="1">Male</option>
                                         </select>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
                                         <label id="Birthday" name="Birthday">出生年月日</label>
                                         <input type="date" id="Birthday" name="Birthday" />
 
                                         <label id="Email" name="Email">電子信箱</label>
-<<<<<<< HEAD
                                         <input name="Email" placeholder="E-mail" type="email" />
 
                                         <label id="Address" name="Address">住址</label>
@@ -148,32 +72,6 @@
                                         <input type="text" id="MobilePhone" name="MobilePhone" />
                                         <div class="button-box btn-hover">
                                             <button v-on:click="handleRegister()">Register</button>
-<<<<<<< HEAD
-=======
-                                        <input type="text" name="Account" placeholder="Username">
-                                        <input type="password" name="Password" placeholder="Password">
-                                        <input name="user-email" placeholder="Email" type="email">
-=======
-                                        <label id="Email" name="Email"></label>
-                                        <input name="Email" placeholder="E-mail" type="email" />
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
-                                        <input name="Email" placeholder="E-mail" type="email" />
-
-                                        <label id="Address" name="Address">住址</label>
-                                        <input type="text" name="Address" id="Address" />
-
-                                        <label id="PhoneNumber" name="PhoneNumber">住家電話</label>
-                                        <input type="text" id="PhoneNumber" name="PhoneNumber" />
-
-                                        <label id="MobilePhone" name="MobilePhone">行動電話</label>
-                                        <input type="text" id="MobilePhone" name="MobilePhone" />
->>>>>>> [更新] 修正 Member 表中的 Phone 長度, 調整註冊畫面
-                                        <div class="button-box btn-hover">
-                                            <button type="submit">Register</button>
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
                                         </div>
                                     </form>
                                 </div>
@@ -185,10 +83,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
 
 
 @section Scripts
@@ -196,8 +90,6 @@
     <script>
         let loginVue = new Vue({
             data: {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 fieldsLogin: {
                     account: "",
                     password: "",
@@ -243,56 +135,6 @@
                     //document.getElementById('restForm').reset()    // reset form
                 },
             },
-=======
-                account: "",
-                password: "",
-                rememberMe: @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
-=======
-                fieldsLogin: {
-                    account: "",
-                    password: "",
-                    rememberMe: false, //@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value,
-                },
->>>>>>> [更新] 忘記密碼功能與改用 Vue.js 渲染
-            },
-
-            methods: {
-                handleSubmit() {
-                    axios.post.("/Member/Login", this.fieldsLogin)
-                        .then(response => {
-                            if (response.data.success) {
-                                swal("Success!", response.data.success, 'success');
-                            }
-                        })
-                        .catch(error => {
-                            if (error.response.data.message) {
-                                console.log(error.response.data.message)
-                                swal("Error!", error.response.data.message, "error");
-                            }
-                        });
-                    //document.getElementById('loginForm').reset()    // reset form
-                },
-                handleRegister() {
-                    axios.post('/Member/Register', this.fieldsRegister)
-                        .then(response => {
-                            if (response.data.success) {
-                                swal("Success!", response.data.success, 'success');
-                            }
-                        })
-                        .catch(error => {
-                            if (error.response.data.message) {
-                                console.log(error.response.data.message)
-                                swal("Error!", error.response.data.message, "error");
-                            }
-                        });
-                    //document.getElementById('restForm').reset()    // reset form
-                },
-<<<<<<< HEAD
-            }
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面
-=======
-            },
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
         })
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -300,8 +142,3 @@
         })
     </script>
 }
-<<<<<<< HEAD
-=======
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
->>>>>>> [更新] 調整會員登入使用 ClaimsType.Sid, RoleType 使用 Description 描述, 以及登入頁面

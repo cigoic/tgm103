@@ -1,8 +1,4 @@
 ﻿<div id="wishlistIndex">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修改]wishlist 綁定vue，[新增]add cart的asp-action及asp-controller
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
             <div class="breadcrumb-content text-center">
@@ -19,25 +15,8 @@
         </div>
         <div class="breadcrumb-img-2">
             <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-<<<<<<< HEAD
-=======
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2>Wishlist</h2>
-            <ul>
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><i class="ti-angle-right"></i></li>
-                <li>Wishlist</li>
-            </ul>
->>>>>>> [新增]Add migration及ShopContext Wishlist Entity的Data
         </div>
     </div>
-<<<<<<< HEAD
-=======
-        </div>
-    </div>
->>>>>>> [修改]wishlist 綁定vue，[新增]add cart的asp-action及asp-controller
     <div class="wishlist-area pb-100 pt-100">
         <div class="container">
             <div class="row">
@@ -57,7 +36,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-<<<<<<< HEAD
                                         <tr v-for="wishlist in wishlists" :key="wishlist.WishListId">
                                             <td class="product-remove"><a href="#">×</a></td>
                                             <td class="product-thumbnail">
@@ -95,81 +73,6 @@
                                     </tbody>
                                 </table>
                             </div>
-=======
-    <div class="breadcrumb-img-1">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-<div class="wishlist-area pb-100 pt-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <form action="#">
-                    <div class="wishlist-table-content">
-                        <div class="table-content table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="width-remove"></th>
-                                        <th class="width-thumbnail"></th>
-                                        <th class="width-name">Product</th>
-                                        <th class="width-price"> Price </th>
-                                        @*<th class="width-stock-status"> Stock status </th>*@
-                                        <th class="width-wishlist-cart"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-=======
->>>>>>> [修改]wishlist 綁定vue，[新增]add cart的asp-action及asp-controller
-                                        <tr v-for="wishlist in wishlists" :key="wishlist.WishListId">
-                                            <td class="product-remove"><a href="#">×</a></td>
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{wishlist.productName}}</a></h5>
-                                            </td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':wishlist.price}">${{wishlist.price}}</span>
-                                                <span class="new-price" v-if="wishlist.sellingPrice">${{wishlist.sellingPrice}}</span>
-                                            </td>
-                                            @* <td class="stock-status">
-                                            <span><i class="las la-check"></i> In Stock</span>
-                                            </td>*@
-                                            <td class="wishlist-cart btn-hover"><a asp-action="Index" asp-controller="Cart">Add to Cart</a></td>
-                                        </tr>
-                                        <tr v-for="wishlist in wishlists" :key="wishlist.WishListId">
-                                            <td class="product-remove"><a href="#">×</a></td>
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{wishlist.productName}}</a></h5>
-                                            </td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':wishlist.price}">${{wishlist.price}}</span>
-                                                <span class="new-price" v-if="wishlist.sellingPrice">${{wishlist.sellingPrice}}</span>
-                                            </td>
-                                            @* <td class="stock-status">
-                                            <span><i class="las la-check"></i> In Stock</span>
-<<<<<<< HEAD
-                                        </td>
-                                        <td class="wishlist-cart btn-hover"><a href="#">Add to Cart</a></td>
-                                    </tr>*@
-                                </tbody>
-                            </table>
->>>>>>> [修改]wishlist及checkout ，api有抓到值，沒綁到vue(待完成)
-=======
-                                            </td>*@
-                                            <td class="wishlist-cart btn-hover"><a asp-action="Index" asp-controller="Cart">Add to Cart</a></td>
-                                        </tr>                            
-                                    </tbody>
-                                </table>
-                            </div>
->>>>>>> [修改]wishlist 綁定vue，[新增]add cart的asp-action及asp-controller
                         </div>
                     </form>
                 </div>
@@ -177,8 +80,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 @section Scripts{
 
@@ -198,34 +99,6 @@
                     })
             }
         });
-=======
-</div>
-=======
->>>>>>> [修改]wishlist 綁定vue，[新增]add cart的asp-action及asp-controller
-
-@section Scripts{
-
-    <script>
-        let app = new Vue({
-            el: "#wishlistIndex",
-            data: {
-                wishlists: []
-            },
-            mounted: function () {
-                var self = this;
-                fetch('/api/wishlist/getall')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.wishlists = result;
-                    })
-            }
-<<<<<<< HEAD
-        }),
->>>>>>> [新增]Add migration及ShopContext Wishlist Entity的Data
-=======
-        });
->>>>>>> [修改]wishlist及checkout ，api有抓到值，沒綁到vue(待完成)
     </script>
 
 }

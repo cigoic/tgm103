@@ -1,42 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 ﻿<div id="cartIndex">
 
-=======
-﻿@model IEnumerable<WuliKaWu.Data.Orders>
->>>>>>> [更新] 資料庫資料表
-=======
-﻿@model IEnumerable<WuliKaWu.Data.Order>
->>>>>>> [新增]所有資料表
-=======
-﻿@model IEnumerable<WuliKaWu.Data.Cart>
->>>>>>> [新增]OrderDetailsTable，[更新]Common表、Cart表、ContactMessage表、Member表、Order表加入Summary
-=======
-﻿<div id="cartIndex">
-
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>Cart</h2>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <ul>                    
-                    <li><a href="/cart/Index">Home</a></li>
-=======
                 <ul>
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
->>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
-=======
-                <ul>                    
-=======
-                <ul>
->>>>>>> [修改]Checkout及Cart View修改資料內容
                     <li><a href="/cart/Index">Home</a></li>
->>>>>>> [修改]Addtocart Action
                     <li><i class="ti-angle-right"></i></li>
                     <li>Cart</li>
                 </ul>
@@ -59,47 +28,11 @@
                                 <table>
                                     <thead>
                                         <tr>
-<<<<<<< HEAD
-<<<<<<< HEAD
                                             <th class="col-lg-2"></th>
-<<<<<<< HEAD
-=======
-                                            <th class="col-lg-3"></th>
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
-=======
-                                            <th class="col-lg-2"></th>
->>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
-                                            <th class="col-lg-2">Product</th>
-=======
                                             <th class="col-lg-1">Product</th>
->>>>>>> [修改]Checkout及Cart View修改資料內容
                                             <th class="col-lg-1"> Size</th>
                                             <th class="col-lg-1"> Color</th>
                                             <th class="col-lg-1"> Price</th>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                            <th class="col-lg-1">Quantity</th>
-                                            <th class="col-lg-1">Subtotal</th>
-                                            <th class="col-lg-1"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody >
-                                        <tr v-for="cart in productInThisCart">
-                                            <td class="product-thumbnail">                                                
-                                                <a href="/Products/ProductDetails"><img src="/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a href="/Products/ProductDetails">{{cart.product.productName}}</a></h5>
-                                            </td>
-                                            <td><span>{{cart.product.size}}</span></td>
-                                            <td><span>{{cart.product.color}}</span></td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price}}</span>
-                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice}}</span>
-=======
-                                            @*<th class="col-lg-2"> SellingPrice</th>*@
-=======
->>>>>>> 幫艾汶更改product的action
                                             <th class="col-lg-1">Quantity</th>
                                             <th class="col-lg-1">Subtotal</th>
                                             <th class="col-lg-1"></th>
@@ -124,142 +57,15 @@
                                                 <input type="number" name="qtybutton" :value="cart.quantity" readonly>
                                             </td>
                                             <td class="product-price">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
-                                            </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>
-                                        <tr v-for="cart in carts">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.productName}}</a></h5>
-                                            </td>
-                                            <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.color}}</span></td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
-                                            </td>
-                                            <td class="cart-quality">
-                                                @*<div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
-
-                                                </div>*@
-                                                <input type="number" name="qtybutton" value="cart.quantity" readonly>
-                                                @*<span>{{cart.quantity}}</span>*@
-                                            </td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
-                                            </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>
-                                        <tr v-for="cart in carts">
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-1.jpg" alt=""></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">{{cart.productName}}</a></h5>
-                                            </td>
-                                            <td><span>{{cart.size}}</span></td>
-                                            <td><span>{{cart.color}}</span></td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice}}</span>
-                                            </td>
-                                            <td class="cart-quality">
-                                                @*<div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
-
-                                                </div>*@
-                                                <input type="number" name="qtybutton" value="cart.quantity" readonly>
-                                                @*<span>{{cart.quantity}}</span>*@
-                                            </td>
-<<<<<<< HEAD
-                                            <td class="product-total"><span>${{cart.price*cart.quantity}}</span></td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>
-@*                                        <tr>
-                                            <td class="product-thumbnail">
-                                                <a asp-controller="Home" asp-action="ProductDetails"><img src="~/assets/images/cart/cart-2.jpg" alt=""></a>
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
-                                            </td>
-                                            <td class="cart-quality">
-                                                @*<div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text"  name="qtybutton" value="1">
-
-                                                </div>*@
-                                                <input type="number" name="qtybutton" :value="cart.product.quantity" readonly>
-                                                @*<span>{{cart.quantity}}</span>*@
-                                            </td>
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
-                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
-=======
-                                                <span :class="{'old-price':cart.products.price}">${{cart.products.price*cart.products.quantity}}</span>
-                                                <span class="new-price" v-if="cart.products.sellingPrice">${{cart.products.sellingPrice*cart.products.quantity}}</span>
->>>>>>> [修改]WishlistApi 的getwishlist
-                                            </td>
-<<<<<<< HEAD
-                                            <td class="product-remove"><i class=" ti-trash "></i></td>
-=======
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
-=======
                                                 <span :class="{'old-price':cart.discount}">${{cart.price*cart.quantity}}</span>
                                                 <span class="new-price" v-if="cart.discount">${{cart.sellingPrice*cart.quantity}}</span>
->>>>>>> [修改]價格呈現方式
                                             </td>
                                             <td class="product-remove">
                                                 <button type="button" v-on:click="RemoveToCart(cart.id)"><i class=" ti-trash "></i></button>
                                             </td>
-<<<<<<< HEAD
->>>>>>> [修改]Cartapicontroller的gettocart action(有抓到值,前端渲染不完整)
-=======
 
                                             
->>>>>>> [新增]RemoveToCart Action
                                         </tr>
-                                        
-=======
-                                            <td class="product-name">
-                                                <h5><a asp-controller="Home" asp-action="ProductDetails">Modern Swivel Chair</a></h5>
-                                            </td>
-                                            <td class="product-cart-price"><span class="amount">$120.00</span></td>
-                                            <td class="cart-quality">
-                                                <div class="product-quality">
-                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                                                </div>
-                                            </td>
-                                            <td class="product-total"><span>$120.00</span></td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>*@
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
-=======
-                                            <td class="product-price">
-                                                <span :class="{'old-price':cart.price}">${{cart.price*cart.quantity}}</span>
-                                                <span class="new-price" v-if="cart.sellingPrice">${{cart.sellingPrice*cart.quantity}}</span>
-                                            </td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
-                                        </tr>
->>>>>>> 幫艾汶更改product的action
-=======
-                                                <span :class="{'old-price':cart.product.price}">${{cart.product.price*cart.product.quantity}}</span>
-                                                <span class="new-price" v-if="cart.product.sellingPrice">${{cart.product.sellingPrice*cart.product.quantity}}</span>
-                                            </td>
-                                            <td class="product-remove"><i class=" ti-trash "></i></td>
-                                        </tr>
-<<<<<<< HEAD
-                                        
->>>>>>> [更新] 遮蔽 Cart/WishList 原本範本產生的 CRUD Views
-=======
->>>>>>> [修改]_layout 修改checkout路徑
                                     </tbody>
                                 </table>
                             </div>
@@ -269,43 +75,13 @@
                             <div class="col-lg-12">
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="cart-shiping-update btn-hover">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <a href="/Products/Index">Continue Shopping</a>                                        
-=======
-                                        <a asp-action="Index" asp-controller="Products">Continue Shopping</a>
->>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
-=======
-                                        <a href="/Products/Index">Continue Shopping</a>                                        
->>>>>>> [修改]Addtocart Action
-=======
                                         <a href="/Products/Index">Continue Shopping</a>
->>>>>>> [修改]Checkout及Cart View修改資料內容
                                     </div>
                                     <div class="cart-clear-wrap">
                                         
                                         <div class="cart-clear btn-hover">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                            <a href="/Cart/Index">Clear Cart</a>
-                                            @*<a href="#">Clear Cart</a>*@
-=======
-                                            <a href="#">Clear Cart</a>
->>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
-=======
-                                            <a href="/Cart/Index">Clear Cart</a>
-                                            @*<a href="#">Clear Cart</a>*@
->>>>>>> [修改]Addtocart Action
-=======
-                                            <a href="/Cart/Index">Proceed to checkout</a>
->>>>>>> [修改]Checkout及Cart View修改資料內容
-=======
                                             @*<button type="button" v-on:click="getCheckOut(productInThisCart)">Proceed to checkout</button>*@
                                             <a href="/Cart/Checkout">Proceed to checkout</a>
->>>>>>> [修改]Checkout、Cart及Wishlist版面
                                         </div>
                                     </div>
                                 </div>
@@ -315,151 +91,9 @@
                     </form>
                 </div>
             </div>
-<<<<<<< HEAD
-            <div class="row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="grand-total-wrap" v-for="cart in productInThisCart">
-=======
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="cart-calculate-discount-wrap mb-40">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-=======
-                <div class="col-lg-5 col-md-6 col-12">
->>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
-                    <div class="cart-calculate-discount-wrap mb-40">
-                        <h4>Coupon Discount </h4>
-                        <div class="calculate-discount-content">
-                            <p>Enter your coupon code if you have one.</p>
-                            <div class="input-style">
-                                @*<input type="text" placeholder="Coupon code">*@
-                            @*<select v-model="selectItem" :class={}>*@
-                                <select>  
-                                <option>Coopon code</option>
-                                <option>初春活動</option>
-                                <option>情人節活動</option>
-                            </select>
-                            </div>
-                            <div class="calculate-discount-btn btn-hover">
-                                <a class="btn theme-color" href="#">Apply Coupon</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-12 col-12">
-                    <div class="grand-total-wrap">
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
-                        <div class="grand-total-content">
-<<<<<<< HEAD
-=======
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="grand-total-wrap" v-for="cart in productInThisCart">
-                        <div class="grand-total-content">
->>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
-                            <div class="cart-calculate-discount-wrap mb-40">
-                                <h4>Coupon Discount </h4>
-                                <div class="calculate-discount-content">
-                                    <div class="input-style">
-                                        @*Discount優惠活動尚未完成*@
-                                        <select>
-                                            <option>Coupon Code</option>
-                                            <option>Spring Activity <span>{{cart.groupon}}</span></option>
-                                            <option>End-of-season-sale<span>{{cart.groupon}}</span></option>
-                                        </select>
-                                    </div>
-                                    <div class="calculate-discount-btn btn-hover">
-                                        <h3>Subtotal <span>$180.00</span></h3>
-
-                                        <div class="grand-total">
-                                            <h4>Total <span>$185.00</span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-<<<<<<< HEAD
-=======
-                            <h3>Subtotal <span>$180.00</span></h3>
-                            <div class="grand-total">
-                                <h4>Total <span>$185.00</span></h4>
->>>>>>> 幫艾汶更改product的action
-                            </div>
-                        </div>
-                        <div class="grand-total-btn btn-hover">
-<<<<<<< HEAD
-                            <a class="btn theme-color" asp-action="Checkout" asp-controller="Home">Proceed to checkout</a>
-=======
-                            <a class="btn theme-color" href="checkout.html">Proceed to checkout</a>
->>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
-=======
-                            </div>
-                        </div>
-                        <div class="grand-total-btn btn-hover">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            <a class="btn theme-color" asp-action="Checkout" asp-controller="Home">Proceed to checkout</a>
->>>>>>> [新增]Continue Shopping及Proceed to checkout button的asp-action及asp-controller [調整版面]Coupon及Total
-=======
-                            <a class="btn theme-color" href="/api/CheckOut/Index">Proceed to checkout</a>                            
->>>>>>> [新增]CartGetModel及WishListGetModel 的資料欄位
-=======
-                            <a class="btn theme-color" href="/api/CheckOut/Index">Proceed to checkout</a>
->>>>>>> [修改]Checkout及Cart View修改資料內容
-                        </div>
-                    </div>
-                </div>
-            </div>
-=======
->>>>>>> [修改]Checkout、Cart及Wishlist版面
         </div>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 </div>
-
-@section Scripts{
-
-    <script>
-        let cart = new Vue({
-            el: "#cartIndex",
-            data: {
-                productInThisCart: {
-                    cartId:[]
-                }
-            },
-            mounted: function () {
-                var self = this;
-                fetch('/api/cart/GetCart/')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.productInThisCart = result;
-                    })
-            },
-            methods:
-            {            
-                RemoveToWishlist(id)
-            {
-                 console.log("RPid",id)
-                            this.queryCartBaseURL = '/api/wishlist/RemoveToWishlist/' + id;
-                    fetch(this.queryCartBaseURL,{method:"POST"})
-                        .then(function (reponse) {return response.json()})
-                        .then(function (result) {
-                            alert(result);
-                        })
-            }
-            }
-        });
-    </script>
-    }
-=======
-</div>  
-=======
-</div>
->>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項
 
 @section Scripts{
 
@@ -511,9 +145,4 @@
             }
         });
     </script>
-<<<<<<< HEAD
-}
->>>>>>> 新增ShopContext Entity的Cart及Wishlist,新增Vue2 dev version及production,調整Cartapicontroller版面
-=======
     }
->>>>>>> 調整Cart Index的Coupon Discount及Subtotal的排版及Coupon改成下拉選項

@@ -1,62 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-﻿@model ArticleModel
-=======
-﻿@model ArticleDetailsModel
->>>>>>> [新增] 修改 Artical 資料內容類別定義表, 新增部落格發文功能, 將 CK Editor 純文字內容加入資料庫
-
-<<<<<<< HEAD
-<div class="container" id="blogDetailsApp" />
-=======
 ﻿<div class="container" id="blogDetailsApp" />
->>>>>>> [更新] 調整、顯示作者所有文章的頁面
 
-<<<<<<< HEAD
-=======
-﻿
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-﻿@model ArticleModel
-
->>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
-=======
-<div class="container" id="blogDetailsApp"/>
-=======
-﻿@*@model ArticleModel*@
-=======
-﻿@model ArticleModel
->>>>>>> [修正] Blog Details 檢視中 @model 敘述
-
-<div class="container" id="blogDetailsApp" />
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-<div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
-    <div class="container">
-        <div class="breadcrumb-content text-center">
-            <h2 data-aos="fade-up" data-aos-delay="200">Blog Details</h2>
-            <ul data-aos="fade-up" data-aos-delay="400">
-                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><i class="ti-angle-right"></i></li>
-                <li>Blog Details</li>
-            </ul>
-        </div>
-    </div>
-    <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-1.png" alt="">
-    </div>
-    <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-        <img src="~/assets/images/banner/breadcrumb-2.png" alt="">
-    </div>
-</div>
-<div class="blog-details-area pt-100 pb-100">
-=======
 <div class="blog-details-area pt-15 pb-100">
->>>>>>> [更新] 持續修改新增文章上傳圖片, 目前後端檔案有上傳，但是前端頁面回提示警告說無法上傳檔案
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -66,118 +10,15 @@
                             <img :src="titleImg" alt="">
                         </div>
                         <div class="blog-details-date">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            <h5 v-if="articleDay(article.createdAt)">{{ aDay }} <span v-if="getMonthName(article.createdAt)">{{ aMonth }}</span></h5>
-=======
-                            <h5>01 <span>May</span></h5>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                            <h5 v-if="articleDay(article.createdAt)">{{ aDay }} <span v-if="getMonthName(article.createdAt)">{{ aMonth }}</span></h5>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
                             <h5 v-if="articleDay(article.createdDate)">{{ aDay }} <span v-if="getMonthName(article.createdDate)">{{ aMonth }}</span></h5>
->>>>>>> [修正] 部落格 Details 顯示頁面
                         </div>
                     </div>
                     <div class="blog-meta-2" data-aos="fade-up" data-aos-delay="200">
                         <ul>
                             <li><a href="#">Furniture</a>,</li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                            <li>By:<a href="#"> @Model.MemberName</a></li>
-=======
                             <li>By:<a href="#"> {{ article.memberName }}</a></li>
->>>>>>> [更新] 文章 Details 頁面，顯示 tags, 作者名
                         </ul>
                     </div>
-                    <h1 data-aos="fade-up" data-aos-delay="200">@Model.Title</h1>
-                    <p data-aos="fade-up" data-aos-delay="200">@Model.Content</p>
-=======
-                            <li>By:<a href="#"> Admin</a></li>
-                        </ul>
-                    </div>
-                    <h1 data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consec.</h1>
-                    <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor in reprehenderit in voluptate velit esse cillumlt dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiq officia deserunt mollit anim id est laborum. </p>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                            <li>By:<a href="#"> @Model.MemberName</a></li>
-                        </ul>
-                    </div>
-<<<<<<< HEAD
-                    <h1 data-aos="fade-up" data-aos-delay="200">@Model.Title</h1>
-                    <p data-aos="fade-up" data-aos-delay="200">@Model.Content</p>
->>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
-                    <blockquote class="blockquote-wrap" data-aos="fade-up" data-aos-delay="200">
-                        <div class="quote-img">
-                            <img src="/assets/images/icon-img/quote.png" alt="">
-                        </div>
-                        <h2>Lorem ipsum dolor sit amet, con adipis elit sed do eiusmod tempor incididunt ut labore et dolore.</h2>
-                        <h4>Jont utdo</h4>
-                    </blockquote>
-                    <p data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitatio ullamco laboris nisi ut aliquip ex ea commodo conse Duis aute irure dolor.</p>
-                    <div class="blog-details-middle-img-wrap">
-                        <div class="row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-                            @{
-                                int delayTime = 200;
-=======
-                            @* @{
-                            int delayTime = 200;
->>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
-                            }
-                            @foreach (var imagePath in Model.ContentImageFileNames)
-<<<<<<< HEAD
-=======
-                           @{int delayTime = 200;}
-                           @foreach(var imagePath in Model.ContentImageFileNames)
->>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
-=======
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-                            {
-<<<<<<< HEAD
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
-                                        <img src="@Url.Content(imagePath)" alt="">
-                                    </div>
-<<<<<<< HEAD
-                                </div>
-                                delayTime += 200;
-                            }
-=======
-                            <div class="col-md-6 col-sm-6 col-12">
-                                <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="200">
-                                    <img src="~/assets/images/blog/blog-details-2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-12">
-                                <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="400">
-                                    <img src="~/assets/images/blog/blog-details-3.png" alt="">
-                                </div>
-                            </div>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                </div>
-                                delayTime += 200;
-                            }
->>>>>>> [更新] Article Details 檢視中部分元素, 改撈取資料庫資料出來顯示
-=======
-                            <div class="col-md-6 col-sm-6 col-12">
-                            <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="@delayTime">
-                            <img src="@Url.Content(imagePath)" alt="">
-                            </div>
-                            </div>
-                            delayTime += 200;
-                            }*@
->>>>>>> [更新修正] 修改 Article 表, 修正 CK Editor 後端無法正確收到編輯器內文
-=======
                     <h1 data-aos="fade-up" data-aos-delay="200">{{ article.title }}</h1>
                     <p v-html="article.content" data-aos="fade-up" data-aos-delay="200">{{  article.content }}</p>
 
@@ -188,7 +29,6 @@
                                     <img :src="images" alt="">
                                 </div>
                             </div>
->>>>>>> [修正] 部落格 Details 顯示頁面
                         </div>
                     </div>
                     <div class="tag-social-wrap">
@@ -203,84 +43,20 @@
                     <div class="blog-next-previous-post" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-prev-post-wrap">
                             <div class="blog-prev-post-icon">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
-                            </div>
-                            <div class="blog-prev-post-content">
-                                <h3><a :href="articleLink(prevArticle.id)">{{ prevArticle.title }}</a></h3>
-=======
-                                <a href="#"><i class="fa fa-angle-left"></i></a>
-                            </div>
-                            <div class="blog-prev-post-content">
-                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                <a :href="articleLink(prevArticleId)"><i class="fa fa-angle-left"></i></a>
-                            </div>
-                            <div class="blog-prev-post-content">
-                                <h3><a :href="articleLink(prevArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-=======
-                                <a :href="articleLink(prevArticle.id)"><i class="fa fa-angle-left"></i></a>
-                            </div>
-                            <div class="blog-prev-post-content">
-                                <h3><a :href="articleLink(prevArticle.id)">{{ prevArticle.title }}</a></h3>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
                                 <a :href="articleLink(article.prevArticleId)"><i class="fa fa-angle-left"></i></a>
                             </div>
                             <div class="blog-prev-post-content">
                                 <h3><a :href="articleLink(article.prevArticleId)">{{ article.prevArticleTitle }}</a></h3>
-<<<<<<< HEAD
->>>>>>> [修正] 部落格 Details 顯示頁面
-                                <span>June 25, 2022</span>
-=======
                                 <span>{{ showDate(article.prevArticleCreateAt) }}</span>
->>>>>>> [更新] 文章 Details 頁面，顯示 tags, 作者名
                             </div>
                         </div>
                         <div class="blog-next-post-wrap">
                             <div class="blog-next-post-icon">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
-                            </div>
-                            <div class="blog-next-post-content">
-                                <h3><a :href="articleLink(nextArticle.id)">{{ nextArticle.title }}</a></h3>
-=======
-                                <a href="#"> <i class="fa fa-angle-right"></i> </a>
-                            </div>
-                            <div class="blog-next-post-content">
-                                <h3><a href="#">Lorem ipsum dolor sit amet cons ectetur</a></h3>
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
-                                <a :href="articleLink(nextArticleId)"> <i class="fa fa-angle-right"></i> </a>
-                            </div>
-                            <div class="blog-next-post-content">
-                                <h3><a :href="articleLink(nextArticleId)">Lorem ipsum dolor sit amet cons ectetur</a></h3>
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-=======
-                                <a :href="articleLink(nextArticle.id)"> <i class="fa fa-angle-right"></i> </a>
-                            </div>
-                            <div class="blog-next-post-content">
-                                <h3><a :href="articleLink(nextArticle.id)">{{ nextArticle.title }}</a></h3>
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-=======
                                 <a :href="articleLink(article.nextArticleId)"> <i class="fa fa-angle-right"></i> </a>
                             </div>
                             <div class="blog-next-post-content">
                                 <h3><a :href="articleLink(article.nextArticleId)">{{ article.nextArticleTitle }}</a></h3>
-<<<<<<< HEAD
->>>>>>> [修正] 部落格 Details 顯示頁面
-                                <span>June 25, 2022</span>
-=======
                                 <span>{{ showDate(article.nextArticleCreateAt) }}</span>
->>>>>>> [更新] 文章 Details 頁面，顯示 tags, 作者名
                             </div>
                         </div>
                     </div>
@@ -341,58 +117,18 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 @section Scripts{
 
     <script>
-=======
-
-@section Scripts{
-
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.6/axios.min.js" integrity="sha512-RUkwGPgBmjCwqXpCRzpPPmGl0LSFp9v5wXtmG41+OS8vnmXybQX5qiG5adrIhtO03irWCXl+z0Jrst6qeaLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
-    <script>
-<<<<<<< HEAD
-        Vue.component('paginate', VuejsPaginate);
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-=======
->>>>>>> [更新] 會員登入功能, 調整註冊功能
 
         let blogDetailsVue = new Vue({
             //el:'#blogDetailsApp',
             name: "blogDetailsApp",
             data: {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-                article: {
-                    id: null,
-                    title: null,
-                    createdAt: null
-                },
-                prevArticle: {
-                    id: null,
-                    title: null,
-                    createdAt: null
-                },
-                nextArticle: {
-                    id: null,
-                    title: null,
-                    createdAt: null
-                },
-                articleBaseLink: "/api/Blog/GetArticleById/",
-                //articleBaseLink: "/Blog/Details/",
-<<<<<<< HEAD
-                articleId: null,
-                articleCreateAt: null,
-=======
                 article: {},
                 articleBaseLink: "/api/Blog/GetById/",
                 articleId: @ViewBag.ArticleId,
->>>>>>> [修正] 部落格 Details 顯示頁面
                 currentPage: 1,
                 aDay: "",
                 aMonth: "",
@@ -402,192 +138,6 @@
                 productImg: "",
             },
             mounted: function () {
-<<<<<<< HEAD
-                axios.get(this.articleBaseLink + "@ViewBag.ArticleId")
-                    .then(response => {
-                        console.table(".......", response.data)
-                        tgm103ShowSuccess(response.data.message)
-                    })
-                    .catch(error => { tgm103ShowError(error.response.data.message) })
-            });
-
-        //let self = this
-        this.article = {
-            id: @Model.ArticleId,
-            title: "@Model.Title",
-            createdAt: "@Model.CreateAt",
-        };
-        this.prevArticle = {
-            id: @Model.PrevArticleId,
-            title: "@Model.PrevArticleTitle",
-            createdAt: "@Model.PrevArticleCreateAt",
-        };
-        this.nextArticle = {
-            id: @Model.NextArticleId,
-            title: "@Model.NextArticleTitle",
-            createdAt: "@Model.NextArticleCreateAt",
-        };
-
-<<<<<<< HEAD
-                console.log(this.article)
-                console.log(this.prevArticle)
-                console.log(this.nextArticle)
-=======
-                articles: [
-                    {
-                        id: 1,
-                        title: '文章 1',
-                        content: '接到民國手指全球最後，承諾汽車，手段經濟發展意外有所原來模型的人未經接着，我有玩家積極負責一遍開放男子利潤，治理免費都是詢問尤其一週社會主義模擬學科一場趕緊圖書的話，臺灣消失比例上一頁驚人至今新臺幣刪除等方面一路適當產權頻率，複雜那就那個還沒有，由於突出。',
-                        createdAt: '2022-01-01'
-                    },
-                    {
-                        id: 2,
-                        title: '文章 2',
-                        content: '身邊本書本書職工用戶名，鈴聲付出領域心理都說施工運動競爭鈴聲下載，地面從來沒以前學者英雄動畫員工校長文學你們的承受吸收模型用戶名，領先隊員一遍打開推薦使用私人想起有一種傳來擁有，緊緊你可以婚姻超級下載次數飯店，正在夫妻，點頭材料主角需求英文，宅宅許可，近。',
-                        createdAt: '2022-01-02'
-                    },
-                    {
-                        id: 3,
-                        title: '文章 3',
-                        content: '碩士試驗說過高達一家我不只好貢獻前來人大指出，以外所謂返回不良情感，帶來有點遠無門朋友提升交換，金幣前面見過拍攝紅色採取主演物業不用這次高校眼中，體會許可別人如下加速怎麼會，信用姑娘群發，競爭力程式老師博士，你還演唱生意，詳細內容日誌下去，您現在難道，供。',
-                        createdAt: '2022-01-03'
-                    },
-                ],
-                //articleBaseLink: "/api/Blog/GetArticleById/",
-                articleBaseLink: "/Blog/Details/",
-                prevArticleId: null,
-=======
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-                articleId: null,
-                articleCreateAt: null,
-                currentPage: 1,
-                aDay: null,
-                aMonth: null,
-            },
-            mounted: function () {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                var self = this;
-                fetch('/api/Blog/GetArticlesById/@Model')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.articles = result;
-                    })
-                //axios
-                //    .get('/api/Blog/GetArticles')
-                //    .then(response => (self.articles = response.data))
-                //    .catch(error => console.log(error))
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-=======
-                //var self = this;
-                this.articleId = @Model.ArticleId;
-                this.prevArticleId = @Model.PrevArticleId;
-                this.nextArticleId = @Model.NextArticleId;
-                //console.log("Current ArticleID is ", this.articleId);
-                //console.log("Prev ArticleID is ", this.prevArticleId);
-                //console.log("Next ArticleID is ", this.nextArticleId);
-                //this.prevArticleBaseLink = this.queryPrevArticleIdLink + this.articleId
-                //this.nextArticleBaseLink = this.queryNextArticleIdLink + this.articleId
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-=======
-                fetch(this.articleBaseLink + @Model.ArticleId).then(response => {
-                    //handle the response and store the next article ID
-                    console.log(response)
-                });
-
-                //let self = this
-                this.article = {
-                    id: @Model.ArticleId,
-                    title: "@Model.Title",
-                    createdAt: "@Model.CreateAt",
-                };
-                this.prevArticle = {
-                    id: @Model.PrevArticleId,
-                    title: "@Model.PrevArticleTitle",
-                    createdAt: "@Model.PrevArticleCreateAt",
-                };
-                this.nextArticle = {
-                    id: @Model.NextArticleId,
-                    title: "@Model.NextArticleTitle",
-                    createdAt: "@Model.NextArticleCreateAt",
-                };
-
-                console.log(this.article)
-                console.log(this.prevArticle)
-                console.log(this.nextArticle)
->>>>>>> [更新] 會員登入功能, 調整註冊功能
-            },
-            methods: {
-                clickCallback: function (page) {
-                    this.currentPage = page;
-                    console.log(page)
-<<<<<<< HEAD
-<<<<<<< HEAD
-                },
-                articleLink: function (id) {
-                    return this.articleBaseLink + id
-                },
-                articleDay(currentDate) {
-                    var date = new Date(currentDate);
-                    this.aDay = date.getDate()
-                    return this.aDay
-                },
-                getMonthName(currentDate) {
-                    const date = new Date(currentDate)
-                    this.aMonth = date.toLocaleString('default', { month: 'short' })
-                    return this.aMonth
-                },
-            }
-=======
-                }
-            },
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料
-=======
-                },
-                articleLink: function (id) {
-                    return this.articleBaseLink + id
-                },
-                articleDay(currentDate) {
-                    var date = new Date(currentDate);
-                    this.aDay = date.getDate()
-                    return this.aDay
-                },
-                getMonthName(currentDate) {
-                    const date = new Date(currentDate)
-                    this.aMonth = date.toLocaleString('default', { month: 'short' })
-                    return this.aMonth
-                },
-            }
->>>>>>> [更新] 部落格首頁、內容檢視頁面跳轉頁面（如：上下一筆文章、當前文章）的超連結邏輯
-        })
-=======
-        console.log(this.article)
-        console.log(this.prevArticle)
-        console.log(this.nextArticle)
-                                                                    },
-        methods: {
-            clickCallback: function (page) {
-                this.currentPage = page;
-                console.log(page)
-            },
-            articleLink: function (id) {
-                return this.articleBaseLink + id
-            },
-            articleDay(currentDate) {
-                var date = new Date(currentDate);
-                this.aDay = date.getDate()
-                return this.aDay
-            },
-            getMonthName(currentDate) {
-                const date = new Date(currentDate)
-                this.aMonth = date.toLocaleString('default', { month: 'short' })
-                return this.aMonth
-            },
-        }
-                                                                })
->>>>>>> [更新] 編輯部落格文章頁面
-=======
                 let self = this
                 self.getCategories()
                 self.getTags(self.articleId)
@@ -652,15 +202,9 @@
                 },
             }
         })
->>>>>>> [修正] 部落格 Details 顯示頁面
 
         document.addEventListener("DOMContentLoaded", () => {
             blogDetailsVue.$mount('#blogDetailsApp')
         })
     </script>
 }
-<<<<<<< HEAD
-=======
->>>>>>> [更新] 修改 _Layout 中 AboutUs, Blog...以及 Vue 的引用連結. 新增相關控制器與檢視頁面
-=======
->>>>>>> [更新] 繼續修改部落格相關檢視頁面, 改寫用 Vue.js 撈取資料

@@ -6,15 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WuliKaWu.Data;
-<<<<<<< HEAD
-<<<<<<< HEAD
 using WuliKaWu.Models.ApiModel;
-=======
-using WuliKaWu.Models;
->>>>>>> [新增]color controller以及color新增及編輯的model
-=======
-using WuliKaWu.Models.ApiModel;
->>>>>>> [修改]CartApi及WishListapi的Model
 
 namespace WuliKaWu.Controllers
 {
@@ -65,15 +57,7 @@ namespace WuliKaWu.Controllers
             _context.Colors.Add(new Color { Type = color.Type });
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-<<<<<<< HEAD
-<<<<<<< HEAD
             //return View(color);
-=======
-            return View(color);
->>>>>>> [新增]color controller以及color新增及編輯的model
-=======
-            //return View(color);
->>>>>>> [修改]color controller及 它的 index樣式調整
         }
 
         // GET: Colors/Edit/5

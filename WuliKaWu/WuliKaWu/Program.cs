@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 using WuliKaWu.Data;
 
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 var builder = WebApplication.CreateBuilder(args);
 //MVC網站服務
 builder.Services.AddControllersWithViews();
@@ -21,7 +18,6 @@ builder.Services.AddSession(
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //    options.UseSqlServer(connectionString));
-<<<<<<< HEAD
 
 // Local 端開發使用的 SQL Server 連線字串
 //var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
@@ -31,23 +27,7 @@ builder.Services.AddSession(
 // Smart ASP MySQL 連線字串
 var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
 //var SmartASPConnectionString = Environment.GetEnvironmentVariable("SmartASPConnection");
-<<<<<<< HEAD
-=======
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
 
-<<<<<<< HEAD
-=======
-// Local 端開發使用的 SQL Server 連線字串
-//var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
-//builder.Services.AddDbContext<ShopContext>(options =>
-//    options.UseSqlServer(ShopConnectionString));
-
-// Smart ASP MySQL 連線字串
-var SmartASPConnectionString = builder.Configuration.GetConnectionString("SmartASPConnection");
->>>>>>> [更新] 使用 Smart ASP MySQL 連線字串
-=======
-
->>>>>>> [新增]抓取雲端環境的路徑
 builder.Services.AddDbContext<ShopContext>(options =>
     options.UseSqlServer(SmartASPConnectionString));
 
@@ -88,15 +68,7 @@ builder.Services
     {
         opt.AccessDeniedPath = "/Home/Error";   // 驗證失敗時，轉至此頁面
         opt.LoginPath = "/Member/Login";     // 當應當要登入，卻沒經過登入頁面時，轉至此頁面
-<<<<<<< HEAD
-<<<<<<< HEAD
         opt.ExpireTimeSpan = TimeSpan.FromSeconds(86400);
-=======
-        opt.ExpireTimeSpan = TimeSpan.FromSeconds(300);
->>>>>>> [新增] 自訂會員註冊控制器與登入畫面與 Member 表，修正 _Layout 連結
-=======
-        opt.ExpireTimeSpan = TimeSpan.FromSeconds(86400);
->>>>>>> [更新] 延長 cookie 過期時間, 會員寄信功能撈取 User Secrete 設定值
         opt.Cookie.Name = "WuliKaWuCookie";
         opt.Cookie.HttpOnly = true;
         opt.LogoutPath = "/";

@@ -13,16 +13,6 @@ namespace WuliKaWu.Data
         /// 文章 ID : 自動編號
         /// </summary>
         [Key]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
->>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
-=======
->>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述
-        public int ArticleId { get; set; }
-=======
         public int Id { get; set; }
 
         /// <summary>
@@ -30,7 +20,6 @@ namespace WuliKaWu.Data
         /// </summary>
         [ForeignKey("Member")]
         public int MemberId { get; set; }
->>>>>>> [更動] Article 相關資料內容定義表檔案,新增 Migration
 
         /// <summary>
         /// 建立日期: 自動編號
@@ -90,12 +79,4 @@ namespace WuliKaWu.Data
         /// </summary>
         public virtual ICollection<Tag> Tags { get; set; }
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> [新增] Article, ArticleCategory,...等,部落格文章相關資料類別表和 MyAccount 檢視頁面.
-=======
-}
->>>>>>> [更新] 移除資料內容類別中自動編號的 DataAnnotation 敘述

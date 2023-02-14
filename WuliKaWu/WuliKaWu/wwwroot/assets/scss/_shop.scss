@@ -244,17 +244,11 @@
         justify-content: center;
 
         li {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
             &:hover {
                 color: $theme-color;
             }
 
             &.active {
-<<<<<<< HEAD
-<<<<<<< HEAD
                 height: 35px;
                 border-radius: 100%;
                 background-color: $theme-color;
@@ -262,26 +256,6 @@
                 text-align: center;
             }
 
-=======
-             &:hover {
-                    color: $theme-color;
-                }
-                &.active {
-                    background-color: $theme-color;
-                    color: $white;
-                }
->>>>>>> 123
-=======
-=======
-                height: 35px;
->>>>>>> [修正] JS, CSS 樣式表引用
-                border-radius: 100%;
-                background-color: $theme-color;
-                color: $white;
-                text-align: center;
-            }
-
->>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
             a {
                 width: 35px;
                 height: 35px;
@@ -293,10 +267,6 @@
                 margin: 0 4px;
                 color: #333;
                 text-align: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
 
                 &:hover {
                     color: $theme-color;
@@ -306,12 +276,6 @@
                     background-color: $theme-color;
                     color: $white;
                 }
-<<<<<<< HEAD
-=======
-               
->>>>>>> 123
-=======
->>>>>>> [修正] ProductsController Action Method 命名規則與添加生成智慧文件說明的註解，修正分頁使用的高亮度背景 CSS 樣式，修正 Product 使用 Grid Sidebar 樣版首頁的檢視頁面
             }
         }
     }

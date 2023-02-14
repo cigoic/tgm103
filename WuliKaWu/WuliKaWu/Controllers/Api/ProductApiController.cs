@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-﻿using Microsoft.AspNetCore.Http;
-=======
-=======
-using Microsoft.AspNetCore.Authorization;
-<<<<<<< HEAD
->>>>>>> [新增]Addtocart Action
-=======
-using Microsoft.AspNetCore.Hosting;
->>>>>>> [修正]商品新增
-using Microsoft.AspNetCore.Http;
->>>>>>> Productvue (#6)
-=======
->>>>>>> [新增] 首頁畫面顯示熱門與最新上架上品
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
@@ -47,86 +29,7 @@ namespace WuliKaWu.Controllers.Api
 
         public List<ProductReadModel> GetAll()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            return _db.Products.Select(x => new ProductModel
-            {
-                ProductName = x.ProductName,
-                Color = x.Color,
-                ImagePath = "~/assets/images/product/product-5.png",
-=======
-            return _context.Products.Select(x => new ProductModel
-            {
-                ProductName = x.ProductName,
-                Color = x.Color,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-                PicturePath = "~/assets/images/product/product-5.png",
->>>>>>> [修正]商品編輯檢視頁面的儲存編輯按鈕連動
-=======
-                PicturePath = x.PicturePath,
->>>>>>> [更新]ProductApiController 的 GetById方法
-=======
-                PicturePath = $"~/images/{productModel.PicturePath}",
->>>>>>> [更新] ProductApiController圖片路徑更新
-=======
-                PicturePath = $"~/images/{x.PicturePath}",
->>>>>>> [更新]ProductApiController的GetAll及GetById的圖片路徑
-=======
-                PicturePath = x.PicturePath,
->>>>>>> [修正]商品刪除檢視改以vue綁定，在ProductApiController加入GetById方法並新增DeletePreviewModel
-=======
-                PicturePath = $"/images/{x.PicturePath}",
->>>>>>> [修正] 更動資料表後的 Cart, whishlist 檢視與控制器程式片段
-                Price = x.Price,
-                ProductId = x.ProductId,
-<<<<<<< HEAD
-                Size = x.Size,
-<<<<<<< HEAD
-                Discount = true,
-                SellingPrice = x.SellingPrice.ToString() ?? "",
-
-                Category = x.Category,
-
-                //TODO ������n�૬
-                Tag = (Data.Enums.Common.Tag)x.Tag
-=======
-=======
-                Size = x.Size.GetDescriptionText(),
->>>>>>> 小精靈的祝福
-                Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
-                SellingPrice = x.SellingPrice.ToString() ?? ""
->>>>>>> [修正]ProductApiController的Discount寫死的改掉
-            }).ToList();
-=======
-            throw new NotImplementedException();
-            //return _context.Products.Select(x => new ProductModel
-            //{
-            //    ProductName = x.ProductName,
-            //    Color = x.Color,
-            //    PicturePath = x.PicturePath,
-            //    Price = x.Price,
-            //    ProductId = x.ProductId,
-            //    Size = x.Size.GetDescriptionText(),
-            //    Discount = x.Discount.HasValue ? x.Discount.Value > 0 ? true : false : false,
-            //    SellingPrice = x.SellingPrice.ToString() ?? ""
-            //}).ToList();
->>>>>>> DB修改
-=======
-
-            return _context.Products.Include(x=> x.Colors).Include(x=>x.Pictures).Include(x=>x.Tags).Select(x => new ProductReadModel
-=======
-            return _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
->>>>>>> [修正]刪除不需要的Model以及更改Model名稱
-=======
             var model = _context.Products.Include(x => x.Colors).Include(x => x.Pictures).Include(x => x.Tags).Select(x => new ProductReadModel
->>>>>>> [更新]重新調整照片上傳的功能
             {
                 ProductName = x.ProductName,
                 CategoryId = x.CategoryId,
@@ -140,11 +43,7 @@ namespace WuliKaWu.Controllers.Api
                 Comment = x.Comment,
                 Tags = x.Tags.Select(x => x.Id).ToList()
             }).ToList();
-<<<<<<< HEAD
->>>>>>> product index filter-category
-=======
             return model;
->>>>>>> [更新]重新調整照片上傳的功能
         }
 
         /// <summary>
@@ -379,7 +278,4 @@ namespace WuliKaWu.Controllers.Api
             }).ToList();
         }
     }
-}<<<<<<< HEAD
->>>>>>> [更新] 資料庫資料表
-=======
->>>>>>> Productvue (#6)
+}
