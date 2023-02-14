@@ -1,4 +1,4 @@
-﻿<div class="container" id="myAccountApp" />
+﻿<div class="container" id="app" />
 
 <!-- my account wrapper start -->
 <div class="my-account-wrapper pb-100 pt-15">
@@ -202,9 +202,9 @@
     <script>
 
         //const myAccountDetailUrl = @Url.Action("MyAccount")
-        let myAccountVue = new Vue({
-            //el:'#myAccountApp',
-            name: "myAccountApp",
+        let app = new Vue({
+            //el:'#app',
+            name: "app",
             data: {
                 firstName: "",
                 lastName: "",
@@ -252,7 +252,7 @@
             }
         })
         document.addEventListener("DOMContentLoaded", () => {
-            myAccountVue.$mount('#myAccountApp')
+            app.$mount('#app')
         })
 
     </script>

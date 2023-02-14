@@ -1,12 +1,10 @@
-﻿@*<div class="container" id="blogPartialApp" />*@
-
-<div class="row">
+﻿<div class="row">
     <template v-for="article in formattedArticles" :key="article.id">
         <div class="col-lg-4 col-md-6">
             <div class="blog-wrap mb-50" data-aos="fade-up" data-aos-delay="200">
                 <div class="blog-img-date-wrap mb-25">
                     <div class="blog-img">
-                        <a :href="articleLink(article.id)"><img src="/assets/images/blog/blog-details.png" alt=""></a>
+                        <a :href="articleLink(article.id)"><img :src="article.titleImage" alt=""></a>
                     </div>
                     <div class="blog-date">
                         <h5> {{ article.timeInDay }} <span>{{ article.timeInMonth }}</span></h5>
@@ -48,31 +46,3 @@
     </paginate>
 
 </div>
-
-
-@*@section Scripts{
-
-    <script src="https://unpkg.com/vuejs-paginate@1.9.0"></script>
-    <script>
-        Vue.component('paginate', VuejsPaginate);
-
-        let blogSidebarVue = new Vue({
-            el: '#blogPartialApp',
-            name: "blogPartialApp",
-            data: {
-
-            },
-            mounted: function () {
-
-            },
-
-            methods: {
-
-            },
-        })
-
-        document.addEventListener("DOMContentLoaded", () => {
-            blogSidebarVue.$mount('#blogPartialApp')
-        })
-    </script>
-}*@

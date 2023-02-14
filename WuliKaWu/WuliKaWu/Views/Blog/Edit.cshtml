@@ -1,4 +1,4 @@
-﻿<div class="container" id="blogEditApp" />
+﻿<div class="container" id="app" />
 
 <h1>Edit</h1>
 
@@ -53,8 +53,8 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
 
     <script>
-        let blogEditVue = new Vue({
-            //el: 'blogEditApp',
+        let app = new Vue({
+            //el: 'app',
             data: {
                 selectedOption: '',
                 options: [
@@ -176,7 +176,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogEditVue.$mount('#blogEditApp')
+            app.$mount('#app')
         })
     </script>
 }

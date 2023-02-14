@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using ImageMagick;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,7 +69,7 @@ namespace WuliKaWu.Controllers.Api
         /// 取得特定作者的文章清單
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetMembersArticles(int articleId)
+        public IResult GetMembersArticles(int articleId)
         {
             if (articleId == 0)
                 return Results.NotFound(new { Status = false, Message = "找無會員相關文章!" });
@@ -78,21 +80,21 @@ namespace WuliKaWu.Controllers.Api
             if (memberId == 0)
                 return Results.NotFound(new { Status = false, Message = "找無會員相關文章!" });
 
-            return await _context.Articles
+            return _context.Articles
+            .Include(a => a.ArticleTitleImage)
+            .Include(a => a.ArticleContentImages)
+            .Include(a => a.Tags)
             .Where(m => m.MemberId == memberId)
-            //.Include(a => a.ArticleTitleImage)
-            //.Include(a => a.ArticleContentImages)
-            //.Include(a => a.Tags)
-            .ToListAsync()
-             is IEnumerable<Article> articles
-             //.Select(a => new ArticleDescriptionModel
-             //{
-             //    Id = a.Id,
-             //    Title = a.Title,
-             //    Description = a.Description,
-             //    ModifiedDate = a.ModifiedDate,
-             //})
-             //is IEnumerable<ArticleDescriptionModel> articles
+             //is IEnumerable<Article> articles
+             .Select(a => new ArticleMemberPostsModel
+             {
+                 Id = a.Id,
+                 Title = a.Title,
+                 Description = a.Description,
+                 ModifiedDate = a.ModifiedDate,
+                 TitleImage = a.ArticleTitleImage.PicturePath,
+             })
+             is IEnumerable<ArticleMemberPostsModel> articles
              ? Results.Ok(articles)
              : Results.NotFound(new { Status = false, Message = "找無會員相關文章!" });
         }
@@ -222,6 +224,7 @@ namespace WuliKaWu.Controllers.Api
                     Id = a.Id,
                     Title = a.Title,
                     CreatedDate = a.CreatedDate,
+                    TitleImage = a.ArticleTitleImage.PicturePath,
                 })
                 is IEnumerable<ArticleLastestPostModel> articles
                 ? Results.Ok(articles)
@@ -307,7 +310,7 @@ namespace WuliKaWu.Controllers.Api
         {
             try
             {
-                int maxLength = 64;
+                const int MAX_DESCRIPTION_LENGTH = 64;
 
                 Article model = new Article
                 {
@@ -316,8 +319,8 @@ namespace WuliKaWu.Controllers.Api
                     MemberId = User.Claims.GetMemberId(),
                     Title = article.Title,
                     Content = article.Content,
-                    Description = article.Content.Length <= maxLength
-                        ? article.Content : article.Content.Substring(0, maxLength) + "...",
+                    Description = article.Content.Length <= MAX_DESCRIPTION_LENGTH
+                        ? article.Content : article.Content.Substring(0, MAX_DESCRIPTION_LENGTH) + "...",
                     CategoryId = (article.CategoryId <= 1) ? 1 : article.CategoryId,
                     ArticleTitleImage = new ArticleTitleImage(),
                     ArticleContentImages = new List<ArticleContentImage>(),
@@ -410,35 +413,43 @@ namespace WuliKaWu.Controllers.Api
             {
                 try
                 {
-                    int maxLength = 64;
+                    int MAX_DESCRIPTION_LENGTH = 64;
 
-                    var article = _context.Articles.FirstOrDefault(a => a.Id == model.ArticleId);
+                    var article = _context.Articles
+                        .Include(a => a.ArticleTitleImage)
+                        .Include(a => a.ArticleContentImages)
+                        .FirstOrDefault(a => a.Id == model.ArticleId);
 
                     if (article.MemberId != model.MemberId)
                         return Results.NotFound(new { Status = false, Message = "非此篇作者，無法編輯" });
 
                     article.Title = model.Title;
                     article.Content = model.Content;
-                    article.Description = model.Content.Length <= maxLength
-                        ? model.Content : model.Content.Substring(0, maxLength) + "...";
+                    article.Description = model.Content.Length <= MAX_DESCRIPTION_LENGTH
+                        ? model.Content : model.Content.Substring(0, MAX_DESCRIPTION_LENGTH) + "...";
                     article.ModifiedDate = DateTime.UtcNow;
                     article.CategoryId = model.CategoryId;
 
-                    if (article.ArticleTitleImage == null)
-                        article.ArticleTitleImage = new ArticleTitleImage();
-                    if (article.ArticleContentImages == null)
-                        article.ArticleContentImages = new List<ArticleContentImage>();
+                    //if (article.ArticleTitleImage == null)
+                    //    article.ArticleTitleImage = new ArticleTitleImage();
+                    //if (article.ArticleContentImages == null)
+                    //    article.ArticleContentImages = new List<ArticleContentImage>();
 
                     // 影像
                     if (model.Images != null)
                     {
-                        // 有無重複的圖？先去除舊的標題圖
+                        // 有無重複的圖？先去除舊的標題圖  TODO: 刪除磁碟中圖片！
                         var oImgs = _context.ArticleTitleImages.Where(i => i.ArticleId == model.ArticleId);
                         if (oImgs != null)
                         {
                             foreach (var img in oImgs)
                             {
                                 _context.ArticleTitleImages.Remove(img);
+                                var fpath = Path.Combine(_env.WebRootPath, img.PicturePath);
+                                if (System.IO.File.Exists(fpath))
+                                {
+                                    System.IO.File.Delete(fpath);
+                                }
                             }
                         }
 
@@ -448,6 +459,12 @@ namespace WuliKaWu.Controllers.Api
                             foreach (var img in oldImgs)
                             {
                                 _context.ArticleContentImages.Remove(img);
+
+                                var fpath = Path.Combine(_env.WebRootPath, img.PicturePath);
+                                if (System.IO.File.Exists(fpath))
+                                {
+                                    System.IO.File.Delete(fpath);
+                                }
                             }
                         }
 
@@ -515,7 +532,10 @@ namespace WuliKaWu.Controllers.Api
                 .Include(a => a.ArticleContentImages)
                 .FirstOrDefaultAsync(a => a.Id == ArticleId) is Article article)
             {
-                // 移除影像檔
+                // TODO 需要同一名作者才可刪文
+                // ...
+
+                // 移除影像檔    TODO: 刪除磁碟中圖片！
                 if (article.ArticleTitleImage != null)
                 {
                     var tImg = article.ArticleTitleImage;
@@ -572,7 +592,7 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// 上傳圖片
+        /// CK Editor 上傳圖片用
         /// </summary>
         /// <param name="images"></param>
         /// <returns></returns>
@@ -581,7 +601,7 @@ namespace WuliKaWu.Controllers.Api
         {
             if (images == null || images.Count <= 0)
                 return new MsgBlogUploadImageModel
-                {
+                {   // 此為指定的特定回傳格式，知會 CKFinder 圖片上傳狀況
                     Uploaded = false,
                     FileName = "",
                     Url = ""
@@ -598,7 +618,7 @@ namespace WuliKaWu.Controllers.Api
             string fileName = "";
             foreach (var image in images.Files)
             {
-                fileName = $"{DateTime.UtcNow.Ticks}-{ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"')}";
+                fileName = $"{DateTime.UtcNow.Ticks}_ck{ContentDispositionHeaderValue.Parse(image.ContentDisposition).FileName.Trim('"')}";
                 //fileName = Path.GetFileName(image.FileName);
                 if (string.IsNullOrEmpty(fileName))
                     return new MsgBlogUploadImageModel
@@ -612,18 +632,20 @@ namespace WuliKaWu.Controllers.Api
                 filePath = Path.Combine(
                    Directory.GetCurrentDirectory(), "wwwroot/images/ckeditor/", fileName);
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                using (var stream = new MemoryStream())
                 {
                     await image.CopyToAsync(stream);
-                    //using (MagickImage image = new MagickImage(stream))
-                    //{
-                    //    image.Resize(new MagickGeometry(320, 270));
+                    stream.Position = 0;
+                    using (ImageMagick.MagickImage img = new ImageMagick.MagickImage(stream))
+                    {
+                        img.Resize(new MagickGeometry(320, 270));
+                        //    size.IgnoreAspectRatio = true;
 
-                    //    using (FileStream outputStream = new FileStream("output.jpg", FileMode.Create))
-                    //    {
-                    //        image.Write(outputStream);
-                    //    }
-                    //}
+                        using (FileStream outputStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            img.Write(outputStream);
+                        }
+                    }
                 }
             }
 

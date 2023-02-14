@@ -1,4 +1,4 @@
-﻿<div class="container" id="blogDetailsApp" />
+﻿<div class="container" id="app" />
 
 <div class="blog-details-area pt-15 pb-100">
     <div class="container">
@@ -122,9 +122,9 @@
 
     <script>
 
-        let blogDetailsVue = new Vue({
-            //el:'#blogDetailsApp',
-            name: "blogDetailsApp",
+        let app = new Vue({
+            //el:'#app',
+            name: "app",
             data: {
                 article: {},
                 articleBaseLink: "/api/Blog/GetById/",
@@ -204,7 +204,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogDetailsVue.$mount('#blogDetailsApp')
+            app.$mount('#app')
         })
     </script>
 }

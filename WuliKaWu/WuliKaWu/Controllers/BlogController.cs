@@ -99,7 +99,7 @@ namespace WuliKaWu.Controllers
 
             var article = await _context.Articles.FirstOrDefaultAsync(x => x.Id == id);
             if (article == null || article.MemberId != User.Claims.GetMemberId())
-                RedirectToAction("Index", "Blog");
+                return RedirectToAction("Index", "Blog");
 
             ViewBag.ArticleId = id;
             return View();

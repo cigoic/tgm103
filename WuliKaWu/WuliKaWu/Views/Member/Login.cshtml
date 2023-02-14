@@ -1,4 +1,4 @@
-﻿<div class="container" id="loginApp" />
+﻿<div class="container" id="app" />
 
 <div class="login-register-area pb-100 pt-15">
     <div class="container">
@@ -49,14 +49,14 @@
                                         <label id="Name" name="Name">名字</label>
                                         <input type="text" name="Name" />
 
-                                        <label id="Gender" name="Gender"></label>
+                                        <label id="Gender" name="Gender">性別</label>
                                         <select>
-                                            <option value="">性別</option>
-                                            <option value="0">Femail</option>
+                                            <option value="">--- 請選擇 ---</option>
+                                            <option value="0">Female</option>
                                             <option value="1">Male</option>
                                         </select>
 
-                                        <label id="Birthday" name="Birthday">出生年月日</label>
+                                        <label id="Birthday" name="Birthday" class="mt-15">出生年月日</label>
                                         <input type="date" id="Birthday" name="Birthday" />
 
                                         <label id="Email" name="Email">電子信箱</label>
@@ -88,7 +88,7 @@
 @section Scripts
     {
     <script>
-        let loginVue = new Vue({
+        let app = new Vue({
             data: {
                 fieldsLogin: {
                     account: "",
@@ -138,7 +138,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            loginVue.$mount('#loginApp')
+            app.$mount('#app')
         })
     </script>
 }
