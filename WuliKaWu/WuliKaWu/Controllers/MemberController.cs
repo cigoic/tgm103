@@ -58,7 +58,7 @@ namespace WuliKaWu.Controllers
 
             if (member == null || !BCrypt.Net.BCrypt.Verify(model.Password, member.Password))
             {
-                return BadRequest(new LoginMessage { Status = false, Message = "錯誤，請再試一次" });
+                return RedirectToAction("Login", new LoginMessage { Status = false, Message = "錯誤，請再試一次" });
                 //return new LoginMessage { Status = false, Message = "錯誤，請再試一次" };
             }
 
