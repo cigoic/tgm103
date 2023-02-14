@@ -521,7 +521,7 @@ namespace WuliKaWu.Controllers.Api
         [ActionName("Edit")]
         public async Task<IResult> EditAsync([FromForm] ArticleUpdateModel model)
         {
-            if (model.ArticleId <= 0)
+            if (model.ArticleId <= 0 || model.MemberId != User.Claims.GetMemberId())
             {
                 return Results.NotFound(new { Status = false, Message = "無法編輯" });
             }
@@ -553,10 +553,13 @@ namespace WuliKaWu.Controllers.Api
                     if (model.Images != null)
                     {
                         // 有無重複的圖？先去除舊的標題圖
-                        var oImg = _context.ArticleTitleImages.FirstOrDefault(i => i.ArticleId == model.ArticleId);
-                        if (oImg != null)
+                        var oImgs = _context.ArticleTitleImages.Where(i => i.ArticleId == model.ArticleId);
+                        if (oImgs != null)
                         {
-                            _context.ArticleTitleImages.Remove(oImg);
+                            foreach (var img in oImgs)
+                            {
+                                _context.ArticleTitleImages.Remove(img);
+                            }
                         }
 
                         var oldImgs = _context.ArticleContentImages.Where(i => i.ArticleId == model.ArticleId);
