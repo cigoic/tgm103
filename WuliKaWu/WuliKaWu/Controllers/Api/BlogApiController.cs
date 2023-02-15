@@ -430,10 +430,10 @@ namespace WuliKaWu.Controllers.Api
                     article.ModifiedDate = DateTime.UtcNow;
                     article.CategoryId = model.CategoryId;
 
-                    //if (article.ArticleTitleImage == null)
-                    //    article.ArticleTitleImage = new ArticleTitleImage();
-                    //if (article.ArticleContentImages == null)
-                    //    article.ArticleContentImages = new List<ArticleContentImage>();
+                    if (article.ArticleTitleImage == null)
+                        article.ArticleTitleImage = new ArticleTitleImage();
+                    if (article.ArticleContentImages == null)
+                        article.ArticleContentImages = new List<ArticleContentImage>();
 
                     // 影像
                     if (model.Images != null)
@@ -445,7 +445,8 @@ namespace WuliKaWu.Controllers.Api
                             foreach (var img in oImgs)
                             {
                                 _context.ArticleTitleImages.Remove(img);
-                                var fpath = Path.Combine(_env.WebRootPath, img.PicturePath);
+                                var fpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", "ckeditor", img.PicturePath);
+                                //var fpath = Path.Combine(_env.WebRootPath, img.PicturePath);
                                 if (System.IO.File.Exists(fpath))
                                 {
                                     System.IO.File.Delete(fpath);
@@ -460,7 +461,7 @@ namespace WuliKaWu.Controllers.Api
                             {
                                 _context.ArticleContentImages.Remove(img);
 
-                                var fpath = Path.Combine(_env.WebRootPath, img.PicturePath);
+                                var fpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", "ckeditor", img.PicturePath);
                                 if (System.IO.File.Exists(fpath))
                                 {
                                     System.IO.File.Delete(fpath);
@@ -547,8 +548,9 @@ namespace WuliKaWu.Controllers.Api
                 {
                     foreach (var cimg in article.ArticleContentImages)
                     {
-                        var fileName = Path.Combine(_env.WebRootPath, cimg.PicturePath);
-                        var f2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", cimg.PicturePath);
+                        var fileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", "ckeditor", cimg.PicturePath);
+                        //var fileName = Path.Combine(_env.WebRootPath, cimg.PicturePath);
+                        var f2 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", "ckeditor", cimg.PicturePath);
                         var AreTheSame = System.IO.FileInfo.ReferenceEquals(fileName, f2);
 
                         if (AreTheSame && System.IO.File.Exists(fileName))
@@ -630,7 +632,7 @@ namespace WuliKaWu.Controllers.Api
 
                 //filePath = Path.Combine(rootPath, fileName);
                 filePath = Path.Combine(
-                   Directory.GetCurrentDirectory(), "wwwroot/images/ckeditor/", fileName);
+                   Directory.GetCurrentDirectory(), "wwwroot/images", "ckeditor", fileName);
 
                 using (var stream = new MemoryStream())
                 {

@@ -4,7 +4,24 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <partial name="_BlogDetailsPartial" />
+                <div class="tab-style-1 tab-style-1-margin tab-border-none tab-center nav mb-15" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#pro-1" data-bs-toggle="tab"> Author's Posts </a>
+                    <a class="active" href="#pro-2" data-bs-toggle="tab"> Current </a>
+                    <a href="#pro-3" data-bs-toggle="tab" class=""> Categories </a>
+                    <a href="#pro-4" data-bs-toggle="tab" class=""> Latest </a>
+                </div>
+                <div class="tab-content jump">
+                    <div id="pro-1" class="tab-pane">
+                        <partial name="_BlogDetailsPartial" />
+                    </div>
+                    <div id="pro-2" class="tab-pane active">
+                        <partial name="_DetailsPartial" />
+                    </div>
+                    <div id="pro-3" class="tab-pane">
+                    </div>
+                    <div id="pro-4" class="tab-pane">
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="sidebar-wrapper">
@@ -21,7 +38,7 @@
                     @*作者欄位*@
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a :href="memberArticlesLink(article.id)"><img :src="getAuthorIcon()" alt=""></a>
+                            <a :href="articleLink(article.articleId)"><img :src="getAuthorIcon()" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -110,6 +127,7 @@
                 countPerPage: 3,
                 tags: {},
                 productImg: "",
+                titleImg: "",
             },
             created: function () {
                 let self = this
@@ -127,7 +145,7 @@
             mounted: function () {
                 let self = this
 
-                //self.getArticleById(self.articleId)
+                self.getArticleById(self.articleId)
                 self.getCategories()
                 self.getLastestPosts()
                 //self.getTags(self.articleId)
@@ -157,21 +175,39 @@
                     this.currentPage = page;
                     console.log(page)
                 },
-                articleLink: function (id) { return "/Blog/Details/" + id },
-                memberArticlesLink: function (id) { return "/Blog/Sidebar/" + id },
+                articleLink: function (id) { return "/Blog/Sidebar/" + id },
+                articleDay(currentDate) {
+                    var date = new Date(currentDate);
+                    this.aDay = date.getDate()
+                    return this.aDay
+                },
+                getMonthName(currentDate) {
+                    const date = new Date(currentDate)
+                    this.aMonth = date.toLocaleString('default', { month: 'short' })
+                    return this.aMonth
+                },
+                showDate(currentDate) {
+                    const date = new Date(currentDate)
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    return date.toLocaleDateString(date, options)
+                },
                 getAuthorIcon: function () {
                     let id = Math.floor(Math.random() * 100)
                     queryIcon = "https://picsum.photos/id/" + id + "/200/200"
                     return queryIcon
                 },
                 getArticleById(id) {
-                    this.articleBaseLink = "/api/Blog/GetById/",
-                        axios.get(this.articleBaseLink + id)
-                            .then(response => {
-                                if (response.status === 200 && response.data.statusCode === 200)
-                                    this.article = response.data.value
-                            })
-                            .catch(error => { tgm103ShowError(error.response.data) })
+                    const articleBaseLink = "/api/Blog/GetById/"
+                    axios.get(articleBaseLink + id)
+                        .then(response => {
+                            console.log("get article by id:", response)
+                            if (response.status == 200 && response.data.statusCode === 200) {
+                                this.article = response.data.value
+                                this.titleImg = response.data.value.titleImage
+                                console.log("get title image:", this.titleImg)
+                            }
+                        })
+                        .catch(error => { tgm103ShowError(error.response.data) })
                 },
                 getCategories: function () {
                     axios.get('/api/Blog/CountCategories')
