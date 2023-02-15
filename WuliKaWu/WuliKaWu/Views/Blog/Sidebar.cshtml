@@ -7,21 +7,25 @@
                 <div class="tab-style-1 tab-style-1-margin tab-border-none tab-center nav mb-15" data-aos="fade-up" data-aos-delay="400">
                     <a href="#pro-1" data-bs-toggle="tab"> Author's Posts </a>
                     <a class="active" href="#pro-2" data-bs-toggle="tab"> Current </a>
-                    <a href="#pro-3" data-bs-toggle="tab" class=""> Categories </a>
-                    <a href="#pro-4" data-bs-toggle="tab" class=""> Latest </a>
+                    @*<a href="#pro-3" data-bs-toggle="tab" class=""> Categories </a>
+                    <a href="#pro-4" data-bs-toggle="tab" class=""> Latest </a>*@
                 </div>
+
+                @**@
                 <div class="tab-content jump">
                     <div id="pro-1" class="tab-pane">
-                        <partial name="_BlogDetailsPartial" />
+                        <partial name="_AuthorPartial" />
                     </div>
                     <div id="pro-2" class="tab-pane active">
                         <partial name="_DetailsPartial" />
                     </div>
-                    <div id="pro-3" class="tab-pane">
+                    @*<div id="pro-3" class="tab-pane">
                     </div>
                     <div id="pro-4" class="tab-pane">
-                    </div>
+                    <partial name="_LatestPartial" />
+                    </div>*@
                 </div>
+
             </div>
             <div class="col-lg-4">
                 <div class="sidebar-wrapper">
@@ -52,16 +56,16 @@
                     </div>
 
                     @*分類 Categories*@
-                    <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
-                        <div class="sidebar-widget-title-2 mb-25">
-                            <h3>Categories</h3>
-                        </div>
-                        <div class="sidebar-list-style-2">
-                            <ul v-for="(count, category) in categories" :key="category">
-                                <li><a href="#">{{ category }} ({{ count }})</a></li>
-                            </ul>
-                        </div>
+                    @*<div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sidebar-widget-title-2 mb-25">
+                    <h3>Categories</h3>
                     </div>
+                    <div class="sidebar-list-style-2">
+                    <ul v-for="(count, category) in categories" :key="category">
+                    <li><a href="#">{{ category }} ({{ count }})</a></li>
+                    </ul>
+                    </div>
+                    </div>*@
 
                     @*最新發表文章*@
                     <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
@@ -69,12 +73,12 @@
                             <h3>Latest Post</h3>
                         </div>
                         <div class="latest-post-wrap">
-                            <div class="single-latest-post" v-for="larticle in lastestPosts">
+                            <div class="single-latest-post" v-for="(larticle, index) in lastestPosts" v-if="index < 3">
                                 <div class="latest-post-img">
                                     <a href="#"><img :src="larticle.titleImage" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
-                                    <span>{{ larticle.createdDate }}</span>
+                                    <span>{{ larticle.modifiedDate }}</span>
                                     <h4><a :href="articleLink(larticle.id)">{{ larticle.title }}</a></h4>
                                     <div class="latest-post-btn">
                                         <a :href="articleLink(larticle.id)">Continue Reading...</a>
@@ -83,21 +87,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar-widget mb-35" data-aos="fade-up" data-aos-delay="200">
-                        <div class="sidebar-widget-title-2 mb-30">
-                            <h3>Tags</h3>
-                        </div>
-                        <div class="sidebar-widget-tag-2">
-                            <a href="#">Furniture</a>
-                            <a href="#">Electronic</a>
-                            <a href="#">Home Decore</a>
-                            <a href="#">Design Home</a>
-                            <a href="#">Furniture</a>
-                        </div>
+                    @*<div class="sidebar-widget mb-35" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sidebar-widget-title-2 mb-30">
+                    <h3>Tags</h3>
                     </div>
+                    <div class="sidebar-widget-tag-2">
+                    <a href="#">Furniture</a>
+                    <a href="#">Electronic</a>
+                    <a href="#">Home Decore</a>
+                    <a href="#">Design Home</a>
+                    <a href="#">Furniture</a>
+                    </div>
+                    </div>*@
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <a href="/Products/ProductDetails"><img :src="productImg" alt=""></a>
+                            <a href="#"><img :src="productImg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -124,10 +128,11 @@
                 articleBaseLink: "/Blog/Details/",
                 articleId: @ViewBag.ArticleId,
                 currentPage: 1,
-                countPerPage: 3,
+                countPerPage: 5,
                 tags: {},
                 productImg: "",
                 titleImg: "",
+                showAllCategories: false
             },
             created: function () {
                 let self = this
@@ -159,16 +164,26 @@
                     this.max = max;
                     return this.articles.slice(min, max)
                 },
-                formattedArticles() {
+                formattedArticles: function () {
                     return this.filterArticles.map(article => {
                         const date = new Date(article.modifiedDate);
+                        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                         return {
                             ...article,
+                            modifiedDate: date.toLocaleDateString(date, options),
                             timeInDay: `${date.getDate()}`,
                             timeInMonth: `${date.toLocaleString('default', { month: 'short' })}`
                         };
                     });
-                }
+                },
+                lastestArticles: function () {
+                    var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                    var max = this.countPerPage * this.currentPage;
+                    this.min = min;
+                    this.max = max;
+                    return this.formattedArticles.sort((a, b) => new Date(b.modifiedDate) - new Date(a.modifiedDate)).slice(min, max)
+
+                },
             },
             methods: {
                 clickCallback: function (page) {
@@ -238,7 +253,9 @@
                                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                                     return {
                                         ...article,
-                                        createdDate: date.toLocaleDateString(date, options)
+                                        createdDate: date.toLocaleDateString(date, options),
+                                        timeInDay: `${date.getDate()}`,
+                                        timeInMonth: `${date.toLocaleString('default', { month: 'short' })}`
                                     }
                                 })
                             }

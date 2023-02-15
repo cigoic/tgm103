@@ -105,7 +105,7 @@
                     var max = this.countPerPage * this.currentPage;
                     this.min = min;
                     this.max = max;
-                    return this.articles.slice(min, max)
+                    return this.articles.sort((a, b) => new Date(b.modifiedDate) - new Date(a.modifiedDate)).slice(min, max)
                 },
                 formattedArticles() {
                     return this.filterArticles.map(article => {
@@ -116,7 +116,18 @@
                             timeInMonth: `${date.toLocaleString('default', { month: 'short' })}` //`${this.getMonthName(date.getMonth())}`
                         };
                     });
-                }
+                },
+                sortItems: function () {
+                    let temp = this.articles;
+                    temp = temp.sort((x, y) => {
+                        let a = a.modifiedDate
+                        let b = b.modifiedDate
+                        console.log("a...", a)
+                        console.log("b...", b)
+                        return b - a
+                    })
+                    return temp
+                },
             },
             methods: {
                 clickCallback: function (page) {
@@ -177,6 +188,7 @@
                         }
                     });
                 },
+
             },
         })
 

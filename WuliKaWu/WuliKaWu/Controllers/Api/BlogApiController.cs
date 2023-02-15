@@ -117,6 +117,9 @@ namespace WuliKaWu.Controllers.Api
                 .Include(a => a.Tags)
                 .FirstOrDefaultAsync(a => a.Id == ArticleId);
 
+            if (article == null)
+                Results.NotFound(new { Status = false, Message = "找無此文章!" });
+
             var model = new ArticleDetailsModel
             {
                 Id = ArticleId,
@@ -218,11 +221,13 @@ namespace WuliKaWu.Controllers.Api
         {
             return _context.Articles
                 .OrderByDescending(a => a.CreatedDate)
-                .Take(numberOfArticles)
+                //.Take(numberOfArticles)
                 .Select(a => new ArticleLastestPostModel
                 {
                     Id = a.Id,
+                    MemberName = _context.Members.FirstOrDefault(m => m.MemberId == a.MemberId).Name,
                     Title = a.Title,
+                    Description = a.Description,
                     CreatedDate = a.CreatedDate,
                     TitleImage = a.ArticleTitleImage.PicturePath,
                 })
