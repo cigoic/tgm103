@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 using System.Net;
 using System.Net.Mail;
@@ -267,39 +266,6 @@ namespace WuliKaWu.Controllers
             if (collection == null) RedirectToAction("Login");
 
             return View(new ActivateModel { Email = collection["u"], Token = collection["c"] });
-        }
-
-        /// <summary>
-        /// 開通帳號
-        /// </summary>
-        /// <returns></returns>
-        [ActionName("Activate")]
-        [HttpPost]
-        public async Task<IActionResult> ActivateAsync([FromBody] ActivateModel urlQuery)
-        {
-            // 解開 Token (email + token)
-
-            //var urlQuery = "u=userxxx@123.com&c=ke%2FVBWYJ4FZXYKJOJN6tC7i";
-            var collection = HttpContext.Request.Query;
-            //var collection = HttpUtility.ParseQueryString(urlQuery);
-            var email = urlQuery.Email; //collection["u"];
-            var token = urlQuery.Token; //collection["c"];
-
-            bool IsValid = BCrypt.Net.BCrypt.Verify(email, token);
-            if (IsValid == false) return BadRequest();
-
-            // IsMemberExisted
-            Member? user = await _context.Members
-                .SingleOrDefaultAsync(u => u.Email == email);
-
-            if (user == null) return NotFound();
-
-            user.EmailComfirmed = true;
-            //user.VerificationToken = null;    // TODO 提醒會員重新更改密碼
-
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Login");
         }
 
         // TODO 重複功能，將移至 ApiController 中

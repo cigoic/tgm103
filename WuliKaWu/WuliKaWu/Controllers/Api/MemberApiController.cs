@@ -27,6 +27,40 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
+        /// 開通帳號
+        /// </summary>
+        /// <returns></returns>
+        [ActionName("Activate")]
+        [HttpPost]
+        public async Task<LoginMessage> ActivateAsync([FromBody] ActivateModel urlQuery)
+        {
+            // 解開 Token (email + token)
+
+            //var urlQuery = "u=userxxx@123.com&c=ke%2FVBWYJ4FZXYKJOJN6tC7i";
+            var collection = HttpContext.Request.Query;
+            //var collection = HttpUtility.ParseQueryString(urlQuery);
+            var email = urlQuery.Email; //collection["u"];
+            var token = urlQuery.Token; //collection["c"];
+
+            var password = BCrypt.Net.BCrypt.HashPassword(urlQuery.Password, urlQuery.Token);
+            bool IsValid = _context.Members.Any(m => m.Password == password);
+            //bool IsValid = BCrypt.Net.BCrypt.Verify(urlQuery.Password, token);
+            if (IsValid == false) return new LoginMessage { Status = false, Message = "啟用錯誤，請恰管理員" };
+
+            // IsMemberExisted
+            Member? user = await _context.Members
+                .SingleOrDefaultAsync(u => u.Email == email);
+
+            if (user == null) return new LoginMessage { Status = false, Message = "啟用錯誤，請恰管理員" };
+
+            user.EmailComfirmed = true;
+
+            await _context.SaveChangesAsync();
+
+            return new LoginMessage { Status = true, Message = "已啟用，Wuli 歡迎您！請先更改會員密碼" };
+        }
+
+        /// <summary>
         /// 會員登入頁面的「忘記密碼」功能
         /// </summary>
         [ActionName("ForgetPassword")]
