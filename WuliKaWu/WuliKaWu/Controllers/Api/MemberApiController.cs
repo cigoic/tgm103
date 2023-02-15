@@ -44,7 +44,7 @@ namespace WuliKaWu.Controllers.Api
 
             var password = BCrypt.Net.BCrypt.HashPassword(urlQuery.Password, urlQuery.Token);
             bool IsValid = _context.Members.Any(m => m.Password == password);
-            //bool IsValid = BCrypt.Net.BCrypt.Verify(urlQuery.Password, token);
+            //bool IsValid = BCrypt.Net.BCrypt.Verify(urlQuery.Password, token);    // 會失敗
             if (IsValid == false) return new LoginMessage { Status = false, Message = "啟用錯誤，請恰管理員" };
 
             // IsMemberExisted
