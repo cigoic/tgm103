@@ -32,12 +32,13 @@ namespace WuliKaWu.Controllers.Api
         /// <summary>
         /// 商品頁面加入"購物車"
         /// </summary>
-        /// <param name="WishListId"></param>
+        /// <param name=></param>
         /// <param name="productId"></param>
         /// <returns></returns>
-        [Authorize]
+
         [HttpPost]
-        public async Task<ApiResultModel> AddToCartAsync([FromBody]int productId)
+        [Authorize]
+        public async Task<ApiResultModel> AddToCartAsync([FromBody] int productId)
         {
             try
             {

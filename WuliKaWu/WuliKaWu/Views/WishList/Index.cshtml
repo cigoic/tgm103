@@ -50,7 +50,7 @@
                                                 <span class="new-price" v-if="product.discount">${{product.sellingPrice}}</span>
                                             </td>                                         
                                             <td class="wishlist-cart btn-hover">
-                                            <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.wishListId)"><i class="pe-7s-cart"></i> Add to cart</button>
+                                            <button class="product-action-btn-2" type="button" title="Add To Cart" v-on:click="addToCart(product.productId)"><i class="pe-7s-cart"></i> Add to cart</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -87,13 +87,13 @@
             },
             methods:
             {
-                addToCart: function (wishlistid) {
+                addToCart: function (productId) {
                     var self = this;
-                    console.log(wishlistid)
+                    console.log(productId)
                     self.queryCartBaseURL = `/api/cart/AddToCart/`;
                     fetch(self.queryCartBaseURL, {
                         method: "POST",
-                        body: JSON.stringify(wishlistid),
+                        body: JSON.stringify({ productId: productId }),
                         headers: {"content-type":"application/json" }
                     })
                         .then(function (response) { return response.json() })
@@ -109,7 +109,7 @@
                                 al.title = "error";
                             }
                             Swal.fire(al)
-                            window.location = "/WishList/Index"
+                           // window.location = "/WishList/Index"
                         })
                 },
                 RemoveToWishlist: function (wishlistid) {
