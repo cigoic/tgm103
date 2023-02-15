@@ -237,7 +237,7 @@
                     <a href="/Products"><img src="/assets/images/slider/sideit-image3.jpg" alt=""></a>
                     <div class="banner-content-8 banner-position-1">
                         <span class="border-left" style="color:khaki">Up To 50% Off</span>
-                        <h2 class="h2-width" style="color:khaki">New Furniture Sofa Set</h2>
+                        <h2 class="h2-width" style="color:khaki">New Clothes Bundle Set</h2>
                         <div class="btn-style-5 btn-hover">
                             <a class="btn theme-color" href="/Products">Shop Now</a>
                         </div>
@@ -249,7 +249,7 @@
                     <a href="/Products"><img src="/assets/images/slider/sideit-image4.jpg" alt=""></a>
                     <div class="banner-content-8 text-center banner-position-2">
                         <span class="border-left-right" style="color:khaki">Up To 50% Off</span>
-                        <h2 class="font-dec" style="color:khaki">New Furniture <br>Sofa Set</h2>
+                        <h2 class="font-dec" style="color:khaki">New Clothes <br>Bundle Set</h2>
                         <div class="btn-style-5 btn-hover">
                             <a class="btn theme-color" href="/Products">Shop Now</a>
                         </div>
@@ -329,7 +329,7 @@
                     <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-img-date-wrap mb-25">
                             <div class="blog-img">
-                                <a :href="linkToBlogDetails(lstPost.id)"><img :src="lstPost.titleImage" alt=""></a>
+                                <a :href="linkToBlog(lstPost.id)"><img :src="lstPost.titleImage" alt=""></a>
                             </div>
                             <div class="blog-date">
                                 <h5>{{ getPostDay(lstPost.createdDate) }} <span>{{ getPostMonth(lstPost.createdDate) }}</span></h5>
@@ -339,13 +339,13 @@
                             <div class="blog-meta">
                                 <ul>
                                     <li><a href="#">{{ lstPost.category }}</a>,</li>
-                                    <li>By:<a :href="linkToMembersPosts(lstPost.id)"> {{ lstPost.memberName }}</a></li>
+                                    <li>By:<a :href="linkToBlog(lstPost.id)"> {{ lstPost.memberName }}</a></li>
                                 </ul>
                             </div>
-                            <h3><a :href="linkToBlogDetails(lstPost.id)">{{ lstPost.title }}</a></h3>
+                            <h3><a :href="linkToBlog(lstPost.id)">{{ lstPost.title }}</a></h3>
                             <p v-html="lstPost.description">{{ lstPost.description }}</p>
                             <div class="blog-btn-2 btn-hover">
-                                <a class="btn hover-border-radius theme-color" :href="linkToBlogDetails(lstPost.id)">Read More</a>
+                                <a class="btn hover-border-radius theme-color" :href="linkToBlog(lstPost.id)">Read More</a>
                             </div>
                         </div>
                     </div>
@@ -369,8 +369,6 @@
                 leftsideItems: [],
                 posts: [],
                 limit: 3,
-                aDay: "",
-                aMonth: "",
             },
             mounted: function () {
                 let self = this
@@ -388,11 +386,9 @@
                 linkToProductDetails: function (productId) {
                     return "/Products/ProductDetails/" + productId
                 },
-                linkToBlogDetails(articleId) {
-                    return "/Blog/Details/" + articleId
+                linkToBlog(articleId) {
+                    return "/Blog/Sidebar/" + articleId
                 },
-                linkToMembersPosts: function (articleId) { return "/Blog/Sidebar/" + articleId },
-                //linkToCategoryPosts: function (categoryId) { return "/Blog/Sidebar/" + categoryId },
                 getNewItems: async function () {
                     await axios.get("/api/Home/GetNewItems")
                         .then(response => {
@@ -441,12 +437,10 @@
                 getPostDay: function (currentDate) {
                     let date = new Date(currentDate)
                     return date.getDate()
-                    //return this.aDay
                 },
                 getPostMonth: function (currentDate) {
                     let date = new Date(currentDate)
                     return date.toLocaleString('default', { month: 'short' })
-                    //return this.aMonth
                 },
                 ///////////// Cart
                 addToCart: function (productId) {
