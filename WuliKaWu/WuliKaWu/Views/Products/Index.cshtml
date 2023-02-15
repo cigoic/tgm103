@@ -5,17 +5,17 @@
             <div class="breadcrumb-content text-center">
                 <h2 data-aos="fade-up" data-aos-delay="200">Shop</h2>
                 <ul data-aos="fade-up" data-aos-delay="400">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a href="/Home/Index">Home</a></li>
                     <li><i class="ti-angle-right"></i></li>
                     <li>Shop</li>
                 </ul>
             </div>
         </div>
         <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
-            <img src="~/assets/images/banner/09.png" alt="">
+            <img src="/assets/images/banner/09.png" alt="">
         </div>
         <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
-            <img src="~/assets/images/banner/10.png" alt="">
+            <img src="/assets/images/banner/10.png" alt="">
         </div>
     </div>
     <div class="shop-area shop-page-responsive pt-100 pb-100">
@@ -61,7 +61,6 @@
                                                 <div v-if="product.discount" class="product-badge badge-top badge-right badge-pink">
                                                     <span>-10%</span>
                                                 </div>
-
                                                 @*加入願望清單按鈕*@
                                                 <div class="product-action-wrap">
                                                     <button class="product-action-btn-1" title="Wishlist" v-on:click="addToWishlist(product.productId)"><i class="pe-7s-like"></i></button>
