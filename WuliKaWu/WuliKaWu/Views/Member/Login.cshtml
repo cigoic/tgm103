@@ -102,7 +102,7 @@
                         .then(response => {
                             console.log("....login response", response)
                             if (response.data.success) { tgm103ShowSuccess(response.data.success) }
-                            else { tgm103ShowError(response.data.message) }
+                            else { tgm103ShowSuccess(response.data.message) }
                         })
                         .catch(error => {
                             console.log("login error...", error)
