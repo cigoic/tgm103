@@ -18,7 +18,9 @@ function tgm103ShowSuccess(msg) {
         icon: 'success',
         title: '成功',
         text: msg,
-        timer: 2000
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false
     })
 }
 
@@ -27,6 +29,6 @@ function tgm103ShowError(msg) {
         icon: 'error',
         title: '失敗',
         text: msg,
-        //timer: 20000,
+        timer: 5000,
     })
 }

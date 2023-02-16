@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
+using System.Net.Mail;
+
 using WuliKaWu.Data;
+using WuliKaWu.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 //MVC網站服務
@@ -14,10 +17,6 @@ builder.Services.AddSession(
     }
     );
 // Add services to the container.
-// Identity 使用的連線字串
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlServer(connectionString));
 
 // Local 端開發使用的 SQL Server 連線字串
 //var ShopConnectionString = builder.Configuration.GetConnectionString("DevelopmentDbConnection");
@@ -33,33 +32,10 @@ builder.Services.AddDbContext<ShopContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Identity 使用的資料內容類別
-//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-// 使用自訂的身分驗證(繼承 Identity, 但在 Controller 中使用 Cookie 的方式將失效)
-//builder.Services.AddDefaultIdentity<Member>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<ShopContext>();
+builder.Services.AddTransient<SmtpClient>();
+builder.Services.AddTransient<IMailService, SmtpMailingService>();
 
 builder.Services.AddControllersWithViews();
-
-// 設定 Identity 密碼原則
-//builder.Services.Configure<IdentityOptions>(options =>
-//{
-//    options.Password.RequireDigit = true;
-//    options.Password.RequireLowercase = true;
-//    options.Password.RequireNonAlphanumeric = true; // 非文、數字（亦即特殊字元）
-//    options.Password.RequireUppercase = true;
-//    options.Password.RequiredLength = 12;
-//    options.Password.RequiredUniqueChars = 1;   // 至少一個不重複字元：aaBB11$$
-
-//    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);   // 帳號鎖定時間
-//    options.Lockout.MaxFailedAccessAttempts = 3;    // 失敗只能重複登入三次
-//    options.Lockout.AllowedForNewUsers = true;
-
-//    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+"; //這樣設定，不支援中文
-//    options.User.RequireUniqueEmail = true; // email 不重複
-//});
 
 // 註冊自訂登入驗證服務
 builder.Services

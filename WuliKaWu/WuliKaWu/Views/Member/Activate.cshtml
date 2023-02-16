@@ -20,7 +20,7 @@
                                     <input type="text" id="urlQuery" name="urlQuery" v-model="urlQuery" readonly hidden>
 
                                     <label for="Password">請輸入您的密碼：</label>
-                                    <input id="Password" name="Password" v-model="urlQuery.password" class="mb-35" />
+                                    <input id="Password" name="Password" type="password" v-model="urlQuery.password" class="mb-35" />
 
                                     <div class="contact-us-btn btn-hover mt-10">
                                         <button type="button" v-on:click.prevent="handleSubmit()" class="form-control">Vertify</button>
@@ -56,17 +56,17 @@
                     axios.post('/api/Member/Activate', this.urlQuery)
                         .then(response => {
                             if (response.status === 200 && response.data.statusCode === 200) {
-                                console.log("activated:", response)
-                                Swal.fire("Success!", response.data.success, 'success');
-                                window.location = "Login"
-                            }
+                                tgm103ShowSuccess(response.data.success)
+                                    .then((result) => {
+                                        if (result.dismiss === Swal.DismissReason.timer) {
+                                            window.location = "Login"
+                                        }
+                                    })
+                            } else { tgm103ShowError(response.data.message) }
                         })
                         .catch(error => {
-                            if (error.response.data.message) {
-                                console.log(error.response.data.message)
-                                Swal.fire("Error!", error.response.data.message, "error");
-                            }
-                        });
+                            if (error.response.data.message) { tgm103ShowError(error.response.data.message) }
+                        })
                 },
             }
         });

@@ -3,15 +3,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using System.Net;
-using System.Net.Mail;
 using System.Security.Claims;
-using System.Text;
 
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
+using WuliKaWu.Services;
 
 using static WuliKaWu.Data.MemberRole;
 
@@ -24,12 +22,12 @@ namespace WuliKaWu.Controllers
     public class MemberController : Controller
     {
         private readonly ShopContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly IMailService _mailService;
 
-        public MemberController(ShopContext context, IConfiguration configuration)
+        public MemberController(ShopContext context, IMailService mailService)
         {
             _context = context;
-            _configuration = configuration;
+            _mailService = mailService;
         }
 
         /// <summary>
@@ -58,7 +56,6 @@ namespace WuliKaWu.Controllers
             if (member == null || !BCrypt.Net.BCrypt.Verify(model.Password, member.Password))
             {
                 return RedirectToAction("Login", new LoginMessage { Status = false, Message = "錯誤，請再試一次" });
-                //return new LoginMessage { Status = false, Message = "錯誤，請再試一次" };
             }
 
             // 帳號密碼符合！給 cookie(s): principal > identity > claim
@@ -67,18 +64,8 @@ namespace WuliKaWu.Controllers
                 new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
                 // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
                 new Claim(ClaimTypes.Role, RoleType.User.GetDescriptionText()),    // 資料庫裡的角色
-                //new Claim(ClaimTypes.Role, "User"),
-                //new Claim("VIP", "1")   //可以自訂義XXX(例VIP)，但之後不能打錯
-                //new Claim("Id", member.MemberId.ToString()),
                 new Claim("RememberMe", model.RememberMe.ToString()),
                 new Claim(ClaimTypes.Sid, member.MemberId.ToString()),
-                //new Claim(ClaimTypes.GivenName, member.FirstName),
-                //new Claim(ClaimTypes.Surname, member.LastName),
-                //new Claim(ClaimTypes.Email, member.Email),
-                //new Claim(ClaimTypes.Gender, member.Gender),
-                //new Claim(ClaimTypes.DateOfBirth, member.Birthday),
-                //new Claim(ClaimTypes.HomePhone, member.PhoneNumber),
-                //new Claim(ClaimTypes.MobilePhone, member.MobilePhone),
             };
 
             // 直接定義這是"身分證明"
@@ -95,7 +82,6 @@ namespace WuliKaWu.Controllers
             await HttpContext.SignInAsync(claimsPrincipal);
 
             return RedirectToAction("Index", "Home");
-            // return new LoginMessage { Status = true, Message = $"歡迎回來！{User.Identity?.Name}" };
         }
 
         /// <summary>
@@ -133,8 +119,6 @@ namespace WuliKaWu.Controllers
                     PhoneNumber = model.PhoneNumber,
                     MobilePhone = model.MobilePhone,
                     MemberShip = MemberShipType.NormalUser,
-                    //LockOutEnabled = false,
-                    //AccessFailedCount = 0,
                 });
 
                 await _context.SaveChangesAsync();
@@ -159,7 +143,7 @@ namespace WuliKaWu.Controllers
             HttpContext.SignOutAsync();
 
             if (HttpContext.Session != null)
-                HttpContext.Session.Clear();    // 清除 Session
+                HttpContext.Session.Clear();
 
             return RedirectToAction("Index", "Home");
         }
@@ -175,7 +159,6 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        // TODO 收取提交表單資料,並寫入會員資料庫
         /// <summary>
         /// Account Details 頁面「更改會員資訊」
         /// </summary>
@@ -187,13 +170,6 @@ namespace WuliKaWu.Controllers
         {
             if (User.Identity?.IsAuthenticated == false || ModelState.IsValid == false)
                 return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
-
-            // TODO 管理角色
-            //var model = new MemberModel();
-            //model.MemberId = User.Claims.GetMemberId();
-            //model.Name = User.Identity.Name;
-            //model.RememberMe = User.Claims.GetRememberMeStatus();
-            //return View(model);
 
             var member = _context.Members
                 .FirstOrDefault(m => m.MemberId == User.Claims.GetMemberId());
@@ -240,29 +216,9 @@ namespace WuliKaWu.Controllers
             string targetUrl = Url.Action("Activate", "Member", new { u = email, c = token });
             var link = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{targetUrl}";
 
-            using (var smtpClient = new SmtpClient())
-            {
-                var SmtpMarilFrom = _configuration.GetValue<string>("SMTPConnection:MailFrom");
-                var mailMessage = new MailMessage
-                {
-                    From = new MailAddress(SmtpMarilFrom),
-                    To = { email },
-                    Subject = subject,
-                    Body = $"<h3>感謝您註冊成為 Wuli 會員！</h3><br/>請點擊下述連結啟用帳號！<br/><hr/><a href='{link}'>{subject}</a>",
-                    IsBodyHtml = true,
-                    SubjectEncoding = Encoding.UTF8
-                };
+            var body = $"<h3>感謝您註冊成為 Wuli 會員！</h3><br/>請點擊下述連結啟用帳號！<br/><hr/><a href='{link}'>{subject}</a>";
 
-                var SmtpAccessToken = _configuration.GetValue<string>("SMTPConnection:GmailSMTP");
-                var SmtpAccessUser = _configuration.GetValue<string>("SMTPConnection:Username");
-                var SmtpHostname = _configuration.GetValue<string>("SMTPConnection:Hostname");
-                var SmtpPortNo = Convert.ToInt32(_configuration.GetValue<string>("SMTPConnection:PortNo"));
-                smtpClient.Host = SmtpHostname;
-                smtpClient.Port = SmtpPortNo;
-                smtpClient.EnableSsl = true;
-                smtpClient.Credentials = new NetworkCredential(SmtpAccessUser, SmtpAccessToken);
-                smtpClient.Send(mailMessage);
-            }
+            _mailService.SendMail("", email, subject, body);
         }
     }
 }

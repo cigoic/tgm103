@@ -241,10 +241,8 @@
                 getUserInfo: async function () {
                     await axios('/api/Member/GetUerInfo')
                         .then(response => {
-                            console.log("at created, response:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
                                 this.userinfo = response.data.value
-                                console.log("userinfo:", this.userinfo)
                             }
                         })
                         .catch(error => { tgm103ShowError(error.response.data) })
