@@ -37,7 +37,7 @@
                                     <tbody>
                                         <tr v-for="product in productInThisWishList">
                                             <td class="pro-remove">
-                                                <button type="button" v-on:click="RemoveToWishlist(product.wishListId)"><i class=" ti-trash "></i></button>
+                                                <button type="button" title="Remove From Wishlist " v-on:click="RemoveToWishlist(product.wishListId)"><i class=" ti-trash "></i></button>
                                             </td>
                                             <td class="product-thumbnail">
                                                 <img class="width-thumbnail" style="width:120px" :src="product.picturePath[0]"></img>
@@ -93,7 +93,7 @@
                     self.queryCartBaseURL = `/api/cart/AddToCart/`;
                     fetch(self.queryCartBaseURL, {
                         method: "POST",
-                        body: JSON.stringify({ productId: productId }),
+                        body: JSON.stringify(productId),
                         headers: {"content-type":"application/json" }
                     })
                         .then(function (response) { return response.json() })
@@ -134,7 +134,7 @@
                                 al.title = "error";
                             }
                             Swal.fire(al)
-                            window.location = "/WishList/Index"
+                            //window.location = "/WishList/Index"
                         })
                 }
 

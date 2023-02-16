@@ -105,10 +105,10 @@ namespace WuliKaWu.Controllers.Api
 
                 // products ==> order, order details
                 //var myId = User.Claims.GetMemberId();
-                OrderDetails orderDetails = new OrderDetails
-                {
-                    //MemberId = myId,
-                };
+                //OrderDetails orderDetails = new OrderDetails
+                //{
+                //    //MemberId = myId,
+                //};
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
