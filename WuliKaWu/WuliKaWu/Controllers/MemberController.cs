@@ -247,7 +247,7 @@ namespace WuliKaWu.Controllers
                     From = new MailAddress("no-reply@example.com"),
                     To = { email },
                     Subject = subject,
-                    Body = $"<h3>感謝您註冊成為 Wuli 會員！</h3><br/>請點擊下述連結，請至您的信箱收取確認信！<br/><hr/><a href='{link}'>{subject}</a>",
+                    Body = $"<h3>感謝您註冊成為 Wuli 會員！</h3><br/>請點擊下述連結啟用帳號！<br/><hr/><a href='{link}'>{subject}</a>",
                     IsBodyHtml = true,
                     SubjectEncoding = Encoding.UTF8
                 };
