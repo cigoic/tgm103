@@ -53,7 +53,7 @@ namespace WuliKaWu.Controllers
             var member = _context.Members
                             .SingleOrDefault(x => x.Account == model.Account && x.EmailComfirmed == true);
 
-            if (member == null || !BCrypt.Net.BCrypt.Verify(model.Password, member.Password))
+            if (member == null || BCrypt.Net.BCrypt.Verify(model.Password, member.Password) == false)
             {
                 return RedirectToAction("Login", new LoginMessage { Status = false, Message = "錯誤，請再試一次" });
             }
@@ -166,24 +166,46 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> MyAccount(AccountDetailsModel model)
+        public async Task<IActionResult> MyAccount([FromBody] AccountDetailsModel model)
         {
-            if (User.Identity?.IsAuthenticated == false || ModelState.IsValid == false)
+            if (User.Identity?.IsAuthenticated == false
+                || ModelState.IsValid == false
+                || string.IsNullOrEmpty(model.CurrentPwd))
+                return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
+
+            if ((string.IsNullOrEmpty(model.NewPwd) || string.IsNullOrEmpty(model.ConfirmPwd))
+                && string.Equals(model.NewPwd, model.ConfirmPwd) == false)
                 return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
             var member = _context.Members
                 .FirstOrDefault(m => m.MemberId == User.Claims.GetMemberId());
-            var NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
 
-            if (member == null || member.EmailComfirmed == true || String.IsNullOrEmpty(NewVerificationToken))
+            string NewVerificationToken = string.Empty;
+            if (string.IsNullOrEmpty(model.ConfirmPwd) == false
+                && string.Equals(model.NewPwd, model.ConfirmPwd))
+            {
+                NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
+                member.VerificationToken = NewVerificationToken;
+                member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd, NewVerificationToken);
+            }
+
+            if (member == null
+                || member.EmailComfirmed == true
+                || String.IsNullOrEmpty(NewVerificationToken))
                 return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
-            member.Name = $"{model.LastName}+{model.FirstName}";
-            member.Email = model.Email;
-            member.VerificationToken = NewVerificationToken;
-            member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd, NewVerificationToken);
+            if (BCrypt.Net.BCrypt.Verify(member.Password, member.VerificationToken))
+            {
+                member.Name = model.Name;
+                member.Gender = model.Gender;
+                member.Birthday = model.Birthday;
+                member.Email = model.Email;
+                member.Address = model.Address;
+                member.PhoneNumber = model.PhoneNumber;
+                member.MobilePhone = model.MobilePhone;
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToAction(nameof(MyAccount));
         }

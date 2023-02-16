@@ -127,24 +127,6 @@ namespace WuliKaWu.Controllers.Api
         //}
 
         /// <summary>
-        /// 取得 ModelState 錯誤
-        /// </summary>
-        /// <returns></returns>
-        private List<string> GetErrorMessages()
-        {
-            var errors = new List<string>();
-            foreach (var modelState in ModelState.Values)
-            {
-                foreach (var error in modelState.Errors)
-                {
-                    errors.Add(error.ErrorMessage);
-                }
-            }
-
-            return errors;
-        }
-
-        /// <summary>
         /// 產生 Token (無需會員輸入版本)
         /// </summary>
         /// <param name="HasUser"></param>
@@ -211,14 +193,14 @@ namespace WuliKaWu.Controllers.Api
             return new MemberInfoModel
             {
                 Name = member.Name,
-                //Gender = m.Gender,
-                //MemberShip = m.MemberShip,
-                //Email = m.Email,
-                //Birthday = m.Birthday,
-                //Address = m.Address,
-                //PhoneNumber = m.PhoneNumber,
-                //MobilePhone = m.MobilePhone,
-                //Role = m.Roles.Single().Type,
+                Gender = member.Gender,
+                MemberShip = member.MemberShip.GetDescriptionText(),
+                Email = member.Email,
+                Birthday = member.Birthday,
+                Address = member.Address,
+                PhoneNumber = member.PhoneNumber,
+                MobilePhone = member.MobilePhone,
+                //Role = member.Roles.Single().Type,
             } is MemberInfoModel userInfo
                 ? Results.Ok(userInfo)
                 : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });
