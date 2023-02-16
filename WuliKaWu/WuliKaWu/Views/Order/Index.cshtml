@@ -201,13 +201,18 @@
                 axios.get("/api/order/GetOrders")
                     .then(response => { 
                         self.orderItems = response.data.value
-                        console.log("...", self.orderItems)
+                        console.log("orderItems", self.orderItems)
                     })
                     .catch(error => { tgm103ShowError(error); });
                 axios.get("/api/checkout/GetCheckOut")
                     .then(response => {
-                        console.log("....detail:", response.data)
+                        console.log("detail:", response.data)
                         self.checkoutInThisCheckOut = response.data
+
+                        for(let i = 0 ; i < response.data.length; i++){
+                            self.totalprice += response.data[i].sellingPrice || response.data[i].price;
+                                }
+                        console.log("total:", self.totalprice)
                     })
                     .catch(error => { tgm103ShowError(error); });
             },

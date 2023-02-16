@@ -103,6 +103,13 @@ namespace WuliKaWu.Controllers.Api
                     Status = model.Status,
                 };
 
+                // products ==> order, order details
+                //var myId = User.Claims.GetMemberId();
+                OrderDetails orderDetails = new OrderDetails
+                {
+                    //MemberId = myId,
+                };
+
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
 
