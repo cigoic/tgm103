@@ -120,7 +120,7 @@ namespace WuliKaWu.Controllers.Api
             if (article == null)
                 Results.NotFound(new { Status = false, Message = "找無此文章!" });
 
-            var model = new ArticleDetailsModel
+            return new ArticleDetailsModel
             {
                 Id = ArticleId,
                 MemberName = _context.Members.Find(article.MemberId).Name,
@@ -136,9 +136,7 @@ namespace WuliKaWu.Controllers.Api
                 TitleImage = (article.ArticleTitleImage != null)
                     ? article.ArticleTitleImage.PicturePath
                     : $"https://picsum.photos/id/{randIdx()}/600/400",
-            };
-
-            return (model != null)
+            } is ArticleDetailsModel model
                    ? Results.Ok(model)
                    : Results.NotFound(new { Status = false, Message = "找無此文章!" });
         }

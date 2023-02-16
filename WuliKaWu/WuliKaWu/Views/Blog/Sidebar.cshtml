@@ -143,7 +143,8 @@
                             console.table("sidebar articles:", result.value);
                             self.articles = result.value;
                         } else {
-                            tgm103ShowError(result.value.message)
+                            //tgm103ShowError(result.value.message)
+                            //window.location.href = "/Blog";
                         }
                     })
             },
@@ -222,7 +223,9 @@
                                 console.log("get title image:", this.titleImg)
                             }
                         })
-                        .catch(error => { tgm103ShowError(error.response.data) })
+                        .catch(error => {
+                            tgm103ShowError(error.response.data)
+                        })
                 },
                 getCategories: function () {
                     axios.get('/api/Blog/CountCategories')
