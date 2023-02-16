@@ -100,7 +100,7 @@ namespace WuliKaWu.Controllers.Api
                     //Type = model.GetPayType.GetDescriptionText(),
                     OrderDate = DateTime.UtcNow,
                     ShippingDate = DateTime.UtcNow.AddDays(7),
-                    //Status = model.Status,
+                    Status = model.Status,
                 };
 
                 _context.Orders.Add(order);

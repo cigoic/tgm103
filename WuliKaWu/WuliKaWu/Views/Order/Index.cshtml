@@ -64,7 +64,7 @@
                                             <div class="billing-info mb-20">
                                                 <ul class="product-thumbnail">
                                                     <strong>ShippingStatus:</strong>
-                                                    <li><span>{{order.status}}</span></li>
+                                                    <li><span>{{order.statusType}}</span></li>
                                                     @*<li><span>{{order.status[0]}}</span></li>*@
                                                 </ul>
                                             </div>
@@ -144,11 +144,11 @@
                                                         <th class="col-lg-1">Price</th>
                                                     </tr>
                                                     <tr v-for="checkout in checkoutInThisCheckOut">
-                                                        <td class="product-thumbnail">
-                                                            <img class="width-thumbnail" style="width:120px" :src="checkout.picturePath[0]"></img>
+                                                        <td class="product-thumbnail" v-for="(pic, index) in checkout.picturePath" v-if="index < 1">
+                                                            <img class="width-thumbnail" style="width:120px" :src="pic"></img>
                                                         </td>
                                                         <td><span>{{checkout.productName}}</span></td>
-                                                        <td><span>{{checkout.type[0]}}</span></td>
+                                                        <td v-for="(value, index) in checkout.type" v-if="index < 1"><span>{{value}}</span></td>
                                                         <td class="cart-quality">
                                                             <input type="number" :value="checkout.quantity" readonly>
                                                         </td>
@@ -185,35 +185,36 @@
 @section Scripts{
     <script>
         let app = new Vue({
-            el: "#orderIndex",
+            //el: "#orderIndex",
             data: {
                 checkoutInThisCheckOut: {
                     checkout: [],
                 },
                 totalprice: 0,
-                orderItems: {},
+                orderItems: [],
                 order: [],
-
+                id:0,
             },
             mounted: function () {
                 var self = this;
-                fetch('/api/checkout/GetCheckOut/')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.checkoutInThisCheckOut = result;
 
-                        for ( let i = 0; i < result.length; i++) {
-                            self.totalprice += result[i].sellingPrice || result[i].price; 
-                        }
+                axios.get("/api/order/GetOrders")
+                    .then(response => { 
+                        self.orderItems = response.data.value
+                        console.log("...", self.orderItems)
                     })
-                fetch('/api/order/GetOrder/')
-                    .then(function (response) { return response.json() })
-                    .then(function (result) {
-                        console.log(result);
-                        self.orderItems = result;
+                    .catch(error => { tgm103ShowError(error); });
+                axios.get("/api/checkout/GetCheckOut")
+                    .then(response => {
+                        console.log("....detail:", response.data)
+                        self.checkoutInThisCheckOut = response.data
                     })
+                    .catch(error => { tgm103ShowError(error); });
             },
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            app.$mount('#orderIndex')
+        })
     </script>
     }

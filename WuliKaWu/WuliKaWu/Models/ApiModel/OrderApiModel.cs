@@ -22,7 +22,12 @@ namespace WuliKaWu.Models.ApiModel
         /// <summary>
         /// 出貨狀態
         /// </summary>
-        public ShippingStatus Status { get; set; }
+        //public ShippingStatus Status { get; set; }
+
+        ////public ShippingStatusViewModel Status { get; set; }
+        public int StatusId { get; set; }
+
+        public string StatusType { get; set; }
 
         /// <summary>
         /// 付款方式
