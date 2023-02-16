@@ -242,9 +242,10 @@ namespace WuliKaWu.Controllers
 
             using (var smtpClient = new SmtpClient())
             {
+                var SmtpMarilFrom = _configuration.GetValue<string>("SMTPConnection:MailFrom");
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress("no-reply@example.com"),
+                    From = new MailAddress(SmtpMarilFrom),
                     To = { email },
                     Subject = subject,
                     Body = $"<h3>感謝您註冊成為 Wuli 會員！</h3><br/>請點擊下述連結啟用帳號！<br/><hr/><a href='{link}'>{subject}</a>",
