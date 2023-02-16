@@ -380,10 +380,10 @@
                 addToCart: function (productId) {
                     var self = this;
                     console.log(productId)
-                    self.queryCartBaseURL = `/api/cart/AddToCart/`;
+                    self.queryCartBaseURL = `/api/cart/AddToCart`;
                     fetch(self.queryCartBaseURL, { 
                         method: "POST",
-                        body: JSON.stringify({ productId: productId }),
+                        body: JSON.stringify(productId),
                         headers:{"content-type":"application/json"}
                     })
                         .then(function (response) { return response.json() })
