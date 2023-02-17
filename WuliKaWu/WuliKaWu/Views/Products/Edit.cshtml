@@ -266,14 +266,18 @@
                                 icon: 'success',
                                 title: 'Edit Save Success!!!',
                                 text: result.message,
-                                timer: 2000
+                                timer: 2500
                             };
-                            //if (!result.status) {
                             if (result.status!=true) {
                                 al.icon = "error";
                                 al.title = "Edit Save Failed!!!";
+                                Swal.fire(al);
+                                return window.location.reload();
                             }
-                            Swal.fire(al)
+                            else{
+                                Swal.fire(al).then(() => { window.location = '/products/index/' })
+                            }
+                            
                             self.getData();
                         })
                 }
