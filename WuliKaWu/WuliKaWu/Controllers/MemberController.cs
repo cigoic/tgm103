@@ -190,7 +190,7 @@ namespace WuliKaWu.Controllers
             }
 
             if (member == null
-                || member.EmailComfirmed == true
+                || member.EmailComfirmed == false
                 || String.IsNullOrEmpty(NewVerificationToken))
                 return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 

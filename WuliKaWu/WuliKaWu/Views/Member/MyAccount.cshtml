@@ -252,17 +252,18 @@
             },
             methods: {
                 handleSubmit: function () {
-                    axios.post(this.myAccountDetailUrl, this.userinfo
-                        //Name: this.name,
-                        ////LastName: this.lastName,
-                        //DisplayName: this.userinfo.name,
-                        //Email: this.userinfo.email,
-                        //CurrentPwd: this.currentPwd,
-                        //NewPwd: this.newPwd,
-                        //ConfirmPwd: this.confirmPwd
-                    ).then(response => {
-                        console.log(response)
-                        document.getElementById('myAccountForm').reset()
+                    axios.post(this.myAccountDetailUrl, {
+                        ...this.userinfo,
+                        CurrentPwd: this.currentPwd,
+                        NewPwd: this.newPwd,
+                        ConfirmPwd: this.confirmPwd
+                    }).then(response => {
+                        //console.log(response)
+                        //document.getElementById('myAccountForm').reset()
+                        this.currentPwd = ""
+                        this.newPwd = ""
+                        this.confirmPwd = ""
+                        tgm103ShowSuccess("恭喜您修改成功！")
                     })
                         .catch(error => { tgm103ShowError(error.response.data.message) })
                 },
