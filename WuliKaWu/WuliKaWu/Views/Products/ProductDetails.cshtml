@@ -62,12 +62,13 @@
                             <div class="product-quality">
                                 <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
                             </div>
-                            @*加入購物車按鈕*@<div class="single-product-cart btn-hover">
-                                <button class="btn btn-warning" @@click="addToCart">Add to cart</button>
+                            @*加入購物車按鈕*@
+                            <div class="single-product-cart btn-hover">
+                                <button class="btn btn-warning"  @@click="addToCart(productFields.productId)">Add to cart</button>
                             </div>
                             @*加入願望清單按鈕*@
                             <div class="single-product-wishlist">
-                                <button class="btn btn-danger" @@click="addToWishlist"><i class="pe-7s-like"></i></button>
+                                <button class="btn btn-danger" @@click="addToWishlist(productFields.productId)"><i class="pe-7s-like"></i></button>
                             </div>
                             <div class="single-product-compare">
                                 <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
@@ -286,32 +287,38 @@
                 //},
 
                 addToCart: function (productId) {
-                    console.log("CPid:", productId)
-                    this.queryCartBaseURL = '/api/cart/AddToCart/' + this.productFields.productId;
-                    fetch(this.queryCartBaseURL, { method: "POST" })
-                        .then(function (response) {
-                            console.table(response)
-                            let cartp = response
-                            return response.json()
-                        })
+                    var self = this;
+                    console.log(productId)
+                    self.queryCartBaseURL = `/api/cart/AddToCart`;
+                    fetch(self.queryCartBaseURL, {
+                        method: "POST",
+                        body: JSON.stringify(productId),
+                        headers: { "content-type": "application/json" }
+                    })
+                        .then(function (response) { return response.json() })
                         .then(function (result) {
                             var al = {
-                                icon: 'sucess',
-                                title: '成功',
+                                icon: 'success',
+                                title: 'success',
                                 text: result.message,
                                 timer: 2000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "失敗";
+                                al.title = "error";
                             }
                             Swal.fire(al)
                         })
                 },
                 addToWishlist: function (productId) {
-                    console.log("WPid:", productId)
-                    this.queryWishlistBaseURL = '/api/wishlist/AddWishList/' + this.productFields.productId;
-                    fetch(this.queryWishlistBaseURL, { method: "POST" })
+                    var self = this;
+                    console.log(productId)
+                    self.queryWishlistBaseURL = `/api/wishlist/AddWishList/`;
+                    fetch(self.queryWishlistBaseURL, {
+                        method: "POST",
+                        body: JSON.stringify(productId),
+                        headers: { "content-type": "application/json" }
+                    })
                         .then(function (response) {
                             console.table(response)
                             let wresp = response
@@ -320,13 +327,13 @@
                         .then(function (result) {
                             var al = {
                                 icon: 'success',
-                                title: '成功',
+                                title: 'success',
                                 text: result.message,
                                 timer: 2000
                             };
                             if (!result.status) {
                                 al.icon = "error";
-                                al.title = "失敗";
+                                al.title = "error";
                             }
                             Swal.fire(al)
                         })
