@@ -168,7 +168,7 @@
                         al.icon = "error";
                         al.title = "Delete Failed!!!";
                     }
-                    Swal.fire(al)
+                    Swal.fire(al).then(() => { window.location = '/products/index/' })
                 })
             }
         }
