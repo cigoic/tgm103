@@ -141,8 +141,7 @@
                                 al.icon = "error";
                                 al.title = "error";
                             }
-                            Swal.fire(al)
-                           // window.location = "/Cart/Index"
+                            Swal.fire(al).then( ()=> {window.location.reload()} )                         
                         })
                 }
             }

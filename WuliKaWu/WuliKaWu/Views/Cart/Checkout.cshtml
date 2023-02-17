@@ -77,7 +77,7 @@
                                                     <div class="payment-method">
                                                         <div class="pay-top sin-payment">
                                                             <input id="payment_method_1" class="input-radio" type="radio" value="cheque" checked="checked" name="payment_method">
-                                                            <label for="payment_method_1"> NewebPay </label>
+                                                            <label for="payment_method_1"> Cash </label>
                                                             <div class="payment-box payment_method_bacs">
                                                                 <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference.</p>
                                                             </div>
@@ -129,22 +129,6 @@
                                                         <th class="col-lg-1">Size</th>
                                                         <th class="col-lg-1">Price</th>
                                                     </tr>
-                                                    @*<tr v-for="checkout in checkoutInThisCheckOut">
-                                                        <td class="product-thumbnail" v-for="(pic, index) in checkout.picturePath" v-if="index < 1">
-                                                            <img class="width-thumbnail" style="width:120px" :src="pic"></img>
-                                                        </td>
-                                                        <td><span>{{checkout.productName}}</span></td>
-                                                        <td v-for="(value, index) in checkout.type" v-if="index < 1"><span>{{value}}</span></td>
-                                                        <td class="cart-quality">
-                                                            <input type="number" :value="checkout.quantity" readonly>
-                                                        </td>
-                                                        <td>{{checkout.size}}</td>
-                                                        <td class="product-price">
-                                                            <span :class="{'old-price':checkout.discount}">${{checkout.price}}</span>
-                                                            <span class="new-price" v-if="checkout.discount">${{checkout.sellingPrice}}</span>
-                                                        </td>
-                                                    </tr>*@
-                                                    @*======*@
                                                     <tr v-for="checkout in checkoutInThisCheckOut">
                                                         <td class="product-thumbnail" v-for="(pic, index) in checkout.picturePath" v-if="index < 1">
                                                             <img class="width-thumbnail" style="width:120px" :src="pic"></img>

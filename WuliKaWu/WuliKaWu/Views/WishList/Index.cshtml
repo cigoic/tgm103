@@ -108,8 +108,7 @@
                                 al.icon = "error";
                                 al.title = "error";
                             }
-                            Swal.fire(al)
-                           // window.location = "/WishList/Index"
+                            Swal.fire(al)    
                         })
                 },
                 RemoveToWishlist: function (wishlistid) {
@@ -133,7 +132,8 @@
                                 al.icon = "error";
                                 al.title = "error";
                             }
-                            Swal.fire(al)
+                            Swal.fire(al).then(()=>
+                            { window.location.reload() })
                             //window.location = "/WishList/Index"
                         })
                 }

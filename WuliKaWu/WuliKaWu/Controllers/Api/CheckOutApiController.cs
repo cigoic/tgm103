@@ -101,6 +101,7 @@ namespace WuliKaWu.Controllers.Api
                     OrderDate = DateTime.UtcNow,
                     ShippingDate = DateTime.UtcNow.AddDays(7),
                     Status = model.Status,
+                    Type = model.Type
                 };
 
                 // products ==> order, order details

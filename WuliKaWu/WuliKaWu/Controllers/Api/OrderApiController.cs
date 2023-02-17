@@ -35,11 +35,6 @@ namespace WuliKaWu.Controllers.Api
             {
                 return null;
             }
-            //var shippingstatusModel = new ShippingStatusViewModel
-            //{
-            //    Id = data.OrderId,
-            //    Type = data.Status.GetDescriptionText(),
-            //};
 
             try
             {
@@ -49,12 +44,11 @@ namespace WuliKaWu.Controllers.Api
                     {
                         MemberId = myId,
                         OrderId = o.OrderId,
-                        OrderDate = o.OrderDate,
-                        ShippingDate = o.ShippingDate,
-                        //Status = shippingstatusModel,
+                        OrderDate = o.OrderDate.ToString("F"),
+                        ShippingDate = o.ShippingDate.ToString("F"),
                         StatusId = o.OrderId,
                         StatusType = o.Status.GetDescriptionText(),
-                        Type = o.Type,
+                        GetPayType = o.Type.GetDescriptionText(),
                         Recipient = o.Recipient,
                         ShippingAddress = o.ShippingAddress,
                         ContactPhone = o.ContactPhone,
@@ -68,7 +62,6 @@ namespace WuliKaWu.Controllers.Api
             }
         }
 
-       
         public IResult GetOrders()
         {
             var myId = User.Claims.GetMemberId();
@@ -77,22 +70,19 @@ namespace WuliKaWu.Controllers.Api
                 {
                     MemberId = myId,
                     OrderId = o.OrderId,
-                    OrderDate = o.OrderDate,
-                    ShippingDate = o.ShippingDate,
-                    //Status = shippingstatusModel,
+                    OrderDate = o.OrderDate.ToString("F"),
+                    ShippingDate = o.ShippingDate.ToString("F"),
                     StatusId = o.OrderId,
                     StatusType = o.Status.GetDescriptionText(),
-                    Type = o.Type,
+                    GetPayTypeId = o.OrderId,
+                    GetPayType = o.Type.GetDescriptionText(),
                     Recipient = o.Recipient,
                     ShippingAddress = o.ShippingAddress,
                     ContactPhone = o.ContactPhone,
                     Memo = o.Memo
                 });
 
-
-
             return Results.Ok(orders);
         }
     }
-
 }
