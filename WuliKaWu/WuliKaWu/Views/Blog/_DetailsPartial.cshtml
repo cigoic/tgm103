@@ -1,0 +1,62 @@
+﻿@*單一文章內容，有前後文連結*@
+<div class="row">
+    <div class="blog-details-wrapper">
+        <div class="blog-details-img-date-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
+            <div class="blog-details-img">
+                <img :src="article.titleImage" alt="">
+            </div>
+            <div class="blog-details-date">
+                @*<h5>{{ article.timeInDay }} <span>{{ article.timeInMonth }}</span></h5>*@
+                <h5 v-if="articleDay(article.createdDate)">{{ aDay }} <span v-if="getMonthName(article.createdDate)">{{ aMonth }}</span></h5>
+            </div>
+        </div>
+        <div class="blog-meta-2" data-aos="fade-up" data-aos-delay="200">
+            <ul>
+                <li><a href="#">Furniture</a>,</li>
+                <li>By:<a href="#"> {{ article.memberName }}</a></li>
+            </ul>
+        </div>
+        <h1 data-aos="fade-up" data-aos-delay="200">{{ article.title }}</h1>
+        <p v-html="article.content" data-aos="fade-up" data-aos-delay="200">{{  article.content }}</p>
+
+        <div class="blog-details-middle-img-wrap">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-12" v-for="image in article.articleContentImages">
+                    <div class="blog-details-middle-img mb-30" data-aos="fade-up" data-aos-delay="200">
+                        <img :src="images" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="tag-social-wrap">
+        <div class="tag-wrap" data-aos="fade-up" data-aos-delay="200">
+        <span>Tags:</span>
+        <ul v-for="tag in tags">
+        <li><a href="#">{{tag.type}}</a>,</li>
+        </ul>
+        </div>
+        </div>*@
+
+        <div class="blog-next-previous-post" data-aos="fade-up" data-aos-delay="200">
+            <div class="blog-prev-post-wrap">
+                <div class="blog-prev-post-icon">
+                    <a :href="articleLink(article.prevArticleId)"><i class="fa fa-angle-left"></i></a>
+                </div>
+                <div class="blog-prev-post-content">
+                    <h3><a :href="articleLink(article.prevArticleId)">{{ article.prevArticleTitle }}</a></h3>
+                    <span>{{ showDate(article.prevArticleCreateAt) }}</span>
+                </div>
+            </div>
+            <div class="blog-next-post-wrap">
+                <div class="blog-next-post-icon">
+                    <a :href="articleLink(article.nextArticleId)"> <i class="fa fa-angle-right"></i> </a>
+                </div>
+                <div class="blog-next-post-content">
+                    <h3><a :href="articleLink(article.nextArticleId)">{{ article.nextArticleTitle }}</a></h3>
+                    <span>{{ showDate(article.nextArticleCreateAt) }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -15,15 +15,16 @@
                     <div class="tab-content">
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
-                                <div class="login-register-form">
-                                    <form id="fpwdForm" name="fpwdForm" method="post">
-                                        <label for="urlQuery" class="required" hidden></label>
-                                        <input type="text" id="urlQuery" name="urlQuery" v-model="urlQuery" readonly hidden>
+                                <div class="contact-form-style">
+                                    <label for="urlQuery" class="required" hidden></label>
+                                    <input type="text" id="urlQuery" name="urlQuery" v-model="urlQuery" readonly hidden>
 
-                                        <div class="button-box btn-hover">
-                                            <button type="button" v-on:click="handleSubmit()" class="form-control">Vertify</button>
-                                        </div>
-                                    </form>
+                                    <label for="Password">請輸入您的密碼：</label>
+                                    <input id="Password" name="Password" type="password" v-model="urlQuery.password" class="mb-35" />
+
+                                    <div class="contact-us-btn btn-hover mt-10">
+                                        <button type="button" v-on:click.prevent="handleSubmit()" class="form-control">Vertify</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -42,6 +43,7 @@
                 urlQuery: {
                     email: "",
                     token: "",
+                    password: "",
                 },
             },
             mounted: function () {
@@ -51,18 +53,20 @@
             },
             methods: {
                 handleSubmit() {
-                    axios.post('/Member/Activate', this.urlQuery)
+                    axios.post('/api/Member/Activate', this.urlQuery)
                         .then(response => {
-                            if (response.data.success) {
-                                Swal.fire("Success!", response.data.success, 'success');
-                            }
+                            if (response.status === 200 && response.data.statusCode === 200) {
+                                tgm103ShowSuccess(response.data.success)
+                                    .then((result) => {
+                                        if (result.dismiss === Swal.DismissReason.timer) {
+                                            window.location = "Login"
+                                        }
+                                    })
+                            } else { tgm103ShowSuccess(response.data.message) }
                         })
                         .catch(error => {
-                            if (error.response.data.message) {
-                                console.log(error.response.data.message)
-                                Swal.fire("Error!", error.response.data.message, "error");
-                            }
-                        });
+                            if (error.response.data.message) { tgm103ShowError(error.response.data.message) }
+                        })
                 },
             }
         });

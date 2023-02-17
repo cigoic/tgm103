@@ -12,22 +12,26 @@ namespace WuliKaWu.Models.ApiModel
         /// <summary>
         /// 下定日期
         /// </summary>
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
 
         /// <summary>
         /// 出貨日期
         /// </summary>
-        public DateTime ShippingDate { get; set; }
-
-        /// <summary>
-        /// 出貨狀態
-        /// </summary>
-        public ShippingStatus Status { get; set; }
+        public string ShippingDate { get; set; }
 
         /// <summary>
         /// 付款方式
         /// </summary>
-        public GetPayType Type { get; set; }
+        public int GetPayTypeId { get; set; }
+
+        public string GetPayType { get; set; }
+        /// <summary>
+        /// 出貨狀態
+        /// </summary>
+
+        public int StatusId { get; set; }
+
+        public string StatusType { get; set; }
 
         /// <summary>
         /// 收件人，最大長度 24

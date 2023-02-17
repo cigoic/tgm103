@@ -1,4 +1,4 @@
-﻿<div class="container" id="blogEditApp" />
+﻿<div class="container" id="app" />
 
 <h1>Edit</h1>
 
@@ -47,14 +47,11 @@
 
 
 @section Scripts {
-    @{
-        //await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
 
     <script>
-        let blogEditVue = new Vue({
-            //el: 'blogEditApp',
+        let app = new Vue({
+            //el: 'app',
             data: {
                 selectedOption: '',
                 options: [
@@ -101,9 +98,6 @@
                 this.articleId = @ViewBag.ArticleId;
                 this.getContent(this.articleId)
             },
-            //beforeDestroy() {
-            //    self.editor.destroy();
-            //},
             methods: {
                 showSelectOpts: function (type) {
                     if (type == 1) return "Uncategorized"
@@ -176,7 +170,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogEditVue.$mount('#blogEditApp')
+            app.$mount('#app')
         })
     </script>
 }

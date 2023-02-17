@@ -1,10 +1,31 @@
-﻿<div class="container" id="blogSidebarApp" />
+﻿<div class="container" id="app" />
 
 <div class="blog-area pt-15 pb-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <partial name="_BlogDetailsPartial" />
+                <div class="tab-style-1 tab-style-1-margin tab-border-none tab-center nav mb-15" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#pro-1" data-bs-toggle="tab"> Author's Posts </a>
+                    <a class="active" href="#pro-2" data-bs-toggle="tab"> Current </a>
+                    @*<a href="#pro-3" data-bs-toggle="tab" class=""> Categories </a>
+                    <a href="#pro-4" data-bs-toggle="tab" class=""> Latest </a>*@
+                </div>
+
+                @**@
+                <div class="tab-content jump">
+                    <div id="pro-1" class="tab-pane">
+                        <partial name="_AuthorPartial" />
+                    </div>
+                    <div id="pro-2" class="tab-pane active">
+                        <partial name="_DetailsPartial" />
+                    </div>
+                    @*<div id="pro-3" class="tab-pane">
+                    </div>
+                    <div id="pro-4" class="tab-pane">
+                    <partial name="_LatestPartial" />
+                    </div>*@
+                </div>
+
             </div>
             <div class="col-lg-4">
                 <div class="sidebar-wrapper">
@@ -21,7 +42,7 @@
                     @*作者欄位*@
                     <div class="sidebar-widget mb-50" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-author-content text-center">
-                            <a :href="memberArticlesLink(article.id)"><img src="/assets/images/blog/blog-author.png" alt=""></a>
+                            <a :href="articleLink(article.articleId)"><img :src="getAuthorIcon()" alt=""></a>
                             <h2>{{ article.memberName }}</h2>
                             <h4>Blog Writer</h4>
                             <div class="social-icon-style-1">
@@ -35,16 +56,16 @@
                     </div>
 
                     @*分類 Categories*@
-                    <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
-                        <div class="sidebar-widget-title-2 mb-25">
-                            <h3>Categories</h3>
-                        </div>
-                        <div class="sidebar-list-style-2">
-                            <ul v-for="(count, category) in categories" :key="category">
-                                <li><a href="#">{{ category }} ({{ count }})</a></li>
-                            </ul>
-                        </div>
+                    @*<div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sidebar-widget-title-2 mb-25">
+                    <h3>Categories</h3>
                     </div>
+                    <div class="sidebar-list-style-2">
+                    <ul v-for="(count, category) in categories" :key="category">
+                    <li><a href="#">{{ category }} ({{ count }})</a></li>
+                    </ul>
+                    </div>
+                    </div>*@
 
                     @*最新發表文章*@
                     <div class="sidebar-widget mb-40" data-aos="fade-up" data-aos-delay="200">
@@ -52,35 +73,35 @@
                             <h3>Latest Post</h3>
                         </div>
                         <div class="latest-post-wrap">
-                            <div class="single-latest-post" v-for="larticle in lastestPosts">
+                            <div class="single-latest-post" v-for="(larticle, index) in lastestPosts" v-if="index < 3">
                                 <div class="latest-post-img">
-                                    <a href="#"><img src="/assets/images/blog/latest-post-1.png" alt=""></a>
+                                    <a :href="lastestLink(larticle.id)"><img :src="larticle.titleImage" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
                                     <span>{{ larticle.createdDate }}</span>
-                                    <h4><a :href="articleLink(larticle.id)">{{ larticle.title }}</a></h4>
+                                    <h4><a :href="lastestLink(larticle.id)">{{ larticle.title }}</a></h4>
                                     <div class="latest-post-btn">
-                                        <a :href="articleLink(larticle.id)">Continue Reading...</a>
+                                        <a :href="lastestLink(larticle.id)">Continue Reading...</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar-widget mb-35" data-aos="fade-up" data-aos-delay="200">
-                        <div class="sidebar-widget-title-2 mb-30">
-                            <h3>Tags</h3>
-                        </div>
-                        <div class="sidebar-widget-tag-2">
-                            <a href="#">Furniture</a>
-                            <a href="#">Electronic</a>
-                            <a href="#">Home Decore</a>
-                            <a href="#">Design Home</a>
-                            <a href="#">Furniture</a>
-                        </div>
+                    @*<div class="sidebar-widget mb-35" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sidebar-widget-title-2 mb-30">
+                    <h3>Tags</h3>
                     </div>
+                    <div class="sidebar-widget-tag-2">
+                    <a href="#">Furniture</a>
+                    <a href="#">Electronic</a>
+                    <a href="#">Home Decore</a>
+                    <a href="#">Design Home</a>
+                    <a href="#">Furniture</a>
+                    </div>
+                    </div>*@
                     <div class="sidebar-widget" data-aos="fade-up" data-aos-delay="200">
                         <div class="sidebar-banner">
-                            <a href="#"><img src="/assets/images/banner/banner-29.png" alt=""></a>
+                            <a href="#"><img :src="productImg" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -95,9 +116,9 @@
     <script>
         Vue.component('paginate', VuejsPaginate);
 
-        let blogSidebarVue = new Vue({
-            //el:'#blogSidebarApp',
-            name: "blogSidebarApp",
+        let app = new Vue({
+            //el:'#app',
+            name: "app",
             data: {
                 article: {},    // get article by id
                 articles: [],   // get all articles
@@ -107,8 +128,11 @@
                 articleBaseLink: "/Blog/Details/",
                 articleId: @ViewBag.ArticleId,
                 currentPage: 1,
-                countPerPage: 3,
+                countPerPage: 5,
                 tags: {},
+                productImg: "",
+                titleImg: "",
+                showAllCategories: false
             },
             created: function () {
                 let self = this
@@ -116,20 +140,16 @@
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         if (result.value.status === 200 || result.statusCode === 200) {
-                            //console.table("sidebar articles:", result.value);
                             self.articles = result.value;
-                        } else {
-                            tgm103ShowError(result.value.message)
                         }
                     })
             },
             mounted: function () {
                 let self = this
 
-                //self.getTags(self.articleId)
-                //self.getArticleById(self.articleId)
-                self.getCategories()
+                self.getArticleById(self.articleId)
                 self.getLastestPosts()
+                self.getRandomProductPic()
             },
             computed: {
                 filterArticles: function () {
@@ -139,82 +159,101 @@
                     this.max = max;
                     return this.articles.slice(min, max)
                 },
-                formattedArticles() {
+                formattedArticles: function () {
                     return this.filterArticles.map(article => {
                         const date = new Date(article.modifiedDate);
+                        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                         return {
                             ...article,
+                            modifiedDate: date.toLocaleDateString(date, options),
                             timeInDay: `${date.getDate()}`,
                             timeInMonth: `${date.toLocaleString('default', { month: 'short' })}`
                         };
                     });
-                }
+                },
+                lastestArticles: function () {
+                    var min = this.countPerPage * (this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1);
+                    var max = this.countPerPage * this.currentPage;
+                    this.min = min;
+                    this.max = max;
+                    return this.formattedArticles.sort((a, b) => new Date(b.modifiedDate) - new Date(a.modifiedDate)).slice(min, max)
+
+                },
             },
             methods: {
                 clickCallback: function (page) {
                     this.currentPage = page;
-                    console.log(page)
                 },
-                articleLink: function (id) { return "/Blog/Details/" + id },
-                memberArticlesLink: function (id) { return "/Blog/Sidebar/" + id },
+                articleLink: function (id) {
+                    const url = "/Blog/Sidebar/" + id
+                    return url
+                },
+                lastestLink: function (id) {
+                    const url = "/Blog/Sidebar/" + id + "#pro-2"
+                    return url
+                },
+                articleDay(currentDate) {
+                    var date = new Date(currentDate);
+                    this.aDay = date.getDate()
+                    return this.aDay
+                },
+                getMonthName(currentDate) {
+                    const date = new Date(currentDate)
+                    this.aMonth = date.toLocaleString('default', { month: 'short' })
+                    return this.aMonth
+                },
+                showDate(currentDate) {
+                    const date = new Date(currentDate)
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    return date.toLocaleDateString(date, options)
+                },
+                getAuthorIcon: function () {
+                    let id = Math.floor(Math.random() * 100)
+                    queryIcon = "https://picsum.photos/id/" + id + "/200/200"
+                    return queryIcon
+                },
                 getArticleById(id) {
-                    this.articleBaseLink = "/api/Blog/GetById/",
-                        axios.get(this.articleBaseLink + id)
-                            .then(response => {
-                                if (response.status === 200 && response.data.statusCode === 200)
-                                    this.article = response.data.value
-                            })
-                            .catch(error => { tgm103ShowError(error.response.data) })
-                },
-                getCategories: function () {
-                    axios.get('/api/Blog/CountCategories')
+                    const articleBaseLink = "/api/Blog/GetById/"
+                    axios.get(articleBaseLink + id)
                         .then(response => {
-                            if (response.status === 200 && response.data.statusCode === 200) {
-                                console.log("mounted categories:", response.data.value)
-                                this.categories = response.data.value
-                            }
-                        })
-                },
-                getCategoriesPost: async function () {
-                    await axios.get("/api/Home/GetCategoriesPost")
-                        .then(response => {
-                            console.log("at mounted, category posts:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
-                                this.catPosts = response.data.value
+                                this.article = response.data.value
+                                this.titleImg = response.data.value.titleImage
                             }
                         })
-                        .catch(error => { tgm103ShowError(error.response.data) })
+                        .catch(error => {
+                            tgm103ShowError(error.response.data)
+                        })
                 },
                 getLastestPosts: function () {
                     axios.get('/api/Blog/GetLastestPost')
                         .then(response => {
                             if (response.status === 200 && response.data.statusCode === 200) {
-                                console.log("at mounted, lastes posts:", response.data.value)
                                 this.lastestPosts = response.data.value.map(article => {
                                     const date = new Date(article.createdDate)
                                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                                     return {
                                         ...article,
-                                        createdDate: date.toLocaleDateString(date, options)
+                                        createdDate: date.toLocaleDateString(date, options),
+                                        timeInDay: `${date.getDate()}`,
+                                        timeInMonth: `${date.toLocaleString('default', { month: 'short' })}`
                                     }
                                 })
                             }
                         })
                         .catch(error => { tgm103ShowError(error) })
                 },
-                getTags: function (id) {
-                    axios.get("/api/Blog/GetTagsById/" + id)
-                        .then(response => {
-                            if (response.status === 200 && response.data.statusCode === 200)
-                                this.tags = response.data.value
-                        })
-                        .catch(error => { tgm103ShowError(error.response.data) })
+                getRandomProductPic: function () {
+                    axios.get("/api/Blog/GetRandomProductPic")
+                        .then(response => { this.productImg = response.data.value })
+                        .catch(error => { tgm103ShowError(error.response.data) }
+                        )
                 },
             }
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            blogSidebarVue.$mount('#blogSidebarApp')
+            app.$mount('#app')
         })
     </script>
 }

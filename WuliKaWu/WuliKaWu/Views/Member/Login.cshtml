@@ -1,4 +1,4 @@
-﻿<div class="container" id="loginApp" />
+﻿<div class="container" id="app" />
 
 <div class="login-register-area pb-100 pt-15">
     <div class="container">
@@ -25,8 +25,8 @@
                                         <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
 
                                         <div class="login-toggle-btn">
-                                            <label for="RememberMe">Remember me</label>
-                                            <input type="checkbox" id="RememberMe" name="RememberMe" :value="fieldsLogin.RememberMe">
+                                            @*<label for="RememberMe">Remember me</label>
+                                            <input type="checkbox" id="RememberMe" name="RememberMe" :value="fieldsLogin.RememberMe">*@
                                             <a href="/Member/ForgetPassword">Forgot Password?</a>
                                         </div>
                                         <div class="button-box btn-hover">
@@ -49,14 +49,14 @@
                                         <label id="Name" name="Name">名字</label>
                                         <input type="text" name="Name" />
 
-                                        <label id="Gender" name="Gender"></label>
+                                        <label id="Gender" name="Gender">性別</label>
                                         <select>
-                                            <option value="">性別</option>
-                                            <option value="0">Femail</option>
+                                            <option value="">--- 請選擇 ---</option>
+                                            <option value="0">Female</option>
                                             <option value="1">Male</option>
                                         </select>
 
-                                        <label id="Birthday" name="Birthday">出生年月日</label>
+                                        <label id="Birthday" name="Birthday" class="mt-15">出生年月日</label>
                                         <input type="date" id="Birthday" name="Birthday" />
 
                                         <label id="Email" name="Email">電子信箱</label>
@@ -88,7 +88,7 @@
 @section Scripts
     {
     <script>
-        let loginVue = new Vue({
+        let app = new Vue({
             data: {
                 fieldsLogin: {
                     account: "",
@@ -96,37 +96,28 @@
                     rememberMe: "",
                 },
             },
-            //mounted: function () {
-            //    let self = this
-            //    if (@User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value)
-            //        self.fieldsLogin.rememberMe = @User.Claims.FirstOrDefault(u=>u.Type == "RememberMe")?.Value;
-            //},
             methods: {
                 handleSubmit() {
-                    axios.post.("/Member/Login", this.fieldsLogin)
+                    axios.post("/Member/Login", this.fieldsLogin)
                         .then(response => {
-                            console.log("....response", response)
-                            if (response.data.success) {
-                                tgm103ShowSuccess("Success!", response.data.success, 'success');
-                            }
+                            console.log("....login response", response)
+                            if (response.data.success) { tgm103ShowSuccess(response.data.success) }
+                            else { tgm103ShowSuccess(response.data.message) }
                         })
                         .catch(error => {
                             console.log("login error...", error)
-                            if (error.response.data.message) {
-                                console.log(error.response.data.message)
-                                tgm103ShowError("Error!", error.response.data.message, "error");
-                            }
+                            if (error.response.data.message) { tgm103ShowError(error.response.data.message) }
                         });
                     //document.getElementById('loginForm').reset()    // reset form
                 },
                 handleRegister() {
                     axios.post('/Member/Register', this.fieldsRegister)
                         .then(response => {
-                            if (response.data.success) {
-                                swal("Success!", response.data.success, 'success');
-                            }
+                            if (response.data.success) { tgm103ShowSuccess(response.data.message) }
+                            else { tgm103ShowError(response.data.message) }
                         })
                         .catch(error => {
+                            console.log("...reg err", error)
                             if (error.response.data.message) {
                                 console.log(error.response.data.message)
                                 swal("Error!", error.response.data.message, "error");
@@ -138,7 +129,7 @@
         })
 
         document.addEventListener("DOMContentLoaded", () => {
-            loginVue.$mount('#loginApp')
+            app.$mount('#app')
         })
     </script>
 }

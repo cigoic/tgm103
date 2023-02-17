@@ -24,23 +24,31 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="checkoutId"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("{id}")]
         [Authorize]
-        public async Task<IEnumerable<OrderApiModel>> GetOrderAsync()
+        public async Task<IEnumerable<OrderApiModel>> GetOrderAsync(int id)
         {
             var myId = User.Claims.GetMemberId();
+            var data = _context.Orders.Include(x => x.Status).FirstOrDefault(x => x.OrderId == id);
+
+            if (data == null)
+            {
+                return null;
+            }
+
             try
             {
                 var order = _context.Orders
-                    .Where(o => o.MemberId == myId )
+                    .Where(o => o.MemberId == myId)
                     .Select(o => new OrderApiModel
                     {
                         MemberId = myId,
                         OrderId = o.OrderId,
-                        OrderDate = o.OrderDate,
-                        ShippingDate = o.ShippingDate,
-                        Status = o.Status,
-                        Type = o.Type,
+                        OrderDate = o.OrderDate.ToString("F"),
+                        ShippingDate = o.ShippingDate.ToString("F"),
+                        StatusId = o.OrderId,
+                        StatusType = o.Status.GetDescriptionText(),
+                        GetPayType = o.Type.GetDescriptionText(),
                         Recipient = o.Recipient,
                         ShippingAddress = o.ShippingAddress,
                         ContactPhone = o.ContactPhone,
@@ -52,6 +60,29 @@ namespace WuliKaWu.Controllers.Api
             {
                 throw;
             }
+        }
+
+        public IResult GetOrders()
+        {
+            var myId = User.Claims.GetMemberId();
+            var orders = _context.Orders.Where(o => o.MemberId == myId)
+                .Select(o => new OrderApiModel
+                {
+                    MemberId = myId,
+                    OrderId = o.OrderId,
+                    OrderDate = o.OrderDate.ToString("F"),
+                    ShippingDate = o.ShippingDate.ToString("F"),
+                    StatusId = o.OrderId,
+                    StatusType = o.Status.GetDescriptionText(),
+                    GetPayTypeId = o.OrderId,
+                    GetPayType = o.Type.GetDescriptionText(),
+                    Recipient = o.Recipient,
+                    ShippingAddress = o.ShippingAddress,
+                    ContactPhone = o.ContactPhone,
+                    Memo = o.Memo
+                });
+
+            return Results.Ok(orders);
         }
     }
 }

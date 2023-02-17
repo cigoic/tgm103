@@ -215,9 +215,9 @@
                                 al.icon = "error";
                                 al.title = "Create Failed!!";
                             }
-                            Swal.fire(al)
+                            Swal.fire(al).then(() => { window.location='/products/index/' })
                         })
-
+                        
                 }
             }
         })

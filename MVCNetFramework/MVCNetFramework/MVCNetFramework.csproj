@@ -193,20 +193,6 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="Orders.cs" />
-=======
-    <Compile Include="Diagrams\Order.cs" />
-    <Compile Include="Diagrams\Product.cs" />
-    <Compile Include="Diagrams\WishList.cs" />
->>>>>>> [更新] Identity Login/Register 頁面套版，並加入自訂欄位，但輸入框需調整大小
-=======
-    <Compile Include="Orders.cs" />
->>>>>>> 更新類別圖
-=======
->>>>>>> [修改]調整類別圖
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

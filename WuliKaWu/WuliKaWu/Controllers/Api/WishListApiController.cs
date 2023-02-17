@@ -50,8 +50,8 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="productId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpPost("{productId}")]
-        public async Task<ApiResultModel> AddWishListAsync(int productId)
+        [HttpPost]
+        public async Task<ApiResultModel> AddWishListAsync([FromBody] int productId)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace WuliKaWu.Controllers.Api
         /// <returns></returns>
         [HttpGet]
         [Authorize]
-        public async Task<IEnumerable<WishListGetModel>> GetWishListAsync(int productId)
+        public async Task<IEnumerable<WishListGetModel>> GetWishListAsync()
         {
             var myId = User.Claims.GetMemberId();
             try
@@ -102,7 +102,7 @@ namespace WuliKaWu.Controllers.Api
                     .Where(x => x.MemberId == myId)
                     .Select(x => new WishListGetModel
                     {
-                        ProductId = productId,
+                        ProductId = x.ProductId,
                         MemberId = myId,
                         WishListId = x.WishListId,
                         ProductName = x.Product.ProductName,
@@ -126,7 +126,7 @@ namespace WuliKaWu.Controllers.Api
         /// <param name="id"></param>
         /// <returns></returns>
 
-        [HttpPost("{id}")]
+        [HttpPost]
         [Authorize]
         public async Task<ApiResultModel> RemoveToWishlist([FromBody] Int32 id)
         {

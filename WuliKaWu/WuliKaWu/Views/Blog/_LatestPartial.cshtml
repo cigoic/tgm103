@@ -1,0 +1,53 @@
+﻿<div class="row">
+    <template v-for="lstPost in lastestArticles">
+        <div class="col-lg-4 col-md-6">
+            <div class="blog-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
+                <div class="blog-img-date-wrap mb-25">
+                    <div class="blog-img">
+                        <a :href="articleLink(lstPost.id)"><img :src="lstPost.titleImage" alt=""></a>
+                    </div>
+                    <div class="blog-date">
+                        <h5>{{ lstPost.timeInDay }} <span>{{ lstPost.timeInMonth }}</span></h5>
+                    </div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <ul>
+                            <li><a href="#">{{ lstPost.category }}</a>,</li>
+                            <li>By:<a :href="articleLink(lstPost.id)"> {{ lstPost.memberName }}</a></li>
+                        </ul>
+                    </div>
+                    <h3><a :href="articleLink(lstPost.id)">{{ lstPost.title }}</a></h3>
+                    <p v-html="lstPost.description">{{ lstPost.description }}</p>
+                    <div class="blog-btn-2 btn-hover">
+                        <a class="btn hover-border-radius theme-color" :href="articleLink(lstPost.id)">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</div>
+
+
+@*分頁*@
+<div class="pagination-style-1" data-aos="fade-up" data-aos-delay="200">
+    @*
+    <ul>
+    <li><a :class="{active:currentPage==n}" v-for="n in 10" href="#">{{n}}</a></li>
+    <li><a class="next" href="#"><i class=" ti-angle-double-right "></i></a></li>
+    </ul>
+    *@
+
+    <paginate :page-count="Math.ceil(lastestArticles.length/countPerPage)"
+              :page-range="10"
+              :margin-pages="1"
+              :click-handler="clickCallback"
+              :prev-text="'Prev'"
+              :next-text="'Next'"
+              :container-class="'pagination'"
+              :page-class="'page-item'">
+        <span v-if="articles.length > 1" slot="prevContent"><i class=" ti-angle-double-left "></i></span>
+        <span v-if="articles.length > 1" slot="nextContent"><i class=" ti-angle-double-right "></i></span>
+    </paginate>
+
+</div>

@@ -100,8 +100,16 @@ namespace WuliKaWu.Controllers.Api
                     //Type = model.GetPayType.GetDescriptionText(),
                     OrderDate = DateTime.UtcNow,
                     ShippingDate = DateTime.UtcNow.AddDays(7),
-                    //Status = model.Status,
+                    Status = model.Status,
+                    Type = model.Type
                 };
+
+                // products ==> order, order details
+                //var myId = User.Claims.GetMemberId();
+                //OrderDetails orderDetails = new OrderDetails
+                //{
+                //    //MemberId = myId,
+                //};
 
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
