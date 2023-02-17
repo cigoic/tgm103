@@ -208,14 +208,18 @@
                                 icon: "success",
                                 title: "Create Success!!",
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 3000
                             }
 
                             if (result.status!=true) {
                                 al.icon = "error";
                                 al.title = "Create Failed!!";
+                                Swal.fire(al);
+                                return window.location.reload();
                             }
-                            Swal.fire(al).then(() => { window.location='/products/index/' })
+                            else {
+                                Swal.fire(al).then(() => { window.location = '/products/index/' })
+                            }
                         })
                         
                 }

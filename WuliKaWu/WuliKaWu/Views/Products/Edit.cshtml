@@ -266,11 +266,12 @@
                                 icon: 'success',
                                 title: 'Edit Save Success!!!',
                                 text: result.message,
-                                timer: 2500
+                                timer: 3000
                             };
                             if (result.status!=true) {
                                 al.icon = "error";
                                 al.title = "Edit Save Failed!!!";
+                                al.timer = 5000;
                                 Swal.fire(al);
                                 return window.location.reload();
                             }
