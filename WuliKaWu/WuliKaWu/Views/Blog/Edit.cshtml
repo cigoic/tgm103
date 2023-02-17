@@ -47,9 +47,6 @@
 
 
 @section Scripts {
-    @{
-        //await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
 
     <script>
@@ -101,9 +98,6 @@
                 this.articleId = @ViewBag.ArticleId;
                 this.getContent(this.articleId)
             },
-            //beforeDestroy() {
-            //    self.editor.destroy();
-            //},
             methods: {
                 showSelectOpts: function (type) {
                     if (type == 1) return "Uncategorized"

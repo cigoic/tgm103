@@ -230,7 +230,6 @@ namespace WuliKaWu.Controllers
             return View(new ActivateModel { Email = collection["u"], Token = collection["c"] });
         }
 
-        // TODO 重複功能，將移至 ApiController 中
         private void SendConfirmationEmail(string email, string subject, string token)
         {
             if (email == null) return;
