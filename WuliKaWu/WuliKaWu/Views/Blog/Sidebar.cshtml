@@ -75,13 +75,13 @@
                         <div class="latest-post-wrap">
                             <div class="single-latest-post" v-for="(larticle, index) in lastestPosts" v-if="index < 3">
                                 <div class="latest-post-img">
-                                    <a href="#"><img :src="larticle.titleImage" alt=""></a>
+                                    <a :href="lastestLink(larticle.id)"><img :src="larticle.titleImage" alt=""></a>
                                 </div>
                                 <div class="latest-post-content">
-                                    <span>{{ larticle.modifiedDate }}</span>
-                                    <h4><a :href="articleLink(larticle.id)">{{ larticle.title }}</a></h4>
+                                    <span>{{ larticle.createdDate }}</span>
+                                    <h4><a :href="lastestLink(larticle.id)">{{ larticle.title }}</a></h4>
                                     <div class="latest-post-btn">
-                                        <a :href="articleLink(larticle.id)">Continue Reading...</a>
+                                        <a :href="lastestLink(larticle.id)">Continue Reading...</a>
                                     </div>
                                 </div>
                             </div>
@@ -140,11 +140,7 @@
                     .then(function (response) { return response.json() })
                     .then(function (result) {
                         if (result.value.status === 200 || result.statusCode === 200) {
-                            console.table("sidebar articles:", result.value);
                             self.articles = result.value;
-                        } else {
-                            //tgm103ShowError(result.value.message)
-                            //window.location.href = "/Blog";
                         }
                     })
             },
@@ -152,9 +148,7 @@
                 let self = this
 
                 self.getArticleById(self.articleId)
-                self.getCategories()
                 self.getLastestPosts()
-                self.getTags(self.articleId)
                 self.getRandomProductPic()
             },
             computed: {
@@ -189,9 +183,15 @@
             methods: {
                 clickCallback: function (page) {
                     this.currentPage = page;
-                    console.log(page)
                 },
-                articleLink: function (id) { return "/Blog/Sidebar/" + id },
+                articleLink: function (id) {
+                    const url = "/Blog/Sidebar/" + id
+                    return url
+                },
+                lastestLink: function (id) {
+                    const url = "/Blog/Sidebar/" + id + "#pro-2"
+                    return url
+                },
                 articleDay(currentDate) {
                     var date = new Date(currentDate);
                     this.aDay = date.getDate()
@@ -216,41 +216,19 @@
                     const articleBaseLink = "/api/Blog/GetById/"
                     axios.get(articleBaseLink + id)
                         .then(response => {
-                            console.log("get article by id:", response)
                             if (response.status == 200 && response.data.statusCode === 200) {
                                 this.article = response.data.value
                                 this.titleImg = response.data.value.titleImage
-                                console.log("get title image:", this.titleImg)
                             }
                         })
                         .catch(error => {
                             tgm103ShowError(error.response.data)
                         })
                 },
-                getCategories: function () {
-                    axios.get('/api/Blog/CountCategories')
-                        .then(response => {
-                            if (response.status === 200 && response.data.statusCode === 200) {
-                                console.log("mounted categories:", response.data.value)
-                                this.categories = response.data.value
-                            }
-                        })
-                },
-                getCategoriesPost: async function () {
-                    await axios.get("/api/Home/GetCategoriesPost")
-                        .then(response => {
-                            console.log("at mounted, category posts:", response)
-                            if (response.status == 200 && response.data.statusCode === 200) {
-                                this.catPosts = response.data.value
-                            }
-                        })
-                        .catch(error => { tgm103ShowError(error.response.data) })
-                },
                 getLastestPosts: function () {
                     axios.get('/api/Blog/GetLastestPost')
                         .then(response => {
                             if (response.status === 200 && response.data.statusCode === 200) {
-                                console.log("at mounted, lastes posts:", response.data.value)
                                 this.lastestPosts = response.data.value.map(article => {
                                     const date = new Date(article.createdDate)
                                     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -264,14 +242,6 @@
                             }
                         })
                         .catch(error => { tgm103ShowError(error) })
-                },
-                getTags: function (id) {
-                    axios.get("/api/Blog/GetTagsById/" + id)
-                        .then(response => {
-                            if (response.status === 200 && response.data.statusCode === 200)
-                                this.tags = response.data.value
-                        })
-                        .catch(error => { tgm103ShowError(error.response.data) })
                 },
                 getRandomProductPic: function () {
                     axios.get("/api/Blog/GetRandomProductPic")
