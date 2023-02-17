@@ -92,41 +92,6 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
-        /// Account Details 中的更換密碼功能
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        //[ActionName("ResetPassword")]
-        //[HttpPost]
-        //public async Task<LoginMessage> ResetPasswordAsync([FromBody] ResetPasswordModel model)
-        //{
-        //    try
-        //    {
-        //        if (ModelState.IsValid == false)
-        //            return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
-
-        //        var member = _context.Members.FirstOrDefaultAsync(t => t.MemberId == User.Claims.GetMemberId()).Result;
-
-        //        if (member == null || member.EmailComfirmed == false)
-        //            return new LoginMessage { Status = false, Message = "重設密碼錯誤，請聯繫管理員!" };
-
-        //        // 產生新密碼,更新回資料庫
-        //        var verificationToken = BCrypt.Net.BCrypt.GenerateSalt();
-        //        var token = BCrypt.Net.BCrypt.HashPassword(member.Email, verificationToken);
-        //        member.Password = token;
-        //        member.VerificationToken = verificationToken;
-
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-
-        //    return new LoginMessage { Status = true, Message = "Successfully Reset Password" };
-        //}
-
-        /// <summary>
         /// 產生 Token (無需會員輸入版本)
         /// </summary>
         /// <param name="HasUser"></param>
@@ -166,7 +131,6 @@ namespace WuliKaWu.Controllers.Api
 
             string targetUrl = Url.Action("Activate", "Member", new { u = email, c = token });
             //產生： "/Member/Activate?u=用戶識別碼&c=Token值"
-            //targetUrl = HttpUtility.UrlEncode(targetUrl);
             var link = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{targetUrl}";
             var subject = "您好！這是一封來自 Wuli 的問候～";
             var body = @$"<!DOCTYPE html><html lang='zh-tw'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>重置密碼</title></head><body><div><h4>親愛的客戶您好！</h4><h5>這是由系統發出的重置密碼信件，請勿直接回覆！</h5>感謝您對於 Wuli 網站的愛護，您點擊了忘記密碼功能，<br />請點擊下述連結並輸入您的<b>帳號名稱</b>來重置密碼：<br /><br /><a href='{link}'>按我重置密碼</a></div></body></html>";
@@ -200,7 +164,6 @@ namespace WuliKaWu.Controllers.Api
                 Address = member.Address,
                 PhoneNumber = member.PhoneNumber,
                 MobilePhone = member.MobilePhone,
-                //Role = member.Roles.Single().Type,
             } is MemberInfoModel userInfo
                 ? Results.Ok(userInfo)
                 : Results.NotFound(new { Status = false, Message = "無法取得資訊！" });

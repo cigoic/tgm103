@@ -190,7 +190,7 @@ namespace WuliKaWu.Controllers
             }
 
             if (member == null
-                || member.EmailComfirmed == true
+                || member.EmailComfirmed == false
                 || String.IsNullOrEmpty(NewVerificationToken))
                 return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
@@ -230,7 +230,6 @@ namespace WuliKaWu.Controllers
             return View(new ActivateModel { Email = collection["u"], Token = collection["c"] });
         }
 
-        // TODO 重複功能，將移至 ApiController 中
         private void SendConfirmationEmail(string email, string subject, string token)
         {
             if (email == null) return;

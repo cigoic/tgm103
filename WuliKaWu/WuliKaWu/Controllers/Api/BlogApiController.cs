@@ -46,10 +46,6 @@ namespace WuliKaWu.Controllers.Api
         public IResult GetArticles()
         {
             return _context.Articles
-                  //.Include(a => a.ArticleTitleImage)
-                  //.Include(a => a.Tags)
-                  //.ToListAsync()
-                  // is IEnumerable<Article> articles
                   .Select(a => new ArticleDescriptionModel
                   {
                       Id = a.Id,
@@ -85,7 +81,6 @@ namespace WuliKaWu.Controllers.Api
             .Include(a => a.ArticleContentImages)
             .Include(a => a.Tags)
             .Where(m => m.MemberId == memberId)
-             //is IEnumerable<Article> articles
              .Select(a => new ArticleMemberPostsModel
              {
                  Id = a.Id,
@@ -393,8 +388,6 @@ namespace WuliKaWu.Controllers.Api
                 CreatedDate = article.CreatedDate,
                 ModifiedDate = article.ModifiedDate,
                 CategoryId = article.CategoryId,
-                //TitlePicurePath = article.ArticleTitleImage.PicturePath,
-                //ContentPicturePath = article.ArticleContentImages.Select(i => i.PicturePath).ToList(),
             };
 
             return (model != null)
@@ -521,7 +514,6 @@ namespace WuliKaWu.Controllers.Api
             return _context.Articles.Any(e => e.Id == id);
         }
 
-        // DELETE   api/Blog/Delete/{ArticleId}
         /// <summary>
         /// 刪除部落格文章
         /// </summary>
