@@ -40,18 +40,15 @@
                                     </thead>
                                     <tbody>
                                         <tr v-for="cart in productInThisCart">
-                                            <td class="product-thumbnail">
+                                            @*<td class="product-thumbnail">*@
                                             <td class="product-thumbnail" v-for="(pic, index) in cart.picturePath" v-if="index < 1">
                                                 <img class="width-thumbnail" style="width:120px" :src="pic"></img>
-                                                @*<img class="width-thumbnail" style="width:120px" :src="cart.picturePath[0]"></img>*@
                                             </td>
                                             <td class="product-name">
                                                 <h5>{{cart.productName}}</h5>
-                                            </td>
+                                                </td>
                                             <td><span>{{cart.size}}</span></td>
-                                            <td v-for="(value, index) in cart.color" v-if="index < 1"><span>{{value}}</span></td>
-                                            @*<td><span>{{cart.type[0]}}</span></td>*@
-
+                                            <td v-for="(value, index) in cart.type" v-if="index < 1"><span>{{value}}</span></td>
                                             <td class="product-price">
                                                 <span :class="{'old-price':cart.discount}">${{cart.price}}</span>
                                                 <span class="new-price" v-if="cart.discount">${{cart.sellingPrice}}</span>
@@ -66,8 +63,6 @@
                                             <td class="product-remove">
                                                 <button type="button" title="Remove From Cart" v-on:click="RemoveToCart(cart.id)"><i class=" ti-trash "></i></button>
                                             </td>
-
-                                            
                                         </tr>
                                     </tbody>
                                 </table>
