@@ -62,7 +62,7 @@
                                             window.location = "Login"
                                         }
                                     })
-                            } else { tgm103ShowError(response.data.message) }
+                            } else { tgm103ShowSuccess(response.data.message) }
                         })
                         .catch(error => {
                             if (error.response.data.message) { tgm103ShowError(error.response.data.message) }
