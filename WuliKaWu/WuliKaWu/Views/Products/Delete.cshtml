@@ -162,13 +162,18 @@
                         icon: 'success',
                         title: 'Delete Success!!!',
                         //text: result.message,
-                        timer: 2000
+                        timer: 3000
                     };
-                    if (result.status!=true) {
-                        al.icon = "error";
-                        al.title = "Delete Failed!!!";
-                    }
-                    Swal.fire(al).then(() => { window.location = '/products/index/' })
+                        if (result.status != true) {
+                            al.icon = "error";
+                            al.title = "Delete Failed!!!";
+                            al.timer = 5000;
+                            Swal.fire(al);
+                            return window.location.reload();
+                        }
+                        else {
+                            Swal.fire(al).then(() => { window.location = '/products/index/' })
+                        }
                 })
             }
         }
