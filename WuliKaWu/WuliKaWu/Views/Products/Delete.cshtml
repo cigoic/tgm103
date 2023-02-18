@@ -83,7 +83,7 @@
         @*商品刪除按鍵*@
         <div class="col-7">
             <input type="hidden" />
-            <button type="button" id="Delete" class="btn btn-danger" @@click="removeProduct(@ViewBag.id)">Delete</button>
+            @*<button type="button" id="Delete" class="btn btn-danger" @@click="removeProduct(@ViewBag.id)">Delete</button>*@
             <a id="Delete" class="btn btn-danger hover-border-radius theme-color" style="background-color:indianred" @@click="showConfirm(productFields.productId)">Delete</a>
         </div>
 
