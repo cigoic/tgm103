@@ -24,6 +24,63 @@ namespace WuliKaWu.Controllers.Api
         }
 
         /// <summary>
+        /// Account Details 頁面「更改會員資訊」
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost]
+        public async Task<LoginMessage> MyAccount([FromBody] AccountDetailsModel model)
+        {
+            if (User.Identity?.IsAuthenticated == false
+                || ModelState.IsValid == false
+                || string.IsNullOrEmpty(model.CurrentPwd))
+                return new LoginMessage { Status = false, Message = "錯誤，請恰管理員" };
+
+            if ((string.IsNullOrEmpty(model.NewPwd) || string.IsNullOrEmpty(model.ConfirmPwd))
+                && string.Equals(model.NewPwd, model.ConfirmPwd) == false)
+                return new LoginMessage { Status = false, Message = "錯誤，請恰管理員" };
+
+            var member = _context.Members
+                .FirstOrDefault(m => m.MemberId == User.Claims.GetMemberId());
+
+            var IsValid = BCrypt.Net.BCrypt.Verify(model.CurrentPwd, member.Password);
+            if (IsValid == false)
+                return new LoginMessage { Status = false, Message = "錯誤，請恰管理員" };
+
+            string NewVerificationToken = string.Empty;
+            if (string.IsNullOrEmpty(model.ConfirmPwd) == false
+                && string.Equals(model.NewPwd, model.ConfirmPwd)
+                && (string.Equals(model.CurrentPwd, model.ConfirmPwd) == false))
+            {
+                // 當新舊密碼不同時
+                NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
+                member.VerificationToken = NewVerificationToken;
+                member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd, NewVerificationToken);
+            }
+
+            if (member == null
+                || member.EmailComfirmed == false
+                || String.IsNullOrEmpty(member.VerificationToken))
+                return new LoginMessage { Status = false, Message = "錯誤，請恰管理員" };
+
+            if (IsValid)
+            {
+                member.Name = model.Name;
+                member.Gender = model.Gender;
+                member.Birthday = model.Birthday;
+                member.Email = model.Email;
+                member.Address = model.Address;
+                member.PhoneNumber = model.PhoneNumber;
+                member.MobilePhone = model.MobilePhone;
+
+                await _context.SaveChangesAsync();
+            }
+
+            return new LoginMessage { Status = true, Message = "修改成功！" };
+        }
+
+        /// <summary>
         /// 開通帳號
         /// </summary>
         /// <returns></returns>
@@ -91,6 +148,37 @@ namespace WuliKaWu.Controllers.Api
             return new LoginMessage { Status = false, Message = "已寄送重置密碼郵件通知!" };
         }
 
+        [ActionName("Reset")]
+        [HttpPost]
+        public async Task<LoginMessage> ResetAsync([FromBody] ActivateModel urlQuery)
+        {
+            // 解開 Token (email + token)
+
+            //var urlQuery = "u=userxxx@123.com&c=ke%2FVBWYJ4FZXYKJOJN6tC7i";
+            var collection = HttpContext.Request.Query;
+            //var collection = HttpUtility.ParseQueryString(urlQuery);
+            var email = urlQuery.Email; //collection["u"];
+            var token = urlQuery.Token; //collection["c"];
+
+            var password = BCrypt.Net.BCrypt.HashPassword(urlQuery.Password, token);
+            //bool IsValid = _context.Members.Any(m => m.Password == password);
+            //bool IsValid = BCrypt.Net.BCrypt.Verify(urlQuery.Password, token);    // 會失敗
+            //if (IsValid == false) return new LoginMessage { Status = false, Message = "啟用錯誤，請恰管理員" };
+
+            Member? user = await _context.Members
+                .SingleOrDefaultAsync(u => u.Email == email);
+
+            if (user == null) return new LoginMessage { Status = false, Message = "啟用錯誤，請恰管理員" };
+
+            user.EmailComfirmed = true;
+            user.Password = password;
+            user.VerificationToken = token;
+
+            await _context.SaveChangesAsync();
+
+            return new LoginMessage { Status = true, Message = "已啟用，Wuli 歡迎您！請先更改會員密碼" };
+        }
+
         /// <summary>
         /// 產生 Token (無需會員輸入版本)
         /// </summary>
@@ -129,7 +217,7 @@ namespace WuliKaWu.Controllers.Api
         {
             if (email == null) return;
 
-            string targetUrl = Url.Action("Activate", "Member", new { u = email, c = token });
+            string targetUrl = Url.Action("Reset", "Member", new { u = email, c = token });
             //產生： "/Member/Activate?u=用戶識別碼&c=Token值"
             var link = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{targetUrl}";
             var subject = "您好！這是一封來自 Wuli 的問候～";

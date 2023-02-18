@@ -1,6 +1,6 @@
 ﻿@model ActivateModel
 
-<div class="container" id="activateAccountApp" />
+<div class="container" id="resetApp" />
 
 <div class="login-register-area pb-100 pt-15">
     <div class="container">
@@ -9,7 +9,7 @@
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
                         <a class="active" data-bs-toggle="tab" href="#lg1">
-                            <h4> Activate </h4>
+                            <h4> RActivate </h4>
                         </a>
                     </div>
                     <div class="tab-content">
@@ -38,7 +38,7 @@
 @section Scripts
     {
     <script>
-        let actVue = new Vue({
+        let app = new Vue({
             data: {
                 urlQuery: {
                     email: "",
@@ -53,7 +53,7 @@
             },
             methods: {
                 handleSubmit() {
-                    axios.post('/api/Member/Activate', this.urlQuery)
+                    axios.post('/api/Member/Reset', this.urlQuery)
                         .then(response => {
                             if (response.status === 200 && response.data.statusCode === 200) {
                                 tgm103ShowSuccess(response.data.success)
@@ -72,7 +72,7 @@
         });
 
         document.addEventListener("DOMContentLoaded", () => {
-            actVue.$mount('#activateAccountApp')
+            app.$mount('#resetApp')
         })
     </script>
 }
