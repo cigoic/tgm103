@@ -223,11 +223,11 @@
                                 icon: 'success',
                                 title: 'Established in order',
                                 text: result.message,
-                                timer: 2000
+                                timer: 7000
                             };
                             if (result.status != true) {
                                 al.icon = "error";
-                                al.title = "Uncomplete";
+                                al.title = "Uncompleted";
                             }
                             Swal.fire(al)
                         })
