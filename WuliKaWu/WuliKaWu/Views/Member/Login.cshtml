@@ -16,30 +16,26 @@
                     <div class="tab-content">
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
-                                <div class="login-register-form">
-                                    <form id="loginForm" name="loginForm" method="post">
-                                        <label for="Account" class="required">帳號</label>
-                                        <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
+                                <div class="contact-form-style">
+                                    <label for="Account" class="required">帳號</label>
+                                    <input type="text" id="Account" name="Account" v-model="fieldsLogin.account" placeholder="Username">
 
-                                        <label for="Password" class="required">密碼</label>
-                                        <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
+                                    <label for="Password" class="required">密碼</label>
+                                    <input type="password" id="Password" name="Password" v-model="fieldsLogin.password" placeholder="Password">
 
-                                        <div class="login-toggle-btn">
-                                            @*<label for="RememberMe">Remember me</label>
-                                            <input type="checkbox" id="RememberMe" name="RememberMe" :value="fieldsLogin.RememberMe">*@
-                                            <a href="/Member/ForgetPassword">Forgot Password?</a>
-                                        </div>
-                                        <div class="button-box btn-hover">
-                                            <button v-on:click="handleSubmit()">Login</button>
-                                        </div>
-                                    </form>
+                                    <div class="login-toggle-btn" style="float:right;">
+                                        <a href="/Member/ForgetPassword">Forgot Password?</a>
+                                    </div>
+                                    <div class="contact-us-btn btn-hover" style="float: left;">
+                                        <button v-on:click="handleSubmit()">Login</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div id="lg2" class="tab-pane">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form action="Register" method="post">
+                                    <form action="Register" method="post" id="restForm">
                                         <label id="Account" name="Account">帳號</label>
                                         <input type="text" name="Account" placeholder="Username" />
 
@@ -93,19 +89,17 @@
                 fieldsLogin: {
                     account: "",
                     password: "",
-                    rememberMe: "",
                 },
             },
             methods: {
                 handleSubmit() {
                     axios.post("/Member/Login", this.fieldsLogin)
                         .then(response => {
-                            console.log("....login response", response)
-                            if (response.data.success) { tgm103ShowSuccess(response.data.success) }
-                            else { tgm103ShowSuccess(response.data.message) }
+                            this.fieldsLogin.account = ""
+                            this.fieldsLogin.passwor = ""
+                            window.location.href = "/Home"
                         })
                         .catch(error => {
-                            console.log("login error...", error)
                             if (error.response.data.message) { tgm103ShowError(error.response.data.message) }
                         });
                     //document.getElementById('loginForm').reset()    // reset form
@@ -117,13 +111,12 @@
                             else { tgm103ShowError(response.data.message) }
                         })
                         .catch(error => {
-                            console.log("...reg err", error)
                             if (error.response.data.message) {
                                 console.log(error.response.data.message)
                                 swal("Error!", error.response.data.message, "error");
                             }
                         });
-                    //document.getElementById('restForm').reset()    // reset form
+                    //cument.getElementById('restForm').reset()    // reset form
                 },
             },
         })
