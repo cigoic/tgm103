@@ -161,6 +161,7 @@
                 })
             },
             showConfirm(id){
+                let self = this;
                 Swal.fire({
                     title: "Are You Sure You Wanna Delete This??",
                     text: "You will Lose This Product!",
@@ -171,12 +172,13 @@
                     confirmButtonText: "Yes, Delete It!",
                     cancelButtonText: "No, Don't Delete It! "
                 }).then((result) => {
-                    if (result.status!=true) {                       
+                    console.log('status',result.status);
+                    if (result.value!=true) {                       
                         window.location.reload();                        
                     }
                     else
                     {
-                        this.removeProduct(id)
+                        self.removeProduct(id)
                         window.location = "/products/index/"
                     }
                 });
