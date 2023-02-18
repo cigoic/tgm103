@@ -32,3 +32,39 @@ function tgm103ShowError(msg) {
         timer: 5000,
     })
 }
+
+function jumpOkTo(msg, page) {
+    Swal.fire({
+        icon: "success",
+        title: "恭喜您",
+        text: msg,
+    }).then((result) => {
+        if (result.value) {
+            window.location = page
+        }
+    });
+}
+
+function jumpErrTo(msg, page) {
+    Swal.fire({
+        icon: "error",
+        title: "Ohoo",
+        text: msg,
+    }).then((result) => {
+        if (result.value) {
+            window.location = page
+        }
+    });
+}
+
+function jumpTo(status, msg, page) {
+    Swal.fire({
+        icon: status ? "success" : "error",
+        title: status ? "恭喜您" : "Oops...",
+        text: msg,
+    }).then((result) => {
+        if (result.value) {
+            window.location = page
+        }
+    });
+}

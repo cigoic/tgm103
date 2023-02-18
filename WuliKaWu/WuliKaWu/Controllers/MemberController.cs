@@ -8,7 +8,6 @@ using System.Security.Claims;
 using WuliKaWu.Data;
 using WuliKaWu.Extensions;
 using WuliKaWu.Models;
-using WuliKaWu.Models.ApiModel;
 using WuliKaWu.Services;
 
 using static WuliKaWu.Data.MemberRole;
@@ -159,65 +158,7 @@ namespace WuliKaWu.Controllers
             return View();
         }
 
-        /// <summary>
-        /// Account Details 頁面「更改會員資訊」
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> MyAccount([FromBody] AccountDetailsModel model)
-        {
-            if (User.Identity?.IsAuthenticated == false
-                || ModelState.IsValid == false
-                || string.IsNullOrEmpty(model.CurrentPwd))
-                return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
-            if ((string.IsNullOrEmpty(model.NewPwd) || string.IsNullOrEmpty(model.ConfirmPwd))
-                && string.Equals(model.NewPwd, model.ConfirmPwd) == false)
-                return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
-
-            var member = _context.Members
-                .FirstOrDefault(m => m.MemberId == User.Claims.GetMemberId());
-
-            string NewVerificationToken = string.Empty;
-            if (string.IsNullOrEmpty(model.ConfirmPwd) == false
-                && string.Equals(model.NewPwd, model.ConfirmPwd))
-            {
-                NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
-                member.VerificationToken = NewVerificationToken;
-                member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd, NewVerificationToken);
-                member.Name = model.Name;
-                member.Gender = model.Gender;
-                member.Birthday = model.Birthday;
-                member.Email = model.Email;
-                member.Address = model.Address;
-                member.PhoneNumber = model.PhoneNumber;
-                member.MobilePhone = model.MobilePhone;
-
-                await _context.SaveChangesAsync();
-            }
-
-            if (member == null
-                || member.EmailComfirmed == false
-                || String.IsNullOrEmpty(member.VerificationToken))
-                return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
-
-            if (BCrypt.Net.BCrypt.Verify(member.Password, member.VerificationToken))
-            {
-                member.Name = model.Name;
-                member.Gender = model.Gender;
-                member.Birthday = model.Birthday;
-                member.Email = model.Email;
-                member.Address = model.Address;
-                member.PhoneNumber = model.PhoneNumber;
-                member.MobilePhone = model.MobilePhone;
-
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction(nameof(MyAccount));
-        }
 
         /// <summary>
         /// 會員登入頁面的「忘記密碼」功能
@@ -232,6 +173,18 @@ namespace WuliKaWu.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult Activate()
+        {
+            IQueryCollection collection = HttpContext.Request.Query;
+            if (collection == null) RedirectToAction("Login");
+
+            return View(new ActivateModel { Email = collection["u"], Token = collection["c"] });
+        }
+
+        /// <summary>
+        /// 重設密碼
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Reset()
         {
             IQueryCollection collection = HttpContext.Request.Query;
             if (collection == null) RedirectToAction("Login");
