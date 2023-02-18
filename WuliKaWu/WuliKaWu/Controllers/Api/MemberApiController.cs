@@ -57,15 +57,6 @@ namespace WuliKaWu.Controllers.Api
                 NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
                 member.VerificationToken = NewVerificationToken;
                 member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd, NewVerificationToken);
-                //member.Name = model.Name;
-                //member.Gender = model.Gender;
-                //member.Birthday = model.Birthday;
-                //member.Email = model.Email;
-                //member.Address = model.Address;
-                //member.PhoneNumber = model.PhoneNumber;
-                //member.MobilePhone = model.MobilePhone;
-
-                //await _context.SaveChangesAsync();
             }
 
             if (member == null
