@@ -84,6 +84,7 @@
         <div class="col-7">
             <input type="hidden" />
             <button type="button" id="Delete" class="btn btn-danger" @@click="removeProduct(@ViewBag.id)">Delete</button>
+            <a id="Delete" class="btn btn-danger hover-border-radius theme-color" style="background-color:indianred" @@click="showConfirm(productFields.productId)">Delete</a>
         </div>
 
         <div class="col-1"></div>
@@ -143,7 +144,6 @@
             removeProduct: function(id)
             {
                 var self = this;
-                //self.productFields.productId = @ViewBag.id
                 let Id = self.productFields.productId;
                 let qureyEditBaseUrl = '/api/product/deletebyid/' + Id;
 
@@ -158,24 +158,30 @@
                 })
                 .then(function(result){
                     console.log(result.message);
-                    var al = {
-                        icon: 'success',
-                        title: 'Delete Success!!!',
-                        //text: result.message,
-                        timer: 3000
-                    };
-                        if (result.status != true) {
-                            al.icon = "error";
-                            al.title = "Delete Failed!!!";
-                            al.timer = 5000;
-                            Swal.fire(al);
-                            return window.location.reload();
-                        }
-                        else {
-                            Swal.fire(al).then(() => { window.location = '/products/index/' })
-                        }
                 })
+            },
+            showConfirm(id){
+                Swal.fire({
+                    title: "Are You Sure You Wanna Delete This??",
+                    text: "You will Lose This Product!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Delete It!",
+                    cancelButtonText: "No, Don't Delete It! "
+                }).then((result) => {
+                    if (result.status!=true) {                       
+                        window.location.reload();                        
+                    }
+                    else
+                    {
+                        this.removeProduct(id)
+                        window.location = "/products/index/"
+                    }
+                });
             }
+
         }
     
     })
