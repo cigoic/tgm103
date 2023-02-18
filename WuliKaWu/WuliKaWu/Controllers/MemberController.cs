@@ -47,7 +47,7 @@ namespace WuliKaWu.Controllers
         /// <returns></returns>
         [HttpPost]
         [ActionName("Login")]
-        public async Task<IActionResult> LoginRegisterAsync(MemberLoginModel model)
+        public async Task<IActionResult> LoginRegisterAsync([FromBody] MemberLoginModel model)
         {
             // 資料庫比對
             var member = _context.Members
@@ -64,7 +64,7 @@ namespace WuliKaWu.Controllers
                 new Claim(ClaimTypes.Name, member.Name),   // 資料庫裡的姓名
                 // https://learn.microsoft.com/zh-tw/windows-server/identity/ad-fs/technical-reference/the-role-of-claims
                 new Claim(ClaimTypes.Role, RoleType.User.GetDescriptionText()),    // 資料庫裡的角色
-                new Claim("RememberMe", model.RememberMe.ToString()),
+                //new Claim("RememberMe", model.RememberMe.ToString()),
                 new Claim(ClaimTypes.Sid, member.MemberId.ToString()),
             };
 
@@ -187,11 +187,20 @@ namespace WuliKaWu.Controllers
                 NewVerificationToken = BCrypt.Net.BCrypt.GenerateSalt();
                 member.VerificationToken = NewVerificationToken;
                 member.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPwd, NewVerificationToken);
+                member.Name = model.Name;
+                member.Gender = model.Gender;
+                member.Birthday = model.Birthday;
+                member.Email = model.Email;
+                member.Address = model.Address;
+                member.PhoneNumber = model.PhoneNumber;
+                member.MobilePhone = model.MobilePhone;
+
+                await _context.SaveChangesAsync();
             }
 
             if (member == null
                 || member.EmailComfirmed == false
-                || String.IsNullOrEmpty(NewVerificationToken))
+                || String.IsNullOrEmpty(member.VerificationToken))
                 return BadRequest(new { Status = false, Message = "錯誤，請恰管理員" });
 
             if (BCrypt.Net.BCrypt.Verify(member.Password, member.VerificationToken))
