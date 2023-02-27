@@ -14,6 +14,8 @@ namespace WuliKaWu.Data
         [Key]
         public int ProductId { get; set; }
 
+
+
         /// <summary>
         /// 商品名稱，最大長度50
         /// </summary>
@@ -47,6 +49,12 @@ namespace WuliKaWu.Data
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
 
+        /// <summary>
+        /// 會員ID，不可為NULL
+        /// </summary>
+        [ForeignKey("Member")]
+        public int MemberId { get; set; }
+
 
         /// <summary>
         /// 導覽屬性：一個商品對應到多個商品顏色，用 ICollection
@@ -67,6 +75,7 @@ namespace WuliKaWu.Data
         /// 導覽屬性：一個商品對應到單一個商品分類，不用 ICollection
         /// </summary>
         public virtual Category Category { get; set; }
+
 
         /// <summary>
         /// 導覽屬性:一個商品對應到多個商品圖片，用 ICollection

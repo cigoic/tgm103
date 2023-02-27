@@ -5,6 +5,7 @@ namespace WuliKaWu.Models.ApiModel
     public class ProductEditModel
     {
         public int ProductId { get; set; }
+        public int MemberId { get; set; }
         public string ProductName { get; set; }
         public List<int> Colors { get; set; }
         public Size Size { get; set; }
