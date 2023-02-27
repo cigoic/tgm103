@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 using WuliKaWu.Data;
+using WuliKaWu.Extensions;
 using WuliKaWu.Models;
 using WuliKaWu.Models.ApiModel;
 
@@ -20,6 +22,15 @@ namespace WuliKaWu.Controllers.Api
         {
             _context = context;
             _env = env;
+        }
+
+        /// <summary>
+        /// 判斷用戶是否登入
+        /// </summary>
+        /// <returns></returns>
+        public bool GetLoginStatus()
+        {
+            return User.Identity.IsAuthenticated;
         }
 
         /// <summary>
@@ -105,14 +116,24 @@ namespace WuliKaWu.Controllers.Api
         /// 編輯對應Id的商品
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="eModel"></param>
+        /// <param name=""></param>
         /// <returns></returns>
+        
         [HttpPost("{id}")]
+        [Authorize]
         public ApiResultModel EditById([FromForm] ProductEditModel model)
         {
             //throw new NotImplementedException();
+            if (model.ProductId <= 0 || model.MemberId != User.Claims.GetMemberId())
+            {
+                return new ApiResultModel 
+                { Status = false, Message = "cannot edit" };
+            }
+            var myId = User.Claims.GetMemberId();
+
             var deletePics = model.DeletePictures;
             var data = _context.Products.Include(x => x.Colors).Include(x => x.Tags).FirstOrDefault(x => x.ProductId == model.ProductId);
+            data.MemberId = myId;
             data.ProductName = model.ProductName;
             data.Colors.Clear();
             data.Colors = _context.Colors.Where(x => model.Colors.Any(y => y == x.Id)).ToList();
@@ -175,11 +196,13 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         public ApiResultModel AddProduct([FromForm] ProductAddModel data)
         {
             var prd = new Product
             {
+                MemberId = User.Claims.GetMemberId(),
                 ProductName = data.ProductName,
                 Comment = data.Comment,
                 CategoryId = data.CategoryId,
@@ -213,7 +236,7 @@ namespace WuliKaWu.Controllers.Api
             return new ApiResultModel
             {
                 Status = true,
-                Message = "Delete Success!!"
+                Message = "Create Success!!"
             };
         }
 
@@ -222,6 +245,7 @@ namespace WuliKaWu.Controllers.Api
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("{id}")]
         public ApiResultModel DeleteById([FromBody] Int32 id)
         {
