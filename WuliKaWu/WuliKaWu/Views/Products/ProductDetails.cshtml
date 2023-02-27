@@ -103,7 +103,7 @@
                             <a href="#"><i class="fa fa-linkedin"></i></a>
                         </div>
                         @*編輯及刪除按鈕連結*@
-                        <div class="col-lg-12 col-md-3 ms-60 mt-30 p-80 contact-form-style">
+                        <div class="col-lg-12 ms-60 mt-30 p-80 contact-form-style">
                             <div>                               
                                 <span><a v-if="IsAuthorized" class="btn btn-primary hover-border-radius theme-color" style="background-color:cadetblue" :href="linkToEdit(productFields.productId)">Edit</a></span>
                                 <span><a v-if="IsAuthorized" class="btn btn-danger hover-border-radius theme-color" style="background-color:indianred" :href="linkToDelete(productFields.productId)">Delete</a></span>
@@ -227,17 +227,16 @@
             //created()
             //{
             //    axios.get('/api/product/GetLoginStatus')
-            //    //.then(function(response){return this.IsAuthorized = response.data;})
+            //    //.then(response => function(abc){return this.IsAuthorized = abc.data;})
             //    .then(response => this.IsAuthorized = response.data)
-            //    console.log('res',response);
             //    this.getbyid(@ViewBag.id)
             //},
 
-            mounted: function(){
+            mounted: function(){ 
                 var self = this;
                 //驗證會員是否登入
                 axios.get('/api/product/GetLoginStatus')
-                .then(response => self.IsAuthorized = response.data)
+                .then(response => self.IsAuthorized = response.data)                
 
                 fetch('/api/product/getbyid/'+'@ViewBag.id')
                 .then(function(response){return response.json()})
@@ -250,10 +249,12 @@
 
             methods:
             {
+                //導引連結到編輯頁面
                 linkToEdit: function (id) {
                     const queryEditBaseLink = "/products/edit/" + '@ViewBag.id'
                             return queryEditBaseLink
                 },
+                //導引連結到刪除頁面
                 linkToDelete: function (id) {
                     const queryDeleteBaseLink = "/products/delete/" + '@ViewBag.id'
                             return queryDeleteBaseLink
