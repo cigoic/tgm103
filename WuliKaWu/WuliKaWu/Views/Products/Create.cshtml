@@ -213,8 +213,9 @@
                             if (result.status!=true) {
                                 al.icon = "error";
                                 al.title = "Create Failed!!";
-                                Swal.fire(al);
-                                return window.location.reload();
+                                //設定時間避免提示訊息跳閃
+                                setTimeout(function(){ Swal.fire(al);},200);
+                                return setTimeout(function(){ window.location.reload();},2000);
                             }
                             else {
                                 Swal.fire(al).then(() => { window.location = '/products/index/' })
